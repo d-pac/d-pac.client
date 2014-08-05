@@ -13,7 +13,9 @@ module.exports = function (grunt) {
     require('time-grunt')(grunt);
 
     // Load grunt tasks automatically
-    require('jit-grunt')(grunt);
+    require('jit-grunt')(grunt, {
+        useminPrepare : 'grunt-usemin'
+    });
 
     // Configurable paths
     var config = {
@@ -25,7 +27,7 @@ module.exports = function (grunt) {
     grunt.initConfig(require('load-grunt-configs')(grunt, {
       config : config
     }));
-    
+
 //    console.log(grunt.config);
 
 
