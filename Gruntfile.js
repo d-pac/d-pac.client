@@ -7,61 +7,60 @@
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
 
-module.exports = function (grunt) {
+module.exports = function( grunt ){
 
     // Time how long tasks take. Can help when optimizing build times
-    require('time-grunt')(grunt);
+    require( 'time-grunt' )( grunt );
 
     // Load grunt tasks automatically
-    require('jit-grunt')(grunt, {
+    require( 'jit-grunt' )( grunt, {
         useminPrepare : 'grunt-usemin'
-    });
+    } );
 
     // Configurable paths
     var config = {
-        app: 'app',
-        dist: 'dist'
+        app  : 'app',
+        dist : 'dist'
     };
 
     // Define the configuration for all the tasks
-    grunt.initConfig(require('load-grunt-configs')(grunt, {
-      config : config
-    }));
+    grunt.initConfig( require( 'load-grunt-configs' )( grunt, {
+        config : config
+    } ) );
 
 //    console.log(grunt.config);
 
-
-    grunt.registerTask('serve', function (target) {
-        if (target === 'dist') {
-            return grunt.task.run(['build', 'connect:dist:keepalive']);
+    grunt.registerTask( 'serve', function( target ){
+        if( target === 'dist' ){
+            return grunt.task.run( ['build', 'connect:dist:keepalive'] );
         }
 
-        grunt.task.run([
+        grunt.task.run( [
             'clean:server',
             'browserify',
             'concurrent:server',
             'autoprefixer',
             'connect:livereload',
             'watch'
-        ]);
-    });
+        ] );
+    } );
 
-    grunt.registerTask('test', function (target) {
-        if (target !== 'watch') {
-            grunt.task.run([
+    grunt.registerTask( 'test', function( target ){
+        if( target !== 'watch' ){
+            grunt.task.run( [
                 'clean:server',
                 'concurrent:test',
                 'autoprefixer'
-            ]);
+            ] );
         }
 
-        grunt.task.run([
+        grunt.task.run( [
             'connect:test',
             'mocha'
-        ]);
-    });
+        ] );
+    } );
 
-    grunt.registerTask('build', [
+    grunt.registerTask( 'build', [
         'clean:dist',
         'browserify',
         'useminPrepare',
@@ -75,11 +74,11 @@ module.exports = function (grunt) {
         'rev',
         'usemin',
         'htmlmin'
-    ]);
+    ] );
 
-    grunt.registerTask('default', [
+    grunt.registerTask( 'default', [
         'newer:jshint',
         'test',
         'build'
-    ]);
+    ] );
 };
