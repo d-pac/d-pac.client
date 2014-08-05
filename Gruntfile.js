@@ -38,6 +38,7 @@ module.exports = function (grunt) {
 
         grunt.task.run([
             'clean:server',
+            'browserify',
             'concurrent:server',
             'autoprefixer',
             'connect:livereload',
