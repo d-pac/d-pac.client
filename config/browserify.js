@@ -7,6 +7,9 @@ module.exports = function(grunt, opts){
                 dist : {
                     files : {
                         '.tmp/scripts/main.js' : ['<%= config.app %>/scripts/**/*.js']
+                    },
+                    options : {
+                        transform : ['hbsfy']
                     }
                 }
             }

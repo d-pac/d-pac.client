@@ -28,7 +28,9 @@
     "jit-grunt": "^0.7.0",
     "load-grunt-configs": "^0.4.0",
     "load-grunt-tasks": "^0.6.0",
-    "grunt-browserify": "^2.1.4"
+    "grunt-browserify": "^2.1.4",
+    "hbsfy": "^2.0.0",
+    "handlebars": "^2.0.0-alpha.4"
   },
   "engines": {
     "node": ">=0.10.0"
