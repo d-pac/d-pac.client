@@ -15,18 +15,6 @@ Handlebars.registerHelper( 't', function( i18n_key,
     return new Handlebars.SafeString( result );
 } );
 
-Handlebars.registerHelper( 'tr', function( context,
-                                           options ){
-    var opts = i18n.functions.extend( options.hash, context );
-    if( options.fn ){
-        opts.defaultValue = options.fn( context );
-    }
-
-    var result = i18n.t( opts.key, opts );
-
-    return new Handlebars.SafeString( result );
-} );
-
 console.log( '--( MAIN )--' );
 console.log( 'Backbone loaded', 'undefined' !== typeof Backbone );
 console.log( 'Backbone.Marionette loaded', 'undefined' !== typeof Backbone.Marionette );
