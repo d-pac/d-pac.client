@@ -1,0 +1,6 @@
+{
+    "app": {
+        "name" : "d-pac"
+    },
+    "temp": "Hello __username__."
+}
