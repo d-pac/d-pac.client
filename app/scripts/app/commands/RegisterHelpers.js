@@ -2,7 +2,6 @@
 
 var Handlebars = require( "hbsfy/runtime" );
 module.exports = function RegisterHelpers(){
-    console.log( 'RegisterHelpers constructor' );
     Handlebars.registerHelper( 't', function( i18n_key,
                                               options ){
         var context = options.data.root;
