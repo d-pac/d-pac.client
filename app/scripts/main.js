@@ -21,6 +21,7 @@ console.log( 'Backbone.Marionette loaded', 'undefined' !== typeof Backbone.Mario
 console.log( 'Jquery loaded', 'undefined' !== typeof $ );
 console.log( 'Underscore/lodash loaded', 'undefined' !== typeof _ );
 console.log( 'i18next loaded', 'undefined' !== typeof $.i18n );
+console.log( 'Geppetto loaded', 'undefined' !== typeof Backbone.Geppetto );
 var temp = require( './temp.js' );
 console.log( temp.temp );
 
@@ -34,8 +35,8 @@ $.i18n.init( {
     }
 }, function( t ){
     console.log( t( "common:app.name" ) );
-    console.log( tpl({
-        username: "mofo"
-    }) );
+    console.log( tpl( {
+        username : "mofo"
+    } ) );
     console.log( tpl() );
 } );
