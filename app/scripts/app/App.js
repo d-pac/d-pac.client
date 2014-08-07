@@ -1,9 +1,10 @@
 'use strict';
+var log = require('bows')('dpac:App');
 
 module.exports = Backbone.Geppetto.Context.extend( {
 
     initialize : function(){
-        console.log( "Geppetto context coming up!" );
+        log( "initialize" );
 
         Backbone.Geppetto.setDebug( true );
 
