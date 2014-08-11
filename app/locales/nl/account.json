@@ -1,0 +1,33 @@
+{
+    "title"        : "Account",
+    "description"  : "Pas uw gebruikersgegevens aan.",
+    "name"         : {
+        "first" : {
+            "label"       : "Voornaam",
+            "description" : "Vul uw voornaam in."
+        },
+        "last"  : {
+            "label"       : "Naam",
+            "description" : "Vul uw achternaam in."
+        }
+    },
+    "organisation" : {
+        "label"       : "Organisatie",
+        "description" : "Selecteer uw organisatie uit de lijst."
+    },
+    "email"        : {
+        "label"       : "E-mail",
+        "description" : "Vul uw e-mail adres in."
+    },
+    "password"     : {
+        "label"        : "Wachtwoord",
+        "description"  : "Vul uw wachtwoord in.",
+        "confirmation" : {
+            "label"       : "Wachtwoord (bevestiging)",
+            "description" : "Bevestig uw wachtwoord"
+        }
+    },
+    "submit"       : {
+        "label" : "Bewaar"
+    }
+}

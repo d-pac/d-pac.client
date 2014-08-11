@@ -1,6 +1,24 @@
 {
     "app": {
-        "name" : "d-pac"
+        "name" : "d-pac",
+        "menu" : {
+            "judge" : {
+                "label": "Beoordeel",
+                "description": "Beoordeel"
+            },
+            "account" : {
+                "label": "Account",
+                "description": "Pas uw gebruikersgegevens aan."
+            },
+            "tutorial" : {
+                "label": "Tutorial",
+                "description": "Tutorial"
+            },
+            "logout" : {
+                "label": "Log uit",
+                "description": "Log uit"
+            }
+        }
     },
     "temp": "Hello __username__."
 }
