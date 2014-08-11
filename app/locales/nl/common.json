@@ -1,24 +1,34 @@
 {
-    "app": {
-        "name" : "d-pac",
-        "menu" : {
-            "judge" : {
-                "label": "Beoordeel",
-                "description": "Beoordeel"
-            },
-            "account" : {
-                "label": "Account",
-                "description": "Pas uw gebruikersgegevens aan."
-            },
-            "tutorial" : {
-                "label": "Tutorial",
-                "description": "Tutorial"
-            },
-            "logout" : {
-                "label": "Log uit",
-                "description": "Log uit"
-            }
-        }
+    "app"  : {
+        "name" : "d-pac"
     },
-    "temp": "Hello __username__."
+    "menu" : {
+        "brand"    : {
+            "label" : "d-pac",
+            "href"  : "#"
+        },
+        "judge"    : {
+            "label"       : "Beoordeel",
+            "description" : "Beoordeel",
+            "href"        : "#"
+        },
+        "account"  : {
+            "label"       : "Account",
+            "description" : "Pas uw gebruikersgegevens aan.",
+            "href"        : "#"
+        },
+        "tutorial" : {
+            "label"       : "Tutorial",
+            "description" : "Tutorial",
+            "href"        : "#"
+        },
+        "logout"   : {
+            "label"       : "Log uit",
+            "description" : "Log uit",
+            "href"        : "#"
+        },
+        "toggle"   : {
+            "label" : "Navigatie"
+        }
+    }
 }
