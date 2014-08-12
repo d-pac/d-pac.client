@@ -13,7 +13,7 @@
     },
     "organisation" : {
         "label"       : "Organisatie",
-        "description" : "Selecteer uw organisatie uit de lijst."
+        "description" : "Selecteer uw organisatie."
     },
     "email"        : {
         "label"       : "E-mail",

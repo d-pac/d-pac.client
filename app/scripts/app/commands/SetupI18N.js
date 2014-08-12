@@ -8,7 +8,10 @@ _.extend( SetupI18N.prototype, {
         $.i18n.init( {
             lng : "nl-BE",
             ns  : {
-                namespaces : ['common'],
+                namespaces : [
+                    'common',
+                    'account'
+                ],
                 defaultNs  : 'common'
             }
         }, function( t ){
