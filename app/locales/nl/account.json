@@ -21,10 +21,10 @@
     },
     "password"     : {
         "label"        : "Wachtwoord",
-        "description"  : "Vul uw wachtwoord in.",
+        "description"  : "****************",
         "confirmation" : {
             "label"       : "Wachtwoord (bevestiging)",
-            "description" : "Bevestig uw wachtwoord"
+            "description" : "****************"
         }
     },
     "submit"       : {
