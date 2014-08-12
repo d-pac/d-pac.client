@@ -9,7 +9,8 @@
     "backbone.marionette": "~2.1.0",
     "lodash": "~2.4.1",
     "i18next": "~1.7.3",
-    "backbone.geppetto": "~0.7.0"
+    "backbone.geppetto": "~0.7.0",
+    "backbone-nested-model": "~2.0.1"
   },
   "devDependencies": {}
 }
