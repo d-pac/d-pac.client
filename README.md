@@ -1,4 +1,4 @@
-# d-pac
+# d-pac [![devDependency Status](https://david-dm.org/d-pac/d-pac.client/dev-status.png?style=flat)](https://david-dm.org/d-pac/d-pac.client#info=devDependencies)
 
 > Digitaal platform voor het assessment van competenties
 
