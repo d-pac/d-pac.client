@@ -13,7 +13,8 @@ _.extend( SetupI18N.prototype, {
             ns  : {
                 namespaces : [
                     'common',
-                    'account'
+                    'account',
+                    'login'
                 ],
                 defaultNs  : 'common'
             }

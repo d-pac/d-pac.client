@@ -1,15 +1,14 @@
 'use strict';
 var debug = require('bows')('dpac:views');
 var tpl = require('./templates/App.hbs');
-var MenuView = require('./MenuView');
-var temp = require('./AccountView');
 
 module.exports = Backbone.Marionette.LayoutView.extend({
     template : tpl,
     el: "#app",
     wiring : [
         'menuView',
-        'accountView'
+        'accountView',
+        'loginView'
     ],
     regions : {
         menuRegion : "#app-menu",
@@ -22,6 +21,6 @@ module.exports = Backbone.Marionette.LayoutView.extend({
 
     onRender : function(){
         this.menuRegion.show(this.menuView);
-        this.contentRegion.show(this.accountView);
+        this.contentRegion.show(this.loginView);
     }
 });

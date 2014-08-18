@@ -1,0 +1,15 @@
+{
+    "title": "Login",
+    "description": "Login",
+    "email": {
+        "label": "E-mail",
+        "description": "Vul uw e-mail adres in"
+    },
+    "password": {
+        "label": "Wachtwoord",
+        "description": "Vul uw wachtwoord in"
+    },
+    "submit": {
+        "label": "Verzend"
+    }
+}
