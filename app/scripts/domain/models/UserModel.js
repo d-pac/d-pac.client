@@ -7,6 +7,7 @@ module.exports = Backbone.NestedModel.extend({
             last : ""
         },
         email: "",
-        password : ""
+        password : "",
+        password_confirm : ""
     }
 });
