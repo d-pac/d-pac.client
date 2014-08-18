@@ -1,6 +1,6 @@
 'use strict';
-var tpl = require('./AppLayout.hbs');
-var MenuView = require('./Menu');
+var tpl = require('./templates/App.hbs');
+var MenuView = require('./MenuView');
 var temp = require('./AccountView');
 
 module.exports = Backbone.Marionette.LayoutView.extend({

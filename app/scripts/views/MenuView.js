@@ -1,6 +1,6 @@
 'use strict';
 
-var tpl = require('./AccountView.hbs');
+var tpl = require('./templates/Menu.hbs');
 
 module.exports = Backbone.Marionette.ItemView.extend({
     template : tpl
