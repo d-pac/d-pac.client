@@ -9,7 +9,8 @@ module.exports = {
         '.htaccess',
         'images/{,*/}*.webp',
         '{,*/}*.html',
-        'styles/fonts/{,*/}*.*'
+        'styles/fonts/{,*/}*.*',
+        'locales/**/*.json'
       ]
     }, {
       expand: true,
