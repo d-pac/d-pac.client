@@ -1,5 +1,6 @@
 'use strict';
-var log = require('bows')('dpac:main');
-log('starting up...');
+
+var debug = require('bows')('dpac:app');
+debug('Main | starting up...');
 
 var app = require( './App.js' );

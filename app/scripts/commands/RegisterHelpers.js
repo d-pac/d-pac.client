@@ -1,7 +1,8 @@
 'use strict';
-
+var debug = require( 'bows' )( 'dpac:commands' );
 var Handlebars = require( "hbsfy/runtime" );
 module.exports = function RegisterHelpers(){
+    debug('RegisterHelpers#constructor');
     Handlebars.registerHelper( 't', function( i18n_key,
                                               options ){
         var context = options.data.root;

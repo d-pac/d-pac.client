@@ -1,10 +1,13 @@
 'use strict';
 
+var debug = require( 'bows' )( 'dpac:commands' );
+
 function SetupI18N(){
 }
 
 _.extend( SetupI18N.prototype, {
     execute : function execute(){
+        debug('SetupI18N#execute');
         $.i18n.init( {
             lng : "nl-BE",
             ns  : {
