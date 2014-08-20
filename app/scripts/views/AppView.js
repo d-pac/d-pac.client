@@ -7,7 +7,6 @@ module.exports = Backbone.Marionette.LayoutView.extend({
     el: "#app",
     wiring : [
         'menuView',
-        'accountView',
         'loginView'
     ],
     regions : {

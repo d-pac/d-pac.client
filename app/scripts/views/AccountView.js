@@ -5,14 +5,14 @@ var UserModel = require('../models/UserModel');
 
 module.exports = Backbone.Marionette.ItemView.extend({
     template : tpl,
-    wiring : ['userModel'],
+    wiring : ['currentUser'],
     modelEvents : {
         "error": "modelError",
         "sync": "modelSync"
     },
     initialize : function(){
         debug('AccountView#initialize');
-        this.model = this.userModel;
+        this.model = this.currentUser;
         this.model.fetch();
     },
     modelError : function(eventName){

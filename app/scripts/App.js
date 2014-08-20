@@ -7,14 +7,19 @@ var Context = Backbone.Geppetto.Context.extend( {
         debug( "App#initialize" );
 
         Backbone.Geppetto.setDebug( true );
+        this.vent.on('all', function(eventName, event){
+            console.log('SYSTEM EVENT', event);
+        });
+
         this.wireValue( 'app', app );
         this.wireCommands( {
             "app:startup.requested"         : [
-                require( './commands/RegisterHelpers' ),
-                require( './commands/BootstrapModels' ),
-                require( './commands/SetupI18N' )
+                require( './controllers/SetupJQuery' ),
+                require( './controllers/SetupHandlebars' ),
+                require( './controllers/BootstrapDomain' ),
+                require( './controllers/SetupI18N' )
             ],
-            'SetupI18N:execution:completed' : require( './commands/BootstrapUI' )
+            'SetupI18N:execution:completed' : require( './controllers/BootstrapUI' )
         } );
     }
 } );
