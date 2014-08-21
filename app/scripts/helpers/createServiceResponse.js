@@ -2,17 +2,17 @@
 
 module.exports = function createServiceResponse( err,
                                                  data ){
-    var failed;
-    if( err ){
-        failed = err.responseJSON || {
-            status : err.status,
-            name   : err.statusText
+    if( false !== err ){
+        return err.responseJSON || {
+            status  : err.status,
+            name    : err.statusText,
+            message : err.statusText,
+            code    : err.status,
+            reason  : {
+                message : err.statusText
+            }
         };
-    }else{
-        failed = false;
     }
-    return {
-        failed : failed,
-        result   : data
-    }
+
+    return data;
 };

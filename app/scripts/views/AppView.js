@@ -1,17 +1,22 @@
 'use strict';
 var debug = require('bows')('dpac:views');
 var tpl = require('./templates/App.hbs');
+//var AccountView = require('./AccountView');
 
-module.exports = Backbone.Marionette.LayoutView.extend({
+module.exports = Marionette.LayoutView.extend({
     template : tpl,
     el: "#app",
     wiring : [
-        'menuView',
-        'loginView'
+        'MenuView',
+        'LoginView',
+        'AccountView'
     ],
     regions : {
         menuRegion : "#app-menu",
         contentRegion : "#app-content"
+    },
+    contextEvents : {
+        'AuthService:signin:succeeded' : "showAccount"
     },
 
     initialize : function(){
@@ -19,7 +24,13 @@ module.exports = Backbone.Marionette.LayoutView.extend({
     },
 
     onRender : function(){
-        this.menuRegion.show(this.menuView);
-        this.contentRegion.show(this.loginView);
+        this.menuRegion.show(new this.MenuView());
+        this.contentRegion.show(new this.LoginView());
+    },
+
+    showAccount : function(){
+        console.log('showAccount');
+        var accountView = new this.AccountView();
+        this.contentRegion.show(accountView);
     }
 });

@@ -9,7 +9,7 @@ module.exports = function(grunt, opts){
                         '.tmp/scripts/main.js' : ['<%= config.app %>/scripts/**/*.js']
                     },
                     options : {
-                        transform : ['hbsfy']
+                        transform : ['hbsfy', 'envify']
                     }
                 }
             }

@@ -11,11 +11,17 @@ var BootstrapUI = module.exports = function BootstrapUI(){
 _.extend( BootstrapUI.prototype, {
     execute : function(){
         debug.log( 'BootstrapUI#execute' );
-        this.context.wireSingleton( 'menuView', MenuView );
-        this.context.wireSingleton( 'accountView', AccountView );
-        this.context.wireSingleton( 'loginView', LoginView );
-        this.context.wireSingleton( 'appView', AppView );
-        var appView = this.context.getObject( 'appView' );
+        this.context.wireView( 'MenuView', MenuView );
+        this.context.wireView( 'AccountView', AccountView );
+        this.context.wireView( 'LoginView', LoginView );
+        this.context.wireView( 'AppView', AppView );
+
+        AppView = this.context.getObject( 'AppView' );
+        var appView = new AppView();
+        Backbone.Geppetto.bindContext({
+            view: appView,
+            context : this.context
+        });
         appView.render();
     }
 } );

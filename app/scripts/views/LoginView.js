@@ -21,11 +21,9 @@ module.exports = Marionette.LayoutView.extend( {
     },
     initialize : function(){
         debug( 'LoginView#initialize' );
-        this.listenTo( this.authService, 'AuthService:signin:completed', function( response ){
-            if( response.failed ){
-                this.ui.passwordField.val('');
-                this.alertRegion.show( new AlertView( { message : response.failed.reason.message } ) );
-            }
+        this.listenTo( this.authService, 'AuthService:signin:failed', function( err ){
+            this.ui.passwordField.val('');
+            this.alertRegion.show( new AlertView( { message : err.reason.message } ) );
         } );
     },
     signin     : function( event ){

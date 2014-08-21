@@ -14,14 +14,16 @@
                         <label for="firstname" class="col-md-4">{{t "account:name.first.label"}}</label>
 
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="firstname" placeholder="{{t "account:name.first.description"}}">
+                            <input type="text" class="form-control" id="firstname"
+                                   placeholder="{{t "account:name.first.description"}}" value="{{name.first}}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="surname" class="col-md-4">{{t "account:name.last.label"}}</label>
 
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="surname" placeholder="{{t "account:name.last.description"}}">
+                            <input type="text" class="form-control" id="surname"
+                                   placeholder="{{t "account:name.last.description"}}" value="{{name.last}}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -38,7 +40,7 @@
 
                         <div class="col-md-8">
                             <input type="email" class="form-control" id="email"
-                                   placeholder="{{t "account:email.description"}}">
+                                   placeholder="{{t "account:email.description"}}" value="{{email}}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -50,7 +52,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="password-confirmation" class="col-md-4">{{t "account:password.confirmation.label"}}</label>
+                        <label for="password-confirmation"
+                               class="col-md-4">{{t "account:password.confirmation.label"}}</label>
 
                         <div class="col-md-8">
                             <input type="password" class="form-control" id="password-confirmation"
