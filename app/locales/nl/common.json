@@ -25,7 +25,7 @@
         "logout"   : {
             "label"       : "Log uit",
             "description" : "Log uit",
-            "href"        : "#logout"
+            "href"        : "#signout"
         },
         "toggle"   : {
             "label" : "Navigatie"

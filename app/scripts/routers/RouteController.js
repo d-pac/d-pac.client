@@ -4,6 +4,7 @@ var debug = require( 'bows' )( 'dpac:routers' );
 module.exports = Backbone.Router.extend( {
     routes : {
         "signin"    : "routeToAccount",
+        "signout"   : "routeToSignout",
         "assess"    : "routeToAssess",
         "account"   : "routeToAccount",
         "welcome"   : "routeToWelcome",
@@ -28,6 +29,9 @@ module.exports = Backbone.Router.extend( {
         }, this );
     },
 
+    routeToSignout : function routeTo404(){
+        this.trigger('navigate', 'signout');
+    },
 
     routeTo404 : function routeTo404(){
         this.trigger('navigate', '404');

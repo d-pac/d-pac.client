@@ -64,6 +64,7 @@ module.exports = Marionette.Controller.extend( {
             url     : this.url,
             type    : 'DELETE',
             success : function( data ){
+                delete this._csrf;
                 this.trigger( 'AuthService:signout:succeeded', createServiceResponse( false ) );
             }.bind( this ),
             error   : function( err ){
