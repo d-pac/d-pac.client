@@ -27,7 +27,7 @@ module.exports = Marionette.LayoutView.extend( {
         } );
     },
     signin     : function( event ){
-        debug( 'SIGN IN' );
+        debug( 'LoginView#signin' );
         this.authService.signin( {
             email    : this.$( "#email" ).val(),
             password : this.$( "#password" ).val()

@@ -5,7 +5,7 @@ var config = require( './config' );
 var app = module.exports = new Backbone.Marionette.Application();
 var Context = Backbone.Geppetto.Context.extend( {
     initialize : function(){
-        debug( "App#initialize" );
+        debug( "Context#initialize" );
 
         Backbone.Geppetto.setDebug( true );
         this.vent.on( 'all', function( eventName,
@@ -23,11 +23,16 @@ var Context = Backbone.Geppetto.Context.extend( {
             ],
             'SetupI18N:execution:completed' : [
                 require( './controllers/SetupAPIRequests' ),
-                require( './controllers/BootstrapUI' )
+                require( './controllers/BootstrapUI' ),
+                require( './controllers/BootstrapRouting')
             ]
         } );
     }
 } );
+app.on('start', function(){
+    debug('App#start');
+    this.context = new Context();
+    this.context.dispatch( 'app:startup.requested' );
+});
 
-app.context = new Context();
-app.context.dispatch( 'app:startup.requested' );
+

@@ -10,22 +10,22 @@
         "judge"    : {
             "label"       : "Beoordeel",
             "description" : "Beoordeel",
-            "href"        : "#"
+            "href"        : "#assess"
         },
         "account"  : {
             "label"       : "Account",
             "description" : "Pas uw gebruikersgegevens aan.",
-            "href"        : "#"
+            "href"        : "#account"
         },
         "tutorial" : {
             "label"       : "Tutorial",
             "description" : "Tutorial",
-            "href"        : "#"
+            "href"        : "#tutorial"
         },
         "logout"   : {
             "label"       : "Log uit",
             "description" : "Log uit",
-            "href"        : "#"
+            "href"        : "#logout"
         },
         "toggle"   : {
             "label" : "Navigatie"
