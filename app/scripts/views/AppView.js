@@ -10,7 +10,8 @@ module.exports = Marionette.LayoutView.extend( {
         'MenuView',
         'LoginView',
         'AccountView',
-        'WelcomeView'
+        'WelcomeView',
+        'NotFoundView'
     ],
     regions       : {
         menuRegion    : "#app-menu",
@@ -22,7 +23,7 @@ module.exports = Marionette.LayoutView.extend( {
         'route:assess:completed'   : "showAssess",
         'route:account:completed'  : "showAccount",
         'route:tutorial:completed' : "showTutorial",
-        'route:404:completed'      : "showWelcome"
+        'route:404:completed'      : "show404"
     },
 
     initialize : function(){
@@ -33,6 +34,10 @@ module.exports = Marionette.LayoutView.extend( {
         debug( 'AppView#render' );
         this.menuRegion.show( new this.MenuView() );
         //this.contentRegion.show(new this.LoginView());
+    },
+
+    show404:function(){
+        this.contentRegion.show(new this.NotFoundView());
     },
 
     showLogin : function(){

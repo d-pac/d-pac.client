@@ -2,6 +2,10 @@
     "app"  : {
         "name" : "d-pac"
     },
+    "notfound": {
+        "title": "Oei.",
+        "description" : "Pagina niet gevonden."
+    },
     "menu" : {
         "brand"    : {
             "label" : "d-pac",

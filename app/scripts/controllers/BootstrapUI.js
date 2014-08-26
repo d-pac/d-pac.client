@@ -12,6 +12,7 @@ _.extend( BootstrapUI.prototype, {
         this.context.wireView( 'LoginView', require( '../views/LoginView' ) );
         this.context.wireView( 'AppView', require( '../views/AppView' ) );
         this.context.wireView( 'WelcomeView', require( '../views/WelcomeView' ) );
+        this.context.wireView( 'NotFoundView', require( '../views/404View' ) );
 
         var AppView = this.context.getObject( 'AppView' );
         var appView = new AppView();
