@@ -1,9 +1,11 @@
 'use strict';
 var debug = require( 'bows' )( 'dpac:services' );
-var createServiceResponse = require('../helpers/createServiceResponse');
+var createServiceResponse = require( '../helpers/createServiceResponse' );
 
 module.exports = Marionette.Controller.extend( {
-    url    : "/session",
+
+    url        : "/session",
+
     initialize : function(){
         debug( 'AuthService#initialize' );
         this._setupSecurity();
@@ -11,25 +13,27 @@ module.exports = Marionette.Controller.extend( {
     },
 
     _setupSecurity : function(){
+        //TODO: we'll need to move this
         $.ajaxPrefilter( function( options,
                                    originalOptions,
                                    jqXHR ){
             options.xhrFields = {
                 withCredentials : true
             };
-            if( this._csrf){
+            if( this._csrf ){
                 if( options.data ){
                     options.data += '&_csrf=' + this._csrf;
                 }else{
                     options.data = '_csrf=' + this._csrf;
                 }
             }
-        }.bind(this) );
+        }.bind( this ) );
     },
 
     getStatus : function(){
         debug( 'AuthService#getStatus' );
         $.ajax( {
+            api     : true,
             url     : this.url,
             type    : 'GET',
             success : function( data ){
@@ -44,6 +48,7 @@ module.exports = Marionette.Controller.extend( {
     signin    : function( creds ){
         debug( 'AuthService#signin' );
         $.ajax( {
+            api      : true,
             url      : this.url,
             type     : 'POST',
             dataType : 'json',
@@ -53,7 +58,7 @@ module.exports = Marionette.Controller.extend( {
                 this.trigger( 'AuthService:signin:succeeded', createServiceResponse( false, data ) );
             }.bind( this ),
             error    : function( err ){
-                console.log(err);
+                console.log( err );
                 this.trigger( 'AuthService:signin:failed', createServiceResponse( err ) );
             }.bind( this )
         } );
@@ -61,6 +66,7 @@ module.exports = Marionette.Controller.extend( {
     signout   : function(){
         debug( 'AuthService#signout' );
         $.ajax( {
+            api     : true,
             url     : this.url,
             type    : 'DELETE',
             success : function( data ){
