@@ -1,6 +1,7 @@
 'use strict';
+
 var debug = require( 'bows' )( 'dpac:commands' );
-var hbsfy = require( "hbsfy/runtime" );
+
 module.exports = function SetupHandlebars(){
     debug( 'SetupHandlebars#constructor' );
 
@@ -20,5 +21,4 @@ module.exports = function SetupHandlebars(){
 
     //TODO: ugly, ugly, ugly, figure out a way how to combine both
     Handlebars.registerHelper( 't', translate );
-    hbsfy.registerHelper( 't', translate );
 }
