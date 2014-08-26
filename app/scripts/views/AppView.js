@@ -9,7 +9,8 @@ module.exports = Marionette.LayoutView.extend( {
     wiring        : [
         'MenuView',
         'LoginView',
-        'AccountView'
+        'AccountView',
+        'WelcomeView'
     ],
     regions       : {
         menuRegion    : "#app-menu",
@@ -47,6 +48,7 @@ module.exports = Marionette.LayoutView.extend( {
 
     showWelcome : function(){
         debug( 'AppView#showWelcome' );
+        this.contentRegion.show( new this.WelcomeView() );
     },
 
     showAssess : function(){

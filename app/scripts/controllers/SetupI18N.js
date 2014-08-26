@@ -10,11 +10,13 @@ _.extend( SetupI18N.prototype, {
         debug('SetupI18N#execute');
         $.i18n.init( {
             lng : "nl-BE",
+            fallbackLng: false,
             ns  : {
                 namespaces : [
                     'common',
                     'account',
-                    'login'
+                    'login',
+                    'welcome'
                 ],
                 defaultNs  : 'common'
             }
