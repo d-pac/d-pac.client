@@ -3,6 +3,7 @@ var debug = require( 'bows' )( 'dpac:commands' );
 var UserModel = require( '../models/UserModel' );
 var AuthService = require( '../services/AuthService' );
 var AssessmentsCollection = require( '../collections/AssessmentsCollection' );
+var ComparisonFlowController = require( './ComparisonFlowController' );
 
 var BootstrapModels = module.exports = function BootstrapDomain(){
 };
@@ -26,5 +27,11 @@ _.extend( BootstrapModels.prototype, {
         this.context.wireCommands( {
             'route:signout:completed' : require( './Signout' )
         } );
+
+        this.context.wireSingleton( 'comparisonFlowController', ComparisonFlowController );
+        Backbone.Geppetto.bindContext( {
+            view : this.context.getObject( 'comparisonFlowController' ),
+            context : this.context
+        });
     }
 } );

@@ -10,7 +10,7 @@ var Context = Backbone.Geppetto.Context.extend( {
         Backbone.Geppetto.setDebug( true );
         this.vent.on( 'all', function( eventName,
                                        event ){
-            console.log( 'SYSTEM EVENT', event );
+            console.log( 'SYSTEM EVENT', eventName );
         } );
 
         this.wireValue( 'config', config );
