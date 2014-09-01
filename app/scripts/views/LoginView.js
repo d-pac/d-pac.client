@@ -19,6 +19,7 @@ module.exports = Marionette.LayoutView.extend( {
     events     : {
         "click @ui.loginButton" : "signin"
     },
+
     initialize : function(){
         debug( 'LoginView#initialize' );
         this.listenTo( this.authService, 'AuthService:signin:failed', function( err ){
@@ -26,6 +27,7 @@ module.exports = Marionette.LayoutView.extend( {
             this.alertRegion.show( new AlertView( { message : err.reason.message } ) );
         } );
     },
+
     signin     : function( event ){
         debug( 'LoginView#signin' );
         this.authService.signin( {

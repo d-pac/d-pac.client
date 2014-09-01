@@ -9,10 +9,10 @@ _.extend(SetupAPIRequests.prototype, {
     execute  : function(){
         debug('SetupAPIRequests');
         var config = this.config;
-        $.ajaxPrefilter( function( options, originalOptions, jqXHR ){
-            if(options.api){
-                options.url = config.api.root + options.url;
-            }
-        });
+        //$.ajaxPrefilter( function( options, originalOptions, jqXHR ){
+        //    if(options.api){
+        //        options.url = config.api.root + options.url;
+        //    }
+        //});
     }
 })

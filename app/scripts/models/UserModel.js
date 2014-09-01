@@ -10,7 +10,7 @@ module.exports = Backbone.NestedModel.extend({
         password : "",
         password_confirm : ""
     },
-    urlRoot : '/users',
+
     initialize : function(){
         debug('UserModel#initialize');
     }
