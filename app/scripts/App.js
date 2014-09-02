@@ -22,7 +22,6 @@ var Context = Backbone.Geppetto.Context.extend( {
                 require( './controllers/SetupI18N' )
             ],
             'SetupI18N:execution:completed' : [
-                require( './controllers/SetupAPIRequests' ),
                 require( './controllers/BootstrapUI' ),
                 require( './controllers/BootstrapRouting')
             ]

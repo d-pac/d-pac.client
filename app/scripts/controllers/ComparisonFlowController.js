@@ -21,6 +21,6 @@ module.exports = Backbone.Model.extend( {
     },
 
     onChange : function(){
-        this.dispatch( 'comparisonflow:changed:' + this.get( 'state' ) );
+        this.dispatch( 'comparisonflow:' + this.get( 'state' ) );
     }
 } );

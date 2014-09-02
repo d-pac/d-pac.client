@@ -4,9 +4,6 @@ var createServiceResponse = require( '../helpers/createServiceResponse' );
 
 module.exports = Marionette.Controller.extend( {
 
-    url    : "/me/session",
-    wiring : ['config'],
-
     initialize : function(){
         debug( 'AuthService#initialize' );
         this._setupSecurity();
@@ -34,7 +31,7 @@ module.exports = Marionette.Controller.extend( {
     getStatus : function(){
         debug( 'AuthService#getStatus' );
         $.ajax( {
-            url     : this.config.api.root + this.url,
+            url     : this.url,
             type    : 'GET',
             success : function( data ){
                 this.trigger( 'AuthService:getStatus:succeeded', createServiceResponse( false ) );
@@ -48,7 +45,7 @@ module.exports = Marionette.Controller.extend( {
     signin    : function( creds ){
         debug( 'AuthService#signin' );
         $.ajax( {
-            url      : this.config.api.root + this.url,
+            url      : this.url,
             type     : 'POST',
             dataType : 'json',
             data     : creds,
@@ -65,7 +62,7 @@ module.exports = Marionette.Controller.extend( {
     signout   : function(){
         debug( 'AuthService#signout' );
         $.ajax( {
-            url     : this.config.api.root + this.url,
+            url     : this.url,
             type    : 'DELETE',
             success : function( data ){
                 delete this._csrf;

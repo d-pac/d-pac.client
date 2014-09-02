@@ -36,8 +36,8 @@ module.exports = Marionette.LayoutView.extend( {
         //this.contentRegion.show(new this.LoginView());
     },
 
-    show404:function(){
-        this.contentRegion.show(new this.NotFoundView());
+    show404 : function(){
+        this.contentRegion.show( new this.NotFoundView() );
     },
 
     showLogin : function(){
