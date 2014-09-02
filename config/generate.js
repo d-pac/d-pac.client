@@ -8,7 +8,7 @@ module.exports = function(grunt, opts){
                     dest : "app/scripts",
                     map : {
                         "Model" : "models",
-                        "View" : "views",
+                        "ItemView" : "views",
                         "Command" : "controllers"
                     }
                 }

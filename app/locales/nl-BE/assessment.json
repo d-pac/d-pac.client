@@ -1,0 +1,24 @@
+{
+    "title": "Assessments",
+    "description" : "",
+    "selection": {
+        "title": "Assessments",
+        "description": "Kies een assessment",
+        "loading": {
+            "title" : "Even geduld...",
+            "message": "De gegevens worden opgehaald."
+        },
+        "empty" : {
+            "title" : "Helaas...",
+            "description" : "U hebt geen actieve assessments."
+        }
+    },
+    "comparisons": {
+        "title": "Beoordeling",
+        "description": "",
+        "loading": {
+            "title" : "Even geduld...",
+            "message": "De gegevens worden opgehaald."
+        }
+    }
+}

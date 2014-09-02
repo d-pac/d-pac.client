@@ -1,10 +1,5 @@
 'use strict';
-var debug = require( 'bows' )( 'dpac:commands' );
-var UserModel = require( '../models/UserModel' );
-var AuthService = require( '../services/AuthService' );
-var AssessmentsCollection = require( '../collections/AssessmentsCollection' );
-var ComparisonFlowController = require( './ComparisonFlowController' );
-var AggregateComparisonModel = require('../models/AggregateComparisonModel');
+var debug = require( 'bows' )( 'dpac:controllers' );
 
 var BootstrapModels = module.exports = function BootstrapDomain(){
 };
@@ -14,33 +9,34 @@ _.extend( BootstrapModels.prototype, {
     execute : function(){
         debug.log( 'BootstrapDomain#execute' );
         this.context.wireValue( 'url.api.me.account', this.config.api.root + '/me/account' );
-        this.context.wireSingleton( 'accountModel', UserModel, {
+        this.context.wireSingleton( 'accountModel', require( '../models/UserModel' ), {
             url : 'url.api.me.account'
         } );
 
         this.context.wireValue( 'url.api.me.assessments', this.config.api.root + '/me/assessments' );
-        this.context.wireSingleton( 'userAssessments', AssessmentsCollection, {
+        this.context.wireSingleton( 'assessmentsCollection', require( '../collections/AssessmentsCollection' ), {
             url : 'url.api.me.assessments'
         } );
 
-        this.context.wireValue( 'url.api.me.comparison', this.config.api.root + '/me/comparison');
-        this.context.wireSingleton( 'currentComparison', AggregateComparisonModel, {
-            url : 'url.api.me.comparison'
-        });
+        this.context.wireValue( 'url.api.me.comparisons', this.config.api.root + '/me/comparisons' );
+        this.context.wireSingleton( 'comparisonsCollection', require( '../collections/ComparisonsCollection' ), {
+            url : 'url.api.me.comparisons'
+        } );
 
-        this.context.wireValue( 'url.api.me.session', this.config.api.root + '/me/session');
-        this.context.wireSingleton( 'authService', AuthService, {
+        this.context.wireValue( 'url.api.me.session', this.config.api.root + '/me/session' );
+        this.context.wireSingleton( 'authService', require( '../services/AuthService' ), {
             url : 'url.api.me.session'
         } );
+
+        this.context.wireSingleton('comparisonFlow', require('../controllers/ComparisonFlow'));
+        Backbone.Geppetto.bindContext({
+            view: this.context.getObject('comparisonFlow'),
+            context: this.context
+        });
 
         this.context.wireCommands( {
             'route:signout:completed' : require( './Signout' )
         } );
 
-        this.context.wireSingleton( 'comparisonFlowController', ComparisonFlowController );
-        Backbone.Geppetto.bindContext( {
-            view : this.context.getObject( 'comparisonFlowController' ),
-            context : this.context
-        });
     }
 } );

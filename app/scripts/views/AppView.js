@@ -3,27 +3,43 @@ var debug = require( 'bows' )( 'dpac:views' );
 var tpl = require( './templates/App.hbs' );
 //var AccountView = require('./AccountView');
 
+function viewFactory( viewName ){
+    return function(){
+        var view = new this[viewName];
+
+        debug('Appview -TODO- remove after Geppetto update');
+        Backbone.Geppetto.bindContext({
+            view: view,
+            context: this.context
+        });
+        this.contentRegion.show( view );
+    }
+}
+
 module.exports = Marionette.LayoutView.extend( {
     template      : tpl,
     el            : "#app",
     wiring        : [
+        'context',
         'MenuView',
         'LoginView',
         'AccountView',
         'WelcomeView',
-        'NotFoundView'
+        'NotFoundView',
+        'AssessmentView'
     ],
     regions       : {
         menuRegion    : "#app-menu",
         contentRegion : "#app-content"
     },
     contextEvents : {
-        'route:signin:completed'   : "showLogin",
-        'route:welcome:completed'  : "showWelcome",
-        'route:assess:completed'   : "showAssess",
-        'route:account:completed'  : "showAccount",
-        'route:tutorial:completed' : "showTutorial",
-        'route:404:completed'      : "show404"
+        'route:signin:completed'   : viewFactory( "LoginView" ),
+        'route:welcome:completed'  : viewFactory( "WelcomeView" ),
+        'route:signout:completed'  : viewFactory( "LoginView" ),
+        "route:assess:completed"   : viewFactory( "AssessmentView" ),
+        'route:account:completed'  : viewFactory( "AccountView" ),
+        'route:tutorial:completed' : viewFactory( "TutorialView" ),
+        'route:404:completed'      : viewFactory( "NotFoundView" )
     },
 
     initialize : function(){
@@ -33,36 +49,6 @@ module.exports = Marionette.LayoutView.extend( {
     onRender : function(){
         debug( 'AppView#render' );
         this.menuRegion.show( new this.MenuView() );
-        //this.contentRegion.show(new this.LoginView());
-    },
-
-    show404 : function(){
-        this.contentRegion.show( new this.NotFoundView() );
-    },
-
-    showLogin : function(){
-        debug( 'AppView#showLogin' );
-        this.contentRegion.show( new this.LoginView() );
-    },
-
-    showAccount : function(){
-        debug( 'AppView#showAccount' );
-        var accountView = new this.AccountView();
-        this.contentRegion.show( accountView );
-    },
-
-    showWelcome : function(){
-        debug( 'AppView#showWelcome' );
-        this.contentRegion.show( new this.WelcomeView() );
-    },
-
-    showAssess : function(){
-        debug( 'AppView#showAssess' );
-
-    },
-
-    showTutorial : function(){
-        debug( 'AppView#showTutorial' );
-
     }
+
 } );

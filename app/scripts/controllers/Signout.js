@@ -1,5 +1,5 @@
 'use strict';
-var debug = require( 'bows' )( 'dpac:commands' );
+var debug = require( 'bows' )( 'dpac:controllers' );
 var Signout = module.exports = function Signout(){};
 
 _.extend(Signout.prototype, {

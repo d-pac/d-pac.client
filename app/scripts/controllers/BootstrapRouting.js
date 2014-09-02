@@ -1,5 +1,5 @@
 'use strict';
-var debug = require( 'bows' )( 'dpac:commands' );
+var debug = require( 'bows' )( 'dpac:controllers' );
 var RouteController = require('../routers/RouteController');
 
 var BootstrapRouting = module.exports = function BootstrapRouting(){

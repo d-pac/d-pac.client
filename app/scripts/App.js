@@ -14,24 +14,26 @@ var Context = Backbone.Geppetto.Context.extend( {
         } );
 
         this.wireValue( 'config', config );
+        this.wireValue( 'context', this );
         this.wireValue( 'app', app );
         this.wireCommands( {
             "app:startup.requested"         : [
-                require( './controllers/SetupHandlebars' ),
+                require( './controllers/SetupHBSHelpers' ),
+                require( './controllers/SetupHBSPartials' ),
                 require( './controllers/BootstrapDomain' ),
                 require( './controllers/SetupI18N' )
             ],
             'SetupI18N:execution:completed' : [
                 require( './controllers/BootstrapUI' ),
-                require( './controllers/BootstrapRouting')
+                require( './controllers/BootstrapRouting' )
             ]
         } );
     }
 } );
-app.on('start', function(){
-    debug('App#start');
+app.on( 'start', function(){
+    debug( 'App#start' );
     this.context = new Context();
     this.context.dispatch( 'app:startup.requested' );
-});
+} );
 
 

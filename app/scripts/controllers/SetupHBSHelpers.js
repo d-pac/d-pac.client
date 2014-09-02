@@ -1,6 +1,6 @@
 'use strict';
 
-var debug = require( 'bows' )( 'dpac:commands' );
+var debug = require( 'bows' )( 'dpac:controllers' );
 
 module.exports = function SetupHandlebars(){
     debug( 'SetupHandlebars#constructor' );
@@ -19,6 +19,5 @@ module.exports = function SetupHandlebars(){
         return new Handlebars.SafeString( result );
     }
 
-    //TODO: ugly, ugly, ugly, figure out a way how to combine both
     Handlebars.registerHelper( 't', translate );
-}
+};

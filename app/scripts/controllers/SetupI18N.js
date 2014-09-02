@@ -1,6 +1,6 @@
 'use strict';
 
-var debug = require( 'bows' )( 'dpac:commands' );
+var debug = require( 'bows' )( 'dpac:controllers' );
 
 function SetupI18N(){
 }
@@ -16,7 +16,8 @@ _.extend( SetupI18N.prototype, {
                     'common',
                     'account',
                     'login',
-                    'welcome'
+                    'welcome',
+                    'assessment'
                 ],
                 defaultNs  : 'common'
             }

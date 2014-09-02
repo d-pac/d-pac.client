@@ -29,7 +29,7 @@ module.exports = Backbone.Router.extend( {
         }, this );
     },
 
-    routeToSignout : function routeTo404(){
+    routeToSignout : function routeToSignout(){
         this.trigger('navigate', 'signout');
     },
 
