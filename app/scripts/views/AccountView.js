@@ -4,7 +4,6 @@ var tpl = require( './templates/Account.hbs' );
 
 module.exports = Backbone.Marionette.ItemView.extend( {
     template    : tpl,
-    wiring      : ['accountModel'],
     modelEvents : {
         "error" : "modelError",
         "sync"  : "render"
@@ -18,7 +17,6 @@ module.exports = Backbone.Marionette.ItemView.extend( {
 
     initialize : function(){
         debug( 'AccountView#initialize' );
-        this.model = this.accountModel;
         this.model.fetch();
     },
     modelError : function( eventName ){

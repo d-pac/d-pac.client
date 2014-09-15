@@ -5,13 +5,7 @@ var tpl = require( './templates/App.hbs' );
 
 function viewFactory( viewName ){
     return function(){
-        var view = new this[viewName];
-
-        debug('Appview -TODO- remove after Geppetto update');
-        Backbone.Geppetto.bindContext({
-            view: view,
-            context: this.context
-        });
+        var view = this[viewName]();
         this.contentRegion.show( view );
     }
 }

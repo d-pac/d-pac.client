@@ -20,13 +20,13 @@ module.exports = Marionette.LayoutView.extend( {
 
     showAssessmentsSelection : function(){
         debug("AssessmentView#showAssessmentsSelection");
-        this.contentRegion.show(new this.AssessmentSelectionView());
+        this.contentRegion.show(this.AssessmentSelectionView());
     },
 
     showComparisonEditor : function(){
         debug("AssessmentView#showComparisonEditor");
         console.log(arguments);
-        this.contentRegion.show(new this.ComparisonView());
+        this.contentRegion.show(this.ComparisonView());
     }
 
 } );
