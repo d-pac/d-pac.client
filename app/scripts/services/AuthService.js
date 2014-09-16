@@ -11,21 +11,21 @@ module.exports = Marionette.Controller.extend( {
     },
 
     _setupSecurity : function(){
-        //TODO: we'll need to move this
-        $.ajaxPrefilter( function( options,
-                                   originalOptions,
-                                   jqXHR ){
-            options.xhrFields = {
-                withCredentials : true
-            };
-            if( this._csrf ){
-                if( options.data ){
-                    options.data += '&_csrf=' + this._csrf;
-                }else{
-                    options.data = '_csrf=' + this._csrf;
-                }
+        var backboneSync = Backbone.sync;
+        Backbone.sync = function(method, model, options){
+            if (!options.crossDomain) {
+              options.crossDomain = true;
             }
-        }.bind( this ) );
+
+            if (!options.xhrFields) {
+              options.xhrFields = {withCredentials:true};
+            }
+
+            options.beforeSend = function(xhr){
+                xhr.setRequestHeader('x-csrf-token', this._csrf);
+            };
+            return backboneSync(method, model, options);
+        };
     },
 
     getStatus : function(){
