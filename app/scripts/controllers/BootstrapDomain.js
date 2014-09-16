@@ -8,29 +8,30 @@ _.extend( BootstrapModels.prototype, {
 
     execute : function(){
         debug.log( 'BootstrapDomain#execute' );
-        this.context.wireValue( 'url.api.me.account', this.config.api.root + '/me/account' );
-        this.context.wireSingleton( 'accountModel', require( '../models/UserModel' ), {
+        var context = this.context;
+        context.wireValue( 'url.api.me.account', this.config.api.root + '/me/account' );
+        context.wireSingleton( 'accountModel', require( '../models/UserModel' ), {
             url : 'url.api.me.account'
         } );
 
-        this.context.wireValue( 'url.api.me.assessments', this.config.api.root + '/me/assessments' );
-        this.context.wireSingleton( 'assessmentsCollection', require( '../collections/AssessmentsCollection' ), {
+        context.wireValue( 'url.api.me.assessments', this.config.api.root + '/me/assessments' );
+        context.wireSingleton( 'assessmentsCollection', require( '../collections/AssessmentsCollection' ), {
             url : 'url.api.me.assessments'
         } );
 
-        this.context.wireValue( 'url.api.me.comparisons', this.config.api.root + '/me/comparisons' );
-        this.context.wireSingleton( 'comparisonsCollection', require( '../collections/ComparisonsCollection' ), {
+        context.wireValue( 'url.api.me.comparisons', this.config.api.root + '/me/comparisons' );
+        context.wireSingleton( 'comparisonsCollection', require( '../collections/ComparisonsCollection' ), {
             url : 'url.api.me.comparisons'
         } );
 
-        this.context.wireValue( 'url.api.me.session', this.config.api.root + '/me/session' );
-        this.context.wireSingleton( 'authService', require( '../services/AuthService' ), {
+        context.wireValue( 'url.api.me.session', this.config.api.root + '/me/session' );
+        context.wireSingleton( 'authService', require( '../services/AuthService' ), {
             url : 'url.api.me.session'
         } );
 
-        this.context.wireSingleton('comparisonFlow', require('../controllers/ComparisonFlow')).getObject('comparisonFlow');
+        context.wireSingleton('comparisonFlow', require('../controllers/ComparisonFlow')).getObject('comparisonFlow');
 
-        this.context.wireCommands( {
+        context.wireCommands( {
             'route:signout:completed' : require( './Signout' )
         } );
 
