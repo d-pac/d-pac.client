@@ -4,17 +4,17 @@ var debug = require( 'bows' )( 'dpac:routers' );
 module.exports = Backbone.Router.extend( {
     routes : {
         "signin"    : "routeToAccount",
-        "signout"   : "routeToSignout",
+        "signout"   : "triggerSignout",
         "assess"    : "routeToAssess",
         "account"   : "routeToAccount",
-        "welcome"   : "routeToWelcome",
-        "tutorial"  : "routeToTutorial",
-        ""          : "routeToWelcome",
-        "*notfound" : "routeTo404"
+        "welcome"   : "triggerWelcome",
+        "tutorial"  : "triggerTutorial",
+        ""          : "triggerWelcome",
+        "*notfound" : "trigger404"
     },
     contextEvents : {
-        "AuthService:signout:succeeded" : "routeToWelcome",
-        "AuthService:signin:succeeded" : "routeToAccount"
+        "AuthService:signout:succeeded" : "triggerWelcome",
+        "AuthService:signin:succeeded" : "triggerAccount"
     },
     wiring : ['authService'],
 
@@ -29,25 +29,33 @@ module.exports = Backbone.Router.extend( {
         }, this );
     },
 
-    routeToSignout : function routeToSignout(){
+    triggerSignout : function routeToSignout(){
         this.trigger('navigate', 'signout');
     },
 
-    routeTo404 : function routeTo404(){
+    trigger404 : function routeTo404(){
         this.trigger('navigate', '404');
     },
 
-    routeToWelcome : function routeToWelcome(){
+    triggerWelcome : function routeToWelcome(){
         this.trigger('navigate', 'welcome');
     },
 
-    routeToTutorial : function routeToTutorial(){
+    triggerTutorial : function routeToTutorial(){
         this.trigger('navigate', 'tutorial');
+    },
+
+    triggerAccount : function triggerAccount(){
+        this.trigger('navigate', 'account');
     },
 
     routeToAccount : function routeToAccount(){
         debug( 'RouteController#routeToAccount' );
         this.authTarget( 'account' );
+    },
+
+    triggerAssess : function triggerAssess(){
+      this.trigger('navigate', 'assess');
     },
 
     routeToAssess : function routeToAssess(){

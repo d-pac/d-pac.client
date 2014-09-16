@@ -28,11 +28,7 @@ _.extend( BootstrapModels.prototype, {
             url : 'url.api.me.session'
         } );
 
-        this.context.wireSingleton('comparisonFlow', require('../controllers/ComparisonFlow'));
-        Backbone.Geppetto.bindContext({
-            view: this.context.getObject('comparisonFlow'),
-            context: this.context
-        });
+        this.context.wireSingleton('comparisonFlow', require('../controllers/ComparisonFlow')).getObject('comparisonFlow');
 
         this.context.wireCommands( {
             'route:signout:completed' : require( './Signout' )

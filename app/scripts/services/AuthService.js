@@ -2,61 +2,52 @@
 var debug = require( 'bows' )( 'dpac:services' );
 var createServiceResponse = require( '../helpers/createServiceResponse' );
 
-module.exports = Marionette.Controller.extend( {
+module.exports = Backbone.Model.extend( {
 
     initialize : function(){
         debug( 'AuthService#initialize' );
-        this.on( 'all', this.dispatch );
     },
 
-    getCSRFToken: function(){
-        return this._csrf;
+    broadcast : function(event, data){
+        this.trigger(event, data);
+        this.dispatch(event, data);
     },
 
     getStatus : function(){
         debug( 'AuthService#getStatus' );
-        $.ajax( {
-            url     : this.url,
-            type    : 'GET',
+        this.fetch({
             success : function( data ){
-                this.trigger( 'AuthService:getStatus:succeeded', createServiceResponse( false ) );
+                this.broadcast( 'AuthService:getStatus:succeeded', createServiceResponse( false ) );
             }.bind( this ),
             error   : function( err ){
                 console.log( err );
-                this.trigger( 'AuthService:getStatus:failed', createServiceResponse( err ) );
+                this.broadcast( 'AuthService:getStatus:failed', createServiceResponse( err ) );
             }.bind( this )
-        } );
+        });
     },
     signin    : function( creds ){
         debug( 'AuthService#signin' );
-        $.ajax( {
-            url      : this.url,
-            type     : 'POST',
-            dataType : 'json',
-            data     : creds,
-            success  : function( data ){
-                this._csrf = data._csrf;
-                this.trigger( 'AuthService:signin:succeeded', createServiceResponse( false, data ) );
-            }.bind( this ),
+        this.save(creds,{
+            success : function(data){
+                this.broadcast('AuthService:signin:succeeded', createServiceResponse( false, data ))
+            }.bind(this),
             error    : function( err ){
                 console.log( err );
-                this.trigger( 'AuthService:signin:failed', createServiceResponse( err ) );
+                this.broadcast( 'AuthService:signin:failed', createServiceResponse( err ) );
             }.bind( this )
-        } );
+        });
     },
     signout   : function(){
         debug( 'AuthService#signout' );
-        $.ajax( {
-            url     : this.url,
-            type    : 'DELETE',
+        this.destroy({
             success : function( data ){
-                delete this._csrf;
-                this.trigger( 'AuthService:signout:succeeded', createServiceResponse( false ) );
+                this.clear();
+                this.broadcast( 'AuthService:signout:succeeded', createServiceResponse( false ) );
             }.bind( this ),
             error   : function( err ){
-                this.trigger( 'AuthService:signout:failed', createServiceResponse( err ) );
+                this.broadcast( 'AuthService:signout:failed', createServiceResponse( err ) );
             }.bind( this )
-        } );
+        });
     }
 } );
 

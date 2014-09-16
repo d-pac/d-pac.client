@@ -8,11 +8,5 @@ var BootstrapRouting = module.exports = function BootstrapRouting( context ){
     context.wireSingleton( 'routeController', RouteController );
     var routeController = context.getObject( 'routeController' );
 
-    //bind it to the context to allow automatic listening to context events
-    Backbone.Geppetto.bindContext( {
-        view    : routeController,
-        context : context
-    } );
-
     Backbone.history.start();
 };

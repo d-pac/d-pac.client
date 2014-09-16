@@ -13,7 +13,7 @@ module.exports = Marionette.Controller.extend( {
     },
 
     requestComparisonsCollection  : function(){
-        debug( 'ComparisonFlow#requestComparisonStatus' );
+        debug( 'ComparisonFlow#requestComparisonsCollection' );
         this.dispatch( "comparisons:collection:requested" );
         this.comparisonsCollection.once( "sync", this.comparisonsCollectionReceived, this );
         this.comparisonsCollection.fetch();
