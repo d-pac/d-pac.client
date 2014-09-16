@@ -21,6 +21,7 @@ var Context = Backbone.Geppetto.Context.extend( {
                 require( './controllers/SetupHBSHelpers' ),
                 require( './controllers/SetupHBSPartials' ),
                 require( './controllers/BootstrapDomain' ),
+                require( './controllers/SetupSecurity' ),
                 require( './controllers/SetupI18N' )
             ],
             'SetupI18N:execution:completed' : [

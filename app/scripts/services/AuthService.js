@@ -6,26 +6,11 @@ module.exports = Marionette.Controller.extend( {
 
     initialize : function(){
         debug( 'AuthService#initialize' );
-        this._setupSecurity();
         this.on( 'all', this.dispatch );
     },
 
-    _setupSecurity : function(){
-        var backboneSync = Backbone.sync;
-        Backbone.sync = function(method, model, options){
-            if (!options.crossDomain) {
-              options.crossDomain = true;
-            }
-
-            if (!options.xhrFields) {
-              options.xhrFields = {withCredentials:true};
-            }
-
-            options.beforeSend = function(xhr){
-                xhr.setRequestHeader('x-csrf-token', this._csrf);
-            };
-            return backboneSync(method, model, options);
-        };
+    getCSRFToken: function(){
+        return this._csrf;
     },
 
     getStatus : function(){
