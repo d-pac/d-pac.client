@@ -34,5 +34,8 @@
         "toggle"   : {
             "label" : "Navigatie"
         }
+    },
+    "warning":{
+        "label": "Opgepast!"
     }
 }
