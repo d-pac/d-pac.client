@@ -29,7 +29,6 @@ module.exports = Marionette.LayoutView.extend( {
     contextEvents : {
         'route:signin:completed'   : viewFactory( "LoginView" ),
         'route:welcome:completed'  : viewFactory( "WelcomeView" ),
-        'route:signout:completed'  : viewFactory( "LoginView" ),
         "route:assess:completed"   : viewFactory( "AssessmentView" ),
         'route:account:completed'  : viewFactory( "AccountView" ),
         'route:tutorial:completed' : viewFactory( "TutorialView" ),
