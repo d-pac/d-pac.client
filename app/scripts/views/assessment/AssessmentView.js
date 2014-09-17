@@ -25,7 +25,6 @@ module.exports = Marionette.LayoutView.extend( {
 
     showComparisonEditor : function(){
         debug("AssessmentView#showComparisonEditor");
-        console.log(arguments);
         this.contentRegion.show(this.ComparisonView());
     }
 

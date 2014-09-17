@@ -19,7 +19,7 @@ module.exports = Marionette.Controller.extend( {
         this.comparisonsCollection.fetch();
     },
     comparisonsCollectionReceived : function(){
-        console.log( "ComparisonFlow#comparisonStatusReceived" );
+        debug( "ComparisonFlow#comparisonStatusReceived" );
         //todo: throw error when length > 1
         if( this.comparisonsCollection.length <= 0 ){
             this.requestAssessmentSelection();

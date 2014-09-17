@@ -1,6 +1,13 @@
 'use strict';
-var debug = require( 'bows' )( 'dpac:app' );
+var bows = require( 'bows' );
+bows.config({
+    padLength: 20
+});
+
+
+var debug = bows( 'dpac:app' );
 var config = require( './config' );
+var eventLog = bows('dpac:event');
 
 var app = module.exports = new Backbone.Marionette.Application();
 var Context = Backbone.Geppetto.Context.extend( {
@@ -10,7 +17,7 @@ var Context = Backbone.Geppetto.Context.extend( {
         Backbone.Geppetto.setDebug( true );
         this.vent.on( 'all', function( eventName,
                                        event ){
-            console.log( 'SYSTEM EVENT', eventName );
+            eventLog( eventName );
         } );
 
         this.wireValue( 'config', config );
@@ -21,7 +28,7 @@ var Context = Backbone.Geppetto.Context.extend( {
                 require( './controllers/SetupHBSHelpers' ),
                 require( './controllers/SetupHBSPartials' ),
                 require( './controllers/BootstrapDomain' ),
-                require( './controllers/SetupSecurity' ),
+                require( './controllers/SetupRemoteRequests' ),
                 require( './controllers/SetupI18N' )
             ],
             'SetupI18N:execution:completed' : [
