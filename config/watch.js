@@ -1,8 +1,4 @@
 module.exports = {
-    bower      : {
-        files : ['bower.json'],
-        tasks : ['wiredep']
-    },
     js         : {
         files   : ['<%= config.app %>/scripts/**/*.js'],
         tasks   : ['browserify'],
