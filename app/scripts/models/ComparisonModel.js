@@ -1,10 +1,10 @@
 'use strict';
-var debug = require( 'bows' )( 'dpac:models' );
+var debug = require( 'debug' )( 'dpac:models', '[ComparisonModel]' );
 
 module.exports = Backbone.NestedModel.extend( {
 
     initialize : function(){
-        debug( 'AggregateComparisonModel#initialize' );
+        debug( '#initialize' );
         Backbone.Select.Me.applyTo( this );
     },
 

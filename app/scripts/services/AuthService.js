@@ -1,12 +1,12 @@
 'use strict';
 
-var debug = require( 'bows' )( 'dpac:services' );
+var debug = require( 'debug' )( 'dpac:services', '[AuthService]' );
 var createServiceResponse = require( '../helpers/createServiceResponse' );
 
 module.exports = Backbone.Model.extend( {
 
     initialize : function(){
-        debug( 'AuthService#initialize' );
+        debug( '#initialize' );
     },
 
     broadcast : function( event,
@@ -16,7 +16,7 @@ module.exports = Backbone.Model.extend( {
     },
 
     getStatus : function(){
-        debug( 'AuthService#getStatus' );
+        debug( '#getStatus' );
         this.fetch( {
             success : function( data ){
                 this.broadcast( 'AuthService:getStatus:succeeded', createServiceResponse( false ) );
@@ -29,7 +29,7 @@ module.exports = Backbone.Model.extend( {
         } );
     },
     signin    : function( creds ){
-        debug( 'AuthService#signin' );
+        debug( '#signin' );
         this.save( creds, {
             success : function( data ){
                 this.broadcast( 'AuthService:signin:succeeded', createServiceResponse( false, data ) )
@@ -42,7 +42,7 @@ module.exports = Backbone.Model.extend( {
         } );
     },
     signout   : function(){
-        debug( 'AuthService#signout' );
+        debug( '#signout' );
         this.destroy( {
             success : function( data ){
                 this.clear();

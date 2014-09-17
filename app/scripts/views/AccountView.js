@@ -1,5 +1,5 @@
 'use strict';
-var debug = require( 'bows' )( 'dpac:views' );
+var debug = require( 'debug' )( 'dpac:views', '[AccountView]' );
 var tpl = require( './templates/Account.hbs' );
 
 module.exports = Backbone.Marionette.ItemView.extend( {
@@ -16,11 +16,11 @@ module.exports = Backbone.Marionette.ItemView.extend( {
     },
 
     initialize : function(){
-        debug( 'AccountView#initialize' );
+        debug( '#initialize' );
         this.model.fetch();
     },
     modelError : function( eventName ){
-        console.log( 'MODEL ERROR', this.model );
+        debug( 'MODEL ERROR', this.model );
     },
     save       : function(){
         this.model.save( {

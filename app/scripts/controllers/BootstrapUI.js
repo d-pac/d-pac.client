@@ -1,8 +1,8 @@
 'use strict';
-var debug = require( 'bows' )( 'dpac:controllers' );
+var debug = require( 'debug' )( 'dpac:controllers', '[BootstrapUI]' );
 
 var BootstrapUI = module.exports = function BootstrapUI( context ){
-    debug.log( 'BootstrapUI#execute' );
+    debug( '#execute' );
     context.wireView( 'MenuView', require( '../views/MenuView' ) );
     context.wireView( 'AccountView', require( '../views/AccountView' ), {
         model : "accountModel"

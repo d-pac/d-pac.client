@@ -1,8 +1,8 @@
 'use strict';
 
-var debug = require( 'bows' )( 'dpac:models' );
+var debug = require( 'debug' )( 'dpac:models', '[AssessmentModel]' );
 module.exports = Backbone.Model.extend({
     initialize : function(){
-        debug('AssessmentModel#initialize');
+        debug('#initialize');
     }
 });

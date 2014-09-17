@@ -1,5 +1,5 @@
 'use strict';
-var debug = require( 'bows' )( 'dpac:controllers' );
+var debug = require( 'debug' )( 'dpac:controllers', '[BootstrapDomain]');
 
 var BootstrapModels = module.exports = function BootstrapDomain(){
 };
@@ -7,7 +7,7 @@ _.extend( BootstrapModels.prototype, {
     wiring : ['config'],
 
     execute : function(){
-        debug.log( 'BootstrapDomain#execute' );
+        debug( '#execute' );
         var context = this.context;
         context.wireValue( 'url.api.me.account', this.config.api.root + '/me/account' );
         context.wireSingleton( 'accountModel', require( '../models/UserModel' ), {

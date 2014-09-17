@@ -1,8 +1,7 @@
 'use strict';
 
-var bows = require( 'bows' );
-var debug = bows( 'dpac:controllers' );
-var requestLog = bows('dpac:request');
+var debug = require('debug')( 'dpac:controllers', '[SetupRemoteRequests]' );
+var requestLog = require('debug')('dpac:requests');
 var methodMap = {
   'create': 'POST',
   'update': 'PUT',
@@ -12,7 +11,7 @@ var methodMap = {
 };
 
 module.exports = function(){
-    debug('SetupSecurity#execute');
+    debug('#execute');
     var backboneSync = Backbone.sync;
     Backbone.sync = function( method,
                               model,

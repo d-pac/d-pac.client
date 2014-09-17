@@ -1,7 +1,7 @@
 'use strict';
-var debug = require( 'bows' )( 'dpac:controllers' );
+var debug = require( 'debug' )( 'dpac:controllers', '[SetupHBSPartials]' );
 
 var SetupHBSPartials = module.exports = function SetupHBSPartials(){
-    debug.log( 'SetupHBSPartials#execute' );
+    debug( '#execute' );
     Handlebars.registerPartial( 'loading', require( '../views/templates/Loading.hbs' ) );
 };

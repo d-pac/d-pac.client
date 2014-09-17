@@ -1,5 +1,5 @@
 'use strict';
-var debug = require( 'bows' )( 'dpac:models' );
+var debug = require( 'debug' )( 'dpac:models', '[UserModel]' );
 module.exports = Backbone.NestedModel.extend({
     defaults : {
         name : {
@@ -12,6 +12,6 @@ module.exports = Backbone.NestedModel.extend({
     },
 
     initialize : function(){
-        debug('UserModel#initialize');
+        debug('#initialize');
     }
 });

@@ -1,5 +1,5 @@
 'use strict';
-var debug = require( 'bows' )( 'dpac:routers' );
+var debug = require( 'debug' )( 'dpac:routers', '[RouteController]' );
 
 module.exports = Backbone.Router.extend( {
     routes : {
@@ -19,7 +19,7 @@ module.exports = Backbone.Router.extend( {
     wiring : ['authService'],
 
     initialize : function(){
-        debug( 'RouteController#initialize' );
+        debug( '#initialize' );
 
         this.on( "navigate", function( target ){
             this.navigate( target );
@@ -50,7 +50,6 @@ module.exports = Backbone.Router.extend( {
     },
 
     routeToAccount : function routeToAccount(){
-        debug( 'RouteController#routeToAccount' );
         this.authTarget( 'account' );
     },
 

@@ -1,9 +1,9 @@
 'use strict';
 
-var debug = require( 'bows' )( 'dpac:controllers' );
+var debug = require( 'debug' )( 'dpac:controllers', '[SetupHandlebars]' );
 
 module.exports = function SetupHandlebars(){
-    debug( 'SetupHandlebars#constructor' );
+    debug( '#execute' );
 
     function translate( i18n_key,
                         options ){

@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "devDependencies": {
+    "aliasify": "^1.4.0",
     "bows": "^1.1.2",
     "brfs": "^1.2.0",
     "dotenv": "^0.4.0",
@@ -40,8 +41,14 @@
   "engines": {
     "node": ">=0.10.0"
   },
+    "aliasify":{
+       "aliases":{
+           "debug" : "./app/scripts/helpers/debug"
+       }
+    },
   "browserify": {
     "transform": [
+        "aliasify",
       [
         "hbsfy",
         {

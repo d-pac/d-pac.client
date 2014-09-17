@@ -1,9 +1,9 @@
 'use strict';
 
-var debug = require( 'bows' )( 'dpac:controllers' );
+var debug = require( 'debug' )( 'dpac:controllers', '[SetupI18N]' );
 
 module.exports = function SetupI18N( context ){
-    debug( 'SetupI18N#execute' );
+    debug( '#execute' );
 
     $.i18n.init( {
         lng         : "nl",

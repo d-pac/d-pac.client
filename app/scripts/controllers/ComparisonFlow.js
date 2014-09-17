@@ -1,5 +1,5 @@
 'use strict';
-var debug = require( 'bows' )( 'dpac:controllers' );
+var debug = require( 'debug' )( 'dpac:controllers','[ComparisonFlow]' );
 
 module.exports = Marionette.Controller.extend( {
     contextEvents : {
@@ -9,17 +9,17 @@ module.exports = Marionette.Controller.extend( {
     wiring        : ['comparisonsCollection', 'assessmentsCollection'],
 
     initialize : function(){
-        debug( 'ComparisonFlow#initialize' );
+        debug( '#initialize' );
     },
 
     requestComparisonsCollection  : function(){
-        debug( 'ComparisonFlow#requestComparisonsCollection' );
+        debug( '#requestComparisonsCollection' );
         this.dispatch( "comparisons:collection:requested" );
         this.comparisonsCollection.once( "sync", this.comparisonsCollectionReceived, this );
         this.comparisonsCollection.fetch();
     },
     comparisonsCollectionReceived : function(){
-        debug( "ComparisonFlow#comparisonStatusReceived" );
+        debug( "#comparisonStatusReceived" );
         //todo: throw error when length > 1
         if( this.comparisonsCollection.length <= 0 ){
             this.requestAssessmentSelection();

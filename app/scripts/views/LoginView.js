@@ -1,6 +1,6 @@
 'use strict';
 
-var debug = require( 'bows' )( 'dpac:views' );
+var debug = require( 'debug' )( 'dpac:views', '[LoginView]' );
 var tpl = require( './templates/Login.hbs' );
 var AlertView = require( './AlertView' );
 var getErrorMessage = require( '../helpers/getErrorMessage' );
@@ -22,7 +22,7 @@ module.exports = Marionette.LayoutView.extend( {
     },
 
     initialize : function(){
-        debug( 'LoginView#initialize' );
+        debug( '#initialize' );
         this.listenTo( this.authService, 'AuthService:signin:failed', function( err ){
             this.ui.passwordField.val( '' );
             this.alertRegion.show( new AlertView( { message : getErrorMessage( err ) } ) );
@@ -30,7 +30,7 @@ module.exports = Marionette.LayoutView.extend( {
     },
 
     signin : function( event ){
-        debug( 'LoginView#signin' );
+        debug( '#signin' );
         this.authService.signin( {
             email    : this.$( "#email" ).val(),
             password : this.$( "#password" ).val()

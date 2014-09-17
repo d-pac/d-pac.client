@@ -1,5 +1,5 @@
 'use strict';
-var debug = require( 'bows' )( 'dpac:views' );
+var debug = require( 'debug' )( 'dpac:views', '[AppView]' );
 var tpl = require( './templates/App.hbs' );
 //var AccountView = require('./AccountView');
 
@@ -36,11 +36,11 @@ module.exports = Marionette.LayoutView.extend( {
     },
 
     initialize : function(){
-        debug( 'AppView#initialize' );
+        debug( '#initialize' );
     },
 
     onRender : function(){
-        debug( 'AppView#render' );
+        debug( '#render' );
         this.menuRegion.show( new this.MenuView() );
     }
 

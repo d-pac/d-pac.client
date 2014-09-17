@@ -1,18 +1,13 @@
 'use strict';
-var bows = require( 'bows' );
-bows.config({
-    padLength: 20
-});
 
-
-var debug = bows( 'dpac:app' );
+var debug = require('debug')( 'dpac:app', '[Context]' );
 var config = require( './config' );
-var eventLog = bows('dpac:event');
+var eventLog = require('debug')('dpac:events', '\u2709');
 
 var app = module.exports = new Backbone.Marionette.Application();
 var Context = Backbone.Geppetto.Context.extend( {
     initialize : function(){
-        debug( "Context#initialize" );
+        debug( "#initialize" );
 
         Backbone.Geppetto.setDebug( true );
         this.vent.on( 'all', function( eventName,
