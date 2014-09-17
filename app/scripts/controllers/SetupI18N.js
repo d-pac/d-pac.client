@@ -4,8 +4,9 @@ var debug = require( 'bows' )( 'dpac:controllers' );
 
 module.exports = function SetupI18N( context ){
     debug( 'SetupI18N#execute' );
+
     $.i18n.init( {
-        lng         : "nl-BE",
+        lng         : "nl",
         fallbackLng : false,
         ns          : {
             namespaces : [
