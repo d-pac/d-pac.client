@@ -6,7 +6,7 @@ module.exports = function(grunt, opts){
             browserify : {
                 dist : {
                     files : {
-                        '.tmp/scripts/main.js' : ['<%= config.app %>/scripts/**/*.js']
+                        '.tmp/scripts/main.js' : ['<%= config.app %>/scripts/main.js']
                     }
                 }
             }

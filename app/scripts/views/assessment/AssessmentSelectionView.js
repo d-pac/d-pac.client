@@ -1,6 +1,6 @@
 'use strict';
 
-var debug = require( 'bows' )( 'dpac:views' );
+var debug = require( 'debug' )( 'dpac:views' );
 var tpl = require( './templates/AssessmentSelection.hbs' );
 
 module.exports = Marionette.ItemView.extend( {

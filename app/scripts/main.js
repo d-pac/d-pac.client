@@ -1,7 +1,8 @@
 'use strict';
 
-var debug = require('bows')('dpac:app');
-debug('Main | starting up...');
+require('./controllers/SetupDebugging')();
+var debug = require('debug')( 'dpac:app' );
+debug( '*** starting up ***' );
 
 var app = require( './App.js' );
 app.start();
