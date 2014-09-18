@@ -15,7 +15,8 @@
     "backbone.select": "~1.2.8",
     "underscore": "1.7.0",
     "node-uuid": "~1.4.1",
-    "string": "~2.0.1"
+    "string": "~2.0.1",
+    "viewerjs": "~0.2.1"
   },
   "resolutions": {
     "underscore": "1.7.0"

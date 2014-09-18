@@ -1,7 +1,7 @@
 // Generated on 2014-06-26 using generator-webapp 0.4.9
 'use strict';
 
-var dotenv = require('dotenv');
+var dotenv = require( 'dotenv' );
 dotenv.load();
 
 // # Globbing
@@ -22,8 +22,9 @@ module.exports = function( grunt ){
 
     // Configurable paths
     var config = {
-        app  : 'app',
-        dist : 'dist'
+        app   : 'app',
+        dist  : 'dist',
+        bower : grunt.file.readJSON( '.bowerrc' ).directory
     };
 
     // Define the configuration for all the tasks
