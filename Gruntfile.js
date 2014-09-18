@@ -77,7 +77,8 @@ module.exports = function( grunt ){
         'modernizr',
         'rev',
         'usemin',
-        'htmlmin'
+        'htmlmin',
+        'uglify:viewerjs'
     ] );
 
     grunt.registerTask( 'default', [
