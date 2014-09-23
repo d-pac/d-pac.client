@@ -1,1 +1,119 @@
-<p>HERE BE COMPARISON</p>
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <div class="progress">
+            <div class="progress-bar"
+                 role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"
+                 data-toggle="tooltip" data-placement="bottom" title="Toont je informatie over je vooruitgang."
+                 style="width: 33%;">
+                <span>33% van je vergelijkingen in deze assessment uitgevoerd</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <div class="alert alert-info" role="alert">
+                Duid aub de beste tekst aan
+        </div>
+    </div>
+</div>
+<div class="row clearfix">
+    <div class="col-md-6 column text-center">
+        <button id="select-left"
+                type="button" class="btn btn-primary btn-lg"
+                data-toggle="tooltip" data-placement="right" title="Kies de linkse paper als de beste.">Linker tekst is
+            de beste
+        </button>
+    </div>
+    <div class="col-md-6 column text-center">
+        <button
+            type="button" class="btn btn-primary btn-lg"
+            data-toggle="tooltip" data-placement="left" title="Kies de rechtse paper als de beste.">Rechter tekst is de
+            beste
+        </button>
+    </div>
+</div>
+<div class="row clearfix vspacer">
+    <div class="col-md-12 column">
+        <div class="panel panel-default" style="max-height: 200px; overflow-y: scroll">
+            <h2>
+                Uitleg
+            </h2>
+
+            <p>
+                Please select the winner, based on the following descriprtion:
+
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce consequat ornare hendrerit. Nullam
+                pharetra
+                magna urna, quis interdum est aliquet in. Donec tincidunt nulla bibendum, eleifend arcu eu, volutpat
+                tellus.
+                Fusce ut metus mattis, luctus ante at, eleifend purus. Cras augue felis, auctor a purus sed, euismod
+                venenatis lectus. Ut id condimentum mauris. Duis mollis augue non erat ullamcorper dignissim. Proin
+                a
+                felis
+                lacinia odio iaculis dignissim sit amet vitae nunc. Suspendisse eget interdum est, vitae vestibulum
+                velit.
+                Cras rutrum purus massa, in vulputate nisi venenatis nec. Nunc scelerisque elit sed nulla dictum
+                commodo.
+                Duis aliquam id lectus at adipiscing.
+
+                Nunc sem neque, hendrerit non tellus fringilla, vestibulum imperdiet risus. Vivamus fermentum diam a
+                adipiscing mollis. Aliquam vitae bibendum orci. Pellentesque mattis bibendum purus sit amet porta.
+                Vestibulum quis risus eget felis commodo suscipit. In nulla risus, placerat accumsan luctus quis,
+                lacinia
+                vitae nunc. Aenean faucibus dui imperdiet nulla volutpat ullamcorper. Curabitur vulputate fermentum
+                iaculis.
+                Sed lacinia eros auctor mauris fermentum, ac luctus odio feugiat. Donec dapibus sodales quam et
+                tempus.
+
+                Phasellus sollicitudin, risus ut ultrices dignissim, erat orci aliquet dolor, id gravida enim risus
+                ac
+                velit. Aenean et massa id felis convallis vestibulum id at sapien. Sed at mattis ante, nec dignissim
+                nisl.
+                Donec vestibulum et nisi dignissim eleifend. Integer condimentum convallis lectus, et auctor urna
+                scelerisque et. Nulla placerat mi non iaculis varius. Sed porttitor nunc id consectetur bibendum.
+
+                Nulla facilisi. Proin ultrices sapien ac mi varius, ultrices luctus augue sodales. Mauris varius
+                orci
+                vitae
+                fermentum viverra. Morbi nunc enim, suscipit quis consectetur sit amet, tempor in libero. Sed congue
+                turpis
+                nec elit feugiat euismod. Duis malesuada ornare ipsum, nec feugiat risus posuere quis. Donec risus
+                tortor,
+                tincidunt a velit id, tristique fringilla tellus. Aliquam ullamcorper rhoncus enim non viverra. Cum
+                sociis
+                natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+            </p>
+        </div>
+    </div>
+</div>
+<div class="row clearfix">
+    <div class="col-md-6 column">
+        <iframe id="viewer-left"
+                src="viewerjs/#../../uploads/architecture.pdf"
+                data-toggle="tooltip" data-placement="top"
+                title="Gebruik de knoppen om de linkse paper fullscreen te bekijken of te downloaden."
+                width='100%' height='400'
+                allowfullscreen webkitallowfullscreen></iframe>
+        <label for="notes-left"
+               class="notes-label collapsed"
+               data-toggle="collapse" data-target="#notes-left">Notities</label>
+        <textarea id="notes-left"
+                  data-toggle="tooltip" data-placement="top" title="Noteer hier je opmerkingen bij de linkse paper."
+                  class="form-control collapse" rows="6"></textarea>
+    </div>
+    <div class="col-md-6 column">
+        <iframe id="viewer-right"
+                src="viewerjs#../../uploads/architecture.pdf"
+                data-toggle="tooltip" data-placement="top"
+                title="Gebruik de knoppen om de rechtse paper fullscreen te bekijken of te downloaden."
+                width='100%' height='400'
+                allowfullscreen webkitallowfullscreen></iframe>
+        <label for="notes-right"
+               class="notes-label collapsed"
+               data-toggle="collapse" data-target="#notes-right">Notities</label>
+        <textarea id="notes-right"
+                  data-toggle="tooltip" data-placement="top" title="Noteer hier je opmerkingen bij de rechtse paper."
+                  class="form-control collapse" rows="6"></textarea>
+    </div>
+</div>
