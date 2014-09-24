@@ -6,7 +6,7 @@ module.exports = Marionette.Controller.extend( {
         "route:assess:completed"         : "requestComparisonsCollection",
         "assessment:selection:completed" : "assessmentSelectionReceived"
     },
-    wiring        : ['comparisonsCollection', 'assessmentsCollection'],
+    wiring        : ['context', 'comparisonsCollection', 'assessmentsCollection'],
 
     initialize : function(){
         debug( '#initialize' );
@@ -29,14 +29,17 @@ module.exports = Marionette.Controller.extend( {
     },
 
     requestAssessmentSelection  : function(){
+        debug('#requestAssessmentSelection');
         this.dispatch( 'assessments:selection:requested' );
         this.assessmentsCollection.fetch();
     },
     assessmentSelectionReceived : function( payload ){
+        debug('#assessmentSelectionReceived')
         this.requestComparisonCreation( payload.assessment );
     },
 
     requestComparisonCreation  : function( assessment ){
+        debug('#requestComparisonCreation')
         this.dispatch( 'comparisons:creation:requested' );
         //todo: comparison creation failure
         this.comparisonsCollection.once( "add", this.comparisonCreationReceived, this );
@@ -45,11 +48,16 @@ module.exports = Marionette.Controller.extend( {
         } );
     },
     comparisonCreationReceived : function( comparison ){
+        debug('#comparisonCreationReceived');
         this.requestComparisonEditing( comparison );
     },
 
     requestComparisonEditing : function( comparison ){
-        this.comparisonsCollection.select(comparison);
+        debug('#requestComparisonEditing');
+        if(this.context.hasWiring('currentComparison')){
+            this.context.release('currentComparison');
+        }
+        this.context.wireValue('currentComparison', comparison);
         this.dispatch( 'comparisons:editing:requested', {
             comparison : comparison
         } );

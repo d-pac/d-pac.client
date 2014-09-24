@@ -9,8 +9,7 @@ var ComparisonModel = require('../models/ComparisonModel');
 module.exports = Backbone.Collection.extend({
     model : ComparisonModel,
 
-    initialize : function(models){
+    initialize : function(){
         debug('#initialize');
-        Backbone.Select.One.applyTo( this, models );
     }
 });

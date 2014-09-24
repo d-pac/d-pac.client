@@ -5,7 +5,6 @@ module.exports = Backbone.NestedModel.extend( {
 
     initialize : function(){
         debug( '#initialize' );
-        Backbone.Select.Me.applyTo( this );
     },
 
     isActive : function(){

@@ -16,7 +16,9 @@ var BootstrapUI = module.exports = function BootstrapUI( context ){
     context.wireView( 'AssessmentSelectionView', require( '../views/assessment/AssessmentSelectionView' ), {
         collection : "assessmentsCollection"
     } );
-    context.wireView( 'ComparisonView', require( '../views/assessment/ComparisonView' ) );
+    context.wireView( 'ComparisonView', require( '../views/assessment/ComparisonView' ), {
+        model : 'currentComparison'
+    } );
 
     var appView = context.getObject( 'AppView' )();
     appView.render();
