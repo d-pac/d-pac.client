@@ -1,6 +1,6 @@
 'use strict';
 
-var debug = require( 'debug' )( 'dpac:views' );
+var debug = require( 'debug' )( 'dpac:views', '[AssessmentView]' );
 var tpl = require( './templates/AssessmentView.hbs' );
 
 module.exports = Marionette.LayoutView.extend( {
@@ -15,16 +15,16 @@ module.exports = Marionette.LayoutView.extend( {
     },
 
     initialize : function(){
-        debug( "AssessmentView#initialize" );
+        debug( "#initialize" );
     },
 
     showAssessmentsSelection : function(){
-        debug("AssessmentView#showAssessmentsSelection");
+        debug("#showAssessmentsSelection");
         this.contentRegion.show(this.AssessmentSelectionView());
     },
 
     showComparisonEditor : function(){
-        debug("AssessmentView#showComparisonEditor");
+        debug("#showComparisonEditor");
         this.contentRegion.show(this.ComparisonView());
     }
 

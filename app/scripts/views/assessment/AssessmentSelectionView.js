@@ -1,6 +1,6 @@
 'use strict';
 
-var debug = require( 'debug' )( 'dpac:views' );
+var debug = require( 'debug' )( 'dpac:views', '[AssessmentSelectionView]' );
 var tpl = require( './templates/AssessmentSelection.hbs' );
 
 module.exports = Marionette.ItemView.extend( {
@@ -16,7 +16,7 @@ module.exports = Marionette.ItemView.extend( {
     },
 
     initialize : function(){
-        debug( "AssessmentSelectionView#initialize" );
+        debug( "#initialize" );
     },
 
     assessmentSelected : function( event ){
