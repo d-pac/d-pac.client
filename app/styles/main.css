@@ -88,7 +88,22 @@ body {
     }
 }
 
-/*#assessment-content{*/
-    /*padding: 0;*/
-    /*margin: 0;*/
-/*}*/
+.vspacer {
+    margin-top: 20px;
+}
+
+.notes-label:after {
+    font-family: 'Glyphicons Halflings';
+    content: "\e114";
+    float: right;
+    color: grey;
+}
+
+.notes-label.collapsed:after {
+    content: "\e080";
+}
+
+.fixed-panel{
+    max-height: 200px;
+    overflow-y: scroll;
+}
