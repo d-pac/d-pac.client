@@ -1,9 +1,27 @@
 'use strict';
 var debug = require( 'debug' )( 'dpac:models', '[ComparisonModel]' );
 
+var phasesMap = {
+    JUDGEMENT       : 'judgement',
+    JUDGEMENT_SEQ   : 'judgementSEQ',
+    COMPARATIVE     : 'comparative',
+    COMPARATIVE_SEQ : 'comparativeSEQ',
+    PASS_FAIL       : 'passfail',
+    PASS_FAIL_SEQ   : 'passfailSEQ'
+};
+
+var phasesList = [
+    phasesMap.JUDGEMENT,
+    phasesMap.JUDGEMENT_SEQ,
+    phasesMap.COMPARATIVE,
+    phasesMap.COMPARATIVE_SEQ,
+    phasesMap.PASS_FAIL,
+    phasesMap.PASS_FAIL_SEQ
+];
+
 module.exports = Backbone.NestedModel.extend( {
 
-    initialize : function(){
+    initialize : function(attrs){
         debug( '#initialize' );
     },
 
@@ -17,6 +35,34 @@ module.exports = Backbone.NestedModel.extend( {
 
     isActive : function(){
         return this.get( 'comparison.active' );
+    },
+
+    getCurrentPhase : function(){
+        return this.get( 'comparison.state' );
+    },
+
+    getDefaultPhase : function(){
+        return phasesList[0];
+    },
+
+    gotoNextPhase : function(){
+        var currentPhase = this.getCurrentPhase();
+        var index = phasesList.indexOf(currentPhase);
+        if(++index >= phasesList.length){
+            index=phasesList.length-1;
+        }
+        this.set( 'comparison.state', phasesList[index] );
+        this.save();
+    },
+
+    gotoPreviousPhase : function(){
+        var currentPhase = this.getCurrentPhase();
+        var index = phasesList.indexOf(currentPhase);
+        if(--index < 0){
+            index = 0;
+        }
+        this.set( 'comparison.state', phasesList[index] );
+        this.save();
     }
 
 } );

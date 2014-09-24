@@ -4,10 +4,6 @@
     "selection": {
         "title": "Assessments",
         "description": "Kies een assessment",
-        "loading": {
-            "title" : "Even geduld...",
-            "message": "De gegevens worden opgehaald."
-        },
         "empty" : {
             "title" : "Helaas...",
             "description" : "U hebt geen actieve assessments."
@@ -16,9 +12,21 @@
     "comparisons": {
         "title": "Beoordeling",
         "description": "",
-        "loading": {
-            "title" : "Even geduld...",
-            "message": "De gegevens worden opgehaald."
+        "progressbar":{
+            "tooltip" : "Toont je informatie over je vooruitgang.",
+            "label" : "__count__% van je vergelijkingen in deze assessment uitgevoerd."
+        },
+        "judgement" : {
+            "title": "Beoordeel",
+            "description": "Duid aub de beste representatie aan.",
+            "leftButton": {
+                "label": "Linker representatie is de beste",
+                "tooltip": "Kies de linkse representatie als de beste."
+            },
+            "rightButton": {
+                "label": "Rechter representatie is de beste",
+                "tooltip": "Kies de rechtse representatie als de beste."
+            }
         }
     }
 }
