@@ -1,11 +1,11 @@
 'use strict';
 
-var debug = require( 'bows' )( 'dpac:views' );
+var debug = require( 'debug' )( 'dpac:views', '[<%= file.name %>]' );
 var tpl = require('./templates/<%= file.name %>.hbs');
 
 module.exports = Marionette.ItemView.extend({
     template : tpl,
     initialize : function(){
-        debug("<%= file.name %>#initialize");
+        debug("#initialize");
     }
 });
