@@ -43,7 +43,8 @@
   },
   "aliasify": {
     "aliases": {
-      "debug": "bows"
+      "debug": "bows",
+      "underscore": "lodash"
     }
   },
   "browserify": {
