@@ -25,44 +25,7 @@ module.exports = Backbone.NestedModel.extend( {
         debug( '#initialize' );
     },
 
-    toJSON : function(){
-        //Holy crap, do we really need to do this?
-        var attr = Backbone.Model.prototype.toJSON.call( this );
-        attr.title = this.get( 'assessment.title' );
-        attr.description = this.get( 'assessment.description' );
-        return attr;
-    },
-
-    isActive : function(){
-        return this.get( 'comparison.active' );
-    },
-
-    getCurrentPhase : function(){
-        return this.get( 'comparison.phase' );
-    },
-
-    getDefaultPhase : function(){
-        return phasesList[0];
-    },
-
-    gotoNextPhase : function(){
-        var currentPhase = this.getCurrentPhase();
-        var index = phasesList.indexOf(currentPhase);
-        if(++index >= phasesList.length){
-            index=phasesList.length-1;
-        }
-        this.set( 'comparison.phase', phasesList[index] );
-        this.save();
-    },
-
-    gotoPreviousPhase : function(){
-        var currentPhase = this.getCurrentPhase();
-        var index = phasesList.indexOf(currentPhase);
-        if(--index < 0){
-            index = 0;
-        }
-        this.set( 'comparison.phase', phasesList[index] );
-        this.save();
+    parse : function(response, options){
+        console.log(response);
     }
-
 } );

@@ -34,9 +34,9 @@ module.exports = Marionette.Controller.extend( {
         this.assessmentsCollection.once("select:one", this.assessmentSelectionReceived, this);
         this.assessmentsCollection.fetch();
     },
-    assessmentSelectionReceived : function( payload ){
-        debug('#assessmentSelectionReceived')
-        this.requestAggregateCreation( payload.assessment );
+    assessmentSelectionReceived : function( assessment ){
+        debug('#assessmentSelectionReceived', assessment);
+        this.requestAggregateCreation( assessment );
     },
 
     requestAggregateCreation  : function( assessment ){
@@ -45,7 +45,7 @@ module.exports = Marionette.Controller.extend( {
         //todo: aggregate creation failure
         this.aggregatesCollection.once( "add", this.aggregateCreationReceived, this );
         this.aggregatesCollection.create( {
-            assessment : assessment
+            assessment : assessment.id
         } );
     },
     aggregateCreationReceived : function( aggregate ){
@@ -59,8 +59,8 @@ module.exports = Marionette.Controller.extend( {
             this.context.release('currentAggregate');
         }
         this.context.wireValue('currentAggregate', aggregate);
-        this.dispatch( 'aggregates:editing:requested', {
-            aggregate : aggregate
-        } );
+        //this.dispatch( 'aggregates:editing:requested', {
+        //    aggregate : aggregate
+        //} );
     }
 } );
