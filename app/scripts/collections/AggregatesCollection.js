@@ -1,7 +1,5 @@
 'use strict';
 
-'use strict';
-
 var debug = require( 'debug' )( 'dpac:collections', '[AggregatesCollection]' );
 
 var AggregateModel = require('../models/AggregateModel');
