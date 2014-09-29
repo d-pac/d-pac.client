@@ -15,5 +15,6 @@
     "node-uuid": "~1.4.1",
     "string": "~2.0.1",
     "viewerjs": "~0.2.1",
+    "backbone.select": "~1.2.8"
   }
 }
