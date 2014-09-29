@@ -8,7 +8,8 @@ module.exports = Backbone.Collection.extend({
 
     model : ModelClass,
 
-    initialize : function(){
+    initialize : function(models){
         debug('#initialize');
+        Backbone.Select.One.applyTo(this, models);
     }
 });
