@@ -7,7 +7,6 @@
     "jquery": "~1.11.0",
     "backbone": "~1.1.2",
     "backbone.marionette": "~2.1.0",
-    "lodash": "~2.4.1",
     "i18next": "~1.7.3",
     "backbone.geppetto": "~0.7.1",
     "backbone-nested-model": "~2.0.1",
@@ -15,6 +14,10 @@
     "node-uuid": "~1.4.1",
     "string": "~2.0.1",
     "viewerjs": "~0.2.1",
-    "backbone.select": "~1.2.8"
+    "backbone.select": "~1.2.8",
+    "underscore": "~1.6.0"
+  },
+  "resolutions": {
+    "underscore": "^1.5.0 <1.7.0"
   }
 }
