@@ -2,13 +2,14 @@
 
 var debug = require( 'debug' )( 'dpac:collections', '[PhasesCollection]' );
 
-var ModelClass = require('../models/PhaseModel');
+var ModelClass = require( '../models/PhaseModel' );
 
-module.exports = Backbone.Collection.extend({
+module.exports = Backbone.Collection.extend( {
 
     model : ModelClass,
 
-    initialize : function(){
-        debug('#initialize');
+    initialize : function( models ){
+        debug( '#initialize' );
+        Backbone.Select.One.applyTo( this, models );
     }
-});
+} );

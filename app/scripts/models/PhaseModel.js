@@ -9,6 +9,7 @@ module.exports = Backbone.Model.extend( {
 
     initialize : function(){
         debug( '#initialize' );
+        Backbone.Select.Me.applyTo( this );
     },
 
     start : function(){
