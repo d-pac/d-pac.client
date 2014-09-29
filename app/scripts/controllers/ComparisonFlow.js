@@ -31,6 +31,7 @@ module.exports = Marionette.Controller.extend( {
     requestAssessmentSelection  : function(){
         debug('#requestAssessmentSelection');
         this.dispatch( 'assessments:selection:requested' );
+        this.assessmentsCollection.once("select:one", this.assessmentSelectionReceived, this);
         this.assessmentsCollection.fetch();
     },
     assessmentSelectionReceived : function( payload ){

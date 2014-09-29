@@ -4,7 +4,7 @@ var debug = require( 'debug' )( 'dpac:views', '[AssessmentSelectionView]' );
 var tpl = require( './templates/AssessmentSelection.hbs' );
 
 module.exports = Marionette.ItemView.extend( {
-    template : tpl,
+    template         : tpl,
     collectionEvents : {
         "add" : "render"
     },
@@ -20,8 +20,6 @@ module.exports = Marionette.ItemView.extend( {
     },
 
     assessmentSelected : function( event ){
-        this.dispatch( 'assessment:selection:completed', {
-            assessment : this.$( event.target ).attr( 'data-model-id' )
-        } );
+        this.collection.selectByID( this.$( event.target ).attr( 'data-model-id' ) );
     }
 } );

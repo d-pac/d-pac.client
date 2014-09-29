@@ -10,5 +10,10 @@ module.exports = Backbone.Collection.extend( {
     initialize : function(models){
         debug( '#initialize' );
         Backbone.Select.One.applyTo( this, models );
+    },
+
+    selectByID : function(id){
+        var model = this.get(id);
+        this.select(model);
     }
 } );
