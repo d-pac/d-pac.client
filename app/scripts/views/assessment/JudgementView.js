@@ -1,7 +1,7 @@
 'use strict';
 
-var debug = require( 'debug' )( 'dpac:views', '[ComparisonWizard]' );
-var tpl = require('./templates/ComparisonWizard.hbs');
+var debug = require( 'debug' )( 'dpac:views', '[JudgementView]' );
+var tpl = require('./templates/JudgementView.hbs');
 
 module.exports = Marionette.ItemView.extend({
     template : tpl,

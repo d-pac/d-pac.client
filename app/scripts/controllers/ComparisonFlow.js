@@ -3,28 +3,28 @@ var debug = require( 'debug' )( 'dpac:controllers','[ComparisonFlow]' );
 
 module.exports = Marionette.Controller.extend( {
     contextEvents : {
-        "route:assess:completed"         : "requestComparisonsCollection",
+        "route:assess:completed"         : "requestAggregatesCollection",
         "assessment:selection:completed" : "assessmentSelectionReceived"
     },
-    wiring        : ['context', 'comparisonsCollection', 'assessmentsCollection'],
+    wiring        : ['context', 'aggregatesCollection', 'assessmentsCollection'],
 
     initialize : function(){
         debug( '#initialize' );
     },
 
-    requestComparisonsCollection  : function(){
-        debug( '#requestComparisonsCollection' );
-        this.dispatch( "comparisons:collection:requested" );
-        this.comparisonsCollection.once( "sync", this.comparisonsCollectionReceived, this );
-        this.comparisonsCollection.fetch();
+    requestAggregatesCollection  : function(){
+        debug( '#requestAggregatesCollection' );
+        this.dispatch( "aggregates:collection:requested" );
+        this.aggregatesCollection.once( "sync", this.aggregatesCollectionReceived, this );
+        this.aggregatesCollection.fetch();
     },
-    comparisonsCollectionReceived : function(){
-        debug( "#comparisonStatusReceived" );
+    aggregatesCollectionReceived : function(){
+        debug( "#aggregatesCollectionReceived" );
         //todo: throw error when length > 1
-        if( this.comparisonsCollection.length <= 0 ){
+        if( this.aggregatesCollection.hasActive() ){
             this.requestAssessmentSelection();
         }else{
-            this.requestComparisonEditing( this.comparisonsCollection.at( 0 ) );
+            this.requestAggregateEditing( this.aggregatesCollection.getActive() );
         }
     },
 
@@ -35,31 +35,31 @@ module.exports = Marionette.Controller.extend( {
     },
     assessmentSelectionReceived : function( payload ){
         debug('#assessmentSelectionReceived')
-        this.requestComparisonCreation( payload.assessment );
+        this.requestAggregateCreation( payload.assessment );
     },
 
-    requestComparisonCreation  : function( assessment ){
-        debug('#requestComparisonCreation')
-        this.dispatch( 'comparisons:creation:requested' );
-        //todo: comparison creation failure
-        this.comparisonsCollection.once( "add", this.comparisonCreationReceived, this );
-        this.comparisonsCollection.create( {
+    requestAggregateCreation  : function( assessment ){
+        debug('#requestAggregateCreation')
+        this.dispatch( 'aggregates:creation:requested' );
+        //todo: aggregate creation failure
+        this.aggregatesCollection.once( "add", this.aggregateCreationReceived, this );
+        this.aggregatesCollection.create( {
             assessment : assessment
         } );
     },
-    comparisonCreationReceived : function( comparison ){
-        debug('#comparisonCreationReceived');
-        this.requestComparisonEditing( comparison );
+    aggregateCreationReceived : function( aggregate ){
+        debug('#aggregateCreationReceived');
+        this.requestAggregateEditing( aggregate );
     },
 
-    requestComparisonEditing : function( comparison ){
-        debug('#requestComparisonEditing');
-        if(this.context.hasWiring('currentComparison')){
-            this.context.release('currentComparison');
+    requestAggregateEditing : function( aggregate ){
+        debug('#requestAggregateEditing');
+        if(this.context.hasWiring('currentAggregate')){
+            this.context.release('currentAggregate');
         }
-        this.context.wireValue('currentComparison', comparison);
-        this.dispatch( 'comparisons:editing:requested', {
-            comparison : comparison
+        this.context.wireValue('currentAggregate', aggregate);
+        this.dispatch( 'aggregates:editing:requested', {
+            aggregate : aggregate
         } );
     }
 } );

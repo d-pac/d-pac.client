@@ -1,5 +1,5 @@
 'use strict';
-var debug = require( 'debug' )( 'dpac:models', '[ComparisonModel]' );
+var debug = require( 'debug' )( 'dpac:models', '[AggregateModel]' );
 
 var phasesMap = {
     JUDGEMENT       : 'judgement',
@@ -38,7 +38,7 @@ module.exports = Backbone.NestedModel.extend( {
     },
 
     getCurrentPhase : function(){
-        return this.get( 'comparison.state' );
+        return this.get( 'comparison.phase' );
     },
 
     getDefaultPhase : function(){
@@ -51,7 +51,7 @@ module.exports = Backbone.NestedModel.extend( {
         if(++index >= phasesList.length){
             index=phasesList.length-1;
         }
-        this.set( 'comparison.state', phasesList[index] );
+        this.set( 'comparison.phase', phasesList[index] );
         this.save();
     },
 
@@ -61,7 +61,7 @@ module.exports = Backbone.NestedModel.extend( {
         if(--index < 0){
             index = 0;
         }
-        this.set( 'comparison.state', phasesList[index] );
+        this.set( 'comparison.phase', phasesList[index] );
         this.save();
     }
 

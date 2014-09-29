@@ -1,14 +1,14 @@
 'use strict';
 
-var debug = require( 'debug' )( 'dpac:views', '[ComparisonView]' );
-var tpl = require( './templates/ComparisonView.hbs' );
+var debug = require( 'debug' )( 'dpac:views', '[AggregateView]' );
+var tpl = require( './templates/AggregateView.hbs' );
 
 module.exports = Marionette.LayoutView.extend( {
 
     template : tpl,
 
     regions : {
-        wizard : "#comparison-wizard"
+        wizard : "#phases-wizard"
     },
 
     initialize : function(){
@@ -24,12 +24,11 @@ module.exports = Marionette.LayoutView.extend( {
             factory = this[phase + 'Factory'];
         }
         this.wizard.show( factory() );
-        this.next();
     },
 
     next : function(){
         this.model.gotoNextPhase();
-        //this.render();
+        this.render();
     },
     previous : function(){
         this.model.gotoPreviousPhase();

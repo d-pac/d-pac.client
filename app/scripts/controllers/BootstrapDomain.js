@@ -19,9 +19,9 @@ _.extend( BootstrapModels.prototype, {
             url : 'url.api.me.assessments'
         } );
 
-        context.wireValue( 'url.api.me.comparisons', this.config.api.root + '/me/comparisons' );
-        context.wireSingleton( 'comparisonsCollection', require( '../collections/ComparisonsCollection' ), {
-            url : 'url.api.me.comparisons'
+        context.wireValue( 'url.api.me.aggregates', this.config.api.root + '/me/aggregates' );
+        context.wireSingleton( 'aggregatesCollection', require( '../collections/AggregatesCollection' ), {
+            url : 'url.api.me.aggregates'
         } );
 
         context.wireValue( 'url.api.me.session', this.config.api.root + '/me/session' );
