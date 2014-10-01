@@ -8,10 +8,10 @@ module.exports = function( grunt,
                 options : {
                     dest : "app/scripts",
                     map  : {
-                        "Model"      : "models",
-                        "ItemView"   : "views",
-                        "Command"    : "controllers",
-                        "Collection" : "collections"
+                        "Model"      : ":dir/models",
+                        "ItemView"   : ":dir/views",
+                        "Command"    : ":dir/controllers",
+                        "Collection" : ":dir/collections"
                     }
                 }
             }

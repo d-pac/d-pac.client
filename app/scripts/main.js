@@ -1,8 +1,8 @@
 'use strict';
 
-require('./controllers/SetupDebugging')();
+require('./core/controllers/SetupDebugging')();
 var debug = require('debug')( 'dpac:app' );
 debug( '*** starting up ***' );
 
-var app = require( './App.js' );
+var app = require( './core/App.js' );
 app.start();
