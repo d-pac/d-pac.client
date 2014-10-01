@@ -16,7 +16,7 @@ var Context = Backbone.Geppetto.Context.extend( {
         } );
 
         this.wireValue( 'config', config );
-        this.wireValue( 'context', this );
+        this.wireValue( 'appContext', this );
         this.wireValue( 'app', app );
         this.wireCommands( {
             "app:startup.requested"         : [

@@ -35,6 +35,5 @@ _.extend( BootstrapModels.prototype, {
         context.wireClass( 'judgementsCollection', require( '../collections/JudgementsCollection' ) );
 
         context.wireSingleton( 'comparisonFlow', require( '../controllers/ComparisonFlow' ) ).getObject( 'comparisonFlow' );
-
     }
 } );

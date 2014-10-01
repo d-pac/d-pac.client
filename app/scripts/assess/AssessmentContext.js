@@ -10,6 +10,7 @@ module.exports = Backbone.Geppetto.Context.extend( {
                                        event ){
             eventLog( eventName );
         } );
+        this.wireValue('assessmentContext', this);
         this.wireCommands( {
             "assessment:startup:requested"         : [
                 require( './controllers/BootstrapDomain' ),

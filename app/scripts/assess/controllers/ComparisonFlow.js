@@ -6,7 +6,7 @@ module.exports = Marionette.Controller.extend( {
         "assessment:ui:rendered"         : "requestAggregatesCollection",
         "assessment:selection:completed" : "assessmentSelectionReceived"
     },
-    wiring        : ['context', 'aggregatesCollection', 'assessmentsCollection'],
+    wiring        : ['aggregatesCollection', 'assessmentsCollection'],
 
     initialize : function(){
         debug( '#initialize' );
@@ -49,8 +49,7 @@ module.exports = Marionette.Controller.extend( {
     },
     aggregateCreationReceived : function( aggregate ){
         debug('#aggregateCreationReceived');
-        aggregate.select();
-        this.requestAggregateEditing( aggregate );
+        this.requestAggregateSelection( aggregate );
     },
 
     requestAggregateSelection : function(){
@@ -63,7 +62,13 @@ module.exports = Marionette.Controller.extend( {
         this.aggregateSelectionReceived(model);
     },
     aggregateSelectionReceived : function(aggregate){
-        this.requestAggregateEditing(aggregate);
+        debug('#aggregateSelectionReceived');
+        this.setupAggregateWirings(aggregate);
+    },
+
+    setupAggregateWirings : function(aggregate){
+        debug('#setupAggregateWirings');
+
     },
 
     requestAggregateEditing : function( aggregate ){

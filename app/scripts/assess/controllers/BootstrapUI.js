@@ -5,12 +5,12 @@ var BootstrapUI = module.exports = function BootstrapUI( context ){
     debug( '#execute' );
     context.wireView( 'MainView', require( '../views/MainView' ), {
         'createAssessmentSelectionView' : 'AssessmentSelectionView',
-        'createAggregateView': 'AggregateView'
+        'createComparisonView': 'ComparisonView'
     } );
     context.wireView( 'AssessmentSelectionView', require( '../views/AssessmentSelectionView' ), {
         collection : "assessmentsCollection"
     } );
     context.wireView('JudgementView', require('../views/JudgementView'));
-    context.wireView( 'AggregateView', require( '../views/AggregateView' ) );
+    context.wireView( 'ComparisonView', require( '../views/ComparisonView' ) );
 };
 

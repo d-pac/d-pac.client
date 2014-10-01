@@ -14,7 +14,6 @@ module.exports = Marionette.LayoutView.extend( {
     template      : tpl,
     el            : "#app",
     wiring        : [
-        'context',
         'MenuView',
         'LoginView',
         'AccountView',

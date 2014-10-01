@@ -1,6 +1,6 @@
 'use strict';
 
-var debug = require( 'debug' )( 'dpac:collections', '[<%= file.name %>]' );
+var debug = require( 'debug' )( 'dpac:<%= meta.package %>', '[<%= file.name %>]' );
 
 var ModelClass = require('../models/');
 
