@@ -7,6 +7,6 @@ module.exports = Backbone.Model.extend( {
     },
 
     initialize : function(){
-        debug( '#initialize' );
+        debug( '#initialize', this.id );
     }
 } );

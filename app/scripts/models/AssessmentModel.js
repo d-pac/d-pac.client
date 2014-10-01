@@ -2,12 +2,16 @@
 
 var debug = require( 'debug' )( 'dpac:models', '[AssessmentModel]' );
 module.exports = Backbone.Model.extend( {
-    defaults   : {
-        title       : "",
-        description : ""
+    idAttribute : "_id",
+    defaults    : {
+        title       : undefined,
+        description : undefined,
+        state       : undefined,
+        phases      : undefined
     },
+
     initialize : function(){
-        debug( '#initialize' );
+        debug( '#initialize', this.id );
         Backbone.Select.Me.applyTo( this );
     }
 } );

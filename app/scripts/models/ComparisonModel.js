@@ -2,13 +2,14 @@
 
 var debug = require( 'debug' )( 'dpac:models', '[ComparisonModel]' );
 module.exports = Backbone.Model.extend( {
-    defaults : {
-        title       : "",
-        description : "",
-        feedback    : ""
+    idAttribute : "_id",
+    defaults    : {
+        assessment : undefined,
+        assessor   : undefined,
+        phase      : undefined
     },
 
     initialize : function(){
-        debug( '#initialize' );
+        debug( '#initialize', this.id );
     }
 } );

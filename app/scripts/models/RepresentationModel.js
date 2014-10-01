@@ -1,15 +1,20 @@
 'use strict';
 
 var debug = require( 'debug' )( 'dpac:models', '[RepresentationModel]' );
-module.exports = Backbone.Model.extend( {
-    defaults : {
-        url      : "",
-        note     : "",
-        passfail : ""
+module.exports = Backbone.NestedModel.extend( {
+    idAttribute : "_id",
+    defaults    : {
+        assessee   : undefined,
+        assessment : undefined,
+        file       : {
+            filename : undefined,
+            filetype : undefined,
+            path     : undefined
+        }
     },
 
     initialize : function(){
-        debug( '#initialize' );
+        debug( '#initialize', this.id );
         Backbone.Select.Me.applyTo( this );
     }
 } );

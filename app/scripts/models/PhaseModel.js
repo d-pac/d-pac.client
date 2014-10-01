@@ -2,13 +2,14 @@
 
 var debug = require( 'debug' )( 'dpac:models', '[PhaseModel]' );
 module.exports = Backbone.Model.extend( {
-    defaults : {
-        value : "",
-        label : ""
+    idAttribute : "_id",
+    defaults    : {
+        value : undefined,
+        label : undefined
     },
 
     initialize : function(){
-        debug( '#initialize' );
+        debug( '#initialize', this.id );
         Backbone.Select.Me.applyTo( this );
     },
 

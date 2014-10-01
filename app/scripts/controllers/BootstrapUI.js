@@ -12,15 +12,15 @@ var BootstrapUI = module.exports = function BootstrapUI( context ){
     context.wireView( 'WelcomeView', require( '../views/WelcomeView' ) );
     context.wireView( 'NotFoundView', require( '../views/404View' ) );
     context.wireView( 'LoadingView', require( '../views/LoadingView' ) );
-    context.wireView( 'AssessmentView', require( '../views/assessment/AssessmentView' ) );
+    context.wireView( 'AssessmentView', require( '../views/assessment/AssessmentView' ), {
+        'createAssessmentSelectionView' : 'AssessmentSelectionView',
+        'createAggregateView': 'AggregateView'
+    } );
     context.wireView( 'AssessmentSelectionView', require( '../views/assessment/AssessmentSelectionView' ), {
         collection : "assessmentsCollection"
     } );
     context.wireView('JudgementView', require('../views/assessment/JudgementView'));
-    context.wireView( 'AggregateView', require( '../views/assessment/AggregateView' ), {
-        model : 'currentAggregate',
-        judgementFactory : 'JudgementView'
-    } );
+    context.wireView( 'AggregateView', require( '../views/assessment/AggregateView' ) );
 
     var appView = context.getObject( 'AppView' )();
     appView.render();

@@ -16,14 +16,14 @@ module.exports = Marionette.LayoutView.extend( {
     },
 
     onRender : function(){
-        var phase = this.model.getCurrentPhase();
-        var factory = this[phase + 'Factory'];
-        if( !factory ){
-            debug.error( 'view factory not found for phase "' + phase + "'" );
-            phase = this.model.getDefaultPhase();
-            factory = this[phase + 'Factory'];
-        }
-        this.wizard.show( factory() );
+        //var phase = this.model.getCurrentPhase();
+        //var factory = this[phase + 'Factory'];
+        //if( !factory ){
+        //    debug.error( 'view factory not found for phase "' + phase + "'" );
+        //    phase = this.model.getDefaultPhase();
+        //    factory = this[phase + 'Factory'];
+        //}
+        //this.wizard.show( factory() );
     },
 
     next : function(){

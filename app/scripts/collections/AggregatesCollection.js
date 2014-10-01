@@ -2,21 +2,18 @@
 
 var debug = require( 'debug' )( 'dpac:collections', '[AggregatesCollection]' );
 
-var AggregateModel = require('../models/AggregateModel');
+module.exports = Backbone.Collection.extend( {
 
-module.exports = Backbone.Collection.extend({
-
-    model : AggregateModel,
-
-    initialize : function(){
-        debug('#initialize');
+    initialize : function( models ){
+        debug( '#initialize' );
+        Backbone.Select.One.applyTo( this, models );
     },
 
-    hasActive: function (){
-        return this.length <= 0
+    hasActive : function(){
+        return this.length > 0;
     },
 
     getActive : function(){
-        return this.at(0);
+        return this.at( 0 );
     }
-});
+} );

@@ -1,17 +1,17 @@
 'use strict';
 var debug = require( 'debug' )( 'dpac:models', '[UserModel]' );
-module.exports = Backbone.NestedModel.extend({
+module.exports = Backbone.NestedModel.extend( {
     defaults : {
-        name : {
-            first : "",
-            last : ""
+        name             : {
+            first : undefined,
+            last  : undefined
         },
-        email: "",
-        password : "",
-        password_confirm : ""
+        email            : undefined,
+        password         : undefined,
+        password_confirm : undefined
     },
 
     initialize : function(){
-        debug('#initialize');
+        debug( '#initialize', this.id );
     }
-});
+} );

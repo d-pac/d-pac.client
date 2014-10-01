@@ -20,11 +20,10 @@ module.exports = Marionette.Controller.extend( {
     },
     aggregatesCollectionReceived : function(){
         debug( "#aggregatesCollectionReceived" );
-        //todo: throw error when length > 1
-        if( this.aggregatesCollection.hasActive() ){
+        if( ! this.aggregatesCollection.hasActive() ){
             this.requestAssessmentSelection();
         }else{
-            this.requestAggregateEditing( this.aggregatesCollection.getActive() );
+            this.requestAggregateSelection();
         }
     },
 
@@ -50,17 +49,31 @@ module.exports = Marionette.Controller.extend( {
     },
     aggregateCreationReceived : function( aggregate ){
         debug('#aggregateCreationReceived');
+        aggregate.select();
         this.requestAggregateEditing( aggregate );
+    },
+
+    requestAggregateSelection : function(){
+        debug('#requestAggregateSelection');
+        this.dispatch('aggregates:selection:requested');
+        //we're going to handle it here for the time being
+        //since ATM a single active aggregate is allowed anyway
+        var model = this.aggregatesCollection.getActive();
+        model.select();
+        this.aggregateSelectionReceived(model);
+    },
+    aggregateSelectionReceived : function(aggregate){
+        this.requestAggregateEditing(aggregate);
     },
 
     requestAggregateEditing : function( aggregate ){
         debug('#requestAggregateEditing');
-        if(this.context.hasWiring('currentAggregate')){
-            this.context.release('currentAggregate');
-        }
-        this.context.wireValue('currentAggregate', aggregate);
-        //this.dispatch( 'aggregates:editing:requested', {
-        //    aggregate : aggregate
-        //} );
+        //if(this.context.hasWiring('currentAggregate')){
+        //    this.context.release('currentAggregate');
+        //}
+        //this.context.wireValue('currentAggregate', aggregate);
+        this.dispatch( 'aggregates:editing:requested', {
+            aggregate : aggregate
+        } );
     }
 } );
