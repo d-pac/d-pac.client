@@ -1,14 +1,17 @@
 'use strict';
 
-var debug = require( 'debug' )( 'dpac:assess.views', '[ComparisonView]' );
-var tpl = require( './templates/ComparisonView.hbs' );
+var debug = require( 'debug' )( 'dpac:assess.views', '[LayoutView]' );
+var tpl = require( './templates/LayoutView.hbs' );
 
 module.exports = Marionette.LayoutView.extend( {
+    wizardFactory : undefined,
+    detailFactory : undefined,
 
     template : tpl,
 
     regions : {
-        wizard : "#phases-wizard"
+        wizard : "#assessment-wizard",
+        detail : "#assessment-detail"
     },
 
     initialize : function(){
@@ -16,6 +19,8 @@ module.exports = Marionette.LayoutView.extend( {
     },
 
     onRender : function(){
+        this.detail.show( this.detailFactory() );
+        this.wizard.show( this.wizardFactory() );
         //var phase = this.model.getCurrentPhase();
         //var factory = this[phase + 'Factory'];
         //if( !factory ){
@@ -24,15 +29,6 @@ module.exports = Marionette.LayoutView.extend( {
         //    factory = this[phase + 'Factory'];
         //}
         //this.wizard.show( factory() );
-    },
-
-    next : function(){
-        this.model.gotoNextPhase();
-        this.render();
-    },
-    previous : function(){
-        this.model.gotoPreviousPhase();
-        this.render();
     }
 
 } );

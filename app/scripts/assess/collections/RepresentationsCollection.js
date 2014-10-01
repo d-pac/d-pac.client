@@ -2,7 +2,7 @@
 
 var debug = require( 'debug' )( 'dpac:assess.collections', '[RepresentationsCollection]' );
 
-var ModelClass = require('../models/RepresentationModel');
+var ModelClass = require('../models/RepresentationProxy');
 
 module.exports = Backbone.Collection.extend({
 

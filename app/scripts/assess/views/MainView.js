@@ -10,7 +10,7 @@ module.exports = Marionette.LayoutView.extend( {
     },
     contextEvents : {
         "assessments:selection:requested": "showAssessmentsSelection",
-        "aggregates:editing:requested" : "showComparisonView"
+        "aggregates:editing:requested" : "showLayoutView"
     },
 
     initialize : function(){
@@ -22,9 +22,9 @@ module.exports = Marionette.LayoutView.extend( {
         this.contentRegion.show(this.createAssessmentSelectionView());
     },
 
-    showComparisonView : function(){
+    showLayoutView : function(){
         debug("#showComparisonView");
-        this.contentRegion.show(this.createComparisonView());
+        this.contentRegion.show(this.createLayoutView());
     }
 
 } );

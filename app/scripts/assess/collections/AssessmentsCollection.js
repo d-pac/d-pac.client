@@ -2,7 +2,7 @@
 
 var debug = require( 'debug' )( 'dpac:assess.collections', '[AssessmentsCollection]' );
 
-var AssessmentModel = require( '../models/AssessmentModel' );
+var AssessmentModel = require( '../models/AssessmentProxy' );
 
 module.exports = Backbone.Collection.extend( {
     model : AssessmentModel,

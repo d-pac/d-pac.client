@@ -16,7 +16,8 @@ _.extend( BootstrapModels.prototype, {
         } );
 
         //Yeah. I know. We _really_ have to rename Context#wireView, see https://github.com/GeppettoJS/backbone.geppetto/issues/77
-        context.wireView( 'AggregateModel', require( '../models/AggregateModel' ), {
+        //We need the AggregateProxy as a factory, since it has dependencies and it is instantiated by the aggregatescollection
+        context.wireView( 'AggregateModel', require( '../models/AggregateProxy' ), {
             assessments      : 'assessmentsCollection',
             phases           : 'phasesCollection',
             representations  : 'representationsCollection',
@@ -29,7 +30,8 @@ _.extend( BootstrapModels.prototype, {
             model : 'AggregateModel'
         } );
 
-        context.wireView( 'ComparisonModel', require( '../models/ComparisonModel' ) );
+
+        context.wireView( 'ComparisonModel', require( '../models/ComparisonProxy' ) ); //we need a factory here
         context.wireClass( 'phasesCollection', require( '../collections/PhasesCollection' ) );
         context.wireClass( 'representationsCollection', require( '../collections/RepresentationsCollection' ) );
         context.wireClass( 'judgementsCollection', require( '../collections/JudgementsCollection' ) );

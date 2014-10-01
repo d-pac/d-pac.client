@@ -9,7 +9,8 @@ module.exports = Backbone.Model.extend( {
         comparison     : undefined,
         passed         : undefined,
         rank           : undefined,
-        representation : undefined
+        representation : undefined, //representation obj, not model
+        note           : undefined
     },
 
     initialize : function(){

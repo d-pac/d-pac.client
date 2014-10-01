@@ -1,22 +1,17 @@
 'use strict';
 
-var debug = require( 'debug' )( 'dpac:assess.models', '[PhaseModel]' );
+var debug = require( 'debug' )( 'dpac:assess.models', '[AssessmentModel]' );
 module.exports = Backbone.Model.extend( {
     idAttribute : "_id",
     defaults    : {
-        value : undefined,
-        label : undefined
+        title       : undefined,
+        description : undefined,
+        state       : undefined,
+        phases      : []
     },
 
     initialize : function(){
         debug( '#initialize', this.id );
         Backbone.Select.Me.applyTo( this );
-    },
-
-    start : function(){
-
-    },
-    stop  : function(){
-
     }
 } );

@@ -1,7 +1,7 @@
 'use strict';
 
-var debug = require( 'debug' )( 'dpac:<%= meta.package %>.views', '[<%= file.name %>]' );
-var tpl = require('./templates/<%= file.name %>.hbs');
+var debug = require( 'debug' )( 'dpac:assess.views', '[RepresentationDetailView]' );
+var tpl = require('./templates/RepresentationDetailView.hbs');
 
 module.exports = Marionette.ItemView.extend({
     template : tpl,

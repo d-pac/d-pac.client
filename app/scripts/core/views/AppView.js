@@ -29,7 +29,6 @@ module.exports = Marionette.LayoutView.extend( {
         'route:signin:completed'   : viewFactory( "LoginView" ),
         'route:welcome:completed'  : viewFactory( "WelcomeView" ),
         "route:assess:completed"   : function(){
-            console.log('SHOW IT');
             this.contentRegion.show(this.assessmentView);
         },
         'route:account:completed'  : viewFactory( "AccountView" ),
