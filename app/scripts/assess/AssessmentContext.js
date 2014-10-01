@@ -21,7 +21,7 @@ module.exports = Backbone.Geppetto.Context.extend( {
         this.dispatch( 'assessment:startup:requested' );
     },
     getMainView : function(){
-        var factory = this.getObject('AssessmentView');
+        var factory = this.getObject('MainView');
         var view = factory();
         view.on('render', function(){
             this.dispatch('assessment:ui:rendered');

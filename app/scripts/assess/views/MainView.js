@@ -1,7 +1,7 @@
 'use strict';
 
-var debug = require( 'debug' )( 'dpac:assess.views', '[AssessmentView]' );
-var tpl = require( './templates/AssessmentView.hbs' );
+var debug = require( 'debug' )( 'dpac:assess.views', '[MainView]' );
+var tpl = require( './templates/MainView.hbs' );
 
 module.exports = Marionette.LayoutView.extend( {
     template : tpl,
