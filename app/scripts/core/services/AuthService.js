@@ -2,9 +2,11 @@
 
 var debug = require( 'debug' )( 'dpac:core.services', '[AuthService]' );
 var createServiceResponse = require( '../helpers/createServiceResponse' );
+var sessionCount=0;
 
-module.exports = Backbone.Model.extend( {
+module.exports = Backbone.NestedModel.extend( {
 
+    idAttribute: "_id",
     initialize : function(){
         debug( '#initialize' );
     },
@@ -19,6 +21,7 @@ module.exports = Backbone.Model.extend( {
         debug( '#getStatus' );
         this.fetch( {
             success : function( data ){
+                this.set("_id", this.get("user._id") );
                 this.broadcast( 'AuthService:getStatus:succeeded', createServiceResponse( false ) );
             }.bind( this ),
             error   : function( model,
@@ -32,6 +35,7 @@ module.exports = Backbone.Model.extend( {
         debug( '#signin' );
         this.save( creds, {
             success : function( data ){
+                this.set("_id", this.get("user._id") );
                 this.broadcast( 'AuthService:signin:succeeded', createServiceResponse( false, data ) )
             }.bind( this ),
             error   : function( model,
