@@ -16,9 +16,5 @@ module.exports = Backbone.NestedModel.extend( {
     initialize : function(){
         debug( '#initialize', this.id );
         Backbone.Select.Me.applyTo( this );
-    },
-
-    getURL : function(){
-        return this.get('file.path');
     }
 } );

@@ -1,22 +1,33 @@
 'use strict';
 
 var debug = require( 'debug' )( 'dpac:assess.views', '[WizardView]' );
-var tpl = require('./templates/WizardView.hbs');
+var tpl = require( './templates/WizardView.hbs' );
 
-module.exports = Marionette.ItemView.extend({
+var viewTypeMap = {
+    "select"      : "selectionFactory",
+    "seq"         : "seqFactory",
+    "passfail"    : "passfailFactory",
+    "comparative" : "comparativeFactory"
+};
+
+module.exports = Marionette.LayoutView.extend( {
     template : tpl,
-    initialize : function(){
-        debug("#initialize");
+    regions : {
+        content : "#assessment-wizard-content"
     },
-    onRender : function(){
+
+    initialize : function(){
+        debug( "#initialize" );
+    },
+    onRender   : function(){
         var phase = this.model.getCurrentPhase();
-        console.log(phase);
-        //var factory = this[phase + 'Factory'];
-        //if( !factory ){
-        //    debug.error( 'view factory not found for phase "' + phase + "'" );
-        //    phase = this.model.getDefaultPhase();
-        //    factory = this[phase + 'Factory'];
-        //}
-        //this.wizard.show( factory() );
+        var factory = this[viewTypeMap[phase]];
+
+        if( !factory ){
+            debug.error( 'view factory not found for phase "' + phase + "' mapped to '" + viewTypeMap[phase] + "'" );
+            this.content.empty()
+        }else{
+            this.content.show( factory() );
+        }
     }
-});
+} );

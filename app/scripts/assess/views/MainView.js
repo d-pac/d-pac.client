@@ -8,6 +8,11 @@ module.exports = Marionette.LayoutView.extend( {
     regions     : {
         contentRegion : "#assessment-content"
     },
+
+    //avoid the idiotic div-wrapper
+    tagName : "div",
+    className: "row clearfix",
+
     contextEvents : {
         "assessments:selection:requested": "showAssessmentsSelection",
         "aggregates:editing:requested" : "showLayoutView"

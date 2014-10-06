@@ -70,6 +70,7 @@ module.exports = Marionette.Controller.extend( {
     setupAggregateWirings : function( aggregate ){
         debug( '#setupAggregateWirings' );
         this.context.wireValue( 'currentAssessment', aggregate.assessment );
+        this.context.wireValue( 'currentJudgements', aggregate.judgements );
         this.context.wireValue( 'currentPhases', aggregate.phases );
         this.requestAggregateEditing(aggregate);
     },

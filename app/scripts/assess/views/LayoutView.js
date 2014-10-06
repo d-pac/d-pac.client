@@ -10,8 +10,9 @@ module.exports = Marionette.LayoutView.extend( {
     template : tpl,
 
     regions : {
-        wizard : "#assessment-wizard",
-        detail : "#assessment-detail"
+        wizard          : "#assessment-wizard",
+        detail          : "#assessment-detail",
+        representations : "#assessment-representations"
     },
 
     initialize : function(){
@@ -21,6 +22,7 @@ module.exports = Marionette.LayoutView.extend( {
     onRender : function(){
         this.detail.show( this.detailFactory() );
         this.wizard.show( this.wizardFactory() );
+        this.representations.show(this.representationsFactory());
         //var phase = this.model.getCurrentPhase();
         //var factory = this[phase + 'Factory'];
         //if( !factory ){

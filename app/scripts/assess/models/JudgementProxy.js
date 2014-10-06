@@ -1,7 +1,8 @@
 'use strict';
 
 var debug = require( 'debug' )( 'dpac:assess.models', '[JudgementModel]' );
-module.exports = Backbone.Model.extend( {
+module.exports = Backbone.NestedModel.extend( {
+    config : undefined,
     idAttribute : "_id",
     defaults    : {
         assessment     : undefined,
@@ -13,7 +14,13 @@ module.exports = Backbone.Model.extend( {
         note           : undefined
     },
 
-    initialize : function(){
-        debug( '#initialize', this.id );
+    initialize : function(attrs, opts){
+        debug( '#initialize' );
+    },
+
+    getURL : function(){
+        var name = this.get('representation.file.filename');
+        var path = this.get('representation.file.path');
+        return [path, name].join('/');
     }
 } );

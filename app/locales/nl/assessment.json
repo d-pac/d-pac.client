@@ -28,5 +28,10 @@
                 "tooltip": "Kies de rechtse representatie als de beste."
             }
         }
+    },
+    "workflow" : {
+        "empty" : {
+            "description" : "Deze assessment is verkeerd geconfigureerd."
+        }
     }
 }
