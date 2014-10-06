@@ -15,7 +15,7 @@ module.exports = Marionette.LayoutView.extend( {
 
     contextEvents : {
         "assessments:selection:requested": "showAssessmentsSelection",
-        "aggregates:editing:requested" : "showLayoutView"
+        "mementos:editing:requested" : "showLayoutView"
     },
 
     initialize : function(){

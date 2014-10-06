@@ -3,28 +3,28 @@ var debug = require( 'debug' )( 'dpac:assess.controllers', '[ComparisonFlow]' );
 
 module.exports = Marionette.Controller.extend( {
     contextEvents : {
-        "assessment:ui:rendered"         : "requestAggregatesCollection",
+        "assessment:ui:rendered"         : "requestMementosCollection",
         "assessment:selection:completed" : "assessmentSelectionReceived"
     },
-    wiring        : ['assessmentContext', 'aggregatesCollection', 'assessmentsCollection'],
+    wiring        : ['assessmentContext', 'mementosCollection', 'assessmentsCollection'],
 
     initialize : function(){
         debug( '#initialize' );
         this.context = this.assessmentContext;
     },
 
-    requestAggregatesCollection  : function(){
-        debug( '#requestAggregatesCollection' );
-        this.dispatch( "aggregates:collection:requested" );
-        this.aggregatesCollection.once( "sync", this.aggregatesCollectionReceived, this );
-        this.aggregatesCollection.fetch();
+    requestMementosCollection  : function(){
+        debug( '#requestMementosCollection' );
+        this.dispatch( "mementos:collection:requested" );
+        this.mementosCollection.once( "sync", this.mementosCollectionReceived, this );
+        this.mementosCollection.fetch();
     },
-    aggregatesCollectionReceived : function(){
-        debug( "#aggregatesCollectionReceived" );
-        if( !this.aggregatesCollection.hasActive() ){
+    mementosCollectionReceived : function(){
+        debug( "#mementosCollectionReceived" );
+        if( !this.mementosCollection.hasActive() ){
             this.requestAssessmentSelection();
         }else{
-            this.requestAggregateSelection();
+            this.requestMementoSelection();
         }
     },
 
@@ -36,49 +36,49 @@ module.exports = Marionette.Controller.extend( {
     },
     assessmentSelectionReceived : function( assessment ){
         debug( '#assessmentSelectionReceived', assessment );
-        this.requestAggregateCreation( assessment );
+        this.requestMementoCreation( assessment );
     },
 
-    requestAggregateCreation  : function( assessment ){
-        debug( '#requestAggregateCreation' )
-        this.dispatch( 'aggregates:creation:requested' );
-        //todo: aggregate creation failure
-        this.aggregatesCollection.once( "add", this.aggregateCreationReceived, this );
-        this.aggregatesCollection.create( {
+    requestMementoCreation  : function( assessment ){
+        debug( '#requestMementoCreation' )
+        this.dispatch( 'mementos:creation:requested' );
+        //todo: memento creation failure
+        this.mementosCollection.once( "add", this.mementoCreationReceived, this );
+        this.mementosCollection.create( {
             assessment : assessment.id
         }, {wait:true} );
     },
-    aggregateCreationReceived : function( aggregate ){
-        debug( '#aggregateCreationReceived' );
-        this.requestAggregateSelection( aggregate );
+    mementoCreationReceived : function( memento ){
+        debug( '#mementoCreationReceived' );
+        this.requestMementoSelection( memento );
     },
 
-    requestAggregateSelection  : function(){
-        debug( '#requestAggregateSelection' );
-        this.dispatch( 'aggregates:selection:requested' );
+    requestMementoSelection  : function(){
+        debug( '#requestMementoSelection' );
+        this.dispatch( 'mementos:selection:requested' );
         //we're going to handle it here for the time being
-        //since ATM a single active aggregate is allowed anyway
-        var model = this.aggregatesCollection.getActive();
+        //since ATM a single active memento is allowed anyway
+        var model = this.mementosCollection.getActive();
         model.select();
-        this.aggregateSelectionReceived( model );
+        this.mementoSelectionReceived( model );
     },
-    aggregateSelectionReceived : function( aggregate ){
-        debug( '#aggregateSelectionReceived' );
-        this.setupAggregateWirings( aggregate );
-    },
-
-    setupAggregateWirings : function( aggregate ){
-        debug( '#setupAggregateWirings' );
-        this.context.wireValue( 'currentAssessment', aggregate.assessment );
-        this.context.wireValue( 'currentJudgements', aggregate.judgements );
-        this.context.wireValue( 'currentPhases', aggregate.phases );
-        this.requestAggregateEditing(aggregate);
+    mementoSelectionReceived : function( memento ){
+        debug( '#mementoSelectionReceived' );
+        this.setupMementoWirings( memento );
     },
 
-    requestAggregateEditing : function( aggregate ){
-        debug( '#requestAggregateEditing' );
-        this.dispatch( 'aggregates:editing:requested', {
-            aggregate : aggregate
+    setupMementoWirings : function( memento ){
+        debug( '#setupMementoWirings' );
+        this.context.wireValue( 'currentAssessment', memento.assessment );
+        this.context.wireValue( 'currentJudgements', memento.judgements );
+        this.context.wireValue( 'currentPhases', memento.phases );
+        this.requestMementoEditing(memento);
+    },
+
+    requestMementoEditing : function( memento ){
+        debug( '#requestMementoEditing' );
+        this.dispatch( 'mementos:editing:requested', {
+            memento : memento
         } );
     }
 } );

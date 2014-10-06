@@ -1,6 +1,6 @@
 'use strict';
 
-var debug = require( 'debug' )( 'dpac:assess.collections', '[AggregatesCollection]' );
+var debug = require( 'debug' )( 'dpac:assess.collections', '[MementosCollection]' );
 
 module.exports = Backbone.Collection.extend( {
 
