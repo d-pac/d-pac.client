@@ -1,6 +1,6 @@
 'use strict';
 
-var debug = require( 'debug' )( 'dpac:assess.models', '[JudgementModel]' );
+var debug = require( 'debug' )( 'dpac:assess.models', '[JudgementProxy]' );
 module.exports = Backbone.NestedModel.extend( {
     config : undefined,
     idAttribute : "_id",

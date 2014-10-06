@@ -1,6 +1,6 @@
 'use strict';
 
-var debug = require( 'debug' )( 'dpac:assess.models', '[RepresentationModel]' );
+var debug = require( 'debug' )( 'dpac:assess.models', '[RepresentationProxy]' );
 module.exports = Backbone.NestedModel.extend( {
     idAttribute : "_id",
     defaults    : {

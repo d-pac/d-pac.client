@@ -1,5 +1,5 @@
 'use strict';
-var debug = require( 'debug' )( 'dpac:assess.models', '[MementoModel]' );
+var debug = require( 'debug' )( 'dpac:assess.models', '[MementoProxy]' );
 
 module.exports = Backbone.NestedModel.extend( {
     phases           : undefined,

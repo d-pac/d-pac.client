@@ -1,6 +1,6 @@
 'use strict';
 
-var debug = require( 'debug' )( 'dpac:assess.models', '[AssessmentModel]' );
+var debug = require( 'debug' )( 'dpac:assess.models', '[AssessmentProxy]' );
 module.exports = Backbone.Model.extend( {
     idAttribute : "_id",
     defaults    : {

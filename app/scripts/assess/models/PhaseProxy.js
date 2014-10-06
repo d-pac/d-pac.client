@@ -1,6 +1,6 @@
 'use strict';
 
-var debug = require( 'debug' )( 'dpac:assess.models', '[PhaseModel]' );
+var debug = require( 'debug' )( 'dpac:assess.models', '[PhaseProxy]' );
 module.exports = Backbone.Model.extend( {
     idAttribute : "_id",
     defaults    : {
