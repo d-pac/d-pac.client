@@ -11,9 +11,12 @@ var viewTypeMap = {
 };
 
 module.exports = Marionette.LayoutView.extend( {
-    template : tpl,
-    regions : {
+    template    : tpl,
+    regions     : {
         content : "#assessment-wizard-content"
+    },
+    modelEvents : {
+        "select:one" : "render"
     },
 
     initialize : function(){

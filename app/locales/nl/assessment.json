@@ -1,24 +1,34 @@
 {
     "title": "Assessments",
-    "description" : "",
+    "description": "",
     "selection": {
         "title": "Assessments",
         "description": "Kies een assessment",
-        "empty" : {
-            "title" : "Helaas...",
-            "description" : "U hebt geen actieve assessments."
+        "empty": {
+            "title": "Helaas...",
+            "description": "U hebt geen actieve assessments."
         }
     },
     "comparisons": {
         "title": "Beoordeling",
         "description": "",
-        "progressbar":{
-            "tooltip" : "Toont je informatie over je vooruitgang.",
-            "label" : "__count__% van je vergelijkingen in deze assessment uitgevoerd."
+        "progressbar": {
+            "tooltip": "Toont je informatie over je vooruitgang.",
+            "label": "__count__% van je vergelijkingen in deze assessment uitgevoerd."
         },
-        "judgement" : {
+        "judgement": {
             "title": "Beoordeel",
             "description": "Duid aub de beste representatie aan.",
+            "buttons": [
+                {
+                    "label": "Linker representatie is de beste",
+                    "tooltip": "Kies de linkse representatie als de beste."
+                },
+                {
+                    "label": "Rechter representatie is de beste",
+                    "tooltip": "Kies de rechtse representatie als de beste."
+                }
+            ],
             "leftButton": {
                 "label": "Linker representatie is de beste",
                 "tooltip": "Kies de linkse representatie als de beste."
@@ -29,9 +39,9 @@
             }
         }
     },
-    "workflow" : {
-        "empty" : {
-            "description" : "Deze assessment is verkeerd geconfigureerd."
+    "workflow": {
+        "empty": {
+            "description": "Deze assessment is verkeerd geconfigureerd."
         }
     }
 }

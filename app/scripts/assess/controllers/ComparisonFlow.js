@@ -46,7 +46,7 @@ module.exports = Marionette.Controller.extend( {
         this.mementosCollection.once( "add", this.mementoCreationReceived, this );
         this.mementosCollection.create( {
             assessment : assessment.id
-        }, {wait:true} );
+        }, { wait : true } );
     },
     mementoCreationReceived : function( memento ){
         debug( '#mementoCreationReceived' );
@@ -72,7 +72,8 @@ module.exports = Marionette.Controller.extend( {
         this.context.wireValue( 'currentAssessment', memento.assessment );
         this.context.wireValue( 'currentJudgements', memento.judgements );
         this.context.wireValue( 'currentPhases', memento.phases );
-        this.requestMementoEditing(memento);
+        this.context.wireValue( 'currentRepresentations', memento.representations );
+        this.requestMementoEditing( memento );
     },
 
     requestMementoEditing : function( memento ){

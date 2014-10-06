@@ -22,7 +22,9 @@ var BootstrapUI = module.exports = function BootstrapUI( context ){
         wizardFactory          : "WizardView",
         representationsFactory : "RepresentationsView"
     } );
-    context.wireView( 'SelectionView', require( '../views/SelectionView' ) );
+    context.wireView( 'SelectionView', require( '../views/SelectionView' ), {
+        collection : 'currentRepresentations'
+    } );
     context.wireView('RepresentationDetailView', require('../views/RepresentationDetailView'));
     context.wireView( 'RepresentationsView', require( '../views/RepresentationsView' ), {
         collection : "currentJudgements",
