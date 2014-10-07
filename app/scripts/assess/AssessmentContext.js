@@ -16,8 +16,7 @@ module.exports = Backbone.Geppetto.Context.extend( {
                 require( './controllers/BootstrapDomain' ),
                 require( './controllers/AssessmentFlow' ),
                 require( './controllers/BootstrapUI' )
-            ],
-            "mementos:selection:completed" : require( './controllers/MementoFlow' )
+            ]
         } );
     },
     start       : function(){

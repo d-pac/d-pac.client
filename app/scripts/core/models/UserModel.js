@@ -1,6 +1,7 @@
 'use strict';
 var debug = require( 'debug' )( 'dpac:core.models', '[UserModel]' );
 module.exports = Backbone.NestedModel.extend( {
+    url : '/me/account',
     defaults : {
         name             : {
             first : undefined,

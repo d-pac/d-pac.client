@@ -6,6 +6,7 @@ var sessionCount=0;
 
 module.exports = Backbone.NestedModel.extend( {
 
+    url : '/me/session',
     idAttribute: "_id",
     initialize : function(){
         debug( '#initialize' );

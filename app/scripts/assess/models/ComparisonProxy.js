@@ -2,6 +2,8 @@
 
 var debug = require( 'debug' )( 'dpac:assess.models', '[ComparisonProxy]' );
 module.exports = Backbone.Model.extend( {
+
+    url : '/comparisons',
     idAttribute : "_id",
     defaults    : {
         assessment          : undefined,

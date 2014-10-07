@@ -10,15 +10,9 @@ _.extend( BootstrapModels.prototype, {
         debug( '#execute' );
         var context = this.context;
 
-        context.wireValue( 'url.api.me.account', this.config.api.root + '/me/account' );
-        context.wireSingleton( 'accountModel', require( '../models/UserModel' ), {
-            url : 'url.api.me.account'
-        } );
+        context.wireSingleton( 'accountModel', require( '../models/UserModel' ));
 
-        context.wireValue( 'url.api.me.session', this.config.api.root + '/me/session' );
-        context.wireSingleton( 'authService', require( '../services/AuthService' ), {
-            url : 'url.api.me.session'
-        } );
+        context.wireSingleton( 'authService', require( '../services/AuthService' ) );
 
         context.wireCommands( {
             'route:signout:completed' : require( './Signout' )

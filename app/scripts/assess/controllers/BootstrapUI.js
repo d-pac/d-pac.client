@@ -32,7 +32,7 @@ var BootstrapUI = module.exports = function BootstrapUI( context ){
         childView  : "RepresentationDetailView"
     } );
     context.wireView( 'SeqView', require( '../views/SeqView' ), {
-        collection : 'seqsCollection'
+        collection : 'currentSeqs'
     } );
 };
 

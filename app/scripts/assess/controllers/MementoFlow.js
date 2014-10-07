@@ -1,19 +1,31 @@
 'use strict';
 
 var debug = require( 'debug' )( 'dpac:assess.controllers', '[MementoFlow]' );
-
 module.exports = Marionette.Controller.extend( {
-    constructor : function(context, eventName, eventData){
-        debug( '#constructor' );
-        this.context = context;
-        this.setupMementoWirings(eventData.memento);
+    wiring  : {
+        parser : 'mementoParser'
     },
-    setupMementoWirings : function( memento ){
-        debug( '#setupMementoWirings' );
-        this.context.wireValue( 'currentComparison', memento.comparison );
-        this.context.wireValue( 'currentAssessment', memento.assessment );
-        this.context.wireValue( 'currentJudgements', memento.judgements );
-        this.context.wireValue( 'currentPhases', memento.phases );
-        this.context.wireValue( 'currentRepresentations', memento.representations );
+    execute : function(){
+        debug( '#execute' );
+
+        var aggregate = this.parser.parse( this.eventData.memento.toJSON() );
+        this.context.wireValue( 'currentAssessment', aggregate.assessment );
+        this.context.wireValue( 'currentComparison', aggregate.comparison );
+        this.context.wireValue( 'currentPhases', aggregate.phases );
+        this.context.wireValue( 'currentRepresentations', aggregate.representations );
+        this.context.wireValue( 'currentJudgements', aggregate.judgements );
+        this.context.wireValue( 'currentSeqs', aggregate.seqs );
+
+        aggregate.representations.on( 'select:one', this.representationSelected, this );
+    },
+
+    representationSelected : function( representation ){
+        debug.debug( '#representationSelected', representation.id );
+        this.phases.selectNext();
+        this.comparison.update( {
+            selected : representation.id,
+            phase    : this.phases.selected.id
+        } );
     }
-});
+
+} );
