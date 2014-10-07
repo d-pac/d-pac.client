@@ -44,6 +44,7 @@ module.exports = Backbone.NestedModel.extend( {
                 this.set("_id", this.get("user._id") );
                 this.broadcast( 'AuthService:signin:succeeded', createServiceResponse( false, data ) )
             }.bind( this ),
+            //todo: remove error handler
             error   : function( model,
                                 response,
                                 options ){
@@ -58,6 +59,7 @@ module.exports = Backbone.NestedModel.extend( {
                 this.clear();
                 this.broadcast( 'AuthService:signout:succeeded', createServiceResponse( false ) );
             }.bind( this ),
+            //todo: remove error handler
             error   : function( model,
                                 response,
                                 options ){

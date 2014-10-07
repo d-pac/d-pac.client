@@ -23,6 +23,7 @@ module.exports = Marionette.LayoutView.extend( {
 
     initialize : function(){
         debug( '#initialize' );
+        //todo: move to global error alert view
         this.listenTo( this.authService, 'AuthService:signin:failed', function( err ){
             this.ui.passwordField.val( '' );
             this.alertRegion.show( new AlertView( { message : getErrorMessage( err ) } ) );
