@@ -62,16 +62,13 @@ module.exports = Backbone.Router.extend( {
     },
 
     authTarget : function( target ){
-        this.onEventGoto( 'AuthService:getStatus:failed', 'signin' );
-        this.onEventGoto( 'AuthService:getStatus:succeeded', target );
+        this.authService.once('AuthService:getStatus:succeeded', function(){
+            if(this.authService.isLoggedin()){
+                this.trigger( 'navigate', target );
+            }else{
+                this.trigger( 'navigate', 'signin');
+            }
+        }, this );
         this.authService.getStatus();
-    },
-
-    onEventGoto : function( event,
-                            target ){
-        this.listenTo( this.authService, event, function(){
-            this.stopListening( this.authService );
-            this.trigger( 'navigate', target );
-        } );
     }
 } );

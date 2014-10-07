@@ -17,17 +17,23 @@ module.exports = Backbone.NestedModel.extend( {
         this.dispatch( event, data );
     },
 
+    isLoggedin : function(){
+        return !! this.get('_id');
+    },
+
     getStatus : function(){
         debug( '#getStatus' );
         this.fetch( {
             success : function( data ){
-                this.set("_id", this.get("user._id") );
-                this.broadcast( 'AuthService:getStatus:succeeded', createServiceResponse( false ) );
+                var user = this.get("user");
+                if(user){
+                    this.set("_id", user._id );
+                }
+                this.broadcast( 'AuthService:getStatus:succeeded', createServiceResponse( false, data ) );
             }.bind( this ),
             error   : function( model,
                                 response,
                                 options ){
-                this.broadcast( 'AuthService:getStatus:failed', createServiceResponse( response ) );
             }.bind( this )
         } );
     },
