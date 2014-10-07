@@ -42,6 +42,5 @@ _.extend( BootstrapModels.prototype, {
             phases : "currentPhases"
         } );
 
-        context.wireSingleton( 'comparisonFlow', require( '../controllers/ComparisonFlow' ) ).getObject( 'comparisonFlow' );
     }
 } );

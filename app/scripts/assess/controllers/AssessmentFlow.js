@@ -1,10 +1,11 @@
 'use strict';
-var debug = require( 'debug' )( 'dpac:assess.controllers', '[ComparisonFlow]' );
+var debug = require( 'debug' )( 'dpac:assess.controllers', '[AssessmentFlow]' );
 
 module.exports = Marionette.Controller.extend( {
     contextEvents : {
         "assessment:ui:rendered"         : "requestMementosCollection",
-        "assessment:selection:completed" : "assessmentSelectionReceived"
+        "assessment:selection:completed" : "assessmentSelectionReceived",
+        "mementos:selection:completed"   : "requestMementoEditing"
     },
     wiring        : ['assessmentContext', 'mementosCollection', 'assessmentsCollection'],
 
@@ -64,17 +65,9 @@ module.exports = Marionette.Controller.extend( {
     },
     mementoSelectionReceived : function( memento ){
         debug( '#mementoSelectionReceived' );
-        this.setupMementoWirings( memento );
-    },
-
-    setupMementoWirings : function( memento ){
-        debug( '#setupMementoWirings' );
-        this.context.wireValue( 'currentComparison', memento.comparison );
-        this.context.wireValue( 'currentAssessment', memento.assessment );
-        this.context.wireValue( 'currentJudgements', memento.judgements );
-        this.context.wireValue( 'currentPhases', memento.phases );
-        this.context.wireValue( 'currentRepresentations', memento.representations );
-        this.requestMementoEditing( memento );
+        this.dispatch( 'mementos:selection:completed', {
+            memento : memento
+        } );
     },
 
     requestMementoEditing : function( memento ){

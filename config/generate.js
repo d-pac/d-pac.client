@@ -11,7 +11,8 @@ module.exports = function( grunt,
                         "Model"      : ":dir/models",
                         "ItemView"   : ":dir/views",
                         "Command"    : ":dir/controllers",
-                        "Collection" : ":dir/collections"
+                        "Collection" : ":dir/collections",
+                        "Controller" : ":dir/controllers"
                     }
                 }
             }
