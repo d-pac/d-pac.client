@@ -69,6 +69,7 @@ module.exports = Marionette.Controller.extend( {
 
     setupMementoWirings : function( memento ){
         debug( '#setupMementoWirings' );
+        this.context.wireValue( 'currentComparison', memento.comparison );
         this.context.wireValue( 'currentAssessment', memento.assessment );
         this.context.wireValue( 'currentJudgements', memento.judgements );
         this.context.wireValue( 'currentPhases', memento.phases );

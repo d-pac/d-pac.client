@@ -15,7 +15,8 @@ var BootstrapUI = module.exports = function BootstrapUI( context ){
     } );
     context.wireView( 'WizardView', require( '../views/WizardView' ), {
         model            : "currentPhases",
-        selectionFactory : "SelectionView"
+        selectionFactory : "SelectionView",
+        seqFactory       : "SeqView"
     } );
     context.wireView( 'LayoutView', require( '../views/LayoutView' ), {
         detailFactory          : "AssessmentDetailView",
@@ -25,10 +26,13 @@ var BootstrapUI = module.exports = function BootstrapUI( context ){
     context.wireView( 'SelectionView', require( '../views/SelectionView' ), {
         collection : 'currentRepresentations'
     } );
-    context.wireView('RepresentationDetailView', require('../views/RepresentationDetailView'));
+    context.wireView( 'RepresentationDetailView', require( '../views/RepresentationDetailView' ) );
     context.wireView( 'RepresentationsView', require( '../views/RepresentationsView' ), {
         collection : "currentJudgements",
-        childView : "RepresentationDetailView"
+        childView  : "RepresentationDetailView"
+    } );
+    context.wireView( 'SeqView', require( '../views/SeqView' ), {
+        collection : 'seqsCollection'
     } );
 };
 

@@ -37,6 +37,21 @@
                 "label": "Rechter representatie is de beste",
                 "tooltip": "Kies de rechtse representatie als de beste."
             }
+        },
+        "seq":{
+            "title" : "Hoe moeilijk vond je de vorige taak in het algemeen?",
+            "tooltip" : "",
+            "legend" : {
+                "easy" : {
+                    "label": "Heel gemakkelijk [1]"
+                },
+                "hard" : {
+                    "label": "[7] Heel moeilijk"
+                }
+            },
+            "submitButton": {
+                "label" : "Opslaan"
+            }
         }
     },
     "workflow": {

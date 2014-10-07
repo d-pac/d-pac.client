@@ -30,13 +30,17 @@ _.extend( BootstrapModels.prototype, {
             model : 'MementoModel'
         } );
 
-        context.wireValue('url.api.comparisons', this.config.api.root + '/comparisons');
+        context.wireValue( 'url.api.comparisons', this.config.api.root + '/comparisons' );
         context.wireView( 'ComparisonModel', require( '../models/ComparisonProxy' ), {
             urlRoot : 'url.api.comparisons'
         } ); //we need a factory here
         context.wireClass( 'phasesCollection', require( '../collections/PhasesCollection' ) );
         context.wireClass( 'representationsCollection', require( '../collections/RepresentationsCollection' ) );
         context.wireClass( 'judgementsCollection', require( '../collections/JudgementsCollection' ) );
+        context.wireClass( 'seqsCollection', require( '../collections/SeqsCollection' ), {
+            comparison : "currentComparison",
+            phases : "currentPhases"
+        } );
 
         context.wireSingleton( 'comparisonFlow', require( '../controllers/ComparisonFlow' ) ).getObject( 'comparisonFlow' );
     }
