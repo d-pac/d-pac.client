@@ -55,7 +55,10 @@
         },
         "compare":{
             "title": "Vergelijk",
-            "description": "Beschrijf hier waarom je de ene tekst beter vond dan de andere"
+            "description": "Beschrijf hier waarom je de ene tekst beter vond dan de andere",
+            "submitButton": {
+                "label" : "Opslaan"
+            }
         }
     },
     "workflow": {
