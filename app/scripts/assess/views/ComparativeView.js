@@ -7,5 +7,15 @@ module.exports = Marionette.ItemView.extend({
     template : tpl,
     initialize : function(){
         debug("#initialize");
+    },
+
+    onRender : function(){
+        this.$('textarea' ).wysihtml5({ toolbar:{
+            "font-styles":false,
+            link:false,
+            image:false,
+            color:false,
+            size:"sm"
+        }});
     }
 });
