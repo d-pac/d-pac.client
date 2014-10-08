@@ -28,6 +28,7 @@ module.exports = Marionette.LayoutView.extend( {
             this.listenTo( view, 'representation:selected', this.gotoNext );
             this.listenTo( view, 'seq:edited', this.gotoNext );
             this.listenTo( view, 'comparativeFeedback:edited', this.gotoNext );
+            this.listenTo( view, 'passfail:edited', this.gotoNext );
         }
     },
 

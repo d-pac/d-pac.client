@@ -59,6 +59,21 @@
             "submitButton": {
                 "label" : "Opslaan"
             }
+        },
+        "passfail":{
+            "title":"Geslaagd of niet?",
+            "description" : "Duid aan of deze teksten geslaagd zijn.",
+            "submitButton": {
+                "label": "Opslaan"
+            },
+            "options": {
+                "passed" : {
+                    "label" : "Geslaagd",
+                    "icon" : "ok"
+                },
+                "failed" : { "label":"Niet geslaagd", "icon":"remove"},
+                "undecided" : { "label" : "Weet het niet", "icon": "question-sign"}
+            }
         }
     },
     "workflow": {

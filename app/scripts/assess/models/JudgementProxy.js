@@ -9,13 +9,18 @@ module.exports = Backbone.NestedModel.extend( {
         assessor       : undefined,
         comparison     : undefined,
         passed         : undefined,
-        rank           : undefined,
         representation : undefined, //representation obj, not model
         note           : undefined
     },
 
     initialize : function(attrs, opts){
         debug( '#initialize' );
+        //todo: don't know why but we have to do it like this, otherwise we get an error
+        var model = this;
+        var saveModel = function(){
+            model.save();
+        };
+        this.on('change:passed', saveModel);
     },
 
     getURL : function(){
