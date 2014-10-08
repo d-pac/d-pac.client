@@ -13,6 +13,6 @@ _.extend( BootstrapModels.prototype, {
         context.wireSingleton( 'mementosCollection', require( '../collections/MementosCollection' ) );
         context.wireSingleton( 'mementoParser', require( '../services/MementoParser' ) );
 
-        context.wireCommand( "mementos:selection:completed", require( './MementoFlow' ) );
+        context.wireCommand( "mementos:selection:completed", require( './MementoController' ) );
     }
 } );
