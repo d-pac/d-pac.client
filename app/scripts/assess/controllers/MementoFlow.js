@@ -18,12 +18,8 @@ module.exports = Marionette.Controller.extend( {
         this.context.wireValue( 'currentJudgements', this.judgements );
         this.context.wireValue( 'currentSeqs', this.seqs );
 
+        this.representations.selectByID(this.comparison.get('selected'));
         this.representations.on('select:one', this.representationSelected, this);
-        this.seqs.on('change:value', this.seqValueChanged, this);
-        this.comparison.on('change:phase', this.comparisonChanged, this);
-        this.comparison.on('change:representation', this.comparisonChanged, this);
-        this.comparison.on('change:comparativeFeedback', this.comparisonChanged, this);
-
         this.phases.selectByID( this.comparison.get( 'phase' ) );
         this.phases.on('select:one', this.phaseSelected, this);
 
@@ -44,10 +40,5 @@ module.exports = Marionette.Controller.extend( {
     representationSelected : function(representation){
         debug.debug('representationSelected');
         this.comparison.set('selected', representation.id);
-    },
-
-    seqValueChanged : function(seq){
-        debug.debug('seqValueChanged');
-        seq.save();
     }
 } );

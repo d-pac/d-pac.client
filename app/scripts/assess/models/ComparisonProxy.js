@@ -2,8 +2,8 @@
 
 var debug = require( 'debug' )( 'dpac:assess.models', '[ComparisonProxy]' );
 module.exports = Backbone.Model.extend( {
-    timeoutId : undefined,
-    urlRoot : '/comparisons',
+    timeoutId   : undefined,
+    urlRoot     : '/comparisons',
     idAttribute : "_id",
     defaults    : {
         assessment          : undefined,
@@ -15,15 +15,24 @@ module.exports = Backbone.Model.extend( {
 
     initialize : function(){
         debug( '#initialize', this.id );
+
+        //todo: don't know why but we have to do it like this, otherwise we get an error
+        var model = this;
+        var saveModel = function(){
+            model.save();
+        };
+        this.on( 'change:selected', saveModel );
+        this.on( 'change:phase', saveModel );
+        this.on( 'change:comparativeFeedback', saveModel );
     },
 
-    save : _.debounce(function(attrs){
-        debug('#save');
-        if(attrs){
-            this.set(attrs);
+    save : _.debounce( function( attrs ){
+        debug( '#save' );
+        if( attrs ){
+            this.set( attrs );
         }
-        Backbone.Model.prototype.save.call(this);
-    }, 1000)
+        Backbone.Model.prototype.save.call( this );
+    }, 1000 )
 
     //save : function(attrs){
     //    debug('#save', attrs);

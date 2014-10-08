@@ -13,5 +13,11 @@ module.exports = Backbone.Model.extend( {
     initialize : function(){
         debug( '#initialize', this.id || '<new>' );
         Backbone.Select.Me.applyTo( this );
+        //todo: don't know why but we have to do it like this, otherwise we get an error
+        var model = this;
+        var saveModel = function(){
+            model.save();
+        };
+        this.on('change:value', saveModel);
     }
 } );
