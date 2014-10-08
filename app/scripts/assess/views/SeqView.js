@@ -16,7 +16,6 @@ module.exports = Marionette.ItemView.extend( {
     initialize : function(){
         debug( "#initialize" );
 
-        this.model = this.collection.selected;
         debug.debug(this.model);
     },
     onRender   : function(){

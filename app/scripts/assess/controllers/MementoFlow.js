@@ -19,11 +19,10 @@ module.exports = Marionette.Controller.extend( {
         this.context.wireValue( 'currentSeqs', this.seqs );
 
         this.representations.on('select:one', this.representationSelected, this);
-
-        this.phases.on('select:phase:select', this.setupSelectionPhase, this);
-        this.phases.on('deselect:phase:select', this.teardownSelectionPhase, this);
-        this.phases.on('select:phase:seq', this.setupSeqPhase, this);
-        this.phases.on('deselect:phase:seq', this.teardownSeqPhase, this);
+        this.seqs.on('change:value', this.seqValueChanged, this);
+        this.comparison.on('change:phase', this.comparisonChanged, this);
+        this.comparison.on('change:representation', this.comparisonChanged, this);
+        this.comparison.on('change:comparativeFeedback', this.comparisonChanged, this);
 
         this.phases.selectByID( this.comparison.get( 'phase' ) );
         this.phases.on('select:one', this.phaseSelected, this);
@@ -32,35 +31,23 @@ module.exports = Marionette.Controller.extend( {
 
     phaseSelected : function(phase){
         debug.debug('phaseSelected');
-        this.comparison.save({
+        this.comparison.set({
             phase : phase.id
         });
     },
 
-    setupSelectionPhase : function(phase){
-        debug.debug('setupSelectionPhase');
-        this.representations.selectByID( this.comparison.get( 'selected' ) );
-    },
-
-    teardownSelectionPhase : function(phase){
-        debug.debug('teardownSelectionPhase');
+    comparisonChanged : function(){
+        debug.debug('comparisonChanged');
         this.comparison.save();
-    },
-
-    setupSeqPhase : function(phase){
-        debug.debug('handleSeqPhase');
-        this.seqs.selectByFind({
-            comparison : this.comparison.id,
-            phase : phase.id
-        });
-    },
-    teardownSeqPhase : function(phase){
-        debug.debug('teardownSeqPhase');
-        this.seqs.selected.save();
     },
 
     representationSelected : function(representation){
         debug.debug('representationSelected');
         this.comparison.set('selected', representation.id);
+    },
+
+    seqValueChanged : function(seq){
+        debug.debug('seqValueChanged');
+        seq.save();
     }
 } );

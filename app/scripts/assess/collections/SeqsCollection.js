@@ -20,5 +20,6 @@ module.exports = Backbone.Collection.extend( {
             model = this.add(attrs);
         }
         this.select(model);
+        return model;
     }
 } );

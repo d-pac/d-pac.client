@@ -23,7 +23,7 @@ module.exports = Backbone.Model.extend( {
             this.set(attrs);
         }
         Backbone.Model.prototype.save.call(this);
-    }, 500)
+    }, 1000)
 
     //save : function(attrs){
     //    debug('#save', attrs);

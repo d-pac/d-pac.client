@@ -16,7 +16,7 @@ var BootstrapUI = module.exports = function BootstrapUI( context ){
     context.wireView( 'WizardView', require( '../views/WizardView' ), {
         collection            : "currentPhases",
         selectFactory : "SelectionView",
-        seqFactory       : "SeqView",
+        seqFactory       : "seqViewFactory",
         compareFactory : "ComparativeView",
         passfailFactory: "PassFailView"
     } );
@@ -28,9 +28,8 @@ var BootstrapUI = module.exports = function BootstrapUI( context ){
     context.wireView( 'SelectionView', require( '../views/SelectionView' ), {
         collection : 'currentRepresentations'
     } );
-    context.wireView( 'SeqView', require( '../views/SeqView' ), {
-        collection : 'currentSeqs'
-    } );
+    context.wireView('seqViewFactory', require('../views/factories/SeqViewFactory'));
+    context.wireView( 'SeqView', require( '../views/SeqView' ) );
     context.wireView( 'ComparativeView', require( '../views/ComparativeView' ), {
         model : 'currentComparison'
     } );
