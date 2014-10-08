@@ -2,8 +2,8 @@
 
 var debug = require( 'debug' )( 'dpac:assess.models', '[ComparisonProxy]' );
 module.exports = Backbone.Model.extend( {
-
-    url : '/comparisons',
+    changedSinceLastPatch : undefined,
+    urlRoot : '/comparisons',
     idAttribute : "_id",
     defaults    : {
         assessment          : undefined,
@@ -17,11 +17,9 @@ module.exports = Backbone.Model.extend( {
         debug( '#initialize', this.id );
     },
 
-    update : function(attrs){
-        debug('#update');
-
-        this.save(attrs, {
-            patch : true
-        });
-    }
+    save : _.debounce(function(attrs){
+        debug('#save');
+        this.set(attrs);
+        Backbone.Model.prototype.save.call(this);
+    }, 1000)
 } );

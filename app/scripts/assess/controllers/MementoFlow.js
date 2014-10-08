@@ -5,27 +5,61 @@ module.exports = Marionette.Controller.extend( {
     wiring  : {
         parser : 'mementoParser'
     },
+
     execute : function(){
         debug( '#execute' );
 
-        var aggregate = this.parser.parse( this.eventData.memento.toJSON() );
-        this.context.wireValue( 'currentAssessment', aggregate.assessment );
-        this.context.wireValue( 'currentComparison', aggregate.comparison );
-        this.context.wireValue( 'currentPhases', aggregate.phases );
-        this.context.wireValue( 'currentRepresentations', aggregate.representations );
-        this.context.wireValue( 'currentJudgements', aggregate.judgements );
-        this.context.wireValue( 'currentSeqs', aggregate.seqs );
+        _.extend( this, this.parser.parse( this.eventData.memento.toJSON() ) );
 
-        aggregate.representations.on( 'select:one', this.representationSelected, this );
+        this.context.wireValue( 'currentAssessment', this.assessment );
+        this.context.wireValue( 'currentComparison', this.comparison );
+        this.context.wireValue( 'currentPhases', this.phases );
+        this.context.wireValue( 'currentRepresentations', this.representations );
+        this.context.wireValue( 'currentJudgements', this.judgements );
+        this.context.wireValue( 'currentSeqs', this.seqs );
+
+        this.representations.on('select:one', this.representationSelected, this);
+
+        this.phases.on('select:phase:select', this.setupSelectionPhase, this);
+        this.phases.on('deselect:phase:select', this.teardownSelectionPhase, this);
+        this.phases.on('select:phase:seq', this.setupSeqPhase, this);
+        this.phases.on('deselect:phase:seq', this.teardownSeqPhase, this);
+
+        this.phases.selectByID( this.comparison.get( 'phase' ) );
+        this.phases.on('deselect:one', this.phaseSelected, this);
+
     },
 
-    representationSelected : function( representation ){
-        debug.debug( '#representationSelected', representation.id );
-        this.phases.selectNext();
-        this.comparison.update( {
-            selected : representation.id,
-            phase    : this.phases.selected.id
-        } );
-    }
+    phaseSelected : function(phase){
+        debug.debug('phaseSelected');
+        this.comparison.save({
+            phase : phase.id
+        });
+    },
 
+    setupSelectionPhase : function(phase){
+        debug.debug('handleSelectionPhase');
+        this.representations.selectByID( this.comparison.get( 'selected' ) );
+    },
+
+    teardownSelectionPhase : function(phase){
+        this.comparison.save();
+    },
+
+    setupSeqPhase : function(phase){
+        debug.debug('handleSeqPhase');
+        this.seqs.selectByFind({
+            comparison : this.comparison.id,
+            phase : phase.id
+        });
+    },
+    teardownSeqPhase : function(phase){
+        debug.debug('teardownSeqPhase');
+        this.seqs.selected.save();
+    },
+
+    representationSelected : function(representation){
+        debug.debug('representationSelected');
+        this.comparison.set('selected', representation.id);
+    }
 } );

@@ -15,7 +15,7 @@ module.exports = Marionette.LayoutView.extend( {
     regions     : {
         content : "#assessment-wizard-content"
     },
-    modelEvents : {
+    collectionEvents : {
         "select:one" : "render"
     },
 
@@ -23,14 +23,23 @@ module.exports = Marionette.LayoutView.extend( {
         debug( "#initialize" );
     },
     onRender   : function(){
-        var phase = this.model.getCurrentPhase();
-        var factory = this[viewTypeMap[phase]];
+        var type = this.collection.getCurrentType();
+        var factory = this[viewTypeMap[type]];
 
         if( !factory ){
-            debug.error( 'view factory not found for phase "' + phase + "' mapped to '" + viewTypeMap[phase] + "'" );
+            debug.error( 'view factory not found for type "' + type + "' mapped to '" + viewTypeMap[type] + "'" );
             this.content.empty()
         }else{
-            this.content.show( factory() );
+            var view = factory();
+            this.content.show( view );
+            this.listenTo( view, 'representation:selected', this.gotoNext );
+            this.listenTo( view, 'seq:edited', this.gotoNext );
         }
+    },
+
+    gotoNext : function(){
+        debug.debug('gotoNext');
+        this.stopListening(this.content.currentView);
+        this.collection.selectNext();
     }
 } );

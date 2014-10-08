@@ -15,14 +15,20 @@ module.exports = Marionette.ItemView.extend( {
 
     initialize : function(){
         debug( "#initialize" );
+
+        this.model = this.collection.selected;
+        debug.debug(this.model);
     },
     onRender   : function(){
         this.ui.slider.slider();
+        this.ui.slider.slider('setValue', this.model.get('value'));
     },
 
     save : function(){
-        this.collection.create({
+        debug.debug('#save');
+        this.model.set({
             value :this.ui.slider.slider('getValue')
         });
+        this.trigger("seq:edited");
     }
 } );

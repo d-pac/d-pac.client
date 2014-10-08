@@ -14,7 +14,7 @@ var BootstrapUI = module.exports = function BootstrapUI( context ){
         model : "currentAssessment"
     } );
     context.wireView( 'WizardView', require( '../views/WizardView' ), {
-        model            : "currentPhases",
+        collection            : "currentPhases",
         selectionFactory : "SelectionView",
         seqFactory       : "SeqView"
     } );

@@ -14,8 +14,18 @@ module.exports = Backbone.Collection.extend({
     },
 
     selectByID : function(id){
-        debug.debug('#selectByID', id);
+        //debug.debug('selectByID', id);
         var model = this.get(id);
-        this.select(model);
+        if(model){
+            this.select(model);
+        }
+        return model;
+    },
+
+    getSelectedID: function(){
+        if(this.selected){
+            return this.selected.id;
+        }
+        return undefined;
     }
 });

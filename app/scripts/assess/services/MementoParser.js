@@ -26,7 +26,7 @@ _.extend( MementoParser.prototype, {
 
         result.phases = new Phases();
         result.phases.add(memento.phases);
-        result.phases.selectByID( result.comparison.get( 'phase' ) );
+        //result.phases.selectByID( result.comparison.get( 'phase' ) );
 
         result.representations = new Representations();
         result.representations.add( memento.representations );
@@ -41,6 +41,8 @@ _.extend( MementoParser.prototype, {
         if(memento.seqs){
             result.seqs.add(memento.seqs);
         }
+
+        debug.debug(memento);
         return result;
     }
 } );

@@ -11,26 +11,39 @@ module.exports = Backbone.Collection.extend( {
     initialize : function( models ){
         debug( '#initialize' );
         Backbone.Select.One.applyTo( this, models );
+        this.on('select:one', function(phase){
+            this.trigger('select:phase:'+phase.get('type'), phase);
+        }, this);
+        this.on('deselect:one', function(phase){
+            this.trigger('deselect:phase:'+phase.get('type'), phase);
+        });
+    },
+
+    _swapAsync : function(model){
+        if(this.selected){
+            this.deselect();
+        }
+        if(model){
+            setTimeout(function(){
+                this.select(model);
+            }.bind(this), 0);
+        }
     },
 
     selectByID : function(id){
-        console.log('selectByID', id);
+        //debug.debug('selectByID', id);
         var model = this.get(id);
         this.select(model);
+        return model;
     },
-    selectNext     : function(){
+
+    selectNext : function(){
         var index = this.models.indexOf( this.selected );
         var model = this.at( index + 1 );
-        this.select( model );
+        this._swapAsync(model);
         return model;
     },
-    selectPrevious : function(){
-        var index = this.models.indexOf( this.selected );
-        var model = this.at( index - 1 );
-        this.select( model );
-        return model;
-    },
-    getCurrentPhase : function(){
+    getCurrentType : function(){
         return this.selected.get('type');
     }
 } );

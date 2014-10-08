@@ -5,16 +5,20 @@ var debug = require( 'debug' )( 'dpac:assess.collections', '[SeqsCollection]' );
 var ModelClass = require( '../models/SeqProxy' );
 
 module.exports = Backbone.Collection.extend( {
-    comparison : undefined,
-    phases : undefined,
 
+    url : '/seqs',
     model : ModelClass,
 
-    initialize : function(){
+    initialize : function( models ){
         debug( '#initialize' );
+        Backbone.Select.One.applyTo( this, models );
     },
 
-    create : function (attrs){
-        console.log(attrs);
+    selectByFind : function( attrs ){
+        var model =  this.findWhere( attrs );
+        if(!model){
+            model = this.add(attrs);
+        }
+        this.select(model);
     }
 } );
