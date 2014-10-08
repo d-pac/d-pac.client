@@ -39,7 +39,7 @@
             }
         },
         "seq":{
-            "title" : "Hoe moeilijk vond je de vorige taak in het algemeen?",
+            "description" : "Hoe moeilijk vond je de vorige taak in het algemeen?",
             "tooltip" : "",
             "legend" : {
                 "easy" : {
@@ -52,6 +52,10 @@
             "submitButton": {
                 "label" : "Opslaan"
             }
+        },
+        "compare":{
+            "title": "Vergelijk",
+            "description": "Beschrijf hier waarom je de ene tekst beter vond dan de andere"
         }
     },
     "workflow": {

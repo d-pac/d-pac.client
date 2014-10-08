@@ -2,7 +2,7 @@
 
 var debug = require( 'debug' )( 'dpac:assess.models', '[ComparisonProxy]' );
 module.exports = Backbone.Model.extend( {
-    changedSinceLastPatch : undefined,
+    timeoutId : undefined,
     urlRoot : '/comparisons',
     idAttribute : "_id",
     defaults    : {
@@ -19,7 +19,21 @@ module.exports = Backbone.Model.extend( {
 
     save : _.debounce(function(attrs){
         debug('#save');
-        this.set(attrs);
+        if(attrs){
+            this.set(attrs);
+        }
         Backbone.Model.prototype.save.call(this);
-    }, 1000)
+    }, 500)
+
+    //save : function(attrs){
+    //    debug('#save', attrs);
+    //    this.set(attrs);
+    //    if(this.timeoutId){
+    //        clearTimeout(this.timeoutId);
+    //    }
+    //    this.timeoutId = setTimeout(function(){
+    //        Backbone.Model.prototype.save.call(this);
+    //    }.bind(this), 1000);
+    //}
+
 } );

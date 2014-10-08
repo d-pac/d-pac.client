@@ -26,7 +26,7 @@ module.exports = Marionette.Controller.extend( {
         this.phases.on('deselect:phase:seq', this.teardownSeqPhase, this);
 
         this.phases.selectByID( this.comparison.get( 'phase' ) );
-        this.phases.on('deselect:one', this.phaseSelected, this);
+        this.phases.on('select:one', this.phaseSelected, this);
 
     },
 
@@ -38,11 +38,12 @@ module.exports = Marionette.Controller.extend( {
     },
 
     setupSelectionPhase : function(phase){
-        debug.debug('handleSelectionPhase');
+        debug.debug('setupSelectionPhase');
         this.representations.selectByID( this.comparison.get( 'selected' ) );
     },
 
     teardownSelectionPhase : function(phase){
+        debug.debug('teardownSelectionPhase');
         this.comparison.save();
     },
 

@@ -3,13 +3,6 @@
 var debug = require( 'debug' )( 'dpac:assess.views', '[WizardView]' );
 var tpl = require( './templates/WizardView.hbs' );
 
-var viewTypeMap = {
-    "select"      : "selectionFactory",
-    "seq"         : "seqFactory",
-    "passfail"    : "passfailFactory",
-    "comparative" : "comparativeFactory"
-};
-
 module.exports = Marionette.LayoutView.extend( {
     template    : tpl,
     regions     : {
@@ -24,10 +17,10 @@ module.exports = Marionette.LayoutView.extend( {
     },
     onRender   : function(){
         var type = this.collection.getCurrentType();
-        var factory = this[viewTypeMap[type]];
+        var factory = this[type + "Factory"];
 
         if( !factory ){
-            debug.error( 'view factory not found for type "' + type + "' mapped to '" + viewTypeMap[type] + "'" );
+            debug.error( 'view factory not found for type "' + type + "'");
             this.content.empty()
         }else{
             var view = factory();
