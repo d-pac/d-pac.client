@@ -19,7 +19,7 @@ module.exports = Marionette.LayoutView.extend( {
         'AccountView',
         'WelcomeView',
         'NotFoundView',
-        'assessmentView'
+        'AssessmentView'
     ],
     regions       : {
         menuRegion    : "#app-menu",
@@ -28,9 +28,7 @@ module.exports = Marionette.LayoutView.extend( {
     contextEvents : {
         'route:signin:completed'   : viewFactory( "LoginView" ),
         'route:welcome:completed'  : viewFactory( "WelcomeView" ),
-        "route:assess:completed"   : function(){
-            this.contentRegion.show(this.assessmentView);
-        },
+        "route:assess:completed"   : viewFactory( "AssessmentView"),
         'route:account:completed'  : viewFactory( "AccountView" ),
         'route:tutorial:completed' : viewFactory( "TutorialView" ),
         'route:404:completed'      : viewFactory( "NotFoundView" )
