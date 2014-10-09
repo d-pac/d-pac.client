@@ -43,10 +43,10 @@
             "tooltip" : "",
             "legend" : {
                 "easy" : {
-                    "label": "Heel gemakkelijk [1]"
+                    "label": "Heel gemakkelijk"
                 },
                 "hard" : {
-                    "label": "[7] Heel moeilijk"
+                    "label": "Heel moeilijk"
                 }
             },
             "submitButton": {

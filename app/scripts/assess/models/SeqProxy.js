@@ -19,5 +19,15 @@ module.exports = Backbone.Model.extend( {
             model.save();
         };
         this.on('change:value', saveModel);
+
+        this.setupValues();
+    },
+
+    setupValues : function(){
+        var values = [];
+        for(var i=0; i<7; i++){
+            values.push(i+1);
+        }
+        this.set('values', values);
     }
 } );

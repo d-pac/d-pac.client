@@ -8,12 +8,11 @@
         <label>{{{t "assessment:comparisons.seq.legend.easy.label"}}}</label>
     </div>
     <div class="col-sm-4 column text-center">
-        <input id="seq-slider" data-slider-id="seq-slider"
-               type="text" value="-1"
-               data-slider-min="1" data-slider-max="7" data-slider-step="1" data-slider-value="4"
-               data-slider-handle="triangle"
-               width="100%"
-                />
+        <div class="btn-group value-buttons" data-toggle="buttons">
+            {{#each values}}
+                <label class="btn btn-default" data-value="{{this}}"><input type="radio" name="values">{{this}}</label>
+            {{/each}}
+        </div>
     </div>
     <div class="col-sm-4 column">
         <label>{{{t "assessment:comparisons.seq.legend.hard.label"}}}</label>

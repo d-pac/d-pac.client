@@ -7,8 +7,8 @@ module.exports = Marionette.ItemView.extend( {
     template : tpl,
     className: "col-md-12 column",
     ui       : {
-        slider : "#seq-slider",
-        saveButton : ".save-button"
+        saveButton : ".save-button",
+        valueButtons : ".value-buttons .btn"
     },
     events : {
         "click @ui.saveButton" : "save"
@@ -20,14 +20,16 @@ module.exports = Marionette.ItemView.extend( {
         debug.debug(this.model);
     },
     onRender   : function(){
-        this.ui.slider.slider();
-        this.ui.slider.slider('setValue', this.model.get('value'));
+        var selected  = this.model.get('value');
+        if(selected){
+            this.$("label[data-value='"+ selected + "']" ).addClass('active');
+        }
     },
 
     save : function(){
         debug.debug('#save');
         this.model.set({
-            value :this.ui.slider.slider('getValue')
+            value : this.$("label.active" ).attr('data-value')
         });
         this.trigger("seq:edited");
     }
