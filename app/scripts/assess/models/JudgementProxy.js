@@ -9,7 +9,7 @@ module.exports = Backbone.NestedModel.extend( {
         assessor       : undefined,
         comparison     : undefined,
         passed         : undefined,
-        representation : undefined, //representation obj, not model
+        representation : undefined, //reference to RepresentationProxy instance [!]
         note           : undefined
     },
 
@@ -23,9 +23,16 @@ module.exports = Backbone.NestedModel.extend( {
         this.on('change:passed', saveModel);
     },
 
-    getURL : function(){
-        var name = this.get('representation.file.filename');
-        var path = this.get('representation.file.path');
-        return [path, name].join('/');
+    get: function (attr) {
+      if (typeof this[ "_get_" + attr] == 'function')
+      {
+        return this["_get_" + attr]();
+      }
+
+      return Backbone.Model.prototype.get.call(this, attr);
+    },
+
+    _get_fileUrl : function(){
+        return this.get('representation' ).get('url');
     }
 } );

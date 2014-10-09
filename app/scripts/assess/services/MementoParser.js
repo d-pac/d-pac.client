@@ -33,7 +33,7 @@ _.extend( MementoParser.prototype, {
 
         result.judgements = new Judgements();
         _.each( memento.judgements, function( judgement ){
-            judgement.representation = result.representations.get( judgement.representation ).toJSON();
+            judgement.representation = result.representations.get( judgement.representation );
         } );
         result.judgements.add( memento.judgements );
 

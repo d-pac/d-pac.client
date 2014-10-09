@@ -16,6 +16,7 @@ var Context = Backbone.Geppetto.Context.extend( {
         } );
 
         this.wireValue( 'config', config );
+        this.wireValue('host', config.api.host);
         this.wireValue( 'appContext', this );
         this.wireValue( 'app', app );
         this.wireCommands( {
