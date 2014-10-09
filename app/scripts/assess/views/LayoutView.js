@@ -4,8 +4,11 @@ var debug = require( 'debug' )( 'dpac:assess.views', '[LayoutView]' );
 var tpl = require( './templates/LayoutView.hbs' );
 
 module.exports = Marionette.LayoutView.extend( {
-    wizardFactory : undefined,
-    detailFactory : undefined,
+    wizardFactory          : undefined,
+    detailFactory          : undefined,
+    representationsFactory : undefined,
+    judgementsFactory      : undefined,
+
     className : "col-md-12 column",
 
     template : tpl,
@@ -13,7 +16,8 @@ module.exports = Marionette.LayoutView.extend( {
     regions : {
         wizard          : "#assessment-wizard",
         detail          : "#assessment-detail",
-        representations : "#assessment-representations"
+        representations : "#assessment-representations",
+        judgements      : "#assessment-judgements"
     },
 
     initialize : function(){
@@ -23,7 +27,8 @@ module.exports = Marionette.LayoutView.extend( {
     onRender : function(){
         this.detail.show( this.detailFactory() );
         this.wizard.show( this.wizardFactory() );
-        this.representations.show(this.representationsFactory());
+        this.representations.show( this.representationsFactory() );
+        this.judgements.show( this.judgementsFactory() );
         //var phase = this.model.getCurrentPhase();
         //var factory = this[phase + 'Factory'];
         //if( !factory ){

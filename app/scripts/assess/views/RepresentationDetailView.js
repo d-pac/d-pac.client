@@ -14,8 +14,7 @@ module.exports = Marionette.ItemView.extend({
 
     serializeData :function(){
         return {
-            url : this.host + this.model.get('url'),
-            id : this.model.id
+            url : this.host + this.model.get('url')
         };
     }
 });

@@ -10,7 +10,7 @@ module.exports = Backbone.NestedModel.extend( {
         comparison     : undefined,
         passed         : undefined,
         representation : undefined, //reference to RepresentationProxy instance [!]
-        note           : undefined
+        notes           : undefined
     },
 
     initialize : function(attrs, opts){
