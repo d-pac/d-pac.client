@@ -6,6 +6,7 @@ var tpl = require( './templates/LayoutView.hbs' );
 module.exports = Marionette.LayoutView.extend( {
     wizardFactory : undefined,
     detailFactory : undefined,
+    className : "col-md-12 column",
 
     template : tpl,
 

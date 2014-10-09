@@ -11,6 +11,7 @@ module.exports = Marionette.LayoutView.extend( {
     collectionEvents : {
         "select:one" : "render"
     },
+    className: "col-md-12 column",
 
     initialize : function(){
         debug( "#initialize" );

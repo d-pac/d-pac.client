@@ -1,5 +1,5 @@
 {{#if items.length }}
-    <div class="row clearfix">
+    <div class="row">
         <div class="col-md-12 column">
             <div class="alert alert-info" role="alert">
                 <p>{{t "assessment:selection.description"}}</p>
@@ -7,7 +7,7 @@
             <div class="alert-region"></div>
         </div>
     </div>
-    <div class="row clearfix">
+    <div class="row">
         <div class="col-md-6 col-md-offset-3 column">
             {{#each items}}
                 <div>
@@ -19,7 +19,7 @@
         </div>
     </div>
 {{else}}
-    <div class="row clearfix">
+    <div class="row">
         <div class="col-md-12 column">
             <div class="alert alert-warning" role="alert">
                 <p>{{t "assessment:selection.empty.title"}}</p>

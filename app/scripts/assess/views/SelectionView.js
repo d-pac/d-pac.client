@@ -5,6 +5,7 @@ var tpl = require('./templates/SelectionView.hbs');
 
 module.exports = Marionette.ItemView.extend({
     template : tpl,
+    className : "col-md-12 column",
     ui : {
         leftBtn : "#select-left",
         rightBtn : "#select-right"

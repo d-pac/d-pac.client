@@ -5,8 +5,9 @@ var tpl = require( './templates/ComparativeView.hbs' );
 
 module.exports = Marionette.ItemView.extend( {
     template : tpl,
+    className : "col-md-12 column",
     ui       : {
-        editor     : "textarea",
+        editor     : ".textarea",
         saveButton : ".save-button"
     },
     events : {

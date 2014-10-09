@@ -1,28 +1,27 @@
-<div id="phase-wizard-seq" class="row clearfix">
-    <div class="row clearfix">
-        <div class="col-md-12 column">
-            <div class="alert alert-info" role="alert">{{{t "assessment:comparisons.seq.description"}}}</div>
-        </div>
+<div class="row">
+    <div class="col-md-12 column">
+        <div class="alert alert-info" role="alert">{{{t "assessment:comparisons.seq.description"}}}</div>
     </div>
-    <div class="row clearfix">
-        <div class="col-md-4 column text-right">
-            <label>{{{t "assessment:comparisons.seq.legend.easy.label"}}}</label>
-        </div>
-        <div class="col-md-4 column text-center">
-            <input id="seq-slider" data-slider-id="seq-slider"
-                   type="text" value="-1"
-                   data-slider-min="1" data-slider-max="7" data-slider-step="1" data-slider-value="4"
-                   data-slider-handle="triangle"
-                   width="100%"
-                    />
-        </div>
-        <div class="col-md-4 column">
-            <label>{{{t "assessment:comparisons.seq.legend.hard.label"}}}</label>
-        </div>
+</div>
+<div class="row">
+    <div class="col-sm-4 column text-right">
+        <label>{{{t "assessment:comparisons.seq.legend.easy.label"}}}</label>
     </div>
-    <div class="row clearfix">
-        <div class="col-md-12 column text-center">
-            <button type="button" class="btn btn-primary save-button">{{t "assessment:comparisons.seq.submitButton.label"}}</button>
-        </div>
+    <div class="col-sm-4 column text-center">
+        <input id="seq-slider" data-slider-id="seq-slider"
+               type="text" value="-1"
+               data-slider-min="1" data-slider-max="7" data-slider-step="1" data-slider-value="4"
+               data-slider-handle="triangle"
+               width="100%"
+                />
+    </div>
+    <div class="col-sm-4 column">
+        <label>{{{t "assessment:comparisons.seq.legend.hard.label"}}}</label>
+    </div>
+</div>
+<div class="row vspacer">
+    <div class="col-md-12 column text-center">
+        <button type="button"
+                class="btn btn-primary save-button">{{t "assessment:comparisons.seq.submitButton.label"}}</button>
     </div>
 </div>

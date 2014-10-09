@@ -1,17 +1,17 @@
-<div class="row clearfix">
+<div class="row">
     <div class="col-md-12 column">
         <div class="alert alert-info" role="alert">{{{t "assessment:comparisons.passfail.description"}}}</div>
     </div>
 </div>
-<div class="row clearfix">
-    <div class="col-md-6 column">
+<div class="row">
+    <div class="col-sm-6 column">
         {{#each options}}
             <label class="radio passfail-{{@key}}">
               <input type="radio" name="leftPassFail" value="{{@key}}" {{#if this.left}}checked="true"{{/if}}> {{this.label}}
             </label>
         {{/each}}
     </div>
-    <div class="col-md-6 column">
+    <div class="col-sm-6 column">
         {{#each options}}
             <label class="radio passfail-{{@key}}">
               <input type="radio" name="rightPassFail" value="{{@key}}" {{#if this.right}}checked="true"{{/if}}> {{this.label}}
@@ -19,7 +19,7 @@
         {{/each}}
     </div>
 </div>
-<div class="row clearfix">
+<div class="row">
     <div class="col-md-12 column text-center">
         <button type="button" class="btn btn-primary save-button">{{t "assessment:comparisons.passfail.submitButton.label"}}</button>
     </div>

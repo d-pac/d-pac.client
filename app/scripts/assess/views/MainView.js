@@ -11,7 +11,7 @@ module.exports = Marionette.LayoutView.extend( {
 
     //avoid the idiotic div-wrapper
     tagName : "div",
-    className: "row clearfix",
+    className: "row",
 
     contextEvents : {
         "assessments:selection:requested": "showAssessmentsSelection",
