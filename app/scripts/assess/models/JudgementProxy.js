@@ -21,18 +21,6 @@ module.exports = Backbone.NestedModel.extend( {
             model.save();
         };
         this.on('change:passed', saveModel);
-    },
-
-    get: function (attr) {
-      if (typeof this[ "_get_" + attr] == 'function')
-      {
-        return this["_get_" + attr]();
-      }
-
-      return Backbone.Model.prototype.get.call(this, attr);
-    },
-
-    _get_fileUrl : function(){
-        return this.get('representation' ).get('url');
     }
+
 } );

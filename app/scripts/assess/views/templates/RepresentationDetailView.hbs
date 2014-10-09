@@ -1,13 +1,11 @@
-
-<iframe id="viewer-left"
-        src="viewerjs/#{{url}}"
+<iframe src="viewerjs/#{{url}}"
+        class="viewerjs"
         data-toggle="tooltip" data-placement="top"
-        title="Gebruik de knoppen om de linkse paper fullscreen te bekijken of te downloaden."
-        width='100%' height='400'
+        title="{{t "assessment:comparisons.representations.tooltip"}}"
         allowfullscreen webkitallowfullscreen></iframe>
-<label for="notes-left"
+<label for="notes-{{id}}"
        class="notes-label collapsed"
-       data-toggle="collapse" data-target="#notes-left">Notities</label>
-<textarea id="notes-left"
+       data-toggle="collapse" data-target="#notes-{{id}}">Notities</label>
+<textarea id="notes-{{id}}"
           data-toggle="tooltip" data-placement="top" title="Noteer hier je opmerkingen bij de linkse paper."
           class="form-control collapse" rows="6"></textarea>

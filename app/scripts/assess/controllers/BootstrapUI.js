@@ -49,7 +49,7 @@ _.extend( BootstrapUI.prototype, {
             host : 'host'
         });
         context.wireView( 'RepresentationsView', require( '../views/RepresentationsView' ), {
-            collection : "currentJudgements",
+            collection : "currentRepresentations",
             childView  : "RepresentationDetailView"
         } );
 

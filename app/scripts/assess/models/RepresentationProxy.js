@@ -4,14 +4,12 @@ var debug = require( 'debug' )( 'dpac:assess.models', '[RepresentationProxy]' );
 module.exports = Backbone.NestedModel.extend( {
     idAttribute : "_id",
 
-    config : undefined,
-
-    defaults    : {
+    defaults : {
         assessee   : undefined,
         assessment : undefined,
-        ext : undefined,
-        mimeType: undefined,
-        url : undefined
+        ext        : undefined,
+        mimeType   : undefined,
+        url        : undefined
     },
 
     initialize : function(){
