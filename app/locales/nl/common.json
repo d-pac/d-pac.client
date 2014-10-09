@@ -36,6 +36,7 @@
         }
     },
     "warning":{
-        "label": "Opgepast!"
+        "label": "Opgepast!",
+        "minsize" : "Browser grootte te klein: gelieve deze aan te passen!"
     }
 }

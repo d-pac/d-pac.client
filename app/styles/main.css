@@ -120,3 +120,37 @@
     resize: vertical;
     height : 56px;
 }
+
+#size-warning{
+    position: absolute;
+    width: 400px;
+
+    top:100px;
+    left : 50%;
+    margin-left: -200px;
+}
+
+@media (max-width:800px){
+    #size-warning{
+        visibility: visible;
+    }
+    .container {
+        -webkit-filter: blur(10px);
+        -moz-filter: blur(10px);
+        -o-filter: blur(10px);
+        -ms-filter: blur(10px);
+        filter: blur(10px);
+    }
+}
+@media (min-width:800px){
+    #size-warning{
+        visibility: hidden;
+    }
+    .container {
+        -webkit-filter: initial;
+        -moz-filter: initial;
+        -o-filter: initial;
+        -ms-filter: initial;
+        filter: initial;
+    }
+}
