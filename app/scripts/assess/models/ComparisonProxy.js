@@ -6,11 +6,30 @@ module.exports = Backbone.Model.extend( {
     urlRoot     : '/comparisons',
     idAttribute : "_id",
     defaults    : {
+        /**
+         * {Assessment.id}
+         */
         assessment          : undefined,
+        /**
+         * {User.id}
+         */
         assessor            : undefined,
+        /**
+         * {Phase.id}
+         */
         phase               : undefined,
+        /**
+         * {String} HTML
+         */
         comparativeFeedback : undefined,
-        selected            : undefined //Representation.id
+        /**
+         * {Representation.id}
+         */
+        selected            : undefined, //Representation.id
+        /**
+         * {Boolean}
+         */
+        completed           : undefined
     },
 
     initialize : function(){
@@ -21,9 +40,7 @@ module.exports = Backbone.Model.extend( {
         var saveModel = function(){
             model.save();
         };
-        this.on( 'change:selected', saveModel );
-        this.on( 'change:phase', saveModel );
-        this.on( 'change:comparativeFeedback', saveModel );
+        this.on( 'change:selected change:phase change:comparativeFeedback change:completed', saveModel );
     },
 
     save : _.debounce( function( attrs ){
@@ -33,16 +50,5 @@ module.exports = Backbone.Model.extend( {
         }
         Backbone.Model.prototype.save.call( this );
     }, 1000 )
-
-    //save : function(attrs){
-    //    debug('#save', attrs);
-    //    this.set(attrs);
-    //    if(this.timeoutId){
-    //        clearTimeout(this.timeoutId);
-    //    }
-    //    this.timeoutId = setTimeout(function(){
-    //        Backbone.Model.prototype.save.call(this);
-    //    }.bind(this), 1000);
-    //}
 
 } );

@@ -75,5 +75,8 @@ module.exports = Marionette.Controller.extend( {
         this.dispatch( 'mementos:editing:requested', {
             memento : memento
         } );
+    },
+    mementoEditingCompleted : function(memento){
+        debug('#mementoEditingCompleted');
     }
 } );

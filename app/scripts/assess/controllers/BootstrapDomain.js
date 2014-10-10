@@ -10,7 +10,12 @@ _.extend( BootstrapModels.prototype, {
         debug( '#execute' );
         var context = this.context;
         context.wireSingleton( 'assessmentsCollection', require( '../collections/AssessmentsCollection' ) );
-        context.wireSingleton( 'mementosCollection', require( '../collections/MementosCollection' ) );
+        context.wireView('MementoModel', require('../models/MementoProxy'), {
+            parser : 'mementoParser'
+        });
+        context.wireSingleton( 'mementosCollection', require( '../collections/MementosCollection' ), {
+            model : 'MementoModel'
+        } );
         context.wireSingleton( 'mementoParser', require( '../services/MementoParser' ) );
 
         context.wireCommand( "mementos:selection:completed", require( './MementoController' ) );

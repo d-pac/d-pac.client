@@ -40,10 +40,19 @@ module.exports = Backbone.Collection.extend( {
     selectNext : function(){
         var index = this.models.indexOf( this.selected );
         var model = this.at( index + 1 );
+        if(! model){
+            this.deselect();
+            return this.completed();
+        }
         this._swapAsync(model);
         return model;
     },
     getCurrentType : function(){
         return this.selected.get('type');
+    },
+
+    completed : function(){
+        this.trigger('completed');
     }
+
 } );
