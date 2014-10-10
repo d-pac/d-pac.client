@@ -1,6 +1,8 @@
 'use strict';
 
 var debug = require( 'debug' )( 'dpac:assess.models', '[SeqProxy]' );
+var teardown = require('../mixins/teardown');
+
 module.exports = Backbone.Model.extend( {
 
     idAttribute : "_id",
@@ -13,6 +15,8 @@ module.exports = Backbone.Model.extend( {
     initialize : function(){
         debug( '#initialize', this.id || '<new>' );
         Backbone.Select.Me.applyTo( this );
+        teardown.model.mixin(this);
+
         //todo: don't know why but we have to do it like this, otherwise we get an error
         var model = this;
         var saveModel = function(){

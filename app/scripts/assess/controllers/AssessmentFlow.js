@@ -5,7 +5,8 @@ module.exports = Marionette.Controller.extend( {
     contextEvents : {
         "assessment:ui:rendered"         : "requestMementosCollection",
         "assessment:selection:completed" : "assessmentSelectionReceived",
-        "mementos:selection:completed"   : "requestMementoEditing"
+        "mementos:selection:completed"   : "requestMementoEditing",
+        "mementos:editing:completed"     : "mementoEditingCompleted"
     },
     wiring        : ['assessmentContext', 'mementosCollection', 'assessmentsCollection'],
 
@@ -70,13 +71,14 @@ module.exports = Marionette.Controller.extend( {
         } );
     },
 
-    requestMementoEditing : function( memento ){
+    requestMementoEditing   : function( memento ){
         debug( '#requestMementoEditing' );
         this.dispatch( 'mementos:editing:requested', {
             memento : memento
         } );
     },
-    mementoEditingCompleted : function(memento){
-        debug('#mementoEditingCompleted');
+    mementoEditingCompleted : function( memento ){
+        debug( '#mementoEditingCompleted' );
+        this.requestMementoCreation( this.assessmentsCollection.selected );
     }
 } );

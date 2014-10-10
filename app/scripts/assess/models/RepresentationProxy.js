@@ -1,6 +1,7 @@
 'use strict';
 
 var debug = require( 'debug' )( 'dpac:assess.models', '[RepresentationProxy]' );
+var teardown = require('../mixins/teardown');
 module.exports = Backbone.NestedModel.extend( {
     idAttribute : "_id",
 
@@ -15,5 +16,6 @@ module.exports = Backbone.NestedModel.extend( {
     initialize : function(){
         debug( '#initialize', this.id );
         Backbone.Select.Me.applyTo( this );
+        teardown.model.mixin(this);
     }
 } );

@@ -9,6 +9,7 @@ module.exports = Backbone.Collection.extend( {
     initialize : function( models ){
         debug( '#initialize' );
         Backbone.Select.One.applyTo( this, models );
+        this.on('deselect:one', this.teardownModel, this);
     },
 
     hasActive : function(){
@@ -22,5 +23,10 @@ module.exports = Backbone.Collection.extend( {
         return this.findWhere( {
             completed : false
         } );
+    },
+
+    teardownModel : function(model){
+        this.remove(model);
+        model.teardown();
     }
 } );

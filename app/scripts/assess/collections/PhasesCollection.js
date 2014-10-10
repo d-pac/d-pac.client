@@ -1,7 +1,7 @@
 'use strict';
 
 var debug = require( 'debug' )( 'dpac:assess.collections', '[PhasesCollection]' );
-
+var teardown = require('../mixins/teardown');
 var ModelClass = require( '../models/PhaseProxy' );
 
 module.exports = Backbone.Collection.extend( {
@@ -11,10 +11,16 @@ module.exports = Backbone.Collection.extend( {
     initialize : function( models ){
         debug( '#initialize' );
         Backbone.Select.One.applyTo( this, models );
-        this.on('select:one', function(phase){
+        teardown.collection.mixin(this);
+
+        this.once('teardown:pre', function(){
+            this.deselect();
+        }, this);
+
+        this.listenTo(this, 'select:one', function(phase){
             this.trigger('select:phase:'+phase.get('type'), phase);
         }, this);
-        this.on('deselect:one', function(phase){
+        this.listenTo(this, 'deselect:one', function(phase){
             this.trigger('deselect:phase:'+phase.get('type'), phase);
         });
     },
