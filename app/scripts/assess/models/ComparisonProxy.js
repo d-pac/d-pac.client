@@ -36,7 +36,7 @@ module.exports = Backbone.Model.extend( {
     },
 
     initialize : function(){
-        debug( '#initialize', this.id );
+        debug( '#initialize', this.id || '<new>' );
         teardown.model.mixin(this);
 
         //todo: don't know why but we have to do it like this, otherwise we get an error

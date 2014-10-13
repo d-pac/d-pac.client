@@ -11,7 +11,7 @@ module.exports = Backbone.Model.extend( {
     },
 
     initialize : function(){
-        debug( '#initialize', this.id );
+        debug( '#initialize', this.id || '<new>' );
         Backbone.Select.Me.applyTo( this );
     }
 } );

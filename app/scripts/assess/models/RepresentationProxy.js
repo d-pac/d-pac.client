@@ -14,7 +14,7 @@ module.exports = Backbone.NestedModel.extend( {
     },
 
     initialize : function(){
-        debug( '#initialize', this.id );
+        debug( '#initialize', this.id || '<new>' );
         Backbone.Select.Me.applyTo( this );
         teardown.model.mixin(this);
     }

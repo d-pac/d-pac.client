@@ -15,7 +15,7 @@ module.exports = Backbone.NestedModel.extend( {
     },
 
     initialize : function(attrs, opts){
-        debug( '#initialize' );
+        debug( '#initialize', this.id || '<new>' );
         teardown.model.mixin(this);
 
         //todo: don't know why but we have to do it like this, otherwise we get an error

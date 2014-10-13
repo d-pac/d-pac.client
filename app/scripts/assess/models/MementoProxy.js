@@ -14,7 +14,7 @@ module.exports = Backbone.Model.extend( {
     },
 
     initialize : function( attrs ){
-        debug( '#initialize' );
+        debug( '#initialize', this.id || '<new>' );
         Backbone.Select.Me.applyTo( this );
         teardown.model.mixin(this);
         this.once('teardown:pre', this.teardownChildren, this);
