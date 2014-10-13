@@ -2,6 +2,7 @@
 
 var debug = require( 'debug' )( 'dpac:assess', '[TimelogProxy]' );
 module.exports = Backbone.Model.extend( {
+    idAttribute : "_id",
     url      : '/timelogs',
     defaults : {
         comparison : undefined, //{Comparison.id}
