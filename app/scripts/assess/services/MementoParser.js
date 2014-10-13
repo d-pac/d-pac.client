@@ -18,25 +18,31 @@ _.extend( MementoParser.prototype, {
         debug.log( '#parse' );
 
         var result = {};
+
+        //assessments
         result.assessments = this.assessments;
         result.assessments.merge(memento.assessment); // add to -or- update in collection
         result.assessment = result.assessments.get( memento.assessment._id );
 
+        //comparison
         result.comparison = new Comparison(memento.comparison);
 
+        //phases
         result.phases = new Phases();
         result.phases.add(memento.phases);
-        //result.phases.selectByID( result.comparison.get( 'phase' ) );
 
+        //representations
         result.representations = new Representations();
         result.representations.add( memento.representations );
 
+        //judgements
         result.judgements = new Judgements();
         _.each( memento.judgements, function( judgement ){
             judgement.representation = result.representations.get( judgement.representation );
         } );
         result.judgements.add( memento.judgements );
 
+        //seqs
         result.seqs = new Seqs();
         if(memento.seqs){
             result.seqs.add(memento.seqs);

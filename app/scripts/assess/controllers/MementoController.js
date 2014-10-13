@@ -1,7 +1,9 @@
 'use strict';
 
-var debug = require( 'debug' )( 'dpac:assess.controllers', '[MementoFlow]' );
+var debug = require( 'debug' )( 'dpac:assess.controllers', '[MementoController]' );
 module.exports = Marionette.Controller.extend( {
+    wiring : ['timelogger'],
+
     execute : function(){
         debug( '#execute' );
 
@@ -19,15 +21,23 @@ module.exports = Marionette.Controller.extend( {
 
         representations.selectByID( this.comparison.get( 'selected' ) );
         phases.selectByID( this.comparison.get( 'phase' ) );
+        this.logStart(this.comparison.get('phase'));
 
-        this.listenTo( representations, 'select:one', this.representationSelected);
+        this.listenTo( representations, 'select:one', this.representationSelected );
+        this.listenTo( phases, 'deselect:one', this.phaseDeselected );
         this.listenTo( phases, 'select:one', this.phaseSelected );
         this.listenTo( phases, 'completed', this.completed );
 
     },
 
+    phaseDeselected : function( phase ){
+        debug.debug( 'phaseDeselected' );
+        this.logStop(phase.id);
+    },
+
     phaseSelected : function( phase ){
         debug.debug( 'phaseSelected' );
+        this.logStart(phase.id);
         this.comparison.set( {
             phase : phase.id
         } );
@@ -43,6 +53,20 @@ module.exports = Marionette.Controller.extend( {
         this.teardown();
     },
 
+    logStart : function( phase ){
+        this.timelogger.start( {
+            comparison : this.comparison.id,
+            phase      : phase
+        } );
+    },
+
+    logStop : function( phase ){
+        this.timelogger.stop( {
+            comparison : this.comparison.id,
+            phase      : phase
+        } );
+    },
+
     teardown : function(){
         this.context.release( 'currentAssessment' );
         this.context.release( 'currentComparison' );
@@ -51,8 +75,8 @@ module.exports = Marionette.Controller.extend( {
         this.context.release( 'currentJudgements' );
         this.context.release( 'currentSeqs' );
 
-        this.stopListening(this.memento.representations);
-        this.stopListening(this.memento.phases);
+        this.stopListening( this.memento.representations );
+        this.stopListening( this.memento.phases );
 
         this.comparison = undefined;
         this.memento = undefined;

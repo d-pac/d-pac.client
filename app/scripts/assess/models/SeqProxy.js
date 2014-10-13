@@ -17,8 +17,8 @@ module.exports = Backbone.Model.extend( {
         Backbone.Select.Me.applyTo( this );
         teardown.model.mixin(this);
 
-        //todo: don't know why but we have to do it like this, otherwise we get an error
         var model = this;
+        //todo: don't know why but we have to do it like this, otherwise we get an error
         var saveModel = function(){
             model.save();
         };
