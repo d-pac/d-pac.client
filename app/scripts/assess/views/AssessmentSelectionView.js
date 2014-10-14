@@ -5,6 +5,7 @@ var tpl = require( './templates/AssessmentSelection.hbs' );
 
 module.exports = Marionette.ItemView.extend( {
     template         : tpl,
+    className        : "col-md-12 column",
     collectionEvents : {
         "add" : "render"
     },

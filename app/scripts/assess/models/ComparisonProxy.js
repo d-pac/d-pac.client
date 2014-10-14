@@ -2,7 +2,7 @@
 
 var debug = require( 'debug' )( 'dpac:assess.models', '[ComparisonProxy]' );
 
-var teardown = require('../mixins/teardown');
+var teardown = require( '../mixins/teardown' );
 
 module.exports = Backbone.Model.extend( {
 
@@ -40,10 +40,22 @@ module.exports = Backbone.Model.extend( {
 
         //todo: don't know why but we have to do it like this, otherwise we get an error
         var model = this;
-        var saveModel = function(){
+        this.listenTo( this, 'change:selected', function(){
+            debug.debug( 'change:selected' );
             model.save();
-        };
-        this.listenTo( this, 'change:selected change:phase change:comparativeFeedback change:completed', saveModel );
+        } );
+        this.listenTo( this, 'change:phase', function(){
+            debug.debug( 'change:phase' );
+            model.save();
+        } );
+        this.listenTo( this, 'change:comparativeFeedback', function(){
+            debug.debug( 'change:comparativeFeedback' );
+            model.save();
+        } );
+        this.listenTo( this, 'change:completed', function(){
+            debug.debug( 'change:completed' );
+            model.save();
+        } );
     },
 
     onTeardown : function(){

@@ -22,8 +22,9 @@ module.exports = Backbone.Collection.extend( {
         this.select( model );
     },
 
-    merge : function( models ){
-        this.add( models, { merge : true } );
+    updateAndSelect : function( attrs ){
+        var model = this.add( attrs, { merge : true } );
+        this.select(model);
     },
 
     onTeardown : function(){

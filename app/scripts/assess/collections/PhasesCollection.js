@@ -53,6 +53,8 @@ module.exports = Backbone.Collection.extend( {
     },
 
     completed : function(){
+        debug("#completed");
+        this.deselect();
         this.trigger('completed');
     },
 

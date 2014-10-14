@@ -24,7 +24,7 @@ _.extend( MementoParser.prototype, Backbone.Events, {
 
         //assessments
         var assessments = this.assessments;
-        assessments.merge( memento.assessment ); // add to -or- update in collection
+        assessments.updateAndSelect( memento.assessment ); // add to -or- update in collection
         result.assessment = assessments.get( memento.assessment._id );
 
         //comparison

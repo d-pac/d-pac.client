@@ -57,8 +57,8 @@ module.exports = Backbone.Collection.extend( {
         return model;
     },
 
-    stop : function( attrs ){
-        debug.debug( 'stop', attrs );
+    stop : function(){
+        debug.debug( 'stop' );
         this._stopUpdate();
         var model = this.selected;
         this.deselect();
@@ -70,8 +70,7 @@ module.exports = Backbone.Collection.extend( {
 
     onTeardown : function(){
         debug("#teardown");
-        this._stopUpdate();
-        this.deselect( this.selected, { silent : true } );
+        this.stop();
 
         Mousetrap.unbind('ctrl+alt+s');
     }

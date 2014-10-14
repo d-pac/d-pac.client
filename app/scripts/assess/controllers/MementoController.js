@@ -2,7 +2,7 @@
 
 var debug = require( 'debug' )( 'dpac:assess.controllers', '[MementoController]' );
 module.exports = Marionette.Controller.extend( {
-    wiring        : ['timelogger'],
+    wiring        : ['timelogger', 'mementosCollection'],
     contextEvents : {
         "assessment:teardown:requested" : "teardown"
     },
@@ -70,8 +70,12 @@ module.exports = Marionette.Controller.extend( {
     },
 
     completed : function(){
-        this.comparison.set( 'completed', true );
-        this.teardown();
+        debug( '#completed', this.comparison );
+        this.comparison.once("sync", function(){
+            this.teardown();
+            this.dispatch('mementos:editing:completed');
+        }, this);
+        this.comparison.set( { completed : true } );
     },
 
     logStart : function( phase ){
@@ -82,9 +86,6 @@ module.exports = Marionette.Controller.extend( {
     },
 
     logStop : function( phase ){
-        this.timelogger.stop( {
-            comparison : this.comparison.id,
-            phase      : phase
-        } );
+        this.timelogger.stop();
     }
 } );

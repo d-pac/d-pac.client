@@ -5,7 +5,7 @@ module.exports = Marionette.Controller.extend( {
 
     contextEvents : {
         "assessment:ui:rendered"         : "requestMementosCollection",
-        "assessment:selection:completed" : "assessmentSelectionReceived",
+        "assessment:selection:completed" : "assessmentSelectionCompleted",
         "mementos:selection:completed"   : "requestMementoEditing",
         "mementos:editing:completed"     : "mementoEditingCompleted"
     },
@@ -45,16 +45,19 @@ module.exports = Marionette.Controller.extend( {
     requestAssessmentSelection  : function(){
         debug( '#requestAssessmentSelection' );
         this.dispatch( 'assessments:selection:requested' );
-        this.assessmentsCollection.once( "select:one", this.assessmentSelectionReceived, this );
+        this.assessmentsCollection.once( "select:one", this.assessmentSelectionCompleted, this );
         this.assessmentsCollection.fetch();
     },
-    assessmentSelectionReceived : function( assessment ){
-        debug( '#assessmentSelectionReceived', assessment );
-        this.requestMementoCreation( assessment );
+    assessmentSelectionCompleted : function( ){
+        debug( '#assessmentSelectionCompleted' );
+        this.requestMementoCreation();
     },
 
-    requestMementoCreation  : function( assessment ){
-        debug( '#requestMementoCreation' )
+    requestMementoCreation  : function(  ){
+        debug( '#requestMementoCreation' );
+        var assessment = this.assessmentsCollection.selected;
+        debug.debug('assessment', assessment);
+
         this.dispatch( 'mementos:creation:requested' );
         //todo: memento creation failure
         this.mementosCollection.once( "add", this.mementoCreationReceived, this );
@@ -91,6 +94,7 @@ module.exports = Marionette.Controller.extend( {
     },
     mementoEditingCompleted : function( memento ){
         debug( '#mementoEditingCompleted' );
+        this.mementosCollection.deselect();
         this.requestMementoCreation( this.assessmentsCollection.selected );
     }
 } );
