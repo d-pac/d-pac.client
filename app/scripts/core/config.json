@@ -3,7 +3,8 @@
         "host": "<%= API_HOST %>",
         "root": "<%= API_HOST %>/api"
     },
-    "timelogs" : {
-        "interval" : 5000
+    "timelogs": {
+        "interval": 5000,
+        "shortcut": "ctrl+alt+s"
     }
 }

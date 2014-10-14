@@ -17,14 +17,15 @@ module.exports = Backbone.Collection.extend( {
         debug( '#initialize' );
         Backbone.Select.One.applyTo( this, models );
 
-        if(!opts){
-            opts = { interval : 5000 };
-        }
+        opts = _.defaults({}, opts, {
+            interval : 5000,
+            shortcut : 'ctrl+alt+s'
+        });
         this.updateInterval = opts.interval;
         this.autoUpdateDisabled = false;
 
         var self = this;
-        Mousetrap.bind('ctrl+alt+s', function(){
+        Mousetrap.bind(opts.shortcut, function(){
             self.autoUpdateDisabled = ! self.autoUpdateDisabled;
             debug.warn('Toggling auto update to ', !self.autoUpdateDisabled);
             if(self.autoUpdateDisabled){
