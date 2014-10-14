@@ -13,10 +13,14 @@ module.exports = Backbone.Collection.extend( {
         'assessment:teardown:requested' : "teardown"
     },
 
-    initialize : function( models ){
+    initialize : function( models, opts ){
         debug( '#initialize' );
         Backbone.Select.One.applyTo( this, models );
 
+        if(!opts){
+            opts = { interval : 5000 };
+        }
+        this.updateInterval = opts.interval;
         this.autoUpdateDisabled = false;
 
         var self = this;
@@ -35,7 +39,7 @@ module.exports = Backbone.Collection.extend( {
         if( model && !this.autoUpdateDisabled ){
             this.intervalId = setInterval( function(){
                 model.update();
-            }, 5000 );
+            }, this.updateInterval );
         }
     },
 

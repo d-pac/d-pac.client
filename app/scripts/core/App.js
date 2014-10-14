@@ -1,12 +1,12 @@
 'use strict';
 
-var debug = require('debug')( 'dpac:app', '[Context]' );
-var config = require( './config' );
-var eventLog = require('debug')('dpac:core.events', '\u2709');
+var debug = require( 'debug' )( 'dpac:app', '[Context]' );
+var konfy = require( 'konfy' );
+var eventLog = require( 'debug' )( 'dpac:core.events', '\u2709' );
 
 var app = module.exports = new Backbone.Marionette.Application();
 var Context = Backbone.Geppetto.Context.extend( {
-    initialize : function(){
+    initialize : function( config ){
         debug( "#initialize" );
 
         Backbone.Geppetto.setDebug( true );
@@ -16,7 +16,7 @@ var Context = Backbone.Geppetto.Context.extend( {
         } );
 
         this.wireValue( 'config', config );
-        this.wireValue('host', config.api.host);
+        this.wireValue( 'host', config.api.host );
         this.wireValue( 'appContext', this );
         this.wireValue( 'app', app );
         this.wireCommands( {
@@ -36,8 +36,18 @@ var Context = Backbone.Geppetto.Context.extend( {
 } );
 app.on( 'start', function(){
     debug( 'App#start' );
-    this.context = new Context();
-    this.context.dispatch( 'app:startup.requested' );
+
+    var app = this;
+    konfy.load( {
+        configFile : "scripts/core/config.json",
+        values : {
+            API_HOST : process.env.API_HOST
+        }
+    }, function( err,
+                 config ){
+        app.context = new Context( config );
+        app.context.dispatch( 'app:startup.requested' );
+    } );
 } );
 
 

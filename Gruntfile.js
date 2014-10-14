@@ -1,8 +1,8 @@
 // Generated on 2014-06-26 using generator-webapp 0.4.9
 'use strict';
 
-var dotenv = require( 'dotenv' );
-dotenv.load();
+var konfy = require( 'konfy' );
+konfy.load();
 
 // # Globbing
 // for performance reasons we're only matching one level down:

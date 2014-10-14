@@ -6,7 +6,6 @@ var eventLog = require( 'debug' )( 'dpac:assess.events', '\u2709' );
 module.exports = Backbone.Geppetto.Context.extend( {
     initialize  : function(){
         debug( "#initialize" );
-        console.log( this.parentContext );
 
         this.vent.on( 'all', function( eventName,
                                        event ){
