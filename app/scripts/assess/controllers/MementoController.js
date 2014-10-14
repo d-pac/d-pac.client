@@ -2,7 +2,10 @@
 
 var debug = require( 'debug' )( 'dpac:assess.controllers', '[MementoController]' );
 module.exports = Marionette.Controller.extend( {
-    wiring : ['timelogger'],
+    wiring        : ['timelogger'],
+    contextEvents : {
+        "assessment:teardown:requested" : "teardown"
+    },
 
     execute : function(){
         debug( '#execute' );
@@ -21,7 +24,7 @@ module.exports = Marionette.Controller.extend( {
 
         representations.selectByID( this.comparison.get( 'selected' ) );
         phases.selectByID( this.comparison.get( 'phase' ) );
-        this.logStart(this.comparison.get('phase'));
+        this.logStart( this.comparison.get( 'phase' ) );
 
         this.listenTo( representations, 'select:one', this.representationSelected );
         this.listenTo( phases, 'deselect:one', this.phaseDeselected );
@@ -30,14 +33,32 @@ module.exports = Marionette.Controller.extend( {
 
     },
 
+    teardown : function(){
+        debug( "#teardown" );
+        this.context.release( 'currentAssessment' );
+        this.context.release( 'currentComparison' );
+        this.context.release( 'currentPhases' );
+        this.context.release( 'currentRepresentations' );
+        this.context.release( 'currentJudgements' );
+        this.context.release( 'currentSeqs' );
+
+        this.stopListening();
+
+        this.comparison = undefined;
+        this.memento = undefined;
+        this.context = undefined;
+        this.eventData = undefined;
+        this.eventName = undefined;
+    },
+
     phaseDeselected : function( phase ){
         debug.debug( 'phaseDeselected' );
-        this.logStop(phase.id);
+        this.logStop( phase.id );
     },
 
     phaseSelected : function( phase ){
         debug.debug( 'phaseSelected' );
-        this.logStart(phase.id);
+        this.logStart( phase.id );
         this.comparison.set( {
             phase : phase.id
         } );
@@ -65,21 +86,5 @@ module.exports = Marionette.Controller.extend( {
             comparison : this.comparison.id,
             phase      : phase
         } );
-    },
-
-    teardown : function(){
-        this.context.release( 'currentAssessment' );
-        this.context.release( 'currentComparison' );
-        this.context.release( 'currentPhases' );
-        this.context.release( 'currentRepresentations' );
-        this.context.release( 'currentJudgements' );
-        this.context.release( 'currentSeqs' );
-
-        this.stopListening( this.memento.representations );
-        this.stopListening( this.memento.phases );
-
-        this.comparison = undefined;
-        this.memento = undefined;
-        this.context = undefined;
     }
 } );

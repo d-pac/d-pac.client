@@ -11,6 +11,10 @@ module.exports = Backbone.Collection.extend({
 
     initialize : function(){
         debug('#initialize');
-        teardown.collection.mixin(this);
+    },
+
+    onTeardown : function(){
+        debug("#teardown");
     }
 });
+teardown.collection.mixin( module.exports );

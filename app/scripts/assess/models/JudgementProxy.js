@@ -16,7 +16,6 @@ module.exports = Backbone.NestedModel.extend( {
 
     initialize : function(attrs, opts){
         debug( '#initialize', this.id || '<new>' );
-        teardown.model.mixin(this);
 
         //todo: don't know why but we have to do it like this, otherwise we get an error
         var model = this;
@@ -24,6 +23,11 @@ module.exports = Backbone.NestedModel.extend( {
             model.save();
         };
         this.listenTo( this, 'change:passed', saveModel);
+    },
+
+    onTeardown : function(){
+        debug( "#teardown" );
     }
 
 } );
+teardown.model.mixin( module.exports );

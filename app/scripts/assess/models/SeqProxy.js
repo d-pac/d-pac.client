@@ -15,7 +15,6 @@ module.exports = Backbone.Model.extend( {
     initialize : function(){
         debug( '#initialize', this.id || '<new>' );
         Backbone.Select.Me.applyTo( this );
-        teardown.model.mixin(this);
 
         var model = this;
         //todo: don't know why but we have to do it like this, otherwise we get an error
@@ -33,5 +32,11 @@ module.exports = Backbone.Model.extend( {
             values.push(i+1);
         }
         this.set('values', values);
+    },
+
+    onTeardown : function(){
+        debug( "#teardown" );
+        this.deselect( { silent : true } );
     }
 } );
+teardown.model.mixin( module.exports );

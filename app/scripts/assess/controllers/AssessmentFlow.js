@@ -2,6 +2,7 @@
 var debug = require( 'debug' )( 'dpac:assess.controllers', '[AssessmentFlow]' );
 
 module.exports = Marionette.Controller.extend( {
+
     contextEvents : {
         "assessment:ui:rendered"         : "requestMementosCollection",
         "assessment:selection:completed" : "assessmentSelectionReceived",
@@ -13,6 +14,17 @@ module.exports = Marionette.Controller.extend( {
     initialize : function(){
         debug( '#initialize' );
         this.context = this.assessmentContext;
+    },
+
+    teardown : function(){
+        debug("#teardown");
+        this.assessmentContext = undefined;
+        this.mementosCollection = undefined;
+        this.assessmentsCollection = undefined;
+        this.stopListening();
+        this.context = undefined;
+        this.eventData = undefined;
+        this.eventName = undefined;
     },
 
     requestMementosCollection  : function(){

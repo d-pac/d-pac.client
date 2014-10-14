@@ -58,5 +58,8 @@ _.extend( BootstrapUI.prototype, {
             childView  : "JudgementDetailView"
         } );
 
+        this.context = undefined;
+        this.eventName = undefined;
+        this.eventData = undefined;
     }
 } );

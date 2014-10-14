@@ -12,6 +12,12 @@ module.exports = Backbone.Model.extend( {
     initialize : function(){
         debug( '#initialize', this.id || '<new>' );
         Backbone.Select.Me.applyTo( this );
-        teardown.model.mixin(this);
+    },
+
+    onTeardown : function(){
+        debug( "#teardown" );
+        this.deselect( { silent : true } );
     }
 } );
+teardown.model.mixin( module.exports );
+

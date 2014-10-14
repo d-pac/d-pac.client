@@ -11,11 +11,6 @@ module.exports = Backbone.Collection.extend( {
     initialize : function( models ){
         debug( '#initialize' );
         Backbone.Select.One.applyTo( this, models );
-        teardown.collection.mixin(this);
-
-        this.once('teardown:pre', function(){
-            this.deselect();
-        }, this);
 
         this.listenTo(this, 'select:one', function(phase){
             this.trigger('select:phase:'+phase.get('type'), phase);
@@ -59,6 +54,12 @@ module.exports = Backbone.Collection.extend( {
 
     completed : function(){
         this.trigger('completed');
+    },
+
+    onTeardown : function(){
+        debug("#teardown");
+        this.deselect( this.selected, { silent : true } );
     }
 
 } );
+teardown.collection.mixin( module.exports );

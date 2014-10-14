@@ -1,12 +1,16 @@
 'use strict';
 
 var debug = require( 'debug' )( 'dpac:assess.collections', '[AssessmentsCollection]' );
+var teardown = require( '../mixins/teardown' );
 
 var ModelClass = require( '../models/AssessmentProxy' );
 
 module.exports = Backbone.Collection.extend( {
-    url : '/me/assessments',
-    model : ModelClass,
+    url           : '/me/assessments',
+    model         : ModelClass,
+    contextEvents : {
+        'assessment:teardown:requested' : "teardown"
+    },
 
     initialize : function( models ){
         debug( '#initialize' );
@@ -20,5 +24,12 @@ module.exports = Backbone.Collection.extend( {
 
     merge : function( models ){
         this.add( models, { merge : true } );
+    },
+
+    onTeardown : function(){
+        debug( "#teardown" );
+        this.deselect( this.selected, { silent : true } );
     }
 } );
+teardown.collection.mixin( module.exports );
+

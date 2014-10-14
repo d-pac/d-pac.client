@@ -9,11 +9,13 @@ module.exports = Backbone.Collection.extend( {
 
     url   : "/timelogs",
     model : ModelClass,
+    contextEvents : {
+        'assessment:teardown:requested' : "teardown"
+    },
 
     initialize : function( models ){
         debug( '#initialize' );
         Backbone.Select.One.applyTo( this, models );
-        teardown.collection.mixin( this );
 
         this.autoUpdateDisabled = false;
 
@@ -60,6 +62,15 @@ module.exports = Backbone.Collection.extend( {
             .update()
             .teardown();
         return this.remove(model);
+    },
+
+    onTeardown : function(){
+        debug("#teardown");
+        this._stopUpdate();
+        this.deselect( this.selected, { silent : true } );
+
+        Mousetrap.unbind('ctrl+alt+s');
     }
 
 } );
+teardown.collection.mixin( module.exports );

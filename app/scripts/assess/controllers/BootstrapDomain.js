@@ -1,9 +1,9 @@
 'use strict';
 var debug = require( 'debug' )( 'dpac:assess.controllers', '[BootstrapDomain]' );
 
-var BootstrapModels = module.exports = function BootstrapDomain(){
+var BootstrapDomain = module.exports = function BootstrapDomain(){
 };
-_.extend( BootstrapModels.prototype, {
+_.extend( BootstrapDomain.prototype, {
     wiring : ['config'],
 
     execute : function(){
@@ -13,12 +13,14 @@ _.extend( BootstrapModels.prototype, {
         context.wireView( 'MementoModel', require( '../models/MementoProxy' ), {
             parser : 'mementoParser'
         } );
-        context.wireSingleton( 'mementosCollection', require( '../collections/MementosCollection' ), {
-            model : 'MementoModel'
-        } );
+        context.wireSingleton( 'mementosCollection', require( '../collections/MementosCollection' ) );
         context.wireSingleton( 'mementoParser', require( '../services/MementoParser' ) );
         context.wireSingleton( 'timelogger', require( '../collections/TimelogsCollection' ) );
 
         context.wireCommand( "mementos:selection:completed", require( './MementoController' ) );
+
+        this.context = undefined;
+        this.eventName = undefined;
+        this.eventData = undefined;
     }
 } );

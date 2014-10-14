@@ -6,7 +6,7 @@ var eventLog = require( 'debug' )( 'dpac:assess.events', '\u2709' );
 module.exports = Backbone.Geppetto.Context.extend( {
     initialize  : function(){
         debug( "#initialize" );
-        console.log(this.parentContext);
+        console.log( this.parentContext );
 
         this.vent.on( 'all', function( eventName,
                                        event ){
@@ -29,6 +29,10 @@ module.exports = Backbone.Geppetto.Context.extend( {
         var view = factory();
         view.on( 'render', function(){
             this.dispatch( 'assessment:ui:rendered' );
+        }, this );
+        view.on( 'destroy', function(){
+            this.dispatch( 'assessment:teardown:requested' );
+            this.destroy();
         }, this );
         return view;
     }

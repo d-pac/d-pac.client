@@ -1,15 +1,22 @@
 'use strict';
 
 var debug = require( 'debug' )( 'dpac:assess.collections', '[MementosCollection]' );
+var teardown = require( '../mixins/teardown' );
 
 module.exports = Backbone.Collection.extend( {
 
-    url : '/me/mementos',
+    url           : '/me/mementos',
+    wiring        : {
+        model : 'MementoModel'
+    },
+    contextEvents : {
+        'assessment:teardown:requested' : "teardown"
+    },
 
     initialize : function( models ){
         debug( '#initialize' );
         Backbone.Select.One.applyTo( this, models );
-        this.on('deselect:one', this.teardownModel, this);
+        this.on( 'deselect:one', this.teardownModel, this );
     },
 
     hasActive : function(){
@@ -25,8 +32,15 @@ module.exports = Backbone.Collection.extend( {
         } );
     },
 
-    teardownModel : function(model){
-        this.remove(model);
+    teardownModel : function( model ){
+        debug.debug('#teardownModel');
+        this.remove( model );
         model.teardown();
+    },
+
+    onTeardown : function(){
+        debug( "#teardown" );
+        this.deselect( this.selected, { silent : true } );
     }
 } );
+teardown.collection.mixin( module.exports );

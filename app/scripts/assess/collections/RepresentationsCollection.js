@@ -11,10 +11,6 @@ module.exports = Backbone.Collection.extend({
     initialize : function(models){
         debug('#initialize');
         Backbone.Select.One.applyTo(this, models);
-        teardown.collection.mixin(this);
-        this.once('teardown:pre', function(){
-            this.deselect();
-        });
     },
 
     selectByID : function(id){
@@ -31,5 +27,11 @@ module.exports = Backbone.Collection.extend({
             return this.selected.id;
         }
         return undefined;
+    },
+
+    onTeardown : function(){
+        debug("#teardown");
+        this.deselect( this.selected, { silent : true } );
     }
 });
+teardown.collection.mixin( module.exports );

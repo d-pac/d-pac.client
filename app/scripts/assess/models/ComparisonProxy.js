@@ -5,7 +5,7 @@ var debug = require( 'debug' )( 'dpac:assess.models', '[ComparisonProxy]' );
 var teardown = require('../mixins/teardown');
 
 module.exports = Backbone.Model.extend( {
-    timeoutId   : undefined,
+
     urlRoot     : '/comparisons',
     idAttribute : "_id",
     defaults    : {
@@ -37,7 +37,6 @@ module.exports = Backbone.Model.extend( {
 
     initialize : function(){
         debug( '#initialize', this.id || '<new>' );
-        teardown.model.mixin(this);
 
         //todo: don't know why but we have to do it like this, otherwise we get an error
         var model = this;
@@ -45,6 +44,10 @@ module.exports = Backbone.Model.extend( {
             model.save();
         };
         this.listenTo( this, 'change:selected change:phase change:comparativeFeedback change:completed', saveModel );
+    },
+
+    onTeardown : function(){
+        debug( "#teardown" );
     },
 
     save : _.debounce( function( attrs ){
@@ -56,3 +59,4 @@ module.exports = Backbone.Model.extend( {
     }, 1000 )
 
 } );
+teardown.model.mixin( module.exports );
