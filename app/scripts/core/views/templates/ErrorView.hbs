@@ -1,5 +1,5 @@
 {{#if showing}}
-<div class="alert alert-danger alert-dismissible fade in" role="alert">
+<div id="error-alert" class="alert alert-danger alert-dismissible fade in" role="alert">
   <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
     {{#if code}}<span class="badge alert-warning">{{code}}</span>{{/if}} <strong>{{{title}}}</strong>
     <p>{{{message}}}</p>

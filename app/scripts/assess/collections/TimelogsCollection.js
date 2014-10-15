@@ -40,8 +40,8 @@ module.exports = Backbone.Collection.extend( {
     _autoUpdate : function( model ){
         if( model && !this.autoUpdateDisabled ){
             this.intervalId = setInterval( function(){
-                model.update();
-            }, this.updateInterval );
+                model.update(this._stopUpdate.bind(this));
+            }.bind(this), this.updateInterval );
         }
     },
 

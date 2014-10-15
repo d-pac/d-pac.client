@@ -8,6 +8,12 @@ module.exports = Marionette.ItemView.extend({
     collectionEvents : {
         "add" : "showError"
     },
+    ui: {
+        alert : '#error-alert'
+    },
+    events : {
+        "click @ui.alert .close" : "unsetModel"
+    },
 
     initialize : function(options){
         debug("#initialize");
@@ -25,6 +31,19 @@ module.exports = Marionette.ItemView.extend({
         }
     },
 
+    unsetModel : function(){
+        this.model = undefined;
+    },
+    //
+    //onRender : function(){
+    //    if( this.model && ! this.model.get('persistent') ){
+    //        setTimeout(function(){
+    //            this.model = null;
+    //            this.$(this.ui.alert).alert('close');
+    //        }.bind(this), 3000);
+    //    }
+    //},
+    //
     showError : function(model){
         debug("#showError");
 

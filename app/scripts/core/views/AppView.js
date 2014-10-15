@@ -5,6 +5,9 @@ var tpl = require( './templates/App.hbs' );
 
 function viewFactory( viewName ){
     return function(){
+        if(! this[viewName]){
+            throw new Error(viewName + ' not yet implemented!');
+        }
         var view = this[viewName]();
         this.contentRegion.show( view );
     }

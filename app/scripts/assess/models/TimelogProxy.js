@@ -23,11 +23,14 @@ module.exports = Backbone.Model.extend( {
         this.save();
     },
 
-    update: function(){
+    update: function(error, success){
         var now = moment().format();
         this.set('end', now);
 
-        this.save();
+        this.save(undefined, {
+            error : error,
+            success : success
+        });
 
         return this;
     },

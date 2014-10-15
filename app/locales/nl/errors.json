@@ -1,6 +1,9 @@
 {
     "authentication-error" : "Authenticatie mislukt!",
     "unauthorized" : "Niet toegestaan!",
+    "method-not-allowed" : "Fout op server!",
+    "server-unreachable" : "De server is niet bereikbaar!",
+    "could-not-connect" : "Er kon geen verbinding met de server gemaakt worden, gelieve contact op te nemen met <a href='mailto:info@d-pac.eu' target='_blank' class='alert-link'>info@d-pac.eu</a>.",
     "bad-credentials": "Uw e-mail adres of paswoord is incorrect. Gelieve opnieuw te proberen!",
-    "please-contact" : "Er is een ernstige fout opgetreden, gelieve contact op te nemen met <a href='mailto:info@d-pac.eu' target='_blank'>info@d-pac.eu</a>"
+    "please-contact" : "Er is een ernstige fout opgetreden, gelieve contact op te nemen met <a href='mailto:info@d-pac.eu' target='_blank' class='alert-link'>info@d-pac.eu</a>."
 }

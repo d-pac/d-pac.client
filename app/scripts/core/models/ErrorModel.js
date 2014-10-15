@@ -31,8 +31,8 @@ module.exports = Backbone.Model.extend( {
                 if( !_.isArray( explanation ) ){
                     explanation = [explanation];
                 }
-                _.each( explanation, function(){
-                    message.push( this._getLocalized( explanation ) );
+                _.each( explanation, function(line){
+                    message.push( this._getLocalized( line ) );
                 }, this );
 
             }else{

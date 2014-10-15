@@ -48,11 +48,25 @@ _.extend( SetupRemoteRequests.prototype, {
             options.error = function( xhr ){
                 var requestUUID = xhr.getResponseHeader( 'Request-UUID' );
                 requestLog( "\u2718", methodMap[method], options.url, "(" + requestUUID + ")" );
-                dispatch( "backbone:sync:error", {
-                    err         : xhr.responseJSON,
-                    requestUUID : requestUUID,
-                    url         : options.url
-                } );
+                var errObj;
+                if( xhr.responseJSON ){
+                    errObj = {
+                        err         : xhr.responseJSON,
+                        requestUUID : requestUUID,
+                        url         : options.url
+                    }
+                }else{
+                    //something went REALLY wrong, most probably the server has died
+                    errObj = {
+                        err : { //let's fake an error object
+                            code : 0,
+                            message : "Server unreachable.",
+                            explanation : "Could not connect."
+                        },
+                        url : options.url
+                    }
+                }
+                dispatch( "backbone:sync:error", errObj );
                 errorCallback.apply( null, arguments );
             };
 
