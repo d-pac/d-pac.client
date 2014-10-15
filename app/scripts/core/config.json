@@ -9,5 +9,8 @@
     },
     "errorlogs": {
         "shortcut": "ctrl+alt+d"
+    },
+    "offline": {
+        "ping" : "<%= API_HOST %>/images/ping-DO-NOT-REMOVE.png"
     }
 }

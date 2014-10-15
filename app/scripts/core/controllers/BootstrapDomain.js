@@ -17,7 +17,7 @@ _.extend( BootstrapModels.prototype, {
         context.wireSingleton( 'exceptionController', require('../controllers/ExceptionController'));
         context.getObject('exceptionController');
 
-        context.wireSingleton( 'accountModel', require( '../models/UserModel' ));
+        context.wireSingleton( 'accountModel', require( '../models/AccountProxy' ));
 
         context.wireSingleton( 'authService', require( '../services/AuthService' ) );
 

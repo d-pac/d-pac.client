@@ -23,20 +23,18 @@ module.exports = Backbone.Model.extend( {
         this.save();
     },
 
-    update: function(error, success){
+    update: function(){
+        debug("#update", this.id || '<new>');
         var now = moment().format();
         this.set('end', now);
 
-        this.save(undefined, {
-            error : error,
-            success : success
-        });
+        this.save();
 
         return this;
     },
 
     onTeardown : function(){
-        debug( "#teardown" );
+        debug( "#teardown", this.id || '<new>' );
         this.deselect( { silent : true } );
     }
 } );

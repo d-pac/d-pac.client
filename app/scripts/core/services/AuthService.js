@@ -56,7 +56,6 @@ module.exports = Backbone.NestedModel.extend( {
     signout   : function(){
         debug( '#signout' );
         this.broadcast( 'AuthService:signout:requested' );
-        //_.defer(function(){
             this.destroy( {
                 success : function( data ){
                     this.clear();
@@ -69,7 +68,6 @@ module.exports = Backbone.NestedModel.extend( {
                     this.broadcast( 'AuthService:signout:failed', createServiceResponse( response ) );
                 }.bind( this )
             } );
-        //}.bind(this));
     }
 } );
 
