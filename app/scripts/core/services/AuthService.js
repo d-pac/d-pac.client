@@ -11,6 +11,7 @@ module.exports = Backbone.NestedModel.extend( {
     initialize : function(){
         debug( '#initialize' );
     },
+    wiring : ["pendingRequests"],
 
     broadcast : function( event,
                           data ){
@@ -56,18 +57,20 @@ module.exports = Backbone.NestedModel.extend( {
     signout   : function(){
         debug( '#signout' );
         this.broadcast( 'AuthService:signout:requested' );
-            this.destroy( {
-                success : function( data ){
-                    this.clear();
-                    this.broadcast( 'AuthService:signout:succeeded', createServiceResponse( false ) );
-                }.bind( this ),
-                //todo: remove error handler
-                error   : function( model,
-                                    response,
-                                    options ){
-                    this.broadcast( 'AuthService:signout:failed', createServiceResponse( response ) );
-                }.bind( this )
-            } );
+        if(this.pendingRequests.isEmpty()){
+            this._signout();
+        }else{
+            this.pendingRequests.once("requests:pending:empty", this._signout.bind(this));
+        }
+    },
+
+    _signout : function(){
+        this.destroy( {
+            success : function( data ){
+                this.clear();
+                this.broadcast( 'AuthService:signout:succeeded', createServiceResponse( false ) );
+            }.bind( this )
+        } );
     }
 } );
 

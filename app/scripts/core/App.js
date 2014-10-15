@@ -23,6 +23,10 @@ var Context = Backbone.Geppetto.Context.extend( {
         this.wireSingleton( 'errorsCollection', require( './collections/ErrorsCollection' ) );
         this.configure('errorsCollection', undefined, config.errorlogs);
 
+        this.wireSingleton( 'pendingRequests', require( './collections/PendingRequestsCollection' ) );
+        this.getObject( 'pendingRequests' );
+
+
         this.wireCommands( {
             "app:startup.requested"         : [
                 require( './controllers/SetupRemoteRequests' ),

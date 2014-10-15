@@ -14,10 +14,10 @@ _.extend( BootstrapModels.prototype, {
         //context.wireSingleton( 'errorsCollection', require( '../collections/ErrorsCollection' ) );
         //context.configure('errorsCollection', undefined, this.config.errorlogs);
 
-        context.wireSingleton( 'exceptionController', require('../controllers/ExceptionController'));
-        context.getObject('exceptionController');
+        context.wireSingleton( 'exceptionController', require( '../controllers/ExceptionController' ) );
+        context.getObject( 'exceptionController' );
 
-        context.wireSingleton( 'accountModel', require( '../models/AccountProxy' ));
+        context.wireSingleton( 'accountModel', require( '../models/AccountProxy' ) );
 
         context.wireSingleton( 'authService', require( '../services/AuthService' ) );
 

@@ -13,12 +13,13 @@ var methodMap = {
 var SetupRemoteRequests = module.exports = function SetupRemoteRequests(){
 };
 _.extend( SetupRemoteRequests.prototype, {
-    wiring : ['config'],
+    wiring : ['config', 'pendingRequests'],
 
     execute : function(){
         debug( '#execute' );
         var config = this.config;
         var dispatch = this.dispatch;
+        var pendingRequests = this.pendingRequests;
         var backboneSync = Backbone.sync;
         Backbone.sync = function( method,
                                   model,
@@ -42,12 +43,17 @@ _.extend( SetupRemoteRequests.prototype, {
             options.beforeSend = function( xhr ){
                 xhr.setRequestHeader( 'Request-UUID', rid );
                 requestLog( "\u279C", methodMap[method], options.url, "(" + rid + ")" );
+                pendingRequests.add({
+                    url : options.url,
+                    uuid : rid
+                });
             };
 
             var errorCallback = options.error;
             options.error = function( xhr ){
                 var requestUUID = xhr.getResponseHeader( 'Request-UUID' );
                 requestLog( "\u2718", methodMap[method], options.url, "(" + requestUUID + ")" );
+                pendingRequests.removeByUUID(requestUUID);
                 var errObj;
                 if( xhr.responseJSON ){
                     errObj = {
@@ -74,7 +80,9 @@ _.extend( SetupRemoteRequests.prototype, {
             options.success = function( data,
                                         status,
                                         xhr ){
-                requestLog( "\u2714", methodMap[method], options.url, "(" + xhr.getResponseHeader( 'Request-UUID' ) + ")" );
+                var requestUUID = xhr.getResponseHeader( 'Request-UUID' );
+                requestLog( "\u2714", methodMap[method], options.url, "(" + requestUUID + ")" );
+                pendingRequests.removeByUUID(requestUUID);
                 successCallback.apply( null, arguments );
             };
 
