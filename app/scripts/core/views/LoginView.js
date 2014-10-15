@@ -2,8 +2,6 @@
 
 var debug = require( 'debug' )( 'dpac:core.views', '[LoginView]' );
 var tpl = require( './templates/Login.hbs' );
-var AlertView = require( './AlertView' );
-var getErrorMessage = require( '../helpers/getErrorMessage' );
 
 module.exports = Marionette.LayoutView.extend( {
     template : tpl,
@@ -14,9 +12,6 @@ module.exports = Marionette.LayoutView.extend( {
         loginButton   : ".login-btn",
         passwordField : "#password"
     },
-    regions  : {
-        alertRegion : ".alert-region"
-    },
     events   : {
         "click @ui.loginButton" : "signin"
     },
@@ -26,7 +21,7 @@ module.exports = Marionette.LayoutView.extend( {
         //todo: move to global error alert view
         this.listenTo( this.authService, 'AuthService:signin:failed', function( err ){
             this.ui.passwordField.val( '' );
-            this.alertRegion.show( new AlertView( { message : getErrorMessage( err ) } ) );
+            //this.alertRegion.show( new AlertView( { message : getErrorMessage( err ) } ) );
         } );
     },
 

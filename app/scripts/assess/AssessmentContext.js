@@ -7,6 +7,12 @@ module.exports = Backbone.Geppetto.Context.extend( {
     initialize  : function(){
         debug( "#initialize" );
 
+        var relay = function( event ){
+            this.dispatch( event.eventName, event.eventData );
+        }.bind( this );
+
+        this.parentContext.listen( this, "AuthService:signout:requested", relay);
+
         this.vent.on( 'all', function( eventName,
                                        event ){
             eventLog( eventName );
@@ -36,3 +42,4 @@ module.exports = Backbone.Geppetto.Context.extend( {
         return view;
     }
 } );
+_.extend( module.exports.prototype, Backbone.Events );

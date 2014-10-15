@@ -19,16 +19,18 @@ module.exports = Marionette.LayoutView.extend( {
         'AccountView',
         'WelcomeView',
         'NotFoundView',
-        'AssessmentView'
+        'AssessmentView',
+        'ErrorView'
     ],
     regions       : {
         menuRegion    : "#app-menu",
-        contentRegion : "#app-content"
+        contentRegion : "#app-content",
+        errorRegion   : "#app-errors"
     },
     contextEvents : {
         'route:signin:completed'   : viewFactory( "LoginView" ),
         'route:welcome:completed'  : viewFactory( "WelcomeView" ),
-        "route:assess:completed"   : viewFactory( "AssessmentView"),
+        "route:assess:completed"   : viewFactory( "AssessmentView" ),
         'route:account:completed'  : viewFactory( "AccountView" ),
         'route:tutorial:completed' : viewFactory( "TutorialView" ),
         'route:404:completed'      : viewFactory( "NotFoundView" )
@@ -41,6 +43,7 @@ module.exports = Marionette.LayoutView.extend( {
     onRender : function(){
         debug( '#render' );
         this.menuRegion.show( new this.MenuView() );
+        this.errorRegion.show( new this.ErrorView() );
     }
 
 } );

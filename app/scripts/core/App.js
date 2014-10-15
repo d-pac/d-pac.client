@@ -19,6 +19,10 @@ var Context = Backbone.Geppetto.Context.extend( {
         this.wireValue( 'host', config.api.host );
         this.wireValue( 'appContext', this );
         this.wireValue( 'app', app );
+
+        this.wireSingleton( 'errorsCollection', require( './collections/ErrorsCollection' ) );
+        this.configure('errorsCollection', undefined, config.errorlogs);
+
         this.wireCommands( {
             "app:startup.requested"         : [
                 require( './controllers/SetupRemoteRequests' ),

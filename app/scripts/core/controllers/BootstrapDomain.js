@@ -10,6 +10,13 @@ _.extend( BootstrapModels.prototype, {
         debug( '#execute' );
         var context = this.context;
 
+        //moved to App, since we need it ASAP
+        //context.wireSingleton( 'errorsCollection', require( '../collections/ErrorsCollection' ) );
+        //context.configure('errorsCollection', undefined, this.config.errorlogs);
+
+        context.wireSingleton( 'exceptionController', require('../controllers/ExceptionController'));
+        context.getObject('exceptionController');
+
         context.wireSingleton( 'accountModel', require( '../models/UserModel' ));
 
         context.wireSingleton( 'authService', require( '../services/AuthService' ) );

@@ -55,18 +55,21 @@ module.exports = Backbone.NestedModel.extend( {
     },
     signout   : function(){
         debug( '#signout' );
-        this.destroy( {
-            success : function( data ){
-                this.clear();
-                this.broadcast( 'AuthService:signout:succeeded', createServiceResponse( false ) );
-            }.bind( this ),
-            //todo: remove error handler
-            error   : function( model,
-                                response,
-                                options ){
-                this.broadcast( 'AuthService:signout:failed', createServiceResponse( response ) );
-            }.bind( this )
-        } );
+        this.broadcast( 'AuthService:signout:requested' );
+        //_.defer(function(){
+            this.destroy( {
+                success : function( data ){
+                    this.clear();
+                    this.broadcast( 'AuthService:signout:succeeded', createServiceResponse( false ) );
+                }.bind( this ),
+                //todo: remove error handler
+                error   : function( model,
+                                    response,
+                                    options ){
+                    this.broadcast( 'AuthService:signout:failed', createServiceResponse( response ) );
+                }.bind( this )
+            } );
+        //}.bind(this));
     }
 } );
 

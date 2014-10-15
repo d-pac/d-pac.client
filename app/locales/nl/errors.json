@@ -1,3 +1,6 @@
 {
-    "bad-credentials": "Uw e-mail adres of paswoord is incorrect. Gelieve opnieuw te proberen!"
+    "authentication-error" : "Authenticatie mislukt!",
+    "unauthorized" : "Niet toegestaan!",
+    "bad-credentials": "Uw e-mail adres of paswoord is incorrect. Gelieve opnieuw te proberen!",
+    "please-contact" : "Er is een ernstige fout opgetreden, gelieve contact op te nemen met <a href='mailto:info@d-pac.eu' target='_blank'>info@d-pac.eu</a>"
 }

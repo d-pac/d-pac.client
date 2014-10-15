@@ -18,6 +18,7 @@ _.extend( SetupRemoteRequests.prototype, {
     execute : function(){
         debug( '#execute' );
         var config = this.config;
+        var dispatch = this.dispatch;
         var backboneSync = Backbone.sync;
         Backbone.sync = function( method,
                                   model,
@@ -45,7 +46,13 @@ _.extend( SetupRemoteRequests.prototype, {
 
             var errorCallback = options.error;
             options.error = function( xhr ){
-                requestLog( "\u2718", methodMap[method], options.url, "(" + xhr.getResponseHeader( 'Request-UUID' ) + ")" );
+                var requestUUID = xhr.getResponseHeader( 'Request-UUID' );
+                requestLog( "\u2718", methodMap[method], options.url, "(" + requestUUID + ")" );
+                dispatch( "backbone:sync:error", {
+                    err         : xhr.responseJSON,
+                    requestUUID : requestUUID,
+                    url         : options.url
+                } );
                 errorCallback.apply( null, arguments );
             };
 

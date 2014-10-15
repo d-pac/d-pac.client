@@ -6,5 +6,8 @@
     "timelogs": {
         "interval": 5000,
         "shortcut": "ctrl+alt+s"
+    },
+    "errorlogs": {
+        "shortcut": "ctrl+alt+d"
     }
 }

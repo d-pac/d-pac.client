@@ -10,7 +10,8 @@ module.exports = Backbone.Collection.extend( {
     url   : "/timelogs",
     model : ModelClass,
     contextEvents : {
-        'assessment:teardown:requested' : "teardown"
+        'assessment:teardown:requested' : "teardown",
+        'AuthService:signout:requested' : "stop"
     },
 
     initialize : function( models, opts ){
@@ -60,13 +61,16 @@ module.exports = Backbone.Collection.extend( {
 
     stop : function(){
         debug.debug( 'stop' );
-        this._stopUpdate();
         var model = this.selected;
-        this.deselect();
-        model
-            .update()
-            .teardown();
-        return this.remove(model);
+        if(model){
+            this._stopUpdate();
+            this.deselect();
+            model
+                .update()
+                .teardown();
+            this.remove(model);
+        }
+        return model;
     },
 
     onTeardown : function(){
