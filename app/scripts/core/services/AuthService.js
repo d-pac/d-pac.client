@@ -12,6 +12,9 @@ module.exports = Backbone.NestedModel.extend( {
         debug( '#initialize' );
     },
     wiring : ["pendingRequests"],
+    defaults : {
+        loggedin : false
+    },
 
     broadcast : function( event,
                           data ){
@@ -20,7 +23,7 @@ module.exports = Backbone.NestedModel.extend( {
     },
 
     isLoggedin : function(){
-        return !! this.get('_id');
+        return this.get('loggedin');
     },
 
     getStatus : function(){
@@ -30,12 +33,12 @@ module.exports = Backbone.NestedModel.extend( {
                 var user = this.get("user");
                 if(user){
                     this.set("_id", user._id );
+                    this.set("loggedin", true );
+                }else{
+                    this.set("loggedin", false );
                 }
+
                 this.broadcast( 'AuthService:getStatus:succeeded', createServiceResponse( false, data ) );
-            }.bind( this ),
-            error   : function( model,
-                                response,
-                                options ){
             }.bind( this )
         } );
     },
@@ -44,12 +47,13 @@ module.exports = Backbone.NestedModel.extend( {
         this.save( creds, {
             success : function( data ){
                 this.set("_id", this.get("user._id") );
+                this.set("loggedin", true );
                 this.broadcast( 'AuthService:signin:succeeded', createServiceResponse( false, data ) )
             }.bind( this ),
-            //todo: remove error handler
             error   : function( model,
                                 response,
                                 options ){
+                this.clear();
                 this.broadcast( 'AuthService:signin:failed', createServiceResponse( response ) );
             }.bind( this )
         } );

@@ -1,42 +1,47 @@
 {
-    "app"  : {
-        "name" : "d-pac"
+    "app": {
+        "name": "d-pac"
     },
     "notfound": {
         "title": "Oei.",
-        "description" : "Pagina niet gevonden."
+        "description": "Pagina niet gevonden."
     },
-    "menu" : {
-        "brand"    : {
-            "label" : "d-pac",
-            "href"  : "#"
+    "menu": {
+        "brand": {
+            "label": "d-pac",
+            "href": "#"
         },
-        "judge"    : {
-            "label"       : "Beoordeel",
-            "description" : "Beoordeel",
-            "href"        : "#assess"
+        "judge": {
+            "label": "Beoordeel",
+            "description": "Beoordeel",
+            "href": "#assess"
         },
-        "account"  : {
-            "label"       : "Account",
-            "description" : "Pas uw gebruikersgegevens aan.",
-            "href"        : "#account"
+        "account": {
+            "label": "Account",
+            "description": "Pas uw gebruikersgegevens aan.",
+            "href": "#account"
         },
-        "tutorial" : {
-            "label"       : "Tutorial",
-            "description" : "Tutorial",
-            "href"        : "#tutorial"
+        "tutorial": {
+            "label": "Tutorial",
+            "description": "Tutorial",
+            "href": "#tutorial"
         },
-        "logout"   : {
-            "label"       : "Log uit",
-            "description" : "Log uit",
-            "href"        : "#signout"
+        "logout": {
+            "label": "Log uit",
+            "description": "Log uit",
+            "href": "#signout"
         },
-        "toggle"   : {
-            "label" : "Navigatie"
+        "login": {
+            "label": "Log in",
+            "description": "Log in",
+            "href": "#account"
+        },
+        "toggle": {
+            "label": "Navigatie"
         }
     },
-    "warning":{
+    "warning": {
         "label": "Opgepast!",
-        "minsize" : "Browser grootte te klein: gelieve deze aan te passen!"
+        "minsize": "Browser grootte te klein: gelieve deze aan te passen!"
     }
 }
