@@ -2,7 +2,6 @@
 'use strict';
 
 var konfy = require( 'konfy' );
-konfy.load();
 
 // # Globbing
 // for performance reasons we're only matching one level down:
@@ -11,6 +10,11 @@ konfy.load();
 // 'test/spec/**/*.js'
 
 module.exports = function( grunt ){
+
+    if( grunt.option( 'env' ) ){
+        process.env.NODE_ENV = grunt.option( 'env' );
+    }
+    konfy.load();
 
     // Time how long tasks take. Can help when optimizing build times
     require( 'time-grunt' )( grunt );
