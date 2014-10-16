@@ -18,24 +18,24 @@
         },
         "judgement": {
             "title": "Beoordeel",
-            "description": "Duid aub de beste representatie aan.",
+            "description": "Duid aub de beste tekst aan.",
             "buttons": [
                 {
-                    "label": "Linker representatie is de beste",
-                    "tooltip": "Kies de linkse representatie als de beste."
+                    "label": "Linker tekst is de beste",
+                    "tooltip": "Kies de linkse tekst als de beste."
                 },
                 {
-                    "label": "Rechter representatie is de beste",
-                    "tooltip": "Kies de rechtse representatie als de beste."
+                    "label": "Rechter tekst is de beste",
+                    "tooltip": "Kies de rechtse tekst als de beste."
                 }
             ],
             "leftButton": {
-                "label": "Linker representatie is de beste",
-                "tooltip": "Kies de linkse representatie als de beste."
+                "label": "Linker tekst is de beste",
+                "tooltip": "Kies de linkse tekst als de beste."
             },
             "rightButton": {
-                "label": "Rechter representatie is de beste",
-                "tooltip": "Kies de rechtse representatie als de beste."
+                "label": "Rechter tekst is de beste",
+                "tooltip": "Kies de rechtse tekst als de beste."
             }
         },
         "seq":{
