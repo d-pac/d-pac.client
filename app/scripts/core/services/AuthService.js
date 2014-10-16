@@ -13,8 +13,9 @@ module.exports = Backbone.NestedModel.extend( {
         loggedin : false
     },
     contextEvents : {
-        "backbone:sync:error" : "getStatus"
+        "backbone:sync:error" : "requestErrorHandler"
     },
+    _isRequesting : false,
 
     initialize : function(){
         debug( '#initialize' );
@@ -31,11 +32,21 @@ module.exports = Backbone.NestedModel.extend( {
         return this.get( 'loggedin' );
     },
 
+    requestErrorHandler : function(){
+        if(!this._isRequesting){
+            this.getStatus();
+        }else{
+            this._isRequesting = false;
+        }
+    },
+
     getStatus : function(){
         debug( '#getStatus' );
+        this._isRequesting = true;
         this.unset( "user" );
         this.fetch( {
             success : function( data ){
+                this._isRequesting = false;
                 var user = this.get( "user" );
                 if( user ){
                     this.set( "_id", user._id );
@@ -51,8 +62,10 @@ module.exports = Backbone.NestedModel.extend( {
     },
     signin    : function( creds ){
         debug( '#signin' );
+        this._isRequesting = true;
         this.save( creds, {
             success : function( data ){
+                this._isRequesting = false;
                 this.set( "_id", this.get( "user._id" ) );
                 this.set( "loggedin", true );
                 this.broadcast( 'AuthService:signin:succeeded', createServiceResponse( false, data ) )
@@ -76,8 +89,10 @@ module.exports = Backbone.NestedModel.extend( {
     },
 
     _signout : function(){
+        this._isRequesting = true;
         this.destroy( {
             success : function( data ){
+                this._isRequesting = false;
                 this.clear();
                 this.broadcast( 'AuthService:signout:succeeded', createServiceResponse( false ) );
             }.bind( this )
