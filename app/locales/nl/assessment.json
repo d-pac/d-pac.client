@@ -77,6 +77,10 @@
         },
         "representations": {
             "tooltip": "Gebruik de knoppen rechts bovenaan om de paper fullscreen te bekijken of te downloaden."
+        },
+        "notes" : {
+            "label" : "Notities",
+            "tooltip" : "Noteer hier je opmerkingen bij deze tekst."
         }
     },
     "workflow": {
