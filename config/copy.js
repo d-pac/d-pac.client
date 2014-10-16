@@ -12,8 +12,9 @@ module.exports = {
                     'images/{,*/}*.webp',
                     '{,*/}*.html',
                     'styles/fonts/{,*/}*.*',
-                    'locales/**/*.json',
-                    'viewerjs/**'
+                    'locales/**/*.*',
+                    'viewerjs/**',
+                    'scripts/core/config.json'
                 ]
             }, {
                 expand : true,
