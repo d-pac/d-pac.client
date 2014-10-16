@@ -15,6 +15,9 @@ module.exports = Backbone.NestedModel.extend( {
     defaults : {
         loggedin : false
     },
+    contextEvents : {
+        "backbone:sync:error" : "getStatus"
+    },
 
     broadcast : function( event,
                           data ){
@@ -28,6 +31,7 @@ module.exports = Backbone.NestedModel.extend( {
 
     getStatus : function(){
         debug( '#getStatus' );
+        this.unset("user");
         this.fetch( {
             success : function( data ){
                 var user = this.get("user");
@@ -35,6 +39,7 @@ module.exports = Backbone.NestedModel.extend( {
                     this.set("_id", user._id );
                     this.set("loggedin", true );
                 }else{
+                    this.unset("_id");
                     this.set("loggedin", false );
                 }
 

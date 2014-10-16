@@ -5,5 +5,6 @@
     "server-unreachable" : "Geen verbinding met de server!",
     "could-not-connect" : "Ofwel... <ul><li>is er een probleem met uw internetverbinding.</li><li>is de server niet bereikbaar, gelieve dan contact op te nemen met <a href='mailto:info@d-pac.eu' target='_blank' class='alert-link'>info@d-pac.eu</a>.</li></ul>",
     "bad-credentials": "Uw e-mail adres of paswoord is incorrect. Gelieve opnieuw te proberen!",
-    "please-contact" : "Er is een ernstige fout opgetreden, gelieve contact op te nemen met <a href='mailto:info@d-pac.eu' target='_blank' class='alert-link'>info@d-pac.eu</a>."
+    "please-contact" : "Er is een ernstige fout opgetreden, gelieve contact op te nemen met <a href='mailto:info@d-pac.eu' target='_blank' class='alert-link'>info@d-pac.eu</a>.",
+    "you-need-to-be-logged-in": "U bent niet (meer) ingelogd."
 }
