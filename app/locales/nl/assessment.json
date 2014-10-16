@@ -62,7 +62,7 @@
         },
         "passfail":{
             "title":"Geslaagd of niet?",
-            "description" : "Duid aan of deze teksten geslaagd zijn.",
+            "description" : "Duid aan of deze teksten volgens jou geslaagd zijn voor de opdracht.",
             "submitButton": {
                 "label": "Opslaan"
             },
