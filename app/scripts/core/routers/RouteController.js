@@ -13,7 +13,6 @@ module.exports = Backbone.Router.extend( {
         "*notfound" : "trigger404"
     },
     contextEvents : {
-        "AuthService:getStatus:succeeded" : "verifyLoginState",
         "AuthService:signout:succeeded" : "triggerWelcome",
         "AuthService:signin:succeeded" : "triggerAccount"
     },
@@ -21,6 +20,12 @@ module.exports = Backbone.Router.extend( {
 
     initialize : function(){
         debug( '#initialize' );
+
+        var self = this;
+
+        this.authService.on("change:loggedin", function(){
+            self.verifyLoginState();
+        });
 
         this.on( "navigate", function( target ){
             this.navigate( target );
@@ -75,7 +80,7 @@ module.exports = Backbone.Router.extend( {
 
     verifyLoginState : function(){
         if(!this.authService.isLoggedin()){
-            this.trigger('navigate', 'signin');
+            this.trigger('navigate', 'welcome');
         }
     }
 } );
