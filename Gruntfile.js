@@ -33,7 +33,8 @@ module.exports = function( grunt ){
 
     // Define the configuration for all the tasks
     grunt.initConfig( require( 'load-grunt-configs' )( grunt, {
-        config : config
+        config : config,
+        env : process.env
     } ) );
 
 //    console.log(grunt.config);
@@ -90,4 +91,6 @@ module.exports = function( grunt ){
         'test',
         'build'
     ] );
+
+    grunt.registerTask( 'deploy', ['rsync'] );
 };
