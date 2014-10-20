@@ -2,9 +2,14 @@
     <div class="row">
         <div class="col-md-12 column">
             <div class="alert alert-info" role="alert">
-                <p>{{t "assessment:selection.description"}}</p>
+                {{#if allCompleted}}
+                    <h4>{{t "assessment:selection.thanks.title"}}</h4>
+                    <p>{{t "assessment:selection.thanks.list.description"}}</p>
+                {{else}}
+                    <h4>{{t "assessment:selection.plain.title"}}</h4>
+                    <p>{{t "assessment:selection.plain.list.description"}}</p>
+                {{/if}}
             </div>
-            <div class="alert-region"></div>
         </div>
     </div>
     <div class="row">
@@ -22,10 +27,13 @@
     <div class="row">
         <div class="col-md-12 column">
             <div class="alert alert-warning" role="alert">
-                <p>{{t "assessment:selection.empty.title"}}</p>
-            </div>
-            <div class="alert-region">
-                <p>{{t "assessment:selection.empty.description"}}</p>
+                {{#if allCompleted}}
+                    <h4>{{t "assessment:selection.thanks.title"}}</h4>
+                    <p>{{t "assessment:selection.thanks.empty.description"}}</p>
+                {{else}}
+                    <h4>{{t "assessment:selection.plain.title"}}</h4>
+                    <p>{{t "assessment:selection.plain.empty.description"}}</p>
+                {{/if}}
             </div>
         </div>
     </div>

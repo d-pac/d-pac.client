@@ -2,11 +2,23 @@
     "title": "Assessments",
     "description": "",
     "selection": {
-        "title": "Assessments",
-        "description": "Kies een assessment",
-        "empty": {
-            "title": "Helaas...",
-            "description": "U hebt geen actieve assessments."
+        "plain" : {
+            "title": "Assessments",
+            "list" : {
+                "description": "Kies een assessment."
+            },
+            "empty": {
+                "description": "U hebt geen actieve assessments."
+            }
+        },
+        "thanks": {
+            "title": "Bedankt om alle taken te hebben uitgevoerd in deze assessment !",
+            "list": {
+                "description": "Ga door met een ander assessment."
+            },
+            "empty": {
+                "description": "U hebt al uw assessments uitgevoerd."
+            }
         }
     },
     "comparisons": {

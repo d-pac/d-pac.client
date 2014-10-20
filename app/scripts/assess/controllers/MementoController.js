@@ -14,6 +14,7 @@ module.exports = Marionette.Controller.extend( {
         var representations = this.memento.get( 'representations' );
         var phases = this.memento.get( 'phases' );
         this.comparison = this.memento.get( 'comparison' );
+        this.progress = this.memento.get( 'progress' );
 
         this.context.wireValue( 'currentAssessment', this.memento.get( 'assessment' ) );
         this.context.wireValue( 'currentComparison', this.comparison );
@@ -21,6 +22,7 @@ module.exports = Marionette.Controller.extend( {
         this.context.wireValue( 'currentRepresentations', representations );
         this.context.wireValue( 'currentJudgements', this.memento.get( 'judgements' ) );
         this.context.wireValue( 'currentSeqs', this.memento.get( 'seqs' ) );
+        this.context.wireValue( 'currentProgress', this.progress );
 
         representations.selectByID( this.comparison.get( 'selected' ) );
         phases.selectByID( this.comparison.get( 'phase' ) );
@@ -41,6 +43,7 @@ module.exports = Marionette.Controller.extend( {
         this.context.release( 'currentRepresentations' );
         this.context.release( 'currentJudgements' );
         this.context.release( 'currentSeqs' );
+        this.context.release( 'currentProgress' );
 
         this.stopListening();
 
@@ -71,11 +74,12 @@ module.exports = Marionette.Controller.extend( {
 
     completed : function(){
         debug( '#completed', this.comparison );
-        this.comparison.once("sync", function(){
+        this.comparison.once( "sync", function(){
             this.teardown();
-            this.dispatch('mementos:editing:completed');
-        }, this);
+            this.dispatch( 'mementos:editing:completed' );
+        }, this );
         this.comparison.set( { completed : true } );
+        this.progress.set("completedNum", this.progress.get("completedNum")+1);
     },
 
     logStart : function( phase ){

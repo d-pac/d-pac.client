@@ -59,7 +59,7 @@ _.extend( BootstrapUI.prototype, {
             childView  : "JudgementDetailView"
         } );
         context.wireView('ProgressView', require('../views/ComparisonsProgress'), {
-            model : "currentAssessment"
+            model : "currentProgress"
         });
 
         this.context = undefined;

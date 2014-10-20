@@ -9,7 +9,8 @@ module.exports = Backbone.Model.extend( {
         judgements      : undefined,
         phases          : undefined,
         representations : undefined,
-        seqs            : undefined
+        seqs            : undefined,
+        progress        : undefined
     },
 
     initialize : function( attrs ){
@@ -31,6 +32,10 @@ module.exports = Backbone.Model.extend( {
 
     _get_completed : function(){
         return this.get( 'comparison' ).get( 'completed' );
+    },
+
+    _get_allCompleted : function(){
+        return this.get('progress' ).isCompleted();
     },
 
     onTeardown : function(){

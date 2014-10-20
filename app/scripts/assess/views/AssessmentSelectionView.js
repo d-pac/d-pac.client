@@ -16,8 +16,16 @@ module.exports = Marionette.ItemView.extend( {
         'click @ui.assessmentButton' : "assessmentSelected"
     },
 
-    initialize : function(){
+    initialize : function(opts){
         debug( "#initialize" );
+        this.allCompleted = opts.allCompleted;
+    },
+
+    serializeData : function(){
+        return {
+            allCompleted : this.allCompleted,
+            items : this.collection.toJSON()
+        };
     },
 
     assessmentSelected : function( event ){

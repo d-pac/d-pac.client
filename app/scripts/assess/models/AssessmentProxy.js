@@ -5,10 +5,11 @@ var teardown = require( '../mixins/teardown' );
 module.exports = Backbone.Model.extend( {
     idAttribute : "_id",
     defaults    : {
-        title       : undefined,
-        description : undefined,
-        state       : undefined,
-        phases      : []
+        title          : undefined,
+        description    : undefined,
+        state          : undefined,
+        phases         : [],
+        comparisonsNum : 0
     },
 
     initialize : function(){

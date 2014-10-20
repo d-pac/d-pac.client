@@ -42,11 +42,13 @@ module.exports = Marionette.Controller.extend( {
         }
     },
 
-    requestAssessmentSelection  : function(){
+    requestAssessmentSelection  : function(allCompleted){
         debug( '#requestAssessmentSelection' );
-        this.dispatch( 'assessments:selection:requested' );
+        this.assessmentsCollection.resync();
+        this.dispatch( 'assessments:selection:requested', {
+            allCompleted : allCompleted
+        } );
         this.assessmentsCollection.once( "select:one", this.assessmentSelectionCompleted, this );
-        this.assessmentsCollection.fetch();
     },
     assessmentSelectionCompleted : function( ){
         debug( '#assessmentSelectionCompleted' );
@@ -92,9 +94,15 @@ module.exports = Marionette.Controller.extend( {
             memento : memento
         } );
     },
-    mementoEditingCompleted : function( memento ){
+    mementoEditingCompleted : function(){
         debug( '#mementoEditingCompleted' );
+        var memento = this.mementosCollection.selected;
+        var allCompleted = memento.get('allCompleted');
         this.mementosCollection.deselect();
-        this.requestMementoCreation( this.assessmentsCollection.selected );
+        if(allCompleted){
+            this.requestAssessmentSelection(allCompleted);
+        }else{
+            this.requestMementoCreation( this.assessmentsCollection.selected );
+        }
     }
 } );

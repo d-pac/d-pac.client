@@ -27,6 +27,11 @@ module.exports = Backbone.Collection.extend( {
         this.select(model);
     },
 
+    resync : function(){
+        this.reset();
+        this.fetch();
+    },
+
     onTeardown : function(){
         debug( "#teardown" );
         this.deselect( this.selected, { silent : true } );

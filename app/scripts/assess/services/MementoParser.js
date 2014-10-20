@@ -5,12 +5,13 @@ var Phases = require( '../collections/PhasesCollection' );
 var Representations = require( '../collections/RepresentationsCollection' );
 var Judgements = require( '../collections/JudgementsCollection' );
 var Seqs = require( '../collections/SeqsCollection' );
+var Progress = require('../models/ProgressModel');
 
 var MementoParser = module.exports = function MementoParser(){
     debug( '#constructor' );
 };
 _.extend( MementoParser.prototype, Backbone.Events, {
-    wiring : {
+    wiring        : {
         'assessments' : 'assessmentsCollection'
     },
     contextEvents : {
@@ -51,12 +52,15 @@ _.extend( MementoParser.prototype, Backbone.Events, {
             result.seqs.add( memento.seqs );
         }
 
+        //progress
+        result.progress = new Progress( memento.progress );
+
         debug.debug( memento );
         return result;
     },
 
     teardown : function(){
-        debug("#teardown");
+        debug( "#teardown" );
         this.stopListening();
 
         this.assessments = undefined;

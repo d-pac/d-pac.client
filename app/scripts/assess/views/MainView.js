@@ -22,9 +22,11 @@ module.exports = Marionette.LayoutView.extend( {
         debug( "#initialize" );
     },
 
-    showAssessmentsSelection : function(){
+    showAssessmentsSelection : function(eventData){
         debug("#showAssessmentsSelection");
-        this.contentRegion.show(this.createAssessmentSelectionView());
+        this.contentRegion.show(this.createAssessmentSelectionView({
+            allCompleted : eventData.allCompleted
+        }));
     },
 
     showLayoutView : function(){
