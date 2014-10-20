@@ -23,6 +23,7 @@ module.exports = Backbone.NestedModel.extend( {
             model.save();
         };
         this.listenTo( this, 'change:passed', saveModel);
+        this.listenTo( this, 'change:notes', saveModel);
     },
 
     onTeardown : function(){

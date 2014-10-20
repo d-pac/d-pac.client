@@ -92,6 +92,10 @@
     margin-top: 20px;
 }
 
+.bspacer {
+    height: 100px;
+}
+
 .notes-label:after {
     font-family: 'Glyphicons Halflings';
     content: "\e114";
