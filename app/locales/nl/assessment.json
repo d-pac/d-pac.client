@@ -95,7 +95,7 @@
             "tooltip" : "Noteer hier je opmerkingen bij deze tekst."
         },
         "completed": {
-            "label" : "Uw beoordeling wordt bewaard"
+            "label" : "Uw beoordeling wordt bewaard. Even geduld."
         }
     },
     "workflow": {

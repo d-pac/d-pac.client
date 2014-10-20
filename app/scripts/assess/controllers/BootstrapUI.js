@@ -25,7 +25,8 @@ _.extend( BootstrapUI.prototype, {
             selectFactory   : "SelectionView",
             seqFactory      : "seqViewFactory",
             compareFactory  : "ComparativeView",
-            passfailFactory : "PassFailView"
+            passfailFactory : "PassFailView",
+            savingFactory : "SavingView"
         } );
         context.wireView( 'LayoutView', require( '../views/LayoutView' ), {
             detailFactory          : "AssessmentDetailView",
@@ -61,6 +62,7 @@ _.extend( BootstrapUI.prototype, {
         context.wireView('ProgressView', require('../views/ComparisonsProgress'), {
             model : "currentProgress"
         });
+        context.wireView("SavingView", require('../views/SavingView'));
 
         this.context = undefined;
         this.eventName = undefined;

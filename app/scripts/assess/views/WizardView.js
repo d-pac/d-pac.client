@@ -10,7 +10,7 @@ module.exports = Marionette.LayoutView.extend( {
     },
     collectionEvents : {
         "select:one" : "render",
-        "completed" : "showProcessing"
+        "completed" : "showCompleted"
     },
     className: "col-md-12 column",
 
@@ -40,7 +40,8 @@ module.exports = Marionette.LayoutView.extend( {
         this.collection.selectNext();
     },
 
-    showProcessing : function(){
-        debug.debug("#showProcessing");
+    showCompleted : function(){
+        debug.debug("#showCompleted");
+        this.content.show(this.savingFactory());
     }
 } );
