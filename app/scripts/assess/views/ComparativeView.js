@@ -7,7 +7,7 @@ module.exports = Marionette.ItemView.extend( {
     template : tpl,
     className : "col-md-12 column",
     ui       : {
-        editor     : ".textarea",
+        editor     : "textarea",
         saveButton : ".save-button"
     },
     events : {
@@ -18,17 +18,6 @@ module.exports = Marionette.ItemView.extend( {
         debug( "#initialize" );
     },
 
-    onRender : function(){
-        this.ui.editor.wysihtml5( {
-            toolbar : {
-                "font-styles" : false,
-                link          : false,
-                image         : false,
-                color         : false,
-                size          : "sm"
-            }
-        } );
-    },
     save : function(){
         debug.debug('#save');
         this.model.set({
