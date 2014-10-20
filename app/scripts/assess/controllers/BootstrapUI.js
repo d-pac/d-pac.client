@@ -31,7 +31,8 @@ _.extend( BootstrapUI.prototype, {
             detailFactory          : "AssessmentDetailView",
             wizardFactory          : "WizardView",
             representationsFactory : "RepresentationsView",
-            judgementsFactory      : "JudgementsView"
+            judgementsFactory      : "JudgementsView",
+            progressFactory : "ProgressView"
         } );
         context.wireView( 'SelectionView', require( '../views/SelectionView' ), {
             collection : 'currentRepresentations'
@@ -57,6 +58,9 @@ _.extend( BootstrapUI.prototype, {
             collection : "currentJudgements",
             childView  : "JudgementDetailView"
         } );
+        context.wireView('ProgressView', require('../views/ComparisonsProgress'), {
+            model : "currentAssessment"
+        });
 
         this.context = undefined;
         this.eventName = undefined;

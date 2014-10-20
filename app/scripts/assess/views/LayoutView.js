@@ -14,6 +14,7 @@ module.exports = Marionette.LayoutView.extend( {
     template : tpl,
 
     regions : {
+        progress        : "#assessment-progress",
         wizard          : "#assessment-wizard",
         detail          : "#assessment-detail",
         representations : "#assessment-representations",
@@ -25,18 +26,11 @@ module.exports = Marionette.LayoutView.extend( {
     },
 
     onRender : function(){
+        this.progress.show( this.progressFactory() );
         this.detail.show( this.detailFactory() );
         this.wizard.show( this.wizardFactory() );
         this.representations.show( this.representationsFactory() );
         this.judgements.show( this.judgementsFactory() );
-        //var phase = this.model.getCurrentPhase();
-        //var factory = this[phase + 'Factory'];
-        //if( !factory ){
-        //    debug.error( 'view factory not found for phase "' + phase + "'" );
-        //    phase = this.model.getDefaultPhase();
-        //    factory = this[phase + 'Factory'];
-        //}
-        //this.wizard.show( factory() );
     }
 
 } );
