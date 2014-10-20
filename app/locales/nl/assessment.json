@@ -26,7 +26,7 @@
         "description": "",
         "progressbar": {
             "tooltip": "Toont je informatie over je vooruitgang.",
-            "label": "__count__% van je vergelijkingen in deze assessment uitgevoerd."
+            "label": "Je hebt __count__% van je vergelijkingen in deze assessment uitgevoerd."
         },
         "judgement": {
             "title": "Beoordeel",

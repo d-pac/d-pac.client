@@ -10,8 +10,8 @@
     </div>
 
     <div class="collapse navbar-collapse" id="primary-navigation">
-        <ul class="nav navbar-nav pull-right">
-            {{#if loggedin}}
+        {{#if loggedin}}
+            <ul class="nav navbar-nav pull-right">
                 <li>
                     <a href="{{t "common:menu.judge.href"}}"
                        data-toggle="tooltip" data-placement="bottom"
@@ -32,14 +32,17 @@
                        data-toggle="tooltip" data-placement="bottom"
                        title="{{t "common:menu.logout.description"}}">{{t "common:menu.logout.label"}}</a>
                 </li>
-            {{else}}
+            </ul>
+            <p class="navbar-text pull-right"><span class="label label-info">{{t "common:menu.text.label" user=user.name.first}}</span></p>
+        {{else}}
+            <ul class="nav navbar-nav pull-right">
                 <li>
                     <a href="{{t "common:menu.login.href"}}"
                        data-toggle="tooltip" data-placement="bottom"
                        title="{{t "common:menu.login.description"}}">{{t "common:menu.login.label"}}</a>
                 </li>
-            {{/if}}
-        </ul>
+            </ul>
+        {{/if}}
     </div>
 
 </nav>

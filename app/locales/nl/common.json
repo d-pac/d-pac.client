@@ -11,6 +11,9 @@
             "label": "d-pac",
             "href": "#"
         },
+        "text" : {
+            "label" : "Welkom, __user__"
+        },
         "judge": {
             "label": "Beoordeel",
             "description": "Beoordeel",
