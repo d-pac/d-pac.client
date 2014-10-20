@@ -4,11 +4,11 @@ var debug = require( 'debug' )( 'dpac:assess.views', '[PassFailView]' );
 var tpl = require( './templates/PassFailView.hbs' );
 
 module.exports = Marionette.ItemView.extend( {
-    template : tpl,
-    ui       : {
+    template  : tpl,
+    ui        : {
         saveButton : ".save-button"
     },
-    events : {
+    events    : {
         "click @ui.saveButton" : "save"
     },
     className : "col-md-12 column",
@@ -22,17 +22,19 @@ module.exports = Marionette.ItemView.extend( {
 
     serializeData : function(){
         var data = $.t( "assessment:comparisons.passfail.options", { returnObjectTrees : true } );
-        data[this.leftModel.get('passed')].left= true;
-        data[this.rightModel.get('passed')].right= true;
+        data[this.leftModel.get( 'passed' )].left = true;
+        data[this.rightModel.get( 'passed' )].right = true;
         return {
             options : data
         };
     },
-    save          : function(){
-        debug.debug( '#save' );
-        this.leftModel.set('passed', this.$("input:radio[name ='leftPassFail']:checked").val());
-        this.rightModel.set('passed', this.$("input:radio[name ='rightPassFail']:checked").val());
 
-        this.trigger('passfail:edited');
-    }
-} );
+    save : _.debounce( function(){
+        debug.debug( '#save' );
+        this.leftModel.set( 'passed', this.$( "input:radio[name ='leftPassFail']:checked" ).val() );
+        this.rightModel.set( 'passed', this.$( "input:radio[name ='rightPassFail']:checked" ).val() );
+
+        this.trigger( 'passfail:edited' );
+    }, 1000, true )
+} )
+;

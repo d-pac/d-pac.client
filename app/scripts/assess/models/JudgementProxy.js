@@ -22,12 +22,13 @@ module.exports = Backbone.NestedModel.extend( {
         var saveModel = function(){
             model.save();
         };
-        this.listenTo( this, 'change:passed', saveModel);
-        this.listenTo( this, 'change:notes', saveModel);
+        this.on( 'change:passed', saveModel);
+        this.on( 'change:notes', saveModel);
     },
 
     onTeardown : function(){
         debug( "#teardown" );
+        this.off('change');
     }
 
 } );

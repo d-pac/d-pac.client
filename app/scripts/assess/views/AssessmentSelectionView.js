@@ -28,7 +28,7 @@ module.exports = Marionette.ItemView.extend( {
         };
     },
 
-    assessmentSelected : function( event ){
+    assessmentSelected : _.debounce(function( event ){
         this.collection.selectByID( this.$( event.target ).attr( 'data-model-id' ) );
-    }
+    }, 1000, true)
 } );

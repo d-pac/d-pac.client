@@ -26,11 +26,11 @@ module.exports = Marionette.ItemView.extend( {
         }
     },
 
-    save : function(){
+    save : _.debounce(function(){
         debug.debug('#save');
         this.model.set({
             value : this.$("label.active" ).attr('data-value')
         });
         this.trigger("seq:edited");
-    }
+    }, 1000, true)
 } );

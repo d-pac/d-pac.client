@@ -32,10 +32,10 @@ module.exports = Marionette.ItemView.extend({
         }
     },
 
-    representationSelected : function( event ){
+    representationSelected : _.debounce(function( event ){
         var representation = this.$( event.target ).attr( 'data-model-id' );
         this.collection.selectByID( representation );
         this.trigger("representation:selected", representation);
-    }
+    }, 1000, true)
 
 });

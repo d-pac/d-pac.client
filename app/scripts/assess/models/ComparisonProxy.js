@@ -40,26 +40,31 @@ module.exports = Backbone.Model.extend( {
 
         //todo: don't know why but we have to do it like this, otherwise we get an error
         var model = this;
-        this.listenTo( this, 'change:selected', function(){
-            debug.debug( 'change:selected' );
+        //this.listenTo( this, 'change:selected', function(){
+        //    debug.debug( 'change:selected' );
+        //    model.save();
+        //} );
+        //this.listenTo( this, 'change:phase', function(){
+        //    debug.debug( 'change:phase' );
+        //    model.save();
+        //} );
+        //this.listenTo( this, 'change:comparativeFeedback', function(){
+        //    debug.debug( 'change:comparativeFeedback' );
+        //    model.save();
+        //} );
+        //this.listenTo( this, 'change:completed', function(){
+        //    debug.debug( 'change:completed' );
+        //    model.save();
+        //} );
+
+        this.on("change:selected change:phase change:comparativeFeedback change:completed", function(){
             model.save();
-        } );
-        this.listenTo( this, 'change:phase', function(){
-            debug.debug( 'change:phase' );
-            model.save();
-        } );
-        this.listenTo( this, 'change:comparativeFeedback', function(){
-            debug.debug( 'change:comparativeFeedback' );
-            model.save();
-        } );
-        this.listenTo( this, 'change:completed', function(){
-            debug.debug( 'change:completed' );
-            model.save();
-        } );
+        });
     },
 
     onTeardown : function(){
         debug( "#teardown" );
+        this.off("change");
     },
 
     save : _.debounce( function( attrs ){

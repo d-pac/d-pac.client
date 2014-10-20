@@ -9,7 +9,8 @@ module.exports = Marionette.LayoutView.extend( {
         content : "#assessment-wizard-content"
     },
     collectionEvents : {
-        "select:one" : "render"
+        "select:one" : "render",
+        "completed" : "showProcessing"
     },
     className: "col-md-12 column",
 
@@ -37,5 +38,9 @@ module.exports = Marionette.LayoutView.extend( {
         debug.debug( 'gotoNext' );
         this.stopListening( this.content.currentView );
         this.collection.selectNext();
+    },
+
+    showProcessing : function(){
+        debug.debug("#showProcessing");
     }
 } );

@@ -36,6 +36,7 @@ module.exports = Backbone.Model.extend( {
 
     onTeardown : function(){
         debug( "#teardown" );
+        this.off('change');
         this.deselect( { silent : true } );
     }
 } );

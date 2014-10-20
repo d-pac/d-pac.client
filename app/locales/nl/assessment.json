@@ -93,6 +93,9 @@
         "notes" : {
             "label" : "Notities",
             "tooltip" : "Noteer hier je opmerkingen bij deze tekst."
+        },
+        "completed": {
+            "label" : "Uw beoordeling wordt bewaard"
         }
     },
     "workflow": {

@@ -18,11 +18,11 @@ module.exports = Marionette.ItemView.extend( {
         debug( "#initialize" );
     },
 
-    save : function(){
+    save : _.debounce(function(){
         debug.debug('#save');
         this.model.set({
             comparativeFeedback :this.ui.editor.val()
         });
         this.trigger("comparativeFeedback:edited");
-    }
+    }, 1000, true)
 } );

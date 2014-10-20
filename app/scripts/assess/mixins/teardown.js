@@ -11,6 +11,7 @@ module.exports.collection = {
                 if( !this._teardown_completed ){
                     this._teardown_completed = true;
                     var callback;
+                    this.sync = _.noop;
                     if( this.onTeardown ){
                         callback = this.onTeardown();
                     }
@@ -39,6 +40,7 @@ module.exports.model = {
                 if( !this._teardown_completed ){
                     this._teardown_completed = true;
                     var callback;
+                    this.sync = this.save = this.fetch = this.destroy = _.noop;
                     if( this.onTeardown ){
                         callback = this.onTeardown();
                     }
