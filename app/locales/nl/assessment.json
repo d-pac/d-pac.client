@@ -30,15 +30,15 @@
         },
         "judgement": {
             "title": "Beoordeel",
-            "description": "Duid aub de beste tekst aan.",
+            "description": "Geef aan welk tekst beter geschreven is in functie van  de competentie 'argumentatief schrijven'",
             "buttons": [
                 {
-                    "label": "Linker tekst is de beste",
-                    "tooltip": "Kies de linkse tekst als de beste."
+                    "label": "Linkse tekst is beter",
+                    "tooltip": "Klik om aan te duiden dat de linkse tekst beter is dan de rechtse."
                 },
                 {
-                    "label": "Rechter tekst is de beste",
-                    "tooltip": "Kies de rechtse tekst als de beste."
+                    "label": "Rechter tekst is beter",
+                    "tooltip": "Klik om aan te duiden dat de rechtse tekst beter is dan de linkse."
                 }
             ],
             "leftButton": {

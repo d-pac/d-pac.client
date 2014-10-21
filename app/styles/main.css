@@ -110,6 +110,7 @@
 .fixed-panel{
     max-height: 200px;
     overflow-y: scroll;
+    padding: 20px;
 }
 
 /* N.B.: this is a <i>class</i>! */
