@@ -11,7 +11,7 @@
             <div class="col-md-12 column">
                 <form role="form" class="form-horizontal">
                     <div class="form-group">
-                        <label for="firstname" class="col-md-4">{{t "account:name.first.label"}}</label>
+                        <label for="firstname" class="col-md-4 control-label">{{t "account:name.first.label"}}</label>
 
                         <div class="col-md-8">
                             <input type="text" class="form-control" id="firstname"
@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="surname" class="col-md-4">{{t "account:name.last.label"}}</label>
+                        <label for="surname" class="col-md-4 control-label">{{t "account:name.last.label"}}</label>
 
                         <div class="col-md-8">
                             <input type="text" class="form-control" id="surname"
@@ -27,16 +27,19 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="organisation" class="col-md-4">{{t "account:organisation.label"}}</label>
+                        <label class="col-md-4 control-label">{{t "account:organisation.label"}}</label>
 
                         <div class="col-md-8">
+                            <p class="form-control-static">{{organization.name}}</p>
+                            <!--
                             <select id="organisation" class="form-control">
                                 <option>{{t "account:organisation.description"}}</option>
                             </select>
+                            -->
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="email" class="col-md-4">{{t "account:email.label"}}</label>
+                        <label for="email" class="col-md-4 control-label">{{t "account:email.label"}}</label>
 
                         <div class="col-md-8">
                             <input type="email" class="form-control" id="email"
@@ -44,7 +47,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="password" class="col-md-4">{{t "account:password.label"}}</label>
+                        <label for="password" class="col-md-4 control-label">{{t "account:password.label"}}</label>
 
                         <div class="col-md-8">
                             <input type="password" class="form-control" id="password"
@@ -53,14 +56,16 @@
                     </div>
                     <div class="form-group">
                         <label for="password-confirmation"
-                               class="col-md-4">{{t "account:password.confirmation.label"}}</label>
+                               class="col-md-4 control-label">{{t "account:password.confirmation.label"}}</label>
 
                         <div class="col-md-8">
                             <input type="password" class="form-control" id="password-confirmation"
                                    placeholder="{{t "account:password.confirmation.description"}}">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-default save-btn">{{t "account:submit.label"}}</button>
+                    <div class="col-md-8 col-md-offset-4">
+                        <button type="submit" class="btn btn-default save-btn">{{t "account:submit.label"}}</button>
+                    </div>
                 </form>
             </div>
         </div>
