@@ -19,6 +19,8 @@ var Context = Backbone.Geppetto.Context.extend( {
         this.wireValue( 'host', config.api.host );
         this.wireValue( 'appContext', this );
         this.wireValue( 'app', app );
+        this.wireValue('appVersion', config.app.version);
+
 
         this.wireSingleton( 'errorsCollection', require( './collections/ErrorsCollection' ) );
         this.configure('errorsCollection', undefined, config.errorlogs);
@@ -49,7 +51,8 @@ app.on( 'start', function(){
     konfy.load( {
         configFile : "scripts/core/config.json",
         values : {
-            API_HOST : process.env.API_HOST
+            API_HOST : process.env.API_HOST,
+            APP_VERSION : process.env.APP_VERSION
         }
     }, function( err,
                  config ){

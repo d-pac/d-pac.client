@@ -10,6 +10,8 @@ var konfy = require( 'konfy' );
 // 'test/spec/**/*.js'
 
 module.exports = function( grunt ){
+    var pkg = grunt.file.readJSON('package.json');
+    process.env.APP_VERSION = pkg.version;
 
     if( grunt.option( 'env' ) ){
         process.env.NODE_ENV = grunt.option( 'env' );
