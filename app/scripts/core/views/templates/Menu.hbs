@@ -4,15 +4,24 @@
                 data-target="#primary-navigation"><span
                 class="sr-only">{{t "common:app.menu.toggle.label"}}</span><span class="icon-bar"></span><span
                 class="icon-bar"></span><span class="icon-bar"></span></button>
-        <a id="brand-href" class="navbar-brand" href="{{t "common:menu.brand.href"}}"><img
-                src="../images/d-pac-logo_colour.png"
-                width="36"/></a>
+        <a id="brand-href" class="navbar-brand" href="{{t "common:menu.brand.href"}}">
+            <img
+                    style="margin-top: -14px"
+                    src="../images/d-pac-logo_colour.png"
+                    width="72"/></a>
+
+        <p class="navbar-text">
+            <small>v{{appVersion}}</small>
+        </p>
     </div>
 
     <div class="collapse navbar-collapse" id="primary-navigation">
-        <p class="navbar-text"><small>v{{appVersion}}</small></p>
-        {{#if loggedin}}
-            <ul class="nav navbar-nav pull-right">
+        <ul class="nav navbar-nav navbar-right">
+            {{#if loggedin}}
+                <li>
+                    <p class="navbar-text"><span
+                            class="label label-info">{{t "common:menu.text.label" user=user.name.first}}</span></p>
+                </li>
                 <li>
                     <a href="{{t "common:menu.judge.href"}}"
                        data-toggle="tooltip" data-placement="bottom"
@@ -33,17 +42,17 @@
                        data-toggle="tooltip" data-placement="bottom"
                        title="{{t "common:menu.logout.description"}}">{{t "common:menu.logout.label"}}</a>
                 </li>
-            </ul>
-            <p class="navbar-text pull-right"><span class="label label-info">{{t "common:menu.text.label" user=user.name.first}}</span></p>
-        {{else}}
-            <ul class="nav navbar-nav pull-right">
+            {{else}}
                 <li>
                     <a href="{{t "common:menu.login.href"}}"
                        data-toggle="tooltip" data-placement="bottom"
                        title="{{t "common:menu.login.description"}}">{{t "common:menu.login.label"}}</a>
                 </li>
-            </ul>
-        {{/if}}
+            {{/if}}
+            <li>
+                <a id="copy-button" href="https://github.com/d-pac/d-pac.client/issues/new" target="d-pac-issues"><i class="fa fa-bug"></i></a>
+            </li>
+        </ul>
     </div>
 
 </nav>

@@ -11,7 +11,8 @@ module.exports = Backbone.Collection.extend({
     initialize : function(){
         debug('#initialize');
         var self = this;
-        this.on("remove", function(){
+        this.on("remove", function(request){
+            this._lastRequest = request;
             if(self.isEmpty() ){
                 self.trigger("requests:pending:empty");
             }
@@ -27,6 +28,13 @@ module.exports = Backbone.Collection.extend({
 
     isEmpty : function(){
         return this.length <= 0;
+    },
+
+    getLastRequest : function(){
+        if(this._lastRequest){
+            return this._lastRequest.toJSON();
+        }
+        return {};
     }
 
 });

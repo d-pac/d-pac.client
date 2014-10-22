@@ -41,6 +41,8 @@ module.exports = function( grunt ){
 
 //    console.log(grunt.config);
 
+    grunt.registerTask('postBowerInstall', ['copy:viewerjs', 'copy:zeroclipboard']);
+
     grunt.registerTask( 'serve', function( target ){
         if( target === 'dist' ){
             return grunt.task.run( ['build', 'connect:dist:keepalive'] );
@@ -94,5 +96,5 @@ module.exports = function( grunt ){
         'build'
     ] );
 
-    grunt.registerTask( 'deploy', ['rsync'] );
+    grunt.registerTask( 'deploy', ['build', 'rsync'] );
 };

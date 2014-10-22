@@ -32,6 +32,7 @@ var Context = Backbone.Geppetto.Context.extend( {
         this.wireCommands( {
             "app:startup.requested"         : [
                 require( './controllers/SetupRemoteRequests' ),
+                require( './controllers/SetupClipboard' ),
                 require( './controllers/SetupHBSHelpers' ),
                 require( './controllers/SetupHBSPartials' ),
                 require( './controllers/BootstrapDomain' ),

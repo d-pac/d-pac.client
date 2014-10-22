@@ -1,5 +1,5 @@
 module.exports = {
-    dist     : {
+    dist          : {
         files : [
             {
                 expand : true,
@@ -14,6 +14,7 @@ module.exports = {
                     'styles/fonts/{,*/}*.*',
                     'locales/**/*.*',
                     'viewerjs/**',
+                    'swf/**/*.*',
                     'scripts/core/config.json'
                 ]
             }, {
@@ -25,18 +26,25 @@ module.exports = {
             }
         ]
     },
-    styles   : {
+    styles        : {
         expand : true,
         dot    : true,
         cwd    : '<%= config.app %>/styles',
         dest   : '.tmp/styles/',
         src    : '{,*/}*.css'
     },
-    viewerjs : {
+    viewerjs      : {
         expand : true,
         dot    : true,
         cwd    : '<%= config.bower %>/viewerjs',
         dest   : '<%= config.app %>/viewerjs',
         src    : '**'
+    },
+    zeroclipboard : {
+        expand : true,
+        dot    : true,
+        cwd  : '<%=config.bower%>/zeroclipboard/dist',
+        dest : '<%=config.app%>/swf',
+        src  : '*.swf'
     }
 };

@@ -8,7 +8,8 @@ var BootstrapUI = module.exports = function BootstrapUI( context ){
     } );
     context.wireView( 'MenuView', require( '../views/MenuView' ), {
         model : 'authService',
-        appVersion : 'appVersion'
+        appVersion : 'appVersion',
+        pendingRequests : 'pendingRequests'
     } );
     context.wireView( 'AccountView', require( '../views/AccountView' ), {
         model : "accountModel"
