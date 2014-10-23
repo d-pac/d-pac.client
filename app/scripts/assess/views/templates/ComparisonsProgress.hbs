@@ -6,11 +6,11 @@
              style="width:{{percentage}}%"
              >
             {{#if labelLeft }}
-                <span>{{t "assessment:comparisons.progressbar.label" count=percentage}}</span>
+                <span>{{t "assessment:comparisons.progressbar.label" completed=completedNum count=comparisonsNum}}</span>
             {{/if}}
         </div>
         {{#if labelRight}}
-            <span>&nbsp;{{t "assessment:comparisons.progressbar.label" count=percentage}}</span>
+            <span>&nbsp;{{t "assessment:comparisons.progressbar.label"  completed=completedNum count=comparisonsNum}}</span>
         {{/if}}
     </div>
 </div>

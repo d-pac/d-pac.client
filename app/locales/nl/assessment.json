@@ -26,7 +26,8 @@
         "description": "",
         "progressbar": {
             "tooltip": "Toont je informatie over je vooruitgang.",
-            "label": "Je hebt __count__% van je vergelijkingen in deze assessment uitgevoerd."
+            "label": "Je hebt <strong>__completed__</strong> van <strong>__count__</strong> vergelijking in deze assessment uitgevoerd.",
+            "label_plural" : "Je hebt <strong>__completed__</strong> van <strong>__count__</strong> vergelijkingen in deze assessment uitgevoerd."
         },
         "judgement": {
             "title": "Beoordeel",
