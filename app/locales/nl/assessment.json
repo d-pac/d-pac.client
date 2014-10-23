@@ -30,7 +30,7 @@
         },
         "judgement": {
             "title": "Beoordeel",
-            "description": "Geef aan welk tekst beter geschreven is in functie van  de competentie 'argumentatief schrijven'",
+            "description": "Geef aan welke tekst beter geschreven is in functie van  de competentie 'argumentatief schrijven'",
             "buttons": [
                 {
                     "label": "Linkse tekst is beter",
