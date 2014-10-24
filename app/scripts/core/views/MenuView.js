@@ -25,7 +25,8 @@ module.exports = Backbone.Marionette.ItemView.extend( {
                 now : moment(),
                 url : window.location.href,
                 version : self.appVersion,
-                request : self.pendingRequests.getLastRequest()
+                request : self.pendingRequests.getLastRequest(),
+                userAgent : navigator.userAgent
             };
             clipboard.setData( "text/plain", '```json\n'+JSON.stringify(data)+'\n```' );
         } );
