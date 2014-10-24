@@ -28,9 +28,9 @@ module.exports = Backbone.Marionette.ItemView.extend( {
                 first : this.$( "#firstname" ).val(),
                 last  : this.$( "#surname" ).val()
             },
-            email : this.$( "#email" ).val(),
-            password : this.$( "#password" ).val(),
-            password_confirm : this.$('#password-confirmation' ).val()
+            email : this.$( "#email" ).val()
+            //password : this.$( "#password" ).val(),
+            //password_confirm : this.$('#password-confirmation' ).val()
         }, { patch : true } );
     }
 } );
