@@ -4,6 +4,7 @@ var debug = require( 'debug' )( 'dpac:assess.views', '[SeqView]' );
 var tpl = require( './templates/SeqView.hbs' );
 
 module.exports = Marionette.ItemView.extend( {
+    phase : undefined,
     template : tpl,
     className: "col-md-12 column",
     ui       : {
@@ -14,11 +15,18 @@ module.exports = Marionette.ItemView.extend( {
         "click @ui.saveButton" : "save"
     },
 
-    initialize : function(){
+    initialize : function(opts){
         debug( "#initialize" );
-
-        debug.debug(this.model);
+        this.phase = opts.phase;
     },
+
+    serializeData : function(){
+        var data = this.model.toJSON();
+        var defaultDescription = i18n.t("assessment:comparisons.seq.default.description");
+        data.description = i18n.t(["assessment:comparisons.seq." + this.phase.get('slug') + ".description", defaultDescription]);
+        return data;
+    },
+
     onRender   : function(){
         var selected  = this.model.get('value');
         if(selected){

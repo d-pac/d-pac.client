@@ -52,8 +52,6 @@
             }
         },
         "seq":{
-            "description" : "Hoe moeilijk vond je de vorige taak in het algemeen?",
-            "tooltip" : "",
             "legend" : {
                 "easy" : {
                     "label": "Heel gemakkelijk"
@@ -64,6 +62,18 @@
             },
             "submitButton": {
                 "label" : "Opslaan"
+            },
+            "default": {
+                "description" : "Hoe moeilijk vond je de vorige opdracht?"
+            },
+            "select-best-seq" : {
+                "description" : "Hoe moeilijk vond je het om de keuze te maken?"
+            },
+            "comparative-feedback-seq": {
+                "description" : "Hoe moeilijk vond je het om je keuze te beargumenteren?"
+            },
+            "passfail-seq" : {
+                "description" : "Hoe moeilijk vond je het om geslaagd/niet geslaagd te kiezen?"
             }
         },
         "compare":{

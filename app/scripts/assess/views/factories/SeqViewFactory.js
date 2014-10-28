@@ -10,7 +10,8 @@ module.exports = Marionette.ItemView.extend( {
         } );
 
         return new this.SeqView( {
-            model : seq
+            model : seq,
+            phase : phase
         } );
     }
 } );
