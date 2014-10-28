@@ -14,7 +14,7 @@ module.exports = Backbone.Router.extend( {
     },
     contextEvents : {
         "AuthService:signout:succeeded" : "triggerWelcome",
-        "AuthService:signin:succeeded" : "triggerAccount"
+        "AuthService:signin:succeeded" : "triggerAssess"
     },
     wiring : ['authService'],
 
@@ -80,7 +80,7 @@ module.exports = Backbone.Router.extend( {
 
     verifyLoginState : function(){
         if(!this.authService.isLoggedin()){
-            this.trigger('navigate', 'welcome');
+            this.trigger('navigate', 'signin');
         }
     }
 } );
