@@ -1,7 +1,7 @@
 {
     "api": {
         "host": "<%= API_HOST %>",
-        "root": "<%= API_HOST %>/api"
+        "root": "<%= API_HOST %>api"
     },
     "timelogs": {
         "interval": 5000,

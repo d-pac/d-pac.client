@@ -13,8 +13,17 @@ module.exports = Marionette.ItemView.extend({
     },
 
     serializeData :function(){
+        //todo: this needs to be refactored and moved
+        var path = this.model.get('url');
+        var url;
+        if(path.charAt(0)==="/" && this.host.charAt(this.host.length-1) === "/"){
+            url = this.host.substr(0, this.host.length-1) + path;
+        }else{
+            url = this.host + path;
+        }
+
         return {
-            url : this.host + this.model.get('url')
+            url : url
         };
     }
 });
