@@ -19,6 +19,7 @@ module.exports = Backbone.NestedModel.extend( {
 
     initialize : function(){
         debug( '#initialize' );
+        this.getStatus();
     },
 
     broadcast : function( event,

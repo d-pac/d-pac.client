@@ -29,6 +29,7 @@ module.exports = Backbone.Router.extend( {
 
         this.on( "navigate", function( target ){
             this.navigate( target );
+            this.dispatch( 'route:' + target + ':completed' );
             this.dispatch( 'route:completed', {
                 target : target
             } );
@@ -37,6 +38,7 @@ module.exports = Backbone.Router.extend( {
 
     execute : function( callback,
                         args ){
+        this.dispatch( 'route:' + Backbone.history.fragment + ':requested' );
         this.dispatch( 'route:requested', {
             target : Backbone.history.fragment
         } );

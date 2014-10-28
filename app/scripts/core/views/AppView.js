@@ -5,21 +5,13 @@ var tpl = require( './templates/App.hbs' );
 
 function viewFactory( viewName ){
     return function(){
-        if( !this[viewName] ){
-            throw new Error( viewName + ' not yet implemented!' );
+        if(! this[viewName]){
+            throw new Error(viewName + ' not yet implemented!');
         }
         var view = this[viewName]();
         this.contentRegion.show( view );
     }
 }
-
-var viewRouteMap = {
-    "signin"   : "LoginView",
-    "welcome"  : "WelcomeView",
-    "assess"   : "AssessmentView",
-    "account"  : "AccountView",
-    "notfound" : "NotFoundView"
-};
 
 module.exports = Marionette.LayoutView.extend( {
     template      : tpl,
@@ -39,7 +31,12 @@ module.exports = Marionette.LayoutView.extend( {
         errorRegion   : "#app-errors"
     },
     contextEvents : {
-        'route:completed' : "viewRequested"
+        'route:signin:completed'   : viewFactory( "LoginView" ),
+        'route:welcome:completed'  : viewFactory( "WelcomeView" ),
+        "route:assess:completed"   : viewFactory( "AssessmentView" ),
+        'route:account:completed'  : viewFactory( "AccountView" ),
+        'route:tutorial:completed' : viewFactory( "TutorialView" ),
+        'route:404:completed'      : viewFactory( "NotFoundView" )
     },
 
     initialize : function(){
@@ -50,15 +47,6 @@ module.exports = Marionette.LayoutView.extend( {
         debug( '#render' );
         this.menuRegion.show( new this.MenuView() );
         this.errorRegion.show( new this.ErrorView() );
-    },
-
-    viewRequested : function( event ){
-        var viewName=viewRouteMap[event.target];
-        if( !this[viewName] ){
-            throw new Error( viewName + ' not yet implemented!' );
-        }
-        var view = this[viewName]();
-        this.contentRegion.show( view );
     }
 
 } );

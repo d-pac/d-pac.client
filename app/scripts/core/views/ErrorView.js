@@ -6,7 +6,7 @@ module.exports = Marionette.ItemView.extend({
     template : tpl,
     className : "col-md-12 colund",
     contextEvents : {
-        "route:requested": "unsetModel"
+        "route:completed": "unsetModel"
     },
     collectionEvents : {
         "add" : "showError"
@@ -35,8 +35,11 @@ module.exports = Marionette.ItemView.extend({
     },
 
     unsetModel : function(){
-        this.model = undefined;
-        this.render();
+        debug("#unsetModel");
+        if(Backbone.history.fragment!==this.showing){
+            this.model = undefined;
+            this.render();
+        }
     },
     //
     //onRender : function(){
@@ -50,7 +53,7 @@ module.exports = Marionette.ItemView.extend({
     //
     showError : function(model){
         debug("#showError");
-
+        this.showing=Backbone.history.fragment;
         this.model = model;
         this.render();
     }
