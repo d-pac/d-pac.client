@@ -1,33 +1,40 @@
 {
-    "title"        : "Account",
-    "description"  : "Pas uw gebruikersgegevens aan.",
-    "name"         : {
-        "first" : {
-            "label"       : "Voornaam",
-            "description" : "Vul uw voornaam in."
+    "title": "Account",
+    "description": "Pas uw gebruikersgegevens aan.",
+    "success": "Uw wijzigingen zijn opgeslagen.",
+    "name": {
+        "first": {
+            "label": "Voornaam",
+            "description": "Vul uw voornaam in.",
+            "invalid" : "Dit is een verplicht veld."
         },
-        "last"  : {
-            "label"       : "Naam",
-            "description" : "Vul uw achternaam in."
+        "last": {
+            "label": "Naam",
+            "description": "Vul uw achternaam in.",
+            "invalid": "Dit is een verplicht veld."
         }
     },
-    "organisation" : {
-        "label"       : "Organisatie",
-        "description" : "Selecteer uw organisatie."
+    "organisation": {
+        "label": "Organisatie",
+        "description": "Selecteer uw organisatie."
     },
-    "email"        : {
-        "label"       : "E-mail",
-        "description" : "Vul uw e-mail adres in."
+    "email": {
+        "label": "E-mail",
+        "description": "Vul uw e-mail adres in.",
+        "invalid": "Geen geldig e-mail adres."
     },
-    "password"     : {
-        "label"        : "Wachtwoord",
-        "description"  : "****************",
-        "confirmation" : {
-            "label"       : "Wachtwoord (bevestiging)",
-            "description" : "****************"
+    "password": {
+        "label": "Wachtwoord",
+        "description": "****************",
+        "confirmation": {
+            "label": "Wachtwoord (bevestiging)",
+            "description": "****************"
         }
     },
-    "submit"       : {
-        "label" : "Bewaar"
+    "submit": {
+        "label": "Bewaar"
+    },
+    "cancel": {
+        "label": "Annuleer"
     }
 }
