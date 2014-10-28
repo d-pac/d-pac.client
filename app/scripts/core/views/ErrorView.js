@@ -5,14 +5,17 @@ var tpl = require('./templates/ErrorView.hbs');
 module.exports = Marionette.ItemView.extend({
     template : tpl,
     className : "col-md-12 colund",
+    contextEvents : {
+        "route:requested": "unsetModel"
+    },
     collectionEvents : {
         "add" : "showError"
     },
-    ui: {
-        alert : '#error-alert'
-    },
     events : {
         "click @ui.alert .close" : "unsetModel"
+    },
+    ui: {
+        alert : '#error-alert'
     },
 
     initialize : function(options){
@@ -33,6 +36,7 @@ module.exports = Marionette.ItemView.extend({
 
     unsetModel : function(){
         this.model = undefined;
+        this.render();
     },
     //
     //onRender : function(){
