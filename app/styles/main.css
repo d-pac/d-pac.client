@@ -139,7 +139,7 @@
     #size-warning{
         visibility: visible;
     }
-    .container {
+    #app {
         -webkit-filter: blur(10px);
         -moz-filter: blur(10px);
         -o-filter: blur(10px);
@@ -151,7 +151,7 @@
     #size-warning{
         visibility: hidden;
     }
-    .container {
+    #app {
         -webkit-filter: initial;
         -moz-filter: initial;
         -o-filter: initial;
