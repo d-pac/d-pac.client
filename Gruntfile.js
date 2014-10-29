@@ -41,7 +41,7 @@ module.exports = function( grunt ){
 
 //    console.log(grunt.config);
 
-    grunt.registerTask('postBowerInstall', ['copy:viewerjs', 'copy:zeroclipboard']);
+    grunt.registerTask('postBowerInstall', ['copy:zeroclipboard']);
 
     grunt.registerTask( 'serve', function( target ){
         if( target === 'dist' ){
