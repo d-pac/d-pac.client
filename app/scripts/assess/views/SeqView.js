@@ -6,7 +6,7 @@ var tpl = require( './templates/SeqView.hbs' );
 module.exports = Marionette.ItemView.extend( {
     phase : undefined,
     template : tpl,
-    className: "col-md-12 column",
+    className: "col-md-8 col-md-offset-2 column",
     ui       : {
         saveButton : ".save-button",
         valueButtons : ".value-buttons .btn"

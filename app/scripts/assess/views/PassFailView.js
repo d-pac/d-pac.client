@@ -11,7 +11,7 @@ module.exports = Marionette.ItemView.extend( {
     events    : {
         "click @ui.saveButton" : "save"
     },
-    className : "col-md-12 column",
+    className : "col-md-8 col-md-offset-2 column",
 
     initialize : function(){
         debug( "#initialize" );

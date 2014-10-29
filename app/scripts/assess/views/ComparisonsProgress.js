@@ -5,9 +5,10 @@ var tpl = require('./templates/ComparisonsProgress.hbs');
 
 module.exports = Marionette.ItemView.extend({
     template : tpl,
+    className : "col-md-8 col-md-offset-2 column",
+
     initialize : function(){
         debug("#initialize");
-        console.log(this.model);
     },
 
     serializeData : function(){

@@ -7,7 +7,7 @@ module.exports = Marionette.ItemView.extend({
     host : undefined,
 
     template : tpl,
-    className : "col-md-6 column",
+    className : "col-sm-6 column",
     initialize : function(opts){
         debug("#initialize");
     },

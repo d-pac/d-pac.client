@@ -4,7 +4,7 @@ var debug = require( 'debug' )( 'dpac:core.views', '[ErrorView]' );
 var tpl = require('./templates/ErrorView.hbs');
 module.exports = Marionette.ItemView.extend({
     template : tpl,
-    className : "col-md-12 colund",
+    className : "col-md-8 col-md-offset-2 column",
     contextEvents : {
         "route:completed": "unsetModel"
     },

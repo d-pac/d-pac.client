@@ -5,7 +5,7 @@ var tpl = require('./templates/JudgementDetailView.hbs');
 
 module.exports = Marionette.ItemView.extend({
     template : tpl,
-    className : "col-md-6 column",
+    className : "col-sm-6 column",
     ui : {
         notes : "textarea"
     },
