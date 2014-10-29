@@ -14,6 +14,7 @@ module.exports = {
                     'styles/fonts/{,*/}*.*',
                     'locales/**/*.*',
                     'viewerjs/**',
+                    'pdf/**/*.pdf',
                     'swf/**/*.*',
                     'scripts/core/config.json'
                 ]
