@@ -23,7 +23,8 @@ module.exports = Marionette.LayoutView.extend( {
         'WelcomeView',
         'NotFoundView',
         'AssessmentView',
-        'ErrorView'
+        'ErrorView',
+        'TutorialView'
     ],
     regions       : {
         menuRegion    : "#app-menu",

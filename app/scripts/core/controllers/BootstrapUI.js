@@ -7,8 +7,8 @@ var BootstrapUI = module.exports = function BootstrapUI( context ){
         collection : "errorsCollection"
     } );
     context.wireView( 'MenuView', require( '../views/MenuView' ), {
-        model : 'authService',
-        appVersion : 'appVersion',
+        model           : 'authService',
+        appVersion      : 'appVersion',
         pendingRequests : 'pendingRequests'
     } );
     context.wireView( 'AccountView', require( '../views/AccountView' ), {
@@ -22,6 +22,7 @@ var BootstrapUI = module.exports = function BootstrapUI( context ){
     context.wireView( 'WelcomeView', require( '../views/WelcomeView' ) );
     context.wireView( 'NotFoundView', require( '../views/404View' ) );
     context.wireView( 'LoadingView', require( '../views/LoadingView' ) );
+    context.wireView( 'TutorialView', require( '../views/TutorialView' ) );
 
     var appView = context.getObject( 'AppView' )();
     appView.render();

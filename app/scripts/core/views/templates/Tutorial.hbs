@@ -1,0 +1,100 @@
+<div id="assessment-content" class="row">
+    <div class="col-md-12 column">
+        <div id="assessment-progress" class="row">
+            <div class="col-md-8 col-md-offset-2 column">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                         aria-valuenow="1" aria-valuemin="0" aria-valuemax="10" data-toggle="tooltip"
+                         data-placement="bottom" style="width:10%">
+
+                    </div>
+
+                    <span>&nbsp; {{t "assessment:comparisons.progressbar.label" count=10 completed=1}}</span>
+
+                </div>
+            </div>
+        </div>
+        <div id="assessment-wizard" class="row">
+            <div class="col-md-12 column">
+                <div id="assessment-wizard-content" class="row">
+                    <div id="selection" class="col-md-8 col-md-offset-2 column">
+                        <div class="row">
+                            <div class="col-md-12 column">
+                                <div class="alert alert-info" role="alert">{{t "assessment:comparisons.judgement.description"}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" id="selection-buttons">
+                            <div class="col-sm-6 column text-center">
+                                <button id="select-left" type="button" class="btn btn-primary btn-md">
+                                    {{t "assessment:comparisons.judgement.leftButton.label"}}
+                                </button>
+                            </div>
+                            <div class="col-sm-6 column text-center">
+                                <button id="select-right" type="button" class="btn btn-primary btn-md">
+                                    {{t "assessment:comparisons.judgement.rightButton.label"}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div id="assessment-detail" class="col-md-8 col-md-offset-2 column">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>{{t "tutorial:assessment.title"}}</h2>
+                    </div>
+                </div>
+                <div class="row vspacer">
+                    <div class="col-md-12 column">
+                        <div id="explanation" class="fixed-panel panel panel-default">
+                            <p style="font-size: 14px;">{{t "tutorial:assessment.description"}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div id="assessment-representations" class="col-md-12 column">
+                <div id="representations" class="row">
+                    <div class="col-sm-6 column">
+                        <iframe id="viewer-left" src="viewerjs/#{{t "tutorial:representation.url"}}"
+                                class="viewerjs" data-toggle="tooltip" data-placement="top"
+                                allowfullscreen="" webkitallowfullscreen=""></iframe>
+                    </div>
+                    <div class="col-sm-6 column">
+                        <iframe src="viewerjs/#{{t "tutorial:representation.url"}}"
+                                class="viewerjs" data-toggle="tooltip" data-placement="top"
+                                allowfullscreen="" webkitallowfullscreen=""></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div id="assessment-judgements" class="col-md-12 column">
+                <div id="judgements" class="row">
+                    <div class="col-sm-6 column"><label for="notes-left"
+                                                        class="notes-label collapsed" data-toggle="collapse"
+                                                        >Notities</label>
+                        <textarea id="notes-left" data-toggle="tooltip" data-placement="top"
+                                  title="Noteer hier je opmerkingen bij deze tekst." class="form-control collapse"
+                                  rows="6"></textarea>
+                    </div>
+                    <div class="col-sm-6 column"><label for="notes-right"
+                                                        class="notes-label collapsed" data-toggle="collapse"
+                                                        >Notities</label>
+                        <textarea id="notes-right" data-toggle="tooltip" data-placement="top"
+                                  title="Noteer hier je opmerkingen bij deze tekst." class="form-control collapse"
+                                  rows="6"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row bspacer">
+
+        </div>
+    </div>
+</div>

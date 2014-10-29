@@ -15,7 +15,8 @@ module.exports = function SetupI18N( context ){
                 'login',
                 'welcome',
                 'assessment',
-                "errors"
+                "errors",
+                "tutorial"
             ],
             defaultNs  : 'common'
         }
