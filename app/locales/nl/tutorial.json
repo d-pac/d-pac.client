@@ -13,7 +13,7 @@
         },
         "representations": {
             "title": "Vergelijken",
-            "description": "Lees vervolgens beide papers.\nGebruik de knoppen rechts bovenaan om de tekst schermvullend te bekijken of te downloaden."
+            "description": "Lees vervolgens beide teksten.\nGebruik de knoppen rechts bovenaan om de tekst schermvullend te bekijken of te downloaden."
         },
         "notes": {
             "title": "Noteren",
@@ -21,7 +21,7 @@
         },
         "select": {
             "title": "Selecteer",
-            "description": "Wanneer je klaar bent kun je een van de twee papers kiezen als beste."
+            "description": "Wanneer je klaar bent kun je een van de twee teksten kiezen als beste."
         },
         "questions": {
             "title": "Vragen",

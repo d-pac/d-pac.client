@@ -23,6 +23,11 @@
                             class="label label-info">{{t "common:menu.text.label" user=user.name.first}}</span></p>
                 </li>
                 <li>
+                    <a href="{{t "common:menu.tutorial.href"}}"
+                       data-toggle="tooltip" data-placement="bottom"
+                       title="{{t "common:menu.tutorial.description"}}">{{t "common:menu.tutorial.label"}}</a>
+                </li>
+                <li>
                     <a href="{{t "common:menu.judge.href"}}"
                        data-toggle="tooltip" data-placement="bottom"
                        title="{{t "common:menu.judge.description"}}">{{t "common:menu.judge.label"}}</a>
@@ -33,16 +38,16 @@
                        title="{{t "common:menu.account.description"}}">{{t "common:menu.account.label"}}</a>
                 </li>
                 <li>
-                    <a href="{{t "common:menu.tutorial.href"}}"
-                       data-toggle="tooltip" data-placement="bottom"
-                       title="{{t "common:menu.tutorial.description"}}">{{t "common:menu.tutorial.label"}}</a>
-                </li>
-                <li>
                     <a href="{{t "common:menu.logout.href"}}"
                        data-toggle="tooltip" data-placement="bottom"
                        title="{{t "common:menu.logout.description"}}">{{t "common:menu.logout.label"}}</a>
                 </li>
             {{else}}
+                <li>
+                    <a href="{{t "common:menu.tutorial.href"}}"
+                       data-toggle="tooltip" data-placement="bottom"
+                       title="{{t "common:menu.tutorial.description"}}">{{t "common:menu.tutorial.label"}}</a>
+                </li>
                 <li>
                     <a href="{{t "common:menu.login.href"}}"
                        data-toggle="tooltip" data-placement="bottom"
