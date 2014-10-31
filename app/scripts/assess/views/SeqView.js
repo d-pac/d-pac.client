@@ -12,7 +12,8 @@ module.exports = Marionette.ItemView.extend( {
         valueButtons : ".value-buttons .btn"
     },
     events : {
-        "click @ui.saveButton" : "save"
+        "click @ui.saveButton" : "save",
+        "click @ui.valueButtons": "valueClicked"
     },
 
     initialize : function(opts){
@@ -32,12 +33,25 @@ module.exports = Marionette.ItemView.extend( {
         if(selected){
             this.$("label[data-value='"+ selected + "']" ).addClass('active');
         }
+        this.setButtonState(selected);
+    },
+
+    setButtonState : function(value){
+        this.$(this.ui.saveButton ).prop('disabled', !value);
+    },
+
+    getActiveValue : function(){
+        return this.$("label.active" ).attr('data-value');
+    },
+
+    valueClicked : function(e){
+        this.setButtonState(this.$(e.currentTarget).attr('data-value'));
     },
 
     save : _.debounce(function(){
         debug.debug('#save');
         this.model.set({
-            value : this.$("label.active" ).attr('data-value')
+            value : this.getActiveValue()
         });
         this.trigger("seq:edited");
     }, 1000, true)

@@ -7,7 +7,7 @@ module.exports = Backbone.Model.extend( {
 
     idAttribute : "_id",
     defaults : {
-        value      : 4,
+        value      : 0,
         phase      : undefined, // Phase.id
         comparison : undefined // Comparison.id
     },
