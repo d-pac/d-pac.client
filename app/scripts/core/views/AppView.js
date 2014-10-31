@@ -1,7 +1,6 @@
 'use strict';
 var debug = require( 'debug' )( 'dpac:core.views', '[AppView]' );
 var tpl = require( './templates/App.hbs' );
-//var AccountView = require('./AccountView');
 
 function viewFactory( viewName ){
     return function(){
@@ -19,7 +18,7 @@ module.exports = Marionette.LayoutView.extend( {
     wiring        : [
         'MenuView',
         'LoginView',
-        'AccountView',
+        //'AccountView',
         'WelcomeView',
         'NotFoundView',
         'AssessmentView',
@@ -35,7 +34,7 @@ module.exports = Marionette.LayoutView.extend( {
         'route:signin:completed'   : viewFactory( "LoginView" ),
         'route:welcome:completed'  : viewFactory( "WelcomeView" ),
         "route:assess:completed"   : viewFactory( "AssessmentView" ),
-        'route:account:completed'  : viewFactory( "AccountView" ),
+        //'route:account:completed'  : viewFactory( "AccountView" ),
         'route:tutorial:completed' : viewFactory( "TutorialView" ),
         'route:404:completed'      : viewFactory( "NotFoundView" )
     },

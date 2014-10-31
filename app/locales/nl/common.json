@@ -37,7 +37,7 @@
         "login": {
             "label": "Log in",
             "description": "Log in",
-            "href": "#account"
+            "href": "#signin"
         },
         "toggle": {
             "label": "Navigatie"

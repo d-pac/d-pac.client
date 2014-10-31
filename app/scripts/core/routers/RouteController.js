@@ -8,7 +8,7 @@ module.exports = Backbone.Router.extend( {
         "tutorial"  : "triggerTutorial",
         "signin"    : "routeToAccount",
         "assess"    : "routeToAssess",
-        "account"   : "routeToAccount",
+        //"account"   : "routeToAccount",
         ""          : "triggerWelcome",
         "*notfound" : "trigger404"
     },

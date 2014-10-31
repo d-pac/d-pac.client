@@ -11,9 +11,10 @@ var BootstrapUI = module.exports = function BootstrapUI( context ){
         appVersion      : 'appVersion',
         pendingRequests : 'pendingRequests'
     } );
-    context.wireView( 'AccountView', require( '../views/AccountView' ), {
-        model : "accountModel"
-    } );
+
+    //context.wireView( 'AccountView', require( '../views/AccountView' ), {
+    //    model : "accountModel"
+    //} );
     context.wireView( 'AssessmentView', require( '../views/factories/AssessmentViewFactory' ), {
         context : 'appContext'
     } );
