@@ -180,3 +180,9 @@
 nav.navbar{
     z-index: 1200;
 }
+
+.alert.alert-warning p,
+.alert.alert-info p{
+    font-size: larger;
+    font-weight: bold;
+}
