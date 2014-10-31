@@ -42,27 +42,29 @@ module.exports = Backbone.NestedModel.extend( {
 
     getStatus : function(){
         debug( '#getStatus' );
-        this._isRequesting = true;
-        this.unset( "user" );
-        this.fetch( {
-            success : function( data ){
-                this._isRequesting = false;
-                var user = this.get( "user" );
-                if( user ){
-                    this.set( "_id", user._id );
-                    this.set( "loggedin", true );
-                }else{
-                    this.unset( "_id" );
-                    this.set( "loggedin", false );
-                }
+        if(! this._isRequesting){
+            this._isRequesting = "status";
+            this.unset( "user" );
+            this.fetch( {
+                success : function( data ){
+                    this._isRequesting = false;
+                    var user = this.get( "user" );
+                    if( user ){
+                        this.set( "_id", user._id );
+                        this.set( "loggedin", true );
+                    }else{
+                        this.unset( "_id" );
+                        this.set( "loggedin", false );
+                    }
 
-                this.broadcast( 'AuthService:getStatus:succeeded', createServiceResponse( false, data ) );
-            }.bind( this )
-        } );
+                    this.broadcast( 'AuthService:getStatus:succeeded', createServiceResponse( false, data ) );
+                }.bind( this )
+            } );
+        }
     },
     signin    : function( creds ){
         debug( '#signin' );
-        this._isRequesting = true;
+        this._isRequesting = "signin";
         this.save( creds, {
             success : function( data ){
                 this._isRequesting = false;
@@ -89,7 +91,7 @@ module.exports = Backbone.NestedModel.extend( {
     },
 
     _signout : function(){
-        this._isRequesting = true;
+        this._isRequesting = "signout";
         this.destroy( {
             success : function( data ){
                 this._isRequesting = false;

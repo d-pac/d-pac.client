@@ -39,15 +39,19 @@ module.exports = Backbone.Marionette.ItemView.extend( {
     },
 
     setButtonStates : _.debounce( function(){
-        this.$( this.ui.saveButton ).prop( 'disabled', !this.isValid() );
+        debug("#setButtonState");
+        this.$( this.ui.saveButton ).prop( 'disabled', !this.isValid() || this.saving );
     }, 500 ),
 
     modelError : function( eventName ){
-        debug( 'MODEL ERROR', this.model );
+        this.success=this.saving=false;
+        this.render();
     },
 
     synced : function(){
+        debug("#synced");
         this.success=this.saving;
+        this.saving=false;
         this.render();
     },
 
@@ -60,6 +64,7 @@ module.exports = Backbone.Marionette.ItemView.extend( {
     save : function(){
         if( this.isValid() ){
             this.saving = true;
+            var $btn = this.$(this.ui.saveButton ).button('saving');
             this.model.save( {
                 name  : {
                     first : this.$( "#firstname" ).val(),
