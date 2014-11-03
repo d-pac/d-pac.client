@@ -19,6 +19,5 @@ module.exports = Marionette.ItemView.extend({
 
     notesChanged : _.debounce(function(){
         this.model.set( {notes: this.$(this.ui.notes ).val()});
-        console.log(this.model);
     }, 1000)
 });

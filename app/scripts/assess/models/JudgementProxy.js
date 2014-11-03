@@ -1,9 +1,9 @@
 'use strict';
 
 var debug = require( 'debug' )( 'dpac:assess.models', '[JudgementProxy]' );
-var teardown = require('../mixins/teardown');
+var teardown = require( '../mixins/teardown' );
 module.exports = Backbone.NestedModel.extend( {
-    config : undefined,
+    config      : undefined,
     idAttribute : "_id",
     defaults    : {
         assessment     : undefined,
@@ -11,10 +11,12 @@ module.exports = Backbone.NestedModel.extend( {
         comparison     : undefined,
         passed         : undefined,
         representation : undefined, //reference to RepresentationProxy instance [!]
-        notes           : undefined
+        notes          : undefined,
+        position       : undefined
     },
 
-    initialize : function(attrs, opts){
+    initialize : function( attrs,
+                           opts ){
         debug( '#initialize', this.id || '<new>' );
 
         //todo: don't know why but we have to do it like this, otherwise we get an error
@@ -22,13 +24,13 @@ module.exports = Backbone.NestedModel.extend( {
         var saveModel = function(){
             model.save();
         };
-        this.on( 'change:passed', saveModel);
-        this.on( 'change:notes', saveModel);
+        this.on( 'change:passed', saveModel );
+        this.on( 'change:notes', saveModel );
     },
 
     onTeardown : function(){
         debug( "#teardown" );
-        this.off('change');
+        this.off( 'change' );
     }
 
 } );
