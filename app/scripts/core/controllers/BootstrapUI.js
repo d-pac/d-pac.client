@@ -22,7 +22,7 @@ var BootstrapUI = module.exports = function BootstrapUI( context ){
     context.wireView( 'AppView', require( '../views/AppView' ) );
     context.wireView( 'WelcomeView', require( '../views/WelcomeView' ) );
     context.wireView( 'NotFoundView', require( '../views/404View' ) );
-    context.wireView( 'LoadingView', require( '../views/LoadingView' ) );
+    context.wireView( 'RecoverView', require( '../views/RecoverView' ) );
     context.wireView( 'TutorialView', require( '../views/TutorialView' ) );
 
     var appView = context.getObject( 'AppView' )();

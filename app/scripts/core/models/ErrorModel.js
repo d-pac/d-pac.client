@@ -9,6 +9,7 @@ module.exports = Backbone.Model.extend( {
         code        : undefined,
         requestUUID : undefined,
         url         : undefined,
+        fatal       : false,
         dumped      : false
     },
 
@@ -31,7 +32,7 @@ module.exports = Backbone.Model.extend( {
                 if( !_.isArray( explanation ) ){
                     explanation = [explanation];
                 }
-                _.each( explanation, function(line){
+                _.each( explanation, function( line ){
                     message.push( this._getLocalized( line ) );
                 }, this );
 

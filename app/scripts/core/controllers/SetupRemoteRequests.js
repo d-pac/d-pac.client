@@ -20,6 +20,11 @@ _.extend( SetupRemoteRequests.prototype, {
         var config = this.config;
         var dispatch = this.dispatch;
         var pendingRequests = this.pendingRequests;
+
+        $.ajaxSetup( {
+            timeout : 3000
+        } );
+
         var backboneSync = Backbone.sync;
         Backbone.sync = function( method,
                                   model,
@@ -43,35 +48,39 @@ _.extend( SetupRemoteRequests.prototype, {
             options.beforeSend = function( xhr ){
                 xhr.setRequestHeader( 'Request-UUID', rid );
                 requestLog( "\u279C", methodMap[method], options.url, "(" + rid + ")" );
-                pendingRequests.add({
-                    url : options.url,
+                pendingRequests.add( {
+                    url  : options.url,
                     uuid : rid
-                });
+                } );
             };
 
             var errorCallback = options.error;
             options.error = function( xhr ){
                 var requestUUID = xhr.getResponseHeader( 'Request-UUID' );
                 requestLog( "\u2718", methodMap[method], options.url, "(" + requestUUID + ")" );
-                pendingRequests.removeByUUID(requestUUID);
+                pendingRequests.removeByUUID( requestUUID );
                 var errObj;
                 if( xhr.responseJSON ){
                     errObj = {
                         err         : xhr.responseJSON,
                         requestUUID : requestUUID,
-                        url         : options.url
+                        url         : options.url,
+                        fatal       : false
                     }
                 }else{
+                    console.log( 'CONNECTION LOST OR TIME OUT' );
                     //something went REALLY wrong, most probably the server has died
                     errObj = {
-                        err : { //let's fake an error object
-                            code : 0,
-                            message : "Server unreachable.",
+                        err   : { //let's fake an error object
+                            code        : 0,
+                            message     : "Server unreachable.",
                             explanation : "Could not connect."
                         },
-                        url : options.url
+                        url   : options.url,
+                        fatal : true
                     }
                 }
+                console.error("REMOTE REQUEST ERROR", errObj);
                 dispatch( "backbone:sync:error", errObj );
                 errorCallback.apply( null, arguments );
             };
@@ -82,7 +91,7 @@ _.extend( SetupRemoteRequests.prototype, {
                                         xhr ){
                 var requestUUID = xhr.getResponseHeader( 'Request-UUID' );
                 requestLog( "\u2714", methodMap[method], options.url, "(" + requestUUID + ")" );
-                pendingRequests.removeByUUID(requestUUID);
+                pendingRequests.removeByUUID( requestUUID );
                 successCallback.apply( null, arguments );
             };
 

@@ -4,8 +4,8 @@ var tpl = require( './templates/App.hbs' );
 
 function viewFactory( viewName ){
     return function(){
-        if(! this[viewName]){
-            throw new Error(viewName + ' not yet implemented!');
+        if( !this[viewName] ){
+            throw new Error( viewName + ' not yet implemented!' );
         }
         var view = this[viewName]();
         this.contentRegion.show( view );
@@ -23,7 +23,8 @@ module.exports = Marionette.LayoutView.extend( {
         'NotFoundView',
         'AssessmentView',
         'ErrorView',
-        'TutorialView'
+        'TutorialView',
+        'RecoverView'
     ],
     regions       : {
         menuRegion    : "#app-menu",
@@ -36,7 +37,8 @@ module.exports = Marionette.LayoutView.extend( {
         "route:assess:completed"   : viewFactory( "AssessmentView" ),
         //'route:account:completed'  : viewFactory( "AccountView" ),
         'route:tutorial:completed' : viewFactory( "TutorialView" ),
-        'route:404:completed'      : viewFactory( "NotFoundView" )
+        'route:404:completed'      : viewFactory( "NotFoundView" ),
+        "backbone:sync:error"      : viewFactory( "RecoverView" )
     },
 
     initialize : function(){
@@ -47,6 +49,13 @@ module.exports = Marionette.LayoutView.extend( {
         debug( '#render' );
         this.menuRegion.show( new this.MenuView() );
         this.errorRegion.show( new this.ErrorView() );
+    },
+
+    destroyContent : function( err ){
+        console.log( 'destroycontent', err );
+        if( err.fatal ){
+            this.contentRegion.empty();
+        }
     }
 
 } );
