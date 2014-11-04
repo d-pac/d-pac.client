@@ -128,11 +128,11 @@
 
 #size-warning{
     position: absolute;
-    width: 400px;
+    width: 200px;
 
     top:100px;
     left : 50%;
-    margin-left: -200px;
+    margin-left: -100px;
 }
 
 @media (max-width:800px){
