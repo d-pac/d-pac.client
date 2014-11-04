@@ -96,13 +96,6 @@ module.exports = Marionette.Controller.extend( {
     },
     mementoEditingCompleted : function(){
         debug( '#mementoEditingCompleted' );
-        var memento = this.mementosCollection.selected;
-        var allCompleted = memento.get('allCompleted');
-        this.mementosCollection.deselect();
-        if(allCompleted){
-            this.requestAssessmentSelection(allCompleted);
-        }else{
-            this.requestMementoCreation( this.assessmentsCollection.selected );
-        }
+        this.requestMementosCollection();
     }
 } );

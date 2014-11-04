@@ -79,7 +79,6 @@ module.exports = Marionette.Controller.extend( {
             this.dispatch( 'mementos:editing:completed' );
         }, this );
         this.comparison.set( { completed : true } );
-        this.progress.set("completedNum", this.progress.get("completedNum")+1);
     },
 
     logStart : function( phase ){
