@@ -25,7 +25,7 @@
         },
         "questions": {
             "title": "Vragen",
-            "description": "Hierna zullen je nog enkele vragen gesteld worden ivm je beoordeling."
+            "description": "Hierna stellen we je nog enkele bijkomende vragen:<ul><li>Aangeven hoe moeilijk je een bepaalde subtaak vindt (op een schaal van 1 tot 7)</li><li>Beargumenteren waarom je de ene tekst beter vindt dan de andere.</li><li>Aangeven of voor jou de teksten geslaagd of niet geslaagd zijn.</li>"
         },
         "thanks": {
             "title": "Bedankt",
