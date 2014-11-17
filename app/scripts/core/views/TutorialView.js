@@ -43,7 +43,8 @@ module.exports = Marionette.ItemView.extend( {
                 {
                     title     : i18n.t("tutorial:steps.thanks.title"),
                     content   : i18n.t("tutorial:steps.thanks.description"),
-                    orphan  : true
+                    element  : ".nav.navbar-nav",
+                    placement: "bottom"
                 }
             ],
             storage         : false,
