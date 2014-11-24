@@ -37,14 +37,16 @@ _.extend( MementoParser.prototype, Backbone.Events, {
 
         //representations
         result.representations = new Representations();
-        result.representations.add( memento.representations );
 
         //judgements
         result.judgements = new Judgements();
-        _.each( memento.judgements, function( judgement ){
-            judgement.representation = result.representations.get( judgement.representation );
-        } );
-        result.judgements.add( memento.judgements );
+
+        _.chain(memento.judgements)
+            .sortBy('position')
+            .each(function(judgement, index){
+                result.judgements.add(judgement, { at: index });
+                result.representations.add(judgement.representation, { at: index });
+            });
 
         //seqs
         result.seqs = new Seqs();
@@ -55,7 +57,7 @@ _.extend( MementoParser.prototype, Backbone.Events, {
         //progress
         result.progress = new Progress( memento.progress );
 
-        debug.debug( memento );
+        debug.debug( result );
         return result;
     },
 
