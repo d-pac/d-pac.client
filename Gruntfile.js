@@ -11,7 +11,7 @@ var konfy = require( 'konfy' );
 
 module.exports = function( grunt ){
     var pkg = grunt.file.readJSON('package.json');
-    process.env.APP_VERSION = pkg.version;
+    process.env.APP_VERSION = pkg.version + " (" + pkg.build + ")";
 
     if( grunt.option( 'env' ) ){
         process.env.NODE_ENV = grunt.option( 'env' );
@@ -23,7 +23,8 @@ module.exports = function( grunt ){
 
     // Load grunt tasks automatically
     require( 'jit-grunt' )( grunt, {
-        useminPrepare : 'grunt-usemin'
+        useminPrepare : 'grunt-usemin',
+        buildnumber: "grunt-build-number"
     } );
 
     // Configurable paths
@@ -36,7 +37,10 @@ module.exports = function( grunt ){
     // Define the configuration for all the tasks
     grunt.initConfig( require( 'load-grunt-configs' )( grunt, {
         config : config,
-        env : process.env
+        env : process.env,
+        buildnumber : {
+            files : ['package.json']
+        }
     } ) );
 
 //    console.log(grunt.config);
@@ -74,6 +78,7 @@ module.exports = function( grunt ){
     } );
 
     grunt.registerTask( 'build', [
+        'buildnumber',
         'clean:dist',
         'browserify',
         'useminPrepare',
