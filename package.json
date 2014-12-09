@@ -1,7 +1,7 @@
 {
   "name": "d-pac.client",
   "version": "0.3.0",
-  "build": "636",
+  "build": "637",
   "private": true,
   "devDependencies": {
     "aliasify": "^1.4.0",
