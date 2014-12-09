@@ -1,8 +1,10 @@
 'use strict';
 
-var debug = require( 'debug' )( 'dpac:core.controllers', '[SetupHandlebars]' );
+var Handlebars = require("hbsfy/runtime");
 
-module.exports = function SetupHandlebars(){
+var debug = require( 'debug' )( 'dpac:core.controllers', '[SetupHBSHelpers]' );
+
+module.exports = function SetupHBSHelpers(){
     debug( '#execute' );
 
     function translate( i18n_key,

@@ -52,12 +52,7 @@
   "browserify": {
     "transform": [
       "aliasify",
-      [
         "hbsfy",
-        {
-          "compiler": "Handlebars"
-        }
-      ],
       "brfs",
       "envify"
     ]
