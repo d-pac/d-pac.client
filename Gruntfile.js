@@ -101,5 +101,5 @@ module.exports = function( grunt ){
         'build'
     ] );
 
-    grunt.registerTask( 'deploy', ['build', 'rsync'] );
+    grunt.registerTask( 'deploy', ['build', 'rsync:app'] );
 };
