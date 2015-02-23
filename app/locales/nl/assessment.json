@@ -31,14 +31,14 @@
         },
         "judgement": {
             "title": "Beoordeel",
-            "description": "Geef aan welke tekst beter geschreven is in functie van  de competentie 'argumentatief schrijven'",
+            "description": "Geef aan welke oplossing beter is.",
             "leftButton": {
-                "label": "Linker tekst is beter",
-                "tooltip": "Klik om aan te duiden dat de linkse tekst beter is dan de rechtse."
+                "label": "Linker oplossing is beter",
+                "tooltip": "Klik om aan te duiden dat de linkse oplossing beter is dan de rechtse."
             },
             "rightButton": {
-                "label": "Rechter tekst is beter",
-                "tooltip": "Klik om aan te duiden dat de rechtse tekst beter is dan de linkse"
+                "label": "Rechter oplossing is beter",
+                "tooltip": "Klik om aan te duiden dat de rechtse oplossing beter is dan de linkse"
             }
         },
         "seq":{
@@ -68,7 +68,7 @@
         },
         "compare":{
             "title": "Vergelijk",
-            "description": "Beschrijf hier waarom je de ene tekst beter vond dan de andere",
+            "description": "Beschrijf hier waarom je de ene oplossing beter vond dan de andere",
             "submitButton": {
                 "label" : "Opslaan"
             }
@@ -89,11 +89,11 @@
             }
         },
         "representations": {
-            "tooltip": "Gebruik de knoppen rechts bovenaan om de paper fullscreen te bekijken of te downloaden."
+            "tooltip": "Gebruik de knoppen rechts bovenaan om de oplossing fullscreen te bekijken of te downloaden."
         },
         "notes" : {
             "label" : "Notities",
-            "tooltip" : "Noteer hier je opmerkingen bij deze tekst."
+            "tooltip" : "Noteer hier je opmerkingen bij deze oplossing."
         },
         "completed": {
             "label" : "Uw beoordeling wordt bewaard. Even geduld."

@@ -13,7 +13,7 @@
         },
         "representations": {
             "title": "Vergelijken",
-            "description": "Lees vervolgens beide teksten.\nGebruik de knoppen rechts bovenaan om de tekst schermvullend te bekijken of te downloaden."
+            "description": "Lees vervolgens beide oplossingen.\nGebruik de knoppen rechts bovenaan om de oplossing schermvullend te bekijken of te downloaden."
         },
         "notes": {
             "title": "Noteren",
@@ -21,11 +21,11 @@
         },
         "select": {
             "title": "Selecteer",
-            "description": "Wanneer je klaar bent kun je een van de twee teksten kiezen als beste."
+            "description": "Wanneer je klaar bent kun je een van de twee oplossingen kiezen als beste."
         },
         "questions": {
             "title": "Vragen",
-            "description": "Hierna stellen we je nog enkele bijkomende vragen:<ul><li>Aangeven hoe moeilijk je een bepaalde subtaak vindt (op een schaal van 1 tot 7)</li><li>Beargumenteren waarom je de ene tekst beter vindt dan de andere.</li><li>Aangeven of voor jou de teksten geslaagd of niet geslaagd zijn.</li>"
+            "description": "Hierna dien je te beargumenteren waarom je de ene oplossing beter vindt dan de andere."
         },
         "thanks": {
             "title": "Bedankt",
