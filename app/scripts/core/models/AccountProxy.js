@@ -2,7 +2,7 @@
 var debug = require( 'debug' )( 'dpac:core.models', '[AccountProxy]' );
 module.exports = Backbone.NestedModel.extend( {
     idAttribute : "_id",
-    url         : '/me/account',
+    url         : '/user',
     defaults    : {
         name             : {
             first : undefined,
@@ -14,7 +14,8 @@ module.exports = Backbone.NestedModel.extend( {
         organization     : {
             _id  : undefined,
             name : undefined
-        }
+        },
+        //assessments: ?
     },
 
     initialize : function(){

@@ -5,7 +5,7 @@ var teardown = require( '../mixins/teardown' );
 
 module.exports = Backbone.Collection.extend( {
 
-    url           : '/me/mementos',
+    url           : '/user/mementos',
     wiring        : {
         model : 'MementoModel'
     },
@@ -17,6 +17,10 @@ module.exports = Backbone.Collection.extend( {
         debug( '#initialize' );
         Backbone.Select.One.applyTo( this, models );
         this.on( 'deselect:one', this.teardownModel, this );
+    },
+
+    parse : function(response){
+        return response.data;
     },
 
     hasActive : function(){

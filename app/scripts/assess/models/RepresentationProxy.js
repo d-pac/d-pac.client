@@ -1,16 +1,19 @@
 'use strict';
 
 var debug = require( 'debug' )( 'dpac:assess.models', '[RepresentationProxy]' );
-var teardown = require('../mixins/teardown');
+var teardown = require( '../mixins/teardown' );
 module.exports = Backbone.NestedModel.extend( {
     idAttribute : "_id",
 
     defaults : {
-        assessee   : undefined,
+        name       : undefined,
+        createdBy  : undefined,
         assessment : undefined,
-        ext        : undefined,
-        mimeType   : undefined,
-        url        : undefined
+        document   : {
+            ext      : undefined,
+            mimeType : undefined,
+            href     : undefined
+        }
     },
 
     initialize : function(){

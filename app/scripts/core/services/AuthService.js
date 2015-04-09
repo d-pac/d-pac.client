@@ -6,7 +6,7 @@ var sessionCount = 0;
 
 module.exports = Backbone.NestedModel.extend( {
 
-    url           : '/me/session',
+    url           : '/session',
     idAttribute   : "_id",
     wiring        : ["pendingRequests"],
     defaults      : {
@@ -46,7 +46,7 @@ module.exports = Backbone.NestedModel.extend( {
             this._isRequesting = "status";
             this.unset( "user" );
             this.fetch( {
-                success : function( data ){
+                success : function( response ){
                     this._isRequesting = false;
                     var user = this.get( "user" );
                     if( user ){
@@ -57,7 +57,7 @@ module.exports = Backbone.NestedModel.extend( {
                         this.set( "loggedin", false );
                     }
 
-                    this.broadcast( 'AuthService:getStatus:succeeded', createServiceResponse( false, data ) );
+                    this.broadcast( 'AuthService:getStatus:succeeded', response.data );
                 }.bind( this )
             } );
         }
@@ -66,17 +66,17 @@ module.exports = Backbone.NestedModel.extend( {
         debug( '#signin' );
         this._isRequesting = "signin";
         this.save( creds, {
-            success : function( data ){
+            success : function( response ){
                 this._isRequesting = false;
                 this.set( "_id", this.get( "user._id" ) );
                 this.set( "loggedin", true );
-                this.broadcast( 'AuthService:signin:succeeded', createServiceResponse( false, data ) )
+                this.broadcast( 'AuthService:signin:succeeded', response.data )
             }.bind( this ),
             error   : function( model,
                                 response,
                                 options ){
                 this.clear();
-                this.broadcast( 'AuthService:signin:failed', createServiceResponse( response ) );
+                this.broadcast( 'AuthService:signin:failed', createServiceResponse( response.errors ) );
             }.bind( this )
         } );
     },
@@ -93,10 +93,10 @@ module.exports = Backbone.NestedModel.extend( {
     _signout : function(){
         this._isRequesting = "signout";
         this.destroy( {
-            success : function( data ){
+            success : function( response ){
                 this._isRequesting = false;
                 this.clear();
-                this.broadcast( 'AuthService:signout:succeeded', createServiceResponse( false ) );
+                this.broadcast( 'AuthService:signout:succeeded' );
             }.bind( this )
         } );
     }

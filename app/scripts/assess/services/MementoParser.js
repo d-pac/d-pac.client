@@ -3,8 +3,6 @@ var debug = require( 'debug' )( 'dpac:assess', '[MementoParser]' );
 var Comparison = require( '../models/ComparisonProxy' );
 var Phases = require( '../collections/PhasesCollection' );
 var Representations = require( '../collections/RepresentationsCollection' );
-var Judgements = require( '../collections/JudgementsCollection' );
-var Seqs = require( '../collections/SeqsCollection' );
 var Progress = require('../models/ProgressModel');
 
 var MementoParser = module.exports = function MementoParser(){
@@ -37,22 +35,6 @@ _.extend( MementoParser.prototype, Backbone.Events, {
 
         //representations
         result.representations = new Representations();
-
-        //judgements
-        result.judgements = new Judgements();
-
-        _.chain(memento.judgements)
-            .sortBy('position')
-            .each(function(judgement, index){
-                result.judgements.add(judgement, { at: index });
-                result.representations.add(judgement.representation, { at: index });
-            });
-
-        //seqs
-        result.seqs = new Seqs();
-        if( memento.seqs ){
-            result.seqs.add( memento.seqs );
-        }
 
         //progress
         result.progress = new Progress( memento.progress );

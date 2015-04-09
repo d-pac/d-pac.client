@@ -20,8 +20,6 @@ module.exports = Marionette.Controller.extend( {
         this.context.wireValue( 'currentComparison', this.comparison );
         this.context.wireValue( 'currentPhases', phases );
         this.context.wireValue( 'currentRepresentations', representations );
-        this.context.wireValue( 'currentJudgements', this.memento.get( 'judgements' ) );
-        this.context.wireValue( 'currentSeqs', this.memento.get( 'seqs' ) );
         this.context.wireValue( 'currentProgress', this.progress );
 
         representations.selectByID( this.comparison.get( 'selected' ) );
@@ -41,8 +39,6 @@ module.exports = Marionette.Controller.extend( {
         this.context.release( 'currentComparison' );
         this.context.release( 'currentPhases' );
         this.context.release( 'currentRepresentations' );
-        this.context.release( 'currentJudgements' );
-        this.context.release( 'currentSeqs' );
         this.context.release( 'currentProgress' );
 
         this.stopListening();

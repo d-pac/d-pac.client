@@ -9,6 +9,7 @@ module.exports = Backbone.Model.extend( {
         description    : undefined,
         state          : undefined,
         phases         : [],
+        order          : 0,
         comparisonsNum : 0
     },
 

@@ -6,7 +6,7 @@ var teardown = require( '../mixins/teardown' );
 var ModelClass = require( '../models/AssessmentProxy' );
 
 module.exports = Backbone.Collection.extend( {
-    url           : '/me/assessments',
+    url           : '/user/assessments',
     model         : ModelClass,
     contextEvents : {
         'assessment:teardown:requested' : "teardown"
@@ -15,6 +15,10 @@ module.exports = Backbone.Collection.extend( {
     initialize : function( models ){
         debug( '#initialize' );
         Backbone.Select.One.applyTo( this, models );
+    },
+
+    parse : function(response){
+       return response.data;
     },
 
     selectByID : function( id ){

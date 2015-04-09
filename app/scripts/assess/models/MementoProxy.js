@@ -6,10 +6,8 @@ module.exports = Backbone.Model.extend( {
 
     defaults : {
         comparison      : undefined,
-        judgements      : undefined,
         phases          : undefined,
         representations : undefined,
-        seqs            : undefined,
         progress        : undefined
     },
 
@@ -42,10 +40,7 @@ module.exports = Backbone.Model.extend( {
         debug( "#teardown" );
         this.deselect( { silent : true } );
         this.get( 'comparison' ).teardown();
-        this.get( 'judgements' ).teardown();
-        this.get( 'phases' ).teardown();
         this.get( 'representations' ).teardown();
-        this.get( 'seqs' ).teardown();
         this.parser = undefined;
     }
 } );

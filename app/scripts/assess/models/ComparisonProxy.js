@@ -22,17 +22,19 @@ module.exports = Backbone.Model.extend( {
          */
         phase               : undefined,
         /**
-         * {String} HTML
-         */
-        comparativeFeedback : undefined,
-        /**
          * {Representation.id}
          */
         selected            : undefined, //Representation.id
         /**
          * {Boolean}
          */
-        completed           : undefined
+        completed           : undefined,
+
+        representations : {
+            a: undefined,
+            b: undefined
+        },
+        data : undefined
     },
 
     initialize : function(){
@@ -57,7 +59,7 @@ module.exports = Backbone.Model.extend( {
         //    model.save();
         //} );
 
-        this.on("change:selected change:phase change:comparativeFeedback change:completed", function(){
+        this.on("change:selected change:phase change:data change:completed", function(){
             model.save();
         });
     },
