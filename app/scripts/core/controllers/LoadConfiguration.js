@@ -11,7 +11,7 @@ _.extend( module.exports.prototype, {
         debug( '#execute' );
         konfy.load( {
             configFile: "scripts/core/config.json",
-            values: {
+            config: {
                 API_HOST: process.env.API_HOST,
                 APP_VERSION: process.env.APP_VERSION
             }
