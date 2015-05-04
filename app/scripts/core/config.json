@@ -12,5 +12,8 @@
     },
     "app":{
         "version" : "<%= APP_VERSION %>"
-    }
+    },
+  "slugs":{
+    "welcome": "tool-welcome"
+  }
 }
