@@ -12,7 +12,7 @@
             "href": "#"
         },
         "text" : {
-            "label" : "Welkom, __user__"
+            "label" : "Welkom, __userName__"
         },
         "judge": {
             "label": "Beoordeel",

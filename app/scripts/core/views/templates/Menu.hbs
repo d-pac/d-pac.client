@@ -17,10 +17,10 @@
 
     <div class="collapse navbar-collapse" id="primary-navigation">
         <ul class="nav navbar-nav navbar-right">
-            {{#if loggedin}}
+            {{#if authenticated}}
                 <li>
                     <p class="navbar-text"><span
-                            class="label label-info">{{t "common:menu.text.label" user=user.name.first}}</span></p>
+                            class="label label-info">{{t "common:menu.text.label" userName=user.name.first}}</span></p>
                 </li>
                 <li>
                     <a href="{{t "common:menu.tutorial.href"}}"
