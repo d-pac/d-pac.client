@@ -4,9 +4,9 @@ var debug = require( 'debug' )( 'dpac:core.controllers', '[BootstrapDomain]' );
 var BootstrapModels = module.exports = function BootstrapDomain(){
 };
 _.extend( BootstrapModels.prototype, {
-    wiring : ['config'],
+    wiring: [ 'config' ],
 
-    execute : function(){
+    execute: function(){
         debug( '#execute' );
         var context = this.context;
 
@@ -20,9 +20,10 @@ _.extend( BootstrapModels.prototype, {
         //context.wireSingleton( 'accountModel', require( '../models/AccountProxy' ) );
 
         context.wireSingleton( 'authService', require( '../services/AuthService' ) );
+        context.getObject( 'authService' );
 
         context.wireCommands( {
-            'route:signout:completed' : require( './Signout' )
+            'route:signout:completed': require( './Signout' )
         } );
 
     }

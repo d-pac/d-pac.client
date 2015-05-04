@@ -3,39 +3,39 @@ var debug = require( 'debug' )( 'dpac:core.views', '[MenuView]' );
 var tpl = require( './templates/Menu.hbs' );
 
 module.exports = Backbone.Marionette.ItemView.extend( {
-    appVersion : undefined,
-    pendingRequests : undefined,
+    config: undefined,
+    pendingRequests: undefined,
 
-    template    : tpl,
-    modelEvents : {
-        "change:loggedin" : "render"
+    template: tpl,
+    modelEvents: {
+        "change:loggedin": "render"
     },
 
-    initialize : function(){
+    initialize: function(){
         debug( '#initialize' );
     },
 
-    onRender : function(){
+    onRender: function(){
         var self = this;
         var client = new ZeroClipboard( this.$( "#copy-button" ) );
         client.on( "copy", function( event ){
-            console.log('COPYING');
+            console.log( 'COPYING' );
             var clipboard = event.clipboardData;
             var data = {
-                now : moment(),
-                url : window.location.href,
-                version : self.appVersion,
-                request : self.pendingRequests.getLastRequest(),
-                userAgent : navigator.userAgent
+                now: moment(),
+                url: window.location.href,
+                version: self.config.app.version,
+                request: self.pendingRequests.getLastRequest(),
+                userAgent: navigator.userAgent
             };
-            clipboard.setData( "text/plain", '```json\n'+JSON.stringify(data)+'\n```' );
+            clipboard.setData( "text/plain", '```json\n' + JSON.stringify( data ) + '\n```' );
         } );
     },
 
-    serializeData : function(){
+    serializeData: function(){
         var data = this.model.toJSON();
         _.defaults( data, {
-            appVersion : this.appVersion
+            appVersion: this.config.app.version
         } );
         return data;
     }
