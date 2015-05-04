@@ -18,8 +18,6 @@ _.extend( module.exports.prototype, {
         }, function( err,
                      config ){
             this.context.wireValue( 'config', config );
-            //this.context.wireValue( 'host', config.api.host );
-            //this.context.wireValue( 'appVersion', config.app.version );
             this.context.vent.trigger( 'config:load:completed' );
         }.bind( this ) );
     }

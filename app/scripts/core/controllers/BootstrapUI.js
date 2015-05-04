@@ -19,8 +19,16 @@ var BootstrapUI = module.exports = function BootstrapUI( context ){
         context : 'appContext'
     } );
     context.wireView( 'LoginView', require( '../views/LoginView' ) );
-    context.wireView( 'AppView', require( '../views/AppView' ) );
-    context.wireView( 'WelcomeView', require( '../views/WelcomeView' ) );
+    context.wireView( 'AppView', require( '../views/AppView' ), {
+        menuFactory : "MenuView",
+        errorViewFactory: "ErrorView",
+        signinFactory : "LoginView",
+        welcomeFactory: "WelcomeView",
+        notfoundFactory: "NotFoundView"
+    } );
+    context.wireView( 'WelcomeView', require( '../views/WelcomeView' ), {
+        collection: 'pagesCollection'
+    } );
     context.wireView( 'NotFoundView', require( '../views/404View' ) );
     context.wireView( 'RecoverView', require( '../views/RecoverView' ) );
     context.wireView( 'TutorialView', require( '../views/TutorialView' ) );

@@ -23,6 +23,10 @@ module.exports = Backbone.Collection.extend( {
         } );
     },
 
+    parse : function(raw){
+        return raw.data;
+    },
+
     dump : function(){
         debug("#dump");
         this.each( function( model ){

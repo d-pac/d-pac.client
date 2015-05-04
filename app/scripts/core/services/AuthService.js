@@ -6,93 +6,73 @@ var sessionCount = 0;
 
 module.exports = Backbone.NestedModel.extend( {
 
-    url           : '/session',
-    idAttribute   : "_id",
-    wiring        : ["pendingRequests"],
-    defaults      : {
-        loggedin : false,
-        isRequesting: false
+    url: '/session',
+    idAttribute: "_id",
+    wiring: [ "pendingRequests" ],
+    defaults: {
+        authenticated: false
     },
-    contextEvents : {
-        "backbone:sync:error" : "requestErrorHandler",
-        "login:status:requested": "getStatus"
+    contextEvents: {
+        "authentication:status:requested": "getStatus",
+        "authentication:signin:requested": "signin"
     },
 
-    initialize : function(){
+    initialize: function(){
         debug( '#initialize' );
     },
 
-    parse : function(raw){
+    parse: function( raw ){
         return {
             user: raw.data,
-            loggedin : !!raw.data,
-            isRequesting : false
+            authenticated: !!raw.data
         };
     },
 
-    broadcast : function( event,
-                          data ){
+    broadcast: function( event,
+                         data ){
         this.trigger( event, data );
         this.dispatch( event, data );
     },
 
-    isLoggedin : function(){
-        return this.get( 'loggedin' );
+    isAuthenticated: function(){
+        return this.get( 'authenticated' );
     },
 
-    requestErrorHandler : function(){
-        if(!this.isRequesting){
-            this.getStatus();
-        }else{
-            this.set('isRequesting', false);
-        }
-    },
-
-    getStatus : function(){
+    getStatus: function(){
         debug( '#getStatus' );
-        if(! this.isRequesting){
-            this.set('isRequesting', "status");
-            this.unset( "user" );
-            this.fetch( {
-                success : function( model ){
-                    this.broadcast( 'AuthService:getStatus:succeeded' );
-                }.bind( this )
-            } );
-        }
-    },
-    signin    : function( creds ){
-        debug( '#signin' );
-        this.set('isRequesting', "signin");
-        this.save( creds, {
-            success : function( response ){
-                this.broadcast( 'AuthService:signin:succeeded', response.data )
-            }.bind( this ),
-            error   : function( model,
-                                response,
-                                options ){
-                this.clear();
-                this.broadcast( 'AuthService:signin:failed', createServiceResponse( response.errors ) );
+        this.unset( "user" );
+        this.fetch( {
+            success: function(response){
+                this.broadcast( 'AuthService:getStatus:succeeded' );
             }.bind( this )
         } );
     },
-    signout   : function(){
-        debug( '#signout' );
-        this.broadcast( 'AuthService:signout:requested' );
-        if( this.pendingRequests.isEmpty() ){
-            this._signout();
-        }else{
-            this.pendingRequests.once( "requests:pending:empty", this._signout.bind( this ) );
-        }
+
+    signin: function( creds ){
+        debug( '#signin', creds );
+        this.save( creds, {
+            success: function( response ){
+                this.broadcast( 'authentication:signin:completed', response.data )
+            }.bind( this ),
+            error: function( model,
+                             response,
+                             options ){
+                this.clear();
+                this.broadcast( 'authentication:signin:completed', createServiceResponse( response.errors ) );
+            }.bind( this )
+        } );
     },
 
-    _signout : function(){
-        this.set('isRequesting', "signout");
+    signout: function(){
+        debug( '#signout' );
+        this.broadcast( 'AuthService:signout:requested' );
         this.destroy( {
-            success : function( response ){
-                this.clear();
+            success: function( response ){
                 this.broadcast( 'AuthService:signout:succeeded' );
             }.bind( this )
         } );
+        this.clear();
     }
+
 } );
 

@@ -12,25 +12,27 @@ _.extend( module.exports.prototype, {
 
         this.context.wireCommands( {
             'config:load:requested': [ require( './LoadConfiguration' ) ],
-            'bootstrap:core:requested': [
-                require( './BootstrapMetaDomain' ),
+            'app:domain:requested': [
+                require( './BootstrapDomain' ),
                 require( './SetupRemoteRequests' ),
                 require( './SetupClipboard' ),
                 require( './SetupHBSHelpers' ),
                 require( './SetupHBSPartials' ),
-                require( './BootstrapDomain' ),
                 require( './SetupI18N' )
             ],
-            'bootstrap:view:requested': [
+            'app:ui:requested': [
                 require( './BootstrapUI' ),
                 require( './BootstrapRouting' )
             ]
         } );
 
         instruct( this.context.vent )
-            .when( 'bootstrap:application:requested' ).then( 'config:load:requested' )
-            .when( 'config:load:completed' ).then( 'bootstrap:core:requested', 'login:status:requested' )
-            .when( 'SetupI18N:execution:completed', 'AuthService:getStatus:succeeded' ).then( 'bootstrap:view:requested' )
+            .when( 'bootstrap:application:requested' )
+                .then( 'config:load:requested' )
+            .when( 'config:load:completed' )
+                .then( 'app:domain:requested', 'authentication:status:requested', 'pages:collection:requested' )
+            .when( 'SetupI18N:execution:completed', 'AuthService:getStatus:succeeded', 'pages:collection:sync' )
+                .then( 'app:ui:requested' )
         ;
 
         //set off bootstrapping

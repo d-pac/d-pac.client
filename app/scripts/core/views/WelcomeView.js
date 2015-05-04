@@ -2,9 +2,10 @@
 var debug = require( 'debug' )( 'dpac:core.views', '[WelcomeView]' );
 var tpl = require( './templates/Welcome.hbs' );
 module.exports = Marionette.ItemView.extend( {
-    template : tpl,
+    template: tpl,
 
-    initialize : function(){
+    initialize: function(){
         debug( "#initialize" );
+        this.model = this.collection.get("tool-welcome");
     }
 } );

@@ -8,7 +8,7 @@ module.exports = Backbone.Marionette.ItemView.extend( {
 
     template: tpl,
     modelEvents: {
-        "change:loggedin": "render"
+        "change:authenticated": "render"
     },
 
     initialize: function(){
