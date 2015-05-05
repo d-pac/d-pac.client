@@ -10,9 +10,6 @@ _.extend( module.exports.prototype, {
         debug( '#execute' );
         var context = this.context;
 
-        context.wireSingleton( 'errorsCollection', require( '../collections/ErrorsCollection' ) );
-        context.configure('errorsCollection', undefined, this.config.errorlogs);
-
         context.wireSingleton( 'pendingRequests', require( '../collections/PendingRequestsCollection' ) );
         context.getObject( 'pendingRequests' );
 

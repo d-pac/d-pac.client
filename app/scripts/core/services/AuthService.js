@@ -43,7 +43,7 @@ module.exports = Backbone.NestedModel.extend( {
         this.unset( "user" );
         this.fetch( {
             success: function(response){
-                this.broadcast( 'AuthService:getStatus:succeeded' );
+                this.broadcast( 'authentication:status:completed' );
             }.bind( this )
         } );
     },
@@ -52,13 +52,13 @@ module.exports = Backbone.NestedModel.extend( {
         debug( '#signin', creds );
         this.save( creds, {
             success: function( response ){
-                this.broadcast( 'authentication:signin:completed', response.data )
+                this.broadcast( 'authentication:signin:succeeded', response.data );
             }.bind( this ),
             error: function( model,
                              response,
                              options ){
                 this.clear();
-                this.broadcast( 'authentication:signin:completed', createServiceResponse( response.errors ) );
+                this.broadcast( 'authentication:signin:failed' );
             }.bind( this )
         } );
     },

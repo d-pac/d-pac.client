@@ -31,7 +31,7 @@ _.extend( module.exports.prototype, {
                 .then( 'config:load:requested' )
             .when( 'config:load:completed' )
                 .then( 'app:domain:requested', 'authentication:status:requested', 'pages:collection:requested' )
-            .when( 'SetupI18N:execution:completed', 'AuthService:getStatus:succeeded', 'pages:collection:sync' )
+            .when( 'SetupI18N:execution:completed', 'authentication:status:completed', 'pages:collection:sync' )
                 .then( 'app:ui:requested' )
         ;
 

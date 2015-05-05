@@ -18,6 +18,9 @@ module.exports = Marionette.ItemView.extend( {
             messages = [ messages ];
         }
         _.each( messages, function( message ){
+            if( message.type === "error" ){
+                message.type = "danger";
+            }
             if( message.icon && message.icon !== true ){
                 switch( message.type ){
                     case "success":
@@ -32,13 +35,12 @@ module.exports = Marionette.ItemView.extend( {
                         break;
                 }
             }
-            message.id = "message-"+ Date.now()+ "-" + Math.random().toString().substr(2);
+            message.id = "message-" + Date.now() + "-" + Math.random().toString().substr( 2 );
         } );
+
         this.model = new Backbone.Model( {
             messages: messages
         } );
-        //$(".alert").fadeIn(3000 );
         this.render();
-        //$(message.id ).fadeIn(5000);
     }
 } );

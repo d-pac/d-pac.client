@@ -28,7 +28,6 @@ var BootstrapUI = module.exports = function BootstrapUI( context ){
         collection: 'pagesCollection'
     } );
     context.wireView( 'NotFoundView', require( '../views/404View' ) );
-    context.wireView( 'RecoverView', require( '../views/RecoverView' ) );
     context.wireView( 'TutorialView', require( '../views/TutorialView' ) );
 
     var appView = context.getObject( 'AppView' )();
@@ -38,16 +37,5 @@ var BootstrapUI = module.exports = function BootstrapUI( context ){
     var warning = new MinsizeWarning();
     warning.render();
 
-    context.dispatch( "app:show:messages", [
-        {
-            type: "success",
-            title: "bootstrap completed",
-            message: "YEAH!"
-        }, {
-            type: "info",
-            title: "Welcome",
-            message: "Very nice."
-        }
-    ] );
 };
 

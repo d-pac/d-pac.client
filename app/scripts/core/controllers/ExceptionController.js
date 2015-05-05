@@ -2,23 +2,44 @@
 var debug = require( 'debug' )( 'dpac:core', '[ExceptionController]' );
 
 module.exports = Marionette.Controller.extend( {
-    wiring        : ['errorsCollection'],
-    contextEvents : {
-        'backbone:sync:error' : "errorEventHandler"
+    contextEvents: {
+        'backbone:sync:error': "errorEventHandler"
     },
-    initialize    : function(){
+    initialize: function(){
         debug.log( '#initialize' );
 
-        var errorsCollection = this.errorsCollection;
-        window.onerror = function(message, file, line, col, err){
-            errorsCollection.add({
-                err : err
-            });
-        };
+        window.onerror = function( message,
+                                   file,
+                                   line,
+                                   col,
+                                   err ){
+            console.log( "ERROR occurred:", err );
+            this.errorEventHandler( {
+                errors: [
+                    {
+                        message: "Unknown Error",
+                        explanation: "Please contact"
+                    }
+                ]
+            } );
+        }.bind( this );
     },
 
-    errorEventHandler : function(attrs){
-        debug('#errorOccurred');
-        this.errorsCollection.add(attrs);
+    errorEventHandler: function( errObj ){
+        var messages = [];
+        _.each( errObj.errors, function( err ){
+            var title = err.message || "";
+            title = i18n.t( [ "errors:" + S( title ).slugify().s, title ] );
+            var message = err.explanation || "";
+            if( message ){
+                message = i18n.t( [ "errors:" + S( message ).slugify().s, message ] )
+            }
+            messages.push( {
+                type: "error",
+                title: title,
+                message: message
+            } );
+        }, this );
+        this.dispatch( 'app:show:messages', messages );
     }
 } );
