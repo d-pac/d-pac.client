@@ -14,7 +14,8 @@ module.exports = Backbone.NestedModel.extend( {
     },
     contextEvents: {
         "authentication:status:requested": "getStatus",
-        "authentication:signin:requested": "signin"
+        "authentication:signin:requested": "signin",
+        "authentication:signout:requested": "signout"
     },
 
     initialize: function(){
@@ -28,12 +29,6 @@ module.exports = Backbone.NestedModel.extend( {
         };
     },
 
-    broadcast: function( event,
-                         data ){
-        this.trigger( event, data );
-        this.dispatch( event, data );
-    },
-
     isAuthenticated: function(){
         return this.get( 'authenticated' );
     },
@@ -43,11 +38,11 @@ module.exports = Backbone.NestedModel.extend( {
         this.unset( "user" );
         this.fetch( {
             success: function( response ){
-                this.broadcast( 'authentication:status:completed' );
+                this.dispatch( 'authentication:status:completed' );
             }.bind( this ),
             error: function(){
                 this.clear();
-                this.broadcast( 'authentication:status:completed' );
+                this.dispatch( 'authentication:status:completed' );
             }.bind( this )
         } );
     },
@@ -56,23 +51,26 @@ module.exports = Backbone.NestedModel.extend( {
         debug( '#signin', creds );
         this.save( creds, {
             success: function( response ){
-                this.broadcast( 'authentication:signin:succeeded', response.data );
+                this.dispatch( 'authentication:signin:completed', response.data );
             }.bind( this ),
             error: function( model,
                              response,
                              options ){
                 this.clear();
-                this.broadcast( 'authentication:signin:failed' );
+                this.dispatch( 'authentication:signin:completed' );
             }.bind( this )
         } );
     },
 
     signout: function(){
         debug( '#signout' );
-        this.broadcast( 'AuthService:signout:requested' );
         this.destroy( {
             success: function( response ){
-                this.broadcast( 'AuthService:signout:succeeded' );
+                this.dispatch( 'authentication:signout:completed' );
+            }.bind( this ),
+            error: function( response ){
+                this.clear();
+                this.dispatch( 'authentication:signout:completed' );
             }.bind( this )
         } );
         this.clear();

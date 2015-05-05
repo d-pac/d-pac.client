@@ -10,7 +10,7 @@ module.exports = Marionette.LayoutView.extend( {
         passwordField: "#password"
     },
     contextEvents: {
-        "authentication:signin:failed": "emptyPassword"
+        "authentication:signin:completed": "handleResponse"
     },
     events: {
         "click @ui.loginButton": "signin"
@@ -20,7 +20,7 @@ module.exports = Marionette.LayoutView.extend( {
         debug( '#initialize' );
     },
 
-    emptyPassword: function(){
+    handleResponse: function(){
         this.ui.passwordField.val( '' );
     },
 

@@ -6,11 +6,22 @@ module.exports = Marionette.ItemView.extend( {
     template: tpl,
     className: "col-md-8 col-md-offset-2 column",
 
+    modelEvents: {
+        "change:messages": "render"
+    },
     contextEvents: {
-        "app:show:messages": "showMessages"
+        "app:show:messages": "showMessages",
+        "app:view:requested": "reset"
     },
     initialize: function( options ){
         debug( "#initialize" );
+        this.model = new Backbone.Model({
+            messages: []
+        });
+    },
+
+    reset : function(){
+        this.model.set('messages', []);
     },
     showMessages: function( messages ){
         debug( "showMessages", messages );
@@ -38,9 +49,6 @@ module.exports = Marionette.ItemView.extend( {
             message.id = "message-" + Date.now() + "-" + Math.random().toString().substr( 2 );
         } );
 
-        this.model = new Backbone.Model( {
-            messages: messages
-        } );
-        this.render();
+        this.model.set('messages', messages);
     }
 } );
