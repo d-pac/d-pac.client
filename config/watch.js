@@ -1,14 +1,14 @@
 module.exports = {
     js         : {
         files   : ['<%= config.app %>/scripts/**/*.js'],
-        tasks   : ['browserify'],
+        tasks   : ['webpack'],
         options : {
             livereload : true
         }
     },
     hbs : {
         files : [ '<%= config.app %>/**/*.hbs'],
-        tasks : ['browserify'],
+        tasks : ['webpack'],
         options : {
             livereload : true
         }

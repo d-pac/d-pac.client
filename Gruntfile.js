@@ -54,7 +54,7 @@ module.exports = function( grunt ){
 
         grunt.task.run( [
             'clean:server',
-            'browserify',
+            'webpack',
             'concurrent:server',
             'autoprefixer',
             'connect:livereload',
@@ -80,7 +80,7 @@ module.exports = function( grunt ){
     grunt.registerTask( 'build', [
         'buildnumber',
         'clean:dist',
-        'browserify',
+        'webpack',
         'useminPrepare',
         'concurrent:dist',
         'autoprefixer',
