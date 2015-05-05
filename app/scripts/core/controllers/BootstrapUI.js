@@ -3,26 +3,24 @@ var debug = require( 'debug' )( 'dpac:core.controllers', '[BootstrapUI]' );
 
 var BootstrapUI = module.exports = function BootstrapUI( context ){
     debug( '#execute' );
-    context.wireView( 'ErrorView', require( '../views/ErrorView' ), {
-        collection : "errorsCollection"
-    } );
+    context.wireView( 'MessagesView', require( '../views/MessagesView' ) );
     context.wireView( 'MenuView', require( '../views/MenuView' ), {
-        model           : 'authService',
-        config      : 'config',
-        pendingRequests : 'pendingRequests'
+        model: 'authService',
+        config: 'config',
+        pendingRequests: 'pendingRequests'
     } );
 
     //context.wireView( 'AccountView', require( '../views/AccountView' ), {
     //    model : "accountModel"
     //} );
     context.wireView( 'AssessmentView', require( '../views/factories/AssessmentViewFactory' ), {
-        context : 'appContext'
+        context: 'appContext'
     } );
     context.wireView( 'LoginView', require( '../views/LoginView' ) );
     context.wireView( 'AppView', require( '../views/AppView' ), {
-        menuFactory : "MenuView",
-        errorViewFactory: "ErrorView",
-        signinFactory : "LoginView",
+        menuFactory: "MenuView",
+        messagesViewFactory: "MessagesView",
+        signinFactory: "LoginView",
         welcomeFactory: "WelcomeView",
         notfoundFactory: "NotFoundView"
     } );
@@ -39,5 +37,17 @@ var BootstrapUI = module.exports = function BootstrapUI( context ){
     var MinsizeWarning = require( '../views/MinsizeWarning' );
     var warning = new MinsizeWarning();
     warning.render();
+
+    context.dispatch( "app:show:messages", [
+        {
+            type: "success",
+            title: "bootstrap completed",
+            message: "YEAH!"
+        }, {
+            type: "info",
+            title: "Welcome",
+            message: "Very nice."
+        }
+    ] );
 };
 

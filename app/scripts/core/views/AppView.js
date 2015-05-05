@@ -8,13 +8,14 @@ module.exports = Marionette.LayoutView.extend( {
 
     menuFactory : undefined,
     signinFactory : undefined,
-    errorViewFactory: undefined,
+    messagesViewFactory: undefined,
     welcomeFactory : undefined,
+
 
     regions: {
         menuRegion: "#app-menu",
         contentRegion: "#app-content",
-        errorRegion: "#app-errors"
+        messagesRegion: "#app-messages"
     },
     contextEvents: {
         'app:view:requested': "handleViewRequest"
@@ -27,7 +28,7 @@ module.exports = Marionette.LayoutView.extend( {
     onRender: function(){
         debug( '#render' );
         this.menuRegion.show( this.menuFactory() );
-        this.errorRegion.show( this.errorViewFactory() );
+        this.messagesRegion.show( this.messagesViewFactory() );
     },
 
     handleViewRequest: function( request ){

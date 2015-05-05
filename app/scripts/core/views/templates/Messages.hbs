@@ -1,0 +1,10 @@
+<div>
+    {{#each messages}}
+        <div id="{{id}}" class="alert alert-{{type}} alert-dismissable fade in" role="{{type}}">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{#if icon}}<i class="fa {{icon}} fa-2x pull-left"></i>{{/if}}
+            {{#if code}}<span class="badge alert-{{type}}">{{code}}</span>{{/if}}
+            <p><strong>{{{title}}}</strong> {{{message}}}</p>
+        </div>
+    {{/each}}
+</div>
