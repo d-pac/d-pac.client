@@ -1,0 +1,104 @@
+@import "../../bower_components/bootstrap-material-design/less/material.less";
+
+@primary: #6F9DD4;
+@info: #CCE2F4;
+
+.vspacer {
+    margin-top: 20px;
+}
+
+.bspacer {
+    height: 100px;
+}
+
+.notes-label:after {
+    font-family: 'Glyphicons Halflings';
+    content: "\e114";
+    float: right;
+    color: grey;
+}
+
+.notes-label.collapsed:after {
+    content: "\e080";
+}
+
+.fixed-panel{
+    max-height: 200px;
+    overflow-y: scroll;
+    padding: 20px;
+}
+
+/* N.B.: this is a <i>class</i>! */
+.textarea {
+    -moz-appearance: textfield-multiline;
+    -webkit-appearance: textarea;
+    border: 1px solid gray;
+    font: medium -moz-fixed;
+    font: -webkit-small-control;
+    overflow: auto;
+    padding: 2px;
+    resize: vertical;
+    height : 56px;
+}
+
+#size-warning{
+    position: absolute;
+    width: 200px;
+
+    top:100px;
+    left : 50%;
+    margin-left: -100px;
+}
+
+@media (max-width:800px){
+    #size-warning{
+        visibility: visible;
+    }
+    #app {
+        -webkit-filter: blur(10px);
+        -moz-filter: blur(10px);
+        -o-filter: blur(10px);
+        -ms-filter: blur(10px);
+        filter: blur(10px);
+    }
+}
+@media (min-width:800px){
+    #size-warning{
+        visibility: hidden;
+    }
+    #app {
+        -webkit-filter: initial;
+        -moz-filter: initial;
+        -o-filter: initial;
+        -ms-filter: initial;
+        filter: initial;
+    }
+}
+
+.viewerjs{
+    width:100%;
+    height:600px;
+}
+
+.tour-backdrop{
+    opacity: 0.7;
+}
+
+.popover.tour{
+    min-width: 300px;
+}
+
+.popover.tour .arrow{
+    visibility: hidden;
+}
+
+nav.navbar{
+    z-index: 1200;
+}
+
+h4{
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 700;
+    color: #959595;
+}

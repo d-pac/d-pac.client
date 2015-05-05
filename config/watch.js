@@ -20,8 +20,12 @@ module.exports = {
     gruntfile  : {
         files : ['Gruntfile.js']
     },
+    less : {
+        files : ['<%= config.app %>/styles/{,*/}*.less'],
+        tasks : ['less']
+    },
     styles     : {
-        files : ['<%= config.app %>/styles/{,*/}*.css'],
+        files : ['.tmp/styles/{,*/}*.css'],
         tasks : ['newer:copy:styles', 'autoprefixer']
     },
     livereload : {

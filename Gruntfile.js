@@ -54,6 +54,7 @@ module.exports = function( grunt ){
 
         grunt.task.run( [
             'clean:server',
+            'less',
             'webpack',
             'concurrent:server',
             'autoprefixer',
@@ -80,6 +81,7 @@ module.exports = function( grunt ){
     grunt.registerTask( 'build', [
         'buildnumber',
         'clean:dist',
+        'less',
         'webpack',
         'useminPrepare',
         'concurrent:dist',
