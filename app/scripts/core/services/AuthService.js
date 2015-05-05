@@ -42,7 +42,11 @@ module.exports = Backbone.NestedModel.extend( {
         debug( '#getStatus' );
         this.unset( "user" );
         this.fetch( {
-            success: function(response){
+            success: function( response ){
+                this.broadcast( 'authentication:status:completed' );
+            }.bind( this ),
+            error: function(){
+                this.clear();
                 this.broadcast( 'authentication:status:completed' );
             }.bind( this )
         } );

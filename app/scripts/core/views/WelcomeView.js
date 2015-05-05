@@ -6,6 +6,12 @@ module.exports = Marionette.ItemView.extend( {
 
     initialize: function(){
         debug( "#initialize" );
-        this.model = this.collection.get("tool-welcome");
+        this.model = this.collection.get( "tool-welcome" );
+        if( !this.model ){
+            this.collection.once( "sync", function(){
+                this.model = this.collection.get( "tool-welcome" )
+                this.render();
+            }.bind(this) );
+        }
     }
 } );
