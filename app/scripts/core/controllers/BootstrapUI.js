@@ -16,7 +16,9 @@ var BootstrapUI = module.exports = function BootstrapUI( context ){
     context.wireView( 'AssessmentView', require( '../views/factories/AssessmentViewFactory' ), {
         context: 'appContext'
     } );
-    context.wireView( 'LoginView', require( '../views/LoginView' ) );
+    context.wireView( 'LoginView', require( '../views/LoginView' ), {
+        model: "authService"
+    } );
     context.wireView( 'AppView', require( '../views/AppView' ), {
         menuFactory: "MenuView",
         messagesViewFactory: "MessagesView",

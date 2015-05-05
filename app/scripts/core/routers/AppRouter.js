@@ -19,9 +19,10 @@ module.exports = Backbone.Router.extend( {
         this.on( 'route', function( route ){
             debug('handle route', route);
             if( this.secured.indexOf( route ) >= 0 && !this.model.get("authenticated") ){
-                route = "#signin?from="+ route;
-                debug("redirect", route);
-                this.navigate(route);
+                var dest = "#signin?from="+ route;
+                route = "signin";
+                debug("redirect", dest);
+                this.navigate(dest);
             }
             this.dispatch( "app:view:requested", {
                 view: route

@@ -30,9 +30,5 @@ module.exports = Marionette.LayoutView.extend( {
             email: this.$( "#email" ).val(),
             password: this.$( "#password" ).val()
         } );
-        //this.authService.signin( {
-        //    email    : this.$( "#email" ).val(),
-        //    password : this.$( "#password" ).val()
-        //} );
     }
 } );
