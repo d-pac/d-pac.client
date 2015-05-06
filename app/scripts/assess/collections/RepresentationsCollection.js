@@ -1,6 +1,6 @@
 'use strict';
 var Backbone = require('backbone');
-
+var Select = require('backbone.select');
 var debug = require( 'debug' )( 'dpac:assess.collections', '[RepresentationsCollection]' );
 var teardown = require('../mixins/teardown');
 var ModelClass = require('../models/RepresentationProxy');
@@ -11,7 +11,7 @@ module.exports = Backbone.Collection.extend({
 
     initialize : function(models){
         debug('#initialize');
-        Backbone.Select.One.applyTo(this, models);
+        Select.One.applyTo(this, models);
     },
 
     selectByID : function(id){

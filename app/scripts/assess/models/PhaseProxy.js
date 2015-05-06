@@ -1,6 +1,6 @@
 'use strict';
 var Backbone = require('backbone');
-
+var Select = require('backbone.select');
 var S = require('string');
 var debug = require( 'debug' )( 'dpac:assess.models', '[PhaseProxy]' );
 var teardown = require('../mixins/teardown');
@@ -13,7 +13,7 @@ module.exports = Backbone.Model.extend( {
 
     initialize : function(){
         debug( '#initialize', this.id || '<new>' );
-        Backbone.Select.Me.applyTo( this );
+        Select.Me.applyTo( this );
     },
     get : function( attr ){
         if( typeof this["_get_" + attr] == 'function' ){

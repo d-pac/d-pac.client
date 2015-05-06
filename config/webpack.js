@@ -19,7 +19,8 @@ module.exports = function( grunt,
                             "debug": "bows/bows",
                             "konfy": "konfy/lib/browser",
                             "i18next": "i18next/i18next.commonjs.withJQuery",
-                            "zeroclipboard": "zeroclipboard/dist/ZeroClipboard"
+                            "zeroclipboard": "zeroclipboard/dist/ZeroClipboard",
+                            "backbone.select": "backbone.select/dist/amd/backbone.select"
                         },
                         packageAlias: "browser"
                     },

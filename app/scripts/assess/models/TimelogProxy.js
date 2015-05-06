@@ -1,6 +1,6 @@
 'use strict';
 var Backbone = require('backbone');
-
+var Select = require('backbone.select');
 var moment = require('moment');
 var debug = require( 'debug' )( 'dpac:assess', '[TimelogProxy]' );
 var teardown = require('../mixins/teardown');
@@ -16,7 +16,7 @@ module.exports = Backbone.Model.extend( {
 
     initialize : function(){
         debug( '#initialize', this.id || '<new>' );
-        Backbone.Select.Me.applyTo( this );
+        Select.Me.applyTo( this );
 
         var now = moment().format();
         this.set('begin', now);

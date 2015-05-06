@@ -1,6 +1,6 @@
 'use strict';
 var Backbone = require('backbone');
-
+var Select = require('backbone.select');
 var _ = require( 'underscore' );
 var Mousetrap = require( "mousetrap" );
 var debug = require( 'debug' )( 'dpac:assess', '[TimelogsCollection]' );
@@ -20,7 +20,7 @@ module.exports = Backbone.Collection.extend( {
     initialize: function( models,
                           opts ){
         debug( '#initialize' );
-        Backbone.Select.One.applyTo( this, models );
+        Select.One.applyTo( this, models );
 
         opts = _.defaults( {}, opts, {
             interval: 5000,

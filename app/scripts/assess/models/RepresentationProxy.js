@@ -1,6 +1,6 @@
 'use strict';
 var Backbone = require('backbone');
-
+var Select = require('backbone.select');
 var debug = require( 'debug' )( 'dpac:assess.models', '[RepresentationProxy]' );
 var teardown = require( '../mixins/teardown' );
 module.exports = Backbone.NestedModel.extend( {
@@ -19,7 +19,7 @@ module.exports = Backbone.NestedModel.extend( {
 
     initialize : function(){
         debug( '#initialize', this.id || '<new>' );
-        Backbone.Select.Me.applyTo( this );
+        Select.Me.applyTo( this );
     },
 
     onTeardown : function(){

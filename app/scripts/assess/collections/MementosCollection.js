@@ -1,5 +1,6 @@
 'use strict';
 var Backbone = require('backbone');
+var Select = require('backbone.select');
 
 var debug = require( 'debug' )( 'dpac:assess.collections', '[MementosCollection]' );
 var teardown = require( '../mixins/teardown' );
@@ -16,7 +17,7 @@ module.exports = Backbone.Collection.extend( {
 
     initialize : function( models ){
         debug( '#initialize' );
-        Backbone.Select.One.applyTo( this, models );
+        Select.One.applyTo( this, models );
         this.on( 'deselect:one', this.teardownModel, this );
     },
 
