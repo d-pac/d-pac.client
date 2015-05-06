@@ -1,6 +1,7 @@
 'use strict';
 
 var debug = require( 'debug' )( 'dpac:core.controllers', '[SetupRemoteRequests]' );
+var uuid = require( 'node-uuid' );
 var requestLog = require( 'debug' )( 'dpac:requests' );
 var methodMap = {
     'create': 'POST',
@@ -70,11 +71,13 @@ _.extend( SetupRemoteRequests.prototype, {
                     console.log( 'CONNECTION LOST OR TIME OUT' );
                     //something went REALLY wrong, most probably the server has died
                     errObj = {
-                        errors: [{ //let's fake an error object
-                            code: 0,
-                            message: "Server unreachable.",
-                            explanation: "Could not connect."
-                        }],
+                        errors: [
+                            { //let's fake an error object
+                                code: 0,
+                                message: "Server unreachable.",
+                                explanation: "Could not connect."
+                            }
+                        ],
                         url: options.url
                     }
                 }
