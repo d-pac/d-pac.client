@@ -36,6 +36,10 @@ module.exports = function( grunt,
                             {
                                 test: /bootstrap-tour/,
                                 loader: "imports?jQuery=jquery!exports?window.Tour"
+                            },
+                            {
+                                test: /backbone-nested-model/,
+                                loader: "imports?Backbone=backbone!exports?Backbone.NestedModel"
                             }
                         ]
                     },
