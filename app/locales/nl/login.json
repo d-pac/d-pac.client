@@ -9,7 +9,10 @@
     "label": "Wachtwoord",
     "description": "Vul uw wachtwoord in"
   },
-  "authenticated": "<p>Beste __userName__,</p><p>U bent reeds ingelogd.",
+  "authenticated": {
+    "title": "Welkom",
+    "message": "<p><strong>Beste __userName__,</strong></p><p>Klik hieronder om onmiddellijk te beginnen.</p>"
+  },
   "submit": {
     "label": "Verzend",
     "sending": "Even geduld..."

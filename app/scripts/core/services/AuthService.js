@@ -23,10 +23,13 @@ module.exports = Backbone.NestedModel.extend( {
     },
 
     parse: function( raw ){
-        return {
-            user: raw.data,
-            authenticated: !!raw.data
-        };
+        var attrs = {};
+        attrs.user = raw.data;
+        attrs.authenticated = !!raw.data;
+        if(attrs.user){
+            attrs._id = attrs.user._id
+        }
+        return attrs;
     },
 
     isAuthenticated: function(){
@@ -35,9 +38,8 @@ module.exports = Backbone.NestedModel.extend( {
 
     getStatus: function(){
         debug( '#getStatus' );
-        this.unset( "user" );
         this.fetch( {
-            success: function( response ){
+            success: function(){
                 this.dispatch( 'authentication:status:completed' );
             }.bind( this ),
             error: function(){
@@ -50,14 +52,18 @@ module.exports = Backbone.NestedModel.extend( {
     signin: function( creds ){
         debug( '#signin', creds );
         this.save( creds, {
-            success: function( response ){
-                this.dispatch( 'authentication:signin:completed', response.data );
+            success: function(){
+                this.dispatch( 'authentication:signin:completed', {
+                    authenticated: true
+                } );
             }.bind( this ),
             error: function( model,
                              response,
                              options ){
                 this.clear();
-                this.dispatch( 'authentication:signin:completed' );
+                this.dispatch( 'authentication:signin:completed', {
+                    authenticated: false
+                } );
             }.bind( this )
         } );
     },
@@ -66,6 +72,7 @@ module.exports = Backbone.NestedModel.extend( {
         debug( '#signout' );
         this.destroy( {
             success: function( response ){
+                this.clear();
                 this.dispatch( 'authentication:signout:completed' );
             }.bind( this ),
             error: function( response ){

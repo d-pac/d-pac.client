@@ -1,7 +1,7 @@
 'use strict';
 
-var debug = require( 'debug' )( 'dpac:core.views', '[LoginView]' );
-var tpl = require( './templates/Login.hbs' );
+var debug = require( 'debug' )( 'dpac:core.views', '[SigninView]' );
+var tpl = require( './templates/Signin.hbs' );
 
 module.exports = Marionette.LayoutView.extend( {
     template: tpl,
@@ -12,6 +12,9 @@ module.exports = Marionette.LayoutView.extend( {
     contextEvents: {
         "authentication:signin:completed": "handleResponse"
     },
+    modelEvents: {
+        "change:authenticated": "render"
+    },
     events: {
         "click @ui.loginButton": "signin"
     },
@@ -20,10 +23,16 @@ module.exports = Marionette.LayoutView.extend( {
         debug( '#initialize' );
     },
 
+    onDestroy : function(){
+        this._destroyed = true;
+    },
+
     handleResponse: function(){
-        this.ui.loginButton.prop('disabled', false);
-        this.ui.loginButton.button('reset');
-        this.ui.passwordField.val( '' );
+        if(! this._destroyed){
+            this.ui.loginButton.prop('disabled', false);
+            this.ui.loginButton.button('reset');
+            this.ui.passwordField.val( '' );
+        }
     },
 
     signin: function( event ){

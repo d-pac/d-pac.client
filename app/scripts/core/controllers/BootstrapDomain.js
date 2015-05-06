@@ -13,9 +13,6 @@ _.extend( module.exports.prototype, {
         context.wireSingleton( 'pendingRequests', require( '../collections/PendingRequestsCollection' ) );
         context.getObject( 'pendingRequests' );
 
-        context.wireSingleton( 'exceptionController', require( '../controllers/ExceptionController' ) );
-        context.getObject( 'exceptionController' );
-
         context.wireSingleton( 'authService', require( '../services/AuthService' ) );
         context.getObject( 'authService' );
 

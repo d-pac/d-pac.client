@@ -14,6 +14,7 @@ _.extend( module.exports.prototype, {
             'config:load:requested': [ require( './LoadConfiguration' ) ],
             'app:domain:requested': [
                 require( './BootstrapDomain' ),
+                require( './BootstrapMediators' ),
                 require( './SetupRemoteRequests' ),
                 require( './SetupClipboard' ),
                 require( './SetupHBSHelpers' ),
@@ -28,11 +29,11 @@ _.extend( module.exports.prototype, {
 
         instruct( this.context.vent )
             .when( 'bootstrap:application:requested' )
-                .then( 'config:load:requested' )
+            .then( 'config:load:requested' )
             .when( 'config:load:completed' )
-                .then( 'app:domain:requested', 'authentication:status:requested', 'pages:collection:requested' )
+            .then( 'app:domain:requested', 'authentication:status:requested', 'pages:collection:requested' )
             .when( 'SetupI18N:execution:completed', 'authentication:status:completed' )
-                .then( 'app:ui:requested' )
+            .then( 'app:ui:requested' )
         ;
 
         //set off bootstrapping

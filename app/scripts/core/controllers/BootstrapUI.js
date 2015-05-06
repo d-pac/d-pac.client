@@ -16,13 +16,13 @@ var BootstrapUI = module.exports = function BootstrapUI( context ){
     context.wireView( 'AssessmentView', require( '../views/factories/AssessmentViewFactory' ), {
         context: 'appContext'
     } );
-    context.wireView( 'LoginView', require( '../views/LoginView' ), {
+    context.wireView( 'SigninView', require( '../views/SigninView' ), {
         model: "authService"
     } );
     context.wireView( 'AppView', require( '../views/AppView' ), {
         menuFactory: "MenuView",
         messagesViewFactory: "MessagesView",
-        signinFactory: "LoginView",
+        signinFactory: "SigninView",
         welcomeFactory: "WelcomeView",
         notfoundFactory: "NotFoundView"
     } );

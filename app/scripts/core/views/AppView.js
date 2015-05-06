@@ -11,14 +11,13 @@ module.exports = Marionette.LayoutView.extend( {
     messagesViewFactory: undefined,
     welcomeFactory : undefined,
 
-
     regions: {
         menuRegion: "#app-menu",
         contentRegion: "#app-content",
         messagesRegion: "#app-messages"
     },
     contextEvents: {
-        'app:view:requested': "handleViewRequest"
+        'router:route:completed': "handleViewRequest"
     },
 
     initialize: function(){
@@ -32,14 +31,15 @@ module.exports = Marionette.LayoutView.extend( {
     },
 
     handleViewRequest: function( request ){
-        debug( "#handleViewRequest", request.view );
-        this.showView( request.view );
+        debug( "#handleViewRequest", request.route );
+        this.showView( request.route );
     },
 
     showView: function( viewName ){
         var fName =  viewName+ "Factory";
         if( !this[ fName ] ){
-            throw new Error( viewName + ' not yet implemented!' );
+            //throw new Error( viewName + ' not yet implemented!' );
+            return; //not all routes need a view
         }
         var view = this[ fName ]();
         this.contentRegion.show( view );

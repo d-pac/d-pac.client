@@ -6,10 +6,15 @@ module.exports = Backbone.Router.extend( {
         "welcome": "welcome",
         "tutorial": "tutorial",
         "signin": "signin",
+        "signout": "signout",
         "assess": "assess",
         "account": "account",
         "": "welcome",
         "*notfound": "notfound"
+    },
+
+    contextEvents: {
+        "router:route:requested": "navigateToRoute"
     },
 
     secured: [ "assess", "account" ],
@@ -17,16 +22,20 @@ module.exports = Backbone.Router.extend( {
     initialize: function(){
         debug( '#initialize' );
         this.on( 'route', function( route ){
-            debug('handle route', route);
-            if( this.secured.indexOf( route ) >= 0 && !this.model.get("authenticated") ){
-                var dest = "#signin?from="+ route;
+            debug( 'handle route', route );
+            if( this.secured.indexOf( route ) >= 0 && !this.model.get( "authenticated" ) ){
+                var dest = "#signin?from=" + route;
                 route = "signin";
-                debug("redirect", dest);
-                this.navigate(dest);
+                debug( "redirect", dest );
+                this.navigate( dest );
             }
-            this.dispatch( "app:view:requested", {
-                view: route
+            this.dispatch( "router:route:completed", {
+                route: route
             } );
         }.bind( this ) );
+    },
+
+    navigateToRoute: function( data ){
+        this.navigate( data.route, {trigger:true} );
     }
 } );
