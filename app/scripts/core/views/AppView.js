@@ -10,6 +10,7 @@ module.exports = Marionette.LayoutView.extend( {
     signinFactory : undefined,
     messagesViewFactory: undefined,
     welcomeFactory : undefined,
+    tutorialFactory : undefined,
 
     regions: {
         menuRegion: "#app-menu",

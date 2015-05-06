@@ -32,6 +32,10 @@ module.exports = function( grunt,
                             {
                                 test: /\.hbs$/,
                                 loader: "handlebars-loader"
+                            },
+                            {
+                                test: /bootstrap-tour/,
+                                loader: "imports?jQuery=jquery!exports?window.Tour"
                             }
                         ]
                     },
