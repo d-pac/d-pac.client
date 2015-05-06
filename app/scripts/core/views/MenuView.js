@@ -1,5 +1,6 @@
 'use strict';
 var ZeroClipboard = require( 'zeroclipboard' );
+var moment = require( 'moment' );
 
 var debug = require( 'debug' )( 'dpac:core.views', '[MenuView]' );
 var tpl = require( './templates/Menu.hbs' );
@@ -21,7 +22,6 @@ module.exports = Backbone.Marionette.ItemView.extend( {
         var self = this;
         var client = new ZeroClipboard( this.$( "#copy-button" ) );
         client.on( "copy", function( event ){
-            console.log( 'COPYING' );
             var clipboard = event.clipboardData;
             var data = {
                 now: moment(),
@@ -30,6 +30,7 @@ module.exports = Backbone.Marionette.ItemView.extend( {
                 request: self.pendingRequests.getLastRequest(),
                 userAgent: navigator.userAgent
             };
+            console.log( 'COPYING', data );
             clipboard.setData( "text/plain", '```json\n' + JSON.stringify( data ) + '\n```' );
         } );
     },

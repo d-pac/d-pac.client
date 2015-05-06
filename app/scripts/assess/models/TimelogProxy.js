@@ -1,5 +1,6 @@
 'use strict';
 
+var moment = require('moment');
 var debug = require( 'debug' )( 'dpac:assess', '[TimelogProxy]' );
 var teardown = require('../mixins/teardown');
 module.exports = Backbone.Model.extend( {
