@@ -1,5 +1,6 @@
 'use strict';
 
+require('./shims');
 require('./core/controllers/SetupDebugging')();
 
 

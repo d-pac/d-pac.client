@@ -1,9 +1,10 @@
 {
   "name": "d-pac.client",
   "version": "0.3.1",
-  "build": "652",
+  "build": "653",
   "private": true,
   "devDependencies": {
+    "exports-loader": "^0.6.2",
     "grunt": "~0.4.5",
     "grunt-autoprefixer": "^3.0.0",
     "grunt-build-number": "^1.0.0",
@@ -29,6 +30,7 @@
     "grunt-usemin": "^3.0.0",
     "grunt-webpack": "^1.0.8",
     "handlebars-loader": "^1.0.2",
+    "imports-loader": "^0.6.3",
     "jit-grunt": "^0.9.1",
     "jshint-stylish": "^1.0.2",
     "load-grunt-configs": "^0.4.0",
