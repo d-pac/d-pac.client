@@ -3,6 +3,7 @@
 var debug = require( 'debug' )( 'dpac:core.views', '[TutorialView]' );
 var tpl = require( './templates/Tutorial.hbs' );
 var popoverTpl = require( './templates/TutorialPopover.hbs' );
+var i18n = require( 'i18next' );
 
 module.exports = Marionette.ItemView.extend( {
     template   : tpl,

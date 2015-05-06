@@ -14,9 +14,11 @@ module.exports = function( grunt,
                         filename: "main.js"
                     },
                     resolve: {
+                        root: ["./bower_components"],
                         alias: {
-                            "debug": "bows",
-                            "konfy": "konfy/lib/browser"
+                            "debug": "bows/bows",
+                            "konfy": "konfy/lib/browser",
+                            "i18next": "i18next/i18next.commonjs.withJQuery"
                         },
                         packageAlias: "browser"
                     },
@@ -34,7 +36,10 @@ module.exports = function( grunt,
                             o[k] = JSON.stringify(process.env[k]);
                             return o;
                           }, {})
-                        })
+                        }),
+                        new webpack.ResolverPlugin(
+                            new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", ["main"])
+                        )
                     ]
                 }
             }

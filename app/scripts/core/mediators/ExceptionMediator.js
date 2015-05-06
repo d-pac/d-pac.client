@@ -1,5 +1,6 @@
 'use strict';
 var debug = require( 'debug' )( 'dpac:core', '[ExceptionMediator]' );
+var i18n = require( 'i18next' );
 
 module.exports = Marionette.Controller.extend( {
     contextEvents: {

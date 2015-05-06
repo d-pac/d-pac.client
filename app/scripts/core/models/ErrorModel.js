@@ -1,6 +1,7 @@
 'use strict';
 
 var debug = require( 'debug' )( 'dpac:core', '[ErrorModel]' );
+
 module.exports = Backbone.Model.extend( {
     defaults : {
         err         : undefined,

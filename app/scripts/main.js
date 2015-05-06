@@ -1,7 +1,6 @@
 'use strict';
 
 require('./core/controllers/SetupDebugging')();
-
 var debug = require('debug')( 'dpac:app' );
 debug( '*** starting up ***' );
 
