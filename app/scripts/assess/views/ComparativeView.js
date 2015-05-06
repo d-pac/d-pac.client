@@ -1,4 +1,5 @@
 'use strict';
+var _ = require( 'underscore' );
 
 var debug = require( 'debug' )( 'dpac:assess.views', '[ComparativeView]' );
 var tpl = require( './templates/ComparativeView.hbs' );

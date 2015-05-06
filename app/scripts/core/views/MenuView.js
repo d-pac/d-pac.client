@@ -1,4 +1,6 @@
 'use strict';
+var _ = require( 'underscore' );
+
 var ZeroClipboard = require( 'zeroclipboard' );
 var moment = require( 'moment' );
 

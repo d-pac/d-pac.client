@@ -1,17 +1,18 @@
 'use strict';
 
+var _ = require( 'underscore' );
 var debug = require( 'debug' )( 'dpac:assess', '[AssessmentContext]' );
 var eventLog = require( 'debug' )( 'dpac:assess.events', '\u2709' );
 
 module.exports = Backbone.Geppetto.Context.extend( {
-    initialize  : function(){
+    initialize: function(){
         debug( "#initialize" );
 
         var relay = function( event ){
             this.dispatch( event.eventName, event.eventData );
         }.bind( this );
 
-        this.parentContext.listen( this, "AuthService:signout:requested", relay);
+        this.parentContext.listen( this, "AuthService:signout:requested", relay );
 
         this.vent.on( 'all', function( eventName,
                                        event ){
@@ -19,17 +20,17 @@ module.exports = Backbone.Geppetto.Context.extend( {
         } );
         this.wireValue( 'assessmentContext', this );
         this.wireCommands( {
-            "assessment:startup:requested" : [
+            "assessment:startup:requested": [
                 require( './controllers/BootstrapDomain' ),
                 require( './controllers/AssessmentFlow' ),
                 require( './controllers/BootstrapUI' )
             ]
         } );
     },
-    start       : function(){
+    start: function(){
         this.dispatch( 'assessment:startup:requested' );
     },
-    getMainView : function(){
+    getMainView: function(){
         var factory = this.getObject( 'MainView' );
         var view = factory();
         view.on( 'render', function(){

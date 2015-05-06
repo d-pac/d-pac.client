@@ -1,4 +1,5 @@
 'use strict';
+var _ = require( 'underscore' );
 
 var debug = require( 'debug' )( 'dpac:core.controllers', '[SetupRemoteRequests]' );
 var uuid = require( 'node-uuid' );

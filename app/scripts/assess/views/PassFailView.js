@@ -1,4 +1,5 @@
 'use strict';
+var _ = require( 'underscore' );
 
 var debug = require( 'debug' )( 'dpac:assess.views', '[PassFailView]' );
 var tpl = require( './templates/PassFailView.hbs' );

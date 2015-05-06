@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require( 'underscore' );
 var Mousetrap = require( "mousetrap" );
 var debug = require( 'debug' )( 'dpac:assess', '[TimelogsCollection]' );
 var teardown = require( '../mixins/teardown' );

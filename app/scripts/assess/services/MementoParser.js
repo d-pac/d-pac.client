@@ -1,4 +1,6 @@
 'use strict';
+var _ = require( 'underscore' );
+
 var debug = require( 'debug' )( 'dpac:assess', '[MementoParser]' );
 var Comparison = require( '../models/ComparisonProxy' );
 var Phases = require( '../collections/PhasesCollection' );

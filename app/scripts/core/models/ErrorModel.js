@@ -1,4 +1,5 @@
 'use strict';
+var _ = require( 'underscore' );
 
 var S = require( 'string' );
 var i18n = require( "i18next" );

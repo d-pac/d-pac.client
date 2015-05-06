@@ -1,4 +1,7 @@
 'use strict';
+
+var _ = require( 'underscore' );
+
 var debug = require( 'debug' )( 'dpac:assess.controllers', '[BootstrapDomain]' );
 
 var BootstrapDomain = module.exports = function BootstrapDomain(){

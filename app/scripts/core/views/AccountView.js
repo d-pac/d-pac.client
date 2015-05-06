@@ -1,4 +1,6 @@
 'use strict';
+var _ = require( 'underscore' );
+
 var debug = require( 'debug' )( 'dpac:core.views', '[AccountView]' );
 var tpl = require( './templates/Account.hbs' );
 

@@ -1,4 +1,5 @@
 'use strict';
+var _ = require( 'underscore' );
 
 var debug = require( 'debug' )( 'dpac:assess.views', '[AssessmentSelectionView]' );
 var tpl = require( './templates/AssessmentSelection.hbs' );
