@@ -29,7 +29,7 @@ module.exports = Marionette.Controller.extend( {
             route: "signin"
         } );
         this.dispatch( 'app:show:messages', {
-            type: "success",
+            type: "info",
             title: "Uitgelogd",
             message: "U bent uitgelogd."
         } );
