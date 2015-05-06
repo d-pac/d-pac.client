@@ -21,11 +21,15 @@ module.exports = Marionette.LayoutView.extend( {
     },
 
     handleResponse: function(){
+        this.ui.loginButton.prop('disabled', false);
+        this.ui.loginButton.button('reset');
         this.ui.passwordField.val( '' );
     },
 
     signin: function( event ){
         debug( '#signin' );
+        this.ui.loginButton.prop('disabled', 'disabled');
+        this.ui.loginButton.button('sending');
         this.dispatch( "authentication:signin:requested", {
             email: this.$( "#email" ).val(),
             password: this.$( "#password" ).val()

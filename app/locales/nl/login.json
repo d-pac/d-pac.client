@@ -11,6 +11,7 @@
   },
   "authenticated": "<p>Beste __userName__,</p><p>U bent reeds ingelogd.",
   "submit": {
-    "label": "Verzend"
+    "label": "Verzend",
+    "sending": "Even geduld..."
   }
 }
