@@ -1,5 +1,6 @@
 'use strict';
 
+var S = require('string');
 var debug = require( 'debug' )( 'dpac:assess.models', '[PhaseProxy]' );
 var teardown = require('../mixins/teardown');
 module.exports = Backbone.Model.extend( {
