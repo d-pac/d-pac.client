@@ -1,4 +1,6 @@
 'use strict';
+var ZeroClipboard = require( 'zeroclipboard' );
+
 var debug = require( 'debug' )( 'dpac:core.views', '[MenuView]' );
 var tpl = require( './templates/Menu.hbs' );
 

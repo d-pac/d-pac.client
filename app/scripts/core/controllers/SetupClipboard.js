@@ -1,4 +1,5 @@
 'use strict';
+var ZeroClipboard = require( 'zeroclipboard' );
 var debug = require( 'debug' )( 'dpac:core', '[SetupClipboard]' );
 
 var SetupClipboard = module.exports = function SetupClipboard(){

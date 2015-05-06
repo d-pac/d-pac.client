@@ -18,7 +18,8 @@ module.exports = function( grunt,
                         alias: {
                             "debug": "bows/bows",
                             "konfy": "konfy/lib/browser",
-                            "i18next": "i18next/i18next.commonjs.withJQuery"
+                            "i18next": "i18next/i18next.commonjs.withJQuery",
+                            "zeroclipboard": "zeroclipboard/dist/ZeroClipboard"
                         },
                         packageAlias: "browser"
                     },
