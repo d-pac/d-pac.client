@@ -1,4 +1,5 @@
 'use strict';
+var Backbone = require('backbone');
 
 var debug = require( 'debug' )( 'dpac:assess.models', '[AssessmentProxy]' );
 var teardown = require( '../mixins/teardown' );

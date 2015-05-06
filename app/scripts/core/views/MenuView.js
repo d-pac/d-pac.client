@@ -1,5 +1,6 @@
 'use strict';
 var _ = require( 'underscore' );
+var Marionette = require('backbone.marionette');
 
 var ZeroClipboard = require( 'zeroclipboard' );
 var moment = require( 'moment' );
@@ -7,7 +8,7 @@ var moment = require( 'moment' );
 var debug = require( 'debug' )( 'dpac:core.views', '[MenuView]' );
 var tpl = require( './templates/Menu.hbs' );
 
-module.exports = Backbone.Marionette.ItemView.extend( {
+module.exports = Marionette.ItemView.extend( {
     config: undefined,
     pendingRequests: undefined,
 

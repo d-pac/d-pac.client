@@ -1,4 +1,5 @@
 'use strict';
+var Backbone = require('backbone');
 var debug = require( 'debug' )( 'dpac:core.models', '[AccountProxy]' );
 module.exports = Backbone.NestedModel.extend( {
     idAttribute : "_id",

@@ -1,10 +1,11 @@
 'use strict';
 var _ = require( 'underscore' );
+var Marionette = require('backbone.marionette');
 
 var debug = require( 'debug' )( 'dpac:core.views', '[AccountView]' );
 var tpl = require( './templates/Account.hbs' );
 
-module.exports = Backbone.Marionette.ItemView.extend( {
+module.exports = Marionette.ItemView.extend( {
     template    : tpl,
     modelEvents : {
         "error" : "modelError",

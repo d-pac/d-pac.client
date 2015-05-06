@@ -1,10 +1,12 @@
 'use strict';
 
 var _ = require( 'underscore' );
+var Backbone = require('backbone');
+var Geppetto = require('backbone.geppetto');
 var debug = require( 'debug' )( 'dpac:assess', '[AssessmentContext]' );
 var eventLog = require( 'debug' )( 'dpac:assess.events', '\u2709' );
 
-module.exports = Backbone.Geppetto.Context.extend( {
+module.exports = Geppetto.Context.extend( {
     initialize: function(){
         debug( "#initialize" );
 

@@ -1,4 +1,5 @@
 'use strict';
+var Backbone = require('backbone');
 
 var debug = require( 'debug' )( 'dpac:assess.collections', '[PhasesCollection]' );
 var teardown = require('../mixins/teardown');

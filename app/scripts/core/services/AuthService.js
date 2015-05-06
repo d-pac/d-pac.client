@@ -1,4 +1,5 @@
 'use strict';
+var Backbone = require('backbone');
 
 var debug = require( 'debug' )( 'dpac:core.services', '[AuthService]' );
 var createServiceResponse = require( '../helpers/createServiceResponse' );

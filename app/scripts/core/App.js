@@ -1,13 +1,14 @@
 'use strict';
-
+var Marionette = require('backbone.marionette');
+var Geppetto = require('backbone.geppetto');
 var debug = require( 'debug' )( 'dpac:app', '[Context]' );
 var eventLog = require( 'debug' )( 'dpac:core.events', '\u2709' );
 
-var app = module.exports = new Backbone.Marionette.Application();
-var Context = Backbone.Geppetto.Context.extend( {
+var app = module.exports = new Marionette.Application();
+var Context = Geppetto.Context.extend( {
     initialize: function( config ){
         debug( "#initialize" );
-        Backbone.Geppetto.setDebug( true );
+        Geppetto.setDebug( true );
         this.vent.on( 'all', function( eventName,
                                        event ){
             eventLog( eventName );

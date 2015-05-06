@@ -1,4 +1,5 @@
 'use strict';
+var Backbone = require('backbone');
 var debug = require( 'debug' )( 'dpac:core.controllers', '[BootstrapRouting]' );
 var AppRouter = require( '../routers/AppRouter' );
 

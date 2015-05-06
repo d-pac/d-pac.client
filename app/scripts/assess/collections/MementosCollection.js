@@ -1,4 +1,5 @@
 'use strict';
+var Backbone = require('backbone');
 
 var debug = require( 'debug' )( 'dpac:assess.collections', '[MementosCollection]' );
 var teardown = require( '../mixins/teardown' );

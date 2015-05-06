@@ -1,4 +1,5 @@
 'use strict';
+var Backbone = require('backbone');
 
 var moment = require('moment');
 var debug = require( 'debug' )( 'dpac:assess', '[TimelogProxy]' );

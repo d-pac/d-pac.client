@@ -1,4 +1,5 @@
 'use strict';
+var Backbone = require('backbone');
 
 var S = require('string');
 var debug = require( 'debug' )( 'dpac:assess.models', '[PhaseProxy]' );

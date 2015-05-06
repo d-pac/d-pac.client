@@ -1,5 +1,6 @@
 'use strict';
 var _ = require( 'underscore' );
+var Backbone = require('backbone');
 
 var debug = require( 'debug' )( 'dpac:core.views', '[MessagesView]' );
 var tpl = require( './templates/Messages.hbs' );
