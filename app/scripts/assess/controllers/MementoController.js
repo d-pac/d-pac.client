@@ -1,5 +1,5 @@
 'use strict';
-
+var Marionette = require('backbone.marionette');
 var debug = require( 'debug' )( 'dpac:assess.controllers', '[MementoController]' );
 module.exports = Marionette.Controller.extend( {
     wiring        : ['timelogger', 'mementosCollection'],

@@ -1,7 +1,7 @@
 'use strict';
 var _ = require( 'underscore' );
 var Backbone = require('backbone');
-
+var Marionette = require('backbone.marionette');
 var debug = require( 'debug' )( 'dpac:core.views', '[MessagesView]' );
 var tpl = require( './templates/Messages.hbs' );
 module.exports = Marionette.ItemView.extend( {

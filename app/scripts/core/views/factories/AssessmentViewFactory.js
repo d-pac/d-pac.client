@@ -1,6 +1,6 @@
 'use strict';
 var debug = require( 'debug' )( 'dpac:core.controllers', '[BootstrapAssessments]' );
-
+var Marionette = require('backbone.marionette');
 var AssessmentContext = require('../../../assess/AssessmentContext');
 
 module.exports = Marionette.ItemView.extend( {

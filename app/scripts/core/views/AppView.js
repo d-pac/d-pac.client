@@ -1,7 +1,7 @@
 'use strict';
 var debug = require( 'debug' )( 'dpac:core.views', '[AppView]' );
 var tpl = require( './templates/App.hbs' );
-
+var Marionette = require('backbone.marionette');
 module.exports = Marionette.LayoutView.extend( {
     template: tpl,
     el: "#app",

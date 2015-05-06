@@ -2,7 +2,7 @@
 
 var debug = require( 'debug' )( 'dpac:assess.views', '[LayoutView]' );
 var tpl = require( './templates/LayoutView.hbs' );
-
+var Marionette = require('backbone.marionette');
 module.exports = Marionette.LayoutView.extend( {
     wizardFactory          : undefined,
     detailFactory          : undefined,

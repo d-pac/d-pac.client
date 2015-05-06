@@ -1,5 +1,5 @@
 'use strict';
-
+var Marionette = require('backbone.marionette');
 module.exports = Marionette.ItemView.extend( {
     wiring      : ['currentComparison', 'currentPhases', 'currentSeqs', 'SeqView'],
     constructor : function(){

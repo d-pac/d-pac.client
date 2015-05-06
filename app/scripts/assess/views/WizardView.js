@@ -1,5 +1,5 @@
 'use strict';
-
+var Marionette = require('backbone.marionette');
 var debug = require( 'debug' )( 'dpac:assess.views', '[WizardView]' );
 var tpl = require( './templates/WizardView.hbs' );
 

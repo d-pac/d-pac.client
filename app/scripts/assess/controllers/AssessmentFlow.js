@@ -1,6 +1,6 @@
 'use strict';
 var debug = require( 'debug' )( 'dpac:assess.controllers', '[AssessmentFlow]' );
-
+var Marionette = require('backbone.marionette');
 module.exports = Marionette.Controller.extend( {
 
     contextEvents : {

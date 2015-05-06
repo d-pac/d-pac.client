@@ -1,7 +1,7 @@
 'use strict';
 var _ = require( 'underscore' );
 var i18n = require( 'i18next' );
-
+var Marionette = require('backbone.marionette');
 var debug = require( 'debug' )( 'dpac:assess.views', '[PassFailView]' );
 var tpl = require( './templates/PassFailView.hbs' );
 

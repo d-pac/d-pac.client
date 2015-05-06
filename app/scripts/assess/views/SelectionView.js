@@ -1,6 +1,6 @@
 'use strict';
 var _ = require( 'underscore' );
-
+var Marionette = require('backbone.marionette');
 var debug = require( 'debug' )( 'dpac:assess.views', '[SelectionView]' );
 var tpl = require('./templates/SelectionView.hbs');
 

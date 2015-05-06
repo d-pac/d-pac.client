@@ -1,6 +1,6 @@
 'use strict';
 var _ = require( 'underscore' );
-
+var Marionette = require('backbone.marionette');
 var debug = require( 'debug' )( 'dpac:assess.views', '[ComparativeView]' );
 var tpl = require( './templates/ComparativeView.hbs' );
 

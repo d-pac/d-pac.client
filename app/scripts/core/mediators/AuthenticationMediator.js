@@ -1,6 +1,6 @@
 'use strict';
 var debug = require( 'debug' )( 'dpac:core', '[ResponseMediator]' );
-
+var Marionette = require('backbone.marionette');
 module.exports = Marionette.Controller.extend( {
     contextEvents: {
         'authentication:signin:completed': "signinHandler",

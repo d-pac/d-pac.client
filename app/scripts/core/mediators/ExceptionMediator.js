@@ -1,6 +1,6 @@
 'use strict';
 var _ = require( 'underscore' );
-
+var Marionette = require('backbone.marionette');
 var S = require('string');
 var debug = require( 'debug' )( 'dpac:core', '[ExceptionMediator]' );
 var i18n = require( 'i18next' );

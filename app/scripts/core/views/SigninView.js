@@ -2,7 +2,7 @@
 
 var debug = require( 'debug' )( 'dpac:core.views', '[SigninView]' );
 var tpl = require( './templates/Signin.hbs' );
-
+var Marionette = require('backbone.marionette');
 module.exports = Marionette.LayoutView.extend( {
     template: tpl,
     ui: {

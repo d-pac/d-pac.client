@@ -1,6 +1,6 @@
 'use strict';
 var _ = require( 'underscore' );
-
+var Marionette = require('backbone.marionette');
 var debug = require( 'debug' )( 'dpac:assess.views', '[SeqView]' );
 var tpl = require( './templates/SeqView.hbs' );
 var i18n = require( 'i18next' );

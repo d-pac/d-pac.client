@@ -1,5 +1,5 @@
 'use strict';
-
+var Marionette = require('backbone.marionette');
 var debug = require( 'debug' )( 'dpac:assess.views', '[SavingView]' );
 var tpl = require('./templates/SavingView.hbs');
 

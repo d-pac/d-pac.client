@@ -2,7 +2,7 @@
 
 var debug = require( 'debug' )( 'dpac:assess.views', '[MainView]' );
 var tpl = require( './templates/MainView.hbs' );
-
+var Marionette = require('backbone.marionette');
 module.exports = Marionette.LayoutView.extend( {
     template : tpl,
     regions     : {
