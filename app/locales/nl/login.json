@@ -16,5 +16,15 @@
   "submit": {
     "label": "Verzend",
     "sending": "Even geduld..."
+  },
+  "signedin": {
+    "title": "",
+    "type": "success",
+    "message": "U bent ingelogd."
+  },
+  "signedout": {
+    "title": "",
+    "type": "info",
+    "message": "U bent uitgelogd."
   }
 }
