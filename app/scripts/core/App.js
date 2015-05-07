@@ -18,32 +18,6 @@ var Context = Geppetto.Context.extend( {
         this.wireValue( 'app', app );
         this.wireCommand( "app:startup:requested", require( './controllers/BootstrapApplication' ) );
 
-        //this.wireValue( 'config', config );
-        //this.wireValue( 'host', config.api.host );
-        //this.wireValue('appVersion', config.app.version);
-        //
-        //
-        //this.wireSingleton( 'errorsCollection', require( './collections/ErrorsCollection' ) );
-        //this.configure('errorsCollection', undefined, config.errorlogs);
-        //
-        //this.wireSingleton( 'pendingRequests', require( './collections/PendingRequestsCollection' ) );
-        //this.getObject( 'pendingRequests' );
-        //
-        //
-        //this.wireCommands( {
-        //    "app:startup.requested"         : [
-        //        require( './controllers/SetupRemoteRequests' ),
-        //        require( './controllers/SetupClipboard' ),
-        //        require( './controllers/SetupHBSHelpers' ),
-        //        require( './controllers/SetupHBSPartials' ),
-        //        require( './controllers/BootstrapDomain' ),
-        //        require( './controllers/SetupI18N' )
-        //    ],
-        //    'SetupI18N:execution:completed' : [
-        //        require( './controllers/BootstrapUI' ),
-        //        require( './controllers/BootstrapRouting' )
-        //    ]
-        //} );
     }
 } );
 app.on( 'start', function(){
@@ -52,17 +26,6 @@ app.on( 'start', function(){
     var app = this;
     app.context = new Context();
     app.context.dispatch( 'app:startup:requested' );
-    //konfy.load( {
-    //    configFile : "scripts/core/config.json",
-    //    values : {
-    //        API_HOST : process.env.API_HOST,
-    //        APP_VERSION : process.env.APP_VERSION
-    //    }
-    //}, function( err,
-    //             config ){
-    //    app.context = new Context( config );
-    //    app.context.dispatch( 'app:startup.requested' );
-    //} );
 } );
 
 

@@ -11,6 +11,7 @@ module.exports = Marionette.LayoutView.extend( {
     messagesViewFactory: undefined,
     welcomeFactory : undefined,
     tutorialFactory : undefined,
+    assessFactory: undefined,
 
     regions: {
         menuRegion: "#app-menu",
