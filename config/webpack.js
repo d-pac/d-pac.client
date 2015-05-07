@@ -32,12 +32,21 @@ module.exports = function( grunt,
                             "backbone.select": "backbone.select/dist/amd/backbone.select",
                             "bootstrap-validator": "bootstrap-validator/dist/validator",
                             "bootstrap-tour": "bootstrap-tour/build/js/bootstrap-tour",
-                            "bootstrap-material-design": "bootstrap-material-design/dist/js"
+                            "bootstrap-material-design": "bootstrap-material-design/dist/js",
+                            "modernizr": "modernizr/modernizr"
                         },
                         packageAlias: "browser"
                     },
                     module: {
                         loaders: [
+                            {
+                                test: /bootstrap-validator/,
+                                loader: "imports?jQuery=jquery"
+                            },
+                            {
+                                test: /modernizr/,
+                                loader: "imports?this=>window!exports?window.Modernizr"
+                            },
                             {
                                 test: /\.hbs$/,
                                 loader: "handlebars-loader"
@@ -66,7 +75,7 @@ module.exports = function( grunt,
                         new webpack.ProvidePlugin( {
                             jQuery: "jquery"
                         } ),
-                        new webpack.optimize.CommonsChunkPlugin('vendor.js')
+                        new webpack.optimize.CommonsChunkPlugin( 'vendor.js' )
                     ]
                 }
             }

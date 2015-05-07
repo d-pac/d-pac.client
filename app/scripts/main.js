@@ -1,6 +1,13 @@
 'use strict';
 
-require('./shims');
+/* stand-alones */
+require('modernizr');
+require('bootstrap');
+require('bootstrap-material-design/ripples');
+require('imports?jQuery=jquery!exports?jQuery.material!bootstrap-material-design/material' ).init();
+require('bootstrap-validator');
+/* --- */
+
 require('./core/controllers/SetupDebugging')();
 
 
