@@ -8,7 +8,6 @@ module.exports = NestedModel.extend( {
 
     defaults : {
         name       : undefined,
-        createdBy  : undefined,
         assessment : undefined,
         document   : {
             ext      : undefined,

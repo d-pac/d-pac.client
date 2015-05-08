@@ -8,8 +8,10 @@ var teardown = require( '../mixins/teardown' );
 
 module.exports = Backbone.Collection.extend( {
 
+    parser: undefined,
+
     url: '/user/comparisons',
-    model         : ModelClass,
+    model: ModelClass,
     contextEvents: {
         'assessment:teardown:requested': "teardown"
     },
@@ -21,7 +23,7 @@ module.exports = Backbone.Collection.extend( {
     },
 
     parse: function( response ){
-        return response.data;
+        return this.parser.parse( response );
     },
 
     hasActive: function(){

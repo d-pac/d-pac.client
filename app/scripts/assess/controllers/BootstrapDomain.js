@@ -15,7 +15,13 @@ _.extend( BootstrapDomain.prototype, {
         var context = this.context;
         context.wireSingleton( 'assessmentsCollection', require( '../collections/AssessmentsCollection' ) );
         context.wireSingleton( 'phasesCollection', require( '../collections/PhasesCollection' ) );
-        context.wireSingleton( 'comparisonsCollection', require( '../collections/ComparisonsCollection' ) );
+        context.wireSingleton( 'representationsCollection', require( '../collections/RepresentationsCollection' ) );
+        context.wireSingleton( 'comparisonsParser', require( '../services/ComparisonsParser' ), {
+            representationsCollection: 'representationsCollection'
+        } );
+        context.wireSingleton( 'comparisonsCollection', require( '../collections/ComparisonsCollection' ), {
+            parser: 'comparisonsParser'
+        } );
         //context.wireSingleton( 'timelogger', require( '../collections/TimelogsCollection' ) );
         //context.configure('timelogger', undefined, this.config.timelogs);
         //
