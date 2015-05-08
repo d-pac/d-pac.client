@@ -1,68 +1,73 @@
 'use strict';
-var Backbone = require('backbone');
-var Select = require('backbone.select');
+var Backbone = require( 'backbone' );
+var Select = require( 'backbone.select' );
 
 var debug = require( 'debug' )( 'dpac:assess.collections', '[PhasesCollection]' );
-var teardown = require('../mixins/teardown');
+var teardown = require( '../mixins/teardown' );
 var ModelClass = require( '../models/PhaseProxy' );
 
 module.exports = Backbone.Collection.extend( {
+    url: '/phases',
+    model: ModelClass,
 
-    model : ModelClass,
-
-    initialize : function( models ){
+    initialize: function( models ){
         debug( '#initialize' );
         Select.One.applyTo( this, models );
 
-        this.listenTo(this, 'select:one', function(phase){
-            this.trigger('select:phase:'+phase.get('type'), phase);
-        }, this);
-        this.listenTo(this, 'deselect:one', function(phase){
-            this.trigger('deselect:phase:'+phase.get('type'), phase);
-        });
+        this.listenTo( this, 'select:one', function( phase ){
+            this.trigger( 'select:phase:' + phase.get( 'type' ), phase );
+        }, this );
+        this.listenTo( this, 'deselect:one', function( phase ){
+            this.trigger( 'deselect:phase:' + phase.get( 'type' ), phase );
+        } );
     },
 
-    _swapAsync : function(model){
-        if(this.selected){
+    parse: function( response ){
+        return response.data;
+    },
+
+
+    _swapAsync: function( model ){
+        if( this.selected ){
             this.deselect();
         }
-        if(model){
-            setTimeout(function(){
-                this.select(model);
-            }.bind(this), 0);
+        if( model ){
+            setTimeout( function(){
+                this.select( model );
+            }.bind( this ), 0 );
         }
     },
 
-    selectByID : function(id){
+    selectByID: function( id ){
         //debug.debug('selectByID', id);
-        var model = this.get(id);
-        this.select(model);
+        var model = this.get( id );
+        this.select( model );
         return model;
     },
 
-    selectNext : function(){
+    selectNext: function(){
         var index = this.models.indexOf( this.selected );
         var model = this.at( index + 1 );
-        if(! model){
+        if( !model ){
             this.deselect();
             return this.completed();
         }
-        this._swapAsync(model);
+        this._swapAsync( model );
         return model;
     },
-    getCurrentType : function(){
-        return this.selected.get('type');
+    getCurrentType: function(){
+        return this.selected.get( 'type' );
     },
 
-    completed : function(){
-        debug("#completed");
+    completed: function(){
+        debug( "#completed" );
         this.deselect();
-        this.trigger('completed');
+        this.trigger( 'completed' );
     },
 
-    onTeardown : function(){
-        debug("#teardown");
-        this.deselect( this.selected, { silent : true } );
+    onTeardown: function(){
+        debug( "#teardown" );
+        this.deselect( this.selected, { silent: true } );
     }
 
 } );

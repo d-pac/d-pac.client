@@ -30,6 +30,13 @@ _.extend( module.exports.prototype, {
                 } );
                 collection.fetch();
             } )
+            .when( 'comparisons:collection:sync' ).then( function(){
+                var collection = context.getObject( 'phasesCollection' );
+                collection.once( "sync", function(){
+                    context.dispatch( "phases:collection:sync" );
+                } );
+                collection.fetch();
+            } )
         ;
 
         //set off bootstrapping
