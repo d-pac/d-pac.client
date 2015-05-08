@@ -11,7 +11,8 @@ _.extend( module.exports.prototype, {
     execute: function(){
         debug( '#execute' );
 
-        this.context.wireCommands( {
+        var context = this.context;
+        context.wireCommands( {
             'config:load:requested': [ require( './LoadConfiguration' ) ],
             'app:domain:requested': [
                 require( './BootstrapDomain' ),
@@ -29,15 +30,18 @@ _.extend( module.exports.prototype, {
         } );
 
         instruct( this.context.vent )
-            .when( 'bootstrap:application:requested' )
-            .then( 'config:load:requested' )
-            .when( 'config:load:completed' )
-            .then( 'app:domain:requested', 'authentication:status:requested', 'pages:collection:requested' )
-            .when( 'SetupI18N:execution:completed', 'authentication:status:completed' )
-            .then( 'app:ui:requested' )
+            .when( 'app:bootstrap:requested' ).then( 'config:load:requested' )
+            .when( 'config:load:completed' ).then( 'app:domain:requested', 'authentication:status:requested', function(){
+                var collection = context.getObject( 'pagesCollection' );
+                collection.once( "sync", function(){
+                    context.dispatch( "pages:collection:sync" )
+                } );
+                collection.fetch();
+            } )
+            .when( 'SetupI18N:execution:completed', 'authentication:status:completed' ).then( 'app:ui:requested' )
         ;
 
         //set off bootstrapping
-        this.context.vent.trigger( 'bootstrap:application:requested' );
+        context.vent.trigger( 'app:bootstrap:requested' );
     }
 } );

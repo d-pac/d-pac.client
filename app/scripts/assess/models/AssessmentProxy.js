@@ -7,11 +7,19 @@ module.exports = Backbone.Model.extend( {
     idAttribute : "_id",
     defaults    : {
         title          : undefined,
-        description    : undefined,
+        assignments    : {
+            assessor: undefined,
+            assessee: undefined
+        },
         state          : undefined,
         phases         : [],
-        order          : 0,
-        comparisonsNum : 0
+        parent: undefined,
+        comparisonsNum : {
+            total: undefined,
+            stage: undefined
+        },
+        uiCopy: undefined,
+        enableTimeLogging: false
     },
 
     initialize : function(){

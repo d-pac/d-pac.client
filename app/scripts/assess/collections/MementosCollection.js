@@ -12,7 +12,8 @@ module.exports = Backbone.Collection.extend( {
         model : 'MementoModel'
     },
     contextEvents : {
-        'assessment:teardown:requested' : "teardown"
+        'assessment:teardown:requested' : "teardown",
+        'mementos:collection:requested': 'fetch'
     },
 
     initialize : function( models ){

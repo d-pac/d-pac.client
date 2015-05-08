@@ -27,7 +27,7 @@ var BootstrapUI = module.exports = function BootstrapUI( context ){
         welcomeFactory: "WelcomeView",
         notfoundFactory: "NotFoundView",
         tutorialFactory: "TutorialView",
-        assessFactory: "AssessmentView"
+        //assessFactory: "AssessmentView"
     } );
     context.wireView( 'WelcomeView', require( '../views/WelcomeView' ), {
         collection: 'pagesCollection'

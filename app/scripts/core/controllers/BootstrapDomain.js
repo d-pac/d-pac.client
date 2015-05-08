@@ -18,7 +18,6 @@ _.extend( module.exports.prototype, {
         context.getObject( 'authService' );
 
         context.wireSingleton('pagesCollection', require('../collections/PagesCollection'));
-        context.getObject( 'pagesCollection' );
 
     }
 } );

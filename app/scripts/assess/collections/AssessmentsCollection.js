@@ -19,8 +19,8 @@ module.exports = Backbone.Collection.extend( {
         Select.One.applyTo( this, models );
     },
 
-    parse : function(response){
-       return response.data;
+    parse : function(raw){
+       return raw.data;
     },
 
     selectByID : function( id ){

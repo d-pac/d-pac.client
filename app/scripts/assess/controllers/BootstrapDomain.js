@@ -14,18 +14,20 @@ _.extend( BootstrapDomain.prototype, {
 
         var context = this.context;
         context.wireSingleton( 'assessmentsCollection', require( '../collections/AssessmentsCollection' ) );
+        context.wireSingleton( 'mementoParser', require( '../services/MementoParser' ), {
+            assessments : 'assessmentsCollection'
+        } );
         context.wireView( 'MementoModel', require( '../models/MementoProxy' ), {
             parser : 'mementoParser'
         } );
         context.wireSingleton( 'mementosCollection', require( '../collections/MementosCollection' ) );
-        context.wireSingleton( 'mementoParser', require( '../services/MementoParser' ) );
-        context.wireSingleton( 'timelogger', require( '../collections/TimelogsCollection' ) );
-        context.configure('timelogger', undefined, this.config.timelogs);
-
-        context.wireCommand( "mementos:selection:completed", require( './MementoController' ) );
-
-        this.context = undefined;
-        this.eventName = undefined;
-        this.eventData = undefined;
+        //context.wireSingleton( 'timelogger', require( '../collections/TimelogsCollection' ) );
+        //context.configure('timelogger', undefined, this.config.timelogs);
+        //
+        //context.wireCommand( "mementos:selection:completed", require( './MementoController' ) );
+        //
+        //this.context = undefined;
+        //this.eventName = undefined;
+        //this.eventData = undefined;
     }
 } );
