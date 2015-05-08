@@ -14,13 +14,7 @@ _.extend( BootstrapDomain.prototype, {
 
         var context = this.context;
         context.wireSingleton( 'assessmentsCollection', require( '../collections/AssessmentsCollection' ) );
-        context.wireSingleton( 'mementoParser', require( '../services/MementoParser' ), {
-            assessments : 'assessmentsCollection'
-        } );
-        context.wireView( 'MementoModel', require( '../models/MementoProxy' ), {
-            parser : 'mementoParser'
-        } );
-        context.wireSingleton( 'mementosCollection', require( '../collections/MementosCollection' ) );
+        context.wireSingleton( 'comparisonsCollection', require( '../collections/ComparisonsCollection' ) );
         //context.wireSingleton( 'timelogger', require( '../collections/TimelogsCollection' ) );
         //context.configure('timelogger', undefined, this.config.timelogs);
         //

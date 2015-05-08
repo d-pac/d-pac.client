@@ -24,9 +24,9 @@ _.extend( module.exports.prototype, {
                 collection.fetch();
             } )
             .when( 'assessments:collection:sync' ).then( function(){
-                var collection = context.getObject( 'mementosCollection' );
+                var collection = context.getObject( 'comparisonsCollection' );
                 collection.once( "sync", function(){
-                    context.dispatch( "mementos:collection:sync" );
+                    context.dispatch( "comparisons:collection:sync" );
                 } );
                 collection.fetch();
             } )
