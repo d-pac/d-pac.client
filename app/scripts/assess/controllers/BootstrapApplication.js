@@ -12,31 +12,38 @@ _.extend( module.exports.prototype, {
         debug( '#execute' );
         var context = this.context;
         context.wireCommands( {
-            'assess:domain:requested': [ require( './BootstrapDomain' ) ]
+            'assess:domain:requested': [
+                require( './BootstrapDomain' ),
+                require( './BootstrapUI' )
+            ]
         } );
 
         instruct( this.context.vent )
-            .when( 'assess:bootstrap:requested' ).then( 'assess:domain:requested', function(){
+            .when( 'assess:bootstrap:requested' ).then( 'assess:domain:requested', function fetchAssessments(){
                 var collection = context.getObject( 'assessmentsCollection' );
                 collection.once( "sync", function(){
                     context.dispatch( "assessments:collection:sync" );
                 } );
                 collection.fetch();
             } )
-            .when( 'assessments:collection:sync' ).then( function(){
+            .when( 'assessments:collection:sync' ).then( function fetchComparisons(){
                 var collection = context.getObject( 'comparisonsCollection' );
                 collection.once( "sync", function(){
                     context.dispatch( "comparisons:collection:sync" );
                 } );
                 collection.fetch();
             } )
-            .when( 'comparisons:collection:sync' ).then( function(){
+            .when( 'comparisons:collection:sync' ).then( function fetchPhases(){
                 var collection = context.getObject( 'phasesCollection' );
                 collection.once( "sync", function(){
                     context.dispatch( "phases:collection:sync" );
                 } );
                 collection.fetch();
-            } )
+            } ).then('assess:bootstrap:completed')
+            .when('assess:ui:rendered', 'assess:bootstrap:completed' ).then(function(){
+                var controller = context.getObject( 'assessmentFlow' );
+                controller.start();
+            })
         ;
 
         //set off bootstrapping

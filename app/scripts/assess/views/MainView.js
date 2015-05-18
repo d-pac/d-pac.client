@@ -14,24 +14,28 @@ module.exports = Marionette.LayoutView.extend( {
     className: "row",
 
     contextEvents : {
-        "assessments:selection:requested": "showAssessmentsSelection",
-        "mementos:editing:requested" : "showLayoutView"
+        "comparisons:continuation:requested": "showContinueComparison",
+        'comparisons:selection:completed': 'showLayoutView'
     },
 
     initialize : function(){
         debug( "#initialize" );
     },
 
+    showContinueComparison : function(){
+        this.contentRegion.show(this.comparisonsContinuationFactory());
+    },
+
     showAssessmentsSelection : function(eventData){
         debug("#showAssessmentsSelection");
-        this.contentRegion.show(this.createAssessmentSelectionView({
+        this.contentRegion.show(this.assessmentSelectionFactory({
             allCompleted : eventData.allCompleted
         }));
     },
 
     showLayoutView : function(){
         debug("#showComparisonView");
-        this.contentRegion.show(this.createLayoutView());
+        this.contentRegion.show(this.layoutFactory());
     }
 
 } );

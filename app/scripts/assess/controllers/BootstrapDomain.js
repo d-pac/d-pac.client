@@ -7,9 +7,9 @@ var debug = require( 'debug' )( 'dpac:assess.controllers', '[BootstrapDomain]' )
 var BootstrapDomain = module.exports = function BootstrapDomain(){
 };
 _.extend( BootstrapDomain.prototype, {
-    wiring : ['config'],
+    wiring: [ 'config' ],
 
-    execute : function(){
+    execute: function(){
         debug( '#execute' );
 
         var context = this.context;
@@ -22,6 +22,8 @@ _.extend( BootstrapDomain.prototype, {
         context.wireSingleton( 'comparisonsCollection', require( '../collections/ComparisonsCollection' ), {
             parser: 'comparisonsParser'
         } );
+
+        context.wireSingleton( 'assessmentFlow', require( '../controllers/AssessmentFlow' ) );
         //context.wireSingleton( 'timelogger', require( '../collections/TimelogsCollection' ) );
         //context.configure('timelogger', undefined, this.config.timelogs);
         //

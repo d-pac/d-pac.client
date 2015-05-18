@@ -27,6 +27,16 @@ module.exports = Backbone.Model.extend( {
         Select.Me.applyTo( this );
     },
 
+    parse: function( raw ){
+        raw.uiCopy = JSON.parse(raw.uiCopy);
+        console.log(raw);
+        return raw;
+    },
+
+    isRoot : function(){
+        return !this.get("parent");
+    },
+
     onTeardown : function(){
         debug( "#teardown" );
         this.deselect( { silent : true } );

@@ -9,63 +9,65 @@ var BootstrapUI = module.exports = function BootstrapUI( context ){
 
 _.extend( BootstrapUI.prototype, {
 
-    execute : function(){
+    execute: function(){
         debug( '#execute' );
 
         var context = this.context;
         context.wireView( 'MainView', require( '../views/MainView' ), {
-            'createAssessmentSelectionView' : 'AssessmentSelectionView',
-            'createLayoutView'              : 'LayoutView'
+            'assessmentSelectionFactory': 'AssessmentSelectionView',
+            'layoutFactory': 'LayoutView',
+            'comparisonsContinuationFactory': 'ComparisonsContinuationView'
         } );
+        context.wireView( 'ComparisonsContinuationView', require( '../views/ComparisonsContinuation' ) );
         context.wireView( 'AssessmentSelectionView', require( '../views/AssessmentSelectionView' ), {
-            collection : "assessmentsCollection"
+            collection: "assessmentsCollection"
         } );
         context.wireView( 'AssessmentDetailView', require( '../views/AssessmentDetailView' ), {
-            model : "currentAssessment"
+            model: "currentAssessment"
         } );
         context.wireView( 'WizardView', require( '../views/WizardView' ), {
-            collection      : "currentPhases",
-            selectFactory   : "SelectionView",
-            seqFactory      : "seqViewFactory",
-            compareFactory  : "ComparativeView",
-            passfailFactory : "PassFailView",
-            savingFactory : "SavingView"
+            collection: "currentPhases",
+            selectFactory: "SelectionView",
+            seqFactory: "seqViewFactory",
+            compareFactory: "ComparativeView",
+            passfailFactory: "PassFailView",
+            savingFactory: "SavingView"
         } );
         context.wireView( 'LayoutView', require( '../views/LayoutView' ), {
-            detailFactory          : "AssessmentDetailView",
-            wizardFactory          : "WizardView",
-            representationsFactory : "RepresentationsView",
-            judgementsFactory      : "JudgementsView",
-            progressFactory : "ProgressView"
+            detailFactory: "AssessmentDetailView",
+            wizardFactory: "WizardView",
+            representationsFactory: "RepresentationsView",
+            judgementsFactory: "JudgementsView",
+            progressFactory: "ProgressView"
         } );
         context.wireView( 'SelectionView', require( '../views/SelectionView' ), {
-            collection : 'currentRepresentations'
+            collection: 'currentRepresentations'
         } );
         context.wireView( 'seqViewFactory', require( '../views/factories/SeqViewFactory' ) );
         context.wireView( 'SeqView', require( '../views/SeqView' ) );
         context.wireView( 'ComparativeView', require( '../views/ComparativeView' ), {
-            model : 'currentComparison'
+            model: 'currentComparison'
         } );
         context.wireView( 'PassFailView', require( '../views/PassFailView' ), {
-            collection : 'currentJudgements'
+            collection: 'currentJudgements'
         } );
 
         context.wireView( 'RepresentationDetailView', require( '../views/RepresentationDetailView' ), {
-            host : 'host'
+            host: 'host'
         } );
         context.wireView( 'RepresentationsView', require( '../views/RepresentationsView' ), {
-            collection : "currentRepresentations",
-            childView  : "RepresentationDetailView"
+            collection: "currentRepresentations",
+            childView: "RepresentationDetailView"
         } );
         context.wireView( 'JudgementDetailView', require( '../views/JudgementDetailView' ) );
         context.wireView( 'JudgementsView', require( '../views/JudgementsView' ), {
-            collection : "currentJudgements",
-            childView  : "JudgementDetailView"
+            collection: "currentJudgements",
+            childView: "JudgementDetailView"
         } );
-        context.wireView('ProgressView', require('../views/ComparisonsProgress'), {
-            model : "currentProgress"
-        });
-        context.wireView("SavingView", require('../views/SavingView'));
+        context.wireView( 'ProgressView', require( '../views/ComparisonsProgress' ), {
+            model: "currentProgress"
+        } );
+        context.wireView( "SavingView", require( '../views/SavingView' ) );
 
         this.context = undefined;
         this.eventName = undefined;

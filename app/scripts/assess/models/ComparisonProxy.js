@@ -1,6 +1,7 @@
 'use strict';
 var _ = require( 'underscore' );
 var Backbone = require('backbone');
+var Select = require('backbone.select');
 
 var debug = require( 'debug' )( 'dpac:assess.models', '[ComparisonProxy]' );
 
@@ -23,10 +24,7 @@ module.exports = Backbone.Model.extend( {
          * {Phase.id}
          */
         phase               : undefined,
-        /**
-         * {Representation.id}
-         */
-        selected            : undefined, //Representation.id
+
         /**
          * {Boolean}
          */
@@ -36,7 +34,11 @@ module.exports = Backbone.Model.extend( {
             a: undefined,
             b: undefined
         },
-        data : undefined
+        data : undefined,
+        progress: {
+            total: undefined,
+            completed: undefined
+        }
     },
 
     initialize : function(){
@@ -44,23 +46,7 @@ module.exports = Backbone.Model.extend( {
 
         //todo: don't know why but we have to do it like this, otherwise we get an error
         var model = this;
-        //this.listenTo( this, 'change:selected', function(){
-        //    debug.debug( 'change:selected' );
-        //    model.save();
-        //} );
-        //this.listenTo( this, 'change:phase', function(){
-        //    debug.debug( 'change:phase' );
-        //    model.save();
-        //} );
-        //this.listenTo( this, 'change:comparativeFeedback', function(){
-        //    debug.debug( 'change:comparativeFeedback' );
-        //    model.save();
-        //} );
-        //this.listenTo( this, 'change:completed', function(){
-        //    debug.debug( 'change:completed' );
-        //    model.save();
-        //} );
-
+        Select.Me.applyTo( this );
         this.on("change:selected change:phase change:data change:completed", function(){
             model.save();
         });
