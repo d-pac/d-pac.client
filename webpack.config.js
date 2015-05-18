@@ -6,8 +6,7 @@ var _ = require( 'lodash' );
 var npm = require( './package.json' );
 var bower = require( './bower.json' );
 var vendorComponents = _.keys( npm.dependencies );
-vendorComponents = vendorComponents.concat( _.keys( _.omit( bower.dependencies, "modernizr", "bootstrap-material-design" ) ) );
-vendorComponents = vendorComponents.concat( "bootstrap-material-design/material", "bootstrap-material-design/ripples" );
+vendorComponents = vendorComponents.concat( _.keys( _.omit( bower.dependencies, "modernizr" ) ) );
 
 module.exports = {
     entry: {
@@ -24,7 +23,7 @@ module.exports = {
             "backbone.select": "backbone.select/dist/amd/backbone.select",
             "bootstrap-validator": "bootstrap-validator/dist/validator",
             "bootstrap-tour": "bootstrap-tour/build/js/bootstrap-tour",
-            "bootstrap-material-design": "bootstrap-material-design/dist/js",
+            "bootstrap-material-design": "bootstrap-material-design/dist/js/material",
             "modernizr": "modernizr/modernizr"
         },
         packageAlias: "browser"
@@ -50,6 +49,10 @@ module.exports = {
             {
                 test: /backbone-nested-model/,
                 loader: "imports?Backbone=backbone!exports?Backbone.NestedModel"
+            },
+            {
+                test: /bootstrap-material-design/,
+                loader: "imports?jQuery=jquery!exports?jQuery.material"
             }
         ]
     },

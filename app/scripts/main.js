@@ -3,7 +3,7 @@
 /* stand-alones */
 require('modernizr');
 require('bootstrap');
-require('imports?jQuery=jquery!exports?jQuery.material!bootstrap-material-design/material' ).init();
+require('bootstrap-material-design' ).init();
 require('bootstrap-validator');
 /* --- */
 
