@@ -2,12 +2,10 @@
 <html class="no-js">
     <head>
         <meta charset="utf-8">
-        <title>d pac client</title>
+        <title>d-pac</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <link rel="shortcut icon" href="./favicon.ico">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.0.1/spin.min.js"></script>
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css styles/vendor.css -->
         <!-- bower:css -->
@@ -30,20 +28,12 @@
         <![endif]-->
 
         <div id="app" class="container-fluid">
+            <div class="spinner">
+              <div class="bounce1"></div>
+              <div class="bounce2"></div>
+              <div class="bounce3"></div>
+            </div>
         </div>
-        <script>
-            var opts = {
-              lines: 12, // The number of lines to draw
-              length: 10, // The length of each line
-              width: 4, // The line thickness
-              radius: 15, // The radius of the inner circle
-              color: '#455a64', // #rgb or #rrggbb or array of colors
-              trail: 30 // Afterglow percentage
-            };
-            var target = document.getElementById('app');
-            var spinner = new Spinner(opts).spin(target);
-        </script>
-
         <div id="size-warning" class="panel panel-default">
             <!-- default warning, gets overridden by localized content in core/views/MinsizeWarning -->
             <div class="panel-heading">
