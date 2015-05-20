@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse"
                 data-target="#primary-navigation"><span
@@ -14,7 +14,11 @@
     </div>
 
     <div class="collapse navbar-collapse" id="primary-navigation">
-        <ul id="dynamic-menu" class="nav navbar-nav"></ul>
+        <ul class="nav navbar-nav">
+            <li id="messages">
+
+            </li>
+        </ul>
         <ul class="nav navbar-nav navbar-right">
             {{#if authenticated}}
                 <li>
