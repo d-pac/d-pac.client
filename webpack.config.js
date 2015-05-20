@@ -21,7 +21,8 @@ module.exports = {
             "i18next": "i18next/i18next.commonjs.withJQuery",
             "zeroclipboard": "zeroclipboard/dist/ZeroClipboard",
             "backbone.select": "backbone.select/dist/amd/backbone.select",
-            "bootstrap-validator": "bootstrap-validator/dist/validator",
+            "snackbarjs": "snackbarjs/src/snackbar.js",
+            //"bootstrap-validator": "bootstrap-validator/dist/validator",
             "bootstrap-tour": "bootstrap-tour/build/js/bootstrap-tour",
             "bootstrap-material-design": "bootstrap-material-design/dist/js/material",
             "modernizr": "modernizr/modernizr"
@@ -30,9 +31,13 @@ module.exports = {
     },
     module: {
         loaders: [
+            //{
+            //    test: /bootstrap-validator/,
+            //    loader: "imports?jQuery=jquery"
+            //},
             {
-                test: /bootstrap-validator/,
-                loader: "imports?jQuery=jquery"
+                test: /snackbar/,
+                loader: "imports?jQuery=jquery!exports?jQuery.snackbar"
             },
             {
                 test: /modernizr/,
