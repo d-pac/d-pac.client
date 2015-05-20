@@ -1,28 +1,23 @@
 'use strict';
 var debug = require( 'debug' )( 'dpac:assess.controllers', '[AssessmentFlow]' );
 var Marionette = require( 'backbone.marionette' );
+var i18n = require('i18next');
+var CurrentSelectionModel = require('../models/CurrentSelectionModel');
 module.exports = Marionette.Controller.extend( {
 
     assessmentsCollection: undefined,
     comparisonsCollection: undefined,
     context: undefined,
-
-    wiring: {
-        assessmentsCollection: "assessmentsCollection",
-        comparisonsCollection: "comparisonsCollection",
-        context: "assessmentContext"
-    },
+    currentSelection: undefined,
+    phasesCollection: undefined,
+    representationsCollection: undefined,
 
     contextEvents: {
-        "comparisons:continuation:confirmed": "continueComparison"
+        "comparisons:continuation:confirmed": "selectComparison"
     },
 
     initialize: function(){
         debug( '#initialize' );
-    },
-
-    execute: function(){
-        debug( '#execute' );
     },
 
     teardown: function(){
@@ -47,12 +42,6 @@ module.exports = Marionette.Controller.extend( {
         } else {
             this.verifyRootAssessments();
         }
-    },
-
-    continueComparison: function continueComparison(){
-        var comparison = this.comparisonsCollection.at( 0 )
-        this.comparisonsCollection.select( comparison );
-        this.dispatch('comparisons:selection:completed', comparison);
     },
 
     verifyRootAssessments: function verifyRootAssessments(){
@@ -81,6 +70,25 @@ module.exports = Marionette.Controller.extend( {
 
     comparisonCreationCompleted: function( comparison ){
         debug( '#comparisonCreationCompleted' );
-        this.comparisonsCollection.select( comparison );
+        this.selectComparison();
+    },
+
+    selectComparison: function selectComparison(){
+        debug("#comparisonSelected");
+
+        var current = this.currentSelection = new CurrentSelectionModel();
+        var comparison = this.comparisonsCollection.at( 0 );
+        var assessment = this.assessmentsCollection.get(comparison.get("assessment"));
+        current.set({
+            comparison: comparison,
+            assessment: assessment,
+            phases: this.phasesCollection,
+            representations: this.representationsCollection
+        });
+
+        i18n.addResourceBundle(i18n.lng(), 'assessment', assessment.get('uiCopy'));
+
+        this.context.wireValue('currentSelection', current);
+        this.dispatch('comparisons:editing:requested', current);
     }
 } );

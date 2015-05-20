@@ -2,7 +2,7 @@
 var debug = require( 'debug' )( 'dpac:core.views', '[AppView]' );
 var tpl = require( './templates/App.hbs' );
 var Marionette = require('backbone.marionette');
-var menuRegion = Marionette.Region.extend({ el: '#app-menu' })
+var menuRegion = Marionette.Region.extend({ el: '#app-menu' });
 module.exports = Marionette.LayoutView.extend( {
     template: tpl,
     el: "#app",

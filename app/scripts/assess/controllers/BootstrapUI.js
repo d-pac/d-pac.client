@@ -22,9 +22,6 @@ _.extend( BootstrapUI.prototype, {
         context.wireView( 'AssessmentSelectionView', require( '../views/AssessmentSelectionView' ), {
             collection: "assessmentsCollection"
         } );
-        context.wireView( 'AssessmentDetailView', require( '../views/AssessmentDetailView' ), {
-            model: "currentAssessment"
-        } );
         context.wireView( 'WizardView', require( '../views/WizardView' ), {
             collection: "currentPhases",
             selectFactory: "SelectionView",
@@ -34,11 +31,11 @@ _.extend( BootstrapUI.prototype, {
             savingFactory: "SavingView"
         } );
         context.wireView( 'LayoutView', require( '../views/LayoutView' ), {
-            detailFactory: "AssessmentDetailView",
-            wizardFactory: "WizardView",
+            //detailFactory: "AssessmentDetailView",
+            //wizardFactory: "WizardView",
             representationsFactory: "RepresentationsView",
-            judgementsFactory: "JudgementsView",
-            progressFactory: "ProgressView"
+            //judgementsFactory: "JudgementsView",
+            assessmentDetailsFactory: "AssessmentDetails"
         } );
         context.wireView( 'SelectionView', require( '../views/SelectionView' ), {
             collection: 'currentRepresentations'
@@ -52,20 +49,19 @@ _.extend( BootstrapUI.prototype, {
             collection: 'currentJudgements'
         } );
 
-        context.wireView( 'RepresentationDetailView', require( '../views/RepresentationDetailView' ), {
-            host: 'host'
-        } );
+        //context.wireView( 'RepresentationDetailView', require( '../views/RepresentationDetailView' ), {
+        //    host: 'host'
+        //} );
         context.wireView( 'RepresentationsView', require( '../views/RepresentationsView' ), {
-            collection: "currentRepresentations",
-            childView: "RepresentationDetailView"
+            model: "currentSelection"
         } );
         context.wireView( 'JudgementDetailView', require( '../views/JudgementDetailView' ) );
         context.wireView( 'JudgementsView', require( '../views/JudgementsView' ), {
             collection: "currentJudgements",
             childView: "JudgementDetailView"
         } );
-        context.wireView( 'ProgressView', require( '../views/ComparisonsProgress' ), {
-            model: "currentProgress"
+        context.wireView( 'AssessmentDetails', require( '../views/AssessmentDetails' ), {
+            model: "currentSelection"
         } );
         context.wireView( "SavingView", require( '../views/SavingView' ) );
 

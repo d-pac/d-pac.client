@@ -6,7 +6,7 @@ var _ = require( 'lodash' );
 var npm = require( './package.json' );
 var bower = require( './bower.json' );
 var vendorComponents = _.keys( npm.dependencies );
-vendorComponents = vendorComponents.concat( _.keys( _.omit( bower.dependencies, "modernizr" ) ) );
+vendorComponents = vendorComponents.concat( _.keys( _.omit( bower.dependencies, "modernizr", "bootstrap-material-design" ) ) );
 
 module.exports = {
     entry: {

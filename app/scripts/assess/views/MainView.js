@@ -15,7 +15,7 @@ module.exports = Marionette.LayoutView.extend( {
 
     contextEvents : {
         "comparisons:continuation:requested": "showContinueComparison",
-        'comparisons:selection:completed': 'showLayoutView'
+        'comparisons:editing:requested': 'showLayoutView'
     },
 
     initialize : function(){

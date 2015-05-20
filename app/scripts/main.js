@@ -4,7 +4,7 @@
 require('modernizr');
 require('bootstrap');
 require('bootstrap-material-design' ).init();
-require('bootstrap-validator');
+//require('bootstrap-validator');
 /* --- */
 
 require('./core/controllers/SetupDebugging')();

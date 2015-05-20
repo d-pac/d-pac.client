@@ -23,7 +23,13 @@ _.extend( BootstrapDomain.prototype, {
             parser: 'comparisonsParser'
         } );
 
-        context.wireSingleton( 'assessmentFlow', require( '../controllers/AssessmentFlow' ) );
+        context.wireSingleton( 'assessmentFlow', require( '../controllers/AssessmentFlow' ),{
+            assessmentsCollection: "assessmentsCollection",
+            comparisonsCollection: "comparisonsCollection",
+            phasesCollection: "phasesCollection",
+            representationsCollection: "representationsCollection",
+            context: "assessmentContext"
+        } );
         //context.wireSingleton( 'timelogger', require( '../collections/TimelogsCollection' ) );
         //context.configure('timelogger', undefined, this.config.timelogs);
         //
