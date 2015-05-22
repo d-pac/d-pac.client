@@ -1,8 +1,6 @@
 'use strict';
-var Backbone = require('backbone');
-var Select = require('backbone.select');
+var Backbone = require( 'backbone' );
 var _ = require( 'underscore' );
-var Mousetrap = require( "mousetrap" );
 var debug = require( 'debug' )( 'dpac:assess', '[TimelogsCollection]' );
 var teardown = require( '../mixins/teardown' );
 
@@ -12,6 +10,9 @@ module.exports = Backbone.Collection.extend( {
 
     url: "/timelogs",
     model: ModelClass,
+    intervalId: undefined,
+    updateInterval: 5000,
+
     contextEvents: {
         'assessment:teardown:requested': "teardown",
         'AuthService:signout:requested': "stop"
@@ -20,67 +21,53 @@ module.exports = Backbone.Collection.extend( {
     initialize: function( models,
                           opts ){
         debug( '#initialize' );
-        Select.One.applyTo( this, models );
+    },
 
-        opts = _.defaults( {}, opts, {
-            interval: 5000,
-            shortcut: 'ctrl+alt+s'
+    isRunning: function(){
+        return !! this.intervalId;
+    },
+
+    getSelected: function(){
+        return this.at(0);
+    },
+
+    start: function( comparisonId,
+                     phaseId ){
+        debug( '#start', comparisonId, phaseId );
+        this._stop();
+        this.intervalId = setInterval( this.update.bind( this ), this.updateInterval );
+        return this.add( {
+            comparison: comparisonId,
+            phase: phaseId
         } );
-        this.updateInterval = opts.interval;
-        this.autoUpdateDisabled = false;
-
-        var self = this;
-        Mousetrap.bind( opts.shortcut, function(){
-            self.autoUpdateDisabled = !self.autoUpdateDisabled;
-            debug.warn( 'Toggling auto update to ', !self.autoUpdateDisabled );
-            if( self.autoUpdateDisabled ){
-                self._stopUpdate();
-            } else {
-                self._autoUpdate( self.selected );
-            }
-        } );
     },
 
-    _autoUpdate: function( model ){
-        if( model && !this.autoUpdateDisabled ){
-            this.intervalId = setInterval( function(){
-                model.update();
-            }.bind( this ), this.updateInterval );
+    update: function(){
+        debug( '#update' );
+        this.getSelected().update();
+    },
+
+    _stop : function(){
+        if(this.isRunning()){
+            clearInterval(this.intervalId);
+            this.intervalId = undefined;
         }
-    },
-
-    _stopUpdate: function(){
-        if( this.intervalId ){
-            clearInterval( this.intervalId );
-        }
-    },
-
-    start: function( attrs ){
-        debug.debug( 'start', attrs );
-        var model = this.add( attrs );
-        this.select( model );
-        this._autoUpdate( model );
-        return model;
-    },
-
-    stop: function(){
-        debug.debug( 'stop' );
-        var model = this.selected;
+        var model = this.getSelected();
         if( model ){
-            this._stopUpdate();
-            this.deselect();
-            model
-                .update();
+            model.update();
             this.remove( model );
         }
         return model;
     },
 
+    stop: function(){
+        debug( '#stop' );
+        return this._stop();
+    },
+
     onTeardown: function(){
         debug( "#teardown" );
         this.stop();
-
-        Mousetrap.unbind( 'ctrl+alt+s' );
     }
 
 } );

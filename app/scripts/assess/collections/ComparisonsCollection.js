@@ -1,6 +1,5 @@
 'use strict';
 var Backbone = require( 'backbone' );
-var Select = require( 'backbone.select' );
 
 var debug = require( 'debug' )( 'dpac:assess.collections', '[ComparisonsCollection]' );
 var ModelClass = require( '../models/ComparisonProxy' );
@@ -18,8 +17,6 @@ module.exports = Backbone.Collection.extend( {
 
     initialize: function( models ){
         debug( '#initialize' );
-        Select.One.applyTo( this, models );
-        this.on( 'deselect:one', this.teardownModel, this );
     },
 
     parse: function( response ){
@@ -34,11 +31,7 @@ module.exports = Backbone.Collection.extend( {
         debug.debug( '#teardownModel' );
         this.remove( model );
         model.teardown();
-    },
-
-    onTeardown: function(){
-        debug( "#teardown" );
-        this.deselect( this.selected, { silent: true } );
     }
+
 } );
 teardown.collection.mixin( module.exports );

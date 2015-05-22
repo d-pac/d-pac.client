@@ -1,8 +1,8 @@
 'use strict';
 var debug = require( 'debug' )( 'dpac:assess.controllers', '[AssessmentFlow]' );
 var Marionette = require( 'backbone.marionette' );
-var i18n = require('i18next');
-var CurrentSelectionModel = require('../models/CurrentSelectionModel');
+var i18n = require( 'i18next' );
+var CurrentSelectionModel = require( '../models/CurrentSelectionModel' );
 module.exports = Marionette.Controller.extend( {
 
     assessmentsCollection: undefined,
@@ -11,6 +11,7 @@ module.exports = Marionette.Controller.extend( {
     currentSelection: undefined,
     phasesCollection: undefined,
     representationsCollection: undefined,
+    timelogsCollection: undefined,
 
     contextEvents: {
         "comparisons:continuation:confirmed": "selectComparison"
@@ -75,32 +76,31 @@ module.exports = Marionette.Controller.extend( {
     },
 
     selectComparison: function selectComparison(){
-        debug("#comparisonSelected");
-
+        debug( "#comparisonSelected" );
 
         var comparison = this.comparisonsCollection.at( 0 );
-        var assessment = this.assessmentsCollection.get(comparison.get("assessment"));
-        var current = this.currentSelection = new CurrentSelectionModel({
+        var assessment = this.assessmentsCollection.get( comparison.get( "assessment" ) );
+        var current = this.currentSelection = new CurrentSelectionModel( {
             comparison: comparison,
             assessment: assessment,
             phases: this.phasesCollection,
             representations: this.representationsCollection
-        });
+        } );
 
-        i18n.addResourceBundle(i18n.lng(), 'assessment', assessment.get('uiCopy'));
+        i18n.addResourceBundle( i18n.lng(), 'assessment', assessment.get( 'uiCopy' ) );
 
-        this.context.wireValue('currentSelection', current);
-        this.dispatch('comparisons:editing:requested', current);
+        this.context.wireValue( 'currentSelection', current );
+        this.dispatch( 'comparisons:editing:requested', { current: current } );
 
-        current.once("change:completed", this.finalizeComparison, this);
+        current.once( "change:completed", this.finalizeComparison, this );
     },
 
     finalizeComparison: function(){
-        var comparison = this.currentSelection.get('comparison');
-        var assessment = this.currentSelection.get('assessment');
-        this.comparisonsCollection.teardownModel(comparison);
+        var comparison = this.currentSelection.get( 'comparison' );
+        var assessment = this.currentSelection.get( 'assessment' );
+        this.comparisonsCollection.teardownModel( comparison );
         assessment.incCompleted();
-        this.context.release('currentSelection');
+        this.context.release( 'currentSelection' );
         this.currentSelection = undefined;
         this.verifyComparisonsState();
     }

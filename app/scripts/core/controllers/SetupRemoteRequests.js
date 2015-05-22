@@ -26,7 +26,7 @@ _.extend( SetupRemoteRequests.prototype, {
         var pendingRequests = this.pendingRequests;
 
         $.ajaxSetup( {
-            timeout: 5000
+            timeout: 10000
         } );
 
         var backboneSync = Backbone.sync;

@@ -1,6 +1,5 @@
 'use strict';
 var Backbone = require('backbone');
-var Select = require('backbone.select');
 var moment = require('moment');
 var debug = require( 'debug' )( 'dpac:assess', '[TimelogProxy]' );
 var teardown = require('../mixins/teardown');
@@ -16,8 +15,6 @@ module.exports = Backbone.Model.extend( {
 
     initialize : function(){
         debug( '#initialize', this.id || '<new>' );
-        Select.Me.applyTo( this );
-
         var now = moment().format();
         this.set('begin', now);
         this.set('end', now);
@@ -25,19 +22,18 @@ module.exports = Backbone.Model.extend( {
         this.save();
     },
 
+    parse: function(raw){
+        return raw.data;
+    },
+
     update: function(){
         debug("#update", this.id || '<new>');
         var now = moment().format();
-        this.set('end', now);
-
-        this.save();
+        this.save({
+            end: now
+        }, {patch:true});
 
         return this;
-    },
-
-    onTeardown : function(){
-        debug( "#teardown", this.id || '<new>' );
-        this.deselect( { silent : true } );
     }
 } );
 teardown.model.mixin( module.exports );

@@ -30,7 +30,6 @@ module.exports = Backbone.Model.extend( {
 
     parse: function( raw ){
         raw.uiCopy = JSON.parse( raw.uiCopy );
-        console.log( raw );
         return raw;
     },
 

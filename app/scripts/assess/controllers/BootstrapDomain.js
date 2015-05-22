@@ -23,14 +23,16 @@ _.extend( BootstrapDomain.prototype, {
             parser: 'comparisonsParser'
         } );
 
-        context.wireSingleton( 'assessmentFlow', require( '../controllers/AssessmentFlow' ),{
+        context.wireSingleton( 'timelogsCollection', require( '../collections/TimelogsCollection' ) );
+        context.wireSingleton( 'timelogsController', require( './TimelogsController' ) );
+        context.wireSingleton( 'assessmentFlow', require( '../controllers/AssessmentFlow' ), {
             assessmentsCollection: "assessmentsCollection",
             comparisonsCollection: "comparisonsCollection",
             phasesCollection: "phasesCollection",
             representationsCollection: "representationsCollection",
+            timelogsCollection: 'timelogsCollection',
             context: "assessmentContext"
         } );
-        //context.wireSingleton( 'timelogger', require( '../collections/TimelogsCollection' ) );
         //context.configure('timelogger', undefined, this.config.timelogs);
         //
         //context.wireCommand( "mementos:selection:completed", require( './MementoController' ) );
