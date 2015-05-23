@@ -10,7 +10,6 @@ module.exports = Backbone.Collection.extend( {
 
     url: "/timelogs",
     model: ModelClass,
-    intervalId: undefined,
     updateInterval: 5000,
 
     contextEvents: {
@@ -23,10 +22,6 @@ module.exports = Backbone.Collection.extend( {
         debug( '#initialize' );
     },
 
-    isRunning: function(){
-        return !! this.intervalId;
-    },
-
     getSelected: function(){
         return this.at(0);
     },
@@ -35,26 +30,17 @@ module.exports = Backbone.Collection.extend( {
                      phaseId ){
         debug( '#start', comparisonId, phaseId );
         this._stop();
-        this.intervalId = setInterval( this.update.bind( this ), this.updateInterval );
         return this.add( {
             comparison: comparisonId,
-            phase: phaseId
+            phase: phaseId,
+            updateInterval: this.updateInterval
         } );
     },
 
-    update: function(){
-        debug( '#update' );
-        this.getSelected().update();
-    },
-
     _stop : function(){
-        if(this.isRunning()){
-            clearInterval(this.intervalId);
-            this.intervalId = undefined;
-        }
         var model = this.getSelected();
         if( model ){
-            model.update();
+            model.stop();
             this.remove( model );
         }
         return model;
@@ -67,7 +53,7 @@ module.exports = Backbone.Collection.extend( {
 
     onTeardown: function(){
         debug( "#teardown" );
-        this.stop();
+        this._stop();
     }
 
 } );

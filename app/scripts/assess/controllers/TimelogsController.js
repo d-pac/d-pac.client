@@ -36,14 +36,20 @@ module.exports = Marionette.Controller.extend( {
         var assessment = current.get('assessment');
         if(assessment.get('enableTimeLogging')){
             this.timelogsCollection.start(current.get('comparison' ).id, current.get('currentPhase' ).id);
-            this.listenToOnce(current, 'change:currentPhase', this.verifyTimelogState);
-            this.listenToOnce(current, 'change:completed', this.stopLogging);
+            this.listenToOnce(current, 'change:currentPhase', function(){
+                this.stopListening(current);
+                this.verifyTimelogState();
+            });
+            this.listenToOnce(current, 'change:completed', function(){
+                debug('change:completed', arguments);
+                this.stopLogging(current);
+            });
         }
     },
 
-    stopLogging: function(){
+    stopLogging: function(current){
         debug('#stopLogging');
-        this.stopListening(this.context.getObject('currentSelection'));
+        this.stopListening(current || this.context.getObject('currentSelection'));
         this.timelogsCollection.stop();
     }
 } );
