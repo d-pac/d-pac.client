@@ -1,24 +1,63 @@
 <h4>{{{t "assessment:common.title" title=title}}}</h4>
-<p>{{t "assessment:assessment_progressbar.label" completed=completed count=total}}</p>
+<p>{{t "assessment:assessment_progressbar.label" completed=completedNum count=comparisonsNum.total}}</p>
 
 <div class="toolbar">
-    <a href="{{t "common:menu.tutorial.href"}}" class="btn btn-primary" role="button">{{t "common:menu.tutorial.label"}}</a>
-    <a href="{{t "common:menu.judge.href"}}" class="btn btn-primary" role="button">{{t "common:menu.judge.label"}}</a>
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#assessor_assignment">
+        {{t "assessment:assessment_assignments.assessor_button.label"}}
+    </button>
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#assessee_assignment">
+        {{t "assessment:assessment_assignments.assessee_button.label"}}
+    </button>
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#pause_comparison">
+        {{t "assessment:comparison_pause.pause_button.label"}}
+    </button>
 </div>
 
-<!--
-    <div class="progress">
-        <div class="progress-bar progress-bar-info progress-bar-striped"
-             role="progressbar" aria-valuenow="{{completedNum}}" aria-valuemin="0" aria-valuemax="{{comparisonsNum}}"
-             data-toggle="tooltip" data-placement="bottom" title="{{t "assessment:comparisons.progressbar.tooltip"}}"
-             style="width:{{percentage}}%"
-             >
-            {{#if labelLeft }}
-                <span>{{t "assessment:comparisons.progressbar.label" completed=completedNum count=comparisonsNum}}</span>
-            {{/if}}
-        </div>
-        {{#if labelRight}}
-            <span>&nbsp;{{t "assessment:comparisons.progressbar.label"  completed=completedNum count=comparisonsNum}}</span>
-        {{/if}}
+<div class="modal fade" id="assessor_assignment" tabindex="-1" role="dialog" aria-labelledby="assessor_assignment_label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="assessor_assignment_label">{{t "assessment:assessment_assignments.assessor_button.label"}}</h4>
+      </div>
+      <div class="modal-body">
+      {{{assignments.assessor}}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{{t "common:close_button.label"}}</button>
+      </div>
     </div>
--->
+  </div>
+</div>
+
+<div class="modal fade" id="assessee_assignment" tabindex="-1" role="dialog" aria-labelledby="assessee_assignment_label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="assessee_assignment_label">{{t "assessment:assessment_assignments.assessee_button.label"}}</h4>
+      </div>
+      <div class="modal-body">
+      {{{assignments.assessee}}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{{t "common:close_button.label"}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="pause_comparison" tabindex="-1" role="dialog" aria-labelledby="pause_comparison_label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="pause_comparison_label">{{t "assessment:comparison_pause.title"}}</h4>
+      </div>
+      <div class="modal-body">{{t "assessment:comparison_pause.description"}}</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{{t "assessment:comparison_pause.continue_button.label"}}</button>
+      </div>
+    </div>
+  </div>
+</div>

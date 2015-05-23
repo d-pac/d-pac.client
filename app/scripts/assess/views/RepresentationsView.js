@@ -11,7 +11,6 @@ module.exports = Marionette.LayoutView.extend({
         representationA : "#representation-A",
         representationB : "#representation-B"
     },
-    className: "row",
 
     initialize : function(){
         debug("#initialize");

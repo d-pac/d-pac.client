@@ -6,15 +6,13 @@ var tpl = require( './templates/AssessmentDetails.hbs' );
 
 module.exports = Marionette.ItemView.extend( {
     template: tpl,
-    className: "col-sm-12 column",
+    className: "well",
 
     initialize: function(){
         debug( "#initialize" );
     },
 
     serializeData: function(){
-        return _.extend( this.model.get( "comparison" ).get( "progress" ), {
-            title: this.model.get( "assessment" ).get( "title" )
-        } );
+        return this.model.get("assessment").toJSON();
     }
 } );
