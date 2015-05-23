@@ -17,6 +17,7 @@ module.exports = Marionette.LayoutView.extend({
     },
 
     onRender : function(){
+        debug('#onRender', this.model);
         this.representationA.show(new DetailView({
             model: this.model.getRepresentation("a")
         }));

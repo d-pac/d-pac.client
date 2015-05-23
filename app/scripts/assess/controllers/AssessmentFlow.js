@@ -78,6 +78,7 @@ module.exports = Marionette.Controller.extend( {
         debug( "#comparisonSelected" );
 
         var comparison = this.comparisonsCollection.at( 0 );
+        console.log(this.comparisonsCollection);
         var assessment = this.assessmentsCollection.get( comparison.get( "assessment" ) );
         var current = this.currentSelection = new CurrentSelectionModel( {
             comparison: comparison,

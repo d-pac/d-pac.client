@@ -13,7 +13,18 @@ module.exports = function ComparisonsParser(){
 _.extend( module.exports.prototype, Backbone.Events, {
     representationsCollection: undefined,
 
-    parse: function( raw ){
+    parseCollection: function( raw ){
+        debug('#parseCollection', raw);
+        var representations = _.filter( raw.included, representationFilter);
+        this.representationsCollection.reset( representations );
+        return raw.data;
+    },
+    parseModel: function(raw){
+        debug('#parseModel', raw);
+        if(raw.type){
+            // unwrapped
+            return raw;
+        }
         var representations = _.filter( raw.included, representationFilter);
         this.representationsCollection.reset( representations );
         return raw.data;

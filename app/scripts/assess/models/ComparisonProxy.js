@@ -36,6 +36,17 @@ module.exports = Backbone.Model.extend( {
     initialize: function(){
         debug( '#initialize', this.id || '<new>' );
     },
+
+    parse: function(raw){
+        debug("#parse", raw);
+        if(this.collection){
+            return this.collection.parser.parseModel(raw);
+        }
+
+        //model already removed from collection
+        return raw.data;
+    },
+
     update: function( attrs ){
         this.save( attrs, { patch: true } );
     }

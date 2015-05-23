@@ -15,7 +15,7 @@ module.exports = Backbone.Model.extend( {
     },
 
     initialize: function( attrs ){
-        debug( '#initialize' );
+        debug( '#initialize', attrs );
         var currentPhaseId = attrs.comparison.get( 'phase' );
         var assessmentPhases = attrs.assessment.get( 'phases' );
         var index;
@@ -45,8 +45,8 @@ module.exports = Backbone.Model.extend( {
         update.data[ this.get( 'currentPhase' ).get( 'slug' ) ] = value;
         if( !update.phase ){
             update.completed = true;
+            update.phase = null;
             comparison.update( update );
-            console.log('SETTTING COMPLETED TO TRUE')
             this.set('completed', true);
         } else {
             comparison.update( update );

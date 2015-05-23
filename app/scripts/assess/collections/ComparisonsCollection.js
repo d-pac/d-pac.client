@@ -20,7 +20,8 @@ module.exports = Backbone.Collection.extend( {
     },
 
     parse: function( response ){
-        return this.parser.parse( response );
+        debug('#parse');
+        return this.parser.parseCollection( response );
     },
 
     hasActives: function(){
