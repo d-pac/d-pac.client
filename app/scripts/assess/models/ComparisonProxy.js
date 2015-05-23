@@ -1,6 +1,6 @@
 'use strict';
 var _ = require( 'underscore' );
-var Backbone = require('backbone');
+var Backbone = require( 'backbone' );
 
 var debug = require( 'debug' )( 'dpac:assess.models', '[ComparisonProxy]' );
 
@@ -8,39 +8,36 @@ var teardown = require( '../mixins/teardown' );
 
 module.exports = Backbone.Model.extend( {
 
-    urlRoot     : '/comparisons',
-    idAttribute : "_id",
-    defaults    : {
+    urlRoot: '/comparisons',
+    idAttribute: "_id",
+    defaults: {
         /**
          * {Assessment.id}
          */
-        assessment          : undefined,
+        assessment: undefined,
         /**
          * {User.id}
          */
-        assessor            : undefined,
+        assessor: undefined,
         /**
          * {Phase.id}
          */
-        phase               : undefined,
+        phase: undefined,
 
         /**
          * {Boolean}
          */
-        completed           : undefined,
+        completed: undefined,
 
-        representations : {
-            a: undefined,
-            b: undefined
-        },
-        data : undefined
+        representations: undefined,
+        data: undefined
     },
 
-    initialize : function(){
+    initialize: function(){
         debug( '#initialize', this.id || '<new>' );
     },
-    update : function(attrs){
-        this.save(attrs, {patch:true});
+    update: function( attrs ){
+        this.save( attrs, { patch: true } );
     }
 
 } );

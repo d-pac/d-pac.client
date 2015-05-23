@@ -46,23 +46,22 @@ module.exports = Marionette.Controller.extend( {
     },
 
     verifyActiveAssessments: function verifyActiveAssessments(){
-        var rootAssessments = this.assessmentsCollection.getRootAssessments();
-        if( 1 === rootAssessments.length ){
+        var actives = this.assessmentsCollection.getActives();
+        if( 1 === actives.length ){
             //automatic selection
-            this.assessmentsCollection.select( rootAssessments[ 0 ] );
+            this.assessmentSelectionCompleted({assessment: actives[0]});
         } else {
             this.dispatch( 'assessments:selection:requested' );
         }
     },
 
-    assessmentSelectionCompleted: function(){
+    assessmentSelectionCompleted: function(event){
         debug( '#assessmentSelectionCompleted' );
-        this.requestComparisonCreation();
+        this.requestComparisonCreation(event.assessment);
     },
 
-    requestComparisonCreation: function(){
-        debug( '#requestComparisonCreation' );
-        var assessment = this.assessmentsCollection.selected;
+    requestComparisonCreation: function(assessment){
+        debug( '#requestComparisonCreation', assessment );
 
         this.comparisonsCollection.once( "add", this.comparisonCreationCompleted, this );
         this.comparisonsCollection.create( {

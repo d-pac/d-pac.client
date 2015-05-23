@@ -36,19 +36,27 @@ module.exports = Backbone.Model.extend( {
     getNextPhaseId: function( phaseId ){
         var phases = this.get( 'phases' );
         var index = phases.indexOf( phaseId ) + 1;
-        return phases[index];
+        return phases[ index ];
     },
 
     isRoot: function(){
-        var parent = this.get("parent");
-        if(parent){
-            return !this.collection.get(parent);
+        var parent = this.get( "parent" );
+        if( parent ){
+            return !this.collection.get( parent );
         }
         return true;
     },
 
     incCompleted: function(){
-        this.set('completedNum', this.get('completedNum')+1);
+        this.set( 'completedNum', this.get( 'completedNum' ) + 1 );
+    },
+
+    isCompleted: function(){
+        return this.get( 'completedNum' ) >= this.get( 'comparisonsNum' ).total;
+    },
+
+    isActive : function(){
+        return this.isRoot() && !this.isCompleted();
     },
 
     onTeardown: function(){
