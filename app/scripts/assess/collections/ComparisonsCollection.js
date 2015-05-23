@@ -26,17 +26,8 @@ module.exports = Backbone.Collection.extend( {
         return this.parser.parse( response );
     },
 
-    hasActive: function(){
-        var found = this.findWhere( {
-            completed: false
-        } );
-        return !!found;
-    },
-
-    getActive: function(){
-        return this.findWhere( {
-            completed: false
-        } );
+    hasActives: function(){
+        return !!this.length;
     },
 
     teardownModel: function( model ){

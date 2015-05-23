@@ -1,7 +1,6 @@
 'use strict';
 var _ = require( 'underscore' );
 var Backbone = require('backbone');
-var Select = require('backbone.select');
 
 var debug = require( 'debug' )( 'dpac:assess.models', '[ComparisonProxy]' );
 
@@ -34,36 +33,15 @@ module.exports = Backbone.Model.extend( {
             a: undefined,
             b: undefined
         },
-        data : undefined,
-        progress: {
-            total: undefined,
-            completed: undefined
-        }
+        data : undefined
     },
 
     initialize : function(){
         debug( '#initialize', this.id || '<new>' );
-
-        //todo: don't know why but we have to do it like this, otherwise we get an error
-        var model = this;
-        Select.Me.applyTo( this );
-        this.on("change:selected change:phase change:data change:completed", function(){
-            model.save();
-        });
     },
-
-    onTeardown : function(){
-        debug( "#teardown" );
-        this.off("change");
-    },
-
-    save : _.debounce( function( attrs ){
-        debug( '#save' );
-        if( attrs ){
-            this.set( attrs );
-        }
-        Backbone.Model.prototype.save.call( this );
-    }, 1000 )
+    update : function(attrs){
+        this.save(attrs, {patch:true});
+    }
 
 } );
 teardown.model.mixin( module.exports );
