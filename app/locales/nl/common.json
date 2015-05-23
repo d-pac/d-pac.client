@@ -1,50 +1,53 @@
 {
-    "app": {
-        "name": "d-pac"
+  "app": {
+    "name": "d-pac"
+  },
+  "notfound": {
+    "title": "Oei.",
+    "description": "Pagina niet gevonden."
+  },
+  "close_button": {
+    "label": "Sluiten"
+  },
+  "menu": {
+    "brand": {
+      "label": "d-pac",
+      "href": "#"
     },
-    "notfound": {
-        "title": "Oei.",
-        "description": "Pagina niet gevonden."
+    "text": {
+      "label": "Welkom, __userName__"
     },
-    "menu": {
-        "brand": {
-            "label": "d-pac",
-            "href": "#"
-        },
-        "text" : {
-            "label" : "Welkom, __userName__"
-        },
-        "judge": {
-            "label": "Beoordeel",
-            "description": "Beoordeel",
-            "href": "#assess"
-        },
-        "account": {
-            "label": "Account",
-            "description": "Pas uw gebruikersgegevens aan.",
-            "href": "#account"
-        },
-        "tutorial": {
-            "label": "Tutorial",
-            "description": "Tutorial",
-            "href": "#tutorial"
-        },
-        "logout": {
-            "label": "Log uit",
-            "description": "Log uit",
-            "href": "#signout"
-        },
-        "login": {
-            "label": "Log in",
-            "description": "Log in",
-            "href": "#signin"
-        },
-        "toggle": {
-            "label": "Navigatie"
-        }
+    "judge": {
+      "label": "Beoordeel",
+      "description": "Beoordeel",
+      "href": "#assess"
     },
-    "warning": {
-        "label": "Opgepast!",
-        "minsize": "Browser grootte te klein: gelieve deze aan te passen!"
+    "account": {
+      "label": "Account",
+      "description": "Pas uw gebruikersgegevens aan.",
+      "href": "#account"
+    },
+    "tutorial": {
+      "label": "Tutorial",
+      "description": "Tutorial",
+      "href": "#tutorial"
+    },
+    "logout": {
+      "label": "Log uit",
+      "description": "Log uit",
+      "href": "#signout"
+    },
+    "login": {
+      "label": "Log in",
+      "description": "Log in",
+      "href": "#signin"
+    },
+    "toggle": {
+      "label": "Navigatie"
     }
+  },
+  "warning": {
+    "label": "Opgepast!",
+    "minsize": "Browser grootte te klein: gelieve deze aan te passen!"
+  }
 }

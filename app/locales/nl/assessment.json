@@ -1,19 +1,52 @@
 {
+  "common": {
+    "title": "Opdracht: '__title__'",
+    "close_button": {
+      "label": "Sluiten"
+    },
+    "save_button":{
+      "label": "Bewaren"
+    }
+  },
   "assessment_selection": {
     "title": "Opdrachten",
     "description": "Kies een uit te voeren opdracht.",
     "empty": "U hebt geen uit te voeren opdrachten.",
-    "thanks": "Bedankt om alle beoordelingen te hebben uitgevoerd voor deze opdracht!",
-    "completed": "U hebt al uw beoordelingen uitgevoerd.",
+    "thanks": "Bedankt om alle vergelijkingen te hebben uitgevoerd voor deze opdracht!",
+    "completed": "U hebt al uw vergelijkingen uitgevoerd.",
     "continue_button": {
-      "label": "Ga door met een ander opdracht."
+      "label": "Ga door met een andere opdracht."
     }
   },
   "comparison_continuation": {
-    "title": "Beoordelingen",
-    "description": "U hebt een onafgewerkte beoordeling. Deze dient eerst vervolledigd te worden.",
+    "title": "Vergelijkingen",
+    "description": "Je hebt een onafgewerkte vergelijking. Deze dient eerst vervolledigd te worden.",
+    "description_plural": "Je hebt __count__ onafgewerkte vergelijkingen. Deze dienen eerst vervolledigd te worden.",
     "continue_button": {
-      "label": "Vervolg beoordeling"
+      "label": "Vervolg vergelijking"
+    }
+  },
+  "comparison_pause": {
+    "title": "Pauze",
+    "description": "Je hebt nu de vergelijking gepauseerd, maar we willen je vriendelijk verzoeken deze lopende vergelijking nog af te werken voor de goede werking van het systeem.",
+    "pause_button": {
+      "label": "Pauze"
+    },
+    "continue_button": {
+      "label": "Vervolg vergelijking"
+    }
+  },
+  "assessment_progressbar": {
+    "tooltip": "Toont je informatie over je vooruitgang.",
+    "label": "Je hebt <strong>__completed__</strong> van <strong>__count__</strong> vergelijkingen in deze opdracht uitgevoerd.",
+    "label_plural": "Je hebt <strong>__completed__</strong> van <strong>__count__</strong> vergelijkingen in deze opdracht uitgevoerd."
+  },
+  "assessment_assignments": {
+    "assessor_button": {
+      "label": "Jouw opdracht"
+    },
+    "assessee_button": {
+      "label": "Te beoordelen opdracht"
     }
   }
 }
