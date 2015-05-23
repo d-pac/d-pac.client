@@ -41,10 +41,6 @@ _.extend( module.exports.prototype, {
 
         var appView = context.getObject( 'AppView' )();
         appView.render();
-
-        var MinsizeWarning = require( '../views/MinsizeWarning' );
-        var warning = new MinsizeWarning();
-        warning.render();
     }
 });
 

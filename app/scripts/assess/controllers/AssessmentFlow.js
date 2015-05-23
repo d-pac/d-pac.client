@@ -36,18 +36,19 @@ module.exports = Marionette.Controller.extend( {
 
     verifyComparisonsState: function verifyComparisonsState(){
         debug( "#verifyComparisonsState" );
-        if( this.comparisonsCollection.length ){
+        if( this.comparisonsCollection.hasActives() ){
             //interrupted comparisons exist
             this.dispatch( 'comparisons:continuation:requested' )
         } else {
-            this.verifyRootAssessments();
+            this.verifyActiveAssessments();
         }
     },
 
-    verifyRootAssessments: function verifyRootAssessments(){
-        if( 1 === this.assessmentsCollection.rootAssessments.length ){
+    verifyActiveAssessments: function verifyActiveAssessments(){
+        var rootAssessments = this.assessmentsCollection.getRootAssessments();
+        if( 1 === rootAssessments.length ){
             //automatic selection
-            this.assessmentsCollection.select( this.assessmentsCollection.rootAssessments[ 0 ] );
+            this.assessmentsCollection.select( rootAssessments[ 0 ] );
         } else {
             this.dispatch( 'assessments:selection:requested' );
         }
@@ -76,10 +77,10 @@ module.exports = Marionette.Controller.extend( {
     selectComparison: function selectComparison(){
         debug("#comparisonSelected");
 
-        var current = this.currentSelection = new CurrentSelectionModel();
+
         var comparison = this.comparisonsCollection.at( 0 );
         var assessment = this.assessmentsCollection.get(comparison.get("assessment"));
-        current.set({
+        var current = this.currentSelection = new CurrentSelectionModel({
             comparison: comparison,
             assessment: assessment,
             phases: this.phasesCollection,
@@ -90,5 +91,17 @@ module.exports = Marionette.Controller.extend( {
 
         this.context.wireValue('currentSelection', current);
         this.dispatch('comparisons:editing:requested', current);
+
+        current.once("change:completed", this.finalizeComparison, this);
+    },
+
+    finalizeComparison: function(){
+        var comparison = this.currentSelection.get('comparison');
+        var assessment = this.currentSelection.get('assessment');
+        this.comparisonsCollection.teardownModel(comparison);
+        assessment.incCompleted();
+        this.context.release('currentSelection');
+        this.currentSelection = undefined;
+        this.verifyComparisonsState();
     }
 } );
