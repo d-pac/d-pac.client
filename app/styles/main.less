@@ -100,9 +100,13 @@
     max-width: 400px;
 }
 
-nav.navbar{
-    z-index: 1200;
-}
+//nav.navbar{
+//    z-index: 1200;
+//}
+//
+//.modal{
+//    z-index: 1300;
+//}
 
 #brand-href >img{
     margin-top: -7px
@@ -115,8 +119,8 @@ h4{
     color: #959595;
 }
 
-.label-info, .alert-info{
-    color: @primary;
+.label-info, .alert-info, .btn-info{
+    color: @primary !important;
 }
 
 .label{
@@ -174,5 +178,11 @@ h4{
 
 
 body{
-    padding-top: 120px;
+    padding-top: 100px;
+}
+
+textarea{
+    border-top: 1px solid @blue-grey-50 !important;
+    border-left: 1px solid @blue-grey-50 !important;
+    padding-left: 4px !important;
 }
