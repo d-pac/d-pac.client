@@ -33,10 +33,22 @@ module.exports = Marionette.Controller.extend( {
     verifyTimelogState: function(){
         debug('#verifyTimelogState');
         var current = this.context.getObject('currentSelection');
+        if(this.current !== current){
+            this.current = current;
+            this.listenToOnce(current, 'change:completed', function(model){
+                debug("change:completed");
+                this.current = undefined;
+                this.stopListening(model);
+                this.stopLogging();
+            });
+        }
         var assessment = current.get('assessment');
         if(assessment.get('enableTimeLogging')){
             this.timelogsCollection.start(current.get('comparison' ).id, current.get('currentPhase' ).id);
-            this.listenToOnce(current, 'change:currentPhase', this.verifyTimelogState);
+            this.listenToOnce(current, 'change:currentPhase',function(){
+                debug('change:currentPhase');
+                this.verifyTimelogState();
+            });
         }else{
             this.stopLogging();
         }
