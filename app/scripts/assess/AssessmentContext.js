@@ -24,15 +24,7 @@ module.exports = Geppetto.Context.extend( {
 
     getMainView: function(){
         var factory = this.getObject( 'MainView' );
-        var view = factory();
-        view.on( 'render', function(){
-            this.dispatch( 'assess:ui:rendered' );
-        }, this );
-        //view.on( 'destroy', function(){
-        //    this.dispatch( 'assess:teardown:requested' );
-        //    this.destroy();
-        //}, this );
-        return view;
+        return factory();
     }
 } );
 _.extend( module.exports.prototype, Backbone.Events );

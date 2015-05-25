@@ -29,6 +29,10 @@ module.exports = Marionette.LayoutView.extend( {
         debug( "#initialize" );
     },
 
+    onRender: function(){
+        this.dispatch( 'assess:ui:rendered' );
+    },
+
     showUnfinishedComparison: function(){
         this.contentRegion.show( this.unfinishedComparisonsFactory() );
     },
@@ -47,6 +51,10 @@ module.exports = Marionette.LayoutView.extend( {
     showLayoutView: function(){
         debug( "#showComparisonView" );
         this.contentRegion.show( this.layoutFactory() );
+    },
+
+    onDestroy: function(){
+        this.dispatch('assess:ui:destroyed');
     }
 
 } );

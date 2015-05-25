@@ -16,7 +16,8 @@ module.exports = Marionette.Controller.extend( {
     contextEvents: {
         "comparisons:unfinished:confirmed": "selectComparison",
         "comparisons:continue:confirmed": "continueComparisonConfirmed",
-        "assessments:selection:completed": "assessmentSelectionCompleted"
+        "assessments:selection:completed": "assessmentSelectionCompleted",
+        "assess:ui:rendered": "start"
     },
 
     initialize: function(){

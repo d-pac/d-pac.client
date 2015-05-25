@@ -40,7 +40,7 @@ _.extend( module.exports.prototype, {
                 } );
                 collection.fetch();
             } ).then('assess:bootstrap:completed')
-            .when('assess:ui:rendered', 'assess:bootstrap:completed' ).then(function(){
+            .when('assess:bootstrap:completed' ).then(function(){
                 var timelogs = context.getObject('timelogsController');
 
                 var assessmentFlow = context.getObject( 'assessmentFlow' );
