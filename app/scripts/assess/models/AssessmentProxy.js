@@ -42,7 +42,8 @@ module.exports = Backbone.Model.extend( {
     isRoot: function(){
         var parent = this.get( "parent" );
         if( parent ){
-            return !this.collection.get( parent );
+            var parentModel = this.collection.get( parent );
+            return !parentModel || parentModel.isCompleted();
         }
         return true;
     },
