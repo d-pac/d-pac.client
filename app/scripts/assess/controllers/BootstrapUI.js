@@ -16,11 +16,13 @@ _.extend( BootstrapUI.prototype, {
         context.wireView( 'MainView', require( '../views/MainView' ), {
             'assessmentSelectionFactory': 'AssessmentSelectionView',
             'layoutFactory': 'LayoutView',
-            'comparisonsContinuationFactory': 'ComparisonsContinuationView'
+            'unfinishedComparisonsFactory': 'UnfinishedComparisonsView',
+            'continueComparisonsFactory': 'ContinueComparisonsView'
         } );
-        context.wireView( 'ComparisonsContinuationView', require( '../views/ComparisonsContinuation' ), {
+        context.wireView( 'UnfinishedComparisonsView', require( '../views/UnfinishedComparisons' ), {
             collection:"comparisonsCollection"
         } );
+        context.wireView( 'ContinueComparisonsView', require( '../views/ContinueComparisons' ));
         context.wireView( 'AssessmentSelectionView', require( '../views/AssessmentSelectionView' ), {
             collection: "assessmentsCollection"
         } );

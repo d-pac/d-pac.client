@@ -14,7 +14,9 @@ module.exports = Marionette.Controller.extend( {
     timelogsCollection: undefined,
 
     contextEvents: {
-        "comparisons:continuation:confirmed": "selectComparison"
+        "comparisons:unfinished:confirmed": "selectComparison",
+        "comparisons:continue:confirmed": "continueComparisonConfirmed",
+        "assessments:selection:completed": "assessmentSelectionCompleted"
     },
 
     initialize: function(){
@@ -39,28 +41,36 @@ module.exports = Marionette.Controller.extend( {
         debug( "#verifyComparisonsState" );
         if( this.comparisonsCollection.hasActives() ){
             //interrupted comparisons exist
-            this.dispatch( 'comparisons:continuation:requested' )
-        } else {
-            this.verifyActiveAssessments();
-        }
-    },
-
-    verifyActiveAssessments: function verifyActiveAssessments(){
-        var actives = this.assessmentsCollection.getActives();
-        if( 1 === actives.length ){
-            //automatic selection
-            this.assessmentSelectionCompleted({assessment: actives[0]});
-        } else {
+            this.dispatch( 'comparisons:unfinished:requested' );
+        } else if(this.assessmentsCollection.selected){
+            this.dispatch( 'comparisons:continue:requested' );
+        }else{
             this.dispatch( 'assessments:selection:requested' );
         }
     },
 
-    assessmentSelectionCompleted: function(event){
-        debug( '#assessmentSelectionCompleted' );
-        this.requestComparisonCreation(event.assessment);
+    //verifyActiveAssessments: function verifyActiveAssessments(){
+    //    var actives = this.assessmentsCollection.getActives();
+    //    if( 1 === actives.length ){
+    //        //automatic selection
+    //        //this.assessmentSelectionCompleted({assessment: actives[0]});
+    //        this.dispatch( 'comparisons:continue:requested' );
+    //    } else {
+    //        this.dispatch( 'assessments:selection:requested' );
+    //    }
+    //},
+
+    continueComparisonConfirmed: function(){
+        var model = this.assessmentsCollection.select(this.assessmentsCollection.getActives()[ 0 ]);
+        this.assessmentSelectionCompleted( { assessment: model } );
     },
 
-    requestComparisonCreation: function(assessment){
+    assessmentSelectionCompleted: function( event ){
+        debug( '#assessmentSelectionCompleted' );
+        this.requestComparisonCreation( event.assessment );
+    },
+
+    requestComparisonCreation: function( assessment ){
         debug( '#requestComparisonCreation', assessment );
 
         this.comparisonsCollection.once( "add", this.comparisonCreationCompleted, this );
@@ -78,8 +88,8 @@ module.exports = Marionette.Controller.extend( {
         debug( "#comparisonSelected" );
 
         var comparison = this.comparisonsCollection.at( 0 );
-        console.log(this.comparisonsCollection);
         var assessment = this.assessmentsCollection.get( comparison.get( "assessment" ) );
+        this.assessmentsCollection.select(assessment);
         var current = this.currentSelection = new CurrentSelectionModel( {
             comparison: comparison,
             assessment: assessment,

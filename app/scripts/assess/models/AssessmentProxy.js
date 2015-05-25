@@ -50,6 +50,9 @@ module.exports = Backbone.Model.extend( {
 
     incCompleted: function(){
         this.set( 'completedNum', this.get( 'completedNum' ) + 1 );
+        if(this.isCompleted()){
+            this.collection.deselect(this);
+        }
     },
 
     isCompleted: function(){

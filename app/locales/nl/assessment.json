@@ -4,7 +4,7 @@
     "close_button": {
       "label": "Sluiten"
     },
-    "save_button":{
+    "save_button": {
       "label": "Bewaren"
     }
   },
@@ -18,7 +18,7 @@
       "label": "Ga door met een andere opdracht."
     }
   },
-  "comparison_continuation": {
+  "comparison_unfinished": {
     "title": "Vergelijkingen",
     "description": "Je hebt een onafgewerkte vergelijking. Deze dient eerst vervolledigd te worden.",
     "description_plural": "Je hebt __count__ onafgewerkte vergelijkingen. Deze dienen eerst vervolledigd te worden.",
@@ -47,6 +47,16 @@
     },
     "assessee_button": {
       "label": "Te beoordelen opdracht"
+    }
+  },
+  "comparison_continue": {
+    "title": "Vergelijkingen",
+    "description": "Wens je verder te gaan met de volgende vergelijking?",
+    "continue_button": {
+      "label": "Volgende vergelijking"
+    },
+    "stop_button": {
+      "label": "Tijdelijk stoppen"
     }
   }
 }

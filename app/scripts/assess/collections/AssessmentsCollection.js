@@ -28,6 +28,31 @@ module.exports = Backbone.Collection.extend( {
         } );
     },
 
+    getActivesJSON: function(){
+        return _.map( this.getActives(), function( model ){
+            return model.toJSON();
+        } );
+    },
+
+    selectByID: function( assessmentId ){
+        debug( "#selectByID" );
+        var model = this.get( assessmentId );
+        this.selected = model;
+        return model;
+    },
+
+    deselect: function(model){
+        if(this.selected===model){
+            this.selected = undefined;
+            return model;
+        }
+    },
+
+    select: function(model){
+        this.selected = model;
+        return model;
+    },
+
     resync: function(){
         this.reset();
         this.fetch();

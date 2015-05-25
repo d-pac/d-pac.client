@@ -1,39 +1,23 @@
-{{#if items.length }}
-    <div class="row">
-        <div class="col-md-12 column">
-            <div class="alert alert-info" role="alert">
-                {{#if allCompleted}}
-                    <i class="fa fa-exclamation-circle fa-2x pull-right"></i>
-                    <p>{{t "assessment:selection.thanks.list.description"}}</p>
-                {{else}}
-                    <i class="fa  fa-hand-o-left fa-2x pull-right"></i>
-                    <p>{{t "assessment:selection.plain.list.description"}}</p>
-                {{/if}}
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4 column">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>{{t "assessment:assessment_selection.title"}}</h4>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3 column">
-            {{#each items}}
-                <div>
-                    <!-- TODO: we need to find out why `data-model-id="{{id}}"` doesn't work -->
-                    <button type="button" class="btn btn-default btn-lg btn-block"
-                            data-model-id="{{_id}}">{{ title }}</button>
+            {{#if items.length }}
+                <div class="panel-body">
+                    <p>{{t "assessment:assessment_selection.description"}}</p>
+                    {{#each items}}
+                        <button type="button" class="btn btn-primary btn-block assessment-button" data-model-id="{{_id}}">
+                            {{title}}
+                        </button>
+                    {{/each}}
                 </div>
-            {{/each}}
+            {{else}}
+                <div class="panel-body">
+                    <p>{{t "assessment:assessment_selection.empty"}}</p>
+                </div>
+            {{/if}}
         </div>
     </div>
-{{else}}
-    <div class="row">
-        <div class="col-md-12 column">
-            <div class="alert alert-warning" role="alert">
-                <i class="fa fa-exclamation-circle fa-2x pull-right"></i>
-                {{#if allCompleted}}
-                    <p>{{t "assessment:selection.thanks.empty.description"}}</p>
-                {{else}}
-                    <p>{{t "assessment:selection.plain.empty.description"}}</p>
-                {{/if}}
-            </div>
-        </div>
-    </div>
-{{/if}}
+</div>

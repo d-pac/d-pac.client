@@ -1,7 +1,7 @@
 'use strict';
 var Marionette = require('backbone.marionette');
-var debug = require( 'debug' )( 'dpac:assess.views', '[ComparisonsContinuation]' );
-var tpl = require('./templates/ComparisonsContinuation.hbs');
+var debug = require( 'debug' )( 'dpac:assess.views', '[UnfinishedComparisons]' );
+var tpl = require('./templates/UnfinishedComparisons.hbs');
 
 module.exports = Marionette.ItemView.extend({
     template : tpl,
@@ -26,6 +26,6 @@ module.exports = Marionette.ItemView.extend({
     },
 
     continueComparison: function(){
-        this.dispatch("comparisons:continuation:confirmed");
+        this.dispatch("comparisons:unfinished:confirmed");
     }
 });
