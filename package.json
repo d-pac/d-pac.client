@@ -1,7 +1,7 @@
 {
   "name": "d-pac.client",
   "version": "0.3.1",
-  "build": "654",
+  "build": "655",
   "private": true,
   "devDependencies": {
     "exports-loader": "^0.6.2",
