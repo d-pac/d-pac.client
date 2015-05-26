@@ -12,17 +12,31 @@ module.exports = Marionette.LayoutView.extend({
         representationB : "#representation-B"
     },
 
+    modelEvents: {
+        'change:selectedRepresentation': 'render'
+    },
+
     initialize : function(){
         debug("#initialize");
+    },
+
+    serializeData: function(raw){
+        var data = {};
+        var order = this.model.getSelectedRepresentationOrder();
+        console.log('selectedRepresentationOrder', order);
+        if(order){
+            data["selected"+ order.toUpperCase()] = true;
+        }
+        return data;
     },
 
     onRender : function(){
         debug('#onRender', this.model);
         this.representationA.show(new DetailView({
-            model: this.model.getRepresentation("a")
+            model: this.model.getRepresentationByOrder("a")
         }));
         this.representationB.show(new DetailView({
-            model: this.model.getRepresentation("b")
+            model: this.model.getRepresentationByOrder("b")
         }));
     }
 });

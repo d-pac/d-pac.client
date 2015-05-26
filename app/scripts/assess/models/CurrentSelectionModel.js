@@ -11,6 +11,7 @@ module.exports = Backbone.Model.extend( {
         assessment: undefined,
         representations: undefined,
         phases: undefined,
+        selectedRepresentation: undefined,
         completed: false
     },
 
@@ -21,33 +22,57 @@ module.exports = Backbone.Model.extend( {
         var index;
         if( currentPhaseId ){
             index = assessmentPhases.indexOf( currentPhaseId );
-            if(index<0){
-                index=0;
+            if( index < 0 ){
+                index = 0;
             }
-        }else{
-            index=0;
+        } else {
+            index = 0;
         }
-        currentPhaseId = assessmentPhases[index];
+        currentPhaseId = assessmentPhases[ index ];
         this.set( 'currentPhase', attrs.phases.get( currentPhaseId ) );
+        var selectedRepId = attrs.comparison.get( 'data' ).selection;
+        if( selectedRepId ){
+            this.set( 'selectedRepresentation', attrs.representations.get( selectedRepId ) );
+        }
     },
 
-    getRepresentation: function( orderId ){
+    getRepresentationByOrder: function( orderId ){
         var repId = this.get( "comparison" ).get( "representations" )[ orderId ];
         return this.get( "representations" ).get( repId );
     },
 
+    getSelectedRepresentationOrder: function(){
+        var selectedRep = this.get( 'selectedRepresentation' );
+        if( selectedRep ){
+            var found;
+            _.find( this.get( 'comparison' ).get( 'representations' ), function( representationId,
+                                                                                 order ){
+                if( representationId === selectedRep.id ){
+                    found = order;
+                    return true;
+                }
+            } );
+            return found;
+        }
+        return false;
+    },
+
     storeDataForCurrentPhase: function( value ){
         var comparison = this.get( 'comparison' );
+        var currentPhase = this.get( 'currentPhase' );
+        if( currentPhase.get('slug') === "selection" ){
+            this.set( 'selectedRepresentation', this.get( 'representations' ).get( value ) );
+        }
         var update = {
             data: comparison.get( 'data' ) || {},
-            phase: this.get( "assessment" ).getNextPhaseId( this.get( 'currentPhase' ).id )
+            phase: this.get( "assessment" ).getNextPhaseId( currentPhase.id )
         };
         update.data[ this.get( 'currentPhase' ).get( 'slug' ) ] = value;
         if( !update.phase ){
             update.completed = true;
             update.phase = null;
             comparison.update( update );
-            this.set('completed', true);
+            this.set( 'completed', true );
         } else {
             comparison.update( update );
             this.set( 'currentPhase', this.get( 'phases' ).get( update.phase ) );
