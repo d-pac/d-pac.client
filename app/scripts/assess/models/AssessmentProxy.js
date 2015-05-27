@@ -20,7 +20,10 @@ module.exports = Backbone.Model.extend( {
         },
         uiCopy: undefined,
         enableTimeLogging: false,
-        completedNum: undefined //number of comparisons the user has already made for this assessment
+        progress: {
+            total: undefined,
+            completedNum: undefined //number of comparisons the user has already made for this assessment
+        }
     },
 
     initialize: function(){
@@ -49,14 +52,16 @@ module.exports = Backbone.Model.extend( {
     },
 
     incCompleted: function(){
-        this.set( 'completedNum', this.get( 'completedNum' ) + 1 );
+        var progress = this.get('progress');
+        progress.completedNum++;
+        this.set( 'progress', progress );
         if(this.isCompleted()){
             this.collection.deselect(this);
         }
     },
 
     isCompleted: function(){
-        return this.get( 'completedNum' ) >= this.get( 'comparisonsNum' ).total;
+        return this.get( 'progress' ).completedNum >= this.get( 'progress' ).total;
     },
 
     isActive : function(){
