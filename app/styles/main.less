@@ -52,30 +52,30 @@
     margin-left: -100px;
 }
 
-//@media (max-width:800px){
-//    #size-warning{
-//        visibility: visible;
-//    }
-//    #app {
-//        -webkit-filter: blur(10px);
-//        -moz-filter: blur(10px);
-//        -o-filter: blur(10px);
-//        -ms-filter: blur(10px);
-//        filter: blur(10px);
-//    }
-//}
-//@media (min-width:800px){
-//    #size-warning{
-//        visibility: hidden;
-//    }
-//    #app {
-//        -webkit-filter: initial;
-//        -moz-filter: initial;
-//        -o-filter: initial;
-//        -ms-filter: initial;
-//        filter: initial;
-//    }
-//}
+@media (max-width:800px){
+    #size-warning{
+        visibility: visible;
+    }
+    #app, #app-menu {
+        -webkit-filter: blur(10px);
+        -moz-filter: blur(10px);
+        -o-filter: blur(10px);
+        -ms-filter: blur(10px);
+        filter: blur(10px);
+    }
+}
+@media (min-width:800px){
+    #size-warning{
+        visibility: hidden;
+    }
+    #app, #app-menu {
+        -webkit-filter: initial;
+        -moz-filter: initial;
+        -o-filter: initial;
+        -ms-filter: initial;
+        filter: initial;
+    }
+}
 
 .viewerjs{
     width:100%;
