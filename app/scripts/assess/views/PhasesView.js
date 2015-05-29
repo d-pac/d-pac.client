@@ -1,17 +1,22 @@
 'use strict';
+var _ = require( 'underscore' );
 var Marionette = require( 'backbone.marionette' );
 var debug = require( 'debug' )( 'dpac:assess.views', '[PhasesView]' );
+var i18n = require( 'i18next' );
+
 var templates = {
     selection: require( './templates/phases/SelectRepresentation.hbs' ),
     comparative: require( './templates/phases/ComparativeFeedback.hbs' ),
-    passfail : require('./templates/phases/PassFail.hbs')
+    passfail: require( './templates/phases/PassFail.hbs' ),
+    "seq-selection": require( './templates/phases/Seq.hbs' ),
+    "seq-comparative": require( './templates/phases/Seq.hbs' )
 };
 
 module.exports = Marionette.LayoutView.extend( {
     className: "row",
 
     getTemplate: function(){
-        var phase = this.model.get('currentPhase');
+        var phase = this.model.get( 'currentPhase' );
         var slug = phase.get( "slug" );
         return templates[ slug ];
     },
@@ -20,13 +25,17 @@ module.exports = Marionette.LayoutView.extend( {
         aBtn: "#select-A-button",
         bBtn: "#select-B-button",
         submitFeedbackBtn: "#submit-feedback-button",
-        feedbackInput: "#feedback-input"
+        feedbackInput: "#feedback-input",
+        seqBtn: ".seq-button",
+        submitSeqBtn: "#submit-seq-button"
     },
 
     events: {
         'click @ui.aBtn': "selectionMade",
         'click @ui.bBtn': "selectionMade",
-        'click @ui.submitFeedbackBtn': 'feedbackProvided'
+        'click @ui.submitFeedbackBtn': 'feedbackProvided',
+        'click @ui.seqBtn': 'seqValueSelected',
+        'click @ui.submitSeqBtn': 'saveSeq'
     },
     modelEvents: {
         'change:currentPhase': 'render'
@@ -37,17 +46,43 @@ module.exports = Marionette.LayoutView.extend( {
     },
 
     serializeData: function(){
+        var phase = this.model.get( 'currentPhase' );
+        var slug = phase.get( "slug" );
+        var values = [];
+        _.times( 7, function( i ){
+            var value = i + 1;
+            values.push( {
+                value: value,
+                selected: (this.seqValue === value)
+            } );
+        }, this );
         return {
             representations: this.model.get( "comparison" ).get( "representations" ),
-            passfail: this.model.get("assessment" ).get("uiCopy" ).phase_passfail
-        };
+            title: i18n.t( "assessment:phase_" + slug + ".title" ),
+            description: i18n.t( "assessment:phase_" + slug + ".description" ),
+            seq: {
+                values: values,
+                selected: this.seqValue
+            }
+        }
+    },
+
+    seqValueSelected: function( event ){
+        this.seqValue = this.$( event.currentTarget ).data( 'value' );
+        this.render();
+    },
+
+    saveSeq: function(){
+        this.model.storeDataForCurrentPhase( this.seqValue );
+        this.seqValue = undefined;
     },
 
     selectionMade: function( event ){
         this.model.storeDataForCurrentPhase( this.$( event.currentTarget ).data( 'selection-id' ) );
     },
 
-    feedbackProvided: function(event){
+    feedbackProvided: function( event ){
         this.model.storeDataForCurrentPhase( this.ui.feedbackInput.val() );
     }
-} );
+} )
+;

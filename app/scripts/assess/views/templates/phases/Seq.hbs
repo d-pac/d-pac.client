@@ -1,0 +1,28 @@
+<div class="col-sm-12 column">
+    <div class="well">
+        <h4>{{title}}</h4>
+
+            <div >
+                <!--
+                <div class="btn-group value-buttons" data-toggle="buttons">
+                            {{#each seq.values}}
+                                <label class="btn btn-default" data-value="{{this}}"><input type="radio" name="values">{{this}}</label>
+                            {{/each}}
+                        </div>
+                        -->
+                <ul class="pagination pagination-md">
+                    <li class="disabled"><a href="javascript:void(0)">{{{t "assessment:seq.easy.label"}}}</a></li>
+                    {{#each seq.values}}
+                        <li {{#if this.selected}}class="active"{{/if}}><a href="javascript:void(0)" data-value="{{this.value}}" class="seq-button">{{this.value}}</a></li>
+                    {{/each}}
+                    <li class="disabled"><a href="javascript:void(0)">{{{t "assessment:seq.hard.label"}}}</a></li>
+                </ul>
+            </div>
+            <div>
+                <button id="submit-seq-button" type="button" class="btn btn-primary{{#unless seq.selected}} disabled{{/unless}}">
+                    {{t "assessment:seq.save_button.label"}}
+                </button>
+            </div>
+    </div>
+</div>
+

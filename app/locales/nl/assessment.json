@@ -58,5 +58,71 @@
     "stop_button": {
       "label": "Tijdelijk stoppen"
     }
+  },
+  "seq": {
+    "easy": {
+      "label": "Heel gemakkelijk"
+    },
+    "hard": {
+      "label": "Heel moeilijk"
+    },
+    "save_button": {
+      "label": "Opslaan"
+    }
+  },
+  "phase_selection": {
+    "title": "Beoordeel",
+    "description": "Geef aan welke tekst beter geschreven is in functie van  de competentie 'argumentatief schrijven'",
+    "a_button": {
+      "label": "Tekst A is beter",
+      "tooltip": "Klik om aan te duiden dat tekst A beter is dan B."
+    },
+    "b_button": {
+      "label": "Tekst B is beter",
+      "tooltip": "Klik om aan te duiden dat tekst B beter is dan A."
+    }
+  },
+  "phase_comparative": {
+    "title": "Vergelijk",
+    "description": "Beschrijf hier waarom je de ene tekst beter vond dan de andere:"
+  },
+  "phase_passfail": {
+    "title": "Geslaagd of niet?",
+    "description": "Duid aan of deze teksten volgens jou geslaagd zijn voor de opdracht.",
+    "options": {
+      "passed": {
+        "label": "Geslaagd",
+        "icon": "ok"
+      },
+      "failed": {
+        "label": "Niet geslaagd",
+        "icon": "remove"
+      },
+      "undecided": {
+        "label": "Weet het niet",
+        "icon": "question-sign"
+      }
+    }
+  },
+  "phase_seq-selection": {
+    "title": "Hoe moeilijk vond je het om de keuze te maken?"
+  },
+  "phase_seq-comparative": {
+    "title": "Hoe moeilijk vond je het om je keuze te beargumenteren?"
+  },
+  "phase_seq-passfail": {
+    "title": "Hoe moeilijk vond je het om geslaagd/niet geslaagd te kiezen?"
+  },
+  "representation_viewer": {
+    "pdf": {
+      "tooltip": "Gebruik de knoppen rechts bovenaan om de paper fullscreen te bekijken of te downloaden."
+    },
+    "image": {
+      "tooltip": "Klik om deze tekst te selecteren"
+    }
+  },
+  "notes": {
+    "label": "Notities",
+    "tooltip": "Noteer hier je opmerkingen bij deze tekst."
   }
 }
