@@ -17,6 +17,14 @@ module.exports = Marionette.ItemView.extend( {
         "change:authenticated": "render"
     },
 
+    ui : {
+       menuBtn: ".nav a"
+    },
+
+    events: {
+        "click @ui.menuBtn": "collapseMenu"
+    },
+
     initialize: function(){
         debug( '#initialize' );
     },
@@ -36,6 +44,13 @@ module.exports = Marionette.ItemView.extend( {
             console.log( 'COPYING', data );
             clipboard.setData( "text/plain", '```json\n' + JSON.stringify( data ) + '\n```' );
         } );
+    },
+
+    collapseMenu: function(){
+        var $navbarToggle = this.$('.navbar-toggle');
+        if($navbarToggle.css('display') !='none'){
+            $navbarToggle.trigger( "click" );
+        }
     },
 
     serializeData: function(){
