@@ -11,7 +11,8 @@ module.exports = Backbone.Collection.extend( {
     model: ModelClass,
 
     contextEvents: {
-        'assessment:teardown:requested': "teardown"
+        'assessment:teardown:requested': "teardown",
+        'assess:ui:destroyed': "_deselectSelected"
     },
 
     initialize: function( models ){
@@ -41,8 +42,13 @@ module.exports = Backbone.Collection.extend( {
         return model;
     },
 
+    _deselectSelected: function(){
+        this.deselect();
+    },
+
     deselect: function(model){
-        if(this.selected===model){
+        debug('#deselect', model);
+        if(!model || this.selected===model){
             this.selected = undefined;
             return model;
         }
