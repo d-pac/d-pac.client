@@ -25,6 +25,7 @@ _.extend( BootstrapDomain.prototype, {
 
         context.wireSingleton( 'timelogsCollection', require( '../collections/TimelogsCollection' ) );
         context.wireSingleton( 'timelogsController', require( './TimelogsController' ) );
+        context.wireSingleton( 'navigationBlocker', require( './NavigationBlocker' ) );
         context.wireSingleton( 'assessmentFlow', require( '../controllers/AssessmentFlow' ), {
             assessmentsCollection: "assessmentsCollection",
             comparisonsCollection: "comparisonsCollection",

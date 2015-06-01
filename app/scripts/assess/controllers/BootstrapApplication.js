@@ -42,7 +42,7 @@ _.extend( module.exports.prototype, {
             } ).then('assess:bootstrap:completed')
             .when('assess:bootstrap:completed' ).then(function(){
                 var timelogs = context.getObject('timelogsController');
-
+                var navigationBlocker = context.getObject('navigationBlocker');
                 var assessmentFlow = context.getObject( 'assessmentFlow' );
                 assessmentFlow.start();
             })

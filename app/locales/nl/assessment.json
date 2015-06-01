@@ -124,5 +124,8 @@
   "notes": {
     "label": "Notities",
     "tooltip": "Noteer hier je opmerkingen bij deze tekst."
+  },
+  "please_finish": {
+    "message": "U bent aan een beoordeling bezig, gelieve deze eerst af te maken.\nBent u zeker dat u deze pagina wilt verlaten?"
   }
 }
