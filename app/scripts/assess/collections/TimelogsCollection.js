@@ -14,7 +14,8 @@ module.exports = Backbone.Collection.extend( {
 
     contextEvents: {
         'assessment:teardown:requested': "teardown",
-        'AuthService:signout:requested': "stop"
+        //'AuthService:signout:requested': "stop",
+        'assess:ui:destroyed': "stop"
     },
 
     initialize: function( models,
