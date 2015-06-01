@@ -15,5 +15,13 @@ module.exports = Marionette.ItemView.extend( {
                 this.render();
             }.bind(this) );
         }
+    },
+
+    serializeData: function(){
+        if(this.model){
+            var data = this.model.toJSON();
+            data.authenticated = this.auth.get('authenticated');
+            return data;
+        }
     }
 } );

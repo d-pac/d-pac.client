@@ -34,7 +34,8 @@ _.extend( module.exports.prototype, {
             assessFactory: "assessmentViewProxy"
         } );
         context.wireView( 'WelcomeView', require( '../views/WelcomeView' ), {
-            collection: 'pagesCollection'
+            collection: 'pagesCollection',
+            auth : 'authService'
         } );
         context.wireView( 'NotFoundView', require( '../views/404View' ) );
         context.wireView( 'TutorialView', require( '../views/TutorialView' ) );
