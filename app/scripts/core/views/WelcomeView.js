@@ -1,7 +1,7 @@
 'use strict';
 var debug = require( 'debug' )( 'dpac:core.views', '[WelcomeView]' );
 var tpl = require( './templates/Welcome.hbs' );
-var Marionette = require('backbone.marionette');
+var Marionette = require( 'backbone.marionette' );
 
 module.exports = Marionette.ItemView.extend( {
     template: tpl,
@@ -11,16 +11,17 @@ module.exports = Marionette.ItemView.extend( {
         this.model = this.collection.get( "tool-welcome" );
         if( !this.model ){
             this.collection.once( "sync", function(){
-                this.model = this.collection.get( "tool-welcome" )
+                this.model = this.collection.get( "tool-welcome" );
                 this.render();
-            }.bind(this) );
+            }.bind( this ) );
         }
     },
 
     serializeData: function(){
-        if(this.model){
+        if( this.model ){
             var data = this.model.toJSON();
-            data.authenticated = this.auth.get('authenticated');
+            data.authenticated = this.auth.get( 'authenticated' );
+            data.user = this.auth.get( 'user' );
             return data;
         }
     }
