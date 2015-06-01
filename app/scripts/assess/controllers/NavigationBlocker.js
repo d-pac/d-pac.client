@@ -45,7 +45,6 @@ module.exports = Marionette.Controller.extend( {
         debug( '#disable' );
         if( this.enabled ){
             Backbone.history.loadUrl = this.originalFn;
-            this.originalFn = undefined;
             window.onbeforeunload=undefined;
             this.enabled = false;
         }

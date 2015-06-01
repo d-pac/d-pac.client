@@ -43,6 +43,7 @@ module.exports = Backbone.Collection.extend( {
     },
 
     _deselectSelected: function(){
+        debug("#_deselectSelected");
         this.deselect();
     },
 

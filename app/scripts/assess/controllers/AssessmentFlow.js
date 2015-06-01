@@ -62,7 +62,7 @@ module.exports = Marionette.Controller.extend( {
     //},
 
     continueComparisonConfirmed: function(){
-        var model = this.assessmentsCollection.select(this.assessmentsCollection.getActives()[ 0 ]);
+        var model = this.assessmentsCollection.selected || this.assessmentsCollection.select(this.assessmentsCollection.getActives()[ 0 ]);
         this.assessmentSelectionCompleted( { assessment: model } );
     },
 
