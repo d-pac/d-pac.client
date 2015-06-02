@@ -26,7 +26,8 @@ _.extend( module.exports.prototype, {
             'app:ui:requested': [
                 require( './BootstrapUI' ),
                 require( './BootstrapRouting' )
-            ]
+            ],
+            'router:route:completed': require( './RemoveHangingModal' )
         } );
 
         instruct( this.context.vent )
