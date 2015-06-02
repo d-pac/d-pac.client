@@ -28,6 +28,8 @@ module.exports = Marionette.ItemView.extend( {
 
     continueComparisons: function(){
         debug('#continueComparisons');
+        this.ui.continueButton.prop('disabled', 'disabled');
+        this.ui.continueButton.button('sending');
         this.dispatch( "comparisons:continue:confirmed" );
     },
     stopComparisons: function(){

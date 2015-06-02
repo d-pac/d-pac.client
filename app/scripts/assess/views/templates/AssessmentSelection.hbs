@@ -8,7 +8,8 @@
                 <div class="panel-body">
                     <p>{{t "assessment:assessment_selection.description"}}</p>
                     {{#each items}}
-                        <button type="button" class="btn btn-primary btn-block assessment-button" data-model-id="{{_id}}">
+                        <button type="button" class="btn btn-primary btn-block assessment-button"
+                                data-model-id="{{_id}}" data-sending-text="{{t "assessment:assessment_selection.submit_button.sending"}}">
                             {{title}}
                         </button>
                     {{/each}}

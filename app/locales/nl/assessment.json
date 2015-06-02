@@ -14,6 +14,9 @@
     "empty": "U hebt geen uit te voeren opdrachten.",
     "thanks": "Bedankt om alle vergelijkingen te hebben uitgevoerd voor deze opdracht!",
     "completed": "U hebt al uw vergelijkingen uitgevoerd.",
+    "submit_button":{
+      "sending": "Even geduld"
+    },
     "continue_button": {
       "label": "Ga door met een andere opdracht."
     }
@@ -53,7 +56,8 @@
     "title": "Vergelijkingen",
     "description": "Wens je verder te gaan met de volgende vergelijking voor opdracht <strong>'__assessment__'</strong>?",
     "continue_button": {
-      "label": "Volgende vergelijking"
+      "label": "Volgende vergelijking",
+      "sending": "Even geduld"
     },
     "stop_button": {
       "label": "Tijdelijk stoppen"

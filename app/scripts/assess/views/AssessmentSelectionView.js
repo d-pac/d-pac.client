@@ -27,8 +27,11 @@ module.exports = Marionette.ItemView.extend( {
     },
 
     assessmentSelected: _.debounce( function( event ){
-        var model = this.collection.selectByID( this.$( event.target ).data( 'model-id' ) );
-        console.log(this.collection);
+        var button = this.$( event.target );
+        this.ui.assessmentButton.prop('disabled', 'disabled');
+        button.button('sending');
+
+        var model = this.collection.selectByID( button.data( 'model-id' ) );
         this.dispatch( "assessments:selection:completed", {
             assessment: model
         } );
