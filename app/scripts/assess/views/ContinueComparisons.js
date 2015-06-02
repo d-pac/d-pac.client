@@ -21,6 +21,11 @@ module.exports = Marionette.ItemView.extend( {
         debug( "#initialize" );
     },
 
+    serializeData: function(){
+        this.model = this.collection.selected;
+        return this.model.toJSON();
+    },
+
     continueComparisons: function(){
         debug('#continueComparisons');
         this.dispatch( "comparisons:continue:confirmed" );

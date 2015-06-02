@@ -51,7 +51,7 @@
   },
   "comparison_continue": {
     "title": "Vergelijkingen",
-    "description": "Wens je verder te gaan met de volgende vergelijking?",
+    "description": "Wens je verder te gaan met de volgende vergelijking voor opdracht '__assessment__'?",
     "continue_button": {
       "label": "Volgende vergelijking"
     },

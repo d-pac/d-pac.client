@@ -9,6 +9,7 @@ var ModelClass = require( '../models/AssessmentProxy' );
 module.exports = Backbone.Collection.extend( {
     url: '/user/assessments',
     model: ModelClass,
+    selected: undefined,
 
     contextEvents: {
         'assessment:teardown:requested': "teardown",

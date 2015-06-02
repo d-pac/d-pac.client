@@ -22,7 +22,9 @@ _.extend( BootstrapUI.prototype, {
         context.wireView( 'UnfinishedComparisonsView', require( '../views/UnfinishedComparisons' ), {
             collection:"comparisonsCollection"
         } );
-        context.wireView( 'ContinueComparisonsView', require( '../views/ContinueComparisons' ));
+        context.wireView( 'ContinueComparisonsView', require( '../views/ContinueComparisons' ),{
+            collection: 'assessmentsCollection'
+        });
         context.wireView( 'AssessmentSelectionView', require( '../views/AssessmentSelectionView' ), {
             collection: "assessmentsCollection"
         } );
