@@ -1,8 +1,8 @@
 'use strict';
 var Backbone = require( 'backbone' );
-var Select = require( 'backbone.select' );
 var debug = require( 'debug' )( 'dpac:assess.models', '[AssessmentProxy]' );
 var teardown = require( '../mixins/teardown' );
+
 module.exports = Backbone.Model.extend( {
     idAttribute: "_id",
     defaults: {
@@ -28,7 +28,6 @@ module.exports = Backbone.Model.extend( {
 
     initialize: function(){
         debug( '#initialize', this.id || '<new>' );
-        Select.Me.applyTo( this );
     },
 
     parse: function( raw ){
@@ -70,7 +69,6 @@ module.exports = Backbone.Model.extend( {
 
     onTeardown: function(){
         debug( "#teardown" );
-        this.deselect( { silent: true } );
     }
 } );
 teardown.model.mixin( module.exports );
