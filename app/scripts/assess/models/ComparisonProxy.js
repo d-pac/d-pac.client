@@ -30,7 +30,8 @@ module.exports = Backbone.Model.extend( {
         completed: undefined,
 
         representations: undefined,
-        data: undefined
+        data: undefined,
+        messages: undefined
     },
 
     initialize: function(){
@@ -38,7 +39,7 @@ module.exports = Backbone.Model.extend( {
     },
 
     parse: function(raw){
-        debug("#parse", raw);
+        debug("#parse", this, raw);
         if(this.collection){
             return this.collection.parser.parseModel(raw);
         }
@@ -49,6 +50,11 @@ module.exports = Backbone.Model.extend( {
 
     update: function( attrs ){
         this.save( attrs, { patch: true } );
+    },
+
+    hasMessages: function(){
+        var messages = this.get('messages');
+        return messages && messages.length;
     }
 
 } );

@@ -17,11 +17,13 @@ _.extend( BootstrapUI.prototype, {
             'assessmentSelectionFactory': 'AssessmentSelectionView',
             'layoutFactory': 'LayoutView',
             'unfinishedComparisonsFactory': 'UnfinishedComparisonsView',
-            'continueComparisonsFactory': 'ContinueComparisonsView'
+            'continueComparisonsFactory': 'ContinueComparisonsView',
+            'comparisonMessagesFactory': 'ComparisonMessagesView'
         } );
         context.wireView( 'UnfinishedComparisonsView', require( '../views/UnfinishedComparisons' ), {
             collection:"comparisonsCollection"
         } );
+        context.wireView( 'ComparisonMessagesView', require( '../views/ComparisonMessages' ));
         context.wireView( 'ContinueComparisonsView', require( '../views/ContinueComparisons' ),{
             collection: 'assessmentsCollection'
         });

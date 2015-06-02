@@ -3,12 +3,14 @@
 var debug = require( 'debug' )( 'dpac:assess.views', '[MainView]' );
 var tpl = require( './templates/MainView.hbs' );
 var Marionette = require( 'backbone.marionette' );
+var Backbone = require( 'backbone' );
 module.exports = Marionette.LayoutView.extend( {
     template: tpl,
     unfinishedComparisonsFactory: undefined,
     continueComparisonsFactory: undefined,
     assessmentSelectionFactory: undefined,
     layoutFactory: undefined,
+    comparisonMessagesFactory: undefined,
 
     regions: {
         contentRegion: "#assessment-content"
@@ -22,7 +24,8 @@ module.exports = Marionette.LayoutView.extend( {
         "comparisons:unfinished:requested": "showUnfinishedComparison",
         "comparisons:continue:requested": "showContinueComparison",
         'comparisons:editing:requested': 'showLayoutView',
-        'assessments:selection:requested': 'showAssessmentsSelection'
+        'assessments:selection:requested': 'showAssessmentsSelection',
+        'comparisons:creation:failed': 'showComparisonMessage'
     },
 
     initialize: function(){
@@ -41,6 +44,14 @@ module.exports = Marionette.LayoutView.extend( {
         this.contentRegion.show( this.continueComparisonsFactory() );
     },
 
+    showComparisonMessage: function( event ){
+        this.contentRegion.show( this.comparisonMessagesFactory( {
+            model: new Backbone.Model( {
+                assessment: event.assessment,
+                messages: event.messages
+            } )
+        } ) );
+    },
     showAssessmentsSelection: function( eventData ){
         debug( "#showAssessmentsSelection" );
         this.contentRegion.show( this.assessmentSelectionFactory( {
@@ -54,7 +65,7 @@ module.exports = Marionette.LayoutView.extend( {
     },
 
     onDestroy: function(){
-        this.dispatch('assess:ui:destroyed');
+        this.dispatch( 'assess:ui:destroyed' );
     }
 
 } );

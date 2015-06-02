@@ -1,8 +1,10 @@
 'use strict';
 var debug = require( 'debug' )( 'dpac:assess.controllers', '[AssessmentFlow]' );
+var _ = require( 'underscore' );
 var Marionette = require( 'backbone.marionette' );
 var i18n = require( 'i18next' );
 var CurrentSelectionModel = require( '../models/CurrentSelectionModel' );
+
 module.exports = Marionette.Controller.extend( {
 
     assessmentsCollection: undefined,
@@ -43,9 +45,9 @@ module.exports = Marionette.Controller.extend( {
         if( this.comparisonsCollection.hasActives() ){
             //interrupted comparisons exist
             this.dispatch( 'comparisons:unfinished:requested' );
-        } else if(this.assessmentsCollection.selected){
+        } else if( this.assessmentsCollection.selected ){
             this.dispatch( 'comparisons:continue:requested' );
-        }else{
+        } else {
             this.dispatch( 'assessments:selection:requested' );
         }
     },
@@ -62,7 +64,7 @@ module.exports = Marionette.Controller.extend( {
     //},
 
     continueComparisonConfirmed: function(){
-        var model = this.assessmentsCollection.selected || this.assessmentsCollection.select(this.assessmentsCollection.getActives()[ 0 ]);
+        var model = this.assessmentsCollection.selected || this.assessmentsCollection.select( this.assessmentsCollection.getActives()[ 0 ] );
         this.assessmentSelectionCompleted( { assessment: model } );
     },
 
@@ -81,8 +83,15 @@ module.exports = Marionette.Controller.extend( {
     },
 
     comparisonCreationCompleted: function( comparison ){
-        debug( '#comparisonCreationCompleted' );
-        this.selectComparison();
+        debug( '#comparisonCreationCompleted', comparison );
+
+        if( comparison.hasMessages() ){
+            var messages = _.clone( comparison.get( 'messages' ) );
+            this.comparisonsCollection.remove(comparison);
+            this.dispatch( 'comparisons:creation:failed', { messages: messages, assessment: this.assessmentsCollection.selected } );
+        } else {
+            this.selectComparison();
+        }
     },
 
     selectComparison: function selectComparison(){
@@ -90,7 +99,7 @@ module.exports = Marionette.Controller.extend( {
 
         var comparison = this.comparisonsCollection.at( 0 );
         var assessment = this.assessmentsCollection.get( comparison.get( "assessment" ) );
-        this.assessmentsCollection.select(assessment);
+        this.assessmentsCollection.select( assessment );
         var current = this.currentSelection = new CurrentSelectionModel( {
             comparison: comparison,
             assessment: assessment,

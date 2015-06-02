@@ -51,7 +51,7 @@
   },
   "comparison_continue": {
     "title": "Vergelijkingen",
-    "description": "Wens je verder te gaan met de volgende vergelijking voor opdracht '__assessment__'?",
+    "description": "Wens je verder te gaan met de volgende vergelijking voor opdracht <strong>'__assessment__'</strong>?",
     "continue_button": {
       "label": "Volgende vergelijking"
     },
@@ -126,6 +126,19 @@
     "tooltip": "Noteer hier je opmerkingen bij deze tekst."
   },
   "please_finish": {
-    "message": "U bent aan een beoordeling bezig, gelieve deze eerst af te maken.\nBent u zeker dat u deze pagina wilt verlaten?"
+    "message": "U bent aan een vergelijking bezig, gelieve deze eerst af te maken.\nBent u zeker dat u deze pagina wilt verlaten?"
+  },
+  "comparison_messages": {
+    "title": "Vergelijkingen",
+    "description": "Er kon geen nieuwe vergelijking gemaakt worden voor opdracht <strong>'__title__'</strong>:",
+    "messages": {
+      "stage-completed": "Deze fase van de opdracht is afgelopen, u zal gecontacteerd worden wanneer de volgende fase begint.",
+      "assessor-stage-completed": "Deze fase van de opdracht is afgelopen, u zal gecontacteerd worden wanneer de volgende fase begint.",
+      "assessor-assessment-completed": "U hebt al uw vergelijkingen uitgevoerd.",
+      "assessment-completed": "Deze opdracht is afgelopen."
+    },
+    "stop_button": {
+      "label": "Ok"
+    }
   }
 }
