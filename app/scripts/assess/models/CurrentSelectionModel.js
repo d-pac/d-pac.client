@@ -10,6 +10,7 @@ module.exports = Backbone.Model.extend( {
         comparison: undefined,
         assessment: undefined,
         representations: undefined,
+        notes: undefined,
         phases: undefined,
         selectedRepresentation: undefined,
         completed: false
@@ -57,10 +58,16 @@ module.exports = Backbone.Model.extend( {
         return false;
     },
 
+    getNoteByOrder: function( orderId ){
+        var representation = this.getRepresentationByOrder( orderId );
+        var docId = representation.get( "document" )._id;
+        return this.get( 'notes' ).getNoteByDocId( docId );
+    },
+
     storeDataForCurrentPhase: function( value ){
         var comparison = this.get( 'comparison' );
         var currentPhase = this.get( 'currentPhase' );
-        if( currentPhase.get('slug') === "selection" ){
+        if( currentPhase.get( 'slug' ) === "selection" ){
             this.set( 'selectedRepresentation', this.get( 'representations' ).get( value ) );
         }
         var update = {
@@ -77,5 +84,14 @@ module.exports = Backbone.Model.extend( {
             comparison.update( update );
             this.set( 'currentPhase', this.get( 'phases' ).get( update.phase ) );
         }
+    },
+
+    createNote: function( noteData,
+                          order ){
+        _.defaults( noteData, {
+            author: this.get( 'comparison' ).get( 'assessor' ),
+            document: this.getRepresentationByOrder( order ).get( 'document' )._id
+        } );
+        return this.get( 'notes' ).create( noteData );
     }
 } );

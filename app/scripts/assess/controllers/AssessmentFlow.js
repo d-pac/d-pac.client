@@ -13,6 +13,7 @@ module.exports = Marionette.Controller.extend( {
     currentSelection: undefined,
     phasesCollection: undefined,
     representationsCollection: undefined,
+    notesCollection: undefined,
     timelogsCollection: undefined,
 
     contextEvents: {
@@ -104,7 +105,8 @@ module.exports = Marionette.Controller.extend( {
             comparison: comparison,
             assessment: assessment,
             phases: this.phasesCollection,
-            representations: this.representationsCollection
+            representations: this.representationsCollection,
+            notes: this.notesCollection
         } );
 
         i18n.addResourceBundle( i18n.lng(), 'assessment', assessment.get( 'uiCopy' ) );

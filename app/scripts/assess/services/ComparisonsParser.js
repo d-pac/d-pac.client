@@ -7,16 +7,21 @@ function representationFilter( item ){
     return item.type === "representations";
 }
 
+function notesFilter( item ){
+    return item.type === "notes";
+}
+
 module.exports = function ComparisonsParser(){
     debug( '#constructor' );
 };
 _.extend( module.exports.prototype, Backbone.Events, {
     representationsCollection: undefined,
+    notesCollection:undefined,
 
     parseCollection: function( raw ){
         debug( '#parseCollection', raw );
-        var representations = _.filter( raw.included, representationFilter );
-        this.representationsCollection.reset( representations );
+        this.representationsCollection.reset(  _.filter( raw.included, representationFilter ) );
+        this.notesCollection.reset(  _.filter( raw.included, notesFilter ) );
         return raw.data;
     },
     parseModel: function( raw ){
@@ -29,9 +34,7 @@ _.extend( module.exports.prototype, Backbone.Events, {
             case "comparisons":
                 return raw;
             default:
-                var representations = _.filter( raw.included, representationFilter );
-                this.representationsCollection.reset( representations );
-                return raw.data;
+                return this.parseCollection(raw);
         }
     }
 } );
