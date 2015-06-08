@@ -16,14 +16,18 @@ module.exports = Marionette.ItemView.extend( {
 
     initialize: function( opts ){
         debug( "#initialize" );
-        this.allCompleted = opts.allCompleted;
     },
 
     serializeData: function(){
-        return {
-            allCompleted: this.allCompleted,
-            items: this.collection.getActivesJSON()
+        var data = {
+            items: this.collection.getActivesJSON(),
+            assessmentWasCompleted: false
         };
+        if(this.options.completedAssessment){
+            data.title = this.options.completedAssessment.get('title');
+            data.assessmentWasCompleted = true;
+        }
+        return data;
     },
 
     assessmentSelected: _.debounce( function( event ){

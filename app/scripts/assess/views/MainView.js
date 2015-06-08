@@ -55,7 +55,7 @@ module.exports = Marionette.LayoutView.extend( {
     showAssessmentsSelection: function( eventData ){
         debug( "#showAssessmentsSelection" );
         this.contentRegion.show( this.assessmentSelectionFactory( {
-            allCompleted: eventData.allCompleted
+            completedAssessment: eventData.completedAssessment
         } ) );
     },
 

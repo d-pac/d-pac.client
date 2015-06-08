@@ -38,10 +38,10 @@ module.exports = Marionette.Controller.extend( {
     },
 
     start: function(){
-        this.verifyComparisonsState();
+        this.verifyComparisonsState(false);
     },
 
-    verifyComparisonsState: function verifyComparisonsState(){
+    verifyComparisonsState: function verifyComparisonsState(completedAssessment){
         debug( "#verifyComparisonsState" );
         if( this.comparisonsCollection.hasActives() ){
             //interrupted comparisons exist
@@ -49,7 +49,9 @@ module.exports = Marionette.Controller.extend( {
         } else if( this.assessmentsCollection.selected ){
             this.dispatch( 'comparisons:continue:requested' );
         } else {
-            this.dispatch( 'assessments:selection:requested' );
+            this.dispatch( 'assessments:selection:requested', {
+                completedAssessment: completedAssessment
+            } );
         }
     },
 
@@ -124,6 +126,6 @@ module.exports = Marionette.Controller.extend( {
         assessment.incCompleted();
         this.context.release( 'currentSelection' );
         this.currentSelection = undefined;
-        this.verifyComparisonsState();
+        this.verifyComparisonsState(assessment);
     }
 } );

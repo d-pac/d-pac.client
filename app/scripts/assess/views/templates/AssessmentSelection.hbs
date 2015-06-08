@@ -6,7 +6,12 @@
             </div>
             {{#if items.length }}
                 <div class="panel-body">
-                    <p>{{t "assessment:assessment_selection.description"}}</p>
+                    {{#if assessmentWasCompleted}}
+                        <p><strong>{{t "assessment:assessment_selection.thanks" title=title}}</strong></p>
+                        <p>{{t "assessment:assessment_selection.continue"}}</p>
+                    {{else}}
+                        <p>{{t "assessment:assessment_selection.description"}}</p>
+                    {{/if}}
                     {{#each items}}
                         <button type="button" class="btn btn-primary btn-block assessment-button"
                                 data-model-id="{{_id}}" data-sending-text="{{t "assessment:assessment_selection.submit_button.sending"}}">
@@ -16,6 +21,9 @@
                 </div>
             {{else}}
                 <div class="panel-body">
+                    {{#if assessmentWasCompleted}}
+                        <p>{{t "assessment:assessment_selection.thanks"}}</p>
+                    {{/if}}
                     <p>{{t "assessment:assessment_selection.empty"}}</p>
                 </div>
             {{/if}}
