@@ -20,21 +20,29 @@ _.extend( module.exports.prototype, Backbone.Events, {
 
     parseCollection: function( raw ){
         debug( '#parseCollection', raw );
-        this.representationsCollection.reset(  _.filter( raw.included, representationFilter ) );
-        this.notesCollection.reset(  _.filter( raw.included, notesFilter ) );
+        if(raw.included){
+            this.representationsCollection.reset(  _.filter( raw.included, representationFilter ) );
+            this.notesCollection.reset(  _.filter( raw.included, notesFilter ) );
+        }
         return raw.data;
     },
-    parseModel: function( raw ){
-        debug( '#parseModel', raw );
-        switch( raw.type ){
+
+    /**
+     *
+     * @param mixed can be enveloped with `data` when called as a result of PATCH, or could be plain object when called from collection
+     * @returns {*}
+     */
+    parseModel: function( mixed ){
+        debug( '#parseModel', mixed );
+        switch( mixed.type ){
             case "messages":
                 return {
-                    messages: raw.messages
+                    messages: mixed.messages
                 };
             case "comparisons":
-                return raw;
-            default:
-                return this.parseCollection(raw);
+                return mixed;
+            default: // enveloped
+                return this.parseCollection(mixed);
         }
     }
 } );
