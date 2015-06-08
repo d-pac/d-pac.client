@@ -56,6 +56,7 @@ module.exports = Marionette.LayoutView.extend( {
             factory: this.model,
             order: 'b'
         } ) );
+        this.showSelected();
     },
 
     showSelected: function(){
