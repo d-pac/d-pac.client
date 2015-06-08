@@ -1,6 +1,6 @@
 {
   "name": "d-pac.client",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "build": "667",
   "private": true,
   "devDependencies": {
