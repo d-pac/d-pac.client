@@ -1,44 +1,6 @@
 {
-    "assessment": {
-        "title": "Schrijfopdracht",
-        "description": "Een voorbeeld uitleg over de opdracht."
-    },
-    "representation": {
-        "url": "../pdf/voorbeeld.pdf"
-    },
-    "steps": {
-        "assessment": {
-            "title": "Welkom",
-            "description": "Lees eerst aandachtig de uitleg, zodat je de opdracht goed begrijpt."
-        },
-        "representations": {
-            "title": "Vergelijken",
-            "description": "Lees vervolgens beide teksten.\nGebruik de knoppen rechts bovenaan om de tekst schermvullend te bekijken of te downloaden."
-        },
-        "notes": {
-            "title": "Noteren",
-            "description": "Als je wil kun je opmerkingen noteren. Klik op 'Notities' om het veld te openen."
-        },
-        "select": {
-            "title": "Selecteer",
-            "description": "Wanneer je klaar bent kun je een van de twee teksten kiezen als beste."
-        },
-        "questions": {
-            "title": "Vragen",
-            "description": "Hierna stellen we je nog enkele bijkomende vragen:<ul><li>Aangeven hoe moeilijk je een bepaalde subtaak vindt (op een schaal van 1 tot 7)</li><li>Beargumenteren waarom je de ene tekst beter vindt dan de andere.</li><li>Aangeven of voor jou de teksten geslaagd of niet geslaagd zijn.</li>"
-        },
-        "thanks": {
-            "title": "Bedankt",
-            "description": "Bedankt voor het bekijken en veel succes.<br/>Indien u klaar bent om te beginnen gebruik dan de menuknoppen om aan de beoordeling te beginnen."
-        }
-    },
-    "next": {
-        "label": "Volgende »"
-    },
-    "previous": {
-        "label": "« Vorige"
-    },
-    "end": {
-        "label": "Herbegin"
-    }
+  "player": {
+    "href": "https://player.vimeo.com/video/50975934"
+  },
+  "byline" : "d-pac tutorial"
 }
