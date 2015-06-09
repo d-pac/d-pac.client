@@ -5,7 +5,6 @@ require('modernizr');
 require('bootstrap');
 require('bootstrap-material-design' ).init();
 require('snackbarjs');
-//require('bootstrap-validator');
 /* --- */
 
 require('./core/controllers/SetupDebugging')();

@@ -21,7 +21,6 @@ module.exports = {
             "i18next": "i18next/i18next.commonjs.withJQuery",
             "zeroclipboard": "zeroclipboard/dist/ZeroClipboard",
             "snackbarjs": "snackbarjs/src/snackbar.js",
-            "bootstrap-tour": "bootstrap-tour/build/js/bootstrap-tour",
             "bootstrap-material-design": "bootstrap-material-design/dist/js/material",
             "modernizr": "modernizr/modernizr"
         },
@@ -40,10 +39,6 @@ module.exports = {
             {
                 test: /\.hbs$/,
                 loader: "handlebars-loader"
-            },
-            {
-                test: /bootstrap-tour/,
-                loader: "imports?jQuery=jquery!exports?window.Tour"
             },
             {
                 test: /backbone-nested-model/,

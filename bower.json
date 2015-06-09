@@ -16,7 +16,6 @@
     "mousetrap": "~1.5.2",
     "zeroclipboard": "~2.2.0",
     "bootstrap-validator": "~0.8.1",
-    "bootstrap-tour": "~0.10.1",
     "bootstrap-material-design": "~0.3.0",
     "handlebars": "~3.0.2",
     "viewerjs": "~0.5.6",
