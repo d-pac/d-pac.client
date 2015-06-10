@@ -43,8 +43,9 @@
       "href": "#signin"
     },
     "feedback": {
-      "label": "Bugs",
-      "description": "Bugs"
+      "label": "Feedback",
+      "description": "Feedback",
+      "href":"mailto:d-pac@uantwerpen.be"
     },
     "toggle": {
       "label": "Navigatie"
