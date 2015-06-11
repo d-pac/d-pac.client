@@ -13,11 +13,15 @@ module.exports = NestedModel.extend( {
     },
 
     initialize: function(){
-        debug( '#initialize', this.id || '<new>' );
+        debug( '#initialize', this );
         var self = this;
         this.on( 'change:body', function(){
             self.save( self.changedAttributes(), { patch: true } );
         } );
+    },
+
+    parse: function(raw){
+        return raw.data;
     }
 
 } );
