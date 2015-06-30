@@ -13,7 +13,7 @@ module.exports = Marionette.ItemView.extend( {
     className: "row",
     getTemplate: function(){
         var type = this.model.get( "document" ).mimeType;
-        return templates[ type ];
+        return templates[ type ] || templates['image/png'];
     },
 
     initialize: function( opts ){
