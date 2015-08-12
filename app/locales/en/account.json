@@ -1,0 +1,40 @@
+{
+    "title": "Account",
+    "description": "Modify your account details.",
+    "success": "Your changes have been stored.",
+    "name": {
+        "first": {
+            "label": "First name",
+            "description": "Please fill out your first name.",
+            "invalid" : "This is a required field."
+        },
+        "last": {
+            "label": "Name",
+            "description": "Please fill out your last name.",
+            "invalid": "This is a required field."
+        }
+    },
+    "organisation": {
+        "label": "Organisation",
+        "description": "Select your organisation."
+    },
+    "email": {
+        "label": "E-mail",
+        "description": "Please fill out your e-mail address.",
+        "invalid": "Not a valid e-mail address."
+    },
+    "password": {
+        "label": "Password",
+        "description": "****************",
+        "confirmation": {
+            "label": "Password (confirmation)",
+            "description": "****************"
+        }
+    },
+    "submit": {
+        "label": "Save"
+    },
+    "cancel": {
+        "label": "Cancel"
+    }
+}

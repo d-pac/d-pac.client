@@ -1,0 +1,58 @@
+{
+    "app": {
+        "name": "d-pac"
+    },
+    "notfound": {
+        "title": "Oops...",
+        "description": "Page not found."
+    },
+  "close_button": {
+    "label": "Close"
+  },
+    "menu": {
+        "brand": {
+            "label": "d-pac",
+            "href": "#"
+        },
+        "text" : {
+            "label" : "Welcome, __userName__"
+        },
+        "judge": {
+            "label": "Compare",
+            "description": "Compare",
+            "href": "#assess"
+        },
+        "account": {
+            "label": "Account",
+            "description": "Modify your account details.",
+            "href": "#account"
+        },
+        "tutorial": {
+            "label": "Tutorial",
+            "description": "Tutorial",
+            "href": "#tutorial"
+        },
+        "logout": {
+            "label": "Sign out",
+            "description": "Sign out",
+            "href": "#signout"
+        },
+        "login": {
+            "label": "Sign in",
+            "description": "Sign in",
+            "href": "#signin"
+        },
+    "feedback": {
+      "label": "Feedback",
+      "description": "Feedback",
+      "href":"mailto:d-pac@uantwerpen.be"
+    },
+        "toggle": {
+            "label": "Navigation"
+        }
+    },
+    "warning": {
+        "label": "Beware!",
+        "minsize": "Resolution is too small, please adjust your screen settings!"
+    }
+}

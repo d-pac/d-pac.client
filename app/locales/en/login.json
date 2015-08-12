@@ -1,0 +1,30 @@
+{
+    "title": "Sign in",
+    "description": "Sign in",
+    "email": {
+        "label": "E-mail",
+        "description": "Please fill out your e-mail address"
+    },
+    "password": {
+        "label": "Password",
+        "description": "Please fill out your password"
+    },
+  "authenticated": {
+    "title": "Welcome",
+    "message": "<p><strong>Dear __userName__,</strong></p><p>Use the buttons below to start immediately.</p>"
+  },
+  "submit": {
+    "label": "Sending",
+    "sending": "Patience please..."
+  },
+  "signedin": {
+    "title": "",
+    "type": "Success",
+    "message": "You have successfully signed in."
+  },
+  "signedout": {
+    "title": "",
+    "type": "info",
+    "message": "You have signed out."
+  }
+}

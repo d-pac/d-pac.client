@@ -4,7 +4,7 @@ var _ = require( 'underscore' );
 var debug = require( 'debug' )( 'dpac:core.controllers', '[LoadConfiguration]' );
 var konfy = require( 'konfy' );
 
-module.exports = function BootstrapApplication(){
+module.exports = function LoadConfiguration(){
 };
 
 _.extend( module.exports.prototype, {
@@ -14,7 +14,8 @@ _.extend( module.exports.prototype, {
             configFile: "scripts/core/config.json",
             config: {
                 API_HOST: process.env.API_HOST,
-                APP_VERSION: process.env.APP_VERSION
+                APP_VERSION: process.env.APP_VERSION,
+                APP_LANG: process.env.APP_LANG || 'nl'
             }
         }, function( err,
                      config ){
