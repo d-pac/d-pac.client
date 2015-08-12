@@ -13,7 +13,7 @@ module.exports = {
                     '{,*/}*.html',
                     'styles/fonts/{,*/}*.*',
                     'locales/**/*.*',
-                    'viewerjs/**',
+                    'viewer/**',
                     'pdf/**/*.pdf',
                     'swf/**/*.*',
                     'scripts/core/config.json'
@@ -34,13 +34,6 @@ module.exports = {
         dest   : '.tmp/styles/',
         src    : '{,*/}*.css'
     },
-    //viewerjs      : {
-    //    expand : true,
-    //    dot    : true,
-    //    cwd    : '<%= config.bower %>/viewerjs',
-    //    dest   : '<%= config.app %>/viewerjs',
-    //    src    : '**'
-    //},
     zeroclipboard : {
         expand : true,
         dot    : true,

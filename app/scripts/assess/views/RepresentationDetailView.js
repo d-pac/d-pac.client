@@ -2,13 +2,12 @@
 var Marionette = require( 'backbone.marionette' );
 var debug = require( 'debug' )( 'dpac:assess.views', '[RepresentationDetailView]' );
 var imageTpl = require( './templates/media/image.hbs' );
-var viewerjsTpl = require( './templates/media/viewerjs.hbs' );
+var pdfTpl = require( './templates/media/pdf.hbs' );
 var htmlTpl = require('./templates/media/html.hbs');
-
 var templates = {
     "image/png": imageTpl,
     "image/jpeg": imageTpl,
-    "application/pdf": viewerjsTpl,
+    "application/pdf": pdfTpl,
     "text/html": htmlTpl
 };
 
