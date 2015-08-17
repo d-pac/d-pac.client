@@ -6465,9 +6465,6 @@ var PDFViewerApplication = {
   },
 
   switchSidebarView: function pdfViewSwitchSidebarView(view, openSidebar) {
-    if (openSidebar && !this.sidebarOpen) {
-      document.getElementById('sidebarToggle').click();
-    }
     var thumbsView = document.getElementById('thumbnailView');
     var outlineView = document.getElementById('outlineView');
     var attachmentsView = document.getElementById('attachmentsView');
@@ -6664,19 +6661,6 @@ function webViewerInitialized() {
     }
   }, true);
 
-  document.getElementById('sidebarToggle').addEventListener('click',
-    function() {
-      this.classList.toggle('toggled');
-      outerContainer.classList.add('sidebarMoving');
-      outerContainer.classList.toggle('sidebarOpen');
-      PDFViewerApplication.sidebarOpen =
-        outerContainer.classList.contains('sidebarOpen');
-      if (PDFViewerApplication.sidebarOpen) {
-        PDFViewerApplication.refreshThumbnailViewer();
-      }
-      PDFViewerApplication.forceRendering();
-    });
-
   document.getElementById('viewThumbnail').addEventListener('click',
     function() {
       PDFViewerApplication.switchSidebarView('thumbs');
@@ -6816,11 +6800,6 @@ document.addEventListener('pagemode', function (evt) {
     case 'thumbs':
     case 'attachments':
       PDFViewerApplication.switchSidebarView(mode, true);
-      break;
-    case 'none':
-      if (PDFViewerApplication.sidebarOpen) {
-        document.getElementById('sidebarToggle').click();
-      }
       break;
   }
 }, true);
