@@ -612,133 +612,6 @@ Preferences._readFromStorage = function (prefObj) {
 };
 
 
-(function mozPrintCallbackPolyfillClosure() {
-  if ('mozPrintCallback' in document.createElement('canvas')) {
-    return;
-  }
-  // Cause positive result on feature-detection:
-  HTMLCanvasElement.prototype.mozPrintCallback = undefined;
-
-  var canvases;   // During print task: non-live NodeList of <canvas> elements
-  var index;      // Index of <canvas> element that is being processed
-
-  var print = window.print;
-  window.print = function print() {
-    if (canvases) {
-      console.warn('Ignored window.print() because of a pending print job.');
-      return;
-    }
-    try {
-      dispatchEvent('beforeprint');
-    } finally {
-      canvases = document.querySelectorAll('canvas');
-      index = -1;
-      next();
-    }
-  };
-
-  function dispatchEvent(eventType) {
-    var event = document.createEvent('CustomEvent');
-    event.initCustomEvent(eventType, false, false, 'custom');
-    window.dispatchEvent(event);
-  }
-
-  function next() {
-    if (!canvases) {
-      return; // Print task cancelled by user (state reset in abort())
-    }
-
-    renderProgress();
-    if (++index < canvases.length) {
-      var canvas = canvases[index];
-      if (typeof canvas.mozPrintCallback === 'function') {
-        canvas.mozPrintCallback({
-          context: canvas.getContext('2d'),
-          abort: abort,
-          done: next
-        });
-      } else {
-        next();
-      }
-    } else {
-      renderProgress();
-      print.call(window);
-      setTimeout(abort, 20); // Tidy-up
-    }
-  }
-
-  function abort() {
-    if (canvases) {
-      canvases = null;
-      renderProgress();
-      dispatchEvent('afterprint');
-    }
-  }
-
-  function renderProgress() {
-    var progressContainer = document.getElementById('mozPrintCallback-shim');
-    if (canvases && canvases.length) {
-      var progress = Math.round(100 * index / canvases.length);
-      var progressBar = progressContainer.querySelector('progress');
-      var progressPerc = progressContainer.querySelector('.relative-progress');
-      progressBar.value = progress;
-      progressPerc.textContent = progress + '%';
-      progressContainer.removeAttribute('hidden');
-      progressContainer.onclick = abort;
-    } else {
-      progressContainer.setAttribute('hidden', '');
-    }
-  }
-
-  var hasAttachEvent = !!document.attachEvent;
-
-  window.addEventListener('keydown', function(event) {
-    // Intercept Cmd/Ctrl + P in all browsers.
-    // Also intercept Cmd/Ctrl + Shift + P in Chrome and Opera
-    if (event.keyCode === 80/*P*/ && (event.ctrlKey || event.metaKey) &&
-        !event.altKey && (!event.shiftKey || window.chrome || window.opera)) {
-      window.print();
-      if (hasAttachEvent) {
-        // Only attachEvent can cancel Ctrl + P dialog in IE <=10
-        // attachEvent is gone in IE11, so the dialog will re-appear in IE11.
-        return;
-      }
-      event.preventDefault();
-      if (event.stopImmediatePropagation) {
-        event.stopImmediatePropagation();
-      } else {
-        event.stopPropagation();
-      }
-      return;
-    }
-    if (event.keyCode === 27 && canvases) { // Esc
-      abort();
-    }
-  }, true);
-  if (hasAttachEvent) {
-    document.attachEvent('onkeydown', function(event) {
-      event = event || window.event;
-      if (event.keyCode === 80/*P*/ && event.ctrlKey) {
-        event.keyCode = 0;
-        return false;
-      }
-    });
-  }
-
-  if ('onbeforeprint' in window) {
-    // Do not propagate before/afterprint events when they are not triggered
-    // from within this polyfill. (FF/IE).
-    var stopPropagationIfNeeded = function(event) {
-      if (event.detail !== 'custom' && event.stopImmediatePropagation) {
-        event.stopImmediatePropagation();
-      }
-    };
-    window.addEventListener('beforeprint', stopPropagationIfNeeded, false);
-    window.addEventListener('afterprint', stopPropagationIfNeeded, false);
-  }
-})();
-
-
 
 var DownloadManager = (function DownloadManagerClosure() {
 
@@ -2112,7 +1985,6 @@ var SecondaryToolbar = {
     // Define the toolbar buttons.
     this.toggleButton = options.toggleButton;
     this.presentationModeButton = options.presentationModeButton;
-    this.print = options.print;
     this.download = options.download;
     this.viewBookmark = options.viewBookmark;
     this.firstPage = options.firstPage;
@@ -2129,7 +2001,6 @@ var SecondaryToolbar = {
       // (except for toggleHandTool, hand_tool.js is responsible for it):
       { element: this.presentationModeButton,
         handler: this.presentationModeClick },
-      { element: this.print, handler: this.printClick },
       { element: this.download, handler: this.downloadClick },
       { element: this.viewBookmark, handler: this.viewBookmarkClick },
       { element: this.firstPage, handler: this.firstPageClick },
@@ -2151,11 +2022,6 @@ var SecondaryToolbar = {
   // Event handling functions.
   presentationModeClick: function secondaryToolbarPresentationModeClick(evt) {
     PDFViewerApplication.requestPresentationMode();
-    this.close();
-  },
-
-  printClick: function secondaryToolbarPrintClick(evt) {
-    window.print();
     this.close();
   },
 
@@ -3339,7 +3205,6 @@ var PDFRenderingQueue = (function PDFRenderingQueueClosure() {
 
     this.highestPriorityPage = null;
     this.idleTimeout = null;
-    this.printing = false;
     this.isThumbnailViewEnabled = false;
   }
 
@@ -3383,11 +3248,6 @@ var PDFRenderingQueue = (function PDFRenderingQueueClosure() {
         if (this.pdfThumbnailViewer.forceRendering()) {
           return;
         }
-      }
-
-      if (this.printing) {
-        // If printing is currently ongoing do not reschedule cleanup.
-        return;
       }
 
       if (this.onIdle) {
@@ -3941,68 +3801,7 @@ var PDFPageView = (function PDFPageViewClosure() {
       return promise;
     },
 
-    beforePrint: function PDFPageView_beforePrint() {
-      var pdfPage = this.pdfPage;
 
-      var viewport = pdfPage.getViewport(1);
-      // Use the same hack we use for high dpi displays for printing to get
-      // better output until bug 811002 is fixed in FF.
-      var PRINT_OUTPUT_SCALE = 2;
-      var canvas = document.createElement('canvas');
-
-      // The logical size of the canvas.
-      canvas.width = Math.floor(viewport.width) * PRINT_OUTPUT_SCALE;
-      canvas.height = Math.floor(viewport.height) * PRINT_OUTPUT_SCALE;
-
-      // The rendered size of the canvas, relative to the size of canvasWrapper.
-      canvas.style.width = (PRINT_OUTPUT_SCALE * 100) + '%';
-      canvas.style.height = (PRINT_OUTPUT_SCALE * 100) + '%';
-
-      var cssScale = 'scale(' + (1 / PRINT_OUTPUT_SCALE) + ', ' +
-                                (1 / PRINT_OUTPUT_SCALE) + ')';
-      CustomStyle.setProp('transform' , canvas, cssScale);
-      CustomStyle.setProp('transformOrigin' , canvas, '0% 0%');
-
-      var printContainer = document.getElementById('printContainer');
-      var canvasWrapper = document.createElement('div');
-      canvasWrapper.style.width = viewport.width + 'pt';
-      canvasWrapper.style.height = viewport.height + 'pt';
-      canvasWrapper.appendChild(canvas);
-      printContainer.appendChild(canvasWrapper);
-
-      canvas.mozPrintCallback = function(obj) {
-        var ctx = obj.context;
-
-        ctx.save();
-        ctx.fillStyle = 'rgb(255, 255, 255)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.restore();
-        // Used by the mozCurrentTransform polyfill in src/display/canvas.js.
-        ctx._transformMatrix =
-          [PRINT_OUTPUT_SCALE, 0, 0, PRINT_OUTPUT_SCALE, 0, 0];
-        ctx.scale(PRINT_OUTPUT_SCALE, PRINT_OUTPUT_SCALE);
-
-        var renderContext = {
-          canvasContext: ctx,
-          viewport: viewport,
-          intent: 'print'
-        };
-
-        pdfPage.render(renderContext).promise.then(function() {
-          // Tell the printEngine that rendering this canvas/page has finished.
-          obj.done();
-        }, function(error) {
-          console.error(error);
-          // Tell the printEngine that rendering this canvas/page has failed.
-          // This will make the print proces stop.
-          if ('abort' in obj) {
-            obj.abort();
-          } else {
-            obj.done();
-          }
-        });
-      };
-    },
   };
 
   return PDFPageView;
@@ -6022,7 +5821,6 @@ var PDFViewerApplication = {
   fellback: false,
   pdfDocument: null,
   sidebarOpen: false,
-  printing: false,
   /** @type {PDFViewer} */
   pdfViewer: null,
   /** @type {PDFThumbnailViewer} */
@@ -6132,7 +5930,6 @@ var PDFViewerApplication = {
       toggleButton: document.getElementById('secondaryToolbarToggle'),
       presentationModeButton:
         document.getElementById('secondaryPresentationMode'),
-      print: document.getElementById('secondaryPrint'),
       download: document.getElementById('secondaryDownload'),
       viewBookmark: document.getElementById('secondaryViewBookmark'),
       firstPage: document.getElementById('firstPage'),
@@ -6249,13 +6046,6 @@ var PDFViewerApplication = {
 
   get page() { // TODO remove
     return this.pdfLinkService.page;
-  },
-
-  get supportsPrinting() {
-    var canvas = document.createElement('canvas');
-    var value = 'mozPrintCallback' in canvas;
-
-    return PDFJS.shadow(this, 'supportsPrinting', value);
   },
 
   get supportsFullscreen() {
@@ -6634,28 +6424,6 @@ var PDFViewerApplication = {
       });
     });
 
-    pagesPromise.then(function() {
-      if (self.supportsPrinting) {
-        pdfDocument.getJavaScript().then(function(javaScript) {
-          if (javaScript.length) {
-            console.warn('Warning: JavaScript is not supported');
-            self.fallback(PDFJS.UNSUPPORTED_FEATURES.javaScript);
-          }
-          // Hack to support auto printing.
-          var regex = /\bprint\s*\(/;
-          for (var i = 0, ii = javaScript.length; i < ii; i++) {
-            var js = javaScript[i];
-            if (js && regex.test(js)) {
-              setTimeout(function() {
-                window.print();
-              });
-              return;
-            }
-          }
-        });
-      }
-    });
-
     // outline depends on pagesRefMap
     var promises = [pagesPromise, this.animationStartedPromise];
     Promise.all(promises).then(function() {
@@ -6776,7 +6544,6 @@ var PDFViewerApplication = {
   },
 
   forceRendering: function pdfViewForceRendering() {
-    this.pdfRenderingQueue.printing = this.printing;
     this.pdfRenderingQueue.isThumbnailViewEnabled = this.sidebarOpen;
     this.pdfRenderingQueue.renderHighestPriority();
   },
@@ -6854,73 +6621,6 @@ var PDFViewerApplication = {
     }
   },
 
-  beforePrint: function pdfViewSetupBeforePrint() {
-    if (!this.supportsPrinting) {
-      var printMessage = mozL10n.get('printing_not_supported', null,
-          'Warning: Printing is not fully supported by this browser.');
-      this.error(printMessage);
-      return;
-    }
-
-    var alertNotReady = false;
-    var i, ii;
-    if (!this.pdfDocument || !this.pagesCount) {
-      alertNotReady = true;
-    } else {
-      for (i = 0, ii = this.pagesCount; i < ii; ++i) {
-        if (!this.pdfViewer.getPageView(i).pdfPage) {
-          alertNotReady = true;
-          break;
-        }
-      }
-    }
-    if (alertNotReady) {
-      var notReadyMessage = mozL10n.get('printing_not_ready', null,
-          'Warning: The PDF is not fully loaded for printing.');
-      window.alert(notReadyMessage);
-      return;
-    }
-
-    this.printing = true;
-    this.forceRendering();
-
-    var body = document.querySelector('body');
-    body.setAttribute('data-mozPrintCallback', true);
-
-    if (!this.hasEqualPageSizes) {
-      console.warn('Not all pages have the same size. The printed result ' +
-          'may be incorrect!');
-    }
-
-    // Insert a @page + size rule to make sure that the page size is correctly
-    // set. Note that we assume that all pages have the same size, because
-    // variable-size pages are not supported yet (at least in Chrome & Firefox).
-    // TODO(robwu): Use named pages when size calculation bugs get resolved
-    // (e.g. https://crbug.com/355116) AND when support for named pages is
-    // added (http://www.w3.org/TR/css3-page/#using-named-pages).
-    // In browsers where @page + size is not supported (such as Firefox,
-    // https://bugzil.la/851441), the next stylesheet will be ignored and the
-    // user has to select the correct paper size in the UI if wanted.
-    this.pageStyleSheet = document.createElement('style');
-    var pageSize = this.pdfViewer.getPageView(0).pdfPage.getViewport(1);
-    this.pageStyleSheet.textContent =
-      // "size:<width> <height>" is what we need. But also add "A4" because
-      // Firefox incorrectly reports support for the other value.
-      '@supports ((size:A4) and (size:1pt 1pt)) {' +
-      '@page { size: ' + pageSize.width + 'pt ' + pageSize.height + 'pt;}' +
-      // The canvas and each ancestor node must have a height of 100% to make
-      // sure that each canvas is printed on exactly one page.
-      '#printContainer {height:100%}' +
-      '#printContainer > div {width:100% !important;height:100% !important;}' +
-      '}';
-    body.appendChild(this.pageStyleSheet);
-
-    for (i = 0, ii = this.pagesCount; i < ii; ++i) {
-      this.pdfViewer.getPageView(i).beforePrint();
-    }
-
-  },
-
   // Whether all pages of the PDF have the same width and height.
   get hasEqualPageSizes() {
     var firstPage = this.pdfViewer.getPageView(0);
@@ -6932,21 +6632,6 @@ var PDFViewerApplication = {
       }
     }
     return true;
-  },
-
-  afterPrint: function pdfViewSetupAfterPrint() {
-    var div = document.getElementById('printContainer');
-    while (div.hasChildNodes()) {
-      div.removeChild(div.lastChild);
-    }
-
-    if (this.pageStyleSheet && this.pageStyleSheet.parentNode) {
-      this.pageStyleSheet.parentNode.removeChild(this.pageStyleSheet);
-      this.pageStyleSheet = null;
-    }
-
-    this.printing = false;
-    this.forceRendering();
   },
 
   rotatePages: function pdfViewRotatePages(delta) {
@@ -7063,11 +6748,6 @@ function webViewerInitialized() {
 
   mozL10n.setLanguage(locale);
 
-  if (!PDFViewerApplication.supportsPrinting) {
-    document.getElementById('print').classList.add('hidden');
-    document.getElementById('secondaryPrint').classList.add('hidden');
-  }
-
   if (!PDFViewerApplication.supportsFullscreen) {
     document.getElementById('presentationMode').classList.add('hidden');
     document.getElementById('secondaryPresentationMode').
@@ -7166,9 +6846,6 @@ function webViewerInitialized() {
 
   document.getElementById('presentationMode').addEventListener('click',
     SecondaryToolbar.presentationModeClick.bind(SecondaryToolbar));
-
-  document.getElementById('print').addEventListener('click',
-    SecondaryToolbar.printClick.bind(SecondaryToolbar));
 
   document.getElementById('download').addEventListener('click',
     SecondaryToolbar.downloadClick.bind(SecondaryToolbar));
@@ -7763,14 +7440,6 @@ window.addEventListener('keydown', function keydown(evt) {
   if (handled) {
     evt.preventDefault();
   }
-});
-
-window.addEventListener('beforeprint', function beforePrint(evt) {
-  PDFViewerApplication.beforePrint();
-});
-
-window.addEventListener('afterprint', function afterPrint(evt) {
-  PDFViewerApplication.afterPrint();
 });
 
 (function animationStartedClosure() {
