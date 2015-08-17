@@ -1988,8 +1988,6 @@ var SecondaryToolbar = {
     this.download = options.download;
     this.firstPage = options.firstPage;
     this.lastPage = options.lastPage;
-    this.pageRotateCw = options.pageRotateCw;
-    this.pageRotateCcw = options.pageRotateCcw;
     this.documentPropertiesButton = options.documentPropertiesButton;
 
     // Attach the event listeners.
@@ -2003,8 +2001,6 @@ var SecondaryToolbar = {
       { element: this.download, handler: this.downloadClick },
       { element: this.firstPage, handler: this.firstPageClick },
       { element: this.lastPage, handler: this.lastPageClick },
-      { element: this.pageRotateCw, handler: this.pageRotateCwClick },
-      { element: this.pageRotateCcw, handler: this.pageRotateCcwClick },
       { element: this.documentPropertiesButton,
         handler: this.documentPropertiesClick }
     ];
@@ -2038,14 +2034,6 @@ var SecondaryToolbar = {
       PDFViewerApplication.page = PDFViewerApplication.pagesCount;
     }
     this.close();
-  },
-
-  pageRotateCwClick: function secondaryToolbarPageRotateCwClick(evt) {
-    PDFViewerApplication.rotatePages(90);
-  },
-
-  pageRotateCcwClick: function secondaryToolbarPageRotateCcwClick(evt) {
-    PDFViewerApplication.rotatePages(-90);
   },
 
   documentPropertiesClick: function secondaryToolbarDocumentPropsClick(evt) {
@@ -3368,7 +3356,6 @@ var PDFPageView = (function PDFPageViewClosure() {
     this.rotation = 0;
     this.scale = scale || 1.0;
     this.viewport = defaultViewport;
-    this.pdfPageRotate = defaultViewport.rotation;
     this.hasRestrictedScaling = false;
 
     this.renderingQueue = renderingQueue;
@@ -3401,8 +3388,7 @@ var PDFPageView = (function PDFPageViewClosure() {
   PDFPageView.prototype = {
     setPdfPage: function PDFPageView_setPdfPage(pdfPage) {
       this.pdfPage = pdfPage;
-      this.pdfPageRotate = pdfPage.rotate;
-      var totalRotation = (this.rotation + this.pdfPageRotate) % 360;
+      var totalRotation = (this.rotation) % 360;
       this.viewport = pdfPage.getViewport(this.scale * CSS_UNITS,
                                           totalRotation);
       this.stats = pdfPage.stats;
@@ -3471,7 +3457,7 @@ var PDFPageView = (function PDFPageViewClosure() {
         this.rotation = rotation;
       }
 
-      var totalRotation = (this.rotation + this.pdfPageRotate) % 360;
+      var totalRotation = (this.rotation) % 360;
       this.viewport = this.viewport.clone({
         scale: this.scale * CSS_UNITS,
         rotation: totalRotation
@@ -5194,7 +5180,6 @@ var PDFThumbnailView = (function PDFThumbnailViewClosure() {
     this.pdfPage = null;
     this.rotation = 0;
     this.viewport = defaultViewport;
-    this.pdfPageRotate = defaultViewport.rotation;
 
     this.linkService = linkService;
     this.renderingQueue = renderingQueue;
@@ -5245,8 +5230,7 @@ var PDFThumbnailView = (function PDFThumbnailViewClosure() {
   PDFThumbnailView.prototype = {
     setPdfPage: function PDFThumbnailView_setPdfPage(pdfPage) {
       this.pdfPage = pdfPage;
-      this.pdfPageRotate = pdfPage.rotate;
-      var totalRotation = (this.rotation + this.pdfPageRotate) % 360;
+      var totalRotation = (this.rotation) % 360;
       this.viewport = pdfPage.getViewport(1, totalRotation);
       this.reset();
     },
@@ -5289,7 +5273,7 @@ var PDFThumbnailView = (function PDFThumbnailViewClosure() {
       if (typeof rotation !== 'undefined') {
         this.rotation = rotation;
       }
-      var totalRotation = (this.rotation + this.pdfPageRotate) % 360;
+      var totalRotation = (this.rotation) % 360;
       this.viewport = this.viewport.clone({
         scale: 1,
         rotation: totalRotation
@@ -5927,8 +5911,6 @@ var PDFViewerApplication = {
       download: document.getElementById('secondaryDownload'),
       firstPage: document.getElementById('firstPage'),
       lastPage: document.getElementById('lastPage'),
-      pageRotateCw: document.getElementById('pageRotateCw'),
-      pageRotateCcw: document.getElementById('pageRotateCcw'),
       documentPropertiesButton: document.getElementById('documentProperties')
     });
 
@@ -5944,10 +5926,6 @@ var PDFViewerApplication = {
             handler: toolbar.firstPageClick.bind(toolbar) },
           { element: document.getElementById('contextLastPage'),
             handler: toolbar.lastPageClick.bind(toolbar) },
-          { element: document.getElementById('contextPageRotateCw'),
-            handler: toolbar.pageRotateCwClick.bind(toolbar) },
-          { element: document.getElementById('contextPageRotateCcw'),
-            handler: toolbar.pageRotateCcwClick.bind(toolbar) }
         ]
       });
     }
@@ -6625,17 +6603,6 @@ var PDFViewerApplication = {
       }
     }
     return true;
-  },
-
-  rotatePages: function pdfViewRotatePages(delta) {
-    var pageNumber = this.page;
-    this.pageRotation = (this.pageRotation + 360 + delta) % 360;
-    this.pdfViewer.pagesRotation = this.pageRotation;
-    this.pdfThumbnailViewer.pagesRotation = this.pageRotation;
-
-    this.forceRendering();
-
-    this.pdfViewer.scrollPageIntoView(pageNumber);
   },
 
   requestPresentationMode: function pdfViewRequestPresentationMode() {
@@ -7368,9 +7335,6 @@ window.addEventListener('keydown', function keydown(evt) {
           HandTool.toggle();
         }
         break;
-      case 82: // 'r'
-        PDFViewerApplication.rotatePages(90);
-        break;
     }
   }
 
@@ -7385,9 +7349,6 @@ window.addEventListener('keydown', function keydown(evt) {
         handled = true;
         break;
 
-      case 82: // 'r'
-        PDFViewerApplication.rotatePages(-90);
-        break;
     }
   }
 
