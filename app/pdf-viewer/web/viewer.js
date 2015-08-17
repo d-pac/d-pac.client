@@ -1986,7 +1986,6 @@ var SecondaryToolbar = {
     this.toggleButton = options.toggleButton;
     this.presentationModeButton = options.presentationModeButton;
     this.download = options.download;
-    this.viewBookmark = options.viewBookmark;
     this.firstPage = options.firstPage;
     this.lastPage = options.lastPage;
     this.pageRotateCw = options.pageRotateCw;
@@ -2002,7 +2001,6 @@ var SecondaryToolbar = {
       { element: this.presentationModeButton,
         handler: this.presentationModeClick },
       { element: this.download, handler: this.downloadClick },
-      { element: this.viewBookmark, handler: this.viewBookmarkClick },
       { element: this.firstPage, handler: this.firstPageClick },
       { element: this.lastPage, handler: this.lastPageClick },
       { element: this.pageRotateCw, handler: this.pageRotateCwClick },
@@ -2027,10 +2025,6 @@ var SecondaryToolbar = {
 
   downloadClick: function secondaryToolbarDownloadClick(evt) {
     PDFViewerApplication.download();
-    this.close();
-  },
-
-  viewBookmarkClick: function secondaryToolbarViewBookmarkClick(evt) {
     this.close();
   },
 
@@ -5931,7 +5925,6 @@ var PDFViewerApplication = {
       presentationModeButton:
         document.getElementById('secondaryPresentationMode'),
       download: document.getElementById('secondaryDownload'),
-      viewBookmark: document.getElementById('secondaryViewBookmark'),
       firstPage: document.getElementById('firstPage'),
       lastPage: document.getElementById('lastPage'),
       pageRotateCw: document.getElementById('pageRotateCw'),
@@ -6984,8 +6977,6 @@ window.addEventListener('updateviewarea', function (evt) {
   });
   var href =
     PDFViewerApplication.pdfLinkService.getAnchorUrl(location.pdfOpenParams);
-  document.getElementById('viewBookmark').href = href;
-  document.getElementById('secondaryViewBookmark').href = href;
 
   // Update the current bookmark in the browsing history.
   PDFViewerApplication.pdfHistory.updateCurrentBookmark(location.pdfOpenParams,
@@ -7062,9 +7053,6 @@ window.addEventListener('change', function webViewerChange(evt) {
   PDFViewerApplication.setTitleUsingUrl(file.name);
 
   // URL does not reflect proper document location - hiding some icons.
-  document.getElementById('viewBookmark').setAttribute('hidden', 'true');
-  document.getElementById('secondaryViewBookmark').
-    setAttribute('hidden', 'true');
   document.getElementById('download').setAttribute('hidden', 'true');
   document.getElementById('secondaryDownload').setAttribute('hidden', 'true');
 }, true);
