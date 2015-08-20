@@ -5,3 +5,10 @@
             title="{{t "assessment:comparisons.representations.tooltip"}}"
             allowfullscreen webkitallowfullscreen></iframe>
 </div>
+{{#if document.text}}
+    <div class="col-md-12 column">
+        <blockquote>
+            {{{document.text}}}
+        </blockquote>
+    </div>
+{{/if}}

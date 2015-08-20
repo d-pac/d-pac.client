@@ -1,3 +1,10 @@
 <div class="col-md-12 column">
     <img src="{{document.href}}" class="representation image img-responsive"/>
 </div>
+{{#if document.text}}
+    <div class="col-md-12 column">
+        <blockquote>
+            {{{document.text}}}
+        </blockquote>
+    </div>
+{{/if}}
