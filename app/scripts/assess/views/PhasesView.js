@@ -9,7 +9,8 @@ var templates = {
     comparative: require( './templates/phases/ComparativeFeedback.hbs' ),
     passfail: require( './templates/phases/PassFail.hbs' ),
     "seq-selection": require( './templates/phases/Seq.hbs' ),
-    "seq-comparative": require( './templates/phases/Seq.hbs' )
+    "seq-comparative": require( './templates/phases/Seq.hbs' ),
+    "pros-cons": require('./templates/phases/ProsCons.hbs')
 };
 
 module.exports = Marionette.LayoutView.extend( {
@@ -27,7 +28,8 @@ module.exports = Marionette.LayoutView.extend( {
         submitFeedbackBtn: "#submit-feedback-button",
         feedbackInput: "#feedback-input",
         seqBtn: ".seq-button",
-        submitSeqBtn: "#submit-seq-button"
+        submitSeqBtn: "#submit-seq-button",
+        submitProsConsBtn: "#submit-proscons-button"
     },
 
     events: {
@@ -35,7 +37,8 @@ module.exports = Marionette.LayoutView.extend( {
         'click @ui.bBtn': "selectionMade",
         'click @ui.submitFeedbackBtn': 'feedbackProvided',
         'click @ui.seqBtn': 'seqValueSelected',
-        'click @ui.submitSeqBtn': 'saveSeq'
+        'click @ui.submitSeqBtn': 'saveSeq',
+        'click @ui.submitProsConsBtn': 'saveProsCons'
     },
     modelEvents: {
         'change:currentPhase': 'render'
@@ -83,6 +86,15 @@ module.exports = Marionette.LayoutView.extend( {
 
     feedbackProvided: function( event ){
         this.model.storeDataForCurrentPhase( this.ui.feedbackInput.val() );
+    },
+
+    saveProsCons: function(event){
+        this.model.storeDataForCurrentPhase({
+            aPositive: this.$('#a-positive' ).val(),
+            aNegative: this.$('#a-negative' ).val(),
+            bPositive: this.$('#b-positive' ).val(),
+            bNegative: this.$('#b-negative' ).val()
+        });
     }
 } )
 ;

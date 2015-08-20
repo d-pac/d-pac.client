@@ -106,6 +106,14 @@
       }
     }
   },
+  "phase_pros-cons": {
+    "title": "Vergelijk",
+    "description": "Beschrijf hier wat je positief en negatief vond aan de teksten:",
+    "a_title": "Tekst A",
+    "b_title": "Tekst B",
+    "positive": "Positief",
+    "negative": "Negatief"
+  },
   "phase_seq-selection": {
     "title": "Hoe moeilijk vond je het om de keuze te maken?"
   },
