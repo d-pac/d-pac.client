@@ -13,7 +13,7 @@ module.exports = {
                     '{,*/}*.html',
                     'styles/fonts/{,*/}*.*',
                     'locales/**/*.*',
-                    'viewer/**',
+                    'pdf-viewer/**',
                     'pdf/**/*.pdf',
                     'swf/**/*.*',
                     'scripts/core/config.json'
