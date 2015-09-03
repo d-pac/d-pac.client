@@ -22,7 +22,8 @@ module.exports = {
             "zeroclipboard": "zeroclipboard/dist/ZeroClipboard",
             "snackbarjs": "snackbarjs/src/snackbar.js",
             "bootstrap-material-design": "bootstrap-material-design/dist/js/material",
-            "modernizr": "modernizr/modernizr"
+            "modernizr": "modernizr/modernizr",
+            "lity": "lity/dist/lity"
         },
         packageAlias: "browser"
     },
