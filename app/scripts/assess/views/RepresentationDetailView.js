@@ -8,7 +8,8 @@ var templates = {
     "image/png": imageTpl,
     "image/jpeg": imageTpl,
     "application/pdf": pdfTpl,
-    "text/html": htmlTpl
+    "text/html": htmlTpl,
+    "image/svg+xml": imageTpl
 };
 
 module.exports = Marionette.ItemView.extend( {
