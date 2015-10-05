@@ -1,6 +1,6 @@
 'use strict';
 
-var Handlebars = require( "hbsfy/runtime" );
+var Handlebars = require('handlebars/runtime');
 
 var debug = require( 'debug' )( 'dpac:core.controllers', '[SetupHBSHelpers]' );
 var i18n = require( 'i18next' );
