@@ -1,6 +1,6 @@
 {
     "directory": "bower_components",
     "scripts": {
-      "postinstall": "grunt postBowerInstall"
+      "postinstall": "npm run postBowerInstall"
     }
 }
