@@ -16,9 +16,9 @@ _.extend( module.exports.prototype, {
             pendingRequests: 'pendingRequests'
         } );
 
-        //context.wireView( 'AccountView', require( '../views/AccountView' ), {
-        //    model : "accountModel"
-        //} );
+        context.wireView( 'AccountView', require( '../views/AccountView' ), {
+            model : "accountModel"
+        } );
 
         context.wireView( 'SigninView', require( '../views/SigninView' ), {
             model: "authService"
@@ -31,7 +31,8 @@ _.extend( module.exports.prototype, {
             welcomeFactory: "WelcomeView",
             notfoundFactory: "NotFoundView",
             tutorialFactory: "TutorialView",
-            assessFactory: "assessmentViewProxy"
+            assessFactory: "assessmentViewProxy",
+            accountFactory: "AccountView"
         } );
         context.wireView( 'WelcomeView', require( '../views/WelcomeView' ), {
             collection: 'pagesCollection',

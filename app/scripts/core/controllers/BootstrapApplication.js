@@ -20,7 +20,8 @@ _.extend( module.exports.prototype, {
                 require( './SetupRemoteRequests' ),
                 require( './SetupClipboard' ),
                 require( './SetupHBSHelpers' ),
-                require( './SetupI18N' )
+                require( './SetupI18N' ),
+                require( './SetupUserAccountSyncing' )
             ],
             'app:ui:requested': [
                 require( './BootstrapUI' ),

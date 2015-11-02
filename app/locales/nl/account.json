@@ -36,5 +36,11 @@
     },
     "cancel": {
         "label": "Annuleer"
+    },
+  "messages": {
+    "saved": {
+      "type": "success",
+      "message": "Uw wijzigingen zijn bewaard."
     }
+  }
 }

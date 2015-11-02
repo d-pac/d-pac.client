@@ -1,20 +1,10 @@
 <div class="row">
-    <div class="col-md-8 col-md-offset-2 column">
-        {{#if success}}
-            <div class="alert alert-success" role="alert">
-                <p>{{t "account:success"}}</p>
+    <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4 column">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>{{t "account:title"}}</h4>
             </div>
-        {{else}}
-            <div class="alert alert-info" role="alert">
-                <p>{{t "account:description"}}</p>
-            </div>
-        {{/if}}
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6 col-md-offset-3 column">
-        <div class="row">
-            <div class="col-md-12 column">
+            <div class="panel-body">
                 <form id="account-form" role="form" class="form-horizontal">
                     <div class="form-group">
                         <label for="firstname" class="col-md-4 control-label">{{t "account:name.first.label"}}</label>
@@ -23,6 +13,7 @@
                             <input type="text" class="form-control" id="firstname"
                                    placeholder="{{t "account:name.first.description"}}" value="{{name.first}}"
                                    data-error="{{t "account:name.first.invalid"}}" required>
+
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>
@@ -33,6 +24,7 @@
                             <input type="text" class="form-control" id="surname"
                                    placeholder="{{t "account:name.last.description"}}" value="{{name.last}}"
                                    data-error="{{t "account:name.last.invalid"}}" required>
+
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>
@@ -40,31 +32,18 @@
                         <label for="inputEmail" class="col-md-4 control-label">{{t "account:email.label"}}</label>
 
                         <div class="col-md-8">
-                            <input type="email" class="form-control" id="inputEmail"
+                            <input type="email" class="form-control" id="email"
                                    placeholder="{{t "account:email.description"}}" value="{{email}}"
                                    data-error="{{t "account:email.invalid"}}" required>
+
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label">{{t "account:organisation.label"}}</label>
-
-                        <div class="col-md-8">
-                            <p class="form-control-static">{{organization.name}}</p>
-                            <!--
-                            <select id="organisation" class="form-control">
-                                <option>{{t "account:organisation.description"}}</option>
-                            </select>
-                            -->
-                        </div>
-                    </div>
-                    <!--
-                    <div class="form-group">
                         <label for="password" class="col-md-4 control-label">{{t "account:password.label"}}</label>
 
                         <div class="col-md-8">
-                            <input type="password" class="form-control" id="password"
-                                   placeholder="{{t "account:password.description"}}">
+                            <input type="password" class="form-control" id="password">
                         </div>
                     </div>
 
@@ -73,11 +52,9 @@
                                class="col-md-4 control-label">{{t "account:password.confirmation.label"}}</label>
 
                         <div class="col-md-8">
-                            <input type="password" class="form-control" id="password-confirmation"
-                                   placeholder="{{t "account:password.confirmation.description"}}">
+                            <input type="password" class="form-control" id="password-confirmation">
                         </div>
                     </div>
-                    -->
                     <div class="col-md-8 col-md-offset-4">
                         <button type="button"
                                 data-saving-text="Saving..."

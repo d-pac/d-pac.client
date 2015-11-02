@@ -6,7 +6,7 @@ module.exports = function BootstrapDomain(){
 };
 
 _.extend( module.exports.prototype, {
-    wiring : ['config'],
+    wiring: [ 'config' ],
     execute: function(){
         debug( '#execute' );
         var context = this.context;
@@ -17,7 +17,8 @@ _.extend( module.exports.prototype, {
         context.wireSingleton( 'authService', require( '../services/AuthService' ) );
         context.getObject( 'authService' );
 
-        context.wireSingleton('pagesCollection', require('../collections/PagesCollection'));
+        context.wireSingleton( 'pagesCollection', require( '../collections/PagesCollection' ) );
+        context.wireSingleton( 'accountModel', require( '../models/AccountProxy' ) );
 
     }
 } );

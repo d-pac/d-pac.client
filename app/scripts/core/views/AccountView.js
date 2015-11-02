@@ -1,82 +1,90 @@
 'use strict';
 var _ = require( 'underscore' );
-var Marionette = require('backbone.marionette');
+var Marionette = require( 'backbone.marionette' );
+var i18n = require( 'i18next' );
 
 var debug = require( 'debug' )( 'dpac:core.views', '[AccountView]' );
 var tpl = require( './templates/Account.hbs' );
 
 module.exports = Marionette.ItemView.extend( {
-    template    : tpl,
-    modelEvents : {
-        "error" : "modelError",
-        "sync"  : "synced"
+    template: tpl,
+    modelEvents: {
+        "sync": "handleSuccess",
+        "error": "render"
     },
-    ui          : {
-        saveButton : '.save-btn',
-        form       : "#account-form"
+    ui: {
+        saveButton: '.save-btn',
+        form: "#account-form"
     },
-    events      : {
-        "click @ui.saveButton"   : "save",
-        "validated.bs.validator" : "setButtonStates"
-    },
-
-    initialize : function(){
-        debug( '#initialize' );
-        this.model.fetch();
-        this.saving = false;
+    events: {
+        "click @ui.saveButton": "save"
     },
 
+    //initialize : function(){
+    //    debug( '#initialize' );
+    //    this.model.fetch();
+    //    this.saving = false;
+    //},
+    //
     onRender : function(){
-        this.$( this.ui.form ).validator();
-        this.setButtonStates();
-        if(this.success){
-            _.delay(function(){
-                this.saving=this.success=false;
-                this.render();
-            }.bind(this), 10000);
-        }
+        console.log(this.model);
     },
+    //
+    //isValid : function(){
+    //    return !this.$( this.ui.form ).find( '.has-error' ).length
+    //},
+    //
+    //setButtonStates : _.debounce( function(){
+    //    debug("#setButtonState");
+    //    this.$( this.ui.saveButton ).prop( 'disabled', !this.isValid() || this.saving );
+    //}, 500 ),
+    //
+    //modelError : function( eventName ){
+    //    this.success=this.saving=false;
+    //    this.render();
+    //},
+    //
+    //synced : function(){
+    //    debug("#synced");
+    //    this.success=this.saving;
+    //    this.saving=false;
+    //    this.render();
+    //},
+    //
+    //serializeData : function(){
+    //    var data = this.model.toJSON();
+    //    data.success = this.success;
+    //    return data;
+    //},
+    //
 
-    isValid : function(){
-        return !this.$( this.ui.form ).find( '.has-error' ).length
-    },
-
-    setButtonStates : _.debounce( function(){
-        debug("#setButtonState");
-        this.$( this.ui.saveButton ).prop( 'disabled', !this.isValid() || this.saving );
-    }, 500 ),
-
-    modelError : function( eventName ){
-        this.success=this.saving=false;
+    handleSuccess: function(){
         this.render();
+        //this.ui.saveButton.prop( 'disabled', false );
+        //this.ui.saveButton.button( 'reset' );
+        this.dispatch( 'app:show:messages', {
+            type: i18n.t( "account:messages.saved.type" ) || "success",
+            title: i18n.t( "account:messages.saved.title" ) || '',
+            message: i18n.t( "account:messages.saved.message" ),
+        } );
     },
-
-    synced : function(){
-        debug("#synced");
-        this.success=this.saving;
-        this.saving=false;
-        this.render();
-    },
-
-    serializeData : function(){
-        var data = this.model.toJSON();
-        data.success = this.success;
-        return data;
-    },
-
-    save : function(){
-        if( this.isValid() ){
-            this.saving = true;
-            var $btn = this.$(this.ui.saveButton ).button('saving');
-            this.model.save( {
-                name  : {
-                    first : this.$( "#firstname" ).val(),
-                    last  : this.$( "#surname" ).val()
-                },
-                email : this.$( "#email" ).val()
-                //password : this.$( "#password" ).val(),
-                //password_confirm : this.$('#password-confirmation' ).val()
-            }, { patch : true } );
+    save: function(){
+        this.ui.saveButton.prop( 'disabled', 'disabled' );
+        this.ui.saveButton.button( 'saving' );
+        var data = {
+            name: {
+                first: this.$( "#firstname" ).val(),
+                last: this.$( "#surname" ).val()
+            },
+            email: this.$( "#email" ).val()
+        };
+        var password = this.$( "#password" ).val();
+        if( password ){
+            data.password = password;
+            data.password_confirm = this.$( '#password-confirmation' ).val()
         }
+
+        this.model.patch( data );
     }
-} );
+} )
+;

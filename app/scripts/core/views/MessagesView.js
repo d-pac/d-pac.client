@@ -14,6 +14,7 @@ module.exports = Marionette.ItemView.extend( {
     },
     contextEvents: {
         "app:show:messages": "showMessages",
+        "app:reset:messages": "reset",
         "router:route:completed": "reset"
     },
     initialize: function( options ){

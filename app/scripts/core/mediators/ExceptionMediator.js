@@ -38,6 +38,7 @@ module.exports = Marionette.Controller.extend( {
             if( message ){
                 message = i18n.t( [ "errors:" + S( message ).slugify().s, message ] )
             }
+
             messages.push( {
                 type: "error",
                 title: title,
