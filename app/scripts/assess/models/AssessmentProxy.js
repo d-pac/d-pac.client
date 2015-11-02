@@ -14,10 +14,6 @@ module.exports = Backbone.Model.extend( {
         state: undefined,
         phases: [],
         parent: undefined,
-        comparisonsNum: {
-            total: undefined,
-            stage: undefined
-        },
         uiCopy: undefined,
         enableTimeLogging: false,
         progress: {
