@@ -11,12 +11,7 @@ module.exports = NestedModel.extend( {
         },
         email            : undefined,
         password         : undefined,
-        password_confirm : undefined,
-        organization     : {
-            _id  : undefined,
-            name : undefined
-        },
-        //assessments: ?
+        password_confirm : undefined
     },
 
     initialize : function(){
