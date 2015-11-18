@@ -19,7 +19,8 @@
     "bootstrap-material-design": "~0.3.0",
     "handlebars": "~3.0.2",
     "snackbarjs": "~1.0.0",
-    "lity": "~1.5.0"
+    "lity": "~1.5.0",
+    "notie": "*"
   },
   "resolutions": {
     "underscore": "~1.8.3",

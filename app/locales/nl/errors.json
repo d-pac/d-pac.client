@@ -4,7 +4,7 @@
   "unauthorized": "Niet toegestaan!",
   "method-not-allowed": "Fout op server!",
   "server-unreachable": "Geen verbinding met de server!",
-  "could-not-connect": "Ofwel... <ul><li>is er een probleem met uw internetverbinding.</li><li>is de server niet bereikbaar, gelieve dan contact op te nemen met <a href='mailto:info@d-pac.eu' target='_blank' class='alert-link'>info@d-pac.eu</a>.</li></ul><p>Klik op de refresh-knop van uw browser om het opnieuw te proberen.",
+  "could-not-connect": "<p>Ofwel...</p><ul><li>is er een probleem met uw internetverbinding.</li><li>is de server niet bereikbaar, gelieve dan contact op te nemen met <a href='mailto:info@d-pac.eu' target='_blank' class='alert-link'>info@d-pac.eu</a>.</li></ul><p>Klik op de refresh-knop van uw browser om het opnieuw te proberen.",
   "bad-credentials": "Uw e-mail adres of paswoord is incorrect. Gelieve opnieuw te proberen!",
   "please-contact": "Gelieve contact op te nemen met <a href='mailto:info@d-pac.be' target='_blank' class='alert-link'>info@d-pac.be</a>.",
   "you-need-to-be-logged-in": "U bent niet (meer) ingelogd.",

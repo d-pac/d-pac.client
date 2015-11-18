@@ -4,7 +4,16 @@ var Backbone = require( 'backbone' );
 var Marionette = require( 'backbone.marionette' );
 var debug = require( 'debug' )( 'dpac:core.views', '[MessagesView]' );
 var tpl = require( './templates/Messages.hbs' );
-var snackbar = require( 'snackbarjs' );
+var notie = require( 'notie' );
+var $ = require( 'jquery' );
+
+var types = {
+    error: "#E53935",
+    danger: "#E53935",
+    success: "#8BC34A",
+    info: "#80deea"
+};
+
 module.exports = Marionette.ItemView.extend( {
     template: tpl,
     className: "col-md-8 col-md-offset-2 column",
@@ -34,30 +43,26 @@ module.exports = Marionette.ItemView.extend( {
         }
         var alerts = [];
         _.each( messages, function( message ){
-            if( message.type === "error" ){
-                message.type = "danger";
-            }
-            if( message.type === "danger" ){
-                message.id = "message-" + Date.now() + "-" + Math.random().toString().substr( 2 );
-                alerts.push( message );
-            } else {
-                var colorStyle;
-                switch( message.type ){
-                    case "success":
-                        colorStyle = "well-material-light-green";
-                        break;
-                    case "info":
-                    default:
-                        colorStyle = "well-material-light-blue";
-                        break;
-                }
-                snackbar( {
-                    content: message.message,
-                    style: "toast " + colorStyle,
-                    timeout: 10000
-                } );
-
-            }
+            var timeout = (message.permanent)
+                ? 60 * 30 //30 minutes
+                : 4;
+            notie.alert( 0, message.message, timeout );
+            //ugly hack until notie styling is in place
+            $( '#notie-alert-outer' ).css( {
+                "background-color": types[ message.type ],
+                "display": "inline-block"
+            } );
+            $( '#notie-alert-inner' ).css( {
+                width: "50%",
+                margin: "0 auto",
+                display: "block"
+            } );
+            $( '#notie-alert-text' ).css( {
+                "font-size": "18px",
+                "text-align": "justify",
+                display: "block",
+                "border-right": "1px solid rgba(255,255,255,0.3)"
+            } )
         } );
 
         this.model.set( 'messages', alerts );

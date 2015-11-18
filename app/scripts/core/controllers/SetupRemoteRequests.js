@@ -78,7 +78,8 @@ _.extend( SetupRemoteRequests.prototype, {
                             { //let's fake an error object
                                 code: 0,
                                 message: "Server unreachable.",
-                                explanation: "Could not connect."
+                                explanation: "Could not connect.",
+                                fatal: true
                             }
                         ],
                         url: options.url

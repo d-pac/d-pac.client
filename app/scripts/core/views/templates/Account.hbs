@@ -5,7 +5,7 @@
                 <h4>{{t "account:title"}}</h4>
             </div>
             <div class="panel-body">
-                <form id="account-form" role="form" class="form-horizontal">
+                <form id="account-form" role="form" class="form-horizontal" autocomplete="off">
                     <div class="form-group">
                         <label for="firstname" class="col-md-4 control-label">{{t "account:name.first.label"}}</label>
 
@@ -43,7 +43,7 @@
                         <label for="password" class="col-md-4 control-label">{{t "account:password.label"}}</label>
 
                         <div class="col-md-8">
-                            <input type="password" class="form-control" id="password">
+                            <input type="password" class="form-control" id="password"  placeholder="********">
                         </div>
                     </div>
 
@@ -52,7 +52,7 @@
                                class="col-md-4 control-label">{{t "account:password.confirmation.label"}}</label>
 
                         <div class="col-md-8">
-                            <input type="password" class="form-control" id="password-confirmation">
+                            <input type="password" class="form-control" id="password-confirmation" placeholder="********">
                         </div>
                     </div>
                     <div class="col-md-8 col-md-offset-4">

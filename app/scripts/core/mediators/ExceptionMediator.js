@@ -22,7 +22,8 @@ module.exports = Marionette.Controller.extend( {
                 errors: [
                     {
                         message: "Unknown Error",
-                        explanation: "Please contact"
+                        explanation: "Please contact",
+                        fatal: true
                     }
                 ]
             } );
@@ -42,7 +43,8 @@ module.exports = Marionette.Controller.extend( {
             messages.push( {
                 type: "error",
                 title: title,
-                message: message
+                message: message,
+                permanent: err.fatal || false
             } );
         }, this );
         this.dispatch( 'app:show:messages', messages );
