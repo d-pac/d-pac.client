@@ -18,7 +18,6 @@ _.extend( module.exports.prototype, {
                 require( './BootstrapDomain' ),
                 require( './BootstrapMediators' ),
                 require( './SetupRemoteRequests' ),
-                require( './SetupClipboard' ),
                 require( './SetupHBSHelpers' ),
                 require( './SetupI18N' ),
                 require( './SetupUserAccountSyncing' )

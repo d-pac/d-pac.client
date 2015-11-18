@@ -15,7 +15,6 @@ module.exports = {
                     'locales/**/*.*',
                     'pdf-viewer/**',
                     'pdf/**/*.pdf',
-                    'swf/**/*.*',
                     'scripts/core/config.json'
                 ]
             }, {
@@ -33,12 +32,5 @@ module.exports = {
         cwd    : '<%= config.app %>/styles',
         dest   : '.tmp/styles/',
         src    : '{,*/}*.css'
-    },
-    zeroclipboard : {
-        expand : true,
-        dot    : true,
-        cwd  : '<%=config.bower%>/zeroclipboard/dist',
-        dest : '<%=config.app%>/swf',
-        src  : '*.swf'
     }
 };

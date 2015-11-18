@@ -45,8 +45,6 @@ module.exports = function( grunt ){
 
 //    console.log(grunt.config);
 
-    grunt.registerTask('postBowerInstall', ['copy:zeroclipboard']);
-
     grunt.registerTask( 'serve', function( target ){
         if( target === 'dist' ){
             return grunt.task.run( ['build', 'connect:dist:keepalive'] );
