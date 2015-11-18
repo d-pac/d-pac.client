@@ -19,7 +19,7 @@
         "description": "Selecteer uw organisatie."
     },
     "email": {
-        "label": "E-mail",
+        "label": "E-mail (en gebruikersnaam)",
         "description": "Vul uw e-mail adres in.",
         "invalid": "Geen geldig e-mail adres."
     },

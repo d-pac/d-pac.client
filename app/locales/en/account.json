@@ -19,7 +19,7 @@
         "description": "Select your organisation."
     },
     "email": {
-        "label": "E-mail",
+        "label": "E-mail (and user name)",
         "description": "Please fill out your e-mail address.",
         "invalid": "Not a valid e-mail address."
     },

@@ -58,7 +58,7 @@ module.exports = Marionette.ItemView.extend( {
                 display: "block"
             } );
             $( '#notie-alert-text' ).css( {
-                "font-size": "18px",
+                "font-size": "16px",
                 "text-align": "justify",
                 display: "block",
                 "border-right": "1px solid rgba(255,255,255,0.3)"
