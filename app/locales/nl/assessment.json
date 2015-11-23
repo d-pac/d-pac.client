@@ -13,12 +13,16 @@
     "title": "Opdrachten",
     "description": "Kies een uit te voeren opdracht:",
     "empty": "U hebt geen uit te voeren opdrachten.",
-    "thanks": "Bedankt om alle vergelijkingen te hebben uitgevoerd voor de opdracht '__title__'!",
     "completed": "U hebt al uw vergelijkingen uitgevoerd.",
     "submit_button":{
       "sending": "Even geduld..."
     },
     "continue": "Ga door met een andere opdracht:"
+  },
+  "assessment_completed": {
+    "title": "Opdracht beëindigd",
+    "description": "Bedankt om alle vergelijkingen te hebben uitgevoerd voor de opdracht '__title__'!",
+    "type": "success"
   },
   "comparison_unfinished": {
     "title": "Vergelijkingen",

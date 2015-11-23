@@ -38,10 +38,10 @@ module.exports = Marionette.Controller.extend( {
     },
 
     start: function(){
-        this.verifyComparisonsState(false);
+        this.verifyComparisonsState( false );
     },
 
-    verifyComparisonsState: function verifyComparisonsState(completedAssessment){
+    verifyComparisonsState: function verifyComparisonsState( completedAssessment ){
         debug( "#verifyComparisonsState" );
         if( this.comparisonsCollection.hasActives() ){
             //interrupted comparisons exist
@@ -49,9 +49,14 @@ module.exports = Marionette.Controller.extend( {
         } else if( this.assessmentsCollection.selected ){
             this.dispatch( 'comparisons:continue:requested' );
         } else {
-            this.dispatch( 'assessments:selection:requested', {
-                completedAssessment: completedAssessment
-            } );
+            this.dispatch( 'assessments:selection:requested' );
+            if(completedAssessment){
+                this.dispatch( 'app:show:messages', {
+                    type: i18n.t( "assessment:assessment_completed.type" ) || "success",
+                    title: i18n.t( "assessment:assessment_completed.title" ) || '',
+                    message: i18n.t( "assessment:assessment_completed.description", { title: completedAssessment.get( 'title' ) } )
+                } );
+            }
         }
     },
 
@@ -90,8 +95,11 @@ module.exports = Marionette.Controller.extend( {
 
         if( comparison.hasMessages() ){
             var messages = _.clone( comparison.get( 'messages' ) );
-            this.comparisonsCollection.remove(comparison);
-            this.dispatch( 'comparisons:creation:failed', { messages: messages, assessment: this.assessmentsCollection.selected } );
+            this.comparisonsCollection.remove( comparison );
+            this.dispatch( 'comparisons:creation:failed', {
+                messages: messages,
+                assessment: this.assessmentsCollection.selected
+            } );
         } else {
             this.selectComparison();
         }
@@ -126,6 +134,6 @@ module.exports = Marionette.Controller.extend( {
         assessment.incCompleted();
         this.context.release( 'currentSelection' );
         this.currentSelection = undefined;
-        this.verifyComparisonsState(assessment);
+        this.verifyComparisonsState( assessment );
     }
 } );

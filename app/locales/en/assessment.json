@@ -12,12 +12,16 @@
     "title": "Assessments",
     "description": "Select an assessment:",
     "empty": "You have no active assessments.",
-    "thanks": "Thank you for having completed all comparisons for '__title__'!",
     "completed": "You have completed all your comparisons",
     "submit_button":{
       "sending": "Patience, please"
     },
     "continue": "Continue with another assessment:"
+  },
+  "assessment_completed": {
+    "title": "Assessment completed",
+    "description": "Thank you for having completed all comparisons for '__title__'!",
+    "type": "success"
   },
   "comparison_unfinished": {
     "title": "Comparisons",

@@ -4,6 +4,7 @@ var debug = require( 'debug' )( 'dpac:assess.views', '[MainView]' );
 var tpl = require( './templates/MainView.hbs' );
 var Marionette = require( 'backbone.marionette' );
 var Backbone = require( 'backbone' );
+var i18n = require('i18next');
 module.exports = Marionette.LayoutView.extend( {
     template: tpl,
     unfinishedComparisonsFactory: undefined,
@@ -54,9 +55,7 @@ module.exports = Marionette.LayoutView.extend( {
     },
     showAssessmentsSelection: function( eventData ){
         debug( "#showAssessmentsSelection" );
-        this.contentRegion.show( this.assessmentSelectionFactory( {
-            completedAssessment: eventData.completedAssessment
-        } ) );
+        this.contentRegion.show( this.assessmentSelectionFactory() );
     },
 
     showLayoutView: function(){

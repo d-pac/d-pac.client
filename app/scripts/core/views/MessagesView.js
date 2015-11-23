@@ -45,7 +45,7 @@ module.exports = Marionette.ItemView.extend( {
         _.each( messages, function( message ){
             var timeout = (message.permanent)
                 ? 60 * 30 //30 minutes
-                : 4;
+                : 5;
             notie.alert( 0, message.message, timeout );
             //ugly hack until notie styling is in place
             $( '#notie-alert-outer' ).css( {
