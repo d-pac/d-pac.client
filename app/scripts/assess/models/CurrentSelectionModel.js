@@ -75,15 +75,20 @@ module.exports = Backbone.Model.extend( {
             phase: this.get( "assessment" ).getNextPhaseId( currentPhase.id )
         };
         update.data[ this.get( 'currentPhase' ).get( 'slug' ) ] = value;
+        var handler;
         if( !update.phase ){
             update.completed = true;
             update.phase = null;
-            comparison.update( update );
-            this.set( 'completed', true );
+            handler = function(){
+                this.set( 'completed', true );
+            };
         } else {
-            comparison.update( update );
-            this.set( 'currentPhase', this.get( 'phases' ).get( update.phase ) );
+            handler = function(){
+                this.set( 'currentPhase', this.get( 'phases' ).get( update.phase ) );
+            }
         }
+        comparison.once( "sync", handler, this );
+        comparison.update( update );
     },
 
     createNote: function( noteData,

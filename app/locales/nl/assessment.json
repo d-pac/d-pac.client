@@ -6,7 +6,8 @@
     },
     "save_button": {
       "label": "Bewaren"
-    }
+    },
+    "sending": "Even geduld..."
   },
   "assessment_selection": {
     "title": "Opdrachten",
@@ -15,7 +16,7 @@
     "thanks": "Bedankt om alle vergelijkingen te hebben uitgevoerd voor de opdracht '__title__'!",
     "completed": "U hebt al uw vergelijkingen uitgevoerd.",
     "submit_button":{
-      "sending": "Even geduld"
+      "sending": "Even geduld..."
     },
     "continue": "Ga door met een andere opdracht:"
   },
@@ -82,7 +83,8 @@
     "b_button": {
       "label": "Tekst B is beter",
       "tooltip": "Klik om aan te duiden dat tekst B beter is dan A."
-    }
+    },
+    "sending": "Even geduld..."
   },
   "phase_comparative": {
     "title": "Vergelijk",

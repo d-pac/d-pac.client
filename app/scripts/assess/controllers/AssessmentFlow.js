@@ -111,7 +111,7 @@ module.exports = Marionette.Controller.extend( {
             notes: this.notesCollection
         } );
 
-        i18n.addResourceBundle( i18n.lng(), 'assessment', assessment.get( 'uiCopy' ) );
+        i18n.addResourceBundle( i18n.lng(), 'assessment', assessment.get( 'uiCopy' ), true );
 
         this.context.wireValue( 'currentSelection', current );
         this.dispatch( 'comparisons:editing:requested', { current: current } );

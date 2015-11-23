@@ -6,36 +6,51 @@
 
         <div class="row">
             <div class="col-sm-12 col-md-6 column">
-                <div class="row"><div class="col-sm-12 column">
-                    <h5>{{t "assessment:phase_pros-cons.a_title"}}</h5>
-                </div></div>
-                <div class="row"><div class="col-sm-12 column">
+                <div class="row">
+                    <div class="col-sm-12 column">
+                        <h5>{{t "assessment:phase_pros-cons.a_title"}}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 column">
                 <textarea id="a-positive" class="form-control" rows="5"
                           placeholder="{{t "assessment:phase_pros-cons.positive"}}"></textarea>
-                </div></div>
-                <div class="row"><div class="col-sm-12 column">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 column">
                 <textarea id="a-negative" class="form-control" rows="5"
                           placeholder="{{t "assessment:phase_pros-cons.negative"}}"></textarea>
-                </div></div>
+                    </div>
+                </div>
             </div>
             <div class="col-sm-12 col-md-6 column">
-                <div class="row"><div class="col-sm-12 column">
-                    <h5>{{t "assessment:phase_pros-cons.b_title"}}</h5>
-                </div></div>
-                <div class="row"><div class="col-sm-12 column">
+                <div class="row">
+                    <div class="col-sm-12 column">
+                        <h5>{{t "assessment:phase_pros-cons.b_title"}}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 column">
                 <textarea id="b-positive" class="form-control" rows="5"
                           placeholder="{{t "assessment:phase_pros-cons.positive"}}"></textarea>
-                </div></div>
-                <div class="row"><div class="col-sm-12 column">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 column">
                 <textarea id="b-negative" class="form-control" rows="5"
                           placeholder="{{t "assessment:phase_pros-cons.negative"}}"></textarea>
-                </div></div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-12 col-md-6 column">        <button id="submit-proscons-button" type="button" class="btn btn-primary" >
-                                {{t "assessment:common.save_button.label"}}
-                            </button>
+            <div class="col-sm-12 col-md-6 column">
+                <button id="submit-proscons-button" type="button"
+                        data-sending-text="{{t "assessment:common.sending"}}"
+                        class="btn btn-primary">
+                    {{t "assessment:common.save_button.label"}}
+                </button>
             </div>
         </div>
     </div>

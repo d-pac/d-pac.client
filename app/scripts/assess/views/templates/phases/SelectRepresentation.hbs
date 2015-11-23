@@ -2,10 +2,14 @@
     <div class="well">
         <h4>{{title}}</h4>
         <p>{{description}}</p>
-        <button id="select-A-button" type="button" class="btn btn-primary" data-selection-id="{{representations.a}}">
+        <button id="select-A-button" type="button" class="btn btn-primary"
+                data-sending-text="{{t "assessment:common.sending"}}"
+                data-selection-id="{{representations.a}}">
             {{t "assessment:phase_selection.a_button.label"}}
         </button>
-        <button id="select-B-button" type="button" class="btn btn-primary" data-selection-id="{{representations.b}}">
+        <button id="select-B-button" type="button" class="btn btn-primary"
+                data-sending-text="{{t "assessment:common.sending"}}"
+                data-selection-id="{{representations.b}}">
             {{t "assessment:phase_selection.b_button.label"}}
         </button>
     </div>

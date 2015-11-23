@@ -1,11 +1,13 @@
 <div class="col-sm-12 column">
     <div class="well">
-        <h4 >{{t "assessment:phase_comparative.title"}}</h4>
+        <h4>{{t "assessment:phase_comparative.title"}}</h4>
         <p>{{t "assessment:phase_comparative.description"}}</p>
         <textarea id="feedback-input" class="form-control" rows="5" placeholder="..."></textarea>
-        <button id="submit-feedback-button" type="button" class="btn btn-primary" >
-                    {{t "assessment:common.save_button.label"}}
-                </button>
+        <button id="submit-feedback-button" type="button" class="btn btn-primary"
+                data-sending-text="{{t "assessment:common.sending"}}"
+        >
+            {{t "assessment:common.save_button.label"}}
+        </button>
     </div>
 </div>
 
