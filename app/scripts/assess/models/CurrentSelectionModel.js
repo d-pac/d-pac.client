@@ -60,8 +60,10 @@ module.exports = Backbone.Model.extend( {
 
     getNoteByOrder: function( orderId ){
         var representation = this.getRepresentationByOrder( orderId );
-        var docId = representation.get( "document" )._id;
-        return this.get( 'notes' ).getNoteByDocId( docId );
+        var document = representation.get( "document" );
+        if(document){
+            return this.get( 'notes' ).getNoteByDocId( document._id );
+        }
     },
 
     storeDataForCurrentPhase: function( value ){

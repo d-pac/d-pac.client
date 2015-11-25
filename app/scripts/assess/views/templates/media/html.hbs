@@ -1,5 +1,9 @@
 <div class="col-md-12 column">
-    <blockquote>
-        {{{document.text}}}
-    </blockquote>
+<blockquote>
+    {{#if document.text}}
+            {{{document.text}}}
+    {{else}}
+        {{t "errors:document-not-found"}}
+    {{/if}}
+</blockquote>
 </div>

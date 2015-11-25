@@ -10,5 +10,6 @@
   "you-need-to-be-logged-in": "U bent niet (meer) ingelogd.",
   "auto-recover": "<p>De applicatie zal vanzelf verder gaan wanneer de connectie terug hersteld is.</p>",
   "unprocessable-entity": "Validatie mislukt",
-  "passwords-do-not-match": "De paswoord bevestiging is niet identiek aan het nieuwe paswoord."
+  "passwords-do-not-match": "De paswoord bevestiging is niet identiek aan het nieuwe paswoord.",
+  "document-not-found": "Het document is niet gevonden, gelieve contact op te nemen met <a href='mailto:info@d-pac.be' target='_blank' class='alert-link'>info@d-pac.be</a>."
 }

@@ -11,12 +11,17 @@ var templates = {
     "text/html": htmlTpl,
     "image/svg+xml": imageTpl
 };
+var defaultTpl = templates['text/html'];
 
 module.exports = Marionette.ItemView.extend( {
     className: "row",
     getTemplate: function(){
-        var type = this.model.get( "document" ).mimeType;
-        return templates[ type ] || templates['image/png'];
+        var document = this.model.get( "document" );
+        if(document){
+            return templates[document.mimeType] || defaultTpl;
+
+        }
+        return defaultTpl;
     },
 
     initialize: function( opts ){
