@@ -1,8 +1,7 @@
 {
   "authentication-error": "Authenticatie mislukt!",
-  "unknown-error": "Er is een fout opgetreden.",
+  "unknown-error": "<p>Er is een fout opgetreden, gelieve contact op te nemen met <a href='mailto:info@d-pac.be' target='_blank' class='alert-link'>info@d-pac.be</a>.</p><p>Referentie: __code__, __url__</p>",
   "unauthorized": "Niet toegestaan!",
-  "method-not-allowed": "Fout op server!",
   "server-unreachable": "Geen verbinding met de server!",
   "could-not-connect": "<p>Ofwel...</p><ul><li>is er een probleem met uw internetverbinding.</li><li>is de server niet bereikbaar, gelieve dan contact op te nemen met <a href='mailto:info@d-pac.eu' target='_blank' class='alert-link'>info@d-pac.eu</a>.</li></ul><p>Klik op de refresh-knop van uw browser om het opnieuw te proberen.",
   "bad-credentials": "Uw e-mail adres of paswoord is incorrect. Gelieve opnieuw te proberen!",
@@ -11,5 +10,5 @@
   "auto-recover": "<p>De applicatie zal vanzelf verder gaan wanneer de connectie terug hersteld is.</p>",
   "unprocessable-entity": "Validatie mislukt",
   "passwords-do-not-match": "De paswoord bevestiging is niet identiek aan het nieuwe paswoord.",
-  "document-not-found": "Het document is niet gevonden, gelieve contact op te nemen met <a href='mailto:info@d-pac.be' target='_blank' class='alert-link'>info@d-pac.be</a>."
+  "document-not-found": "<p>Het document is niet gevonden, gelieve contact op te nemen met <a href='mailto:info@d-pac.be' target='_blank' class='alert-link'>info@d-pac.be</a>.</p><p>Referentie: __code__, __url__</p>"
 }

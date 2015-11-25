@@ -34,10 +34,11 @@ module.exports = Marionette.Controller.extend( {
         var messages = [];
         _.each( errObj.errors, function( err ){
             var title = err.message || "";
-            title = i18n.t( [ "errors:" + S( title ).slugify().s, title ] );
-            var message = err.explanation || "";
+            var message = err.explanation || title;
+            var merged = _.defaults(err, errObj);
+            title = i18n.t( ["errors:" + S( title ).slugify().s, "errors:unknown-error"], merged );
             if( message ){
-                message = i18n.t( [ "errors:" + S( message ).slugify().s, message ] )
+                message = i18n.t( ["errors:" + S( message ).slugify().s, "errors:unknown-error"], merged );
             }
 
             messages.push( {
