@@ -10,8 +10,10 @@ var konfy = require( 'konfy' );
 // 'test/spec/**/*.js'
 
 module.exports = function( grunt ){
-    var pkg = grunt.file.readJSON('package.json');
-    process.env.APP_VERSION = pkg.version + " (" + pkg.build + ")";
+    var pkg = grunt.file.readJSON( 'package.json' );
+    process.env.APP_VERSION = (process.env.GIT_COMMIT_SHORT)
+        ? pkg.version + " (" + process.env.GIT_COMMIT_SHORT + ")"
+        : pkg.version;
 
     if( grunt.option( 'env' ) ){
         process.env.NODE_ENV = grunt.option( 'env' );
@@ -23,31 +25,27 @@ module.exports = function( grunt ){
 
     // Load grunt tasks automatically
     require( 'jit-grunt' )( grunt, {
-        useminPrepare : 'grunt-usemin',
-        buildnumber: "grunt-build-number"
+        useminPrepare: 'grunt-usemin'
     } );
 
     // Configurable paths
     var config = {
-        app   : 'app',
-        dist  : 'dist',
-        bower : grunt.file.readJSON( '.bowerrc' ).directory
+        app: 'app',
+        dist: 'dist',
+        bower: grunt.file.readJSON( '.bowerrc' ).directory
     };
 
     // Define the configuration for all the tasks
     grunt.initConfig( require( 'load-grunt-configs' )( grunt, {
-        config : config,
-        env : process.env,
-        buildnumber : {
-            files : ['package.json']
-        }
+        config: config,
+        env: process.env
     } ) );
 
 //    console.log(grunt.config);
 
     grunt.registerTask( 'serve', function( target ){
         if( target === 'dist' ){
-            return grunt.task.run( ['build', 'connect:dist:keepalive'] );
+            return grunt.task.run( [ 'build', 'connect:dist:keepalive' ] );
         }
 
         grunt.task.run( [
@@ -77,7 +75,6 @@ module.exports = function( grunt ){
     } );
 
     grunt.registerTask( 'build', [
-        'buildnumber',
         'clean:dist',
         'less',
         'webpack',
@@ -101,5 +98,5 @@ module.exports = function( grunt ){
         'build'
     ] );
 
-    grunt.registerTask( 'deploy', ['build', 'rsync:app'] );
+    grunt.registerTask( 'deploy', [ 'build', 'rsync:app' ] );
 };
