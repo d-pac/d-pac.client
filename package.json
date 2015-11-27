@@ -53,6 +53,7 @@
   "scripts": {
     "bowerInstall": "bower install",
     "build": "grunt build",
-    "shrinkwrap": "npm shrinkwrap --dev"
+    "shrinkwrap": "npm shrinkwrap --dev",
+    "serve": "grunt serve"
   }
 }

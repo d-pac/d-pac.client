@@ -14,7 +14,7 @@ module.exports = {
         vendor: vendorComponents
     },
     resolve: {
-        root: [ "./bower_components" ],
+        root: [ "./bower_components", "./node_modules" ],
         alias: {
             "debug": "bows/bows",
             "konfy": "konfy/lib/browser",
@@ -23,7 +23,8 @@ module.exports = {
             "snackbarjs": "snackbarjs/src/snackbar.js",
             "bootstrap-material-design": "bootstrap-material-design/dist/js/material",
             "modernizr": "modernizr/modernizr",
-            "lity": "lity/dist/lity"
+            "lity": "lity/dist/lity",
+            "underscore": "lodash/index"
         },
         packageAlias: "browser"
     },
