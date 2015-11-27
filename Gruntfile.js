@@ -1,7 +1,13 @@
 // Generated on 2014-06-26 using generator-webapp 0.4.9
 'use strict';
-
 var konfy = require( 'konfy' );
+
+module.exports = function( grunt ){
+    konfy.load( function( err,
+                          config ){
+        initGrunt( grunt );
+    } );
+};
 
 // # Globbing
 // for performance reasons we're only matching one level down:
@@ -9,16 +15,13 @@ var konfy = require( 'konfy' );
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
 
-module.exports = function( grunt ){
+function initGrunt( grunt ){
     var pkg = grunt.file.readJSON( 'package.json' );
-    process.env.APP_VERSION = (process.env.GIT_COMMIT_SHORT)
-        ? pkg.version + " (" + process.env.GIT_COMMIT_SHORT + ")"
+    process.env.APP_VERSION = (process.env.APP_VERSION_LABEL)
+        ? pkg.version + "-" + process.env.APP_VERSION_LABEL
         : pkg.version;
 
-    if( grunt.option( 'env' ) ){
-        process.env.NODE_ENV = grunt.option( 'env' );
-    }
-    konfy.load();
+    console.log( "APP_VERSION", process.env.APP_VERSION );
 
     // Time how long tasks take. Can help when optimizing build times
     require( 'time-grunt' )( grunt );
@@ -99,4 +102,4 @@ module.exports = function( grunt ){
     ] );
 
     grunt.registerTask( 'deploy', [ 'build', 'rsync:app' ] );
-};
+}
