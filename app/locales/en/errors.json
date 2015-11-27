@@ -1,6 +1,6 @@
 {
   "authentication-error": "Authentication failed!",
-  "unknown-error": "<p>An error occurred, please contact <a href='mailto:info@d-pac.be' target='_blank' class='alert-link'>info@d-pac.be</a>.</p><p>Reference: __code__, __url__</p>",
+  "unknown-error": "<p>An error occurred, please contact <a href='mailto:info@d-pac.be' target='_blank' class='alert-link'>info@d-pac.be</a>.</p><p>Reference: __ref__, __url__</p>",
   "unauthorized": "Not allowed!",
   "server-unreachable": "Could not make a connection to the server!",
   "could-not-connect": "<p>Either...</p><ul><li>there's a problem with your internet connection.</li><li>or the server is unreachable, please contact <a href='mailto:info@d-pac.eu' target='_blank' class='alert-link'>info@d-pac.be</a>.</li></ul>",
@@ -8,6 +8,6 @@
   "please-contact": "An unspecified error has occured, please contact <a href='mailto:info@d-pac.be' target='_blank' class='alert-link'>info@d-pac.eu</a>.",
   "you-need-to-be-logged-in": "You need to sign in.",
   "auto-recover": "<p>The application will automatically recover once the connection is restored.</p>",
-  "document-not-found": "<p>Document not found, please contact <a href='mailto:info@d-pac.be' target='_blank' class='alert-link'>info@d-pac.be</a>.</p><p>Reference: __code__, __url__</p>",
+  "document-not-found": "<p>Document not found, please contact <a href='mailto:info@d-pac.be' target='_blank' class='alert-link'>info@d-pac.be</a>.</p><p>Reference: /api/representations/__id__</p>",
   "account-modification-disabled": "<p>Account modification is disabled.</p>"
 }

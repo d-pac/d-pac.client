@@ -22,10 +22,12 @@ module.exports = Marionette.Controller.extend( {
                 errors: [
                     {
                         message: "Unknown Error",
-                        explanation: "Please contact",
+                        explanation: "Unknown Error",
+                        ref: err.message,
                         fatal: true
                     }
-                ]
+                ],
+                url: window.location.href,
             } );
         }.bind( this );
     },
@@ -33,7 +35,10 @@ module.exports = Marionette.Controller.extend( {
     errorEventHandler: function( errObj ){
         var messages = [];
         _.each( errObj.errors, function( err ){
-            var merged = _.defaults( {}, err, errObj ); //allows access to request-uuid, url, code etc.
+            var merged = _.defaults( {
+                ref: err.code || err.ref
+            }, errObj ); //allows access to request-uuid, url, code etc.
+            console.log(merged);
             var message = err.message || "unknown error";
             var explanation = err.explanation || message;
             messages.push( {

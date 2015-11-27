@@ -15,11 +15,9 @@ module.exports = Marionette.ItemView.extend( {
 
     initialize: function( opts ){
         debug( "#initialize" );
-        console.log( opts );
     },
 
     serializeData: function(){
-        console.log( this );
         var body = (this.model)
             ? this.model.get( 'body' )
             : '';
