@@ -13,7 +13,6 @@ _.extend( BootstrapDomain.prototype, {
         debug( '#execute' );
 
         var context = this.context;
-        context.wireSingleton( 'assessmentsCollection', require( '../collections/AssessmentsCollection' ) );
         context.wireSingleton( 'phasesCollection', require( '../collections/PhasesCollection' ) );
         context.wireSingleton( 'representationsCollection', require( '../collections/RepresentationsCollection' ) );
         context.wireSingleton( 'notesCollection', require( '../collections/NotesCollection' ) );
@@ -28,14 +27,14 @@ _.extend( BootstrapDomain.prototype, {
         context.wireSingleton( 'timelogsCollection', require( '../collections/TimelogsCollection' ) );
         context.wireSingleton( 'timelogsController', require( './TimelogsController' ) );
         context.wireSingleton( 'navigationBlocker', require( './NavigationBlocker' ) );
-        context.wireSingleton( 'assessmentFlow', require( '../controllers/AssessmentFlow' ), {
+        context.wireSingleton( 'assessFlow', require( '../controllers/AssessFlow' ), {
             assessmentsCollection: "assessmentsCollection",
             comparisonsCollection: "comparisonsCollection",
             phasesCollection: "phasesCollection",
             representationsCollection: "representationsCollection",
             timelogsCollection: 'timelogsCollection',
             notesCollection: 'notesCollection',
-            context: "assessmentContext"
+            context: "moduleContext"
         } );
         //context.configure('timelogger', undefined, this.config.timelogs);
         //

@@ -16,11 +16,11 @@ _.extend( module.exports.prototype, {
         context.wireSingleton( 'authenticationMediator', require( '../mediators/AuthenticationMediator' ) );
         context.getObject( 'authenticationMediator' );
 
-        context.wireSingleton( 'assessmentMediator', require( '../mediators/AssessmentMediator' ), {
+        context.wireSingleton( 'assessModuleMediator', require( '../../common/mediators/AssessModuleMediator' ), {
             model: "authService",
             context: "appContext"
         } );
-        context.getObject( 'assessmentMediator' );
+        context.getObject( 'assessModuleMediator' );
     }
 } );
 

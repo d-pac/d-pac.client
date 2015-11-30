@@ -14,7 +14,7 @@ module.exports = Marionette.Controller.extend( {
     wiring: {
         config: 'config',
         timelogsCollection: 'timelogsCollection',
-        context: 'assessmentContext'
+        context: 'moduleContext'
     },
 
     contextEvents: {

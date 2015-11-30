@@ -20,7 +20,7 @@ _.extend( module.exports.prototype, {
                     'common',
                     'account',
                     'login',
-                    'assessment',
+                    'assess',
                     "errors",
                     "tutorial"
                 ],

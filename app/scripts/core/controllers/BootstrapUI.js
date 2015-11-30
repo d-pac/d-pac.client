@@ -4,10 +4,10 @@ var _ = require('underscore');
 
 module.exports = function BootstrapUI(  ){};
 _.extend( module.exports.prototype, {
-    wiring : ['assessmentMediator'],
+    wiring : ['assessModuleMediator'],
     execute: function(){
         debug( '#execute' );
-        var assessmentMediator = this.assessmentMediator;
+        var assessModuleMediator = this.assessModuleMediator;
         var context = this.context;
         context.wireView( 'MessagesView', require( '../views/MessagesView' ) );
         context.wireView( 'MenuView', require( '../views/MenuView' ), {

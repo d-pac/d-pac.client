@@ -2,20 +2,20 @@
     <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4 column">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4>{{t "assessment:assessment_selection.title"}}</h4>
+                <h4>{{t "assess:assessment_selection.title"}}</h4>
             </div>
             <div class="panel-body">
                 {{#if items.length }}
-                    <p>{{t "assessment:assessment_selection.description"}}</p>
+                    <p>{{t "assess:assessment_selection.description"}}</p>
                     {{#each items}}
                         <button type="button" class="btn btn-primary btn-block assessment-button"
                                 data-model-id="{{_id}}"
-                                data-sending-text="{{t "assessment:assessment_selection.submit_button.sending"}}">
+                                data-sending-text="{{t "assess:assessment_selection.submit_button.sending"}}">
                             {{title}}
                         </button>
                     {{/each}}
                 {{else}}
-                    <p>{{t "assessment:assessment_selection.empty"}}</p>
+                    <p>{{t "assess:assessment_selection.empty"}}</p>
                 {{/if}}
             </div>
         </div>

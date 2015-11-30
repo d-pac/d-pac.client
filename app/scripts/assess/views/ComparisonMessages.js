@@ -19,7 +19,7 @@ module.exports = Marionette.ItemView.extend( {
             assessment: this.model.get('assessment' ).toJSON()
         };
         data.messages = _.map( data.messages, function( message ){
-            return i18n.t( "assessment:comparison_messages.messages." + message );
+            return i18n.t( "assess:comparison_messages.messages." + message );
         } );
         return data;
     }

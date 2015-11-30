@@ -3,7 +3,7 @@ var Backbone = require( 'backbone' );
 
 var debug = require( 'debug' )( 'dpac:assess.collections', '[ComparisonsCollection]' );
 var ModelClass = require( '../models/ComparisonProxy' );
-var teardown = require( '../mixins/teardown' );
+var teardown = require( '../../common/mixins/teardown' );
 
 module.exports = Backbone.Collection.extend( {
 
@@ -12,7 +12,7 @@ module.exports = Backbone.Collection.extend( {
     url: '/user/comparisons',
     model: ModelClass,
     contextEvents: {
-        'assessment:teardown:requested': "teardown"
+        'assess:teardown:requested': "teardown"
     },
 
     initialize: function( models ){

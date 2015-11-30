@@ -11,21 +11,21 @@
                         </div>
                         -->
             <ul class="pagination pagination-md">
-                <li class="disabled"><a href="javascript:void(0)">{{{t "assessment:seq.easy.label"}}}</a></li>
+                <li class="disabled"><a href="javascript:void(0)">{{{t "assess:seq.easy.label"}}}</a></li>
                 {{#each seq.values}}
                     <li {{#if this.selected}}class="active"{{/if}}><a href="javascript:void(0)"
                                                                       data-value="{{this.value}}"
                                                                       class="seq-button">{{this.value}}</a></li>
                 {{/each}}
-                <li class="disabled"><a href="javascript:void(0)">{{{t "assessment:seq.hard.label"}}}</a></li>
+                <li class="disabled"><a href="javascript:void(0)">{{{t "assess:seq.hard.label"}}}</a></li>
             </ul>
         </div>
         <div>
             <button id="submit-seq-button" type="button"
                     class="btn btn-primary{{#unless seq.selected}} disabled{{/unless}}"
-                    data-sending-text="{{t "assessment:common.sending"}}"
+                    data-sending-text="{{t "assess:common.sending"}}"
             >
-                {{t "assessment:seq.save_button.label"}}
+                {{t "assess:seq.save_button.label"}}
             </button>
         </div>
     </div>

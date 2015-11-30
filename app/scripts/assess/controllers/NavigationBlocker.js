@@ -24,7 +24,7 @@ module.exports = Marionette.Controller.extend( {
             this.enabled = true;
             var view = this;
             Backbone.history.loadUrl = function(){
-                if( !window.confirm( i18n.t( 'assessment:please_finish.message' ) ) ){
+                if( !window.confirm( i18n.t( 'assess:please_finish.message' ) ) ){
                     var previousFragment = Backbone.history.fragment;
                     window.location.hash = '#' + previousFragment;
                     return false;
@@ -38,7 +38,7 @@ module.exports = Marionette.Controller.extend( {
     },
 
     _returnMessage: function(){
-        return i18n.t( 'assessment:please_finish.message' );
+        return i18n.t( 'assess:please_finish.message' );
     },
 
     disable: function(){

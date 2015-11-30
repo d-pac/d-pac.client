@@ -1,7 +1,7 @@
 'use strict';
 var Backbone = require( 'backbone' );
 var debug = require( 'debug' )( 'dpac:assess.models', '[AssessmentProxy]' );
-var teardown = require( '../mixins/teardown' );
+var teardown = require( '../../common/mixins/teardown' );
 
 module.exports = Backbone.Model.extend( {
     idAttribute: "_id",

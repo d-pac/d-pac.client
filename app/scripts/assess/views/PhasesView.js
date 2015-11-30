@@ -61,8 +61,8 @@ module.exports = Marionette.LayoutView.extend( {
         }, this );
         return {
             representations: this.model.get( "comparison" ).get( "representations" ),
-            title: i18n.t( "assessment:phase_" + slug + ".title" ),
-            description: i18n.t( "assessment:phase_" + slug + ".description" ),
+            title: i18n.t( "assess:phase_" + slug + ".title" ),
+            description: i18n.t( "assess:phase_" + slug + ".description" ),
             seq: {
                 values: values,
                 selected: this.seqValue

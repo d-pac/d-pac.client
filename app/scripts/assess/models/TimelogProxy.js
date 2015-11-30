@@ -2,7 +2,7 @@
 var Backbone = require( 'backbone' );
 var moment = require( 'moment' );
 var debug = require( 'debug' )( 'dpac:assess', '[TimelogProxy]' );
-var teardown = require( '../mixins/teardown' );
+var teardown = require( '../../common/mixins/teardown' );
 module.exports = Backbone.Model.extend( {
     idAttribute: "_id",
 

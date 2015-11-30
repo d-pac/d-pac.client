@@ -1,10 +1,10 @@
 'use strict';
 var _ = require( 'underscore' );
 
-var debug = require( 'debug' )( 'dpac:assess.controllers', '[BootstrapApplication]' );
+var debug = require( 'debug' )( 'dpac:assess.controllers', '[BootstrapModule]' );
 var instruct = require( 'backbone.whenthen' );
 
-module.exports = function BootstrapApplication(){
+module.exports = function BootstrapModule(){
 };
 
 _.extend( module.exports.prototype, {
@@ -43,8 +43,8 @@ _.extend( module.exports.prototype, {
             .when('assess:bootstrap:completed' ).then(function(){
                 var timelogs = context.getObject('timelogsController');
                 var navigationBlocker = context.getObject('navigationBlocker');
-                var assessmentFlow = context.getObject( 'assessmentFlow' );
-                assessmentFlow.start();
+                var assessFlow = context.getObject( 'assessFlow' );
+                assessFlow.start();
             })
         ;
 

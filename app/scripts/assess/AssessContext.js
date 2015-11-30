@@ -3,14 +3,14 @@
 var _ = require( 'underscore' );
 var Backbone = require( 'backbone' );
 var Geppetto = require( 'backbone.geppetto' );
-var debug = require( 'debug' )( 'dpac:assess', '[AssessmentContext]' );
+var debug = require( 'debug' )( 'dpac:assess', '[AssessContext]' );
 var eventLog = require( 'debug' )( 'dpac:assess.events', '\u2709' );
 
 module.exports = Geppetto.Context.extend( {
     initialize: function(){
         debug( "#initialize" );
         var core = this.parentContext;
-        this.wireValue( 'assessmentContext', this );
+        this.wireValue( 'moduleContext', this );
         this.vent.on( 'all', function( eventName,
                                        event ){
             eventLog( eventName );
@@ -18,7 +18,7 @@ module.exports = Geppetto.Context.extend( {
         this.vent.on('app:show:messages', function(event){
             core.dispatch('app:show:messages', event);
         });
-        this.wireCommand("assess:startup:requested", require('./controllers/BootstrapApplication'));
+        this.wireCommand("assess:startup:requested", require('./controllers/BootstrapModule'));
     },
 
     start: function(){

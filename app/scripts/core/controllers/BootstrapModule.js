@@ -1,10 +1,10 @@
 'use strict';
 var _ = require( 'underscore' );
 
-var debug = require( 'debug' )( 'dpac:core.controllers', '[BootstrapApplication]' );
+var debug = require( 'debug' )( 'dpac:core.controllers', '[BootstrapModule]' );
 var instruct = require( 'backbone.whenthen' );
 
-module.exports = function BootstrapApplication(){
+module.exports = function BootstrapModule(){
 };
 
 _.extend( module.exports.prototype, {

@@ -16,7 +16,7 @@ var Context = Geppetto.Context.extend( {
 
         this.wireValue( 'appContext', this );
         this.wireValue( 'app', app );
-        this.wireCommand( "app:startup:requested", require( './controllers/BootstrapApplication' ) );
+        this.wireCommand( "app:startup:requested", require( './controllers/BootstrapModule' ) );
 
     }
 } );

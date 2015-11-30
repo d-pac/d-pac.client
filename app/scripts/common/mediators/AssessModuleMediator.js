@@ -1,9 +1,9 @@
 'use strict';
 var _ = require( 'underscore' );
 var Marionette = require( 'backbone.marionette' );
-var debug = require( 'debug' )( 'dpac:core.controllers', '[AssessmentMediator]' );
+var debug = require( 'debug' )( 'dpac:core.controllers', '[AssessModuleMediator]' );
 
-var AssessmentContext = require( '../../assess/AssessmentContext' );
+var AssessContext = require( '../../assess/AssessContext' );
 module.exports = Marionette.Controller.extend( {
     context: undefined,
     model: undefined,
@@ -18,7 +18,7 @@ module.exports = Marionette.Controller.extend( {
 
     handleAuthenticationChange: function(){
         if(this.model.get('authenticated')){
-            this.subject = new AssessmentContext( {
+            this.subject = new AssessContext( {
                 parentContext: this.context
             } );
             this.subject.start( this.model.get( 'user' ) );

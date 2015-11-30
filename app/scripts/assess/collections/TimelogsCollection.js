@@ -2,7 +2,7 @@
 var Backbone = require( 'backbone' );
 var _ = require( 'underscore' );
 var debug = require( 'debug' )( 'dpac:assess', '[TimelogsCollection]' );
-var teardown = require( '../mixins/teardown' );
+var teardown = require( '../../common/mixins/teardown' );
 
 var ModelClass = require( '../models/TimelogProxy' );
 
@@ -13,7 +13,7 @@ module.exports = Backbone.Collection.extend( {
     updateInterval: 5000,
 
     contextEvents: {
-        'assessment:teardown:requested': "teardown",
+        'assess:teardown:requested': "teardown",
         //'AuthService:signout:requested': "stop",
         'assess:ui:destroyed': "stop"
     },

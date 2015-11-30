@@ -1,7 +1,7 @@
 'use strict';
 var Backbone = require( 'backbone' );
 var debug = require( 'debug' )( 'dpac:assess.collections', '[RepresentationsCollection]' );
-var teardown = require( '../mixins/teardown' );
+var teardown = require( '../../common/mixins/teardown' );
 var ModelClass = require( '../models/RepresentationProxy' );
 
 module.exports = Backbone.Collection.extend( {

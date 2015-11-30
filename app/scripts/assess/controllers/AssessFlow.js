@@ -1,5 +1,5 @@
 'use strict';
-var debug = require( 'debug' )( 'dpac:assess.controllers', '[AssessmentFlow]' );
+var debug = require( 'debug' )( 'dpac:assess.controllers', '[AssessFlow]' );
 var _ = require( 'underscore' );
 var Marionette = require( 'backbone.marionette' );
 var i18n = require( 'i18next' );
@@ -52,9 +52,9 @@ module.exports = Marionette.Controller.extend( {
             this.dispatch( 'assessments:selection:requested' );
             if(completedAssessment){
                 this.dispatch( 'app:show:messages', {
-                    type: i18n.t( "assessment:assessment_completed.type" ) || "success",
-                    title: i18n.t( "assessment:assessment_completed.title" ) || '',
-                    message: i18n.t( "assessment:assessment_completed.description", { title: completedAssessment.get( 'title' ) } )
+                    type: i18n.t( "assess:assessment_completed.type" ) || "success",
+                    title: i18n.t( "assess:assessment_completed.title" ) || '',
+                    message: i18n.t( "assess:assessment_completed.description", { title: completedAssessment.get( 'title' ) } )
                 } );
             }
         }
@@ -119,9 +119,9 @@ module.exports = Marionette.Controller.extend( {
             notes: this.notesCollection
         } );
 
-        var defaultAssessmentCopy = i18n.getResourceBundle(i18n.lng(), 'assessment');
+        var defaultAssessmentCopy = i18n.getResourceBundle(i18n.lng(), 'assess');
         var mergedAssessmentCopy = _.defaultsDeep({}, assessment.get('uiCopy'), defaultAssessmentCopy);
-        i18n.addResourceBundle( i18n.lng(), 'assessment', mergedAssessmentCopy );
+        i18n.addResourceBundle( i18n.lng(), 'assess', mergedAssessmentCopy );
 
         this.context.wireValue( 'currentSelection', current );
         this.dispatch( 'comparisons:editing:requested', { current: current } );
