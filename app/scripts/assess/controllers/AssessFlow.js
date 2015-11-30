@@ -51,7 +51,7 @@ module.exports = Marionette.Controller.extend( {
         } else {
             this.dispatch( 'assessments:selection:requested' );
             if(completedAssessment){
-                this.dispatch( 'app:show:messages', {
+                this.dispatch( 'assess:show:messages', {
                     type: i18n.t( "assess:assessment_completed.type" ) || "success",
                     title: i18n.t( "assess:assessment_completed.title" ) || '',
                     message: i18n.t( "assess:assessment_completed.description", { title: completedAssessment.get( 'title' ) } )

@@ -12,13 +12,26 @@ module.exports = Marionette.Controller.extend( {
     initialize: function(){
         debug.log( "#initialize" );
         this.relayToContext = function( event ){
-            debug( 'RELAY EVENT', event );
             this.context.dispatch( event.eventName, event.eventData );
         }.bind( this );
-
         this.context.wireValue( 'assessmentViewProxy', this.getMainView.bind( this ) );
         this.model.on( "change:authenticated", this.handleAuthenticationChange, this );
         this.handleAuthenticationChange();
+    },
+
+    relayEvents: function( events ){
+        var self = this;
+        _.each( events, function( event ){
+            if( _.isString( event ) ){
+                self.moduleContext.listen( self.moduleContext, event, self.relayToContext );
+            } else {
+                var source = event[ 0 ];
+                var target = event[ 1 ];
+                self.moduleContext.listen( self.moduleContext, source, function( event ){
+                    self.context.dispatch( target, event );
+                } );
+            }
+        } );
     },
 
     handleAuthenticationChange: function(){
@@ -27,9 +40,11 @@ module.exports = Marionette.Controller.extend( {
             this.moduleContext = new AssessContext( {
                 parentContext: context
             } );
-            this.moduleContext.listen( this.moduleContext, "assess:ui:destroyed", this.relayToContext );
-            this.moduleContext.listen( this.moduleContext, "assess:teardown:requested", this.relayToContext );
-            this.moduleContext.listen( this.moduleContext, "app:show:messages", this.relayToContext );
+            this.relayEvents( [
+                "assess:ui:destroyed",
+                "assess:teardown:requested",
+                [ "assess:show:messages", "app:show:messages" ]
+            ] );
             this.moduleContext.start( this.model.get( 'user' ) );
         } else {
             //todo: break down?
