@@ -15,9 +15,6 @@ module.exports = Geppetto.Context.extend( {
                                        event ){
             eventLog( eventName );
         } );
-        this.vent.on('app:show:messages', function(event){
-            core.dispatch('app:show:messages', event);
-        });
         this.wireCommand("assess:startup:requested", require('./controllers/BootstrapModule'));
     },
 

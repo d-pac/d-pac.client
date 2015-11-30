@@ -12,7 +12,7 @@ module.exports = Backbone.Collection.extend( {
     selected: undefined,
 
     contextEvents: {
-        'assessment:teardown:requested': "teardown",
+        'assess:teardown:requested': "teardown",
         'assess:ui:destroyed': "_deselectSelected"
     },
 
@@ -64,6 +64,10 @@ module.exports = Backbone.Collection.extend( {
     resync: function(){
         this.reset();
         this.fetch();
+    },
+
+    onTeardown: function(){
+      this.deselect();
     }
 } );
 teardown.collection.mixin( module.exports );

@@ -7,27 +7,36 @@ var AssessContext = require( '../../assess/AssessContext' );
 module.exports = Marionette.Controller.extend( {
     context: undefined,
     model: undefined,
-    subject : undefined,
+    moduleContext: undefined,
 
-    initialize : function(){
-        debug.log("#initialize");
-        this.context.wireValue('assessmentViewProxy', this.getMainView.bind(this));
-        this.model.on("change:authenticated", this.handleAuthenticationChange, this);
+    initialize: function(){
+        debug.log( "#initialize" );
+        this.relayToContext = function( event ){
+            debug( 'RELAY EVENT', event );
+            this.context.dispatch( event.eventName, event.eventData );
+        }.bind( this );
+
+        this.context.wireValue( 'assessmentViewProxy', this.getMainView.bind( this ) );
+        this.model.on( "change:authenticated", this.handleAuthenticationChange, this );
         this.handleAuthenticationChange();
     },
 
     handleAuthenticationChange: function(){
-        if(this.model.get('authenticated')){
-            this.subject = new AssessContext( {
-                parentContext: this.context
+        var context = this.context;
+        if( this.model.get( 'authenticated' ) ){
+            this.moduleContext = new AssessContext( {
+                parentContext: context
             } );
-            this.subject.start( this.model.get( 'user' ) );
-        }else{
+            this.moduleContext.listen( this.moduleContext, "assess:ui:destroyed", this.relayToContext );
+            this.moduleContext.listen( this.moduleContext, "assess:teardown:requested", this.relayToContext );
+            this.moduleContext.listen( this.moduleContext, "app:show:messages", this.relayToContext );
+            this.moduleContext.start( this.model.get( 'user' ) );
+        } else {
             //todo: break down?
         }
     },
 
-    getMainView : function(){
-        return this.subject.getMainView();
+    getMainView: function(){
+        return this.moduleContext.getMainView();
     }
-});
+} );
