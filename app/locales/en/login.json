@@ -14,7 +14,7 @@
     "message": "<p><strong>Dear __userName__,</strong></p><p>Use the buttons below to start immediately.</p>"
   },
   "submit": {
-    "label": "Sending",
+    "label": "Log in",
     "sending": "Patience please..."
   },
   "signedin": {
