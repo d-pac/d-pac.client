@@ -1,0 +1,9 @@
+{
+  "assessment_selection": {
+    "select_label": "Kies een opdracht"
+  },
+  "assessment_menu": {
+    "assessor_assignment": "De opdracht",
+    "contact_pam": "Contacteer beheerder"
+  }
+}

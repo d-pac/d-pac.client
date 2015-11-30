@@ -1,6 +1,5 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
-
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse"
                     data-target="#primary-navigation"><span
@@ -19,8 +18,8 @@
             <ul class="nav navbar-nav navbar-right">
                 {{#if authenticated}}
                     <li>
-                        <p class="navbar-text"><span
-                                class="label label-info">{{t "common:menu.text.label" userName=user.name.first}}</span>
+                        <p class="navbar-text">
+                            <span class="label label-info">{{t "common:menu.text.label" userName=user.name.first}}</span>
                         </p>
                     </li>
                     <li>
@@ -38,6 +37,13 @@
                            data-toggle="tooltip" data-placement="bottom"
                            title="{{t "common:menu.account.description"}}">{{t "common:menu.account.label"}}</a>
                     </li>
+                    {{#if user.assessments.pam.length}}
+                        <li>
+                            <a href="{{t "common:menu.results.href"}}"
+                               data-toggle="tooltip" data-placement="bottom"
+                               title="{{t "common:menu.results.description"}}">{{t "common:menu.results.label"}}</a>
+                        </li>
+                    {{/if}}
                     <li>
                         <a href="{{t "common:menu.logout.href"}}"
                            data-toggle="tooltip" data-placement="bottom"

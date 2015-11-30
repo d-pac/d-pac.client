@@ -1,5 +1,5 @@
 'use strict';
-var NestedModel = require('backbone-nested-model');
+var NestedModel = require( 'backbone-nested-model' );
 
 var debug = require( 'debug' )( 'dpac:core.services', '[AuthService]' );
 var createServiceResponse = require( '../helpers/createServiceResponse' );
@@ -27,7 +27,7 @@ module.exports = NestedModel.extend( {
         var attrs = {};
         attrs.user = raw.data;
         attrs.authenticated = !!raw.data;
-        if(attrs.user){
+        if( attrs.user ){
             attrs._id = attrs.user._id
         }
         return attrs;
@@ -41,11 +41,15 @@ module.exports = NestedModel.extend( {
         debug( '#getStatus' );
         this.fetch( {
             success: function(){
-                this.dispatch( 'authentication:status:completed' );
+                this.dispatch( 'authentication:status:completed', {
+                    authenticated: this.isAuthenticated()
+                } );
             }.bind( this ),
             error: function(){
                 this.clear();
-                this.dispatch( 'authentication:status:completed' );
+                this.dispatch( 'authentication:status:completed', {
+                    authenticated: this.isAuthenticated()
+                } );
             }.bind( this )
         } );
     },
@@ -55,7 +59,7 @@ module.exports = NestedModel.extend( {
         this.save( creds, {
             success: function(){
                 this.dispatch( 'authentication:signin:completed', {
-                    authenticated: true
+                    authenticated: this.isAuthenticated()
                 } );
             }.bind( this ),
             error: function( model,
@@ -63,7 +67,7 @@ module.exports = NestedModel.extend( {
                              options ){
                 this.clear();
                 this.dispatch( 'authentication:signin:completed', {
-                    authenticated: false
+                    authenticated: this.isAuthenticated()
                 } );
             }.bind( this )
         } );

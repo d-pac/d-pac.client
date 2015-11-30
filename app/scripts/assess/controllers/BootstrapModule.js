@@ -12,20 +12,13 @@ _.extend( module.exports.prototype, {
         debug( '#execute' );
         var context = this.context;
         context.wireCommands( {
-            'assess:domain:requested': [
+            'assess:bootstrap:requested': [
                 require( './BootstrapDomain' ),
                 require( './BootstrapUI' )
             ]
         } );
 
         instruct( this.context.vent )
-            .when( 'assess:bootstrap:requested' ).then( 'assess:domain:requested', function fetchAssessments(){
-                var collection = context.getObject( 'assessmentsCollection' );
-                collection.once( "sync", function(){
-                    context.dispatch( "assessments:collection:sync" );
-                } );
-                collection.fetch();
-            } )
             .when( 'assessments:collection:sync' ).then( function fetchComparisons(){
                 var collection = context.getObject( 'comparisonsCollection' );
                 collection.once( "sync", function(){

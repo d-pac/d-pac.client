@@ -6,7 +6,6 @@ var instruct = require( 'backbone.whenthen' );
 
 module.exports = function BootstrapModule(){
 };
-
 _.extend( module.exports.prototype, {
     execute: function(){
         debug( '#execute' );
@@ -27,6 +26,7 @@ _.extend( module.exports.prototype, {
                 require( './BootstrapRouting' )
             ],
             'router:route:completed': require( './RemoveHangingModal' )
+
         } );
 
         instruct( this.context.vent )
@@ -37,6 +37,18 @@ _.extend( module.exports.prototype, {
                     context.dispatch( "pages:collection:sync" )
                 } );
                 collection.fetch();
+            } )
+            .when( 'authentication:state:authenticated' ).then( function(){
+                var collection = context.getObject( 'assessmentsCollection' );
+                collection.once( "sync", function(){
+                    context.dispatch( "assessments:collection:sync" );
+                } );
+                collection.fetch();
+            } )
+            .when( 'assessments:collection:sync' ).then( function(){
+                var collection = context.getObject( 'assessmentsCollection' );
+                var user = context.getObject( 'authService' ).get( 'user' );
+                collection.setRoles( user.assessments );
             } )
             .when( 'SetupI18N:execution:completed', 'authentication:status:completed' ).then( 'app:ui:requested' )
         ;

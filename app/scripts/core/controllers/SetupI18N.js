@@ -21,6 +21,7 @@ _.extend( module.exports.prototype, {
                     'account',
                     'login',
                     'assess',
+                    'results',
                     "errors",
                     "tutorial"
                 ],

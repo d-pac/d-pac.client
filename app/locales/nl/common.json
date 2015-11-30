@@ -22,6 +22,11 @@
       "description": "Beoordeel",
       "href": "#assess"
     },
+    "results": {
+      "label": "Resultaten",
+      "description": "Resultaten",
+      "href": "#results"
+    },
     "account": {
       "label": "Account",
       "description": "Pas uw gebruikersgegevens aan.",

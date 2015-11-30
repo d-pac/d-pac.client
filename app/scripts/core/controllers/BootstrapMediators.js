@@ -13,7 +13,9 @@ _.extend( module.exports.prototype, {
         context.wireSingleton( 'exceptionMediator', require( '../mediators/ExceptionMediator' ) );
         context.getObject( 'exceptionMediator' );
 
-        context.wireSingleton( 'authenticationMediator', require( '../mediators/AuthenticationMediator' ) );
+        context.wireSingleton( 'authenticationMediator', require( '../mediators/AuthenticationMediator' ), {
+            authService: "authService"
+        } );
         context.getObject( 'authenticationMediator' );
 
         context.wireSingleton( 'assessModuleMediator', require( '../../common/mediators/AssessModuleMediator' ), {
@@ -21,6 +23,11 @@ _.extend( module.exports.prototype, {
             context: "appContext"
         } );
         context.getObject( 'assessModuleMediator' );
+        context.wireSingleton( 'resultsModuleMediator', require( '../../common/mediators/ResultsModuleMediator' ), {
+            model: "authService",
+            context: "appContext"
+        } );
+        context.getObject( 'resultsModuleMediator' );
     }
 } );
 
