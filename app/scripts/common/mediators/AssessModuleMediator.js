@@ -4,6 +4,8 @@ var Marionette = require( 'backbone.marionette' );
 var debug = require( 'debug' )( 'dpac:core.controllers', '[AssessModuleMediator]' );
 
 var AssessContext = require( '../../assess/AssessContext' );
+
+var relayEvents = require( '../mixins/relayEvents' );
 module.exports = Marionette.Controller.extend( {
     context: undefined,
     model: undefined,
@@ -14,26 +16,6 @@ module.exports = Marionette.Controller.extend( {
         this.context.wireValue( 'assessmentViewProxy', this.getMainView.bind( this ) );
         this.model.on( "change:authenticated", this.handleAuthenticationChange, this );
         this.handleAuthenticationChange();
-    },
-
-    remapEvent: function(from, source, to, target){
-        from.vent.on( source, function(){
-            to.dispatch.apply( to, [ target ].concat( _.toArray( arguments ) ) );
-        } );
-    },
-
-    relayEvents: function( from,
-                           events,
-                           to ){
-        _.each( events, function( event ){
-            if( _.isString( event ) ){
-                this.remapEvent(from, event, to, event);
-            } else {
-                var source = event[ 0 ];
-                var target = event[ 1 ];
-                this.remapEvent(from, source, to, target);
-            }
-        }, this );
     },
 
     handleAuthenticationChange: function(){
@@ -60,3 +42,5 @@ module.exports = Marionette.Controller.extend( {
         return this.moduleContext.getMainView();
     }
 } );
+
+relayEvents.mixin( module.exports );
