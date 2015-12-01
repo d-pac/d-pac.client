@@ -2,31 +2,13 @@
 var _ = require( 'lodash' );
 var Backbone = require( 'backbone' );
 
-var debug = require( 'debug' )( 'dpac:core.collections', '[AssessmentsCollection]' );
+var debug = require( 'debug' )( 'dpac:core.collections', '[AssessmentsFacade]' );
 var teardown = require( '../../common/mixins/teardown' );
 
 var ModelClass = require( '../models/AssessmentProxy' );
 
-module.exports = Backbone.Collection.extend( {
-    url: '/user/assessments',
-    model: ModelClass,
+var AssessmentsByRole = Backbone.Collection.extend( {
     selected: undefined,
-
-    contextEvents: {
-        'assess:teardown:requested': "teardown",
-        'assess:ui:destroyed': function(){
-            this.deselect();
-        }
-    },
-
-    initialize: function( models ){
-        debug( '#initialize' );
-    },
-
-    parse: function( raw ){
-        return raw.data;
-    },
-
     //==( actives )==//
 
     getActives: function(){
@@ -63,28 +45,62 @@ module.exports = Backbone.Collection.extend( {
         return model;
     },
 
+} );
+teardown.collection.mixin( AssessmentsByRole );
+
+module.exports = Backbone.Collection.extend( {
+    url: '/user/assessments',
+    model: ModelClass,
+
+    contextEvents: {
+        'assess:teardown:requested': "teardown",
+        'assess:ui:destroyed': function(){
+            this.deselect();
+        }
+    },
+
+    initialize: function( models ){
+        debug( '#initialize' );
+        this.byRole = {};
+    },
+
+    parse: function( raw ){
+        return raw.data;
+    },
+
+    deselect: function(){
+        this.roles( 'deselect' );
+    },
+
     //==( by role )==/
 
     setRoles: function( roles ){
-        this.byRole = {};
         _.each( roles, function( assessmentIds,
                                  role ){
-            this.byRole[ role ] = new module.exports( this.filter( function( assessment ){
+            this.byRole[ role ] = new AssessmentsByRole( this.filter( function( assessment ){
                 return assessmentIds.indexOf( assessment.id ) > -1;
             } ) );
         }, this );
-        console.log( 'AssessmentsCollection', this.byRole );
+        console.log( 'AssessmentsFacade', this.byRole );
+    },
+
+    get: function( role ){
+        return this.byRole[ role ];
+    },
+
+    roles: function( action ){
+        _.each( this.byRole, function( collection,
+                                       role ){
+            collection[ action ]();
+        } );
+
     },
 
     //==( extras )==/
 
-    resync: function(){
-        this.reset();
-        this.fetch();
-    },
-
     onTeardown: function(){
         this.deselect();
+        this.roles( 'teardown' );
     }
 } );
 teardown.collection.mixin( module.exports );

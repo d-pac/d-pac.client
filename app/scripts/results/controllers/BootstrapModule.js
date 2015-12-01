@@ -11,6 +11,7 @@ _.extend( module.exports.prototype, {
     execute: function(){
         debug( '#execute' );
         var context = this.context;
+        context.wireValue( 'assessmentsCollection', context.getObject( 'assessmentsFacade' ).get( 'pam' ) );
         context.wireCommands( {
             'results:bootstrap:requested': [
                 //require( './BootstrapDomain' ),

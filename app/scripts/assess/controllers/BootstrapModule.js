@@ -19,7 +19,7 @@ _.extend( module.exports.prototype, {
         } );
 
         instruct( this.context.vent )
-            .when( 'assessments:collection:sync' ).then( function fetchComparisons(){
+            .when( 'assess:bootstrap:requested' ).then( function fetchComparisons(){
                 var collection = context.getObject( 'comparisonsCollection' );
                 collection.once( "sync", function(){
                     context.dispatch( "comparisons:collection:sync" );

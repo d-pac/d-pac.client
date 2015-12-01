@@ -11,7 +11,7 @@ _.extend( module.exports.prototype, {
         debug( '#execute' );
         var context = this.context;
 
-        context.wireSingleton( 'assessmentsCollection', require( '../collections/AssessmentsCollection' ) );
+        context.wireSingleton( 'assessmentsFacade', require( '../collections/AssessmentsFacade' ) );
 
         context.wireSingleton( 'pendingRequests', require( '../collections/PendingRequestsCollection' ) );
         context.getObject( 'pendingRequests' );
