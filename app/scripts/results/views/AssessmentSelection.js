@@ -12,6 +12,14 @@ module.exports = Marionette.ItemView.extend( {
         this.collection.on( 'add', this.render, this );
     },
 
+    ui: {
+        assessmentSelection: "#assessment-selection"
+    },
+
+    events: {
+        'change @ui.assessmentSelection': "assessmentSelected"
+    },
+
     onRender: function(){
         debug( '#render', this.collection.length );
     },
@@ -22,5 +30,9 @@ module.exports = Marionette.ItemView.extend( {
         };
         debug( '#serializeData', data, this.collection );
         return data;
+    },
+
+    assessmentSelected: function(){
+        this.collection.selectByID( this.$( "select option:selected" ).data( 'model-id' ) );
     }
 } );

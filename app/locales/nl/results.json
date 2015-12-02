@@ -1,6 +1,7 @@
 {
   "assessment_selection": {
-    "select_label": "Kies een opdracht"
+    "select_label": "Bekijk de resultaten voor:",
+    "select_tooltip": "- kies een opdracht -"
   },
   "assessment_menu": {
     "assessor_assignment": "De opdracht",

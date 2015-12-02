@@ -52,6 +52,8 @@ module.exports = Backbone.Collection.extend( {
     url: '/user/assessments',
     model: ModelClass,
 
+    _synced: false,
+
     contextEvents: {
         'assess:teardown:requested': "teardown",
         'assess:ui:destroyed': function(){
@@ -62,10 +64,17 @@ module.exports = Backbone.Collection.extend( {
     initialize: function( models ){
         debug( '#initialize' );
         this.byRole = {};
+        this.once('sync', function(){
+            this._synced = true;
+        }, this)
     },
 
     parse: function( raw ){
         return raw.data;
+    },
+
+    isSynced : function(){
+        return this._synced;
     },
 
     deselect: function(){
@@ -103,5 +112,6 @@ module.exports = Backbone.Collection.extend( {
         this.roles( 'teardown' );
     }
 } );
+
 teardown.collection.mixin( module.exports );
 

@@ -32,6 +32,7 @@ _.extend( module.exports.prototype, {
         instruct( this.context.vent )
             .when( 'app:bootstrap:requested' ).then( 'config:load:requested' )
             .when( 'config:load:completed' ).then( 'app:domain:requested', 'authentication:status:requested', function(){
+                debug('fetch pages');
                 var collection = context.getObject( 'pagesCollection' );
                 collection.once( "sync", function(){
                     context.dispatch( "pages:collection:sync" )
@@ -39,6 +40,7 @@ _.extend( module.exports.prototype, {
                 collection.fetch();
             } )
             .when( 'authentication:state:authenticated' ).then( function(){
+                debug('fetch assessments');
                 var collection = context.getObject( 'assessmentsFacade' );
                 collection.once( "sync", function(){
                     context.dispatch( "assessments:collection:sync" );
@@ -46,11 +48,12 @@ _.extend( module.exports.prototype, {
                 collection.fetch();
             } )
             .when( 'assessments:collection:sync' ).then( function(){
+                debug('separate assessments by role');
                 var collection = context.getObject( 'assessmentsFacade' );
                 var user = context.getObject( 'authService' ).get( 'user' );
                 collection.setRoles( user.assessments );
             } )
-            .when( 'assessments:collection:sync', 'SetupI18N:execution:completed', 'authentication:status:completed' ).then( 'app:ui:requested' )
+            .when( 'SetupI18N:execution:completed', 'authentication:status:completed' ).then( 'app:ui:requested' )
         ;
 
         //set off bootstrapping

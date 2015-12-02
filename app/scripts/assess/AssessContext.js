@@ -24,8 +24,10 @@ module.exports = Geppetto.Context.extend( {
     },
 
     getMainView: function(){
-        var factory = this.getObject( 'MainView' );
-        return factory();
+        if(this.hasWiring('MainView')){
+            var factory = this.getObject( 'MainView' );
+            return factory();
+        }
     }
 } );
 _.extend( module.exports.prototype, Backbone.Events );

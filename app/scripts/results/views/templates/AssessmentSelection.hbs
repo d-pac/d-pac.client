@@ -1,17 +1,17 @@
 <div class="toolbar">
-    <!--<form class="form-horizontal">-->
-        <!--<div class="form-group">-->
-            <!--<label for="assessment-selection" class="col-md-4  control-label">{{t "results:assessment_selection.select_label"}}</label>-->
-            <!--<div class="col-md-8">-->
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="assessment-selection" class="col-md-4  control-label">{{t "results:assessment_selection.select_label"}}</label>
+            <div class="col-md-8">
                 <select id="assessment-selection" class="form-control">
-                    <option value="" selected disabled>{{t "results:assessment_selection.select_label"}}</option>
+                    <option value="" selected disabled>{{t "results:assessment_selection.select_tooltip"}}</option>
                     {{#each list}}
-                        <option>{{this.name}}</option>
+                        <option data-model-id="{{_id}}">{{this.name}}</option>
                     {{/each}}
                 </select>
-            <!--</div>-->
-        <!--</div>-->
-    <!--</form>-->
+            </div>
+        </div>
+    </form>
     <!--<div class="btn-group">-->
     <!--<a data-target="#" class="btn btn-raised dropdown-toggle" data-toggle="dropdown">-->
     <!--{{t "results:assessment_selection.select_label"}}-->

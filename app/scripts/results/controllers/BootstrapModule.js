@@ -11,13 +11,19 @@ _.extend( module.exports.prototype, {
     execute: function(){
         debug( '#execute' );
         var context = this.context;
-        context.wireValue( 'assessmentsCollection', context.getObject( 'assessmentsFacade' ).get( 'pam' ) );
+        var assessmentsCollection = context.getObject( 'assessmentsFacade' );
+        context.wireValue( 'assessmentsCollection', assessmentsCollection );
         context.wireCommands( {
-            'results:bootstrap:requested': [
-                //require( './BootstrapDomain' ),
+            'results:ui:requested': [
                 require( './BootstrapUI' )
             ]
         } );
+
+        var proceedEvent = (assessmentsCollection.isSynced())
+            ? 'results:bootstrap:requested'
+            : 'assessments:collection:sync';
+        instruct( this.context.vent )
+            .when( proceedEvent ).then( 'results:ui:requested', 'results:bootstrap:completed' );
 
         //instruct( this.context.vent )
         //    .when( 'results:bootstrap:requested' ).then( 'results:domain:requested', function fetchAssessments(){
