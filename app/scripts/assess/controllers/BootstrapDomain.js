@@ -15,7 +15,7 @@ _.extend( BootstrapDomain.prototype, {
         var context = this.context;
         //context.wireValue( 'assessmentsCollection', context.getObject( 'assessmentsFacade' ).get( 'assessor' ) );
         context.wireSingleton( 'phasesCollection', require( '../collections/PhasesCollection' ) );
-        context.wireSingleton( 'representationsCollection', require( '../collections/RepresentationsCollection' ) );
+        context.wireSingleton( 'representationsCollection', require( '../../common/collections/RepresentationsCollection' ) );
         context.wireSingleton( 'notesCollection', require( '../collections/NotesCollection' ) );
         context.wireSingleton( 'comparisonsParser', require( '../services/ComparisonsParser' ), {
             representationsCollection: 'representationsCollection',
