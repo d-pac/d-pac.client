@@ -11,19 +11,20 @@ _.extend( module.exports.prototype, {
     execute: function(){
         debug( '#execute' );
         var context = this.context;
-        var assessmentsCollection = context.getObject( 'assessmentsFacade' );
-        context.wireValue( 'assessmentsCollection', assessmentsCollection );
+        var assessmentsFacade = context.getObject( 'assessmentsFacade' );
         context.wireCommands( {
             'results:ui:requested': [
                 require( './BootstrapUI' )
             ]
         } );
 
-        var proceedEvent = (assessmentsCollection.isSynced())
+        var proceedEvent = (assessmentsFacade.isSynced())
             ? 'results:bootstrap:requested'
             : 'assessments:collection:sync';
         instruct( this.context.vent )
-            .when( proceedEvent ).then( 'results:ui:requested', 'results:bootstrap:completed' );
+            .when( proceedEvent ).then( function(){
+            context.wireValue( 'assessmentsCollection', assessmentsFacade.getForRole( 'pam' ) );
+        }, 'results:ui:requested', 'results:bootstrap:completed' );
 
         //instruct( this.context.vent )
         //    .when( 'results:bootstrap:requested' ).then( 'results:domain:requested', function fetchAssessments(){
