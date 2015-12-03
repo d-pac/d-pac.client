@@ -12,10 +12,13 @@ _.extend( module.exports.prototype, {
         debug( '#execute' );
         var context = this.context;
         var assessmentsFacade = context.getObject( 'assessmentsFacade' );
+
         context.wireCommands( {
+            'results:bootstrap:requested': [ require( './BootstrapDomain' ) ],
             'results:ui:requested': [
                 require( './BootstrapUI' )
-            ]
+            ],
+            'results:assessment:selected': [ require( './LoadRepresentations' ) ]
         } );
 
         var proceedEvent = (assessmentsFacade.isSynced())
