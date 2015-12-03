@@ -5,7 +5,7 @@ var teardown = require( '../../common/mixins/teardown' );
 
 module.exports = Backbone.Model.extend( {
     idAttribute: "_id",
-    
+
     defaults: {
         title: undefined,
         assignments: {
@@ -20,7 +20,8 @@ module.exports = Backbone.Model.extend( {
         progress: {
             total: undefined,
             completedNum: undefined //number of comparisons the user has already made for this assessment
-        }
+        },
+        hasResults: false
     },
 
     initialize: function(){
@@ -29,6 +30,7 @@ module.exports = Backbone.Model.extend( {
 
     parse: function( raw ){
         raw.uiCopy = JSON.parse( raw.uiCopy );
+        raw.hasResults = (raw.state === 'calculated');
         return raw;
     },
 
@@ -48,11 +50,11 @@ module.exports = Backbone.Model.extend( {
     },
 
     incCompleted: function(){
-        var progress = this.get('progress');
+        var progress = this.get( 'progress' );
         progress.completedNum++;
         this.set( 'progress', progress );
-        if(this.isCompleted()){
-            this.collection.deselect(this);
+        if( this.isCompleted() ){
+            this.collection.deselect( this );
         }
     },
 
@@ -60,7 +62,7 @@ module.exports = Backbone.Model.extend( {
         return this.get( 'progress' ).completedNum >= this.get( 'progress' ).total;
     },
 
-    isActive : function(){
+    isActive: function(){
         return this.isRoot() && !this.isCompleted();
     },
 

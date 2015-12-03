@@ -2,8 +2,8 @@
 var _ = require( 'underscore' );
 var Marionette = require( 'backbone.marionette' );
 
-var debug = require( 'debug' )( 'dpac:results.views', '[AssessmentMenu]' );
-var tpl = require( './templates/AssessmentMenu.hbs' );
+var debug = require( 'debug' )( 'dpac:results.views', '[AssessmentOverview]' );
+var tpl = require( './templates/AssessmentOverview.hbs' );
 
 module.exports = Marionette.ItemView.extend( {
     template: tpl,
@@ -12,6 +12,7 @@ module.exports = Marionette.ItemView.extend( {
     },
 
     serializeData: function(){
+        console.log( this.collection.selected.toJSON() );
         return this.collection.selected.toJSON();
     }
 } );

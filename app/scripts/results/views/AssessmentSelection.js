@@ -33,6 +33,9 @@ module.exports = Marionette.ItemView.extend( {
     },
 
     assessmentSelected: function(){
-        this.collection.selectByID( this.$( "select option:selected" ).data( 'model-id' ) );
+        var model = this.collection.selectByID( this.$( "select option:selected" ).data( 'model-id' ) );
+        this.dispatch( "results:assessment:selected", {
+            assessment: model
+        } );
     }
 } );

@@ -1,10 +1,25 @@
 {
   "assessment_selection": {
     "select_label": "Bekijk de resultaten voor:",
-    "select_tooltip": "- kies een opdracht -"
+    "select_tooltip": "- kies een opdracht -",
+    "no_results": ": nog geen resultaten beschikbaar"
   },
   "assessment_menu": {
     "assessor_assignment": "De opdracht",
     "contact_pam": "Contacteer beheerder"
+  },
+  "assessment_overview": {
+    "totals": {
+      "reliability": "Betrouwbaarheid",
+      "assessorsNum": "Aantal beoordelaars",
+      "comparisonsNum": "Aantal beoordelingen",
+      "representationsNum": "Aantal representaties",
+      "duration": "Totale tijd gespendeerd door alle beoordelaars"
+    },
+    "averages": {
+      "comparisonsPerRepresentation": "Gemiddeld aantal beoordelingen per representatie",
+      "comparisonsPerAssessor": "Gemiddeld aantal beoordelingen per beoordelaar",
+      "durationPerAssessor": "Gemiddelde tijd per beoordelaar"
+    }
   }
 }

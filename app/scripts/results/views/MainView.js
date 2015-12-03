@@ -11,8 +11,15 @@ module.exports = Marionette.LayoutView.extend( {
 
     regions: {
         selection: "#results-assessment-selection",
-        assessment: "#results-assessment-menu",
-        content: "#results-content",
+        menu: "#results-assessment-menu",
+        overview: "#results-assessment-overview",
+    },
+
+    contextEvents: {
+        'results:assessment:selected': function(){
+            this.menu.show( this.showAssessmentMenu() );
+            this.overview.show( this.showAssessmentOverview() );
+        }
     },
 
     initialize: function(){
@@ -21,13 +28,13 @@ module.exports = Marionette.LayoutView.extend( {
 
     onRender: function(){
         this.selection.show( this.showAssessmentSelection() );
-        this.assessment.show( this.showAssessmentMenu() );
+        //this.assessment.show( this.showAssessmentMenu() );
         //this.content.show( this.showOverview() );
-        this.dispatch('results:ui:rendered');
+        this.dispatch( 'results:ui:rendered' );
     },
 
     onDestroy: function(){
-        this.dispatch('results:ui:destroyed');
+        this.dispatch( 'results:ui:destroyed' );
     }
 
 } );

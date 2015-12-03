@@ -6,21 +6,10 @@
                 <select id="assessment-selection" class="form-control">
                     <option value="" selected disabled>{{t "results:assessment_selection.select_tooltip"}}</option>
                     {{#each list}}
-                        <option data-model-id="{{_id}}">{{this.name}}</option>
+                        <option data-model-id="{{_id}}" {{#unless this.hasResults}}disabled{{/unless}}>{{this.name}}{{#unless this.hasResults}}{{t "results:assessment_selection.no_results"}}{{/unless}}</option>
                     {{/each}}
                 </select>
             </div>
         </div>
     </form>
-    <!--<div class="btn-group">-->
-    <!--<a data-target="#" class="btn btn-raised dropdown-toggle" data-toggle="dropdown">-->
-    <!--{{t "results:assessment_selection.select_label"}}-->
-    <!--<span class="caret"></span>-->
-    <!--</a>-->
-    <!--<ul class="dropdown-menu">-->
-        <!--{{#each list}}-->
-    <!--<li><a href="javascript:void(0)">{{this.name}}</a></li>-->
-        <!--{{/each}}-->
-    <!--</ul>-->
-    <!--</div>-->
 </div>

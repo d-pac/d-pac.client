@@ -25,7 +25,7 @@ _.extend( module.exports.prototype, {
 
         instruct( this.context.vent )
             .when( proceedEvent ).then( function(){
-                context.wireValue( 'assessmentsCollection', assessmentsFacade.get( 'assessor' ) );
+                context.wireValue( 'assessmentsCollection', assessmentsFacade.getForRole( 'assessor' ) );
             }, 'assess:domain:requested' )
             .when( 'assess:domain:requested' ).then( function fetchComparisons(){
                 var collection = context.getObject( 'comparisonsCollection' );

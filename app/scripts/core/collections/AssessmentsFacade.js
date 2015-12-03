@@ -7,7 +7,7 @@ var teardown = require( '../../common/mixins/teardown' );
 
 var ModelClass = require( '../models/AssessmentProxy' );
 
-var AssessmentsByRole = Backbone.Collection.extend( {
+var BaseCollection = Backbone.Collection.extend( {
     selected: undefined,
     //==( actives )==//
 
@@ -26,16 +26,14 @@ var AssessmentsByRole = Backbone.Collection.extend( {
     //==( selectable )==//
 
     selectByID: function( assessmentId ){
-        debug( "#selectByID" );
-        var model = this.get( assessmentId );
-        this.selected = model;
-        return model;
+        debug( "#selectByID", assessmentId );
+        return this.select(this.get(assessmentId));
     },
 
     deselect: function( model ){
         debug( '#deselect', model );
         if( !model || this.selected === model ){
-            this.selected = undefined;
+            this.select(undefined);
             return model;
         }
     },
@@ -46,11 +44,12 @@ var AssessmentsByRole = Backbone.Collection.extend( {
     },
 
 } );
-teardown.collection.mixin( AssessmentsByRole );
+teardown.collection.mixin( BaseCollection );
 
-module.exports = Backbone.Collection.extend( {
+module.exports = BaseCollection.extend( {
     url: '/user/assessments',
     model: ModelClass,
+    selected: undefined,
 
     _synced: false,
 
@@ -63,21 +62,23 @@ module.exports = Backbone.Collection.extend( {
 
     initialize: function( models ){
         debug( '#initialize' );
+
         this.byRole = {};
-        this.once('sync', function(){
+        this.once( 'sync', function(){
             this._synced = true;
-        }, this)
+        }, this )
     },
 
     parse: function( raw ){
         return raw.data;
     },
 
-    isSynced : function(){
+    isSynced: function(){
         return this._synced;
     },
 
     deselect: function(){
+        BaseCollection.prototype.deselect.call( this );
         this.roles( 'deselect' );
     },
 
@@ -86,14 +87,13 @@ module.exports = Backbone.Collection.extend( {
     setRoles: function( roles ){
         _.each( roles, function( assessmentIds,
                                  role ){
-            this.byRole[ role ] = new AssessmentsByRole( this.filter( function( assessment ){
+            this.byRole[ role ] = new BaseCollection( this.filter( function( assessment ){
                 return assessmentIds.indexOf( assessment.id ) > -1;
             } ) );
         }, this );
-        console.log( 'AssessmentsFacade', this.byRole );
     },
 
-    get: function( role ){
+    getForRole: function( role ){
         return this.byRole[ role ];
     },
 

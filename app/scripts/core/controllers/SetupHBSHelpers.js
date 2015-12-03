@@ -1,9 +1,10 @@
 'use strict';
-
-var Handlebars = require('handlebars/runtime');
+var _ = require( 'lodash' );
+var Handlebars = require( 'handlebars/runtime' );
 
 var debug = require( 'debug' )( 'dpac:core.controllers', '[SetupHBSHelpers]' );
 var i18n = require( 'i18next' );
+var moment = require( 'moment' );
 
 module.exports = function SetupHBSHelpers(){
     debug( '#execute' );
@@ -23,4 +24,15 @@ module.exports = function SetupHBSHelpers(){
     }
 
     Handlebars.registerHelper( 't', translate );
+    Handlebars.registerHelper( 'toFixed', function( value ){
+        var precision = (arguments.length===3)? arguments[1] : 2;
+        return Number( value ).toFixed( precision );
+    } );
+
+    Handlebars.registerHelper( 'duration', function( seconds ){
+        var d = moment.duration( Number( seconds ), 'seconds' );
+        return _.padLeft( d.hours(), 2, "0" ) + ":"
+            + _.padLeft( d.minutes(), 2, "0" ) + ":"
+            + _.padLeft( d.seconds(), 2, "0" );
+    } )
 };

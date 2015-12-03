@@ -1,0 +1,36 @@
+<table class="table table-bordered table-striped">
+    <tbody>
+    <tr>
+        <td>{{t "results:assessment_overview.totals.reliability"}}</td>
+        <td class="text-right code"><code>{{toFixed stats.totals.reliability}}</code></td>
+    </tr>
+    <tr>
+        <td>{{t "results:assessment_overview.totals.comparisonsNum"}}</td>
+        <td class="text-right"><code>{{stats.totals.comparisonsNum}}</code></td>
+    </tr>
+    <tr>
+        <td>{{t "results:assessment_overview.totals.assessorsNum"}}</td>
+        <td class="text-right"><code>{{stats.totals.assessorsNum}}</code></td>
+    </tr>
+    <tr>
+        <td>{{t "results:assessment_overview.averages.comparisonsPerAssessor"}}</td>
+        <td class="text-right"><code>{{toFixed stats.averages.comparisonsPerAssessor 1}}</code></td>
+    </tr>
+    <tr>
+        <td>{{t "results:assessment_overview.totals.representationsNum"}}</td>
+        <td class="text-right"><code>{{stats.totals.representationsNum}}</code></td>
+    </tr>
+    <tr>
+        <td>{{t "results:assessment_overview.averages.comparisonsPerRepresentation"}}</td>
+        <td class="text-right"><code>{{toFixed stats.averages.comparisonsPerRepresentation 1}}</code></td>
+    </tr>
+    <tr>
+        <td>{{t "results:assessment_overview.totals.duration"}}</td>
+        <td class="text-right"><code>{{duration stats.totals.duration}}</code></td>
+    </tr>
+    <tr>
+        <td>{{t "results:assessment_overview.averages.durationPerAssessor"}}</td>
+        <td class="text-right"><code>{{duration stats.averages.durationPerAssessor}}</code></td>
+    </tr>
+    </tbody>
+</table>

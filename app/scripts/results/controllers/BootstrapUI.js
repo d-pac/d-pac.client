@@ -13,16 +13,20 @@ _.extend( BootstrapUI.prototype, {
         debug( '#execute' );
 
         var context = this.context;
-        context.wireView( 'MainView', require( '../views/MainView' ),{
+        context.wireView( 'MainView', require( '../views/MainView' ), {
             showAssessmentSelection: 'AssessmentSelectionView',
-            showAssessmentMenu: 'AssessmentMenuView'
-        });
+            showAssessmentMenu: 'AssessmentMenuView',
+            showAssessmentOverview: 'AssessmentOverview'
+        } );
         context.wireView( 'AssessmentSelectionView', require( '../views/AssessmentSelection' ), {
             collection: 'assessmentsCollection'
-        });
+        } );
         context.wireView( 'AssessmentMenuView', require( '../views/AssessmentMenu' ), {
             collection: 'assessmentsCollection'
-        });
+        } );
+        context.wireView( 'AssessmentOverview', require( '../views/AssessmentOverview' ), {
+            collection: 'assessmentsCollection'
+        } );
 
         this.context = undefined;
         this.eventName = undefined;
