@@ -1,5 +1,5 @@
 'use strict';
-var _ = require( 'underscore' );
+var _ = require( 'lodash' );
 var Backbone = require('backbone');
 
 var S = require( 'string' );
@@ -24,7 +24,7 @@ module.exports = Backbone.Model.extend( {
     },
 
     _getLocalized: function( message ){
-        var messageKey = S( message ).slugify().s;
+        var messageKey = _.kebabCase(message);
         return i18n.t( [ "errors:" + messageKey, message ] );
     },
 

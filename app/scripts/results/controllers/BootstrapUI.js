@@ -16,7 +16,8 @@ _.extend( BootstrapUI.prototype, {
         context.wireView( 'MainView', require( '../views/MainView' ), {
             showAssessmentSelection: 'AssessmentSelectionView',
             showAssessmentMenu: 'AssessmentMenuView',
-            showAssessmentOverview: 'AssessmentOverview'
+            showAssessmentOverview: 'AssessmentOverview',
+            showRanking:'RepresentationsRankingView'
         } );
         context.wireView( 'AssessmentSelectionView', require( '../views/AssessmentSelection' ), {
             collection: 'assessmentsCollection'
@@ -27,6 +28,10 @@ _.extend( BootstrapUI.prototype, {
         context.wireView( 'AssessmentOverview', require( '../views/AssessmentOverview' ), {
             collection: 'assessmentsCollection'
         } );
+        context.wireView('RepresentationsRankingView', require('../views/RepresentationsRanking'), {
+            collection: 'representationsCollection',
+            assessments: 'assessmentsCollection'
+        });
 
         this.context = undefined;
         this.eventName = undefined;

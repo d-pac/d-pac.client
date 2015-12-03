@@ -1,7 +1,6 @@
 'use strict';
-var _ = require( 'underscore' );
+var _ = require( 'lodash' );
 var Marionette = require( 'backbone.marionette' );
-var S = require( 'string' );
 var debug = require( 'debug' )( 'dpac:core', '[ExceptionMediator]' );
 var i18n = require( 'i18next' );
 
@@ -43,8 +42,8 @@ module.exports = Marionette.Controller.extend( {
             var explanation = err.explanation || message;
             messages.push( {
                 type: "error",
-                title: i18n.t("errors:" + S( message ).slugify().s, merged),
-                message: i18n.t("errors:" + S( explanation ).slugify().s, merged),
+                title: i18n.t("errors:" + _.kebabCase(message), merged),
+                message: i18n.t("errors:" + _.kebabCase(message), merged),
                 permanent: err.fatal || false
             } );
         }, this );

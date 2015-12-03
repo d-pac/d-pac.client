@@ -12,7 +12,6 @@ module.exports = Marionette.ItemView.extend( {
     },
 
     serializeData: function(){
-        console.log( this.collection.selected.toJSON() );
         return this.collection.selected.toJSON();
     }
 } );

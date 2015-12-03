@@ -13,12 +13,14 @@ module.exports = Marionette.LayoutView.extend( {
         selection: "#results-assessment-selection",
         menu: "#results-assessment-menu",
         overview: "#results-assessment-overview",
+        ranking: '#results-representations-ranking',
     },
 
     contextEvents: {
         'results:assessment:selected': function(){
             this.menu.show( this.showAssessmentMenu() );
             this.overview.show( this.showAssessmentOverview() );
+            this.ranking.show(this.showRanking());
         }
     },
 
