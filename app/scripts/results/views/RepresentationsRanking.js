@@ -76,7 +76,7 @@ module.exports = Marionette.ItemView.extend( {
         var elems = graph.render( {
             el: this.el,
             data: data,
-            debug: true,
+            debug: false,
             point: {
                 radius: 4,
                 ratio: 2
