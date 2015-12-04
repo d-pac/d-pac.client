@@ -14,7 +14,7 @@ module.exports = {
         vendor: vendorComponents
     },
     resolve: {
-        root: [ "./bower_components", "./node_modules" ],
+        root: [ "./bower_components", "./node_modules", "." ],
         alias: {
             "debug": "bows/bows",
             "konfy": "konfy/lib/browser",
@@ -24,7 +24,9 @@ module.exports = {
             "bootstrap-material-design": "bootstrap-material-design/dist/js/material",
             "modernizr": "modernizr/modernizr",
             "lity": "lity/dist/lity",
-            "underscore": "lodash/index"
+            "underscore": "lodash/index",
+            //"d3-legend": "app/scripts/components/d3.legend",
+            "d3-stock-plot": "app/scripts/components/d3-stock-plot"
         },
         packageAlias: "browser"
     },
