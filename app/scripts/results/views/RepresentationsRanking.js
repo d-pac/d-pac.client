@@ -78,16 +78,16 @@ module.exports = Marionette.ItemView.extend( {
             var elems = graph.render( {
                 el: this.el,
                 data: data,
-                debug: false,
+                debug: true,
                 point: {
                     radius: 4,
                     ratio: 2
                 }
             } );
             var values = elems.values;
-            values.attr( "data-legend", function( d ){
-                return d.rankType
-            } );
+            //values.attr( "data-legend", function( d ){
+            //    return d.rankType
+            //} );
             values.call( tip );
             //var svg = elems.svg;
             //var legend = svg.append("g")
