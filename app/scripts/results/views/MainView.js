@@ -3,6 +3,7 @@
 var debug = require( 'debug' )( 'dpac:results.views', '[LayoutView]' );
 var tpl = require( './templates/MainView.hbs' );
 var Marionette = require( 'backbone.marionette' );
+var $ = require( 'jquery' );
 
 module.exports = Marionette.LayoutView.extend( {
     template: tpl,
@@ -33,6 +34,8 @@ module.exports = Marionette.LayoutView.extend( {
             _.delay( function(){
                 this.details.$el.removeClass( 'empty' );
                 this.details.show( this.showDetails() );
+                $( "html, body" ).animate( { scrollTop: $( document ).height() }, "slow" );
+
             }.bind( this ), 500 )
         }
     },

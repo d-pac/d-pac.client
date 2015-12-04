@@ -1,6 +1,7 @@
 'use strict';
 var _ = require( 'lodash' );
 var d3Tip = require( 'd3-tip' );
+//var d3Legend = require( 'd3-legend' );
 var stockplot = require( 'd3-stock-plot' );
 var Marionette = require( 'backbone.marionette' );
 var $ = require( 'jquery' );
@@ -55,7 +56,7 @@ module.exports = Marionette.ItemView.extend( {
                     var se = Math.min( rse, 3 );
                     //TODO: this shouldn't happen here
                     model.set( {
-                        rank: n-i,
+                        rank: n - i,
                         comparisonsNum: _.get( statsByRepresentation, [ model.id, 'comparisonsNum' ], 0 )
                     } );
                     return {
@@ -69,11 +70,12 @@ module.exports = Marionette.ItemView.extend( {
                         y: ability,
                         selected: false,
                         id: model.id,
-                        classes: [ 'representation-' + _.kebabCase( model.get( 'rankType' ) ) ]
+                        classes: [ 'representation-' + _.kebabCase( model.get( 'rankType' ) ) ],
+                        rankType: model.get( 'rankType' )
                     }
                 } );
 
-            var values = graph.render( {
+            var elems = graph.render( {
                 el: this.el,
                 data: data,
                 debug: false,
@@ -82,7 +84,17 @@ module.exports = Marionette.ItemView.extend( {
                     ratio: 2
                 }
             } );
+            var values = elems.values;
+            values.attr( "data-legend", function( d ){
+                return d.rankType
+            } );
             values.call( tip );
+            //var svg = elems.svg;
+            //var legend = svg.append("g")
+            //  .attr("class","legend")
+            //  .attr("transform","translate(50,30)")
+            //  .style("font-size","12px")
+            //  .call(d3Legend)
 
             values.on( 'mouseover.ranking', tip.show );
             values.on( 'mouseout.ranking', tip.hide );
