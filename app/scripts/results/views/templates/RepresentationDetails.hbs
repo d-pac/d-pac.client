@@ -2,7 +2,7 @@
 <table class="table">
     <tr>
         <td>
-            <table  class="table table-bordered table-striped">
+            <table class="table table-bordered table-striped">
                 <tr>
                     <td>{{t "results:representations_ranking.rank"}}</td>
                     <td class="text-right"><code>{{rank}}</code></td>
@@ -18,11 +18,7 @@
             </table>
         </td>
         <td>
-            <iframe src="pdf-viewer/web/viewer.html?file={{document.href}}"
-                    class="viewerjs img-responsive"
-                    data-toggle="tooltip" data-placement="top"
-                    title="{{t "assess:comparisons.representations.tooltip"}}"
-                    allowfullscreen webkitallowfullscreen></iframe>
+            {{> (getMediaPlayer document.mimeType) }}
         </td>
     </tr>
 </table>
