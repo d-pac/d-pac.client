@@ -3,7 +3,7 @@ var _ = require( 'lodash' );
 var d3Tip = require( 'd3-tip' );
 var stockplot = require( 'd3-stock-plot' );
 var Marionette = require( 'backbone.marionette' );
-var $ = require('jquery');
+var $ = require( 'jquery' );
 
 var debug = require( 'debug' )( 'dpac:results.views', '[RepresentationsRanking]' );
 var tpl = require( './templates/RepresentationsRanking.hbs' );
@@ -53,10 +53,15 @@ module.exports = Marionette.ItemView.extend( {
                     var ability = Number( model.get( 'ability.value' ) );
                     var rse = Number( model.get( 'ability.se' ) );
                     var se = Math.min( rse, 3 );
+                    //TODO: this shouldn't happen here
+                    model.set( {
+                        rank: n-i,
+                        comparisonsNum: _.get( statsByRepresentation, [ model.id, 'comparisonsNum' ], 0 )
+                    } );
                     return {
-                        comparisonsNum: _.get( statsByRepresentation, [ model.id, 'comparisonsNum' ], 0 ),
+                        comparisonsNum: model.get( 'comparisonsNum' ),
                         name: model.get( 'name' ),
-                        rank: n - i,
+                        rank: model.get( 'rank' ),
                         ability: ability,
                         rse: rse,
                         se: se,
@@ -79,8 +84,14 @@ module.exports = Marionette.ItemView.extend( {
             } );
             values.call( tip );
 
-            values.on( 'mouseover.app', tip.show );
-            values.on( 'mouseout.app', tip.hide );
+            values.on( 'mouseover.ranking', tip.show );
+            values.on( 'mouseout.ranking', tip.hide );
+            values.on( 'click.ranking', function( d ){
+                var model = this.collection.selectByID( d.id );
+                this.dispatch( "results:representation:selected", {
+                    representation: model
+                } );
+            }.bind( this ) )
 
         }
     }

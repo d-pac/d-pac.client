@@ -2,6 +2,7 @@
 var Backbone = require( 'backbone' );
 var debug = require( 'debug' )( 'dpac:common.collections', '[RepresentationsCollection]' );
 var teardown = require( '../../common/mixins/teardown' );
+var selectable = require( '../../common/mixins/selectable' );
 var ModelClass = require( '../models/RepresentationProxy' );
 
 module.exports = Backbone.Collection.extend( {
@@ -30,3 +31,4 @@ module.exports = Backbone.Collection.extend( {
     }
 } );
 teardown.collection.mixin( module.exports );
+selectable.mixin( module.exports );

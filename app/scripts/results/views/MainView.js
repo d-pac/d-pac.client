@@ -14,13 +14,26 @@ module.exports = Marionette.LayoutView.extend( {
         menu: "#results-assessment-menu",
         overview: "#results-assessment-overview",
         ranking: '#results-representations-ranking',
+        details: '#results-representation-details',
     },
 
     contextEvents: {
         'results:assessment:selected': function(){
             this.menu.show( this.showAssessmentMenu() );
-            this.overview.show( this.showAssessmentOverview() );
-            this.ranking.show(this.showRanking());
+            this.overview.empty();
+            this.ranking.empty();
+            this.details.empty();
+            _.delay( function(){
+                this.overview.show( this.showAssessmentOverview() );
+                this.ranking.show( this.showRanking() );
+            }.bind( this ), 250 );
+        },
+        'results:representation:selected': function(){
+            this.details.$el.addClass( 'empty' );
+            _.delay( function(){
+                this.details.$el.removeClass( 'empty' );
+                this.details.show( this.showDetails() );
+            }.bind( this ), 500 )
         }
     },
 

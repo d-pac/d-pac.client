@@ -1,0 +1,28 @@
+<h4>{{t "results:representation_details.title" name=name}}</h4>
+<table class="table">
+    <tr>
+        <td>
+            <table  class="table table-bordered table-striped">
+                <tr>
+                    <td>{{t "results:representations_ranking.rank"}}</td>
+                    <td class="text-right"><code>{{rank}}</code></td>
+                </tr>
+                <tr>
+                    <td>{{t "results:representations_ranking.ability"}}</td>
+                    <td class="text-right"><code>{{toFixed ability.value}}</code></td>
+                </tr>
+                <tr>
+                    <td>{{t "results:representations_ranking.comparisonsNum"}}</td>
+                    <td class="text-right"><code>{{comparisonsNum}}</code></td>
+                </tr>
+            </table>
+        </td>
+        <td>
+            <iframe src="pdf-viewer/web/viewer.html?file={{document.href}}"
+                    class="viewerjs img-responsive"
+                    data-toggle="tooltip" data-placement="top"
+                    title="{{t "assess:comparisons.representations.tooltip"}}"
+                    allowfullscreen webkitallowfullscreen></iframe>
+        </td>
+    </tr>
+</table>

@@ -4,6 +4,7 @@ var Backbone = require( 'backbone' );
 
 var debug = require( 'debug' )( 'dpac:core.collections', '[AssessmentsFacade]' );
 var teardown = require( '../../common/mixins/teardown' );
+var selectable = require('../../common/mixins/selectable');
 
 var ModelClass = require( '../models/AssessmentProxy' );
 
@@ -23,33 +24,13 @@ var BaseCollection = Backbone.Collection.extend( {
         } );
     },
 
-    //==( selectable )==//
-
-    selectByID: function( assessmentId ){
-        debug( "#selectByID", assessmentId );
-        return this.select(this.get(assessmentId));
-    },
-
-    deselect: function( model ){
-        debug( '#deselect', model );
-        if( !model || this.selected === model ){
-            this.select(undefined);
-            return model;
-        }
-    },
-
-    select: function( model ){
-        this.selected = model;
-        return model;
-    },
-
 } );
 teardown.collection.mixin( BaseCollection );
+selectable.mixin(BaseCollection);
 
-module.exports = BaseCollection.extend( {
+module.exports = Backbone.Collection.extend( {
     url: '/user/assessments',
     model: ModelClass,
-    selected: undefined,
 
     _synced: false,
 
@@ -78,7 +59,6 @@ module.exports = BaseCollection.extend( {
     },
 
     deselect: function(){
-        BaseCollection.prototype.deselect.call( this );
         this.roles( 'deselect' );
     },
 

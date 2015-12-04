@@ -26,8 +26,12 @@ _.extend( module.exports.prototype, {
             : 'assessments:collection:sync';
         instruct( this.context.vent )
             .when( proceedEvent ).then( function(){
-            context.wireValue( 'assessmentsCollection', assessmentsFacade.getForRole( 'pam' ) );
-        }, 'results:ui:requested', 'results:bootstrap:completed' );
+                context.wireValue( 'assessmentsCollection', assessmentsFacade.getForRole( 'pam' ) );
+            }, 'results:ui:requested', 'results:bootstrap:completed' )
+            .when( 'results:assessment:selected' ).then( function(){
+                var collection = context.getObject( 'representationsCollection' );
+                collection.deselect();
+            } );
 
         //instruct( this.context.vent )
         //    .when( 'results:bootstrap:requested' ).then( 'results:domain:requested', function fetchAssessments(){

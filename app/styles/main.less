@@ -267,21 +267,26 @@ textarea {
     .range {
         stroke: @primary !important;
     }
-    .selected {
-        fill: @danger !important;
-    }
     .visited {
         fill: @success !important;
     }
-
+    .selected {
+        fill: @danger !important;
+    }
 }
 
 .stock-value.representation-benchmark {
     .point{
-        fill: @blue-grey-700 !important;
+        fill: @blue-grey-900 !important;
     }
     .range {
-        stroke: @blue-grey-700 !important;
+        stroke: @blue-grey-900 !important;
+    }
+    .visited {
+        fill: @light-green-900 !important;
+    }
+    .selected {
+        fill: @red-900 !important;
     }
 }
 .stock-value.representation-ranked {
@@ -291,9 +296,15 @@ textarea {
     .range {
         stroke: @blue-grey-300 !important;
     }
+    .visited {
+        fill: @light-green-300 !important;
+    }
+    .selected {
+        fill: @red-400 !important;
+    }
 }
 .d3-stock-plot{
-    background-color: @white;
+    //background-color: @white;
 }
 
 .d3-tip {
@@ -323,5 +334,9 @@ textarea {
     margin: -1px 0 0 0;
     top: 100%;
     left: 0;
+}
+
+.empty{
+    visibility: hidden;
 }
 
