@@ -37,74 +37,77 @@ module.exports = Marionette.ItemView.extend( {
         return this.assessments.selected.toJSON();
     },
 
-    onRender: function(){
-        debug( '#onRender' );
+    renderGraph: function(){
         var n = this.collection.length;
-        if( n && this.collection.synced ){
-            this.ui.spinner.addClass( 'hidden' );
-            var statsByRepresentation = this.assessments.selected.get( 'stats' ).byRepresentation;
-            var graph = stockplot();
-            var i = 0;
+        this.ui.spinner.addClass( 'hidden' );
+        var statsByRepresentation = this.assessments.selected.get( 'stats' ).byRepresentation;
+        var graph = stockplot();
+        var i = 0;
 
-            var data = this.collection
-                .sortBy( function( model ){
-                    return model.get( 'ability.value' );
-                } )
-                .map( function( model ){
-                    var ability = Number( model.get( 'ability.value' ) );
-                    var rse = Number( model.get( 'ability.se' ) );
-                    var se = Math.min( rse, 3 );
-                    //TODO: this shouldn't happen here
-                    model.set( {
-                        rank: n - i,
-                        comparisonsNum: _.get( statsByRepresentation, [ model.id, 'comparisonsNum' ], 0 )
-                    } );
-                    return {
-                        comparisonsNum: model.get( 'comparisonsNum' ),
-                        name: model.get( 'name' ),
-                        rank: model.get( 'rank' ),
-                        ability: ability,
-                        rse: rse,
-                        se: se,
-                        x: ++i,
-                        y: ability,
-                        selected: false,
-                        id: model.id,
-                        classes: [ 'representation-' + _.kebabCase( model.get( 'rankType' ) ) ],
-                        rankType: model.get( 'rankType' )
-                    }
+        var data = this.collection
+            .sortBy( function( model ){
+                return model.get( 'ability.value' );
+            } )
+            .map( function( model ){
+                var ability = Number( model.get( 'ability.value' ) );
+                var rse = Number( model.get( 'ability.se' ) );
+                var se = Math.min( rse, 3 );
+                //TODO: this shouldn't happen here
+                model.set( {
+                    rank: n - i,
+                    comparisonsNum: _.get( statsByRepresentation, [ model.id, 'comparisonsNum' ], 0 )
                 } );
-
-            var elems = graph.render( {
-                el: this.el,
-                data: data,
-                debug: true,
-                point: {
-                    radius: 4,
-                    ratio: 2
+                return {
+                    comparisonsNum: model.get( 'comparisonsNum' ),
+                    name: model.get( 'name' ),
+                    rank: model.get( 'rank' ),
+                    ability: ability,
+                    rse: rse,
+                    se: se,
+                    x: ++i,
+                    y: ability,
+                    selected: false,
+                    id: model.id,
+                    classes: [ 'representation-' + _.kebabCase( model.get( 'rankType' ) ) ],
+                    rankType: model.get( 'rankType' )
                 }
             } );
-            var values = elems.values;
-            //values.attr( "data-legend", function( d ){
-            //    return d.rankType
-            //} );
-            values.call( tip );
-            //var svg = elems.svg;
-            //var legend = svg.append("g")
-            //  .attr("class","legend")
-            //  .attr("transform","translate(50,30)")
-            //  .style("font-size","12px")
-            //  .call(d3Legend)
 
-            values.on( 'mouseover.ranking', tip.show );
-            values.on( 'mouseout.ranking', tip.hide );
-            values.on( 'click.ranking', function( d ){
-                var model = this.collection.selectByID( d.id );
-                this.dispatch( "results:representation:selected", {
-                    representation: model
-                } );
-            }.bind( this ) )
+        var elems = graph.render( {
+            el: this.el,
+            data: data,
+            debug: true,
+            point: {
+                radius: 4,
+                ratio: 2
+            }
+        } );
+        var values = elems.values;
+        //values.attr( "data-legend", function( d ){
+        //    return d.rankType
+        //} );
+        values.call( tip );
+        //var svg = elems.svg;
+        //var legend = svg.append("g")
+        //  .attr("class","legend")
+        //  .attr("transform","translate(50,30)")
+        //  .style("font-size","12px")
+        //  .call(d3Legend)
 
+        values.on( 'mouseover.ranking', tip.show );
+        values.on( 'mouseout.ranking', tip.hide );
+        values.on( 'click.ranking', function( d ){
+            var model = this.collection.selectByID( d.id );
+            this.dispatch( "results:representation:selected", {
+                representation: model
+            } );
+        }.bind( this ) )
+    },
+
+    onRender: function(){
+        debug( '#onRender' );
+        if( this.collection.length && this.collection.synced ){
+            _.delay( this.renderGraph.bind( this ), 1000 );
         }
     }
 } );
