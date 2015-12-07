@@ -30,9 +30,9 @@ module.exports = Marionette.LayoutView.extend( {
             }.bind( this ), 250 );
         },
         'results:representation:selected': function(){
-            this.details.$el.addClass( 'empty' );
+            this.details.$el.addClass( 'empty-region' );
             _.delay( function(){
-                this.details.$el.removeClass( 'empty' );
+                this.details.$el.removeClass( 'empty-region' );
                 this.details.show( this.showDetails() );
                 $( "html, body" ).animate( { scrollTop: $( document ).height() }, "slow" );
 
