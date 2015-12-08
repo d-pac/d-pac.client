@@ -8,7 +8,7 @@ var tpl = require( './templates/AssessmentOverview.hbs' );
 module.exports = Marionette.ItemView.extend( {
     template: tpl,
     initialize: function(){
-        debug( '#initialize' );
+        debug( '#initialize', this.cid );
     },
 
     serializeData: function(){

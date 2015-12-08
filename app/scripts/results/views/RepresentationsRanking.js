@@ -18,18 +18,16 @@ var tip = d3Tip()
 module.exports = Marionette.ItemView.extend( {
     template: tpl,
 
+    collectionEvents: {
+        sync: 'render'
+    },
+
     ui: {
         spinner: '.spinner'
     },
 
     initialize: function(){
-        debug( '#initialize' );
-        if( !this.collection.synced ){
-            this.collection.once( 'sync', function(){
-                this.render();
-            }, this );
-        }
-
+        debug( '#initialize', this.collection.length );
         $( window ).on( "resize", this.render );
     },
 
@@ -37,9 +35,12 @@ module.exports = Marionette.ItemView.extend( {
         return this.assessments.selected.toJSON();
     },
 
-    renderGraph: function(){
+    renderGraph: _.debounce( function(){
+        debug( 'renderGraph' );
         var n = this.collection.length;
-        this.ui.spinner.addClass( 'hidden' );
+        if( this.ui.spinner && !_.isString( this.ui.spinner ) ){
+            this.ui.spinner.addClass( 'hidden' );
+        }
         var statsByRepresentation = this.assessments.selected.get( 'stats' ).byRepresentation;
         var graph = stockplot();
         var i = 0;
@@ -102,12 +103,16 @@ module.exports = Marionette.ItemView.extend( {
                 representation: model
             } );
         }.bind( this ) )
-    },
+    }, 1000 ),
 
     onRender: function(){
-        debug( '#onRender' );
-        if( this.collection.length && this.collection.synced ){
-            _.delay( this.renderGraph.bind( this ), 1000 );
+        debug( '#onRender', this.collection.length );
+        if( this.collection.length ){
+            this.renderGraph();
         }
+    },
+
+    onBeforeDestroy: function(){
+        $( window ).off( "resize" );
     }
 } );

@@ -4,7 +4,7 @@ var Backbone = require( 'backbone' );
 
 var debug = require( 'debug' )( 'dpac:core.collections', '[AssessmentsFacade]' );
 var teardown = require( '../../common/mixins/teardown' );
-var selectable = require('../../common/mixins/selectable');
+var selectable = require( '../../common/mixins/selectable' );
 
 var ModelClass = require( '../models/AssessmentProxy' );
 
@@ -26,7 +26,7 @@ var BaseCollection = Backbone.Collection.extend( {
 
 } );
 teardown.collection.mixin( BaseCollection );
-selectable.mixin(BaseCollection);
+selectable.mixin( BaseCollection );
 
 module.exports = Backbone.Collection.extend( {
     url: '/user/assessments',
