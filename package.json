@@ -30,7 +30,7 @@
   "scripts": {
     "bowerInstall": "bower install",
     "clean:dist": "rm -rf dist; mkdir dist",
-    "copy:web": "cp -R src/web/ dist/",
+    "copy:web": "cp -R src/web/. dist/",
     "shrinkwrap": "npm shrinkwrap --dev",
     "preview": "webpack-dev-server --devtool eval --progress --colors --inline --verbose --port 9000",
     "compile": "webpack -dp --progress --colors --verbose",
