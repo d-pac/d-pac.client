@@ -57,9 +57,8 @@
   },
   "scripts": {
     "bowerInstall": "bower install",
-    "build": "grunt build",
     "shrinkwrap": "npm shrinkwrap --dev",
-    "serve": "grunt serve",
-    "preview": "webpack-dev-server -d --inline --verbose --port 9000"
+    "preview": "webpack-dev-server -d --inline --verbose --port 9000",
+    "build": "webpack -p --verbose"
   }
 }

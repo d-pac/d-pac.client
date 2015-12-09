@@ -66,8 +66,8 @@ module.exports = {
                 loader: "style!css!less"
             },
             {
-                test: /\.(png|jpg|gif|svg|woff|woff2|eot|ttf|otf)(\?.*$|$)/,
-                loader: "url-loader?prefix=images/&limit=10000"
+                test: /\.(svg|woff|woff2|eot|ttf|otf)(\?.*$|$)/,
+                loader: "url-loader?limit=10000"
             }
         ]
     },
