@@ -3,7 +3,8 @@ var _ = require( 'underscore' );
 var Backbone = require( 'backbone' );
 var debug = require( 'debug' )( 'dpac:assess.models', '[CurrentSelectionModel]' );
 
-var teardown = require( '../../common/mixins/teardown' );
+//TODO: shouldn't this be added?
+//var teardown = require( '../../common/mixins/teardown' );
 
 module.exports = Backbone.Model.extend( {
     defaults: {

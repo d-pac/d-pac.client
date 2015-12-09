@@ -1,7 +1,5 @@
 'use strict';
 
-var _ = require( 'underscore' );
-
 var debug = require( 'debug' )( 'dpac:assess.controllers', '[TimelogsController]' );
 var Marionette = require( 'backbone.marionette' );
 

@@ -1,5 +1,4 @@
 'use strict';
-var _ = require( 'underscore' );
 
 var debug = require( 'debug' )( 'dpac:core.views', '[TutorialView]' );
 var tpl = require( './templates/Tutorial.hbs' );

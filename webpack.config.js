@@ -61,10 +61,6 @@ module.exports = {
                 loader: "imports?jQuery=jquery!exports?jQuery.material"
             },
             {
-                test: /\.css$/,
-                loader: "css"
-            },
-            {
                 test: /\.less$/,
                 loader: "style!css!less"
             },
@@ -74,6 +70,9 @@ module.exports = {
             }
         ]
     },
+    noParse: [
+        './bower_components/jquery/dist/jquery.js'
+    ],
     plugins: [
         new webpack.DefinePlugin( {
             'process.env': Object.keys( process.env ).reduce( function( o,

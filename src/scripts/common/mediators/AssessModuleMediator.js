@@ -1,5 +1,4 @@
 'use strict';
-var _ = require( 'underscore' );
 var debug = require( 'debug' )( 'dpac:core.controllers', '[AssessModuleMediator]' );
 var ModuleContext = require( '../../assess/AssessContext' );
 var relayEvents = require( '../mixins/relayEvents' );

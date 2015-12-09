@@ -2,7 +2,6 @@
 var _ = require( 'underscore' );
 
 var debug = require( 'debug' )( 'dpac:core.controllers', '[LoadConfiguration]' );
-var konfy = require( 'konfy' );
 
 module.exports = function LoadConfiguration(){
 };

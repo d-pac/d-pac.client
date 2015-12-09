@@ -1,6 +1,5 @@
 'use strict';
 var Backbone = require( 'backbone' );
-var _ = require( 'underscore' );
 var debug = require( 'debug' )( 'dpac:assess', '[TimelogsCollection]' );
 var teardown = require( '../../common/mixins/teardown' );
 

@@ -1,5 +1,4 @@
 'use strict';
-var _ = require( 'underscore' );
 var Backbone = require( 'backbone' );
 
 var debug = require( 'debug' )( 'dpac:assess.models', '[ComparisonProxy]' );

@@ -9,7 +9,6 @@ var eventLog = require( 'debug' )( 'dpac:results.events', '\u2709' );
 module.exports = Geppetto.Context.extend( {
     initialize: function(){
         debug( "#initialize" );
-        var core = this.parentContext;
         this.wireValue( 'moduleContext', this );
         this.vent.on( 'all', function( eventName,
                                        event ){

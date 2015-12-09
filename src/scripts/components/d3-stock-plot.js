@@ -27,9 +27,6 @@ var DEFAULTS = {
     debug: false
 };
 
-function convertToNumber( value ){
-    return Number( value );
-}
 function Renderer(){
 };
 Renderer.prototype.render = function render( opts ){

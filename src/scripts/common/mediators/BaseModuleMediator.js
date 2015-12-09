@@ -1,5 +1,4 @@
 'use strict';
-var _ = require( 'underscore' );
 var Marionette = require( 'backbone.marionette' );
 var debug = require( 'debug' )( 'dpac:core.controllers', '[BaseModuleMediator]' );
 

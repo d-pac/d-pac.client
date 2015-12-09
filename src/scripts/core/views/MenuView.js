@@ -2,8 +2,6 @@
 var _ = require( 'lodash' );
 var Marionette = require('backbone.marionette');
 
-var moment = require( 'moment' );
-
 var debug = require( 'debug' )( 'dpac:core.views', '[MenuView]' );
 var tpl = require( './templates/Menu.hbs' );
 

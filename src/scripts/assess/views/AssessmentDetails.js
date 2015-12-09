@@ -1,6 +1,5 @@
 'use strict';
 var Marionette = require( 'backbone.marionette' );
-var _ = require( 'underscore' );
 var debug = require( 'debug' )( 'dpac:assess.views', '[AssessmentDetails]' );
 var tpl = require( './templates/AssessmentDetails.hbs' );
 

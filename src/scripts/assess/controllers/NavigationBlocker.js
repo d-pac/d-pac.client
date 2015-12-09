@@ -1,7 +1,5 @@
 'use strict';
 
-var _ = require( 'underscore' );
-
 var debug = require( 'debug' )( 'dpac:assess.controllers', '[NavigationBlocker]' );
 var Marionette = require( 'backbone.marionette' );
 var Backbone = require( 'backbone' );

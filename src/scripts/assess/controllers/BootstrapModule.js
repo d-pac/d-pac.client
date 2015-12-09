@@ -42,8 +42,8 @@ _.extend( module.exports.prototype, {
                 collection.fetch();
             }, 'assess:bootstrap:completed' )
             .when( 'assess:bootstrap:completed' ).then( function(){
-            var timelogs = context.getObject( 'timelogsController' );
-            var navigationBlocker = context.getObject( 'navigationBlocker' );
+            context.getObject( 'timelogsController' );
+            context.getObject( 'navigationBlocker' );
             var assessFlow = context.getObject( 'assessFlow' );
             assessFlow.start();
         } )

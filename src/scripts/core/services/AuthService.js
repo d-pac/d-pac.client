@@ -2,8 +2,6 @@
 var NestedModel = require( 'backbone-nested-model' );
 
 var debug = require( 'debug' )( 'dpac:core.services', '[AuthService]' );
-var createServiceResponse = require( '../helpers/createServiceResponse' );
-var sessionCount = 0;
 
 module.exports = NestedModel.extend( {
 
