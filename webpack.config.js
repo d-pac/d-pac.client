@@ -17,7 +17,7 @@ vendorComponents = vendorComponents.concat( _.keys( bower.dependencies ) );
 
 module.exports = {
     entry: {
-        main: './app/scripts/main.js',
+        main: './src/scripts/main.js',
         vendor: vendorComponents
     },
     output: {
@@ -26,10 +26,10 @@ module.exports = {
         filename: '[name].js'
     },
     devServer: {
-        contentBase: "app/"
+        contentBase: "src/web/"
     },
     resolve: {
-        modulesDirectories: [ "bower_components", "node_modules", "app/scripts/components" ],
+        modulesDirectories: [ "bower_components", "node_modules", "src/scripts/components" ],
         alias: {
             "debug": "bows",
             "bows": "bows/bows",
