@@ -11,9 +11,8 @@ var webpack = require( 'webpack' );
 var _ = require( 'lodash' );
 var path = require( 'path' );
 
-var npm = require( './package.json' );
 var bower = require( './bower.json' );
-var vendorComponents = _.keys( npm.dependencies );
+var vendorComponents = _.keys( pkg.dependencies );
 vendorComponents = vendorComponents.concat( _.keys( bower.dependencies ) );
 
 module.exports = {
@@ -60,6 +59,10 @@ module.exports = {
             {
                 test: /bootstrap-material-design/,
                 loader: "imports?jQuery=jquery!exports?jQuery.material"
+            },
+            {
+                test: /\.css$/,
+                loader: "css"
             },
             {
                 test: /\.less$/,
