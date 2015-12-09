@@ -1,41 +1,50 @@
 'use strict';
 
+var pkg = require( './package.json' );
+process.env.APP_VERSION = (process.env.APP_VERSION_LABEL)
+    ? pkg.version + "-" + process.env.APP_VERSION_LABEL
+    : pkg.version;
+
+var konfy = require( 'konfy' );
+konfy.load();
 var webpack = require( 'webpack' );
 var _ = require( 'lodash' );
+var path = require( 'path' );
 
 var npm = require( './package.json' );
 var bower = require( './bower.json' );
 var vendorComponents = _.keys( npm.dependencies );
-vendorComponents = vendorComponents.concat( _.keys( _.omit( bower.dependencies, "modernizr", "bootstrap-material-design" ) ) );
+vendorComponents = vendorComponents.concat( _.keys( bower.dependencies ) );
 
 module.exports = {
     entry: {
-        main: './<%= config.app %>/scripts/main.js',
+        main: './app/scripts/main.js',
         vendor: vendorComponents
     },
+    output: {
+        path: path.join( __dirname, "dist/assets" ),
+        publicPath: 'assets',
+        filename: '[name].js'
+    },
+    devServer: {
+        contentBase: "app/"
+    },
     resolve: {
-        root: [ "./bower_components", "./node_modules", "." ],
+        modulesDirectories: [ "bower_components", "node_modules", "app/scripts/components" ],
         alias: {
-            "debug": "bows/bows",
+            "debug": "bows",
+            "bows": "bows/bows",
             "konfy": "konfy/lib/browser",
             "i18next": "i18next/i18next.commonjs.withJQuery",
-            "zeroclipboard": "zeroclipboard/dist/ZeroClipboard",
-            "snackbarjs": "snackbarjs/src/snackbar.js",
-            "bootstrap-material-design": "bootstrap-material-design/dist/js/material",
+            "bootstrap-material-design$": "bootstrap-material-design/scripts/material",
             "modernizr": "modernizr/modernizr",
-            "lity": "lity/dist/lity",
+            "lity$": "lity/src/lity",
             "underscore": "lodash/index",
-            //"d3-legend": "app/scripts/components/d3.legend",
-            "d3-stock-plot": "app/scripts/components/d3-stock-plot"
         },
         packageAlias: "browser"
     },
     module: {
         loaders: [
-            {
-                test: /snackbar/,
-                loader: "imports?jQuery=jquery!exports?jQuery.snackbar"
-            },
             {
                 test: /modernizr/,
                 loader: "imports?this=>window!exports?window.Modernizr"
@@ -51,6 +60,14 @@ module.exports = {
             {
                 test: /bootstrap-material-design/,
                 loader: "imports?jQuery=jquery!exports?jQuery.material"
+            },
+            {
+                test: /\.less$/,
+                loader: "style!css!less"
+            },
+            {
+                test: /\.(png|jpg|gif|svg|woff|woff2|eot|ttf|otf)(\?.*$|$)/,
+                loader: "url-loader?prefix=images/&limit=10000"
             }
         ]
     },

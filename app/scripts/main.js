@@ -1,6 +1,7 @@
 'use strict';
 
 /* stand-alones */
+require('../styles/main.less');
 require('modernizr');
 require('bootstrap');
 require('bootstrap-material-design' ).init();

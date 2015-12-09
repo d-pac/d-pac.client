@@ -1,9 +1,18 @@
-@import "../../bower_components/bootstrap-material-design/less/material.less";
+@import "~bootstrap/less/bootstrap.less";
+@import "~bootstrap-material-design/less/material.less";
+@import "~seiyria-bootstrap-slider/less/bootstrap-slider.less";
+@import "~lity/src/lity.less";
 
 @primary: @light-blue;
 @info: @blue-50;
 @success: @light-green;
 @danger: @red-600;
+
+@brand-primary: @primary;
+@brand-success: @success;
+@brand-danger: @danger;
+//@brand-warning: @warning;
+@brand-info: @info;
 
 .vspacer {
     margin-top: 20px;
@@ -340,6 +349,15 @@ textarea {
     visibility: hidden;
 }
 
+.navbar.navbar, .navbar-default.navbar{
+    color: #FFFFFF;
+}
+
+.btn:not(.btn-link):not(.btn-flat){
+    color: rgba(255,255,255,.84);
+}
+
 .mime-type-html{
     white-space: pre-wrap;
 }
+

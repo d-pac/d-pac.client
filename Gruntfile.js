@@ -53,7 +53,6 @@ function initGrunt( grunt ){
 
         grunt.task.run( [
             'clean:server',
-            'less',
             'webpack',
             'concurrent:server',
             'autoprefixer',
@@ -79,7 +78,6 @@ function initGrunt( grunt ){
 
     grunt.registerTask( 'build', [
         'clean:dist',
-        'less',
         'webpack',
         'useminPrepare',
         'concurrent:dist',
