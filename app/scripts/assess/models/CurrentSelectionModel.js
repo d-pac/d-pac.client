@@ -66,6 +66,10 @@ module.exports = Backbone.Model.extend( {
         }
     },
 
+    notesEnabled: function(){
+        return this.get('assessment' ).get('enableNotes');
+    },
+
     storeDataForCurrentPhase: function( value ){
         var comparison = this.get( 'comparison' );
         var currentPhase = this.get( 'currentPhase' );

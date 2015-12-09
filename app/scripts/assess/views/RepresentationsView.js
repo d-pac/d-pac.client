@@ -43,19 +43,21 @@ module.exports = Marionette.LayoutView.extend( {
         this.representationA.show( new DetailView( {
             model: this.model.getRepresentationByOrder( "a" )
         } ) );
-        this.noteA.show( new NoteView( {
-            model: this.model.getNoteByOrder( 'a' ),
-            factory: this.model,
-            order: 'a'
-        } ) );
         this.representationB.show( new DetailView( {
             model: this.model.getRepresentationByOrder( "b" )
         } ) );
-        this.noteB.show( new NoteView( {
-            model: this.model.getNoteByOrder( 'b' ),
-            factory: this.model,
-            order: 'b'
-        } ) );
+        if(this.model.notesEnabled()){
+            this.noteA.show( new NoteView( {
+                model: this.model.getNoteByOrder( 'a' ),
+                factory: this.model,
+                order: 'a'
+            } ) );
+            this.noteB.show( new NoteView( {
+                model: this.model.getNoteByOrder( 'b' ),
+                factory: this.model,
+                order: 'b'
+            } ) );
+        }
         this.showSelected();
     },
 
