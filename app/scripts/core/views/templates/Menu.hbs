@@ -22,17 +22,20 @@
                             <span class="label label-info">{{t "common:menu.text.label" userName=user.name.first}}</span>
                         </p>
                     </li>
-                    <li>
-                        <a href="{{t "common:menu.tutorial.href"}}"
-                           data-toggle="tooltip" data-placement="bottom"
-                           title="{{t "common:menu.tutorial.description"}}">{{t "common:menu.tutorial.label"}}</a>
-                    </li>
+                    {{#if showTutorial}}
+
+                        <li>
+                            <a href="{{t "common:menu.tutorial.href"}}"
+                               data-toggle="tooltip" data-placement="bottom"
+                               title="{{t "common:menu.tutorial.description"}}">{{t "common:menu.tutorial.label"}}</a>
+                        </li>
+                    {{/if}}
                     {{#if user.assessments.assessor.length}}
-                    <li>
-                        <a href="{{t "common:menu.judge.href"}}"
-                           data-toggle="tooltip" data-placement="bottom"
-                           title="{{t "common:menu.judge.description"}}">{{t "common:menu.judge.label"}}</a>
-                    </li>
+                        <li>
+                            <a href="{{t "common:menu.judge.href"}}"
+                               data-toggle="tooltip" data-placement="bottom"
+                               title="{{t "common:menu.judge.description"}}">{{t "common:menu.judge.label"}}</a>
+                        </li>
                     {{/if}}
                     {{#if user.assessments.pam.length}}
                         <li>

@@ -28,6 +28,9 @@ _.extend( module.exports.prototype, {
             },
             "slugs": {
                 "welcome": "tool-welcome"
+            },
+            "flags": {
+                "hide_tutorial": process.env.HIDE_TUTORIAL || false
             }
         } );
         this.context.vent.trigger( 'config:load:completed' );

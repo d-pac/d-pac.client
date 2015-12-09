@@ -1,5 +1,5 @@
 'use strict';
-var _ = require( 'underscore' );
+var _ = require( 'lodash' );
 var Marionette = require('backbone.marionette');
 
 var moment = require( 'moment' );
@@ -38,8 +38,10 @@ module.exports = Marionette.ItemView.extend( {
     serializeData: function(){
         var data = this.model.toJSON();
         _.defaults( data, {
-            appVersion: this.config.app.version
+            appVersion: _.get(this.config, 'app.version', ''),
+            showTutorial: !_.get(this.config, 'flags.hide_tutorial', false)
         } );
+
         return data;
     }
 } );
