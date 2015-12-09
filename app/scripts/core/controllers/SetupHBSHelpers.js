@@ -50,6 +50,6 @@ module.exports = function SetupHBSHelpers(){
         Handlebars.registerPartial( name, tpl );
     } );
     Handlebars.registerHelper( 'getMediaPlayer', function(mimeType){
-        return mediaTemplates[mimeType];
+        return mediaTemplates[mimeType || "text/html"];
     } )
 };
