@@ -18,7 +18,9 @@ vendorComponents = vendorComponents.concat( _.keys( bower.dependencies ) );
 module.exports = {
     entry: {
         main: './src/scripts/main.js',
-        vendor: vendorComponents
+        vendor: vendorComponents,
+        assess: './src/scripts/assess/AssessContext.js',
+        results: './src/scripts/results/ResultsContext.js'
     },
     output: {
         path: path.join( __dirname, "dist/assets" ),
@@ -87,6 +89,11 @@ module.exports = {
         new webpack.ProvidePlugin( {
             jQuery: "jquery"
         } ),
-        new webpack.optimize.CommonsChunkPlugin( 'vendor', 'vendor.js' )
+        new webpack.optimize.CommonsChunkPlugin( 'vendor', 'vendor.js', Infinity ),
+        new webpack.optimize.CommonsChunkPlugin( {
+            name: 'common',
+            filename: 'common.js',
+            chunks: [ 'assess', 'results' ]
+        } ),
     ]
 };
