@@ -88,6 +88,6 @@ module.exports = {
         new webpack.ProvidePlugin( {
             jQuery: "jquery"
         } ),
-        new webpack.optimize.CommonsChunkPlugin( 'vendor.js' )
+        new webpack.optimize.CommonsChunkPlugin( 'vendor', 'vendor.js' )
     ]
 };
