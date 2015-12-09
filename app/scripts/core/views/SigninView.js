@@ -23,6 +23,13 @@ module.exports = Marionette.LayoutView.extend( {
         debug( '#initialize' );
     },
 
+    serializeData: function(){
+        var data = this.model.toJSON();
+        data.showTutorial = !_.get(this.config, 'flags.hide_tutorial', false);
+
+        return data;
+    },
+
     onDestroy : function(){
         this._destroyed = true;
     },

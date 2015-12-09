@@ -3,10 +3,11 @@
         <div class="well well-sm">
             {{#if authenticated}}
                 <h4>{{t "login:authenticated.title"}}</h4>
-
                 <p>{{{t "login:authenticated.message"  userName=user.name.first}}}</p>
+                {{#if showTutorial}}
                 <a href="{{t "common:menu.tutorial.href"}}" class="btn btn-primary"
                    role="button">{{t "common:menu.tutorial.label"}}</a>
+                {{/if}}
                 {{#if user.assessments.assessor.length}}
                 <a href="{{t "common:menu.judge.href"}}" class="btn btn-primary"
                    role="button">{{t "common:menu.judge.label"}}</a>

@@ -22,6 +22,7 @@ module.exports = Marionette.ItemView.extend( {
             var data = this.model.toJSON();
             data.authenticated = this.auth.get( 'authenticated' );
             data.user = this.auth.get( 'user' );
+            data.showTutorial = !_.get(this.config, 'flags.hide_tutorial', false);
             return data;
         }
     }
