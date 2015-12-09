@@ -43,7 +43,7 @@ module.exports = Marionette.Controller.extend( {
             messages.push( {
                 type: "error",
                 title: i18n.t("errors:" + _.kebabCase(message), merged),
-                message: i18n.t("errors:" + _.kebabCase(message), merged),
+                message: i18n.t("errors:" + _.kebabCase(explanation), merged),
                 permanent: err.fatal || false
             } );
         }, this );
