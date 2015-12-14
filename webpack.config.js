@@ -15,17 +15,24 @@ var bower = require( './bower.json' );
 var vendorComponents = _.keys( pkg.dependencies );
 vendorComponents = vendorComponents.concat( _.keys( bower.dependencies ) );
 
+//var ls = require( 'recursive-readdir-sync' );
+//var commonFiles = ls( './src/scripts/common' )
+//    .map( function( filename ){
+//        return path.join( __dirname, filename );
+//    } );
+//console.log( commonFiles );
+
 module.exports = {
     entry: {
         main: './src/scripts/main.js',
         vendor: vendorComponents,
-        assess: './src/scripts/assess/AssessContext.js',
-        results: './src/scripts/results/ResultsContext.js'
+        //common: commonFiles
     },
     output: {
         path: path.join( __dirname, "dist/assets" ),
         publicPath: 'assets',
-        filename: '[name].js'
+        filename: '[name].js',
+        chunkFilename: "[name].js"
     },
     devServer: {
         contentBase: "src/web/"
@@ -76,6 +83,7 @@ module.exports = {
         './bower_components/jquery/dist/jquery.js'
     ],
     plugins: [
+        new webpack.optimize.DedupePlugin(),
         new webpack.DefinePlugin( {
             'process.env': Object.keys( process.env ).reduce( function( o,
                                                                         k ){
@@ -90,10 +98,11 @@ module.exports = {
             jQuery: "jquery"
         } ),
         new webpack.optimize.CommonsChunkPlugin( 'vendor', 'vendor.js', Infinity ),
-        new webpack.optimize.CommonsChunkPlugin( {
-            name: 'common',
-            filename: 'common.js',
-            chunks: [ 'assess', 'results' ]
-        } ),
+        //new webpack.optimize.CommonsChunkPlugin( {
+        //    name: 'common',
+        //    filename: 'common.js',
+        //    chunks: [ 'assess', 'results' ],
+        //    async: true
+        //} )
     ]
 };
