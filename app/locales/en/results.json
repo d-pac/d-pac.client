@@ -1,0 +1,35 @@
+{
+  "assessment_selection": {
+    "select_label": "View results for:",
+    "select_tooltip": "- select an assessment -",
+    "no_results": ": no results available yet"
+  },
+  "assessment_menu": {
+    "assessor_assignment": "The assignment",
+    "contact_pam": "Contact administator"
+  },
+  "assessment_overview": {
+    "title": "Overview for '__name__'",
+    "totals": {
+      "reliability": "Reliability",
+      "assessorsNum": "Number of assessors",
+      "comparisonsNum": "Number of comparisons",
+      "representationsNum": "Number of representations",
+      "duration": "Total duration of all comparisons"
+    },
+    "averages": {
+      "comparisonsPerRepresentation": "Average number of comparisons per representation",
+      "comparisonsPerAssessor": "Average number of comparisons per assessor",
+      "durationPerAssessor": "Average duration per assessor"
+    }
+  },
+  "representations_ranking": {
+    "title": "Ranking of the representations for '__name__'",
+    "rank": "Ranking",
+    "ability": "Ability",
+    "comparisonsNum": "Number of comparisons featuring this representation"
+  },
+  "representation_details": {
+    "title": "Details for '__name__'"
+  }
+}
