@@ -11,7 +11,8 @@ module.exports = NestedModel.extend( {
         document: {
             ext: undefined,
             mimeType: undefined,
-            href: undefined
+            href: undefined,
+            text: undefined
         },
         selected: false
     },
@@ -26,6 +27,17 @@ module.exports = NestedModel.extend( {
 
     deselect: function(){
         this.set( 'selected', false );
+    },
+
+    hasDescription: function(){
+        return (this.get('document.mimeType') !== 'text/html')
+            && !!this.get('document.text');
+    },
+
+    toJSON: function(){
+        var data = NestedModel.prototype.toJSON.call( this );
+        data.hasDescription = this.hasDescription();
+        return data;
     }
 } );
 teardown.model.mixin( module.exports );

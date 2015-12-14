@@ -1,7 +1,7 @@
 <div class="col-md-12 column">
     {{> (getMediaPlayer document.mimeType) }}
 </div>
-{{#if document.text}}
+{{#if hasDescription}}
     <div class="col-md-12 column">
         <blockquote>
             {{{document.text}}}
