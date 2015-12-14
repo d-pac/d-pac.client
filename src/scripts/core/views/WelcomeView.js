@@ -1,4 +1,5 @@
 'use strict';
+var _ = require( 'lodash' );
 var debug = require( 'debug' )( 'dpac:core.views', '[WelcomeView]' );
 var tpl = require( './templates/Welcome.hbs' );
 var Marionette = require( 'backbone.marionette' );
@@ -22,7 +23,7 @@ module.exports = Marionette.ItemView.extend( {
             var data = this.model.toJSON();
             data.authenticated = this.auth.get( 'authenticated' );
             data.user = this.auth.get( 'user' );
-            data.showTutorial = !_.get(this.config, 'flags.hide_tutorial', false);
+            data.showTutorial = !_.get( this.config, 'flags.hide_tutorial', false );
             return data;
         }
     }
