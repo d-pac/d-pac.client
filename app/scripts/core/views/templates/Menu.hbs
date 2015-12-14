@@ -55,11 +55,13 @@
                            title="{{t "common:menu.logout.description"}}">{{t "common:menu.logout.label"}}</a>
                     </li>
                 {{else}}
-                    <li>
-                        <a href="{{t "common:menu.tutorial.href"}}"
-                           data-toggle="tooltip" data-placement="bottom"
-                           title="{{t "common:menu.tutorial.description"}}">{{t "common:menu.tutorial.label"}}</a>
-                    </li>
+                    {{#if showTutorial}}
+                        <li>
+                            <a href="{{t "common:menu.tutorial.href"}}"
+                               data-toggle="tooltip" data-placement="bottom"
+                               title="{{t "common:menu.tutorial.description"}}">{{t "common:menu.tutorial.label"}}</a>
+                        </li>
+                    {{/if}}
                     <li>
                         <a href="{{t "common:menu.login.href"}}"
                            data-toggle="tooltip" data-placement="bottom"
