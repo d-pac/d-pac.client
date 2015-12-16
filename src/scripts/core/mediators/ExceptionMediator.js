@@ -35,16 +35,16 @@ module.exports = Marionette.Controller.extend( {
         var messages = [];
         _.each( errObj.errors, function( err ){
             var merged = _.defaults( {
-                ref: err.code || err.ref
+                ref: err.code || err.ref,
             }, errObj ); //allows access to request-uuid, url, code etc.
-            console.log(merged);
+            console.log( merged );
             var message = err.message || "unknown error";
             var explanation = err.explanation || message;
             messages.push( {
                 type: "error",
-                title: i18n.t("errors:" + _.kebabCase(message), merged),
-                message: i18n.t("errors:" + _.kebabCase(explanation), merged),
-                permanent: err.fatal || false
+                title: i18n.t( [ "errors:" + _.kebabCase( message ), "errors:unknown-error" ], merged ),
+                message: i18n.t( [ "errors:" + _.kebabCase( explanation ), "errors:unknown-error" ], merged ),
+                permanent: err.fatal || ( _.isNumber( Number( err.code ) ) && err.code >= 500) || false
             } );
         }, this );
         this.dispatch( 'app:show:messages', messages );

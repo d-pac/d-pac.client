@@ -68,7 +68,7 @@ _.extend( SetupRemoteRequests.prototype, {
                     errObj = {
                         errors: xhr.responseJSON.errors,
                         requestUUID: requestUUID,
-                        url: options.url
+                        url: options.url,
                     }
                 } else {
                     console.log( 'CONNECTION LOST OR TIME OUT' );
@@ -85,7 +85,7 @@ _.extend( SetupRemoteRequests.prototype, {
                         url: options.url
                     }
                 }
-                console.error( "REMOTE REQUEST ERROR", errObj );
+                console.log( "REMOTE REQUEST ERROR", errObj );
                 dispatch( "backbone:sync:error", errObj );
                 errorCallback.apply( null, arguments );
             };
