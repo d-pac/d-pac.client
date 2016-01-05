@@ -9,5 +9,6 @@
   "you-need-to-be-logged-in": "You need to sign in.",
   "auto-recover": "<p>The application will automatically recover once the connection is restored.</p>",
   "document-not-found": "<p>Document not found, please contact <a href='mailto:info@d-pac.be' target='_blank' class='alert-link'>info@d-pac.be</a>.</p><p>Reference: /api/representations/__id__</p>",
-  "account-modification-disabled": "<p>Account modification is disabled.</p>"
+  "account-modification-disabled": "<p>Account modification is disabled.</p>",
+  "assessment-incorrectly-configured": "Assessment incorrectly configured, please contact <a href='mailto:info@d-pac.be' target='_blank' class='alert-link'>info@d-pac.be</a>.</p><p>Reference: __ref__, __url__</p>"
 }

@@ -11,5 +11,6 @@
   "unprocessable-entity": "Validatie mislukt",
   "passwords-do-not-match": "De paswoord bevestiging is niet identiek aan het nieuwe paswoord.",
   "document-not-found": "<p>Het document is niet gevonden, gelieve contact op te nemen met <a href='mailto:info@d-pac.be' target='_blank' class='alert-link'>info@d-pac.be</a>.</p><p>Referentie: /api/representations/__id__</p>",
-  "account-modification-disabled": "<p>Het wijzigen van de account is uitgeschakeld.</p>"
+  "account-modification-disabled": "<p>Het wijzigen van de account is uitgeschakeld.</p>",
+  "assessment-incorrectly-configured": "De opdracht is incorrect geconfigureerd, gelieve contact op te nemen met <a href='mailto:info@d-pac.be' target='_blank' class='alert-link'>info@d-pac.be</a>.</p><p>Referentie: __ref__, __url__</p>"
 }
