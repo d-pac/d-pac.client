@@ -1,4 +1,32 @@
 {
+  "assessment_assignments": {
+    "assessor_button": {
+      "label": "Your assignment"
+    },
+    "assessee_button": {
+      "label": "Their assignment"
+    }
+  },
+  "assessment_completed": {
+    "title": "Assessment completed",
+    "description": "Thank you for having completed all comparisons for '__title__'!",
+    "type": "success"
+  },
+  "assessment_progressbar": {
+    "tooltip": "Shows you information on your progress",
+    "label": "You have completed <strong>__completed__</strong> out of <strong>__count__</strong> comparisons in this assessment.",
+    "label_plural": "You have completed <strong>__completed__</strong> out of <strong>__count__</strong> comparisons in this assessment."
+  },
+  "assessment_selection": {
+    "title": "Assessments",
+    "description": "Select an assessment:",
+    "empty": "You have no active assessments.",
+    "completed": "You have completed all your comparisons",
+    "submit_button": {
+      "sending": "Patience, please"
+    },
+    "continue": "Continue with another assessment:"
+  },
   "common": {
     "title": "Assessment: '__title__'",
     "close_button": {
@@ -6,52 +34,6 @@
     },
     "save_button": {
       "label": "Save"
-    }
-  },
-  "assessment_selection": {
-    "title": "Assessments",
-    "description": "Select an assessment:",
-    "empty": "You have no active assessments.",
-    "completed": "You have completed all your comparisons",
-    "submit_button":{
-      "sending": "Patience, please"
-    },
-    "continue": "Continue with another assessment:"
-  },
-  "assessment_completed": {
-    "title": "Assessment completed",
-    "description": "Thank you for having completed all comparisons for '__title__'!",
-    "type": "success"
-  },
-  "comparison_unfinished": {
-    "title": "Comparisons",
-    "description": "You have an incomplete comparison. Please complete it first.",
-    "description_plural": "You have __count__ incomplete comparisons. Please complete them first.",
-    "continue_button": {
-      "label": "Continue comparison"
-    }
-  },
-  "comparison_pause": {
-    "title": "Pause",
-    "description": "You have paused this comparison, please finish it before leaving.",
-    "pause_button": {
-      "label": "Pause"
-    },
-    "continue_button": {
-      "label": "Continue comparison"
-    }
-  },
-  "assessment_progressbar": {
-    "tooltip": "Shows you information on your progress",
-    "label": "You have completed <strong>__completed__</strong> out of <strong>__count__</strong> comparisons in this assessment.",
-    "label_plural": "You have completed <strong>__completed__</strong> out of <strong>__count__</strong> comparisons in this assessment."
-  },
-  "assessment_assignments": {
-    "assessor_button": {
-      "label": "Your assignment"
-    },
-    "assessee_button": {
-      "label": "Their assignment"
     }
   },
   "comparison_continue": {
@@ -65,28 +47,40 @@
       "label": "Quit"
     }
   },
-  "seq": {
-    "easy": {
-      "label": "Very easy"
+  "comparison_messages": {
+    "title": "Comparisons",
+    "description": "No new comparison could be made for <strong>'__title__'</strong>:",
+    "messages": {
+      "stage-completed": "This stage of the assessment is completed. We will contact you when the next stage begins.",
+      "assessor-stage-completed": "This stage of the assessment is completed. We will contact you when the next stage begins.",
+      "assessor-assessment-completed": "You have completed all your comparisons.",
+      "assessment-completed": "This assessment is completed."
     },
-    "hard": {
-      "label": "Very hard"
-    },
-    "save_button": {
-      "label": "Save"
+    "stop_button": {
+      "label": "Ok"
     }
   },
-  "phase_selection": {
-    "title": "Select",
-    "description": "Which representation do you prefer?",
-    "a_button": {
-      "label": "I prefer representation A",
-      "tooltip": "Click to select representation A"
+  "comparison_pause": {
+    "title": "Pause",
+    "description": "You have paused this comparison, please finish it before leaving.",
+    "pause_button": {
+      "label": "Pause"
     },
-    "b_button": {
-      "label": "I prefer representation B",
-      "tooltip": "Click to select representation B"
+    "continue_button": {
+      "label": "Continue comparison"
     }
+  },
+  "comparison_unfinished": {
+    "title": "Comparisons",
+    "description": "You have an incomplete comparison. Please complete it first.",
+    "description_plural": "You have __count__ incomplete comparisons. Please complete them first.",
+    "continue_button": {
+      "label": "Continue comparison"
+    }
+  },
+  "notes": {
+    "label": "Notes",
+    "tooltip": "Write down whatever remarks you have about this representation."
   },
   "phase_comparative": {
     "title": "Compare",
@@ -110,14 +104,37 @@
       }
     }
   },
-  "phase_seq-selection": {
-    "title": "How hard was it to make a selection?"
+  "phase_pros-cons": {
+    "title": "Compare",
+    "description": "Describe what you liked and/or disliked in both representations",
+    "a_title": "Representation A",
+    "b_title": "Representation B",
+    "positive": "Liked",
+    "negative": "Disliked"
+  },
+  "phase_selection": {
+    "title": "Select",
+    "description": "Which representation do you prefer?",
+    "a_button": {
+      "label": "I prefer representation A",
+      "tooltip": "Click to select representation A"
+    },
+    "b_button": {
+      "label": "I prefer representation B",
+      "tooltip": "Click to select representation B"
+    }
   },
   "phase_seq-comparative": {
     "title": "How hard was it comparing both representations?"
   },
   "phase_seq-passfail": {
     "title": "How hard was it to select passed/failed?"
+  },
+  "phase_seq-selection": {
+    "title": "How hard was it to make a selection?"
+  },
+  "please_finish": {
+    "message": "Please finish this comparison first.\nAre you sure you want to leave this page?"
   },
   "representation_viewer": {
     "pdf": {
@@ -127,24 +144,15 @@
       "tooltip": ""
     }
   },
-  "notes": {
-    "label": "Notes",
-    "tooltip": "Write down whatever remarks you have about this representation."
-  },
-  "please_finish": {
-    "message": "Please finish this comparison first.\nAre you sure you want to leave this page?"
-  },
-  "comparison_messages": {
-    "title": "Comparisons",
-    "description": "No new comparison could be made for <strong>'__title__'</strong>:",
-    "messages": {
-      "stage-completed": "This stage of the assessment is completed. We will contact you when the next stage begins.",
-      "assessor-stage-completed": "This stage of the assessment is completed. We will contact you when the next stage begins.",
-      "assessor-assessment-completed": "You have completed all your comparisons.",
-      "assessment-completed": "This assessment is completed."
+  "seq": {
+    "easy": {
+      "label": "Very easy"
     },
-    "stop_button": {
-      "label": "Ok"
+    "hard": {
+      "label": "Very hard"
+    },
+    "save_button": {
+      "label": "Save"
     }
   }
 }
