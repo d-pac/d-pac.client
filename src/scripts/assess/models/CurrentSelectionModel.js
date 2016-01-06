@@ -21,14 +21,12 @@ module.exports = Backbone.Model.extend( {
         debug( '#initialize', attrs );
         var currentPhaseId = attrs.comparison.get( 'phase' );
         var assessmentPhases = attrs.assessment.get( 'phases' );
-        var index;
+        var index = 0;
         if( currentPhaseId ){
             index = assessmentPhases.indexOf( currentPhaseId );
             if( index < 0 ){
                 index = 0;
             }
-        } else {
-            index = 0;
         }
         currentPhaseId = assessmentPhases[ index ];
         this.set( 'currentPhase', attrs.phases.get( currentPhaseId ) );
