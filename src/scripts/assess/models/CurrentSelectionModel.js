@@ -71,6 +71,7 @@ module.exports = Backbone.Model.extend( {
     },
 
     getFeedbackByOrder: function( orderId ){
+        debug('#getFeedbackByOrder', this);
         var document = this.getDocumentByOrder( orderId );
         if( document ){
             return this.get( 'feedback' ).getFeedbackByDocId( document._id );

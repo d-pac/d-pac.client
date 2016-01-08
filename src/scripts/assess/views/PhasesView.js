@@ -66,6 +66,16 @@ module.exports = Marionette.LayoutView.extend( {
             seq: {
                 values: values,
                 selected: this.seqValue
+            },
+            proscons: {
+                a: _.get( this.model.getFeedbackByOrder( 'a' ), 'proscons', {
+                    positive: '',
+                    negative: ''
+                } ),
+                b: _.get( this.model.getFeedbackByOrder( 'b' ), 'proscons', {
+                    positive: '',
+                    negative: ''
+                } )
             }
         }
     },

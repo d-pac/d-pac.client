@@ -15,9 +15,9 @@ _.extend( module.exports.prototype, Backbone.Events, {
         debug( '#parseCollection', raw );
         if( raw.included ){
             var grouped = _.groupBy( raw.included, 'type' );
-            this.representationsCollection.reset( grouped.representations );
-            this.notesCollection.reset( grouped.notes );
-            this.feedbackCollection.reset( grouped.feedback );
+            grouped.representations && this.representationsCollection.reset( grouped.representations );
+            grouped.notes && this.notesCollection.reset( grouped.notes );
+            grouped.feedback && this.feedbackCollection.reset( grouped.feedback );
         }
         return raw.data;
     },
