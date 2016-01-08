@@ -58,16 +58,27 @@ module.exports = Backbone.Model.extend( {
         return false;
     },
 
-    getNoteByOrder: function( orderId ){
+    getDocumentByOrder: function( orderId ){
         var representation = this.getRepresentationByOrder( orderId );
-        var document = representation.get( "document" );
-        if(document){
+        return representation.get( "document" );
+    },
+
+    getNoteByOrder: function( orderId ){
+        var document = this.getDocumentByOrder( orderId );
+        if( document ){
             return this.get( 'notes' ).getNoteByDocId( document._id );
         }
     },
 
+    getFeedbackByOrder: function( orderId ){
+        var document = this.getDocumentByOrder( orderId );
+        if( document ){
+            return this.get( 'feedback' ).getFeedbackByDocId( document._id );
+        }
+    },
+
     notesEnabled: function(){
-        return this.get('assessment' ).get('enableNotes');
+        return this.get( 'assessment' ).get( 'enableNotes' );
     },
 
     storeDataForCurrentPhase: function( value ){
