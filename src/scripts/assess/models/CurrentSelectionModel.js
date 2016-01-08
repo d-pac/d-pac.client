@@ -12,6 +12,7 @@ module.exports = Backbone.Model.extend( {
         assessment: undefined,
         representations: undefined,
         notes: undefined,
+        feedback: undefined,
         phases: undefined,
         selectedRepresentation: undefined,
         completed: false

@@ -17,9 +17,11 @@ _.extend( BootstrapDomain.prototype, {
         context.wireSingleton( 'phasesCollection', require( '../collections/PhasesCollection' ) );
         context.wireSingleton( 'representationsCollection', require( '../../common/collections/RepresentationsCollection' ) );
         context.wireSingleton( 'notesCollection', require( '../collections/NotesCollection' ) );
+        context.wireSingleton( 'feedbackCollection', require( '../../common/collections/FeedbackCollection' ) );
         context.wireSingleton( 'comparisonsParser', require( '../services/ComparisonsParser' ), {
             representationsCollection: 'representationsCollection',
-            notesCollection: 'notesCollection'
+            notesCollection: 'notesCollection',
+            feedbackCollection: 'feedbackCollection'
         } );
         context.wireSingleton( 'comparisonsCollection', require( '../collections/ComparisonsCollection' ), {
             parser: 'comparisonsParser'
@@ -35,6 +37,7 @@ _.extend( BootstrapDomain.prototype, {
             representationsCollection: "representationsCollection",
             timelogsCollection: 'timelogsCollection',
             notesCollection: 'notesCollection',
+            feedbackCollection: 'feedbackCollection',
             context: "moduleContext"
         } );
         //context.configure('timelogger', undefined, this.config.timelogs);

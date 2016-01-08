@@ -3,26 +3,21 @@ var debug = require( 'debug' )( 'dpac:assess.services', '[ComparisonsParser]' );
 var Backbone = require( 'backbone' );
 var _ = require( 'underscore' );
 
-function representationFilter( item ){
-    return item.type === "representations";
-}
-
-function notesFilter( item ){
-    return item.type === "notes";
-}
-
 module.exports = function ComparisonsParser(){
     debug( '#constructor' );
 };
 _.extend( module.exports.prototype, Backbone.Events, {
     representationsCollection: undefined,
-    notesCollection:undefined,
+    notesCollection: undefined,
+    feedbackCollection: undefined,
 
     parseCollection: function( raw ){
         debug( '#parseCollection', raw );
-        if(raw.included){
-            this.representationsCollection.reset(  _.filter( raw.included, representationFilter ) );
-            this.notesCollection.reset(  _.filter( raw.included, notesFilter ) );
+        if( raw.included ){
+            var grouped = _.groupBy( raw.included, 'type' );
+            this.representationsCollection.reset( grouped.representations );
+            this.notesCollection.reset( grouped.notes );
+            this.feedbackCollection.reset( grouped.feedback );
         }
         return raw.data;
     },
@@ -42,7 +37,7 @@ _.extend( module.exports.prototype, Backbone.Events, {
             case "comparisons":
                 return mixed;
             default: // enveloped
-                return this.parseCollection(mixed);
+                return this.parseCollection( mixed );
         }
     }
 } );

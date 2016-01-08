@@ -15,6 +15,7 @@ module.exports = Marionette.Controller.extend( {
     representationsCollection: undefined,
     notesCollection: undefined,
     timelogsCollection: undefined,
+    feedbackCollection: undefined,
 
     contextEvents: {
         "comparisons:unfinished:confirmed": "selectComparison",
@@ -116,7 +117,8 @@ module.exports = Marionette.Controller.extend( {
             assessment: assessment,
             phases: this.phasesCollection,
             representations: this.representationsCollection,
-            notes: this.notesCollection
+            notes: this.notesCollection,
+            feedback: this.feedbackCollection
         } );
 
         var defaultAssessmentCopy = i18n.getResourceBundle(i18n.lng(), 'assess');
