@@ -16,13 +16,16 @@ module.exports = Marionette.Controller.extend( {
                                    line,
                                    col,
                                    err ){
-            console.log( "ERROR occurred:", err );
+            console.log( "ERROR occurred:", arguments );
+            var ref = (err && err.message)
+                ? err.message
+                : message || "unknown error";
             this.errorEventHandler( {
                 errors: [
                     {
                         message: "Unknown Error",
                         explanation: "Unknown Error",
-                        ref: err.message,
+                        ref: ref,
                         fatal: true
                     }
                 ],
