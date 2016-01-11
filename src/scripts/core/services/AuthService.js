@@ -25,7 +25,7 @@ module.exports = NestedModel.extend( {
     parse: function( raw ){
         var attrs = {};
         attrs.user = _.get(raw, ['included', 0], false);
-        attrs.authenticated = !!raw.data;
+        attrs.authenticated = !!_.get(raw, 'data', false);
         if( attrs.user ){
             attrs._id = attrs.user._id
         }
