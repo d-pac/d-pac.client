@@ -14,6 +14,7 @@ _.extend( BootstrapDomain.prototype, {
 
         var context = this.context;
         context.wireSingleton( 'representationsCollection', require( '../../common/collections/RepresentationsCollection' ) );
+        context.wireSingleton( 'feedbackCollection', require( '../../common/collections/FeedbackCollection' ) );
 
         this.context = undefined;
         this.eventName = undefined;

@@ -21,9 +21,9 @@ module.exports = Backbone.Model.extend( {
         //} );
     },
 
-    parse: function( raw ){
-        return raw.data;
-    },
+    //parse: function( raw ){
+    //    return raw.data;
+    //},
 
     update: function( attrs ){
         this.save( attrs, { patch: true } );
