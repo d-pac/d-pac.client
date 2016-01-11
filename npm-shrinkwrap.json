@@ -180,6 +180,11 @@
         }
       }
     },
+    "lodash": {
+      "version": "3.10.1",
+      "from": "lodash@>=3.0.0 <4.0.0",
+      "resolved": "https://registry.npmjs.org/lodash/-/lodash-3.10.1.tgz"
+    },
     "node-uuid": {
       "version": "1.4.3",
       "from": "https://registry.npmjs.org/node-uuid/-/node-uuid-1.4.3.tgz",
