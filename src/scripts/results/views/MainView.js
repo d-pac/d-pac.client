@@ -16,6 +16,7 @@ module.exports = Marionette.LayoutView.extend( {
         overview: "#results-assessment-overview",
         ranking: '#results-representations-ranking',
         details: '#results-representation-details',
+        feedback: '#results-representation-feedback'
     },
 
     contextEvents: {
@@ -24,6 +25,7 @@ module.exports = Marionette.LayoutView.extend( {
             this.overview.empty();
             this.ranking.empty();
             this.details.empty();
+            this.feedback.empty();
             _.delay( function(){
                 this.overview.show( this.showAssessmentOverview() );
                 this.ranking.show( this.showRanking() );
@@ -31,12 +33,18 @@ module.exports = Marionette.LayoutView.extend( {
         },
         'results:representation:selected': function(){
             this.details.$el.addClass( 'empty-region' );
+            this.feedback.$el.addClass( 'empty-region' );
             _.delay( function(){
                 this.details.$el.removeClass( 'empty-region' );
                 this.details.show( this.showDetails() );
                 $( "html, body" ).animate( { scrollTop: $( document ).height() }, "slow" );
 
-            }.bind( this ), 500 )
+            }.bind( this ), 500 );
+            _.delay( function(){
+                this.feedback.$el.removeClass( 'empty-region' );
+                this.feedback.show( this.showFeedback() );
+                $( "html, body" ).animate( { scrollTop: $( document ).height() }, "slow" );
+            }.bind( this ), 1000 )
         }
     },
 

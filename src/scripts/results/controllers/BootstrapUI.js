@@ -18,7 +18,8 @@ _.extend( BootstrapUI.prototype, {
             showAssessmentMenu: 'AssessmentMenuView',
             showAssessmentOverview: 'AssessmentOverview',
             showRanking: 'RepresentationsRankingView',
-            showDetails: 'RepresentationDetailsView'
+            showDetails: 'RepresentationDetailsView',
+            showFeedback: 'FeedbackListView'
         } );
         context.wireView( 'AssessmentSelectionView', require( '../views/AssessmentSelection' ), {
             collection: 'assessmentsCollection'
@@ -35,6 +36,10 @@ _.extend( BootstrapUI.prototype, {
         } );
         context.wireView( 'RepresentationDetailsView', require( '../views/RepresentationDetails' ), {
             collection: 'representationsCollection'
+        } );
+        context.wireView( 'FeedbackListView', require( '../views/FeedbackList' ), {
+            representations: 'representationsCollection',
+            collection: 'feedbackCollection'
         } );
 
         this.context = undefined;

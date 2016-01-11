@@ -31,5 +31,9 @@
   },
   "representation_details": {
     "title": "Details for '__name__'"
+  },
+  "representation_feedback": {
+    "title": "Feedback for '__name__'",
+    "anonymized": "assessor-__num__"
   }
 }
