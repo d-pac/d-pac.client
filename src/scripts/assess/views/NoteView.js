@@ -1,6 +1,6 @@
 'use strict';
 var Marionette = require( 'backbone.marionette' );
-var debug = require( 'debug' )( 'dpac:assess.views', '[RepresentationDetailView]' );
+var debug = require( 'debug' )( 'dpac:assess.views', '[NoteView]' );
 var tpl = require( './templates/Note.hbs' );
 
 module.exports = Marionette.ItemView.extend( {

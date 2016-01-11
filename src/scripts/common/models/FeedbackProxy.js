@@ -1,18 +1,16 @@
 'use strict';
-var NestedModel = require( 'backbone-nested-model' );
+var Backbone = require( 'backbone' );
 var debug = require( 'debug' )( 'dpac:assess.models', '[FeedbackProxy]' );
 var teardown = require( '../../common/mixins/teardown' );
-module.exports = NestedModel.extend( {
+module.exports = Backbone.Model.extend( {
     idAttribute: "_id",
 
     defaults: {
         _rid: undefined,
         author: undefined,
         document: undefined,
-        proscons: {
-            positive: undefined,
-            negative: undefined
-        }
+        positive: undefined,
+        negative: undefined
     },
 
     initialize: function(){
@@ -23,8 +21,12 @@ module.exports = NestedModel.extend( {
         //} );
     },
 
-    parse: function(raw){
+    parse: function( raw ){
         return raw.data;
+    },
+
+    update: function( attrs ){
+        this.save( attrs, { patch: true } );
     }
 
 } );

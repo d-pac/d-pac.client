@@ -17,6 +17,6 @@ module.exports = Backbone.Collection.extend( {
         return this.findWhere( {
             document: docId
         } );
-    }
+    },
 } );
 teardown.collection.mixin( module.exports );

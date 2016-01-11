@@ -59,8 +59,6 @@ module.exports = Marionette.LayoutView.extend( {
                 selected: (this.seqValue === value)
             } );
         }, this );
-        var feedbackA = this.model.getFeedbackByOrder( 'a' );
-        var feedbackB = this.model.getFeedbackByOrder( 'b' );
         var data = {
             representations: this.model.get( "comparison" ).get( "representations" ),
             title: i18n.t( "assess:phase_" + slug + ".title" ),
@@ -70,20 +68,11 @@ module.exports = Marionette.LayoutView.extend( {
                 selected: this.seqValue
             },
             feedback: {
-                a: (feedbackA)
-                    ? feedbackA.get( 'proscons' )
-                    : {
-                    positive: '',
-                    negative: ''
-                },
-                b: (feedbackB)
-                    ? feedbackB.get( 'proscons' )
-                    : {
-                    positive: '',
-                    negative: ''
-                }
+                a: this.model.getFeedbackByOrder( 'a' ).toJSON(),
+                b: this.model.getFeedbackByOrder( 'b' ).toJSON()
             }
         };
+        console.log( 'phasesview data', data );
         return data;
     },
 
@@ -116,12 +105,6 @@ module.exports = Marionette.LayoutView.extend( {
     saveProsCons: function( event ){
         this.ui.submitProsConsBtn.prop( 'disabled', 'disabled' );
         this.ui.submitProsConsBtn.button( 'sending' );
-        //this.model.storeDataForCurrentPhase( {
-        //    aPositive:,
-        //    aNegative: this.$( '#a-negative' ).val(),
-        //    bPositive: this.$( '#b-positive' ).val(),
-        //    bNegative: this.$( '#b-negative' ).val()
-        //} );
         this.model.storeFeedback( {
             a: {
                 positive: this.$( '#a-positive' ).val(),

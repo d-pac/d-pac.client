@@ -73,7 +73,8 @@ module.exports = Backbone.Model.extend( {
     getFeedbackByOrder: function( orderId ){
         var document = this.getDocumentByOrder( orderId );
         if( document ){
-            return this.get( 'feedback' ).getFeedbackByDocId( document._id );
+            return this.get( 'feedback' ).getFeedbackByDocId( document._id )
+                || this.createFeedback( {}, orderId );
         }
     },
 
@@ -109,6 +110,19 @@ module.exports = Backbone.Model.extend( {
     },
 
     storeFeedback: function( feedback ){
+        if( feedback.a.positive || feedback.a.negative ){
+            this.getFeedbackByOrder( 'a' ).update( {
+                positive: feedback.a.positive,
+                negative: feedback.a.negative
+            } );
+        }
+
+        if( feedback.b.positive || feedback.b.negative ){
+            this.getFeedbackByOrder( 'b' ).update( {
+                positive: feedback.b.positive,
+                negative: feedback.b.negative
+            } );
+        }
         this.storeDataForCurrentPhase( {
             aPositive: feedback.a.positive,
             aNegative: feedback.a.negative,
@@ -117,11 +131,20 @@ module.exports = Backbone.Model.extend( {
         } );
     },
 
+    createFeedback: function( feedback,
+                              order ){
+        _.defaults( feedback, {
+            author: this.get( 'comparison' ).get( 'assessor' ),
+            document: this.getDocumentByOrder( order )._id
+        } );
+        return this.get( 'feedback' ).add( feedback );
+    },
+
     createNote: function( noteData,
                           order ){
         _.defaults( noteData, {
             author: this.get( 'comparison' ).get( 'assessor' ),
-            document: this.getRepresentationByOrder( order ).get( 'document' )._id
+            document: this.getDocumentByOrder( order )._id
         } );
         return this.get( 'notes' ).create( noteData );
     }
