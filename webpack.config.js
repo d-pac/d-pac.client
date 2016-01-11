@@ -30,7 +30,7 @@ module.exports = {
     },
     output: {
         path: path.join( __dirname, "dist/assets" ),
-        publicPath: 'assets',
+        publicPath: 'assets/',
         filename: '[name].js',
         chunkFilename: "[name].js"
     },
