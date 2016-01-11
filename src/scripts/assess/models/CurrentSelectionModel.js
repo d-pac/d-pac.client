@@ -71,7 +71,6 @@ module.exports = Backbone.Model.extend( {
     },
 
     getFeedbackByOrder: function( orderId ){
-        debug('#getFeedbackByOrder', this);
         var document = this.getDocumentByOrder( orderId );
         if( document ){
             return this.get( 'feedback' ).getFeedbackByDocId( document._id );
@@ -107,6 +106,15 @@ module.exports = Backbone.Model.extend( {
         }
         comparison.once( "sync", handler, this );
         comparison.update( update );
+    },
+
+    storeFeedback: function( feedback ){
+        this.storeDataForCurrentPhase( {
+            aPositive: feedback.a.positive,
+            aNegative: feedback.a.negative,
+            bPositive: feedback.b.positive,
+            bNegative: feedback.b.negative
+        } );
     },
 
     createNote: function( noteData,

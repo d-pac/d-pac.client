@@ -35,7 +35,7 @@ module.exports = Marionette.LayoutView.extend( {
     events: {
         'click @ui.aBtn': "selectionMade",
         'click @ui.bBtn': "selectionMade",
-        'click @ui.submitFeedbackBtn': 'feedbackProvided',
+        'click @ui.submitFeedbackBtn': 'comparativeFeedbackProvided',
         'click @ui.seqBtn': 'seqValueSelected',
         'click @ui.submitSeqBtn': 'saveSeq',
         'click @ui.submitProsConsBtn': 'saveProsCons'
@@ -59,7 +59,9 @@ module.exports = Marionette.LayoutView.extend( {
                 selected: (this.seqValue === value)
             } );
         }, this );
-        return {
+        var feedbackA = this.model.getFeedbackByOrder( 'a' );
+        var feedbackB = this.model.getFeedbackByOrder( 'b' );
+        var data = {
             representations: this.model.get( "comparison" ).get( "representations" ),
             title: i18n.t( "assess:phase_" + slug + ".title" ),
             description: i18n.t( "assess:phase_" + slug + ".description" ),
@@ -67,17 +69,22 @@ module.exports = Marionette.LayoutView.extend( {
                 values: values,
                 selected: this.seqValue
             },
-            proscons: {
-                a: _.get( this.model.getFeedbackByOrder( 'a' ), 'proscons', {
+            feedback: {
+                a: (feedbackA)
+                    ? feedbackA.get( 'proscons' )
+                    : {
                     positive: '',
                     negative: ''
-                } ),
-                b: _.get( this.model.getFeedbackByOrder( 'b' ), 'proscons', {
+                },
+                b: (feedbackB)
+                    ? feedbackB.get( 'proscons' )
+                    : {
                     positive: '',
                     negative: ''
-                } )
+                }
             }
-        }
+        };
+        return data;
     },
 
     seqValueSelected: function( event ){
@@ -100,7 +107,7 @@ module.exports = Marionette.LayoutView.extend( {
         this.model.storeDataForCurrentPhase( this.$( event.currentTarget ).data( 'selection-id' ) );
     },
 
-    feedbackProvided: function( event ){
+    comparativeFeedbackProvided: function( event ){
         this.ui.submitFeedbackBtn.prop( 'disabled', 'disabled' );
         this.ui.submitFeedbackBtn.button( 'sending' );
         this.model.storeDataForCurrentPhase( this.ui.feedbackInput.val() );
@@ -109,12 +116,22 @@ module.exports = Marionette.LayoutView.extend( {
     saveProsCons: function( event ){
         this.ui.submitProsConsBtn.prop( 'disabled', 'disabled' );
         this.ui.submitProsConsBtn.button( 'sending' );
-        this.model.storeDataForCurrentPhase( {
-            aPositive: this.$( '#a-positive' ).val(),
-            aNegative: this.$( '#a-negative' ).val(),
-            bPositive: this.$( '#b-positive' ).val(),
-            bNegative: this.$( '#b-negative' ).val()
-        } );
+        //this.model.storeDataForCurrentPhase( {
+        //    aPositive:,
+        //    aNegative: this.$( '#a-negative' ).val(),
+        //    bPositive: this.$( '#b-positive' ).val(),
+        //    bNegative: this.$( '#b-negative' ).val()
+        //} );
+        this.model.storeFeedback( {
+            a: {
+                positive: this.$( '#a-positive' ).val(),
+                negative: this.$( '#a-negative' ).val()
+            },
+            b: {
+                positive: this.$( '#b-positive' ).val(),
+                negative: this.$( '#b-negative' ).val()
+            }
+        } )
     }
 } )
 ;
