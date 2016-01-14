@@ -6,8 +6,6 @@ module.exports.collection = {
     mixin : function( collectionClass ){
 
         _.extend(collectionClass.prototype, {
-            _teardown_completed : false,
-
             teardown : function(){
                 if( !this._teardown_completed ){
                     this._teardown_completed = true;
@@ -36,7 +34,6 @@ module.exports.collection = {
 module.exports.model = {
     mixin : function( modelClass ){
         _.extend(modelClass.prototype, {
-            _teardown_completed : false,
             teardown : function(){
                 if( !this._teardown_completed ){
                     this._teardown_completed = true;
