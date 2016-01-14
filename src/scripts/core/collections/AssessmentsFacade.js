@@ -5,6 +5,7 @@ var Backbone = require( 'backbone' );
 var debug = require( 'debug' )( 'dpac:core.collections', '[AssessmentsFacade]' );
 var teardown = require( '../../common/mixins/teardown' );
 var selectable = require( '../../common/mixins/selectable' );
+var safeSync = require( '../../common/mixins/safeSync' );
 
 var ModelClass = require( '../models/AssessmentProxy' );
 
@@ -45,9 +46,6 @@ module.exports = Backbone.Collection.extend( {
         debug( '#initialize' );
 
         this.byRole = {};
-        this.once( 'sync', function(){
-            this._synced = true;
-        }, this )
     },
 
     parse: function( raw ){
@@ -92,6 +90,6 @@ module.exports = Backbone.Collection.extend( {
         this.roles( 'teardown' );
     }
 } );
-
+safeSync.collection.mixin( module.exports );
 teardown.collection.mixin( module.exports );
 
