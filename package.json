@@ -4,7 +4,7 @@
   "build": "680",
   "private": true,
   "devDependencies": {
-    "bower": "^1.5.3",
+    "bower": "^1.7.2",
     "css-loader": "^0.23.0",
     "exports-loader": "^0.6.2",
     "file-loader": "^0.8.5",
