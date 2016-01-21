@@ -1,6 +1,6 @@
 {
   "name": "d-pac.client",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "dependencies": {
     "backbone.whenthen": {
       "version": "1.0.2",
