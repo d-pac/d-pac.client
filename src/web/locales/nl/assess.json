@@ -14,7 +14,7 @@
     "description": "Kies een uit te voeren opdracht:",
     "empty": "U hebt geen uit te voeren opdrachten.",
     "completed": "U hebt al uw vergelijkingen uitgevoerd.",
-    "submit_button":{
+    "submit_button": {
       "sending": "Even geduld..."
     },
     "continue": "Ga door met een andere opdracht:"
