@@ -36,5 +36,12 @@
     },
     "cancel": {
         "label": "Cancel"
+    },
+  "messages": {
+    "saved": {
+      "type": "success",
+      "message": "Your account modifications have been saved."
     }
+  }
+
 }
