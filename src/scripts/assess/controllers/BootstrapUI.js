@@ -39,7 +39,11 @@ _.extend( BootstrapUI.prototype, {
             assessmentDetailsFactory: "AssessmentDetails"
         } );
         context.wireView( 'RepresentationsView', require( '../views/RepresentationsView' ), {
-            model: "currentSelection"
+            model: "currentSelection",
+            createRepresentationDetail: 'RepresentationDetail'
+        } );
+        context.wireView('RepresentationDetail', require( '../views/RepresentationDetailView' ), {
+            mediaViewFactory: 'mediaViewFactory'
         } );
         context.wireView( 'AssessmentDetails', require( '../views/AssessmentDetails' ), {
             model: "currentSelection"

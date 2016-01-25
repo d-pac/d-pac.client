@@ -1,8 +1,9 @@
 'use strict';
 var debug = require( 'debug' )( 'dpac:core.controllers', '[BootstrapUI]' );
-var _ = require('underscore');
+var _ = require( 'underscore' );
 
-module.exports = function BootstrapUI(  ){};
+module.exports = function BootstrapUI(){
+};
 _.extend( module.exports.prototype, {
     execute: function(){
         debug( '#execute' );
@@ -15,7 +16,7 @@ _.extend( module.exports.prototype, {
         } );
 
         context.wireView( 'AccountView', require( '../views/AccountView' ), {
-            model : "accountModel"
+            model: "accountModel"
         } );
 
         context.wireView( 'SigninView', require( '../views/SigninView' ), {
@@ -36,14 +37,16 @@ _.extend( module.exports.prototype, {
         } );
         context.wireView( 'WelcomeView', require( '../views/WelcomeView' ), {
             collection: 'pagesCollection',
-            auth : 'authService',
+            auth: 'authService',
             config: 'config',
         } );
         context.wireView( 'NotFoundView', require( '../views/404View' ) );
         context.wireView( 'TutorialView', require( '../views/TutorialView' ) );
 
+        context.wireSingleton( 'mediaViewFactory', require( '../../common/views/MediaViewFactory' ) );
+
         var appView = context.getObject( 'AppView' )();
         appView.render();
     }
-});
+} );
 

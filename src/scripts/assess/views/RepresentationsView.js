@@ -2,10 +2,11 @@
 var Marionette = require( 'backbone.marionette' );
 var debug = require( 'debug' )( 'dpac:assess.views', '[RepresentationsView]' );
 var tpl = require( './templates/RepresentationsView.hbs' );
-var DetailView = require( './RepresentationDetailView' );
 var NoteView = require( './NoteView' );
 
 module.exports = Marionette.LayoutView.extend( {
+    createRepresentationDetail : undefined,
+
     template: tpl,
 
     regions: {
@@ -40,10 +41,10 @@ module.exports = Marionette.LayoutView.extend( {
 
     onRender: function(){
         debug( '#onRender', this.model );
-        this.representationA.show( new DetailView( {
+        this.representationA.show( this.createRepresentationDetail( {
             model: this.model.getRepresentationByOrder( "a" )
         } ) );
-        this.representationB.show( new DetailView( {
+        this.representationB.show( this.createRepresentationDetail( {
             model: this.model.getRepresentationByOrder( "b" )
         } ) );
         if(this.model.notesEnabled()){

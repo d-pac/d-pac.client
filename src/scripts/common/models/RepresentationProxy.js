@@ -2,6 +2,7 @@
 var NestedModel = require( 'backbone-nested-model' );
 var debug = require( 'debug' )( 'dpac:common.models', '[RepresentationProxy]' );
 var teardown = require( '../../common/mixins/teardown' );
+
 module.exports = NestedModel.extend( {
     idAttribute: "_id",
 
