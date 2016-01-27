@@ -12,7 +12,7 @@ _.extend( module.exports.prototype, {
 
         var context = this.context;
         context.wireCommands( {
-            'config:load:requested': [ require( './LoadConfiguration' ) ],
+            'config:load:requested': [ require( './ConfigureApplication' ) ],
             'app:domain:requested': [
                 require( './BootstrapDomain' ),
                 require( './BootstrapMediators' ),
