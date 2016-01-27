@@ -9,6 +9,10 @@ module.exports = function ConfigureApplication(){
 _.extend( module.exports.prototype, {
     execute: function(){
         debug( '#execute' );
+        var appVersionLabel = process.env.APP_VERSION || '[BROKEN]';
+        if(process.env.APP_VERSION_LABEL){
+            appVersionLabel+= '-' + process.env.APP_VERSION_LABEL;
+        }
         this.context.wireValue( 'config', {
             "api": {
                 "host": process.env.API_HOST,
@@ -22,7 +26,7 @@ _.extend( module.exports.prototype, {
                 "shortcut": "ctrl+alt+d"
             },
             "app": {
-                "version": process.env.APP_VERSION,
+                "version": appVersionLabel,
                 "lang": process.env.APP_LANG || 'nl'
             },
             "slugs": {
