@@ -58,6 +58,9 @@ module.exports = Marionette.Controller.extend( {
         var mimeType = representation.get( 'document.mimeType' ) || 'text/html';
         var mediaType = mediaByMime[ mimeType ];
         var mediaView = mediaViews[ mediaType ];
+        if(!mediaView){
+            throw new Error('incorrect-media-type');
+        }
         return new mediaView.viewClass( {
             template: mediaView.tpl,
             model: representation,

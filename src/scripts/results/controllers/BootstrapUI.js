@@ -35,7 +35,8 @@ _.extend( BootstrapUI.prototype, {
             assessments: 'assessmentsCollection'
         } );
         context.wireView( 'RepresentationDetailsView', require( '../views/RepresentationDetails' ), {
-            collection: 'representationsCollection'
+            collection: 'representationsCollection',
+            mediaViewFactory: 'mediaViewFactory'
         } );
         context.wireView( 'FeedbackListView', require( '../views/FeedbackList' ), {
             representations: 'representationsCollection',

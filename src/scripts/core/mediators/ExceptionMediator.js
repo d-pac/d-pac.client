@@ -19,7 +19,7 @@ module.exports = Marionette.Controller.extend( {
             console.log( "ERROR occurred:", arguments );
             var ref = (err && err.message)
                 ? err.message
-                : message || "unknown error";
+                : message || "unknown-error";
             this.errorEventHandler( {
                 errors: [
                     {
