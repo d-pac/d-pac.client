@@ -27,11 +27,11 @@ module.exports = Marionette.ItemView.extend( {
 
     requestPause: function(){
         debug('#requestPause');
-        this.dispatch('timelogs:stop:requested');
+        this.dispatch('assess:pause:requested');
     },
 
     requestContinue: function(){
         debug('#requestContinue');
-        this.dispatch('timelogs:start:requested');
+        this.dispatch('assess:resume:requested');
     }
 } );

@@ -17,8 +17,8 @@ module.exports = Marionette.Controller.extend( {
 
     contextEvents: {
         'comparisons:editing:requested': 'verifyTimelogState',
-        'timelogs:stop:requested': 'stopLogging',
-        'timelogs:start:requested': 'verifyTimelogState'
+        'assess:pause:requested': 'stopLogging',
+        'assess:resume:requested': 'verifyTimelogState'
     },
 
     initialize: function(){
