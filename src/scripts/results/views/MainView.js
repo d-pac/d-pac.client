@@ -34,16 +34,15 @@ module.exports = Marionette.LayoutView.extend( {
         'results:representation:selected': function(){
             this.details.$el.addClass( 'empty-region' );
             this.feedback.$el.addClass( 'empty-region' );
+            var anchor = this.ranking.$el.offset().top + this.ranking.$el.height() - 100;
             _.delay( function(){
                 this.details.$el.removeClass( 'empty-region' );
                 this.details.show( this.showDetails() );
-                $( "html, body" ).animate( { scrollTop: $( document ).height() }, "slow" );
-
             }.bind( this ), 500 );
             _.delay( function(){
                 this.feedback.$el.removeClass( 'empty-region' );
                 this.feedback.show( this.showFeedback() );
-                $( "html, body" ).animate( { scrollTop: $( document ).height() }, "slow" );
+                $( "html, body" ).animate( { scrollTop: anchor + "px" }, "slow" );
             }.bind( this ), 1000 )
         }
     },
