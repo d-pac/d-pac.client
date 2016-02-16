@@ -1,0 +1,21 @@
+{{#if feedback.length}}
+    <h4>{{t "results:representation_feedback.title" name=representation.name}}</h4>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <td>{{ t "results:representation_feedback.assessor"}}</td>
+                <td>{{ t "results:representation_feedback.positive"}}</td>
+                <td>{{ t "results:representation_feedback.negative"}}</td>
+            </tr>
+        </thead>
+        <tbody>
+        {{#each feedback}}
+            <tr>
+                <td>{{ t "results:representation_feedback.anonymized" num=anon}}</td>
+                <td>{{{positive}}}</td>
+                <td>{{{negative}}}</td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+{{/if}}

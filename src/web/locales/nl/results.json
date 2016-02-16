@@ -34,6 +34,9 @@
   },
   "representation_feedback": {
     "title": "Feedback voor '__name__'",
-    "anonymized": "beoordelaar-__num__"
+    "anonymized": "beoordelaar-__num__",
+    "assessor": "Beoordelaar",
+    "positive": "Positief",
+    "negative": "Negatief"
   }
 }

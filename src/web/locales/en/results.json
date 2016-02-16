@@ -34,6 +34,9 @@
   },
   "representation_feedback": {
     "title": "Feedback for '__name__'",
-    "anonymized": "assessor-__num__"
+    "anonymized": "assessor-__num__",
+    "assessor": "Assessor",
+    "positive": "Positive",
+    "negative": "Negative"
   }
 }
