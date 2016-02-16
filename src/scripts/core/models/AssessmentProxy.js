@@ -30,7 +30,7 @@ module.exports = Backbone.Model.extend( {
 
     parse: function( raw ){
         raw.uiCopy = JSON.parse( raw.uiCopy );
-        raw.hasResults = (raw.state === 'calculated');
+        raw.hasResults = (raw.stats && raw.stats.lastRun);
         return raw;
     },
 
