@@ -1,4 +1,6 @@
 'use strict';
+
+var _ = require( 'lodash' );
 var Marionette = require( 'backbone.marionette' );
 var debug = require( 'debug' )( 'dpac:common.views', '[MediaViewFactory]' );
 var consts = {
@@ -38,33 +40,38 @@ mediaViews[ consts.pdf ] = {
 mediaViews[ consts.audio ] = {
     viewClass: require( './JWPlayerView' ),
     tpl: require( '../views/templates/media/video.hbs' ),
-    options: {
-        image: './assets/waveform.png',
-        width: '50%'
+    defaults: {
+        width: '100%',
+        height: 180
     }
 };
 
 mediaViews[ consts.video ] = {
     viewClass: require( './JWPlayerView' ),
     tpl: require( '../views/templates/media/video.hbs' ),
-    options: {
+    defaults: {
         width: '100%',
-        aspectratio: '16:9',
+        stretch: 'uniform',
+        aspectratio: "16:9"
     }
 };
 
 module.exports = Marionette.Controller.extend( {
-    getMediaView: function( representation ){
+    getMediaView: function( representation,
+                            settings ){
+        if(!settings){
+            settings={};
+        }
         var mimeType = representation.get( 'document.mimeType' ) || 'text/html';
         var mediaType = mediaByMime[ mimeType ];
         var mediaView = mediaViews[ mediaType ];
-        if(!mediaView){
-            throw new Error('incorrect-media-type');
+        if( !mediaView ){
+            throw new Error( 'incorrect-media-type' );
         }
         return new mediaView.viewClass( {
             template: mediaView.tpl,
             model: representation,
-            options: mediaView.options
+            options: _.defaultsDeep( {}, settings[ mediaType ], mediaView.defaults )
         } );
     }
 } );

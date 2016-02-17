@@ -1,24 +1,32 @@
-<h4>{{t "results:representation_details.title" name=name}}</h4>
-<table class="table">
-    <tr>
-        <td width="50%">
-            <table class="table table-bordered table-striped">
-                <tr>
-                    <td>{{t "results:representations_ranking.rank"}}</td>
-                    <td class="text-right"><code>{{rank}}</code></td>
-                </tr>
-                <tr>
-                    <td>{{t "results:representations_ranking.ability"}}</td>
-                    <td class="text-right"><code>{{toFixed ability.value}}</code></td>
-                </tr>
-                <tr>
-                    <td>{{t "results:representations_ranking.comparisonsNum"}}</td>
-                    <td class="text-right"><code>{{comparisonsNum}}</code></td>
-                </tr>
-            </table>
-        </td>
-        <td width="50%" >
-            <div class="representation-detail"></div>
-        </td>
-    </tr>
-</table>
+<div class="row">
+    <div class="column"><h4>{{t "results:representation_details.title" name=name}}</h4></div>
+</div>
+
+<div class="row">
+    <div class="column col-sm-12 col-lg-6">
+            <div class="representation-detail row"></div>
+        {{#if hasDescription}}
+            <div class="row">
+                <blockquote class="representation-description">
+                    {{{document.text}}}
+                </blockquote>
+            </div>
+        {{/if}}
+    </div>
+    <div class="column col-sm-12 col-lg-6">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <td>{{t "results:representations_ranking.rank"}}</td>
+                <td class="text-right"><code>{{rank}}</code></td>
+            </tr>
+            <tr>
+                <td>{{t "results:representations_ranking.ability"}}</td>
+                <td class="text-right"><code>{{toFixed ability.value}}</code></td>
+            </tr>
+            <tr>
+                <td>{{t "results:representations_ranking.comparisonsNum"}}</td>
+                <td class="text-right"><code>{{comparisonsNum}}</code></td>
+            </tr>
+        </table>
+    </div>
+</div>

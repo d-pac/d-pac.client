@@ -19,7 +19,13 @@ module.exports = Marionette.LayoutView.extend( {
 
     onRender: function(){
         debug( '#onRender' );
-        var view = this.mediaViewFactory.getMediaView( this.model );
+
+        var view = this.mediaViewFactory.getMediaView( this.model, {
+            video: {
+                height: 300,
+                aspectratio: null
+            }
+        } );
         this.mediaplayer.show( view );
     }
 

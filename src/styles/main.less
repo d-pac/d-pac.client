@@ -149,16 +149,44 @@ h4 {
     font-size: 100%;
 }
 
-.representation.image {
+.representation.media-image {
     border: 4px solid @blue-grey-900;
+    max-height: 500px;
 }
 
-#results-representation-details .representation-detail{
+.representation-detail {
     background-color: @grey-900;
+    min-height: 100px;
+    color: @grey-100;
 }
 
-#results-representation-details .representation.image {
-    max-height: 300px;
+.representation-description {
+    background-color: @grey-900;
+    color: @grey-100;
+}
+
+blockquote.representation-description, blockquote.representation-detail, blockquote.representation {
+    margin-bottom: 0px;
+}
+
+#results-representation-details {
+    .representation {
+        max-height: 300px;
+        //&.media-image {
+        //    max-height: 300px;
+        //}
+        &.media-html {
+            padding-top: 0px;
+            //color: @grey-100;
+            overflow-y: auto;
+        }
+    }
+}
+
+#assessment-representations {
+    .representation-order {
+        min-height: 40px;
+    }
 }
 
 body {
@@ -243,7 +271,7 @@ textarea {
 }
 
 .stock-value.representation-benchmark {
-    .point{
+    .point {
         fill: @blue-grey-900 !important;
     }
     .range {
@@ -256,8 +284,9 @@ textarea {
         fill: @red-900 !important;
     }
 }
+
 .stock-value.representation-ranked {
-    .point{
+    .point {
         fill: @blue-grey-300 !important;
     }
     .range {
@@ -270,7 +299,8 @@ textarea {
         fill: @red-400 !important;
     }
 }
-.d3-stock-plot{
+
+.d3-stock-plot {
     //background-color: @white;
 }
 
@@ -303,19 +333,22 @@ textarea {
     left: 0;
 }
 
-.empty-region{
+.empty-region {
     visibility: hidden;
 }
 
-.navbar.navbar, .navbar-default.navbar{
+.navbar.navbar, .navbar-default.navbar {
     color: #FFFFFF;
 }
 
-.btn:not(.btn-link):not(.btn-flat){
-    color: rgba(255,255,255,.84);
+.btn:not(.btn-link):not(.btn-flat) {
+    color: rgba(255, 255, 255, .84);
 }
 
-.mime-type-html{
+.media-html {
     white-space: pre-wrap;
 }
 
+blockquote {
+    border: none;
+}
