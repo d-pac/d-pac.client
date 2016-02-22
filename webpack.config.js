@@ -1,9 +1,7 @@
 'use strict';
 
 var pkg = require( './package.json' );
-process.env.APP_VERSION = (process.env.APP_VERSION_LABEL)
-    ? pkg.version + "-" + process.env.APP_VERSION_LABEL
-    : pkg.version;
+process.env.APP_VERSION = pkg.version;
 
 var konfy = require( 'konfy' );
 konfy.load();
