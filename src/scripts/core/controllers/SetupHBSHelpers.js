@@ -33,9 +33,13 @@ module.exports = function SetupHBSHelpers(){
 
     Handlebars.registerHelper( 'duration', function( seconds ){
         var d = moment.duration( Number( seconds ), 'seconds' );
-        return _.padLeft( Math.floor(d.asHours()), 2, "0" ) + ":"
+        return _.padLeft( Math.floor( d.asHours() ), 2, "0" ) + ":"
             + _.padLeft( d.minutes(), 2, "0" ) + ":"
             + _.padLeft( d.seconds(), 2, "0" );
+    } );
+
+    Handlebars.registerHelper( 'encodeURI', function( uri ){
+        return encodeURI( uri );
     } );
 
 };
