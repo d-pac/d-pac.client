@@ -9,8 +9,8 @@ module.exports = function ConfigureApplication(){
 _.extend( module.exports.prototype, {
     execute: function(){
         debug( '#execute' );
-        var appVersionLabel = process.env.APP_VERSION || '[BROKEN]';
-        if(process.env.APP_VERSION_LABEL){
+        var appVersionLabel = (process.env.APP_VERSION) ? 'v'+ process.env.APP_VERSION : '[BROKEN]';
+        if(process.env.APP_VERSION_LABEL && process.env.APP_VERSION_LABEL !== appVersionLabel){
             appVersionLabel+= '-' + process.env.APP_VERSION_LABEL;
         }
         this.context.wireValue( 'config', {
