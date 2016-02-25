@@ -13,13 +13,6 @@ var bower = require( './bower.json' );
 var vendorComponents = _.keys( pkg.dependencies );
 vendorComponents = vendorComponents.concat( _.keys( bower.dependencies ) );
 
-//var ls = require( 'recursive-readdir-sync' );
-//var commonFiles = ls( './src/scripts/common' )
-//    .map( function( filename ){
-//        return path.join( __dirname, filename );
-//    } );
-//console.log( commonFiles );
-
 module.exports = {
     entry: {
         main: './src/scripts/main.js',
@@ -86,6 +79,7 @@ module.exports = {
             'process.env': Object.keys( process.env ).reduce( function( o,
                                                                         k ){
                 o[ k ] = JSON.stringify( process.env[ k ] );
+                console.log( "env." + k, o[ k ] );
                 return o;
             }, {} )
         } ),
