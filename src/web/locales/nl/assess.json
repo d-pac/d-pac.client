@@ -60,7 +60,7 @@
     "description": "Wens je verder te gaan met de volgende vergelijking voor opdracht <strong>'__assessment__'</strong>?",
     "continue_button": {
       "label": "Volgende vergelijking",
-      "sending": "Even geduld"
+      "sending": "Even geduld..."
     },
     "stop_button": {
       "label": "Tijdelijk stoppen"
