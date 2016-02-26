@@ -15,7 +15,7 @@ module.exports = Marionette.Controller.extend( {
     },
 
     setupEventsRelay: function(){
-        this.authService.on( 'change:authenticated', function( model ){
+        this.authenticationService.on( 'change:authenticated', function( model ){
             var state = (model.get('authenticated'))
                 ? "authenticated"
                 : "unauthenticated";

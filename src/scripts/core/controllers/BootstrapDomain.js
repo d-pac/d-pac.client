@@ -16,14 +16,14 @@ _.extend( module.exports.prototype, {
         context.wireSingleton( 'pendingRequests', require( '../collections/PendingRequestsCollection' ) );
         context.getObject( 'pendingRequests' );
 
-        context.wireSingleton( 'authService', require( '../services/AuthService' ) );
-        context.getObject( 'authService' );
+        context.wireSingleton( 'authenticationService', require( '../services/AuthenticationService' ) );
+        context.getObject( 'authenticationService' );
 
         context.wireSingleton( 'pagesCollection', require( '../collections/PagesCollection' ) );
         context.wireSingleton( 'accountModel', require( '../models/AccountProxy' ) );
 
         context.wireSingleton( 'authorizationModel', require( '../models/AuthorizationModel' ), {
-            authentication: 'authService'
+            authentication: 'authenticationService'
         } );
 
     }

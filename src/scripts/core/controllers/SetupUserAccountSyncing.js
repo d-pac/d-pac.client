@@ -6,11 +6,11 @@ module.exports = function SetupUserAccountSyncing(){
 };
 
 _.extend( module.exports.prototype, {
-    wiring: [ 'authService', 'accountModel' ],
+    wiring: [ 'authenticationService', 'accountModel' ],
     execute: function(){
         debug( '#execute' );
         var account = this.accountModel;
-        this.authService.on( 'change:user', function(service){
+        this.authenticationService.on( 'change:user', function(service){
             account.set(service.get('user'));
         } );
     }

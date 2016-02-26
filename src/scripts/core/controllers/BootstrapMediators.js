@@ -14,17 +14,17 @@ _.extend( module.exports.prototype, {
         context.getObject( 'exceptionMediator' );
 
         context.wireSingleton( 'authenticationMediator', require( '../mediators/AuthenticationMediator' ), {
-            authService: "authService"
+            authenticationService: "authenticationService"
         } );
         context.getObject( 'authenticationMediator' );
 
         context.wireSingleton( 'assessModuleMediator', require( '../../common/mediators/AssessModuleMediator' ), {
-            model: "authService",
+            model: "authenticationService",
             context: "appContext"
         } );
         context.getObject( 'assessModuleMediator' );
         context.wireSingleton( 'resultsModuleMediator', require( '../../common/mediators/ResultsModuleMediator' ), {
-            model: "authService",
+            model: "authenticationService",
             context: "appContext"
         } );
         context.getObject( 'resultsModuleMediator' );

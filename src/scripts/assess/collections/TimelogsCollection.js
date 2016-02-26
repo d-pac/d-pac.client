@@ -13,7 +13,6 @@ module.exports = Backbone.Collection.extend( {
 
     contextEvents: {
         'assess:teardown:requested': "teardown",
-        //'AuthService:signout:requested': "stop",
         'assess:ui:destroyed': "stop"
     },
 

@@ -7,7 +7,7 @@ module.exports = function BootstrapRouting( context ){
     debug( '#execute' );
 
     context.wireSingleton( 'routeController', AppRouter, {
-        model: "authService"
+        model: "authenticationService"
     } );
     context.getObject( 'routeController' );
 

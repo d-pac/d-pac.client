@@ -2,7 +2,7 @@
 var NestedModel = require( 'backbone-nested-model' );
 var _ = require( 'lodash' );
 
-var debug = require( 'debug' )( 'dpac:core.services', '[AuthService]' );
+var debug = require( 'debug' )( 'dpac:core.services', '[AuthenticationService]' );
 
 module.exports = NestedModel.extend( {
 
