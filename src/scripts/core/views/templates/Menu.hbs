@@ -10,58 +10,57 @@
                      width="72"/></a>
 
             <p class="navbar-text">
-                <code><small>{{appVersion}}</small></code>
+                <code>
+                    <small>{{appVersion}}</small>
+                </code>
             </p>
         </div>
 
         <div class="collapse navbar-collapse" id="primary-navigation">
             <ul class="nav navbar-nav navbar-right">
-                {{#if authenticated}}
+                {{#if permissions.allowed.account.view}}
                     <li>
                         <p class="navbar-text">
                             <span class="label label-info">{{t "common:menu.text.label" userName=user.name.first}}</span>
                         </p>
                     </li>
-                    {{#if showTutorial}}
+                {{/if}}
+                {{#if permissions.allowed.tutorial.view}}
 
-                        <li>
-                            <a href="{{t "common:menu.tutorial.href"}}"
-                               data-toggle="tooltip" data-placement="bottom"
-                               title="{{t "common:menu.tutorial.description"}}">{{t "common:menu.tutorial.label"}}</a>
-                        </li>
-                    {{/if}}
-                    {{#if user.assessments.assessor.length}}
-                        <li>
-                            <a href="{{t "common:menu.judge.href"}}"
-                               data-toggle="tooltip" data-placement="bottom"
-                               title="{{t "common:menu.judge.description"}}">{{t "common:menu.judge.label"}}</a>
-                        </li>
-                    {{/if}}
-                    {{#if user.assessments.pam.length}}
-                        <li>
-                            <a href="{{t "common:menu.results.href"}}"
-                               data-toggle="tooltip" data-placement="bottom"
-                               title="{{t "common:menu.results.description"}}">{{t "common:menu.results.label"}}</a>
-                        </li>
-                    {{/if}}
+                    <li>
+                        <a href="{{t "common:menu.tutorial.href"}}"
+                           data-toggle="tooltip" data-placement="bottom"
+                           title="{{t "common:menu.tutorial.description"}}">{{t "common:menu.tutorial.label"}}</a>
+                    </li>
+                {{/if}}
+                {{#if permissions.allowed.assess.view}}
+                    <li>
+                        <a href="{{t "common:menu.judge.href"}}"
+                           data-toggle="tooltip" data-placement="bottom"
+                           title="{{t "common:menu.judge.description"}}">{{t "common:menu.judge.label"}}</a>
+                    </li>
+                {{/if}}
+                {{#if permissions.allowed.results.view}}
+                    <li>
+                        <a href="{{t "common:menu.results.href"}}"
+                           data-toggle="tooltip" data-placement="bottom"
+                           title="{{t "common:menu.results.description"}}">{{t "common:menu.results.label"}}</a>
+                    </li>
+                {{/if}}
+                {{#if permissions.allowed.account.view}}
                     <li>
                         <a href="{{t "common:menu.account.href"}}"
                            data-toggle="tooltip" data-placement="bottom"
                            title="{{t "common:menu.account.description"}}">{{t "common:menu.account.label"}}</a>
                     </li>
+                {{/if}}
+                {{#if authenticated}}
                     <li>
                         <a href="{{t "common:menu.logout.href"}}"
                            data-toggle="tooltip" data-placement="bottom"
                            title="{{t "common:menu.logout.description"}}">{{t "common:menu.logout.label"}}</a>
                     </li>
                 {{else}}
-                    {{#if showTutorial}}
-                        <li>
-                            <a href="{{t "common:menu.tutorial.href"}}"
-                               data-toggle="tooltip" data-placement="bottom"
-                               title="{{t "common:menu.tutorial.description"}}">{{t "common:menu.tutorial.label"}}</a>
-                        </li>
-                    {{/if}}
                     <li>
                         <a href="{{t "common:menu.login.href"}}"
                            data-toggle="tooltip" data-placement="bottom"

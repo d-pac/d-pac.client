@@ -26,7 +26,7 @@ module.exports = Marionette.LayoutView.extend( {
 
     serializeData: function(){
         var data = this.model.toJSON();
-        data.showTutorial = !_.get( this.config, 'flags.hide_tutorial', false );
+        data.permissions = this.permissions.toJSON();
 
         return data;
     },

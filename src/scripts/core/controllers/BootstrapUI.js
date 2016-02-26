@@ -12,7 +12,8 @@ _.extend( module.exports.prototype, {
         context.wireView( 'MenuView', require( '../views/MenuView' ), {
             model: 'authService',
             config: 'config',
-            pendingRequests: 'pendingRequests'
+            pendingRequests: 'pendingRequests',
+            permissions: 'authorizationModel'
         } );
 
         context.wireView( 'AccountView', require( '../views/AccountView' ), {
@@ -21,7 +22,7 @@ _.extend( module.exports.prototype, {
 
         context.wireView( 'SigninView', require( '../views/SigninView' ), {
             model: "authService",
-            config: 'config',
+            permissions: 'authorizationModel'
         } );
 
         context.wireView( 'AppView', require( '../views/AppView' ), {
@@ -39,6 +40,7 @@ _.extend( module.exports.prototype, {
             collection: 'pagesCollection',
             auth: 'authService',
             config: 'config',
+            permissions: 'authorizationModel'
         } );
         context.wireView( 'NotFoundView', require( '../views/404View' ) );
         context.wireView( 'TutorialView', require( '../views/TutorialView' ) );

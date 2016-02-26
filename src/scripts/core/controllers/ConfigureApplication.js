@@ -6,50 +6,6 @@ var debug = require( 'debug' )( 'dpac:core.controllers', '[ConfigureApplication]
 module.exports = function ConfigureApplication(){
 };
 
-function parseValue( value,
-                     defaultValue ){
-    //undefined -> defaultValue
-    //null -> defaultValue
-    //0 -> 0
-    //"0" -> 0
-    //"true" -> true
-    //"false" -> false
-    //"foo" -> foo
-    //{}-> {}
-
-    var output;
-    switch( typeof value ){
-        case "undefined":
-            output = defaultValue;
-            break;
-        case "symbol":
-        case "object": //also applies to `null`, an array and any other shizzle
-            output = value || defaultValue;
-            break;
-        case "number":
-        case "boolean":
-            output = value;
-            break;
-        case "string":
-            if( value === "true" ){
-                output = true;
-            } else if( value === "false" ){
-                output = false;
-            } else if( !_.isNaN( Number( value ) ) ){
-                output = Number( value );
-            } else {
-                output = value;
-            }
-            break;
-        case "function":
-            output = parseValue( value(), defaultValue );
-            break;
-        default: //we should never get here
-            output = defaultValue;
-    }
-    return output;
-}
-
 _.extend( module.exports.prototype, {
     execute: function(){
         debug( '#execute' );
@@ -78,12 +34,6 @@ _.extend( module.exports.prototype, {
             },
             "slugs": {
                 "welcome": "tool-welcome"
-            },
-            "features": {
-                "tutorial": parseValue( process.env.FEATURE_TUTORIAL, true ),
-                "account": parseValue( process.env.FEATURE_ACCOUNT, true ),
-                "results": parseValue( process.env.FEATURE_RESULTS, true ),
-                "assess": parseValue( process.env.FEATURE_ASSESS, true )
             }
         }
         this.context.wireValue( 'config', config );

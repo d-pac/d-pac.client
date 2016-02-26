@@ -22,6 +22,10 @@ _.extend( module.exports.prototype, {
         context.wireSingleton( 'pagesCollection', require( '../collections/PagesCollection' ) );
         context.wireSingleton( 'accountModel', require( '../models/AccountProxy' ) );
 
+        context.wireSingleton( 'authorizationModel', require( '../models/AuthorizationModel' ), {
+            authentication: 'authService'
+        } );
+
     }
 } );
 

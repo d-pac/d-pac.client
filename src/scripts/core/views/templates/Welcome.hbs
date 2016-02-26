@@ -4,15 +4,15 @@
             {{#if authenticated}}
                 <h4>{{t "login:authenticated.title"}}</h4>
                 <p>{{{t "login:authenticated.message"  userName=user.name.first}}}</p>
-                {{#if showTutorial}}
+                {{#if permissions.allowed.tutorial.view}}
                 <a href="{{t "common:menu.tutorial.href"}}" class="btn btn-primary"
                    role="button">{{t "common:menu.tutorial.label"}}</a>
                 {{/if}}
-                {{#if user.assessments.assessor.length}}
+                {{#if permissions.allowed.assess.view}}
                 <a href="{{t "common:menu.judge.href"}}" class="btn btn-primary"
                    role="button">{{t "common:menu.judge.label"}}</a>
                 {{/if}}
-                {{#if user.assessments.pam.length}}
+                {{#if permissions.allowed.results.view}}
                 <a href="{{t "common:menu.results.href"}}" class="btn btn-primary"
                    role="button">{{t "common:menu.results.label"}}</a>
                 {{/if}}
