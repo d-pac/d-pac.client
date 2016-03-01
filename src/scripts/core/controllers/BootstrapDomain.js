@@ -23,7 +23,8 @@ _.extend( module.exports.prototype, {
         context.wireSingleton( 'accountModel', require( '../models/AccountProxy' ) );
 
         context.wireSingleton( 'authorizationModel', require( '../models/AuthorizationModel' ), {
-            authentication: 'authenticationService'
+            authentication: 'authenticationService',
+            assessments: 'assessmentsFacade'
         } );
 
     }

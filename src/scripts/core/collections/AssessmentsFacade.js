@@ -29,7 +29,7 @@ var BaseCollection = Backbone.Collection.extend( {
 teardown.collection.mixin( BaseCollection );
 selectable.mixin( BaseCollection );
 
-module.exports = Backbone.Collection.extend( {
+module.exports = BaseCollection.extend( {
     url: '/user/assessments',
     model: ModelClass,
 

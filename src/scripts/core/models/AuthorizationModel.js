@@ -7,6 +7,7 @@ var permissions = require( './Permissions' );
 
 module.exports = Backbone.Model.extend( {
     authentication: undefined,
+    assessments: undefined,
 
     guards: {
         "assess.view": function(){
@@ -18,9 +19,10 @@ module.exports = Backbone.Model.extend( {
         },
         "results.view": function(){
             var user = this.authentication.get( 'user' );
+            var asAssessee = _.get( user, [ 'assessments', 'assessee' ], [] );
             var asAssessor = _.get( user, [ 'assessments', 'assessor' ], [] );
             var asPAM = _.get( user, [ 'assessments', 'pam' ], [] );
-            return (asAssessor.length > 0 || asPAM.length > 0)
+            return (asAssessee.length > 0 || asAssessor.length > 0 || asPAM.length > 0)
                 ? permissions.flags.allowed.value
                 : permissions.flags.hidden.value;
         },

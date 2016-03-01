@@ -27,7 +27,7 @@ _.extend( module.exports.prototype, {
             : 'assessments:collection:sync';
         instruct( this.context.vent )
             .when( proceedEvent ).then( function(){
-                context.wireValue( 'assessmentsCollection', assessmentsFacade.getForRole( 'pam' ) );
+                context.wireValue( 'assessmentsCollection', assessmentsFacade );
             }, 'results:ui:requested', 'results:bootstrap:completed' )
             .when( 'results:assessment:selected' ).then( function(){
                 var collection = context.getObject( 'representationsCollection' );
