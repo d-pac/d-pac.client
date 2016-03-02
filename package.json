@@ -7,7 +7,7 @@
     "backbone.whenthen": "1.0.2",
     "bows": "1.3.0",
     "konfy": "0.2.1",
-    "lodash": "3.10.1",
+    "lodash": "4.6.1",
     "node-uuid": "1.4.3",
     "handlebars": "3.0.2"
   },
