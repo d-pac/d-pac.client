@@ -18,9 +18,9 @@ module.exports = Backbone.Collection.extend( {
     },
 
 
-    getFeedbackByDocId: function getFeedbackByDocId( docId ){
+    getFeedbackByRepresentationId: function getFeedbackByRepresentationId( representationId ){
         return this.findWhere( {
-            document: docId
+            representation: representationId
         } );
     },
 

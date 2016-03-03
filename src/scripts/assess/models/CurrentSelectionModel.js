@@ -70,11 +70,11 @@ module.exports = Backbone.Model.extend( {
         }
     },
 
-    getFeedbackByOrder: function( orderId ){
-        var document = this.getDocumentByOrder( orderId );
-        if( document ){
-            return this.get( 'feedback' ).getFeedbackByDocId( document._id )
-                || this.createFeedback( {}, orderId );
+    getFeedbackByOrder: function( order ){
+        var representation = this.getRepresentationByOrder( order );
+        if( representation ){
+            return this.get( 'feedback' ).getFeedbackByRepresentationId( representation.id )
+                || this.createFeedback( {}, order );
         }
     },
 
@@ -135,7 +135,7 @@ module.exports = Backbone.Model.extend( {
                               order ){
         _.defaults( feedback, {
             author: this.get( 'comparison' ).get( 'assessor' ),
-            document: this.getDocumentByOrder( order )._id
+            representation: this.getRepresentationByOrder( order ).id
         } );
         return this.get( 'feedback' ).add( feedback );
     },
