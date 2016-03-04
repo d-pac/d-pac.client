@@ -19,5 +19,12 @@ module.exports.mixin = function( mediatorClass ){
             this.selected = model;
             return model;
         },
+
+        onReset: function(){
+            this.deselect();
+        },
+        onClear: function(){
+            this.deselect();
+        }
     } );
 };

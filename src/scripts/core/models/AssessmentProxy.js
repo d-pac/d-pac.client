@@ -41,12 +41,7 @@ module.exports = Backbone.Model.extend( {
     },
 
     isRoot: function(){
-        var parent = this.get( "parent" );
-        if( parent ){
-            var parentModel = this.collection.get( parent );
-            return !parentModel || parentModel.isCompleted();
-        }
-        return true;
+        return ! this.get( "parent" );
     },
 
     incCompleted: function(){
@@ -54,7 +49,7 @@ module.exports = Backbone.Model.extend( {
         progress.completedNum++;
         this.set( 'progress', progress );
         if( this.isCompleted() ){
-            this.collection.deselect( this );
+            this.get('registry').deselect( this );
         }
     },
 
@@ -63,7 +58,21 @@ module.exports = Backbone.Model.extend( {
     },
 
     isActive: function(){
-        return this.isRoot() && !this.isCompleted();
+        return !this.isCompleted() && (this.isRoot() || this.parentIsCompleted());
+    },
+
+    getParent: function(){
+        return this.get('registry').get(this.get('parent'));
+    },
+
+    parentIsCompleted: function(){
+        var parentModel = this.getParent();
+        if(!parentModel){
+            // most probably this assessment was added to the user, but not it's parent model,
+            // i.e. bad config of the assessment.
+            return false;
+        }
+        return parentModel.isCompleted();
     },
 
     onTeardown: function(){

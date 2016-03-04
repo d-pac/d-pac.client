@@ -21,7 +21,8 @@ module.exports = Marionette.Controller.extend( {
         "comparisons:unfinished:confirmed": "selectComparison",
         "comparisons:continue:confirmed": "continueComparisonConfirmed",
         "assessments:selection:completed": "assessmentSelectionCompleted",
-        "assess:ui:rendered": "start"
+        "assess:ui:rendered": "start",
+        "authentication:signout:completed": "stop"
     },
 
     initialize: function(){
@@ -40,6 +41,17 @@ module.exports = Marionette.Controller.extend( {
 
     start: function(){
         this.verifyComparisonsState( false );
+    },
+
+    stop: function(){
+        this.comparisonsCollection.reset();
+        this.feedbackCollection.reset();
+        this.representationsCollection.reset();
+        this.notesCollection.reset();
+        if(this.currentSelection){
+            this.currentSelection.clear();
+            this.currentSelection = undefined;
+        }
     },
 
     verifyComparisonsState: function verifyComparisonsState( completedAssessment ){

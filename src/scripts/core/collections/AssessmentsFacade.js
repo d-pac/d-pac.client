@@ -49,7 +49,12 @@ module.exports = BaseCollection.extend( {
     },
 
     parse: function( raw ){
-        return raw.data;
+        var docs = raw.data || [];
+
+        return docs.map( function( doc ){
+            doc.registry = this;
+            return doc;
+        }.bind( this ) );
     },
 
     isSynced: function(){
@@ -58,6 +63,7 @@ module.exports = BaseCollection.extend( {
 
     deselect: function(){
         this.roles( 'deselect' );
+        BaseCollection.prototype.deselect.call( this );
     },
 
     //==( by role )==/

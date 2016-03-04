@@ -47,6 +47,10 @@ _.extend( module.exports.prototype, {
                 } );
                 collection.fetch();
             } )
+            .when('authentication:signout:completed').then(function(){
+                var collection = context.getObject( 'assessmentsFacade' );
+                collection.reset();
+            })
             .when( 'assessments:collection:sync' ).then( function(){
                 debug('separate assessments by role');
                 var collection = context.getObject( 'assessmentsFacade' );

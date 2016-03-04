@@ -30,8 +30,10 @@ module.exports = Backbone.Collection.extend( {
 
     teardownModel: function( model ){
         debug.debug( '#teardownModel' );
-        this.remove( model );
-        model.teardown();
+        if(model){
+            this.remove( model );
+            model.teardown();
+        }
     }
 
 } );
