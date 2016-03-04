@@ -1,6 +1,6 @@
 # d-pac [![devDependency Status](https://david-dm.org/d-pac/d-pac.client/dev-status.png?style=flat)](https://david-dm.org/d-pac/d-pac.client#info=devDependencies)
 
-> Digitaal platform voor het assessment van competenties
+> Digital platform for assessment of competences
 
 **NOT PRODUCTION READY**
 
@@ -9,32 +9,32 @@ Not by a long shot.
 ## Installation
 
 ```shell
-$ npm install && bower install
+$ npm install && npm run bowerInstall
 ```
+
+## Set up
+
+Copy [`EXAMPLE.env`](/d-pac/d-pac.client/blob/master/EXAMPLE.env) and rename it to `.env`, adjust the settings in it as necessary.
+
+## Development
+
+```sh
+$ npm run preview
+```
+
+Will run the webpack-dev-server and serve the application on http://localhost:9000
 
 ## Building
 
-```shell
-$ grunt build
+```sh
+$ npm run build
 ```
 
-## Previewing
+This will pack everything up and copy all relevant files to a `dist` directory.
 
-```shell
-$ grunt serve
-```
+## Deployment
 
-## Publishing the docs
+Serve the contents of the `dist` directory with [express](http://expressjs.com/) or [nginx](http://nginx.org/) for instance.
 
-```shell
-$ grunt publish
-```
-
-### Deployment
-
-```shell
-$ grunt deploy
-```
-
-[D-PAC  Copyright (C) 2014  d-pac](LICENSE)
+[D-PAC  Copyright (C) 2014-2016  d-pac](LICENSE)
 [http://www.d-pac.be](http://www.d-pac.be)
