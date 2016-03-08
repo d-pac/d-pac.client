@@ -45,7 +45,9 @@ _.extend( module.exports.prototype, {
         context.wireView( 'NotFoundView', require( '../views/404View' ) );
         context.wireView( 'TutorialView', require( '../views/TutorialView' ) );
 
-        context.wireSingleton( 'mediaViewFactory', require( '../../common/views/MediaViewFactory' ) );
+        context.wireSingleton( 'mediaViewFactory', require( '../../common/views/MediaViewFactory' ), {
+            permissions: 'authorizationModel'
+        } );
 
         var appView = context.getObject( 'AppView' )();
         appView.render();

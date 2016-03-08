@@ -57,6 +57,7 @@ mediaViews[ consts.video ] = {
 };
 
 module.exports = Marionette.Controller.extend( {
+    permissions: undefined,
     getMediaView: function( representation,
                             settings ){
         if(!settings){
@@ -71,7 +72,8 @@ module.exports = Marionette.Controller.extend( {
         return new mediaView.viewClass( {
             template: mediaView.tpl,
             model: representation,
-            options: _.defaultsDeep( {}, settings[ mediaType ], mediaView.defaults )
+            options: _.defaultsDeep( {}, settings[ mediaType ], mediaView.defaults ),
+            permissions: this.permissions
         } );
     }
 } );

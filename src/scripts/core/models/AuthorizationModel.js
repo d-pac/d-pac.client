@@ -60,5 +60,20 @@ module.exports = Backbone.Model.extend( {
             _.set( memo[ label ], key, true );
             return memo;
         }, { flags: {} } );
+    },
+
+    isAllowed: function(path){
+        var obj = this.toJSON();
+        return _.get(obj.flags, path) === permissions.flags.allowed.label;
+    },
+
+    isHidden: function(path){
+        var obj = this.toJSON();
+        return _.get(obj.flags, path) === permissions.flags.hidden.label;
+    },
+
+    isDisabled: function(path){
+        var obj = this.toJSON();
+        return _.get(obj.flags, path) === permissions.flags.disabled.label;
     }
 } );

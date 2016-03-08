@@ -5,8 +5,8 @@ var debug = require( 'debug' )( 'dpac:assess.models', '[CurrentSelectionModel]' 
 
 module.exports = Backbone.Model.extend( {
     defaults: {
-        comparison: undefined,
-        assessment: undefined,
+        comparisons: undefined,
+        assessments: undefined,
         representations: undefined,
         notes: undefined,
         feedback: undefined,
