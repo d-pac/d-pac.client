@@ -48,9 +48,6 @@ module.exports = Backbone.Model.extend( {
         var progress = this.get( 'progress' );
         progress.completedNum++;
         this.set( 'progress', progress );
-        if( this.isCompleted() ){
-            this.get('registry').deselect( this );
-        }
     },
 
     isCompleted: function(){

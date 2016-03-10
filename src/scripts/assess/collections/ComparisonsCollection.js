@@ -1,9 +1,11 @@
 'use strict';
+var _ = require( 'lodash' );
 var Backbone = require( 'backbone' );
 
 var debug = require( 'debug' )( 'dpac:assess.collections', '[ComparisonsCollection]' );
 var ModelClass = require( '../models/ComparisonProxy' );
 var teardown = require( '../../common/mixins/teardown' );
+var selectable = require( '../../common/mixins/selectable' );
 
 module.exports = Backbone.Collection.extend( {
 
@@ -12,29 +14,50 @@ module.exports = Backbone.Collection.extend( {
     url: '/user/comparisons',
     model: ModelClass,
     contextEvents: {
-        'assess:teardown:requested': "teardown"
+        'assess:ui:destroyed': function(){
+            this.reset();
+        },
+        'assess:teardown:requested': "teardown",
+        'authentication:signout:completed': function(){
+            this.reset();
+        }
     },
 
     initialize: function( models ){
         debug( '#initialize' );
     },
 
+    reset: function(){
+        debug( '#reset' );
+        this.deselect();
+        var args = _.toArray( arguments );
+        return Backbone.Collection.prototype.reset.apply( this, args );
+    },
+
     parse: function( response ){
-        debug('#parse');
+        debug( '#parse' );
         return this.parser.parseCollection( response );
     },
 
     hasActives: function(){
-        return !!this.length;
+        return this.findWhere( { completed: false } );
+    },
+
+    getActives: function(){
+        var actives = this.filter( function( item ){
+            return !item.get( 'completed' );
+        } );
+        return actives || [];
     },
 
     teardownModel: function( model ){
         debug.debug( '#teardownModel' );
-        if(model){
+        if( model ){
             this.remove( model );
             model.teardown();
         }
     }
 
 } );
+selectable.mixin( module.exports );
 teardown.collection.mixin( module.exports );

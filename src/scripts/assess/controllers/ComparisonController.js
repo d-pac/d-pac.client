@@ -4,21 +4,49 @@ var Backbone = require( 'backbone' );
 var debug = require( 'debug' )( 'dpac:assess.models', '[CurrentSelectionModel]' );
 
 module.exports = Backbone.Model.extend( {
+    comparisonsCollection: undefined,
+    assessmentsCollection: undefined,
+    representationsCollection: undefined,
+    notesCollection: undefined,
+    feedbackCollection: undefined,
+    phasesCollection: undefined,
     defaults: {
-        comparisons: undefined,
-        assessments: undefined,
-        representations: undefined,
-        notes: undefined,
-        feedback: undefined,
-        phases: undefined,
-        selectedRepresentation: undefined,
+        assessment: undefined,
+        comparison: undefined,
+        representation: undefined,
+        phase: undefined,
         completed: false
     },
 
-    initialize: function( attrs ){
-        debug( '#initialize', attrs );
-        var currentPhaseId = attrs.comparison.get( 'phase' );
-        var assessmentPhases = attrs.assessment.get( 'phases' );
+    initialize: function(){
+        this.comparisonsCollection.on( 'change:selected', function( comparison,
+                                                                    oldComparison ){
+            if( oldComparison ){
+                oldComparison.off( null, null, this );
+            }
+            if( comparison ){
+                this.set( 'comparison', comparison );
+                comparison.on( 'sync', this.update, this );
+                var assessment = this.set( 'assessment', this.assessmentsCollection.selected );
+                this.update();
+            } else {
+                this.clear();
+            }
+        }, this );
+
+    },
+
+    clear: function(){
+        debug( '#clear' );
+        var args = _.toArray( arguments );
+        return Backbone.Model.prototype.clear.apply( this, args );
+    },
+
+    update: function(){
+        debug( '#update' );
+
+        var assessmentPhases = this.get( 'assessment' ).get( 'phases' );
+        var currentPhaseId = this.get( 'comparison' ).get( 'phase' );
         var index = 0;
         if( currentPhaseId ){
             index = assessmentPhases.indexOf( currentPhaseId );
@@ -27,20 +55,18 @@ module.exports = Backbone.Model.extend( {
             }
         }
         currentPhaseId = assessmentPhases[ index ];
-        this.set( 'currentPhase', attrs.phases.get( currentPhaseId ) );
-        var selectedRepId = attrs.comparison.get( 'data' ).selection;
-        if( selectedRepId ){
-            this.set( 'selectedRepresentation', attrs.representations.get( selectedRepId ) );
-        }
+        this.set( 'phase', this.phasesCollection.get( currentPhaseId ) );
+        var selectedRepId = this.get( 'comparison' ).get( 'data' ).selection;
+        this.set( 'representation', this.representationsCollection.get( selectedRepId ) );
     },
 
     getRepresentationByOrder: function( orderId ){
         var repId = this.get( "comparison" ).get( "representations" )[ orderId ];
-        return this.get( "representations" ).get( repId );
+        return this.representationsCollection.get( repId );
     },
 
     getSelectedRepresentationOrder: function(){
-        var selectedRep = this.get( 'selectedRepresentation' );
+        var selectedRep = this.get( 'representation' );
         if( selectedRep ){
             var found;
             _.find( this.get( 'comparison' ).get( 'representations' ), function( representationId,
@@ -63,14 +89,14 @@ module.exports = Backbone.Model.extend( {
     getNoteByOrder: function( orderId ){
         var document = this.getDocumentByOrder( orderId );
         if( document ){
-            return this.get( 'notes' ).getNoteByDocId( document._id );
+            return this.notesCollection.getNoteByDocId( document._id );
         }
     },
 
     getFeedbackByOrder: function( order ){
         var representation = this.getRepresentationByOrder( order );
         if( representation ){
-            return this.get( 'feedback' ).getFeedbackByRepresentationId( representation.id )
+            return this.feedbackCollection.getFeedbackByRepresentationId( representation.id )
                 || this.createFeedback( {}, order );
         }
     },
@@ -80,30 +106,16 @@ module.exports = Backbone.Model.extend( {
     },
 
     storeDataForCurrentPhase: function( value ){
-        var comparison = this.get( 'comparison' );
-        var currentPhase = this.get( 'currentPhase' );
-        if( currentPhase.get( 'slug' ) === "selection" ){
-            this.set( 'selectedRepresentation', this.get( 'representations' ).get( value ) );
-        }
+        var currentPhaseSlug = this.get( 'phase' ).get( 'slug' );
         var update = {
-            data: comparison.get( 'data' ) || {},
-            phase: this.get( "assessment" ).getNextPhaseId( currentPhase.id )
+            data: this.get( 'comparison' ).get( 'data' ) || {},
+            phase: this.get( "assessment" ).getNextPhaseId( this.get( 'phase' ).id )
         };
-        update.data[ this.get( 'currentPhase' ).get( 'slug' ) ] = value;
-        var handler;
+        update.data[ currentPhaseSlug ] = value;
         if( !update.phase ){
             update.completed = true;
-            update.phase = null;
-            handler = function(){
-                this.set( 'completed', true );
-            };
-        } else {
-            handler = function(){
-                this.set( 'currentPhase', this.get( 'phases' ).get( update.phase ) );
-            }
         }
-        comparison.once( "sync", handler, this );
-        comparison.update( update );
+        this.get( 'comparison' ).update( update );
     },
 
     storeFeedback: function( feedback ){
@@ -134,7 +146,7 @@ module.exports = Backbone.Model.extend( {
             author: this.get( 'comparison' ).get( 'assessor' ),
             representation: this.getRepresentationByOrder( order ).id
         } );
-        return this.get( 'feedback' ).add( feedback );
+        return this.feedbackCollection.add( feedback );
     },
 
     createNote: function( noteData,
@@ -143,6 +155,6 @@ module.exports = Backbone.Model.extend( {
             author: this.get( 'comparison' ).get( 'assessor' ),
             document: this.getDocumentByOrder( order )._id
         } );
-        return this.get( 'notes' ).create( noteData );
+        return this.notesCollection.create( noteData );
     }
 } );

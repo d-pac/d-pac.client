@@ -14,7 +14,7 @@ module.exports = Marionette.ItemView.extend( {
             this.collection.once( "sync", function(){
                 this.model = this.collection.get( "tool-welcome" );
                 this.render();
-            }.bind( this ) );
+            }, this );
         }
     },
 

@@ -39,7 +39,7 @@ module.exports = Marionette.Controller.extend( {
         this.moduleContext.vent.once( this.opts.onUiReadyEvent, function(){
             this.proxyView.contentFactory = this.moduleContext.getMainView.bind( this.moduleContext );
             this.proxyView.render();
-        }.bind( this ) );
+        }, this );
 
         this.relayEvents( this.moduleContext, this.opts.moduleToParentEvents, this.context );
 
@@ -48,30 +48,11 @@ module.exports = Marionette.Controller.extend( {
         this.moduleContext.start( this.model.get( 'user' ) );
     },
 
-    //createProxyView: function( moduleContext ){
-    //    return new ProxyView( {
-    //        contentFactory: moduleContext.getMainView.bind( moduleContext )
-    //    } );
-    //},
-    //
-    //start: function(){
-    //    debug( '#start' );
-    //    var context = this.context;
-    //    this.moduleContext = new this.opts.ModuleContext( {
-    //        parentContext: context
-    //    } );
-    //    var proxyView = this.createProxyView( this.moduleContext );
-    //    this.moduleContext.vent.once( this.opts.onUiReadyEvent, function(){
-    //        proxyView.render();
-    //    } );
-    //
-    //    this.relayEvents( this.moduleContext, this.opts.moduleToParentEvents, context );
-    //
-    //    this.relayEvents( context, this.opts.parentToModuleEvents, this.moduleContext );
-    //
-    //    this.moduleContext.start( this.model.get( 'user' ) );
-    //    return proxyView;
-    //},
-
+    destroyModule: function(){
+        if(this.moduleContext){
+            this.moduleContext.destroy();
+            this.moduleContext = undefined;
+        }
+    }
 } );
 relayEvents.mixin( module.exports );

@@ -102,7 +102,7 @@ module.exports = Marionette.ItemView.extend( {
             this.dispatch( "results:representation:selected", {
                 representation: model
             } );
-        }.bind( this ) )
+        }, this )
     }, 1000 ),
 
     onRender: function(){

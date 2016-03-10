@@ -28,9 +28,12 @@ _.extend( BootstrapDomain.prototype, {
         } );
 
         context.wireSingleton( 'timelogsCollection', require( '../collections/TimelogsCollection' ) );
-        context.wireSingleton( 'timelogsController', require( './TimelogsController' ) );
         context.wireSingleton( 'navigationBlocker', require( './NavigationBlocker' ) );
         context.wireSingleton( 'assessFlow', require( '../controllers/AssessFlow' ), {
+            assessmentsCollection: "assessmentsCollection",
+            comparisonsCollection: "comparisonsCollection",
+        } );
+        context.wireSingleton( 'currentSelection', require( '../controllers/ComparisonController' ), {
             assessmentsCollection: "assessmentsCollection",
             comparisonsCollection: "comparisonsCollection",
             phasesCollection: "phasesCollection",
@@ -40,12 +43,11 @@ _.extend( BootstrapDomain.prototype, {
             feedbackCollection: 'feedbackCollection',
             context: "moduleContext"
         } );
-        //context.configure('timelogger', undefined, this.config.timelogs);
-        //
-        //context.wireCommand( "mementos:selection:completed", require( './MementoController' ) );
-        //
-        //this.context = undefined;
-        //this.eventName = undefined;
-        //this.eventData = undefined;
+        context.getObject( 'currentSelection' );
+        context.wireSingleton( 'timelogsController', require( './TimelogsController' ), {
+            currentSelection: 'currentSelection',
+            timelogsCollection: 'timelogsCollection',
+            config: 'config'
+        } );
     }
 } );

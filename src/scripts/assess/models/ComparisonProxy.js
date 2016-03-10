@@ -26,7 +26,7 @@ module.exports = Backbone.Model.extend( {
         /**
          * {Boolean}
          */
-        completed: undefined,
+        completed: false,
 
         representations: undefined,
         data: undefined,

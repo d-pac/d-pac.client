@@ -22,7 +22,7 @@ module.exports = Marionette.LayoutView.extend( {
     },
 
     modelEvents: {
-        'change:selectedRepresentation': 'showSelected'
+        'change:representation': 'showSelected'
     },
 
     initialize: function(){

@@ -39,6 +39,9 @@ module.exports = BaseCollection.extend( {
         'assess:teardown:requested': "teardown",
         'assess:ui:destroyed': function(){
             this.deselect();
+        },
+        'authentication:signout:completed': function(){
+            this.reset();
         }
     },
 
@@ -46,6 +49,23 @@ module.exports = BaseCollection.extend( {
         debug( '#initialize' );
 
         this.byRole = {};
+
+        this.on( 'change:progress', function( model,
+                                              value ){
+            if( model.isCompleted() ){
+                this.deselect( model );
+                this.remove( model );
+            }
+        }, this );
+    },
+
+    reset: function(){
+        debug( '#reset' );
+        this._synced = false;
+        this.deselect();
+        this.roles( 'reset' );
+        var args = _.toArray( arguments );
+        return Backbone.Collection.prototype.reset.apply( this, args );
     },
 
     parse: function( raw ){

@@ -36,7 +36,7 @@ module.exports = Backbone.Router.extend( {
             this.dispatch( "router:route:completed", {
                 route: route
             } );
-        }.bind( this ) );
+        }, this );
     },
 
     navigateToRoute: function( data ){

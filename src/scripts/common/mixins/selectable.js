@@ -4,27 +4,31 @@ var _ = require( 'lodash' );
 
 module.exports.mixin = function( mediatorClass ){
     _.extend( mediatorClass.prototype, {
-        selectByID: function( assessmentId ){
-            return this.select( this.get( assessmentId ) );
+        selectByID: function( id ){
+            return this.select( this.get( id ) );
+        },
+
+        hasSelected: function(){
+            return !! this.selected;
         },
 
         deselect: function( model ){
             if( !model || this.selected === model ){
                 this.select( undefined );
-                return model;
             }
         },
 
-        select: function( model ){
-            this.selected = model;
-            return model;
-        },
-
-        onReset: function(){
-            this.deselect();
-        },
-        onClear: function(){
-            this.deselect();
+        select: function( newValue ){
+            var previous = this.selected;
+            if( this.onDeselect ){
+                this.onDeselect.call( this, previous );
+            }
+            this.selected = newValue;
+            if( this.onSelect ){
+                this.onSelect.call( this, this.selected, previous );
+            }
+            this.trigger( 'change:selected', this.selected, previous );
+            return this.selected;
         }
     } );
 };

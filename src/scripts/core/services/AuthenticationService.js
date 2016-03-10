@@ -45,7 +45,7 @@ module.exports = NestedModel.extend( {
                 } );
             }.bind( this ),
             error: function(){
-                this.clear();
+                this.reset();
                 this.dispatch( 'authentication:status:completed', {
                     authenticated: this.isAuthenticated()
                 } );
@@ -64,7 +64,7 @@ module.exports = NestedModel.extend( {
             error: function( model,
                              response,
                              options ){
-                this.clear();
+                this.reset();
                 this.dispatch( 'authentication:signin:completed', {
                     authenticated: this.isAuthenticated()
                 } );
@@ -76,15 +76,20 @@ module.exports = NestedModel.extend( {
         debug( '#signout' );
         this.destroy( {
             success: function( response ){
-                this.clear();
+                this.reset();
                 this.dispatch( 'authentication:signout:completed' );
             }.bind( this ),
             error: function( response ){
-                this.clear();
+                this.reset();
                 this.dispatch( 'authentication:signout:completed' );
             }.bind( this )
         } );
-        this.clear();
+        this.reset();
+    },
+
+    reset: function(){
+        this.clear({silent: true});
+        this.set(this.defaults);
     }
 
 } );

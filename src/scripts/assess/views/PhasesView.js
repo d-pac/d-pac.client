@@ -10,15 +10,16 @@ var templates = {
     passfail: require( './templates/phases/PassFail.hbs' ),
     "seq-selection": require( './templates/phases/Seq.hbs' ),
     "seq-comparative": require( './templates/phases/Seq.hbs' ),
-    "pros-cons": require( './templates/phases/ProsCons.hbs' )
+    "pros-cons": require( './templates/phases/ProsCons.hbs' ),
+    "busy": require('./templates/phases/Busy.hbs')
 };
 
 module.exports = Marionette.LayoutView.extend( {
     className: "row",
 
     getTemplate: function(){
-        var phase = this.model.get( 'currentPhase' );
-        var slug = phase.get( "slug" );
+        var phase = this.model.get( 'phase' );
+        var slug = (phase) ? phase.get( "slug" ) : 'busy';
         return templates[ slug ];
     },
 
@@ -41,7 +42,7 @@ module.exports = Marionette.LayoutView.extend( {
         'click @ui.submitProsConsBtn': 'saveProsCons'
     },
     modelEvents: {
-        'change:currentPhase': 'render'
+        'change:phase': 'render'
     },
 
     initialize: function(){
@@ -49,7 +50,10 @@ module.exports = Marionette.LayoutView.extend( {
     },
 
     serializeData: function(){
-        var phase = this.model.get( 'currentPhase' );
+        var phase = this.model.get( 'phase' );
+        if(!phase){
+            return {};
+        }
         var slug = phase.get( "slug" );
         var values = [];
         _.times( 7, function( i ){
@@ -72,7 +76,6 @@ module.exports = Marionette.LayoutView.extend( {
                 b: this.model.getFeedbackByOrder( 'b' ).toJSON()
             }
         };
-        console.log( 'phasesview data', data );
         return data;
     },
 

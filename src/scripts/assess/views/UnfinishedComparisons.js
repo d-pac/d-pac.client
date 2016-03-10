@@ -1,11 +1,11 @@
 'use strict';
-var Marionette = require('backbone.marionette');
+var Marionette = require( 'backbone.marionette' );
 var debug = require( 'debug' )( 'dpac:assess.views', '[UnfinishedComparisons]' );
-var tpl = require('./templates/UnfinishedComparisons.hbs');
+var tpl = require( './templates/UnfinishedComparisons.hbs' );
 
-module.exports = Marionette.ItemView.extend({
-    template : tpl,
-    className : "col-md-12 column",
+module.exports = Marionette.ItemView.extend( {
+    template: tpl,
+    className: "col-md-12 column",
 
     ui: {
         continueButton: ".continue-button"
@@ -15,17 +15,18 @@ module.exports = Marionette.ItemView.extend({
         "click @ui.continueButton": "continueComparison"
     },
 
-    initialize : function(){
-        debug("#initialize");
+    initialize: function(){
+        debug( "#initialize" );
     },
 
     serializeData: function(){
+        var activeComparisons = this.collection.getActives();
         return {
-            activesNum: this.collection.length
+            activesNum: activeComparisons.length
         };
     },
 
     continueComparison: function(){
-        this.dispatch("comparisons:unfinished:confirmed");
+        this.dispatch( "comparisons:unfinished:confirmed" );
     }
-});
+} );

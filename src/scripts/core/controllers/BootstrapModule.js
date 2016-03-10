@@ -19,6 +19,7 @@ _.extend( module.exports.prototype, {
                 require( './SetupRemoteRequests' ),
                 require( './SetupHBSHelpers' ),
                 require( './SetupI18N' ),
+                require( './SetupAssessmentI18NSyncing' ),
                 require( './SetupUserAccountSyncing' )
             ],
             'app:ui:requested': [
@@ -32,7 +33,7 @@ _.extend( module.exports.prototype, {
         instruct( this.context.vent )
             .when( 'app:bootstrap:requested' ).then( 'config:load:requested' )
             .when( 'config:load:completed' ).then( 'app:domain:requested', 'authentication:status:requested', function(){
-                debug('fetch pages');
+                debug( 'fetch pages' );
                 var collection = context.getObject( 'pagesCollection' );
                 collection.once( "sync", function(){
                     context.dispatch( "pages:collection:sync" )
@@ -40,19 +41,19 @@ _.extend( module.exports.prototype, {
                 collection.fetch();
             } )
             .when( 'authentication:state:authenticated' ).then( function(){
-                debug('fetch assessments');
+                debug( 'fetch assessments' );
                 var collection = context.getObject( 'assessmentsFacade' );
                 collection.once( "sync", function(){
                     context.dispatch( "assessments:collection:sync" );
                 } );
                 collection.fetch();
             } )
-            .when('authentication:signout:completed').then(function(){
+            .when( 'authentication:signout:completed' ).then( function(){
                 var collection = context.getObject( 'assessmentsFacade' );
                 collection.reset();
-            })
+            } )
             .when( 'assessments:collection:sync' ).then( function(){
-                debug('separate assessments by role');
+                debug( 'separate assessments by role' );
                 var collection = context.getObject( 'assessmentsFacade' );
                 var user = context.getObject( 'authenticationService' ).get( 'user' );
                 collection.setRoles( user.assessments );

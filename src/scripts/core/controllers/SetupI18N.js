@@ -1,9 +1,10 @@
 'use strict';
 
+var _ = require( 'lodash' );
 var debug = require( 'debug' )( 'dpac:core.controllers', '[SetupI18N]' );
 var i18n = require( 'i18next' );
 
-module.exports = function BootstrapDomain(){
+module.exports = function SetupI18N(){
 };
 
 _.extend( module.exports.prototype, {
@@ -31,4 +32,4 @@ _.extend( module.exports.prototype, {
             context.dispatch( 'SetupI18N:execution:completed' );
         } );
     }
-});
+} );
