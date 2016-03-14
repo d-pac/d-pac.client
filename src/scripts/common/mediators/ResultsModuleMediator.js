@@ -6,6 +6,10 @@ var relayEvents = require( '../mixins/relayEvents' );
 var Base = require( './BaseModuleMediator' );
 
 module.exports = Base.extend( {
+    contextEvents: {
+        "authentication:signout:completed": 'destroyModule'
+    },
+
     initialize: function(){
         debug.log( "#initialize" );
         Base.prototype.initialize.call( this, {

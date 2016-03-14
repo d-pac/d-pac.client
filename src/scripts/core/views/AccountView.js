@@ -2,7 +2,7 @@
 var Marionette = require( 'backbone.marionette' );
 var i18n = require( 'i18next' );
 
-//var debug = require( 'debug' )( 'dpac:core.views', '[AccountView]' );
+var debug = require( 'debug' )( 'dpac:core.views', '[AccountView]' );
 var tpl = require( './templates/Account.hbs' );
 
 module.exports = Marionette.ItemView.extend( {
@@ -17,6 +17,9 @@ module.exports = Marionette.ItemView.extend( {
     },
     events: {
         "click @ui.saveButton": "save"
+    },
+    initialize: function(){
+        debug('#initialize');
     },
     handleSuccess: function(){
         this.render();
