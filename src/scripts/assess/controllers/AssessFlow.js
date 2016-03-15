@@ -24,7 +24,16 @@ module.exports = Marionette.Controller.extend( {
     },
 
     start: function(){
-        this.checkIncompleteComparisonsExist();
+        this.retrieveComparisons();
+        // this.checkIncompleteComparisonsExist();
+    },
+
+    retrieveComparisons: function(){
+        var collection = this.comparisonsCollection;
+        collection.once( "sync", function(){
+            this.checkIncompleteComparisonsExist();
+        }, this );
+        collection.fetch();
     },
 
     checkIncompleteComparisonsExist: function checkIncompleteComparisonsExist(){

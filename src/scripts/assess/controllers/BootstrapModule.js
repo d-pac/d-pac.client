@@ -27,14 +27,14 @@ _.extend( module.exports.prototype, {
             .when( proceedEvent ).then( function(){
                 context.wireValue( 'assessmentsCollection', assessmentsFacade.getForRole( 'assessor' ) );
             }, 'assess:domain:requested' )
-            .when( 'assess:domain:requested' ).then( function fetchComparisons(){
-                var collection = context.getObject( 'comparisonsCollection' );
-                collection.once( "sync", function(){
-                    context.dispatch( "comparisons:collection:sync" );
-                } );
-                collection.fetch();
-            } )
-            .when( 'comparisons:collection:sync' ).then( function fetchPhases(){
+            // .when( 'assess:domain:requested' ).then( function fetchComparisons(){
+            //     var collection = context.getObject( 'comparisonsCollection' );
+            //     collection.once( "sync", function(){
+            //         context.dispatch( "comparisons:collection:sync" );
+            //     } );
+            //     collection.fetch();
+            // } )
+            .when( 'assess:domain:requested' ).then( function fetchPhases(){
                 var collection = context.getObject( 'phasesCollection' );
                 collection.once( "sync", function(){
                     context.dispatch( "phases:collection:sync" );
