@@ -30,6 +30,12 @@ module.exports = Backbone.Model.extend( {
             return (this.authentication.get( 'authenticated' ))
                 ? permissions.flags.allowed.value
                 : permissions.flags.hidden.value;
+        },
+        "admin.view": function(){
+            var user = this.authentication.get( 'user' );
+            return (_.get(user, ['isAdmin'], false))
+                ? permissions.flags.allowed.value
+                : permissions.flags.hidden.value;
         }
     },
 

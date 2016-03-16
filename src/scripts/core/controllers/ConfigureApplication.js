@@ -34,6 +34,9 @@ _.extend( module.exports.prototype, {
             },
             "slugs": {
                 "welcome": "tool-welcome"
+            },
+            "ui": {
+                "admin": process.env.DPAC_ADMIN_COLOR || ""
             }
         }
         this.context.wireValue( 'config', config );

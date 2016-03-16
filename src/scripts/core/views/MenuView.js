@@ -16,7 +16,8 @@ module.exports = Marionette.ItemView.extend( {
     },
 
     ui: {
-        menuBtn: ".nav a"
+        menuBtn: ".nav a",
+        navbar: ".navbar"
     },
 
     events: {
@@ -25,6 +26,13 @@ module.exports = Marionette.ItemView.extend( {
 
     initialize: function(){
         debug( '#initialize' );
+    },
+
+    onRender: function(){
+        var bgColor = _.get(this.config, 'ui.admin', false);
+        if(this.permissions.isAllowed('admin.view') && bgColor){
+            this.ui.navbar.css('background-color', bgColor)
+        }
     },
 
     collapseMenu: function(){
