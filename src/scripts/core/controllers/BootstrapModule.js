@@ -19,7 +19,6 @@ _.extend( module.exports.prototype, {
                 require( './SetupRemoteRequests' ),
                 require( './SetupHBSHelpers' ),
                 require( './SetupI18N' ),
-                require( './SetupAssessmentI18NSyncing' ),
                 require( './SetupUserAccountSyncing' )
             ],
             'app:ui:requested': [

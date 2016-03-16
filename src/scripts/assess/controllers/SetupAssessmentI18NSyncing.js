@@ -8,11 +8,11 @@ module.exports = function SetupAssessmentI18NSyncing(){
 };
 
 _.extend( module.exports.prototype, {
-    wiring: ['assessmentsFacade'],
+    wiring: ['assessmentsCollection'],
     execute: function(){
         debug( '#execute' );
         var defaultAssessmentCopy = i18n.getResourceBundle( i18n.lng(), 'assess' );
-        this.assessmentsFacade.on('change:selected', function(assessment){
+        this.assessmentsCollection.on('change:selected', function(assessment){
             if(assessment){
                 var mergedAssessmentCopy = _.defaultsDeep( {}, assessment.get( 'uiCopy' ), defaultAssessmentCopy );
                 i18n.addResourceBundle( i18n.lng(), 'assess', mergedAssessmentCopy );
