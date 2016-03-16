@@ -15,6 +15,7 @@ _.extend( module.exports.prototype, {
         context.wireCommands( {
             'assess:domain:requested': [
                 require( './BootstrapDomain' ),
+                require( './LoadPhases' ),
                 require( './BootstrapUI' )
             ]
         } );
@@ -27,27 +28,12 @@ _.extend( module.exports.prototype, {
             .when( proceedEvent ).then( function(){
                 context.wireValue( 'assessmentsCollection', assessmentsFacade.getForRole( 'assessor' ) );
             }, 'assess:domain:requested' )
-            // .when( 'assess:domain:requested' ).then( function fetchComparisons(){
-            //     var collection = context.getObject( 'comparisonsCollection' );
-            //     collection.once( "sync", function(){
-            //         context.dispatch( "comparisons:collection:sync" );
-            //     } );
-            //     collection.fetch();
-            // } )
-            .when( 'assess:domain:requested' ).then( function fetchPhases(){
-                var collection = context.getObject( 'phasesCollection' );
-                collection.once( "sync", function(){
-                    context.dispatch( "phases:collection:sync" );
-                } );
-                collection.fetch();
-            }, 'assess:bootstrap:completed' )
-            .when( 'assess:bootstrap:completed' ).then( function(){
+            .when( 'phases:collection:sync' ).then( function(){
             context.getObject( 'timelogsController' );
             context.getObject( 'navigationBlocker' );
             var assessFlow = context.getObject( 'assessFlow' );
             assessFlow.start();
-        } )
-        ;
+        }, 'assess:bootstrap:completed' );
 
         //set off bootstrapping
         context.vent.trigger( 'assess:bootstrap:requested' );
