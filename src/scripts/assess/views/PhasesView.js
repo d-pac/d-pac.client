@@ -6,6 +6,7 @@ var i18n = require( 'i18next' );
 
 var templates = {
     selection: require( './templates/phases/SelectRepresentation.hbs' ),
+    "select-other": require('./templates/phases/SelectOther.hbs'),
     comparative: require( './templates/phases/ComparativeFeedback.hbs' ),
     passfail: require( './templates/phases/PassFail.hbs' ),
     "seq-selection": require( './templates/phases/Seq.hbs' ),
@@ -26,6 +27,8 @@ module.exports = Marionette.LayoutView.extend( {
     ui: {
         aBtn: "#select-A-button",
         bBtn: "#select-B-button",
+        aOtherBtn: "#select-other-A-button",
+        bOtherBtn: "#select-other-B-button",
         submitFeedbackBtn: "#submit-feedback-button",
         feedbackInput: "#feedback-input",
         seqBtn: ".seq-button",
@@ -36,6 +39,8 @@ module.exports = Marionette.LayoutView.extend( {
     events: {
         'click @ui.aBtn': "selectionMade",
         'click @ui.bBtn': "selectionMade",
+        'click @ui.aOtherBtn': "selectOtherCompleted",
+        'click @ui.bOtherBtn': "selectOtherCompleted",
         'click @ui.submitFeedbackBtn': 'comparativeFeedbackProvided',
         'click @ui.seqBtn': 'seqValueSelected',
         'click @ui.submitSeqBtn': 'saveSeq',
@@ -96,6 +101,14 @@ module.exports = Marionette.LayoutView.extend( {
         this.ui.aBtn.button( 'sending' );
         this.ui.bBtn.prop( 'disabled', 'disabled' );
         this.ui.bBtn.button( 'sending' );
+        this.model.storeDataForCurrentPhase( this.$( event.currentTarget ).data( 'selection-id' ) );
+    },
+
+    selectOtherCompleted: function( event ){
+        this.ui.aOtherBtn.prop( 'disabled', 'disabled' );
+        this.ui.aOtherBtn.button( 'sending' );
+        this.ui.bOtherBtn.prop( 'disabled', 'disabled' );
+        this.ui.bOtherBtn.button( 'sending' );
         this.model.storeDataForCurrentPhase( this.$( event.currentTarget ).data( 'selection-id' ) );
     },
 

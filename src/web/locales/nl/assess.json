@@ -1,13 +1,21 @@
 {
-  "common": {
-    "title": "Opdracht: '__title__'",
-    "close_button": {
-      "label": "Sluiten"
+  "assessment_assignments": {
+    "assessor_button": {
+      "label": "Jouw opdracht"
     },
-    "save_button": {
-      "label": "Bewaren"
-    },
-    "sending": "Even geduld..."
+    "assessee_button": {
+      "label": "Te beoordelen opdracht"
+    }
+  },
+  "assessment_completed": {
+    "title": "Opdracht beëindigd",
+    "description": "Bedankt om alle vergelijkingen te hebben uitgevoerd voor de opdracht '__title__'!",
+    "type": "success"
+  },
+  "assessment_progressbar": {
+    "tooltip": "Toont je informatie over je vooruitgang.",
+    "label": "Je hebt <strong>__completed__</strong> van <strong>__count__</strong> vergelijkingen in deze opdracht uitgevoerd.",
+    "label_plural": "Je hebt <strong>__completed__</strong> van <strong>__count__</strong> vergelijkingen in deze opdracht uitgevoerd."
   },
   "assessment_selection": {
     "title": "Opdrachten",
@@ -19,41 +27,15 @@
     },
     "continue": "Ga door met een andere opdracht:"
   },
-  "assessment_completed": {
-    "title": "Opdracht beëindigd",
-    "description": "Bedankt om alle vergelijkingen te hebben uitgevoerd voor de opdracht '__title__'!",
-    "type": "success"
-  },
-  "comparison_unfinished": {
-    "title": "Vergelijkingen",
-    "description": "Je hebt een onafgewerkte vergelijking. Deze dient eerst vervolledigd te worden.",
-    "description_plural": "Je hebt __count__ onafgewerkte vergelijkingen. Deze dienen eerst vervolledigd te worden.",
-    "continue_button": {
-      "label": "Vervolg vergelijking"
-    }
-  },
-  "comparison_pause": {
-    "title": "Pauze",
-    "description": "Je hebt nu de vergelijking gepauseerd, maar we willen je vriendelijk verzoeken deze lopende vergelijking nog af te werken voor de goede werking van het systeem.",
-    "pause_button": {
-      "label": "Pauze"
+  "common": {
+    "title": "Opdracht: '__title__'",
+    "close_button": {
+      "label": "Sluiten"
     },
-    "continue_button": {
-      "label": "Vervolg vergelijking"
-    }
-  },
-  "assessment_progressbar": {
-    "tooltip": "Toont je informatie over je vooruitgang.",
-    "label": "Je hebt <strong>__completed__</strong> van <strong>__count__</strong> vergelijkingen in deze opdracht uitgevoerd.",
-    "label_plural": "Je hebt <strong>__completed__</strong> van <strong>__count__</strong> vergelijkingen in deze opdracht uitgevoerd."
-  },
-  "assessment_assignments": {
-    "assessor_button": {
-      "label": "Jouw opdracht"
+    "save_button": {
+      "label": "Bewaren"
     },
-    "assessee_button": {
-      "label": "Te beoordelen opdracht"
-    }
+    "sending": "Even geduld..."
   },
   "comparison_continue": {
     "title": "Vergelijkingen",
@@ -66,33 +48,44 @@
       "label": "Tijdelijk stoppen"
     }
   },
-  "seq": {
-    "easy": {
-      "label": "Heel gemakkelijk"
+  "comparison_messages": {
+    "title": "Vergelijkingen",
+    "description": "Er kon geen nieuwe vergelijking gemaakt worden voor opdracht <strong>'__title__'</strong>:",
+    "messages": {
+      "stage-completed": "Deze fase van de opdracht is afgelopen, u zal gecontacteerd worden wanneer de volgende fase begint.",
+      "assessor-stage-completed": "Deze fase van de opdracht is afgelopen, u zal gecontacteerd worden wanneer de volgende fase begint.",
+      "assessor-assessment-completed": "U hebt al uw vergelijkingen uitgevoerd.",
+      "assessment-completed": "Deze opdracht is afgelopen."
     },
-    "hard": {
-      "label": "Heel moeilijk"
-    },
-    "save_button": {
-      "label": "Opslaan"
+    "stop_button": {
+      "label": "Ok"
     }
   },
-  "phase_selection": {
-    "title": "Beoordeel",
-    "description": "Geef aan welke tekst beter geschreven is in functie van  de competentie 'argumentatief schrijven'",
-    "a_button": {
-      "label": "Tekst A is beter",
-      "tooltip": "Klik om aan te duiden dat tekst A beter is dan B."
+  "comparison_pause": {
+    "title": "Pauze",
+    "description": "Je hebt nu de vergelijking gepauseerd, maar we willen je vriendelijk verzoeken deze lopende vergelijking nog af te werken voor de goede werking van het systeem.",
+    "pause_button": {
+      "label": "Pauze"
     },
-    "b_button": {
-      "label": "Tekst B is beter",
-      "tooltip": "Klik om aan te duiden dat tekst B beter is dan A."
-    },
-    "sending": "Even geduld..."
+    "continue_button": {
+      "label": "Vervolg vergelijking"
+    }
+  },
+  "comparison_unfinished": {
+    "title": "Vergelijkingen",
+    "description": "Je hebt een onafgewerkte vergelijking. Deze dient eerst vervolledigd te worden.",
+    "description_plural": "Je hebt __count__ onafgewerkte vergelijkingen. Deze dienen eerst vervolledigd te worden.",
+    "continue_button": {
+      "label": "Vervolg vergelijking"
+    }
+  },
+  "notes": {
+    "label": "Notities",
+    "tooltip": "Noteer hier je opmerkingen bij deze tekst."
   },
   "phase_comparative": {
     "title": "Vergelijk",
-    "description": "Beschrijf hier waarom je de ene tekst beter vond dan de andere:"
+    "description": "Licht kort je keuze toe:"
   },
   "phase_passfail": {
     "title": "Geslaagd of niet?",
@@ -120,14 +113,43 @@
     "positive": "Positief",
     "negative": "Negatief"
   },
-  "phase_seq-selection": {
-    "title": "Hoe moeilijk vond je het om de keuze te maken?"
+  "phase_selection": {
+    "title": "Beoordeel",
+    "description": "Geef aan welke tekst beter geschreven is in functie van  de competentie 'argumentatief schrijven'",
+    "a_button": {
+      "label": "Tekst A is beter",
+      "tooltip": "Klik om aan te duiden dat tekst A beter is dan B."
+    },
+    "b_button": {
+      "label": "Tekst B is beter",
+      "tooltip": "Klik om aan te duiden dat tekst B beter is dan A."
+    },
+    "sending": "Even geduld..."
+  },
+  "phase_select-other": {
+    "title": "Beoordeel",
+    "description": "Geef aan welke tekst beter geschreven is in functie van een andere competentie",
+    "a_button": {
+      "label": "Tekst A is beter",
+      "tooltip": "Klik om aan te duiden dat tekst A beter is dan B."
+    },
+    "b_button": {
+      "label": "Tekst B is beter",
+      "tooltip": "Klik om aan te duiden dat tekst B beter is dan A."
+    },
+    "sending": "Even geduld..."
   },
   "phase_seq-comparative": {
     "title": "Hoe moeilijk vond je het om je keuze te beargumenteren?"
   },
   "phase_seq-passfail": {
     "title": "Hoe moeilijk vond je het om geslaagd/niet geslaagd te kiezen?"
+  },
+  "phase_seq-selection": {
+    "title": "Hoe moeilijk vond je het om de keuze te maken?"
+  },
+  "please_finish": {
+    "message": "U bent aan een vergelijking bezig, gelieve deze eerst af te maken.\nBent u zeker dat u deze pagina wilt verlaten?"
   },
   "representation_viewer": {
     "pdf": {
@@ -137,24 +159,15 @@
       "tooltip": "Klik om deze tekst te selecteren"
     }
   },
-  "notes": {
-    "label": "Notities",
-    "tooltip": "Noteer hier je opmerkingen bij deze tekst."
-  },
-  "please_finish": {
-    "message": "U bent aan een vergelijking bezig, gelieve deze eerst af te maken.\nBent u zeker dat u deze pagina wilt verlaten?"
-  },
-  "comparison_messages": {
-    "title": "Vergelijkingen",
-    "description": "Er kon geen nieuwe vergelijking gemaakt worden voor opdracht <strong>'__title__'</strong>:",
-    "messages": {
-      "stage-completed": "Deze fase van de opdracht is afgelopen, u zal gecontacteerd worden wanneer de volgende fase begint.",
-      "assessor-stage-completed": "Deze fase van de opdracht is afgelopen, u zal gecontacteerd worden wanneer de volgende fase begint.",
-      "assessor-assessment-completed": "U hebt al uw vergelijkingen uitgevoerd.",
-      "assessment-completed": "Deze opdracht is afgelopen."
+  "seq": {
+    "easy": {
+      "label": "Heel gemakkelijk"
     },
-    "stop_button": {
-      "label": "Ok"
+    "hard": {
+      "label": "Heel moeilijk"
+    },
+    "save_button": {
+      "label": "Opslaan"
     }
   }
 }

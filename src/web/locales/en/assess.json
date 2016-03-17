@@ -125,6 +125,19 @@
     },
     "sending": "Patience please..."
   },
+  "phase_select-other": {
+    "title": "Select",
+    "description": "Which representation do you prefer for another competence?",
+    "a_button": {
+      "label": "I prefer representation A",
+      "tooltip": "Click to select representation A"
+    },
+    "b_button": {
+      "label": "I prefer representation B",
+      "tooltip": "Click to select representation B"
+    },
+    "sending": "Patience please..."
+  },
   "phase_seq-comparative": {
     "title": "How hard was it comparing both representations?"
   },
