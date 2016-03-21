@@ -64,7 +64,7 @@ module.exports = Marionette.LayoutView.extend( {
 
     showSelected: function(){
         var order = this.model.getSelectedRepresentationOrder();
-        if( order ){
+        if( order && this.model.get('assessment').get('enableSelectionIcon')){
             this.$( this.ui[ "selected" + order.toUpperCase() ] ).removeClass( 'hidden' );
         }
     }

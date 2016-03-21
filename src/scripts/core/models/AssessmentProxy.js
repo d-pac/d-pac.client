@@ -17,6 +17,8 @@ module.exports = Backbone.Model.extend( {
         parent: undefined,
         uiCopy: undefined,
         enableTimeLogging: false,
+        enableNotes: false,
+        enableSelectionIcon: true,
         progress: {
             total: undefined,
             completedNum: undefined //number of comparisons the user has already made for this assessment
