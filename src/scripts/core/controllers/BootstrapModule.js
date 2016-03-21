@@ -51,12 +51,6 @@ _.extend( module.exports.prototype, {
                 var collection = context.getObject( 'assessmentsFacade' );
                 collection.reset();
             } )
-            .when( 'assessments:collection:sync' ).then( function(){
-                debug( 'separate assessments by role' );
-                var collection = context.getObject( 'assessmentsFacade' );
-                var user = context.getObject( 'authenticationService' ).get( 'user' );
-                collection.setRoles( user.assessments );
-            } )
             .when( 'SetupI18N:execution:completed', 'authentication:status:completed' ).then( 'app:ui:requested' )
         ;
 

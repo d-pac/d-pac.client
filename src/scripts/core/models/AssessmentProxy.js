@@ -43,7 +43,7 @@ module.exports = Backbone.Model.extend( {
     },
 
     isRoot: function(){
-        return ! this.get( "parent" );
+        return !this.get( "parent" );
     },
 
     incCompleted: function(){
@@ -52,26 +52,28 @@ module.exports = Backbone.Model.extend( {
         this.set( 'progress', progress );
     },
 
-    isCompleted: function(){
+    maxComparisonsDone: function(){
         return this.get( 'progress' ).completedNum >= this.get( 'progress' ).total;
     },
 
-    isActive: function(){
-        return !this.isCompleted() && (this.isRoot() || this.parentIsCompleted());
+    assessingAllowed: function(){
+        return !this.maxComparisonsDone()
+            && (this.get( 'state' ) === 'published')
+            && (this.isRoot() || !this.parentAssessingAllowed());
     },
 
     getParent: function(){
-        return this.get('registry').get(this.get('parent'));
+        return this.get( 'registry' ).get( this.get( 'parent' ) );
     },
 
-    parentIsCompleted: function(){
+    parentAssessingAllowed: function(){
         var parentModel = this.getParent();
-        if(!parentModel){
+        if( !parentModel ){
             // most probably this assessment was added to the user, but not it's parent model,
             // i.e. bad config of the assessment.
-            return false;
+            return true;
         }
-        return parentModel.isCompleted();
+        return parentModel.assessingAllowed();
     },
 
     onTeardown: function(){

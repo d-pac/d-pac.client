@@ -12,7 +12,10 @@ module.exports = Marionette.Controller.extend( {
         "comparisons:unfinished:confirmed": "comparisonCompletionConfirmed",
         "comparisons:continue:confirmed": "comparisonContinuationConfirmed",
         "assessments:selection:completed": "assessmentSelectionCompleted",
-        "assess:ui:rendered": "start"
+        "assess:ui:rendered": "start",
+        'assess:ui:destroyed': function(){
+            this.assessmentsCollection.deselect();
+        },
     },
 
     initialize: function(){
@@ -55,7 +58,7 @@ module.exports = Marionette.Controller.extend( {
 
     checkSelectedAssessmentIsCompleted: function(){
         var assessment = this.assessmentsCollection.selected;
-        if( assessment.isCompleted() ){
+        if( assessment.maxComparisonsDone() ){
             this.assessmentsCollection.deselect( assessment );
             this.requestAssessmentSelection();
             this.dispatch( 'assess:show:messages', {
@@ -138,7 +141,7 @@ module.exports = Marionette.Controller.extend( {
         this.comparisonsCollection.remove( comparison );
         var assessment = this.assessmentsCollection.selected;
         assessment.incCompleted();
-        if( assessment.isCompleted() ){
+        if( assessment.maxComparisonsDone() ){
             this.assessmentsCollection.deselect( assessment );
             this.dispatch( 'assess:show:messages', {
                 type: i18n.t( "assess:assessment_completed.type" ) || "success",

@@ -20,5 +20,12 @@ module.exports = NestedModel.extend( {
 
     patch: function( attrs ){
         this.save( attrs, { patch: true } );
+    },
+
+    getAssessments: function( role ){
+        if( role ){
+            return this.get( 'assessments.' + role );
+        }
+        return this.get( 'assessment' );
     }
 } );

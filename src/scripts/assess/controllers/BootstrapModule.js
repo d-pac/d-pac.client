@@ -27,7 +27,9 @@ _.extend( module.exports.prototype, {
 
         instruct( this.context.vent )
             .when( proceedEvent ).then( function(){
-                context.wireValue( 'assessmentsCollection', assessmentsFacade.getForRole( 'assessor' ) );
+                var user = context.getObject( 'accountModel' );
+                var asAssessor = user.getAssessments( 'assessor' );
+                context.wireValue( 'assessmentsCollection', assessmentsFacade.cloneSubset( asAssessor ) );
             }, 'assess:domain:requested' )
             .when( 'phases:collection:sync' ).then( function(){
             context.getObject( 'timelogsController' );
