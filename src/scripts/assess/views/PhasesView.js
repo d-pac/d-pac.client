@@ -79,6 +79,9 @@ module.exports = Marionette.LayoutView.extend( {
             feedback: {
                 a: this.model.getFeedbackByOrder( 'a' ).toJSON(),
                 b: this.model.getFeedbackByOrder( 'b' ).toJSON()
+            },
+            passfail: {
+                options: i18n.t("assess:phase_passfail.options", { returnObjectTrees: true } )
             }
         };
         return data;
