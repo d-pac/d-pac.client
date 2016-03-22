@@ -3,31 +3,39 @@
         <h4>{{t "assess:phase_passfail.title"}}</h4>
 
         <p>{{t "assess:phase_passfail.description"}}</p>
-
-        <label class="col-sm-2 control-label">A</label>
-
-        <div class="col-sm-4 column">
-            {{#each passfail.options}}
-                <div class="radio radio-primary">
-                    <label>
-                        <input type="radio" name="a-passfail-input" value="{{@key}}"> {{this.label}}
-                    </label>
-                </div>
-            {{/each}}
+        <div class="row">
+            <label class="col-sm-6 control-label">A</label>
+            <label class="col-sm-1 control-label">B</label>
         </div>
-        <label class="col-sm-2 control-label">B</label>
 
-        <div class="col-sm-4 column">
-            {{#each passfail.options}}
-                <div class="radio radio-primary">
-                    <label>
-                        <input type="radio" name="b-passfail-input" value="{{@key}}"> {{this.label}}
-                    </label>
-                </div>
-            {{/each}}
+
+        <div class="row">
+            <div class="col-sm-6 column">
+                {{#each passfail.options}}
+                    <div class="radio radio-primary">
+                        <label>
+                            <input type="radio" name="a-passfail-input" value="{{@key}}"> {{this.label}}
+                        </label>
+                    </div>
+                {{/each}}
+            </div>
+
+            <div class="col-sm-6 column">
+                {{#each passfail.options}}
+                    <div class="radio radio-primary">
+                        <label>
+                            <input type="radio" name="b-passfail-input" value="{{@key}}"> {{this.label}}
+                        </label>
+                    </div>
+                {{/each}}
+            </div>
         </div>
-        <button id="submit-passfail-button" type="button" class="btn btn-primary">
-            {{t "assess:common.save_button.label"}}
-        </button>
+        <div class="row">
+            <div class="col-sm-12 column">
+                <button id="submit-passfail-button" type="button" class="btn btn-primary">
+                    {{t "assess:common.save_button.label"}}
+                </button>
+            </div>
+        </div>
     </div>
 </div>

@@ -6,13 +6,13 @@ var i18n = require( 'i18next' );
 
 var templates = {
     selection: require( './templates/phases/SelectRepresentation.hbs' ),
-    "select-other": require('./templates/phases/SelectOther.hbs'),
+    "select-other": require( './templates/phases/SelectOther.hbs' ),
     comparative: require( './templates/phases/ComparativeFeedback.hbs' ),
     passfail: require( './templates/phases/PassFail.hbs' ),
     "seq-selection": require( './templates/phases/Seq.hbs' ),
     "seq-comparative": require( './templates/phases/Seq.hbs' ),
     "pros-cons": require( './templates/phases/ProsCons.hbs' ),
-    "busy": require('./templates/phases/Busy.hbs')
+    "busy": require( './templates/phases/Busy.hbs' )
 };
 
 module.exports = Marionette.LayoutView.extend( {
@@ -20,7 +20,9 @@ module.exports = Marionette.LayoutView.extend( {
 
     getTemplate: function(){
         var phase = this.model.get( 'phase' );
-        var slug = (phase) ? phase.get( "slug" ) : 'busy';
+        var slug = (phase)
+            ? phase.get( "slug" )
+            : 'busy';
         return templates[ slug ];
     },
 
@@ -33,7 +35,8 @@ module.exports = Marionette.LayoutView.extend( {
         feedbackInput: "#feedback-input",
         seqBtn: ".seq-button",
         submitSeqBtn: "#submit-seq-button",
-        submitProsConsBtn: "#submit-proscons-button"
+        submitProsConsBtn: "#submit-proscons-button",
+        submitPassFailBtn: "#submit-passfail-button"
     },
 
     events: {
@@ -44,7 +47,8 @@ module.exports = Marionette.LayoutView.extend( {
         'click @ui.submitFeedbackBtn': 'comparativeFeedbackProvided',
         'click @ui.seqBtn': 'seqValueSelected',
         'click @ui.submitSeqBtn': 'saveSeq',
-        'click @ui.submitProsConsBtn': 'saveProsCons'
+        'click @ui.submitProsConsBtn': 'saveProsCons',
+        'click @ui.submitPassFailBtn': 'savePassFail'
     },
     modelEvents: {
         'change:phase': 'render'
@@ -56,7 +60,7 @@ module.exports = Marionette.LayoutView.extend( {
 
     serializeData: function(){
         var phase = this.model.get( 'phase' );
-        if(!phase){
+        if( !phase ){
             return {};
         }
         var slug = phase.get( "slug" );
@@ -81,7 +85,7 @@ module.exports = Marionette.LayoutView.extend( {
                 b: this.model.getFeedbackByOrder( 'b' ).toJSON()
             },
             passfail: {
-                options: i18n.t("assess:phase_passfail.options", { returnObjectTrees: true } )
+                options: i18n.t( "assess:phase_passfail.options", { returnObjectTrees: true } )
             }
         };
         return data;
@@ -134,6 +138,14 @@ module.exports = Marionette.LayoutView.extend( {
                 negative: this.$( '#b-negative' ).val()
             }
         } )
+    },
+
+    savePassFail: function( event ){
+        
+        this.model.storeDataForCurrentPhase( {
+            a: this.$( "input:radio[name ='a-passfail-input']:checked" ).val(),
+            b: this.$( "input:radio[name ='b-passfail-input']:checked" ).val()
+        } );
     }
 } )
 ;
