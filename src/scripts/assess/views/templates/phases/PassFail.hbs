@@ -1,4 +1,4 @@
-<div class="col-sm-12 column">
+<div class="col-sm-12 column assess-passfail-phase">
     <div class="well">
         <h4>{{t "assess:phase_passfail.title"}}</h4>
 
@@ -32,7 +32,8 @@
         </div>
         <div class="row">
             <div class="col-sm-12 column">
-                <button id="submit-passfail-button" type="button" class="btn btn-primary">
+                <button id="submit-passfail-button" type="button" class="btn btn-primary" disabled="disabled"
+                        data-sending-text="{{t "assess:common.sending"}}">
                     {{t "assess:common.save_button.label"}}
                 </button>
             </div>

@@ -36,7 +36,8 @@ module.exports = Marionette.LayoutView.extend( {
         seqBtn: ".seq-button",
         submitSeqBtn: "#submit-seq-button",
         submitProsConsBtn: "#submit-proscons-button",
-        submitPassFailBtn: "#submit-passfail-button"
+        submitPassFailBtn: "#submit-passfail-button",
+        passFailRadioBtns: ".assess-passfail-phase input:radio"
     },
 
     events: {
@@ -48,8 +49,10 @@ module.exports = Marionette.LayoutView.extend( {
         'click @ui.seqBtn': 'seqValueSelected',
         'click @ui.submitSeqBtn': 'saveSeq',
         'click @ui.submitProsConsBtn': 'saveProsCons',
-        'click @ui.submitPassFailBtn': 'savePassFail'
+        'click @ui.submitPassFailBtn': 'savePassFail',
+        'change @ui.passFailRadioBtns': 'determinePassfailSubmitState'
     },
+
     modelEvents: {
         'change:phase': 'render'
     },
@@ -140,8 +143,16 @@ module.exports = Marionette.LayoutView.extend( {
         } )
     },
 
+    determinePassfailSubmitState: function(event){
+        var aVal = this.$( "input:radio[name ='a-passfail-input']:checked" ).val();
+        var bVal = this.$( "input:radio[name ='b-passfail-input']:checked" ).val();
+        if(aVal && bVal){
+            this.ui.submitPassFailBtn.prop( 'disabled', false );
+        }
+    },
     savePassFail: function( event ){
-        
+        this.ui.submitPassFailBtn.prop( 'disabled', 'disabled' );
+        this.ui.submitPassFailBtn.button( 'sending' );
         this.model.storeDataForCurrentPhase( {
             a: this.$( "input:radio[name ='a-passfail-input']:checked" ).val(),
             b: this.$( "input:radio[name ='b-passfail-input']:checked" ).val()
