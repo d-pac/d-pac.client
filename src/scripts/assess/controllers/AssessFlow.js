@@ -140,6 +140,11 @@ module.exports = Marionette.Controller.extend( {
         assessment.incCompleted();
         if( assessment.isCompleted() ){
             this.assessmentsCollection.deselect( assessment );
+            this.dispatch( 'assess:show:messages', {
+                type: i18n.t( "assess:assessment_completed.type" ) || "success",
+                title: i18n.t( "assess:assessment_completed.title" ) || '',
+                message: i18n.t( "assess:assessment_completed.description", { title: assessment.get( 'title' ) } )
+            } );
         }
         this.dispatch( 'comparisons:editing:completed' );
         this.checkIncompleteComparisonsExist();
