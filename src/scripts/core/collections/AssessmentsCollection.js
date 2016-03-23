@@ -13,7 +13,6 @@ var AssessmentsCollection = Backbone.Collection.extend( {
     url: '/user/assessments',
     model: ModelClass,
 
-    _synced: false,
     selected: undefined,
 
     contextEvents: {
@@ -30,7 +29,6 @@ var AssessmentsCollection = Backbone.Collection.extend( {
 
     reset: function(){
         debug( '#reset' );
-        this._synced = false;
         this.deselect();
         var args = _.toArray( arguments );
         return Backbone.Collection.prototype.reset.apply( this, args );
@@ -43,10 +41,6 @@ var AssessmentsCollection = Backbone.Collection.extend( {
             doc.registry = this;
             return doc;
         }.bind( this ) );
-    },
-
-    isSynced: function(){
-        return this._synced;
     },
 
     //==( by role )==/

@@ -28,14 +28,6 @@ module.exports = Backbone.Collection.extend( {
         //this.fetch( { data: { filter: JSON.stringify( { representation: model.id } ) } } );
         this.url = '/representations/'+ model.id + '/feedback';
         this.fetch();
-    },
-
-    fetch: function( opts ){
-        this.synced = false;
-        this.once( 'sync', function(){
-            this.synced = true;
-        }, this );
-        Backbone.Collection.prototype.fetch.call( this, opts );
     }
 
 } );
