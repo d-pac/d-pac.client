@@ -23,4 +23,4 @@ module.exports = Backbone.Collection.extend( {
 
 } );
 teardown.collection.mixin( module.exports );
-selectable.mixin( module.exports );
+selectable.collection.mixin( module.exports );

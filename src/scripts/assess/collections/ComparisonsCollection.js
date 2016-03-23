@@ -27,13 +27,6 @@ module.exports = Backbone.Collection.extend( {
         debug( '#initialize' );
     },
 
-    reset: function(){
-        debug( '#reset' );
-        this.deselect();
-        var args = _.toArray( arguments );
-        return Backbone.Collection.prototype.reset.apply( this, args );
-    },
-
     parse: function( response ){
         debug( '#parse' );
         return this.parser.parseCollection( response );
@@ -59,5 +52,5 @@ module.exports = Backbone.Collection.extend( {
     }
 
 } );
-selectable.mixin( module.exports );
+selectable.collection.mixin( module.exports );
 teardown.collection.mixin( module.exports );

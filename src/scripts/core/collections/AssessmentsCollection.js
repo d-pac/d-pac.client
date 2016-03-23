@@ -27,13 +27,6 @@ var AssessmentsCollection = Backbone.Collection.extend( {
 
     },
 
-    reset: function(){
-        debug( '#reset' );
-        this.deselect();
-        var args = _.toArray( arguments );
-        return Backbone.Collection.prototype.reset.apply( this, args );
-    },
-
     parse: function( raw ){
         var docs = raw.data || [];
 
@@ -75,7 +68,7 @@ var AssessmentsCollection = Backbone.Collection.extend( {
 } );
 module.exports = AssessmentsCollection;
 
-selectable.mixin( module.exports );
+selectable.collection.mixin( module.exports );
 safeSync.collection.mixin( module.exports );
 teardown.collection.mixin( module.exports );
 
