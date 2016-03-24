@@ -21,7 +21,8 @@ _.extend( module.exports.prototype, {
             ]
         } );
 
-        instruct( this.context.vent )
+        var instructor = instruct( this.context.vent );
+        instructor
             .when( 'assess:bootstrap:requested' ).then( function(){
                 assessmentsFacade.fetch();
             } )
@@ -31,11 +32,13 @@ _.extend( module.exports.prototype, {
                 context.wireValue( 'assessmentsCollection', assessmentsFacade.cloneSubset( asAssessor ) );
             }, 'assess:domain:requested' )
             .when( 'phases:collection:sync' ).then( function(){
-            context.getObject( 'timelogsController' );
-            context.getObject( 'navigationBlocker' );
-            var assessFlow = context.getObject( 'assessFlow' );
-            assessFlow.start();
-        }, 'assess:bootstrap:completed' )
+                context.getObject( 'timelogsController' );
+                context.getObject( 'navigationBlocker' );
+                context.getObject( 'assessFlow' );
+            }, 'assess:bootstrap:completed' )
+            .when( 'assess:bootstrap:completed' ).then( function(){
+                instructor.destroy();
+            } );
         ;
 
         //set off bootstrapping
