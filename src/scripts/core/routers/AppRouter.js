@@ -12,6 +12,7 @@ module.exports = Backbone.Router.extend( {
         "assess": "assess",
         "account": "account",
         "results": "results",
+        "uploads": "uploads",
         "": "welcome",
         "*notfound": "notfound"
     },
@@ -20,7 +21,7 @@ module.exports = Backbone.Router.extend( {
         "router:route:requested": "navigateToRoute"
     },
 
-    secured: [ "assess", "account", "results" ],
+    secured: [ "assess", "account", "results", "uploads" ],
 
     initialize: function(){
         debug( '#initialize' );

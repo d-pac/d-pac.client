@@ -34,7 +34,8 @@ _.extend( module.exports.prototype, {
             tutorialFactory: "TutorialView",
             assessFactory: "assessmentViewProxy",
             accountFactory: "AccountView",
-            resultsFactory: "resultsViewProxy"
+            resultsFactory: "resultsViewProxy",
+            uploadsFactory: "uploadsViewProxy"
         } );
         context.wireView( 'WelcomeView', require( '../views/WelcomeView' ), {
             collection: 'pagesCollection',

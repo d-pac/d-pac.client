@@ -28,6 +28,11 @@ _.extend( module.exports.prototype, {
             context: "appContext"
         } );
         context.getObject( 'resultsModuleMediator' );
+        context.wireSingleton( 'uploadsModuleMediator', require( '../../common/mediators/UploadsModuleMediator' ), {
+            model: "authenticationService",
+            context: "appContext"
+        } );
+        context.getObject( 'uploadsModuleMediator' );
     }
 } );
 

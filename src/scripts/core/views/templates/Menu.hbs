@@ -31,6 +31,13 @@
                            title="{{t "common:menu.tutorial.description"}}">{{t "common:menu.tutorial.label"}}</a>
                     </li>
                 {{/if}}
+                {{#if permissions.allowed.uploads.view}}
+                    <li>
+                        <a href="{{t "common:menu.uploads.href"}}"
+                           data-toggle="tooltip" data-placement="bottom"
+                           title="{{t "common:menu.uploads.description"}}">{{t "common:menu.uploads.label"}}</a>
+                    </li>
+                {{/if}}
                 {{#if permissions.allowed.assess.view}}
                     <li>
                         <a href="{{t "common:menu.judge.href"}}"

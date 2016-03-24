@@ -15,6 +15,7 @@ module.exports = Marionette.LayoutView.extend( {
     assessFactory: undefined,
     accountFactory: undefined,
     resultsFactory: undefined,
+    uploadsFactory: undefined,
 
     regions: {
         menuRegion: menuRegion,

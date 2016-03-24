@@ -33,9 +33,16 @@ module.exports = Backbone.Model.extend( {
         },
         "admin.view": function(){
             var user = this.authentication.get( 'user' );
-            return (_.get(user, ['isAdmin'], false))
+            return (_.get( user, [ 'isAdmin' ], false ))
                 ? permissions.flags.allowed.value
                 : permissions.flags.hidden.value;
+        },
+        "uploads.view": function(){
+            var user = this.authentication.get( 'user' );
+            var asAssessee = _.get( user, [ 'assessments', 'assessee' ], [] );
+            return asAssessee.length > 0
+                ? permissions.flags.allowed.value
+                : permissions.flags.hidden.value
         }
     },
 
@@ -68,18 +75,18 @@ module.exports = Backbone.Model.extend( {
         }, { flags: {} } );
     },
 
-    isAllowed: function(path){
+    isAllowed: function( path ){
         var obj = this.toJSON();
-        return _.get(obj.flags, path) === permissions.flags.allowed.label;
+        return _.get( obj.flags, path ) === permissions.flags.allowed.label;
     },
 
-    isHidden: function(path){
+    isHidden: function( path ){
         var obj = this.toJSON();
-        return _.get(obj.flags, path) === permissions.flags.hidden.label;
+        return _.get( obj.flags, path ) === permissions.flags.hidden.label;
     },
 
-    isDisabled: function(path){
+    isDisabled: function( path ){
         var obj = this.toJSON();
-        return _.get(obj.flags, path) === permissions.flags.disabled.label;
+        return _.get( obj.flags, path ) === permissions.flags.disabled.label;
     }
 } );
