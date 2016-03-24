@@ -22,17 +22,17 @@ _.extend( module.exports.prototype, {
             "results:representation:selected": [ require( './LoadFeedback' ) ]
         } );
 
-        instruct( this.context.vent )
+        var instructor = instruct( this.context.vent );
+        instructor
             .when( 'results:bootstrap:requested' ).then( function(){
                 assessmentsFacade.fetch();
             } )
             .when( 'assessments:collection:sync' ).then( function(){
                 context.wireValue( 'assessmentsCollection', assessmentsFacade );
             }, 'results:ui:requested', 'results:bootstrap:completed' )
-            .when( 'results:assessment:selected' ).then( function(){
-                var collection = context.getObject( 'representationsCollection' );
-                collection.deselect();
-            } );
+            .when( 'results:bootstrap:completed' ).then( function(){
+            instructor.destroy();
+        } );
 
         //set off bootstrapping
         context.vent.trigger( 'results:bootstrap:requested' );

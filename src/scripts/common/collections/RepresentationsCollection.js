@@ -18,7 +18,10 @@ module.exports = Backbone.Collection.extend( {
     },
 
     fetchForAssessment: function( model ){
-        this.fetch( { data: { filter: JSON.stringify( { assessment: model.id } ) } } );
+        this.fetch( {
+            data: { filter: JSON.stringify( { assessment: model.id } ) },
+            reset: true
+        } );
     }
 
 } );
