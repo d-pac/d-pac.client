@@ -24,15 +24,18 @@ _.extend( module.exports.prototype, {
 
         var instructor = instruct( this.context.vent );
         instructor
-            .when( 'results:bootstrap:requested' ).then( function(){
+            .when( 'results:bootstrap:requested' )
+            .then( function(){
                 assessmentsFacade.fetch();
             } )
-            .when( 'assessments:collection:sync' ).then( function(){
+            .when( 'assessments:collection:sync' )
+            .then( function(){
                 context.wireValue( 'assessmentsCollection', assessmentsFacade );
             }, 'results:ui:requested', 'results:bootstrap:completed' )
-            .when( 'results:bootstrap:completed' ).then( function(){
-            instructor.destroy();
-        } );
+            .when( 'results:bootstrap:completed' )
+            .then( function(){
+                instructor.destroy();
+            } );
 
         //set off bootstrapping
         context.vent.trigger( 'results:bootstrap:requested' );

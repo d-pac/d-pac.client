@@ -23,20 +23,24 @@ _.extend( module.exports.prototype, {
 
         var instructor = instruct( this.context.vent );
         instructor
-            .when( 'assess:bootstrap:requested' ).then( function(){
+            .when( 'assess:bootstrap:requested' )
+            .then( function(){
                 assessmentsFacade.fetch();
             } )
-            .when( 'assessments:collection:sync' ).then( function(){
+            .when( 'assessments:collection:sync' )
+            .then( function(){
                 var user = context.getObject( 'accountModel' );
                 var asAssessor = user.getAssessments( 'assessor' );
                 context.wireValue( 'assessmentsCollection', assessmentsFacade.cloneSubset( asAssessor ) );
             }, 'assess:domain:requested' )
-            .when( 'phases:collection:sync' ).then( function(){
+            .when( 'phases:collection:sync' )
+            .then( function(){
                 context.getObject( 'timelogsController' );
                 context.getObject( 'navigationBlocker' );
                 context.getObject( 'assessFlow' );
             }, 'assess:bootstrap:completed' )
-            .when( 'assess:bootstrap:completed' ).then( function(){
+            .when( 'assess:bootstrap:completed' )
+            .then( function(){
                 instructor.destroy();
             } );
         ;

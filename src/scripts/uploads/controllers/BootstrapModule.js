@@ -25,18 +25,21 @@ _.extend( module.exports.prototype, {
 
         var instructor = instruct( this.context.vent );
         instructor
-            .when( 'uploads:bootstrap:requested' ).then( function(){
+            .when( 'uploads:bootstrap:requested' )
+            .then( function(){
                 assessmentsFacade.fetch();
             } )
-            .when( 'assessments:collection:sync' ).then( function(){
+            .when( 'assessments:collection:sync' )
+            .then( function(){
                 var user = context.getObject( 'accountModel' );
                 var asAssessee = user.getAssessments( 'assessee' );
                 context.wireValue( 'assessmentsCollection', assessmentsFacade.cloneSubset( asAssessee ) );
             }, 'uploads:domain:requested', 'uploads:bootstrap:completed' )
-            .when( 'uploads:bootstrap:completed' ).then( function(){
-            instructor.destroy();
-        } )
-
+            .when( 'uploads:bootstrap:completed' )
+            .then( function(){
+                instructor.destroy();
+            } )
+        ;
         //set off bootstrapping
         context.vent.trigger( 'uploads:bootstrap:requested' );
     }
