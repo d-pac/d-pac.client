@@ -2,7 +2,7 @@
 var _ = require( 'lodash' );
 var Backbone = require( 'backbone' );
 
-var debug = require( 'debug' )( 'dpac:core.collections', '[AssessmentsFacade]' );
+var debug = require( 'debug' )( 'dpac:core.collections', '[AssessmentsCollection]' );
 var teardown = require( '../../common/mixins/teardown' );
 var selectable = require( '../../common/mixins/selectable' );
 var safeSync = require( '../../common/mixins/safeSync' );
