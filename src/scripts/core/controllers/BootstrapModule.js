@@ -40,6 +40,7 @@ _.extend( module.exports.prototype, {
                 collection.fetch();
             } )
             .when( 'authentication:signout:completed' ).then( function(){
+            //TODO: this HAS to be moved !!!
                 var collection = context.getObject( 'assessmentsFacade' );
                 collection.reset();
             } )

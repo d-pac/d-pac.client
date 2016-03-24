@@ -5,6 +5,7 @@ var teardown = require( '../../common/mixins/teardown' );
 
 module.exports = NestedModel.extend( {
     idAttribute: "_id",
+    urlRoot: "/representations",
 
     defaults: {
         name: undefined,
@@ -20,6 +21,7 @@ module.exports = NestedModel.extend( {
 
     initialize: function(){
         debug( '#initialize', this.id || '<new>' );
+        console.log(this.url());
     },
 
     select: function(){

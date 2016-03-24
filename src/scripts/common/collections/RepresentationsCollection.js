@@ -18,8 +18,17 @@ module.exports = Backbone.Collection.extend( {
     },
 
     fetchForAssessment: function( model ){
+        debug('#fetchForAssessment');
         this.fetch( {
             data: { filter: JSON.stringify( { assessment: model.id } ) },
+            reset: true
+        } );
+    },
+
+    fetchForUser: function(){
+        debug('#fetchForUser');
+        this.fetch( {
+            url: '/user/representations',
             reset: true
         } );
     }

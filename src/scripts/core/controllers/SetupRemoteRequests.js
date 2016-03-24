@@ -45,9 +45,10 @@ _.extend( SetupRemoteRequests.prototype, {
 
             //inject host from config into `url`
 
-            options = _.extend( options, {
-                url: config.api.root + _.result( model, "url" )
+            options = _.defaults( options, {
+                url: _.result( model, "url" )
             } );
+            options.url = config.api.root + options.url;
 
             options.beforeSend = function( xhr ){
                 xhr.setRequestHeader( 'Request-UUID', rid );
