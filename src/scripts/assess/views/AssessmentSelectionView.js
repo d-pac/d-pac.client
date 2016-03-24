@@ -20,7 +20,7 @@ module.exports = Marionette.ItemView.extend( {
 
     serializeData: function(){
         var data = {
-            items: this.collection.getAssessablesJSON(),
+            items: this.collection.getAssessables().toJSON(),
             assessmentWasCompleted: false
         };
         if(this.options.completedAssessment){

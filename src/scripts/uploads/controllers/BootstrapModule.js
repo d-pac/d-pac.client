@@ -33,7 +33,7 @@ _.extend( module.exports.prototype, {
             .then( function(){
                 var user = context.getObject( 'accountModel' );
                 var asAssessee = user.getAssessments( 'assessee' );
-                context.wireValue( 'assessmentsCollection', assessmentsFacade.cloneSubset( asAssessee ) );
+                context.wireValue( 'assessmentsCollection', assessmentsFacade.listById( asAssessee ) );
             }, 'uploads:domain:requested', 'uploads:bootstrap:completed' )
             .when( 'uploads:bootstrap:completed' )
             .then( function(){

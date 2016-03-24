@@ -44,7 +44,7 @@ var AssessmentsCollection = Backbone.Collection.extend( {
 
     //==( by role )==/
 
-    cloneSubset: function( ids ){
+    listById: function( ids ){
         var models = this.filter( function( model ){
             return ids.indexOf( model.id ) >= 0;
         } );
@@ -54,15 +54,17 @@ var AssessmentsCollection = Backbone.Collection.extend( {
     //==( actives )==//
 
     getAssessables: function(){
-        return this.filter( function( assessment ){
+        var models = this.filter( function( assessment ){
             return assessment.assessingAllowed();
         } );
+        return new AssessmentsCollection(models);
     },
 
-    getAssessablesJSON: function(){
-        return _.map( this.getAssessables(), function( model ){
-            return model.toJSON();
-        } );
+    getUploadables: function(){
+        var models = this.filter(function(assessment){
+            return assessment.uploadingAllowed();
+        });
+        return new AssessmentsCollection(models);
     },
 
     //==( extras )==/

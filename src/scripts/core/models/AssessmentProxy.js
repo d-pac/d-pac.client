@@ -62,6 +62,10 @@ module.exports = Backbone.Model.extend( {
             && (this.isRoot() || !this.parentAssessingAllowed());
     },
 
+    uploadingAllowed: function(){
+        return this.get( 'state' ) !== 'completed'
+    },
+
     getParent: function(){
         return this.get( 'registry' ).get( this.get( 'parent' ) );
     },

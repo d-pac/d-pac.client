@@ -31,7 +31,7 @@ _.extend( module.exports.prototype, {
             .then( function(){
                 var user = context.getObject( 'accountModel' );
                 var asAssessor = user.getAssessments( 'assessor' );
-                context.wireValue( 'assessmentsCollection', assessmentsFacade.cloneSubset( asAssessor ) );
+                context.wireValue( 'assessmentsCollection', assessmentsFacade.listById( asAssessor ) );
             }, 'assess:domain:requested' )
             .when( 'phases:collection:sync' )
             .then( function(){
