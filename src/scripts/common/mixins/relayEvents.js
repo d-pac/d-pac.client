@@ -2,8 +2,8 @@
 
 var _ = require( 'lodash' );
 
-module.exports.mixin = function( mediatorClass ){
-    _.extend( mediatorClass.prototype, {
+module.exports.mixin = function( Constructor ){
+    _.extend( Constructor.prototype, {
         relayEvents: function( from,
                                events,
                                to ){

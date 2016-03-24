@@ -6,6 +6,7 @@ var debug = require( 'debug' )( 'dpac:core.collections', '[AssessmentsFacade]' )
 var teardown = require( '../../common/mixins/teardown' );
 var selectable = require( '../../common/mixins/selectable' );
 var safeSync = require( '../../common/mixins/safeSync' );
+var propagateEvents = require( '../../common/mixins/propagateEvents' );
 
 var ModelClass = require( '../models/AssessmentProxy' );
 
@@ -34,6 +35,11 @@ var AssessmentsCollection = Backbone.Collection.extend( {
             doc.registry = this;
             return doc;
         }.bind( this ) );
+    },
+
+    fetch: function(){
+        debug( '#fetch' );
+        return Backbone.Collection.prototype.fetch.apply( this, _.toArray( arguments ) );
     },
 
     //==( by role )==/
@@ -68,6 +74,9 @@ var AssessmentsCollection = Backbone.Collection.extend( {
 } );
 module.exports = AssessmentsCollection;
 
+propagateEvents.mixin( module.exports ).propagate( {
+    "sync": "assessments:collection:sync"
+} );
 selectable.collection.mixin( module.exports );
 safeSync.collection.mixin( module.exports );
 teardown.collection.mixin( module.exports );

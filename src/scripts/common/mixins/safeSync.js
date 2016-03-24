@@ -18,7 +18,7 @@ module.exports.collection = {
                 if( opts.once && this._syncingState === SYNCED ){
                     this.trigger( 'sync', this );
 
-                } else if( !this._syncingState || this._syncingState === READY ){
+                } else if( !this._syncingState || this._syncingState !== SYNCING ){
                     this._syncingState = SYNCING;
                     this.once( 'sync', function(){
                         this._syncingState = SYNCED

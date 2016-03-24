@@ -22,11 +22,11 @@ _.extend( module.exports.prototype, {
             "results:representation:selected": [ require( './LoadFeedback' ) ]
         } );
 
-        var proceedEvent = (assessmentsFacade.isSynced())
-            ? 'results:bootstrap:requested'
-            : 'assessments:collection:sync';
         instruct( this.context.vent )
-            .when( proceedEvent ).then( function(){
+            .when( 'results:bootstrap:requested' ).then( function(){
+                assessmentsFacade.fetch();
+            } )
+            .when( 'assessments:collection:sync' ).then( function(){
                 context.wireValue( 'assessmentsCollection', assessmentsFacade );
             }, 'results:ui:requested', 'results:bootstrap:completed' )
             .when( 'results:assessment:selected' ).then( function(){

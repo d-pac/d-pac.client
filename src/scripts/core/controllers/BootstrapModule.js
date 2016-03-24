@@ -39,14 +39,6 @@ _.extend( module.exports.prototype, {
                 } );
                 collection.fetch();
             } )
-            .when( 'authentication:state:authenticated' ).then( function(){
-                debug( 'fetch assessments' );
-                var collection = context.getObject( 'assessmentsFacade' );
-                collection.once( "sync", function(){
-                    context.dispatch( "assessments:collection:sync" );
-                } );
-                collection.fetch();
-            } )
             .when( 'authentication:signout:completed' ).then( function(){
                 var collection = context.getObject( 'assessmentsFacade' );
                 collection.reset();

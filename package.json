@@ -33,7 +33,7 @@
     "clean:dist": "rm -rf dist; mkdir dist",
     "copy:web": "cp -R src/web/. dist/",
     "shrinkwrap": "npm shrinkwrap --dev",
-    "preview": "webpack-dev-server --devtool eval --progress --colors --inline --verbose --port 9000",
+    "preview": "webpack-dev-server --devtool eval --progress --inline --verbose --port 9000",
     "compile": "webpack -dp --progress --colors --verbose",
     "build": "npm run clean:dist; npm run copy:web && npm run compile"
   }

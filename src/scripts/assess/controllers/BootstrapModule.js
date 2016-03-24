@@ -21,12 +21,11 @@ _.extend( module.exports.prototype, {
             ]
         } );
 
-        var proceedEvent = (assessmentsFacade.isSynced())
-            ? 'assess:bootstrap:requested'
-            : 'assessments:collection:sync';
-
         instruct( this.context.vent )
-            .when( proceedEvent ).then( function(){
+            .when( 'assess:bootstrap:requested' ).then( function(){
+                assessmentsFacade.fetch();
+            } )
+            .when( 'assessments:collection:sync' ).then( function(){
                 var user = context.getObject( 'accountModel' );
                 var asAssessor = user.getAssessments( 'assessor' );
                 context.wireValue( 'assessmentsCollection', assessmentsFacade.cloneSubset( asAssessor ) );
@@ -36,7 +35,8 @@ _.extend( module.exports.prototype, {
             context.getObject( 'navigationBlocker' );
             var assessFlow = context.getObject( 'assessFlow' );
             assessFlow.start();
-        }, 'assess:bootstrap:completed' );
+        }, 'assess:bootstrap:completed' )
+        ;
 
         //set off bootstrapping
         context.vent.trigger( 'assess:bootstrap:requested' );
