@@ -13,6 +13,8 @@ var bower = require( './bower.json' );
 var vendorComponents = _.keys( pkg.dependencies );
 vendorComponents = vendorComponents.concat( _.keys( bower.dependencies ) );
 
+var dir_js = path.resolve(__dirname, './src/scripts');
+
 module.exports = {
     entry: {
         main: './src/scripts/main.js',
@@ -67,6 +69,10 @@ module.exports = {
             {
                 test: /\.(svg|woff|woff2|eot|ttf|otf)(\?.*$|$)/,
                 loader: "url-loader?limit=10000"
+            },
+            {
+                loader: 'babel-loader',
+                test: /.js$/,
             }
         ]
     },
