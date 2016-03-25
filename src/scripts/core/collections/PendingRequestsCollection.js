@@ -11,11 +11,10 @@ module.exports = Backbone.Collection.extend({
 
     initialize : function(){
         debug('#initialize');
-        var self = this;
-        this.on("remove", function(request){
+        this.on("remove", (request)=>{
             this._lastRequest = request;
-            if(self.isEmpty() ){
-                self.trigger("requests:pending:empty");
+            if(this.isEmpty() ){
+                this.dispatch("requests:pending:empty");
             }
         })
     },

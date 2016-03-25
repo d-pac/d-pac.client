@@ -72,7 +72,8 @@ module.exports = {
             },
             {
                 loader: 'babel-loader',
-                test: /.js$/,
+                test: dir_js,
+                exclude: /\.hbs$/
             }
         ]
     },

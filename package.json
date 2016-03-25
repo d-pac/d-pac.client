@@ -40,5 +40,10 @@
     "preview": "webpack-dev-server --devtool eval --progress --inline --verbose --port 9000",
     "compile": "webpack -dp --progress --colors --verbose",
     "build": "npm run clean:dist; npm run copy:web && npm run compile"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
   }
 }

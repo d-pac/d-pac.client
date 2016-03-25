@@ -14,9 +14,8 @@ module.exports = NestedModel.extend( {
 
     initialize: function(){
         debug( '#initialize', this );
-        var self = this;
-        this.on( 'change:body', function(){
-            self.save( self.changedAttributes(), { patch: true } );
+        this.on( 'change:body', ()=>{
+            this.save( this.changedAttributes(), { patch: true } );
         } );
     },
 

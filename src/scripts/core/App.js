@@ -9,10 +9,8 @@ var Context = Geppetto.Context.extend( {
     initialize: function( config ){
         debug( "#initialize" );
         Geppetto.setDebug( true );
-        var self = this;
         this.vent.on( 'all', function( eventName,
                                        event ){
-            var ctx = self;
             eventLog( eventName );
         } );
 

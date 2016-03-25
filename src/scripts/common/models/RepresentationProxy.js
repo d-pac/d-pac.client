@@ -21,7 +21,6 @@ module.exports = NestedModel.extend( {
 
     initialize: function(){
         debug( '#initialize', this.id || '<new>' );
-        console.log(this.url());
     },
 
     select: function(){
