@@ -8,7 +8,8 @@ var $ = require( 'jquery' );
 module.exports = Marionette.LayoutView.extend( {
     template: tpl,
 
-    className: "col-md-12 column",
+    tagName: "div",
+    className: "row",
 
     regions: {
         selection: "#results-assessment-selection",

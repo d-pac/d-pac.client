@@ -9,7 +9,13 @@ module.exports = Marionette.LayoutView.extend( {
     tagName: "div",
     className: "row",
 
+    overviewFactory: undefined,
+
     contextEvents: {
+    },
+
+    regions: {
+        overview: "#uploads-content"
     },
 
     initialize: function(){
@@ -18,6 +24,7 @@ module.exports = Marionette.LayoutView.extend( {
 
     onRender: function(){
         this.dispatch( 'uploads:ui:rendered' );
+        this.overview.show(this.overviewFactory());
     },
 
     onDestroy: function(){

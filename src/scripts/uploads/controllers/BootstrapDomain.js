@@ -14,5 +14,9 @@ _.extend( BootstrapDomain.prototype, {
 
         var context = this.context;
         context.wireSingleton( 'representationsCollection', require( '../../common/collections/RepresentationsCollection' ) );
+        context.wireClass( 'uploadsCollection', require( '../models/uploadsCollection' ), {
+            representationsCollection: 'representationsCollection',
+            assessmentsCollection: 'assessmentsCollection'
+        } );
     }
 } );

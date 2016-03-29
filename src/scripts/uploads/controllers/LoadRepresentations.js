@@ -12,6 +12,9 @@ _.extend( LoadRepresentations.prototype, {
     execute: function(){
         debug( '#execute' );
 
+        this.representationsCollection.once( "sync", function(){
+            this.dispatch( "representations:collection:sync" );
+        }.bind( this ) );
         this.representationsCollection.fetchForUser();
     }
 } );

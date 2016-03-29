@@ -57,14 +57,14 @@ var AssessmentsCollection = Backbone.Collection.extend( {
         var models = this.filter( function( assessment ){
             return assessment.assessingAllowed();
         } );
-        return new AssessmentsCollection(models);
+        return new AssessmentsCollection( models );
     },
 
     getUploadables: function(){
-        var models = this.filter(function(assessment){
+        var models = this.filter( function( assessment ){
             return assessment.uploadingAllowed();
-        });
-        return new AssessmentsCollection(models);
+        } );
+        return new AssessmentsCollection( models );
     },
 
     //==( extras )==/

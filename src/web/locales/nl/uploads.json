@@ -1,0 +1,10 @@
+{
+  "title": "Uploads",
+  "overview": {
+    "assessment": "Opdracht",
+    "file": "Bestand",
+    "browse": "Selecteer",
+    "save": "Bewaar",
+    "remove": "<span class=\"glyphicon glyphicon-remove\"></span>"
+  }
+}

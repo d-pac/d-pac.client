@@ -24,7 +24,8 @@ _.extend( module.exports.prototype, {
                     'assess',
                     'results',
                     "errors",
-                    "tutorial"
+                    "tutorial",
+                    "uploads"
                 ],
                 defaultNs: 'common'
             }

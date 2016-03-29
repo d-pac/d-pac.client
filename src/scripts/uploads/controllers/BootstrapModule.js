@@ -16,10 +16,8 @@ _.extend( module.exports.prototype, {
         context.wireCommands( {
             'uploads:domain:requested': [
                 require( './BootstrapDomain' ),
-                require( './LoadRepresentations' )
-                // require( './SetupAssessmentI18NSyncing' ),
-                // require( './LoadPhases' ),
-                // require( './BootstrapUI' )
+                require( './LoadRepresentations' ),
+                require( './BootstrapUI' )
             ]
         } );
 
@@ -34,7 +32,9 @@ _.extend( module.exports.prototype, {
                 var user = context.getObject( 'accountModel' );
                 var asAssessee = user.getAssessments( 'assessee' );
                 context.wireValue( 'assessmentsCollection', assessmentsFacade.listById( asAssessee ) );
-            }, 'uploads:domain:requested', 'uploads:bootstrap:completed' )
+            }, 'uploads:domain:requested' )
+            .when( 'representations:collection:sync' )
+            .then( 'uploads:bootstrap:completed' )
             .when( 'uploads:bootstrap:completed' )
             .then( function(){
                 instructor.destroy();

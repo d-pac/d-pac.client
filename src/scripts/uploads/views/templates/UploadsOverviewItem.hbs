@@ -1,0 +1,18 @@
+<td>
+    {{assessment.title}}
+</td>
+<td>
+    <div class="form-group label-floating">
+        <div class="input-group">
+            <input type="text" class="form-control file-label text-right" style="padding-right: 10px" placeholder="{{representations.0.document.title}}" disabled="disabled"
+                   value="">
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-danger btn-sm remove-btn">{{ t "uploads:overview.remove"}}</button>
+                <span class="btn btn-primary btn-sm btn-file browse-btn">
+                {{ t "uploads:overview.browse"}} <input name="file-input" type="file" data-assessment="{{assessment._id}}">
+                </span>
+                <button type="button" class="btn btn-success btn-sm save-btn">{{ t "uploads:overview.save"}}</button>
+            </span>
+        </div>
+    </div>
+</td>
