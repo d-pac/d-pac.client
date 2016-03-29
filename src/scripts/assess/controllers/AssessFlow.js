@@ -58,7 +58,7 @@ module.exports = Marionette.Controller.extend( {
 
     checkSelectedAssessmentIsCompleted: function(){
         var assessment = this.assessmentsCollection.selected;
-        if( assessment.maxComparisonsDone() ){
+        if( assessment.isCompleted() ){
             this.assessmentsCollection.deselect( assessment );
             this.requestAssessmentSelection();
             this.dispatch( 'assess:show:messages', {
@@ -141,7 +141,7 @@ module.exports = Marionette.Controller.extend( {
         this.comparisonsCollection.remove( comparison );
         var assessment = this.assessmentsCollection.selected;
         assessment.incCompleted();
-        if( assessment.maxComparisonsDone() ){
+        if( assessment.isCompleted() ){
             this.assessmentsCollection.deselect( assessment );
             this.dispatch( 'assess:show:messages', {
                 type: i18n.t( "assess:assessment_completed.type" ) || "success",
