@@ -59,10 +59,6 @@ module.exports = {
                 loader: "imports?Backbone=backbone!exports?Backbone.NestedModel"
             },
             {
-                test: /bootstrap-material-design/,
-                loader: "imports?jQuery=jquery!exports?jQuery.material"
-            },
-            {
                 test: /\.less$/,
                 loader: "style!css!less"
             },

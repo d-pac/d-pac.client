@@ -2,10 +2,9 @@
 
 /* stand-alones */
 require( 'babel-polyfill' );
-require( '../styles/main.less' );
 require( 'modernizr' );
 require( 'bootstrap' );
-require( 'bootstrap-material-design' ).init();
+require( '../styles/main.less' );
 require( 'lity' );
 /* --- */
 
