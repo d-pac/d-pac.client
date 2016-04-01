@@ -13,8 +13,8 @@ _.extend( BootstrapDomain.prototype, {
         debug( '#execute' );
 
         var context = this.context;
-        context.wireSingleton( 'representationsCollection', require( '../../common/collections/RepresentationsCollection' ) );
-        context.wireSingleton( 'feedbackCollection', require( '../../common/collections/FeedbackCollection' ) );
+        context.wireSingleton( 'representationsCollection', require( '../../common/models/RepresentationsCollection' ) );
+        context.wireSingleton( 'feedbackCollection', require( '../../common/models/FeedbackCollection' ) );
 
         this.context = undefined;
         this.eventName = undefined;

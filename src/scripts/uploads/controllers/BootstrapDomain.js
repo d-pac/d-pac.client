@@ -13,7 +13,7 @@ _.extend( BootstrapDomain.prototype, {
         debug( '#execute' );
 
         var context = this.context;
-        context.wireSingleton( 'representationsCollection', require( '../../common/collections/RepresentationsCollection' ) );
+        context.wireSingleton( 'representationsCollection', require( '../../common/models/RepresentationsCollection' ) );
         context.wireClass( 'uploadsCollection', require( '../models/uploadsCollection' ), {
             representationsCollection: 'representationsCollection',
             assessmentsCollection: 'assessmentsCollection'

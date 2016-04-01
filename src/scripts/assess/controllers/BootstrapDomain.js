@@ -14,20 +14,20 @@ _.extend( BootstrapDomain.prototype, {
 
         var context = this.context;
         //context.wireValue( 'assessmentsCollection', context.getObject( 'assessmentsFacade' ).get( 'assessor' ) );
-        context.wireSingleton( 'phasesCollection', require( '../collections/PhasesCollection' ) );
-        context.wireSingleton( 'representationsCollection', require( '../../common/collections/RepresentationsCollection' ) );
-        context.wireSingleton( 'notesCollection', require( '../collections/NotesCollection' ) );
-        context.wireSingleton( 'feedbackCollection', require( '../../common/collections/FeedbackCollection' ) );
+        context.wireSingleton( 'phasesCollection', require( '../models/PhasesCollection' ) );
+        context.wireSingleton( 'representationsCollection', require( '../../common/models/RepresentationsCollection' ) );
+        context.wireSingleton( 'notesCollection', require( '../models/NotesCollection' ) );
+        context.wireSingleton( 'feedbackCollection', require( '../../common/models/FeedbackCollection' ) );
         context.wireSingleton( 'comparisonsParser', require( '../services/ComparisonsParser' ), {
             representationsCollection: 'representationsCollection',
             notesCollection: 'notesCollection',
             feedbackCollection: 'feedbackCollection'
         } );
-        context.wireSingleton( 'comparisonsCollection', require( '../collections/ComparisonsCollection' ), {
+        context.wireSingleton( 'comparisonsCollection', require( '../models/ComparisonsCollection' ), {
             parser: 'comparisonsParser'
         } );
 
-        context.wireSingleton( 'timelogsCollection', require( '../collections/TimelogsCollection' ) );
+        context.wireSingleton( 'timelogsCollection', require( '../models/TimelogsCollection' ) );
         context.wireSingleton( 'navigationBlocker', require( './NavigationBlocker' ) );
         context.wireSingleton( 'assessFlow', require( '../controllers/AssessFlow' ), {
             assessmentsCollection: "assessmentsCollection",
