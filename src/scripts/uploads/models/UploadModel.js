@@ -13,11 +13,11 @@ module.exports = Backbone.Model.extend( {
         representation: undefined
     },
 
-    initialize: function(){
+    initialize(){
         debug( '#initialize' );
     },
 
-    save: function( attrs ){
+    save( attrs ){
         let representation = this.get( 'representation' );
         if( !representation ){
             representation = new Representation();
@@ -25,15 +25,13 @@ module.exports = Backbone.Model.extend( {
             //add to collection
         }
         representation.once( 'change', (model)=>{
-            console.log('UPDATE');
             this.trigger('change:representation');
         } );
         representation.update( attrs );
     },
 
-    toJSON: function(){
+    toJSON(){
         const representation = this.get( 'representation' );
-        console.log(representation);
         return {
             assessment: this.get( 'assessment' ).toJSON(),
             representation: (representation) ? representation.toJSON() : undefined
