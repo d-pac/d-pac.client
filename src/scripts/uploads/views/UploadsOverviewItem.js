@@ -14,6 +14,10 @@ module.exports = Marionette.ItemView.extend( {
     tagName: "tr",
     template: tpl,
 
+    modelEvents: {
+        "change:representation": "render"
+    },
+
     ui: {
         saveBtn: ".save-btn",
         removeBtn: ".remove-btn",
@@ -47,6 +51,7 @@ module.exports = Marionette.ItemView.extend( {
     },
 
     onRender: function(){
+        console.log('RENDER');
         this.determineState();
     },
 

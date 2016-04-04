@@ -5,6 +5,7 @@
     "file": "Bestand",
     "browse": "Selecteer",
     "save": "Bewaar",
-    "remove": "<span class=\"glyphicon glyphicon-remove\"></span>"
+    "remove": "<span class=\"glyphicon glyphicon-remove\"></span>",
+    "replace": "Vervang"
   }
 }

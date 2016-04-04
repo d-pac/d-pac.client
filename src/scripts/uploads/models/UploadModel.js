@@ -1,32 +1,42 @@
 'use strict';
 const _ = require( 'lodash' );
-const NestedModel = require( 'backbone-nested-model' );
-const Backbone = require('backbone');
+const Backbone = require( 'backbone' );
 const debug = require( 'debug' )( 'dpac:uploads.models', '[UploadModel]' );
+const Representation = require( '../../common/models/RepresentationProxy' );
 
-module.exports = NestedModel.extend( {
+module.exports = Backbone.Model.extend( {
+    representationsCollection: undefined,
+    idAttribute: "_id",
+
     defaults: {
         assessment: undefined,
-        representations: undefined
+        representation: undefined
     },
 
     initialize: function(){
         debug( '#initialize' );
     },
 
-    save: function(attrs){
-        const formdata = new FormData();
-        formdata.append( 'file', attrs.file );
-        formdata.append( 'assessment', attrs.assessment );
-        Backbone.sync( 'create', this, {
-            data: formdata,
-            processData: false,
-            contentType: false,
-            url: '/representations/actions/upload',
-            success: ( data )=>{
-                console.log( data );
-            },
-            error : _.noop
+    save: function( attrs ){
+        let representation = this.get( 'representation' );
+        if( !representation ){
+            representation = new Representation();
+            this.set('representation', representation);
+            //add to collection
+        }
+        representation.once( 'change', (model)=>{
+            console.log('UPDATE');
+            this.trigger('change:representation');
         } );
+        representation.update( attrs );
+    },
+
+    toJSON: function(){
+        const representation = this.get( 'representation' );
+        console.log(representation);
+        return {
+            assessment: this.get( 'assessment' ).toJSON(),
+            representation: (representation) ? representation.toJSON() : undefined
+        }
     }
 } );
