@@ -19,6 +19,7 @@ module.exports = Backbone.Model.extend( {
         enableTimeLogging: false,
         enableNotes: false,
         enableSelectionIcon: true,
+        enableResults: true,
         progress: {
             total: undefined,
             completedNum: undefined //number of comparisons the user has already made for this assessment
@@ -32,7 +33,7 @@ module.exports = Backbone.Model.extend( {
 
     parse: function( raw ){
         raw.uiCopy = JSON.parse( raw.uiCopy );
-        raw.hasResults = (raw.stats && raw.stats.lastRun);
+        raw.hasResults = (raw.stats && raw.stats.lastRun && raw.enableResults);
         return raw;
     },
 
