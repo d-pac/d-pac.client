@@ -14,7 +14,7 @@ _.extend( BootstrapDomain.prototype, {
 
         var context = this.context;
         context.wireSingleton( 'representationsCollection', require( '../../common/models/RepresentationsCollection' ) );
-        context.wireClass( 'uploadsCollection', require( '../models/uploadsCollection' ), {
+        context.wireClass( 'uploadsCollection', require( '../models/UploadsCollection' ), {
             representationsCollection: 'representationsCollection',
             assessmentsCollection: 'assessmentsCollection'
         } );
