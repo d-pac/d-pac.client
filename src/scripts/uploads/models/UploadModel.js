@@ -14,7 +14,7 @@ module.exports = Backbone.Model.extend( {
     },
 
     initialize(){
-        debug( '#initialize' );
+        debug( '#initialize', this.representationsCollection );
     },
 
     save( attrs ){
@@ -22,6 +22,7 @@ module.exports = Backbone.Model.extend( {
         if( !representation ){
             representation = new Representation();
             this.set('representation', representation);
+            this.representationsCollection.add(representation);
             //add to collection
         }
         representation.once( 'change', (model)=>{

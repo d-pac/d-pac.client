@@ -3,15 +3,22 @@ const _ = require( 'lodash' );
 const Backbone = require( 'backbone' );
 
 const debug = require( 'debug' )( 'dpac:uploads.collections', '[UploadsCollection]' );
-const Model = require( './UploadModel' );
+const UploadModel = require( './UploadModel' );
 module.exports = Backbone.Collection.extend( {
-    model: Model,
 
     assessmentsCollection: undefined,
     representationsCollection: undefined,
 
     initialize: function(){
         debug( '#initialize' );
+        // need to set it here, since we need to bind the function to the instance
+        this.model = ( attrs,
+                       options )=>{
+            const model = new UploadModel( attrs, options );
+            model.representationsCollection = this.representationsCollection;
+            return model;
+        };
+
         this._createModels();
     },
 
