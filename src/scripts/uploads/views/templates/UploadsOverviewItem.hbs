@@ -1,10 +1,12 @@
 <td>
-    {{assessment.title}}
+    <h4>{{assessment.title}}
 </td>
 <td>
     <div class="form-group label-floating">
         <div class="input-group">
-            <input type="text" class="form-control file-label text-right" style="padding-right: 10px" placeholder="{{representation.document.title}}" disabled="disabled"
+            <input type="text" class="form-control file-label text-right" style="padding-right: 10px"
+                   placeholder="{{#if representation.document.title}}{{representation.document.title}}{{else}}{{assessment.uiCopy.uploads.description}}{{/if}}"
+                   disabled="disabled"
                    value="">
             <span class="input-group-btn">
                 <button type="button" class="btn btn-danger btn-sm remove-btn">{{ t "uploads:overview.remove"}}</button>
