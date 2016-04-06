@@ -18,5 +18,7 @@ _.extend( BootstrapDomain.prototype, {
             representationsCollection: 'representationsCollection',
             assessmentsCollection: 'assessmentsCollection'
         } );
+        context.wireSingleton( 'navigationBlocker', require( './NavigationBlocker' ) );
+        context.getObject( 'navigationBlocker' );
     }
 } );

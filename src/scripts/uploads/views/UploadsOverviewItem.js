@@ -55,14 +55,17 @@ module.exports = Marionette.ItemView.extend( {
     },
 
     determineState: function(){
+        debug('#determineState');
         const selectedFile = stripPath( this.ui.fileInput.val() );
         this.ui.fileLabel.val( selectedFile );
         if( selectedFile ){
             this.ui.removeBtn.show();
             this.ui.saveBtn.show();
+            this.trigger( 'file:selected', selectedFile );
         } else {
             this.ui.removeBtn.hide();
             this.ui.saveBtn.hide();
+            this.trigger( 'file:deselected' );
         }
     },
 
