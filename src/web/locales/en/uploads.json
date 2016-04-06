@@ -6,6 +6,7 @@
     "browse": "Select",
     "save": "Save",
     "remove": "<span class=\"glyphicon glyphicon-remove\"></span>",
-    "replace": "Replace"
+    "replace": "Replace",
+    "changes-made": "You've made changes without saving.\nAre you sure you want to leave this screen?"
   }
 }
