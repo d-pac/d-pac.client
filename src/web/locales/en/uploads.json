@@ -1,3 +1,11 @@
 {
-  "title": "Uploads"
+  "title": "Uploads",
+  "overview": {
+    "assessment": "Assessment",
+    "file": "File",
+    "browse": "Select",
+    "save": "Save",
+    "remove": "<span class=\"glyphicon glyphicon-remove\"></span>",
+    "replace": "Replace"
+  }
 }
