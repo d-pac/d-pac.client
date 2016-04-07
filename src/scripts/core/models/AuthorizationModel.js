@@ -88,5 +88,28 @@ module.exports = Backbone.Model.extend( {
     isDisabled: function( path ){
         var obj = this.toJSON();
         return _.get( obj.flags, path ) === permissions.flags.disabled.label;
-    }
+    },
+
+    getHighestRole: function(assessment){
+        const id = assessment.id;
+        const user = this.authentication.get( 'user' );
+        if(_.get( user, [ 'assessments', 'pam' ], [] ).indexOf(id)>=0){
+            return 'pam';
+        }
+        if(_.get( user, [ 'assessments', 'assessor' ], [] ).indexOf(id)>=0){
+            return 'assessor';
+        }
+        if(_.get( user, [ 'assessments', 'assessee' ], [] ).indexOf(id)>=0){
+            return 'assessee';
+        }
+        return undefined;
+    },
+
+    isAllowedToViewRanking: function(assessment){
+        const role = this.getHighestRole(assessment);
+        if(role === 'assessee'){
+            return !!assessment.get('results.assessees.viewRanking');
+        }
+        return !!role;
+    },
 } );

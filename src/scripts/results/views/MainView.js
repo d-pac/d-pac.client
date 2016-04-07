@@ -1,11 +1,13 @@
 'use strict';
 
-var debug = require( 'debug' )( 'dpac:results.views', '[LayoutView]' );
-var tpl = require( './templates/MainView.hbs' );
-var Marionette = require( 'backbone.marionette' );
-var $ = require( 'jquery' );
+const _ = require( 'lodash' );
+const debug = require( 'debug' )( 'dpac:results.views', '[LayoutView]' );
+const tpl = require( './templates/MainView.hbs' );
+const Marionette = require( 'backbone.marionette' );
+const $ = require( 'jquery' );
 
 module.exports = Marionette.LayoutView.extend( {
+    authorization: undefined,
     template: tpl,
 
     tagName: "div",
@@ -21,7 +23,7 @@ module.exports = Marionette.LayoutView.extend( {
     },
 
     contextEvents: {
-        'results:assessment:selected': function(){
+        'results:assessment:selected': function( event ){
             this.menu.show( this.showAssessmentMenu() );
             this.overview.empty();
             this.ranking.empty();
@@ -29,13 +31,15 @@ module.exports = Marionette.LayoutView.extend( {
             this.feedback.empty();
             _.delay( function(){
                 this.overview.show( this.showAssessmentOverview() );
-                this.ranking.show( this.showRanking() );
+                if( this.authorization.isAllowedToViewRanking( event.assessment ) ){
+                    this.ranking.show( this.showRanking() );
+                }
             }.bind( this ), 250 );
         },
         'results:representation:selected': function(){
             this.details.$el.addClass( 'empty-region' );
             this.feedback.$el.addClass( 'empty-region' );
-            var anchor = this.ranking.$el.offset().top + this.ranking.$el.height() - 100;
+            const anchor = this.ranking.$el.offset().top + this.ranking.$el.height() - 100;
             _.delay( function(){
                 this.details.$el.removeClass( 'empty-region' );
                 this.details.show( this.showDetails() );

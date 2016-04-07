@@ -19,7 +19,8 @@ _.extend( BootstrapUI.prototype, {
             showAssessmentOverview: 'AssessmentOverview',
             showRanking: 'RepresentationsRankingView',
             showDetails: 'RepresentationDetailsView',
-            showFeedback: 'FeedbackOverview'
+            showFeedback: 'FeedbackOverview',
+            authorization: 'authorizationModel'
         } );
         context.wireView( 'AssessmentSelectionView', require( '../views/AssessmentSelection' ), {
             collection: 'assessmentsCollection'

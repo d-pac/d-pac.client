@@ -1,9 +1,10 @@
 'use strict';
-var Backbone = require( 'backbone' );
-var debug = require( 'debug' )( 'dpac:core.models', '[AssessmentProxy]' );
-var teardown = require( '../../common/mixins/teardown' );
+const _ = require( 'lodash' );
+const NestedModel = require('backbone-nested-model');
+const debug = require( 'debug' )( 'dpac:core.models', '[AssessmentProxy]' );
+const teardown = require( '../../common/mixins/teardown' );
 
-module.exports = Backbone.Model.extend( {
+module.exports = NestedModel.extend( {
     idAttribute: "_id",
 
     defaults: {
@@ -19,10 +20,16 @@ module.exports = Backbone.Model.extend( {
         enableTimeLogging: false,
         enableNotes: false,
         enableSelectionIcon: true,
-        enableResults: true,
         progress: {
             total: undefined,
             completedNum: undefined //number of comparisons the user has already made for this assessment
+        },
+        results: {
+            enable: true,
+            assessees: {
+                viewRepresentations: true,
+                viewRanking: true
+            }
         },
         hasResults: false
     },
@@ -33,7 +40,7 @@ module.exports = Backbone.Model.extend( {
 
     parse: function( raw ){
         raw.uiCopy = JSON.parse( raw.uiCopy );
-        raw.hasResults = (raw.stats && raw.stats.lastRun && raw.enableResults);
+        raw.hasResults = (!!raw.stats && !!raw.stats.lastRun && _.get( raw, [ 'results', 'enable' ], true ));
         return raw;
     },
 
