@@ -14,12 +14,12 @@ _.extend( BootstrapUI.prototype, {
 
         var context = this.context;
         context.wireView( 'MainView', require( '../views/MainView' ), {
-            showAssessmentSelection: 'AssessmentSelectionView',
-            showAssessmentMenu: 'AssessmentMenuView',
-            showAssessmentOverview: 'AssessmentOverview',
-            showRanking: 'RepresentationsRankingView',
-            showDetails: 'RepresentationDetailsView',
-            showFeedback: 'FeedbackOverview',
+            createAssessmentSelection: 'AssessmentSelectionView',
+            createAssessmentMenu: 'AssessmentMenuView',
+            createAssessmentOverview: 'AssessmentOverview',
+            createRanking: 'RepresentationsRankingView',
+            createDetails: 'RepresentationDetailsView',
+            createFeedback: 'FeedbackOverview',
             authorization: 'authorizationModel'
         } );
         context.wireView( 'AssessmentSelectionView', require( '../views/AssessmentSelection' ), {
@@ -32,8 +32,7 @@ _.extend( BootstrapUI.prototype, {
             collection: 'assessmentsCollection'
         } );
         context.wireView( 'RepresentationsRankingView', require( '../views/RepresentationsRanking' ), {
-            collection: 'representationsCollection',
-            assessments: 'assessmentsCollection'
+            model: 'representationsRankingsController'
         } );
         context.wireView( 'RepresentationDetailsView', require( '../views/RepresentationDetails' ), {
             collection: 'representationsCollection',

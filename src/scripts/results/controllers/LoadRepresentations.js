@@ -8,10 +8,10 @@ var LoadRepresentations = module.exports = function LoadRepresentations( context
 };
 
 _.extend( LoadRepresentations.prototype, {
-    wiring: ['representationsCollection'],
+    wiring: ['representationsRankingsController'],
     execute: function(){
         debug( '#execute' );
 
-        this.representationsCollection.fetchForAssessment( this.eventData.assessment );
+        this.representationsRankingsController.fetchForAssessment( this.eventData.assessment );
     }
 } );

@@ -18,101 +18,55 @@ var tip = d3Tip()
 module.exports = Marionette.ItemView.extend( {
     template: tpl,
 
-    collectionEvents: {
-        sync: 'render'
-    },
-
     ui: {
         spinner: '.spinner'
     },
 
-    initialize: function(){
-        debug( '#initialize', this.collection.length );
-        $( window ).on( "resize", this.render );
+    modelEvents: {
+        'sync': 'render'
     },
 
-    serializeData: function(){
-        return this.assessments.selected.toJSON();
+    initialize: function(){
+        debug( '#initialize' );
+        $( window ).on( "resize", this.render );
     },
 
     renderGraph: _.debounce( function(){
         debug( 'renderGraph' );
-        var n = this.collection.length;
+        const data = this.model.toJSON();
+        var n = data.representations.length;
         if( this.ui.spinner && !_.isString( this.ui.spinner ) ){
             this.ui.spinner.addClass( 'hidden' );
         }
-        var statsByRepresentation = this.assessments.selected.get( 'stats' ).byRepresentation;
-        var graph = stockplot();
-        var i = 0;
-
-        var data = this.collection
-            .sortBy( function( model ){
-                return model.get( 'ability.value' );
-            } )
-            .map( function( model ){
-                var ability = Number( model.get( 'ability.value' ) );
-                var rse = Number( model.get( 'ability.se' ) );
-                var se = Math.min( rse, 3 );
-                //TODO: this shouldn't happen here
-                model.set( {
-                    rank: n - i,
-                    comparisonsNum: _.get( statsByRepresentation, [ model.id, 'comparisonsNum' ], 0 )
-                } );
-                return {
-                    comparisonsNum: model.get( 'comparisonsNum' ),
-                    name: model.get( 'name' ),
-                    rank: model.get( 'rank' ),
-                    ability: ability,
-                    rse: rse,
-                    se: se,
-                    x: ++i,
-                    y: ability,
-                    selected: false,
-                    id: model.id,
-                    classes: [ 'representation-' + _.kebabCase( model.get( 'rankType' ) ) ],
-                    rankType: model.get( 'rankType' )
-                }
-            } );
-
-        var elems = graph.render( {
+        const graph = this.graph = stockplot();
+        const values = graph.render( {
             el: this.el,
-            data: data,
+            data: data.representations,
             debug: false,
             point: {
                 radius: 4,
                 ratio: 2
             }
-        } );
-        var values = elems.values;
-        //values.attr( "data-legend", function( d ){
-        //    return d.rankType
-        //} );
+        } ).values;
         values.call( tip );
-        //var svg = elems.svg;
-        //var legend = svg.append("g")
-        //  .attr("class","legend")
-        //  .attr("transform","translate(50,30)")
-        //  .style("font-size","12px")
-        //  .call(d3Legend)
-
         values.on( 'mouseover.ranking', tip.show );
         values.on( 'mouseout.ranking', tip.hide );
-        values.on( 'click.ranking', function( d ){
-            var model = this.collection.selectByID( d.id );
-            this.dispatch( "results:representation:selected", {
-                representation: model
-            } );
-        }.bind(this) );
+
+        graph.dispatch.on( 'select.ranking', ( d )=>{
+            this.model.selectRepresentation( d.id );
+        } );
+        graph.select(this.model.getSelectedRepresentationId())
     }, 1000 ),
 
     onRender: function(){
-        debug( '#onRender', this.collection.length );
-        if( this.collection.length ){
+        debug( '#onRender' );
+        if( this.model.getLength() ){
             this.renderGraph();
         }
     },
 
     onBeforeDestroy: function(){
+        this.graph.dispatch.on( 'select.ranking', null ); //removes listener
         $( window ).off( "resize" );
     }
 } );

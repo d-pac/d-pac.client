@@ -1,4 +1,5 @@
 'use strict';
+const _ = require( "lodash" );
 var NestedModel = require( 'backbone-nested-model' );
 var debug = require( 'debug' )( 'dpac:common.models', '[RepresentationProxy]' );
 var teardown = require( '../../common/mixins/teardown' );
@@ -15,7 +16,9 @@ module.exports = NestedModel.extend( {
             ext: undefined,
             mimeType: undefined,
             href: undefined,
-            text: undefined
+            text: undefined,
+            title: undefined,
+            owner: []
         },
         selected: false
     },
@@ -43,7 +46,7 @@ module.exports = NestedModel.extend( {
         return data;
     },
 
-    update: function(attrs){
+    update: function( attrs ){
         const formdata = new FormData();
         formdata.append( 'file', attrs.file );
         formdata.append( 'assessment', attrs.assessment );
@@ -57,12 +60,20 @@ module.exports = NestedModel.extend( {
         } );
     },
 
-    parse: function(raw){
-        if(raw.data){
+    parse: function( raw ){
+        if( raw.data ){
             return raw.data;
         }
 
         return raw;
+    },
+
+    isOwnedBy: function( idOrObj ){
+        const id = _.isString( idOrObj )
+            ? idOrObj
+            : idOrObj._id;
+        const owners = this.get( 'document.owner' ) || [];
+        return owners.indexOf( id ) >= 0;
     }
 } );
 teardown.model.mixin( module.exports );

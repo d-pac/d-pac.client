@@ -11,14 +11,14 @@ module.exports = Backbone.Model.extend( {
 
     guards: {
         "assess.view": function(){
-            var user = this.authentication.get( 'user' );
+            var user = this.getUser();
             var asAssessor = _.get( user, [ 'assessments', 'assessor' ], [] );
             return (asAssessor.length > 0)
                 ? permissions.flags.allowed.value
                 : permissions.flags.hidden.value;
         },
         "results.view": function(){
-            var user = this.authentication.get( 'user' );
+            var user = this.getUser();
             var asAssessee = _.get( user, [ 'assessments', 'assessee' ], [] );
             var asAssessor = _.get( user, [ 'assessments', 'assessor' ], [] );
             var asPAM = _.get( user, [ 'assessments', 'pam' ], [] );
@@ -32,13 +32,13 @@ module.exports = Backbone.Model.extend( {
                 : permissions.flags.hidden.value;
         },
         "admin.view": function(){
-            var user = this.authentication.get( 'user' );
+            var user = this.getUser();
             return (_.get( user, [ 'isAdmin' ], false ))
                 ? permissions.flags.allowed.value
                 : permissions.flags.hidden.value;
         },
         "uploads.view": function(){
-            var user = this.authentication.get( 'user' );
+            var user = this.getUser();
             var asAssessee = _.get( user, [ 'assessments', 'assessee' ], [] );
             return asAssessee.length > 0
                 ? permissions.flags.allowed.value
@@ -92,7 +92,7 @@ module.exports = Backbone.Model.extend( {
 
     getHighestRole: function(assessment){
         const id = assessment.id;
-        const user = this.authentication.get( 'user' );
+        const user = this.getUser();
         if(_.get( user, [ 'assessments', 'pam' ], [] ).indexOf(id)>=0){
             return 'pam';
         }
@@ -112,4 +112,16 @@ module.exports = Backbone.Model.extend( {
         }
         return !!role;
     },
+
+    isAllowedToViewOthers: function(assessment){
+        const role = this.getHighestRole(assessment);
+        if(role === 'assessee'){
+            return !!assessment.get('results.assessees.viewRepresentations');
+        }
+        return !!role;
+    },
+
+    getUser: function(){
+        return this.authentication.get( 'user' );
+    }
 } );

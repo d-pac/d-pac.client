@@ -24,47 +24,64 @@ module.exports = Marionette.LayoutView.extend( {
 
     contextEvents: {
         'results:assessment:selected': function( event ){
-            this.menu.show( this.showAssessmentMenu() );
+            const assessment = event.assessment;
+            this.menu.show( this.createAssessmentMenu() );
             this.overview.empty();
             this.ranking.empty();
             this.details.empty();
             this.feedback.empty();
-            _.delay( function(){
-                this.overview.show( this.showAssessmentOverview() );
-                if( this.authorization.isAllowedToViewRanking( event.assessment ) ){
-                    this.ranking.show( this.showRanking() );
-                }
-            }.bind( this ), 250 );
+            this.renderOverview( assessment );
+            this.renderRanking( assessment );
         },
-        'results:representation:selected': function(){
-            this.details.$el.addClass( 'empty-region' );
-            this.feedback.$el.addClass( 'empty-region' );
-            const anchor = this.ranking.$el.offset().top + this.ranking.$el.height() - 100;
-            _.delay( function(){
-                this.details.$el.removeClass( 'empty-region' );
-                this.details.show( this.showDetails() );
-            }.bind( this ), 500 );
-            _.delay( function(){
-                this.feedback.$el.removeClass( 'empty-region' );
-                this.feedback.show( this.showFeedback() );
-                $( "html, body" ).animate( { scrollTop: anchor + "px" }, "slow" );
-            }.bind( this ), 1000 )
+        'results:representation:selected': function( e ){
+            console.log( 'REPRESENTATION SELECTED' );
+            this.renderDetails( e );
+            this.renderFeedback( e );
         }
     },
 
     initialize: function(){
         debug( "#initialize" );
+
     },
 
     onRender: function(){
-        this.selection.show( this.showAssessmentSelection() );
-        //this.assessment.show( this.showAssessmentMenu() );
-        //this.content.show( this.showOverview() );
+        this.selection.show( this.createAssessmentSelection() );
         this.dispatch( 'results:ui:rendered' );
     },
 
     onDestroy: function(){
         this.dispatch( 'results:ui:destroyed' );
+    },
+
+    renderOverview: function( assessment ){
+        _.delay( ()=>this.overview.show( this.createAssessmentOverview() ), 250 );
+    },
+
+    renderRanking: function( assessment ){
+        if( this.authorization.isAllowedToViewRanking( assessment ) ){
+            _.delay( ()=>this.ranking.show( this.createRanking() ), 250 );
+        }
+    },
+
+    renderDetails: function(){
+        this.details.$el.addClass( 'invisible-not-empty' );
+        _.delay( ()=>{
+            this.details.$el.removeClass( 'invisible-not-empty' );
+            this.details.show( this.createDetails() );
+        }, 250 );
+    },
+
+    renderFeedback: function( e ){
+        this.feedback.$el.addClass( 'invisible-not-empty' );
+        // const anchor = this.feedback.$el.offset().top - 100;
+        _.delay( ()=>{
+            this.feedback.$el.removeClass( 'invisible-not-empty' );
+            this.feedback.show( this.createFeedback() );
+            // if( e.triggeredByUser ){
+            //     $( "html, body" ).animate( { scrollTop: anchor + "px" }, "slow" );
+            // }
+        }, 500 );
     }
 
 } );

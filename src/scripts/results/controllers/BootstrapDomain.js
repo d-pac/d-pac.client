@@ -15,6 +15,11 @@ _.extend( BootstrapDomain.prototype, {
         var context = this.context;
         context.wireSingleton( 'representationsCollection', require( '../../common/models/RepresentationsCollection' ) );
         context.wireSingleton( 'feedbackCollection', require( '../../common/models/FeedbackCollection' ) );
+        context.wireSingleton( 'representationsRankingsController', require( './RepresentationsRankingController' ), {
+            representations: 'representationsCollection',
+            assessments: 'assessmentsCollection',
+            authorization: 'authorizationModel'
+        } );
 
         this.context = undefined;
         this.eventName = undefined;
