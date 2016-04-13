@@ -19,7 +19,7 @@ module.exports = Base.extend( {
             onUiReadyEvent: 'assess:bootstrap:completed',
             moduleToParentEvents: [
                 "assess:ui:destroyed",
-                [ "assess:show:messages", "app:show:messages" ]
+                { "assess:show:messages": "app:show:messages" }
             ],
             parentToModuleEvents: [
                 "assessments:collection:sync",

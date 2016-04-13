@@ -21,7 +21,7 @@ module.exports = Base.extend( {
             moduleToParentEvents: [
                 "results:ui:destroyed",
                 "results:teardown:requested",
-                [ "results:show:messages", "app:show:messages" ]
+                { "results:show:messages": "app:show:messages" }
             ],
             parentToModuleEvents: [
                 "assessments:collection:sync"

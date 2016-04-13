@@ -7,18 +7,21 @@ module.exports.mixin = function( Constructor ){
         relayEvents: function( from,
                                events,
                                to ){
-            _.each( events, function( event ){
+            _.each( events, ( event )=>{
                 if( _.isString( event ) ){
-                    this.remapEvent( from, event, to, event );
-                } else {
-                    var source = event[ 0 ];
-                    var target = event[ 1 ];
-                    this.remapEvent( from, source, to, target );
+                    event = {
+                        [event]: event
+                    };
                 }
-            }, this );
+                _.each( event, ( target,
+                                 source )=>this.remapEvent( from, source, to, target ) );
+            } );
         },
-        remapEvent: function(from, source, to, target){
-            from.vent.on( source, function(){
+        remapEvent: function( from,
+                              source,
+                              to,
+                              target ){
+            from.vent.on( source, ()=>{
                 to.dispatch.apply( to, [ target ].concat( _.toArray( arguments ) ) );
             } );
         },
