@@ -54,7 +54,7 @@ Renderer.prototype.render = function render( opts ){
     opts.debug && console.log( 'd3-stock-plot', opts );
 
     var el = d3.select( opts.el );
-    var graphWidth = opts.graph.width || parseInt( el.style( 'width' ) );
+    var graphWidth = opts.graph.width || parseInt( el.style( 'width' ) ) -20;
     var graphHeight = opts.graph.height || opts.graph.ratio * graphWidth;
 
     var contentWidth = graphWidth - opts.margin.left - opts.margin.right;

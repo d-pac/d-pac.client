@@ -17,6 +17,7 @@ var tip = d3Tip()
 
 module.exports = Marionette.ItemView.extend( {
     template: tpl,
+    className: "column col-sm-12",
 
     ui: {
         spinner: '.spinner'

@@ -6,6 +6,7 @@ var debug = require( 'debug' )( 'dpac:results.views', '[FeedbackOverview]' );
 var tpl = require( './templates/FeedbackTable.hbs' );
 
 module.exports = Marionette.ItemView.extend( {
+    className: "column col-sm-12",
     template: tpl,
 
     initialize: function(){
