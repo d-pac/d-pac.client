@@ -59,6 +59,10 @@
     },
     "toggle": {
       "label": "Navigatie"
+    },
+    "forgotpassword": {
+      "label": "Wachtwoord vergeten?",
+      "href": "<%=api.host%>keystone/resetpassword"
     }
   },
   "warning": {
