@@ -26,8 +26,10 @@
                 <p>{{{body}}}</p>
                 <a href="{{t "common:menu.login.href"}}" class="btn btn-primary"
                    role="button">{{t "common:menu.login.label"}}</a>
+                {{#if permissions.allowed.passwordresets.view}}
                 <a href="{{absurl "common:menu.forgotpassword.href"}}" class="btn btn-default"
                    role="button">{{t "common:menu.forgotpassword.label"}}</a>
+                {{/if}}
             {{/if}}
         </div>
     </div>

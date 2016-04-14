@@ -65,6 +65,7 @@ module.exports = {
         "results.view": parseFlag( process.env.FEATURE_RESULTS_VIEW ),
         "jwplayer.view": parseFlag( process.env.FEATURE_JWPLAYER_VIEW ),
         "admin.view": parseFlag( process.env.FEATURE_ADMIN_VIEW ),
-        "uploads.view": parseFlag( process.env.FEATURE_UPLOADS_VIEW )
+        "uploads.view": parseFlag( process.env.FEATURE_UPLOADS_VIEW ),
+        "passwordresets.view": parseFlag( process.env.FEATURE_PASSWORDRESETS_VIEW)
     }
 };

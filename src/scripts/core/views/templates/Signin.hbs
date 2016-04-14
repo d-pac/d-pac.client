@@ -52,8 +52,10 @@
                         <button type="button"
                                 data-sending-text="{{t "login:submit.sending"}}"
                                 class="btn btn-primary login-btn pull-right">{{t "login:submit.label"}}</button>
+                        {{#if permissions.allowed.passwordresets.view}}
                         <a href="{{absurl "common:menu.forgotpassword.href"}}" class="btn btn-default pull-right"
                            role="button">{{t "common:menu.forgotpassword.label"}}</a>
+                        {{/if}}
 
                     </form>
                 </div>
