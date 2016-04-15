@@ -69,7 +69,7 @@ module.exports = NestedModel.extend( {
     },
 
     assessingAllowed: function(){
-        return !this.isCompleted() && (this.isRoot() || !this.parentIsActive());
+        return this.isActive() && (this.isRoot() || !this.parentIsActive());
     },
 
     uploadingAllowed: function(){
