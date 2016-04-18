@@ -60,13 +60,6 @@ var AssessmentsCollection = Backbone.Collection.extend( {
         return new AssessmentsCollection( models );
     },
 
-    getUploadables: function(){
-        var models = this.filter( function( assessment ){
-            return assessment.uploadingAllowed();
-        } );
-        return new AssessmentsCollection( models );
-    },
-
     //==( extras )==/
 
     onTeardown: function(){

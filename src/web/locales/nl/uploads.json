@@ -7,6 +7,7 @@
     "save": "Bewaar",
     "remove": "<span class=\"glyphicon glyphicon-remove\"></span>",
     "replace": "Vervang",
-    "changes-made": "U hebt veranderingen aangebracht zonder deze te bewaren.\nBent u zeker dat u dit scherm wilt verlaten?"
+    "changes-made": "U hebt veranderingen aangebracht zonder deze te bewaren.\nBent u zeker dat u dit scherm wilt verlaten?",
+    "editing-disabled": "De uploads zijn afgesloten voor deze opdracht."
   }
 }

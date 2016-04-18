@@ -7,6 +7,7 @@
     "save": "Save",
     "remove": "<span class=\"glyphicon glyphicon-remove\"></span>",
     "replace": "Replace",
-    "changes-made": "You've made changes without saving.\nAre you sure you want to leave this screen?"
+    "changes-made": "You've made changes without saving.\nAre you sure you want to leave this screen?",
+    "editing-disabled": "Uploading is disabled for this assessment."
   }
 }

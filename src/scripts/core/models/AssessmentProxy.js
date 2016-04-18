@@ -1,6 +1,6 @@
 'use strict';
 const _ = require( 'lodash' );
-const NestedModel = require('backbone-nested-model');
+const NestedModel = require( 'backbone-nested-model' );
 const debug = require( 'debug' )( 'dpac:core.models', '[AssessmentProxy]' );
 const teardown = require( '../../common/mixins/teardown' );
 
@@ -70,10 +70,6 @@ module.exports = NestedModel.extend( {
 
     assessingAllowed: function(){
         return this.isActive() && (this.isRoot() || !this.parentIsActive());
-    },
-
-    uploadingAllowed: function(){
-        return this.get( 'state' ) !== 'completed'
     },
 
     getParent: function(){

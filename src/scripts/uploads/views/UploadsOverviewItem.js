@@ -39,8 +39,6 @@ module.exports = Marionette.ItemView.extend( {
             this.ui.fileInput.val( '' );
             this.determineState();
         },
-        "click @ui.browseBtn": function(){
-        },
         "change @ui.fileInput": function(){
             this.determineState();
         }
@@ -55,17 +53,26 @@ module.exports = Marionette.ItemView.extend( {
     },
 
     determineState: function(){
-        debug('#determineState');
-        const selectedFile = stripPath( this.ui.fileInput.val() );
-        this.ui.fileLabel.val( selectedFile );
-        if( selectedFile ){
-            this.ui.removeBtn.show();
-            this.ui.saveBtn.show();
-            this.trigger( 'file:selected', selectedFile );
-        } else {
-            this.ui.removeBtn.hide();
-            this.ui.saveBtn.hide();
-            this.trigger( 'file:deselected' );
+        debug( '#determineState' );
+        if( this.model.uploadingEnabled() ){
+            const selectedFile = stripPath( this.ui.fileInput.val() );
+            this.ui.fileLabel.val( selectedFile );
+            if( selectedFile ){
+                this.ui.removeBtn.show();
+                this.ui.saveBtn.show();
+                this.trigger( 'file:selected', selectedFile );
+            } else {
+                this.ui.removeBtn.hide();
+                this.ui.saveBtn.hide();
+                this.trigger( 'file:deselected' );
+            }
+        // } else {
+        //     // this.ui.browseBtn.attr( 'disabled', 'disabled' );
+        //     // this.ui.browseBtn.tooltip({title: "Not allowed"});
+        //     // this.ui.fileInput.prop( 'disabled', true );
+        //     this.ui.browseBtn.hide();
+        //     this.ui.removeBtn.hide();
+        //     this.ui.saveBtn.hide();
         }
     },
 

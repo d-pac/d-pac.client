@@ -2,21 +2,29 @@
     <h4>{{assessment.title}}
 </td>
 <td>
-    <div class="form-group label-floating">
-        <div class="input-group">
-            <input type="text" class="form-control file-label text-right" style="padding-right: 10px"
-                   placeholder="{{#if representation.document.title}}{{representation.document.title}}{{else}}{{assessment.uiCopy.uploads.description}}{{/if}}"
-                   disabled="disabled"
-                   value="">
-            <span class="input-group-btn">
-                <button type="button" class="btn btn-danger btn-sm remove-btn">{{ t "uploads:overview.remove"}}</button>
-                <span class="btn btn-primary btn-sm btn-file browse-btn">
-                    {{#if representation.document.title}}{{ t "uploads:overview.replace"}}
-                    {{else}}{{t "uploads:overview.browse"}}{{/if}}
-                    <input name="file-input" type="file" data-assessment="{{assessment._id}}">
+    {{#if uploadingEnabled}}
+        <div class="form-group label-floating">
+            <div class="input-group">
+                <input type="text" class="form-control file-label text-right" style="padding-right: 10px"
+                       placeholder="{{#if representation.document.title}}{{representation.document.title}}{{else}}{{assessment.uiCopy.uploads.description}}{{/if}}"
+                       disabled="disabled"
+                       value="">
+                <span class="input-group-btn">
+                    <button type="button"
+                            class="btn btn-danger btn-sm remove-btn">{{ t "uploads:overview.remove"}}</button>
+                    <span class="btn btn-primary btn-sm btn-file browse-btn">
+                        {{#if representation.document.title}}{{ t "uploads:overview.replace"}}
+                        {{else}}{{t "uploads:overview.browse"}}{{/if}}
+                        <input name="file-input" type="file" data-assessment="{{assessment._id}}">
+                    </span>
+                    <button type="button"
+                            class="btn btn-success btn-sm save-btn">{{ t "uploads:overview.save"}}</button>
                 </span>
-                <button type="button" class="btn btn-success btn-sm save-btn">{{ t "uploads:overview.save"}}</button>
-            </span>
+            </div>
         </div>
-    </div>
+    {{else}}
+        <div class="pull-right text-danger">
+            {{t "uploads:overview.editing-disabled" title=representation.document.title}}
+        </div>
+    {{/if}}
 </td>

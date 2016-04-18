@@ -31,11 +31,19 @@ module.exports = Backbone.Model.extend( {
         representation.update( attrs );
     },
 
+    uploadingEnabled: function(){
+        const assessment = this.get('assessment');
+        const state = assessment.get('state');
+        return ( state === 'draft') || (state === 'published' && ! this.get( 'representation' ));
+    },
+
     toJSON(){
         const representation = this.get( 'representation' );
+        const uploadingEnabled = this.uploadingEnabled();
         return {
-            assessment: this.get( 'assessment' ).toJSON(),
-            representation: (representation) ? representation.toJSON() : undefined
+            assessment: this.get('assessment').toJSON(),
+            representation: (representation) ? representation.toJSON() : undefined,
+            uploadingEnabled: uploadingEnabled
         }
     }
 } );
