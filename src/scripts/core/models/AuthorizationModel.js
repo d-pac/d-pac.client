@@ -105,6 +105,21 @@ module.exports = Backbone.Model.extend( {
         return undefined;
     },
 
+    getLowestRole: function(assessment){
+        const id = assessment.id;
+        const user = this.getUser();
+        if(_.get( user, [ 'assessments', 'assessee' ], [] ).indexOf(id)>=0){
+            return 'assessee';
+        }
+        if(_.get( user, [ 'assessments', 'assessor' ], [] ).indexOf(id)>=0){
+            return 'assessor';
+        }
+        if(_.get( user, [ 'assessments', 'pam' ], [] ).indexOf(id)>=0){
+            return 'pam';
+        }
+        return undefined;
+    },
+
     isAllowedToViewRanking: function(assessment){
         const role = this.getHighestRole(assessment);
         if(role === 'assessee'){
@@ -114,7 +129,7 @@ module.exports = Backbone.Model.extend( {
     },
 
     isAllowedToViewOthers: function(assessment){
-        const role = this.getHighestRole(assessment);
+        const role = this.getLowestRole(assessment); // temporary fix
         if(role === 'assessee'){
             return !!assessment.get('results.assessees.viewRepresentations');
         }

@@ -34,7 +34,6 @@ module.exports = Marionette.LayoutView.extend( {
             this.renderRanking( assessment );
         },
         'results:representation:selected': function( e ){
-            console.log( 'REPRESENTATION SELECTED' );
             this.renderDetails( e );
             this.renderFeedback( e );
         }
