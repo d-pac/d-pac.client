@@ -8,7 +8,7 @@ module.exports = function RemoveHangingModal(){
 };
 _.extend( module.exports.prototype, {
     execute : function(){
-        debug.log( '#execute' );
+        debug( '#execute' );
         $('.modal').modal('hide');
         $('body').removeClass('modal-open');
         $('.modal-backdrop').remove();

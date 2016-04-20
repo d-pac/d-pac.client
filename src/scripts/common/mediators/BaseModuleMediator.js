@@ -12,7 +12,7 @@ module.exports = Marionette.Controller.extend( {
 
     initialize: function( opts ){ //ModuleContext, viewProxyName, onUiReadyEvent, moduleToParentEvents, parentToModuleEvents
         this.opts = opts;
-        debug.log( "#initialize", this );
+        debug( "#initialize", this );
         this.context.wireValue( this.opts.viewProxyName, this.getOrCreate.bind( this ) );
     },
 

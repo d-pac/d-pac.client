@@ -21,7 +21,7 @@ module.exports.mixin = function( Constructor ){
                               source,
                               to,
                               target ){
-            from.vent.on( source, ()=>{
+            from.vent.on( source, function(){
                 to.dispatch.apply( to, [ target ].concat( _.toArray( arguments ) ) );
             } );
         },

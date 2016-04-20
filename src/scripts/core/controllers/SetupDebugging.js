@@ -10,6 +10,7 @@ module.exports = function SetupDebugging(){
       window.__backboneAgent.handleBackbone(Backbone);
     }
     debug.config( {
-        padLength : 20
+        padLength : 20,
+        filter: "dpac"
     } );
 };

@@ -9,7 +9,7 @@ module.exports = Base.extend( {
     },
 
     initialize: function(){
-        debug.log( "#initialize" );
+        debug( "#initialize" );
         Base.prototype.initialize.call( this, {
             contentFactory: function(){
                 require.ensure(['../../results/ResultsContext'], function(require){

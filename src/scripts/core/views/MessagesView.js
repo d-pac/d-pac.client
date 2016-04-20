@@ -65,6 +65,6 @@ module.exports = Marionette.ItemView.extend( {
             } )
         } );
 
-        this.model.set( 'messages', alerts );
+        this.model.set( 'messages', alerts );   
     }
 } );

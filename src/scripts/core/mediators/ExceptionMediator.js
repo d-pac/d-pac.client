@@ -9,7 +9,7 @@ module.exports = Marionette.Controller.extend( {
         'backbone:sync:error': "errorEventHandler"
     },
     initialize: function(){
-        debug.log( '#initialize' );
+        debug( '#initialize' );
 
         window.onerror = function( message,
                                    file,

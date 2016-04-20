@@ -9,7 +9,7 @@ module.exports = Marionette.Controller.extend( {
         'router:route:completed': "routeHandler"
     },
     initialize: function(){
-        debug.log( '#initialize' );
+        debug( '#initialize' );
         this.setupEventsRelay();
         this.listenTo( this, 'authentication:state:authenticated', this.showLoginMessage.bind( this ) );
     },
