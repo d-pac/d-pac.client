@@ -211,7 +211,7 @@ var notie = function(){
     function alert(type, message, seconds) {
 
         // Blur active element for use of enter key, focus input
-        document.activeElement.blur();
+        document.activeElement && document.activeElement.blur();
 
         was_clicked_counter++;
 
