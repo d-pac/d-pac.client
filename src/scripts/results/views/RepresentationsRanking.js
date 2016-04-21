@@ -56,7 +56,10 @@ module.exports = Marionette.ItemView.extend( {
         graph.dispatch.on( 'select.ranking', ( d )=>{
             this.model.selectRepresentation( d.id );
         } );
-        graph.select(this.model.getSelectedRepresentationId())
+        const selectedId = this.model.getSelectedRepresentationId();
+        if(selectedId){
+            graph.select(selectedId)
+        }
     }, 1000 ),
 
     onRender: function(){
