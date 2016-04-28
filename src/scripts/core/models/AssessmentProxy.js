@@ -61,7 +61,8 @@ module.exports = NestedModel.extend( {
     },
 
     isCompleted: function(){
-        return this.get( 'state' ) === 'completed' || this.get( 'progress' ).completedNum >= this.get( 'progress' ).total;
+        return this.get( 'state' ) === 'completed'
+            || this.get( 'progress' ).completedNum >= this.get( 'progress' ).total;
     },
 
     isActive: function(){

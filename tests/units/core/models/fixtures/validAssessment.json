@@ -1,0 +1,91 @@
+{
+  "_id": "56eaa50afd8ac2342853c7d7",
+  "algorithm": "comparative-selection",
+  "title": "TEST",
+  "name": "Select best 2 Test",
+  "comparisonsNum": {
+    "perAssessor": [
+      16
+    ],
+    "perRepresentation": 10
+  },
+  "enableResults": false,
+  "actions": {
+    "calculate": false
+  },
+  "cache": {
+    "assessorsNum": 1,
+    "comparisonsNum": 3,
+    "representationsNum": 31
+  },
+  "uiCopy": "{\r\n    \"phase_selection\": {\r\n        \"title\": \"Beoordeel\",\r\n        \"description\": \"Geef aan welke tekst beter geschreven is in functie van  de competentie 'argumentatief schrijven'\",\r\n        \"a_button\": {\r\n            \"label\" : \"Tekst A is beter\",\r\n            \"tooltip\": \"Klik om aan te duiden dat tekst A beter is dan B.\"\r\n        },\r\n        \"b_button\": {\r\n            \"label\": \"Tekst B is beter\",\r\n            \"tooltip\": \"Klik om aan te duiden dat tekst B beter is dan A.\"\r\n        }\r\n    },\r\n    \"phase_select-other\": {\r\n      \"title\": \"Beoordeel\",\r\n      \"description\": \"Welke tekst voelt intuitief beter aan?\",\r\n      \"a_button\": {\r\n        \"label\": \"Tekst A is beter\",\r\n        \"tooltip\": \"Klik om aan te duiden dat tekst A beter is dan B.\"\r\n      },\r\n      \"b_button\": {\r\n        \"label\": \"Tekst B is beter\",\r\n        \"tooltip\": \"Klik om aan te duiden dat tekst B beter is dan A.\"\r\n      },\r\n      \"sending\": \"Even geduld...\"\r\n  \t},\r\n    \"phase_comparative\": {\r\n        \"title\": \"Vergelijk\",\r\n        \"description\": \"Licht kort je keuze toe\"\r\n    },\r\n    \"phase_pros-cons\": {\r\n        \"title\": \"Vergelijk\",\r\n        \"description\": \"Beschrijf hier wat je positief en negatief vond aan de teksten:\",\r\n        \"a_title\": \"Tekst A\",\r\n        \"b_title\": \"Tekst B\",\r\n        \"positive\": \"Positief\",\r\n        \"negative\": \"Negatief\"\r\n    },\r\n    \"phase_passfail\":{\r\n        \"title\":\"Hor ot not?\",\r\n        \"description\" : \"Duid aan of deze goed genoeg zijn.\",\r\n        \"options\": {\r\n          \"passed\" : {\r\n              \"label\" : \"Goed\",\r\n              \"icon\" : \"ok\"\r\n          },\r\n          \"failed\" : { \r\n              \"label\":\"Niet goed\", \r\n              \"icon\":\"remove\"\r\n          }\r\n        }\r\n    },\r\n    \"phase_seq-selection\": {\r\n\t    \"title\": \"Hoe moeilijk vond je het om de keuze te maken?\"\r\n\t},\r\n  \t\"phase_seq-comparative\": {\r\n    \t\"title\": \"Hoe moeilijk vond je het om je keuze te beargumenteren?\"\r\n\t},\r\n    \"phase_seq-passfail\": {\r\n    \t\"title\": \"Hoe moeilijk vond je het om geslaagd/niet geslaagd te kiezen?\"\r\n\t},\r\n    \"representation_viewer\": {\r\n        \"pdf\":{\r\n            \"tooltip\": \"Gebruik de knoppen rechts bovenaan om de paper fullscreen te bekijken of te downloaden.\"\r\n        },\r\n        \"image\": {\r\n            \"tooltip\": \"Klik om deze tekst te selecteren\"\r\n        }\r\n    },\r\n    \"notes\" : {\r\n        \"label\" : \"Notities\",\r\n        \"tooltip\" : \"Noteer hier je opmerkingen bij deze tekst.\"\r\n    },\r\n    \"uploads\":{\r\n        \"description\": \"Laad hier je bestand op\"\r\n    }\r\n}\r\n",
+  "assignments": {
+    "assessee": "",
+    "assessor": ""
+  },
+  "results": {
+    "assessees": {
+      "viewRanking": true,
+      "viewRepresentations": true
+    },
+    "enable": true
+  },
+  "enableSelectionIcon": true,
+  "enableNotes": true,
+  "enableTimeLogging": false,
+  "stage": 0,
+  "assessors": {
+    "minimum": 4
+  },
+  "comparisons": {
+    "perAssessor": 0,
+    "perRepresentation": 20,
+    "dimension": "representation"
+  },
+  "schedule": {
+    "active": false
+  },
+  "state": "published",
+  "phases": [
+    "557823cd6d16b39c359963f7",
+    "56eaa4c6fd8ac2342853c7d6",
+    "557823cd6d16b39c359963f9",
+    "561bc7244013e70b6ae96d93"
+  ],
+  "stats": {
+    "lastRun": "2016-04-05T11:40:29.368Z",
+    "byRepresentation": {
+      "56eaa55dfd8ac2342853c7d8": {
+        "comparisonsNum": 2
+      },
+      "56eaa567fd8ac2342853c7d9": {
+        "comparisonsNum": 2
+      }
+    },
+    "totals": {
+      "reliability": 0.6555563043523192,
+      "duration": 0
+    },
+    "averages": {
+      "comparisonsPerRepresentation": 1.3333333333333333,
+      "durationPerRepresentation": 0,
+      "comparisonsPerAssessor": 2,
+      "durationPerAssessor": 0
+    }
+  },
+  "limits": {
+    "comparisonsNum": {
+      "perAssessor": 310,
+      "perRepresentation": 20
+    },
+    "assessorsNum": 4
+  },
+  "type": "assessments",
+  "links": {
+    "self": "/api/assessments/56eaa50afd8ac2342853c7d7"
+  },
+  "progress": {
+    "completedNum": 3,
+    "total": 310
+  }
+}

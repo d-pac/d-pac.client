@@ -25,6 +25,10 @@
     "imports-loader": "0.6.3",
     "less": "2.6.0",
     "less-loader": "2.2.2",
+    "mocha": "2.4.5",
+    "must": "0.13.1",
+    "proxyquire": "1.7.4",
+    "require-directory": "2.1.1",
     "style-loader": "0.13.0",
     "url-loader": "0.5.7",
     "webpack": "1.12.13",
@@ -40,7 +44,9 @@
     "shrinkwrap": "npm shrinkwrap --dev",
     "preview": "webpack-dev-server --devtool eval --progress --inline --verbose --port 9000",
     "compile": "webpack -dp --progress --colors --verbose",
-    "build": "npm run clean:dist; npm run copy:web && npm run compile"
+    "build": "npm run clean:dist; npm run copy:web && npm run compile",
+    "test": "npm run test:units",
+    "test:units": "NODE_ENV=test DEBUG=dpac:tests* mocha tests/units/**/*.spec.js -R spec --bail --timeout 60000"
   },
   "babel": {
     "presets": [
