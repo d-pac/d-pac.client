@@ -6,6 +6,7 @@ var Marionette = require( 'backbone.marionette' );
 
 module.exports = Marionette.LayoutView.extend( {
     template: tpl,
+
     ui: {
         loginButton: ".login-btn",
         passwordField: "#password"
