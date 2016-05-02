@@ -1,33 +1,33 @@
-<div class="row">
+<div id="core-welcome-view" class="row">
     <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 column">
         <div class="well well-sm">
             {{#if authenticated}}
                 <h4>{{t "login:authenticated.title"}}</h4>
                 <p>{{{t "login:authenticated.message"  userName=user.name.first}}}</p>
                 {{#if permissions.allowed.tutorial.view}}
-                <a href="{{t "common:menu.tutorial.href"}}" class="btn btn-primary"
+                <a href="{{t "common:menu.tutorial.href"}}" class="btn btn-primary tutorial-btn"
                    role="button">{{t "common:menu.tutorial.label"}}</a>
                 {{/if}}
                 {{#if permissions.allowed.uploads.view}}
-                <a href="{{t "common:menu.uploads.href"}}" class="btn btn-primary"
+                <a href="{{t "common:menu.uploads.href"}}" class="btn btn-primary uploads-btn"
                    role="button">{{t "common:menu.uploads.label"}}</a>
                 {{/if}}
                 {{#if permissions.allowed.assess.view}}
-                <a href="{{t "common:menu.judge.href"}}" class="btn btn-primary"
+                <a href="{{t "common:menu.judge.href"}}" class="btn btn-primary assess-btn"
                    role="button">{{t "common:menu.judge.label"}}</a>
                 {{/if}}
                 {{#if permissions.allowed.results.view}}
-                <a href="{{t "common:menu.results.href"}}" class="btn btn-primary"
+                <a href="{{t "common:menu.results.href"}}" class="btn btn-primary results-btm"
                    role="button">{{t "common:menu.results.label"}}</a>
                 {{/if}}
             {{else}}
                 <h4>{{{title}}}</h4>
 
-                <p>{{{body}}}</p>
-                <a href="{{t "common:menu.login.href"}}" class="btn btn-primary"
+                <div class="page-body">{{{body}}}</div>
+                <a href="{{t "common:menu.login.href"}}" class="btn btn-primary login-btn"
                    role="button">{{t "common:menu.login.label"}}</a>
                 {{#if permissions.allowed.passwordresets.view}}
-                <a href="{{absurl "common:menu.forgotpassword.href"}}" class="btn btn-default"
+                <a href="{{absurl "common:menu.forgotpassword.href"}}" class="btn btn-default password-forgotten-btn"
                    role="button">{{t "common:menu.forgotpassword.label"}}</a>
                 {{/if}}
             {{/if}}

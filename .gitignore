@@ -6,3 +6,5 @@ bower_components
 test/bower_components
 .env*
 npm-debug.log
+selenium-debug.log
+reports
