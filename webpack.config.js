@@ -33,7 +33,7 @@ module.exports = {
     resolve: {
         modulesDirectories: [ "bower_components", "node_modules", "src/scripts/components" ],
         alias: {
-            "debug": "bows",
+            "debug": "logger",
             "bows": "bows/bows",
             "konfy": "konfy/lib/browser",
             "i18next": "i18next/i18next.commonjs.withJQuery",
