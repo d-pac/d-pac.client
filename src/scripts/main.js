@@ -1,5 +1,20 @@
 'use strict';
 
+if( !window.console ){
+    const noop = function(){
+    };
+    window.console = {
+        "log": noop,
+        "debug": noop,
+        "info": noop,
+        "warn": noop,
+        "error": noop,
+        "assert": noop,
+        "dir": noop,
+        "clear": noop
+    }
+}
+
 /* stand-alones */
 require( 'babel-polyfill' );
 require( 'modernizr' );
