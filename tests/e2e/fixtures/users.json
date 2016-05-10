@@ -1,0 +1,64 @@
+[
+  {
+    "_id": {
+      "$oid": "573ad1b677bc7ec0a7f9da32"
+    },
+    "_rid": 1,
+    "email": "default@d-pac.be",
+    "password": "$2a$10$k4nRORwt934foZMr4Q9SOO6KYzSm.Oz3Ala.15yoLkB6sAzMd3yiO",
+    "actions": {
+      "sendInviteMail": false
+    },
+    "isAdmin": true,
+    "assessments": {
+      "pam": [],
+      "assessee": [
+        {
+          "$oid": "573ad42f77bc7ec0a7f9da44"
+        },
+        {
+          "$oid": "573ad4b577bc7ec0a7f9da45"
+        }
+      ],
+      "assessor": [
+        {
+          "$oid": "573ad26977bc7ec0a7f9da43"
+        },
+        {
+          "$oid": "573ad4cd77bc7ec0a7f9da46"
+        }
+      ]
+    },
+    "name": {
+      "first": "Default",
+      "last": "User"
+    },
+    "__v": 1
+  },
+  {
+    "_id": {
+      "$oid": "573ad7ac77bc7ec0a7f9da51"
+    },
+    "_rid": 3,
+    "password": "$2a$10$/3XjL31FN07V.dLrVJW0eO5Xcz1DRz9RFWRai5314DcMGtArmkWnC",
+    "email": "test+assessor.only@d-pac.be",
+    "actions": {
+      "sendInviteMail": false
+    },
+    "isAdmin": false,
+    "assessments": {
+      "pam": [],
+      "assessee": [],
+      "assessor": [
+        {
+          "$oid": "573ad4cd77bc7ec0a7f9da46"
+        }
+      ]
+    },
+    "name": {
+      "last": "Only",
+      "first": "Assessor"
+    },
+    "__v": 1
+  }
+]

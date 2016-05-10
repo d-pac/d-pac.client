@@ -1,0 +1,29 @@
+[
+  {
+    "_id": {
+      "$oid": "573dba8992fed0345e35e2a1"
+    },
+    "model": "Comparison",
+    "field": "_rid",
+    "count": 1,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "573dba9992fed0345e35e2a2"
+    },
+    "model": "Document",
+    "field": "_rid",
+    "count": 3,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "573dba9f92fed0345e35e2a3"
+    },
+    "model": "User",
+    "field": "_rid",
+    "count": 3,
+    "__v": 0
+  }
+]

@@ -1,0 +1,164 @@
+[
+  {
+    "_id": {
+      "$oid": "573ad6d277bc7ec0a7f9da4a"
+    },
+    "updatedAt": {
+      "$date": "2016-05-17T10:39:15.622+0200"
+    },
+    "createdAt": {
+      "$date": "2016-05-17T10:31:14.950+0200"
+    },
+    "document": {
+      "$oid": "573ad6c477bc7ec0a7f9da49"
+    },
+    "assessment": {
+      "$oid": "573ad4cd77bc7ec0a7f9da46"
+    },
+    "ability": {
+      "se": 0.6332031898832322,
+      "value": 0.04861929694071904
+    },
+    "compared": [
+      {
+        "$oid": "573ad73c77bc7ec0a7f9da4b"
+      },
+      {
+        "$oid": "573ad73c77bc7ec0a7f9da4b"
+      },
+      {
+        "$oid": "573ad73c77bc7ec0a7f9da4b"
+      },
+      {
+        "$oid": "573ad73c77bc7ec0a7f9da4b"
+      },
+      {
+        "$oid": "573ad73c77bc7ec0a7f9da4b"
+      },
+      {
+        "$oid": "573ad73c77bc7ec0a7f9da4b"
+      },
+      {
+        "$oid": "573ad73c77bc7ec0a7f9da4b"
+      },
+      {
+        "$oid": "573ad73c77bc7ec0a7f9da4b"
+      },
+      {
+        "$oid": "573ad73c77bc7ec0a7f9da4b"
+      },
+      {
+        "$oid": "573ad73c77bc7ec0a7f9da4b"
+      }
+    ],
+    "rankType": "to rank",
+    "name": "Completed - Document 2",
+    "__v": 10
+  },
+  {
+    "_id": {
+      "$oid": "573ad73c77bc7ec0a7f9da4b"
+    },
+    "updatedAt": {
+      "$date": "2016-05-17T10:39:15.620+0200"
+    },
+    "createdAt": {
+      "$date": "2016-05-17T10:33:00.453+0200"
+    },
+    "document": {
+      "$oid": "573ad6a277bc7ec0a7f9da47"
+    },
+    "assessment": {
+      "$oid": "573ad4cd77bc7ec0a7f9da46"
+    },
+    "ability": {
+      "se": 0.6332031898832322,
+      "value": -0.04861929694071876
+    },
+    "compared": [
+      {
+        "$oid": "573ad6d277bc7ec0a7f9da4a"
+      },
+      {
+        "$oid": "573ad6d277bc7ec0a7f9da4a"
+      },
+      {
+        "$oid": "573ad6d277bc7ec0a7f9da4a"
+      },
+      {
+        "$oid": "573ad6d277bc7ec0a7f9da4a"
+      },
+      {
+        "$oid": "573ad6d277bc7ec0a7f9da4a"
+      },
+      {
+        "$oid": "573ad6d277bc7ec0a7f9da4a"
+      },
+      {
+        "$oid": "573ad6d277bc7ec0a7f9da4a"
+      },
+      {
+        "$oid": "573ad6d277bc7ec0a7f9da4a"
+      },
+      {
+        "$oid": "573ad6d277bc7ec0a7f9da4a"
+      },
+      {
+        "$oid": "573ad6d277bc7ec0a7f9da4a"
+      }
+    ],
+    "rankType": "to rank",
+    "name": "Completed - Document 1",
+    "__v": 10
+  },
+  {
+    "_id": {
+      "$oid": "573db8672eca54b736eba237"
+    },
+    "updatedAt": {
+      "$date": "2016-05-19T14:58:15.225+0200"
+    },
+    "createdAt": {
+      "$date": "2016-05-19T14:58:15.225+0200"
+    },
+    "document": {
+      "$oid": "573ad6a277bc7ec0a7f9da47"
+    },
+    "assessment": {
+      "$oid": "573ad26977bc7ec0a7f9da43"
+    },
+    "ability": {
+      "se": null,
+      "value": null
+    },
+    "compared": [],
+    "rankType": "to rank",
+    "name": "Comparative Selection - Document 1",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "573db8762eca54b736eba238"
+    },
+    "updatedAt": {
+      "$date": "2016-05-19T14:58:30.935+0200"
+    },
+    "createdAt": {
+      "$date": "2016-05-19T14:58:30.935+0200"
+    },
+    "document": {
+      "$oid": "573ad6c477bc7ec0a7f9da49"
+    },
+    "assessment": {
+      "$oid": "573ad26977bc7ec0a7f9da43"
+    },
+    "ability": {
+      "se": null,
+      "value": null
+    },
+    "compared": [],
+    "rankType": "to rank",
+    "name": "Comparative Selection - Document 2",
+    "__v": 0
+  }
+]

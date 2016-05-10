@@ -62,7 +62,7 @@
     },
     "forgotpassword": {
       "label": "Wachtwoord vergeten?",
-      "href": "<%=api.host%>keystone/resetpassword"
+      "href": "<%=api.host%>auth/resetpassword"
     }
   },
   "warning": {

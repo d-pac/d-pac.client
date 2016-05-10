@@ -5,17 +5,17 @@ const expect = require( 'must' );
 const sinon = require( 'sinon' );
 const assert = expect;
 const pxquire = require( 'proxyquire' );
+const dependencies= require('dependencies');
 
+const file = 'core/models/AccountProxy';
 const subject = pxquire
     .noCallThru()
-    .load( '../../../../src/scripts/core/models/AccountProxy', {
-        'backbone-nested-model': require( 'NestedModelMock' )
-    } );
+    .load( '../../../../src/scripts/'+file, dependencies );
 
-describe( 'core/models/AccountProxy', function(){
+describe( file, function(){
     let instance;
     beforeEach( function(){
-        instance = subject.createMock();
+        instance = new subject();
     } );
     describe( 'spec', ()=>{
         it( 'should run', ()=> expect( true ).to.be.true() );

@@ -8,20 +8,19 @@ const fixtures = require( './fixtures' );
 const returnTrue = require( 'returnTrue' );
 const returnFalse = require( 'returnFalse' );
 
+const dependencies = require( 'dependencies' );
+const Backbone = dependencies.backbone;
+
+const file = 'core/models/AssessmentProxy';
 const subject = pxquire
     .noCallThru()
-    .load( '../../../../src/scripts/core/models/AssessmentProxy', {
-        'backbone-nested-model': require( 'NestedModelMock' ),
-        'underscore': _,
-        '../../common/mixins/teardown': require( 'TeardownMock' )
-    } );
+    .load( '../../../../src/scripts/'+file, dependencies );
 
-
-describe( 'core/models/AssessmentProxy', function(){
+describe( file, function(){
     let instance;
     beforeEach( function(){
-        instance = subject.createMock();
-    } )
+        instance = new subject();
+    } );
     describe( 'spec', ()=>{
         it( 'should run', ()=> expect( true ).to.be.true() );
     } );
@@ -34,12 +33,12 @@ describe( 'core/models/AssessmentProxy', function(){
         it( 'should set `phases` to `[]` by default', ()=>expect( instance.get( 'phases' ) ).to.eql( [] ) );
         describe( '#parse()', function(){
             it( 'should pass the payload through', function(){
-                const assessment = _.cloneDeep( fixtures.validAssessment )
+                const assessment = _.cloneDeep( fixtures.validAssessment );
                 const actual = instance.parse( assessment );
                 expect( actual ).to.equal( assessment );
             } );
             it( 'should transform raw `uiCopy` JSON to an object', function(){
-                const assessment = _.cloneDeep( fixtures.validAssessment )
+                const assessment = _.cloneDeep( fixtures.validAssessment );
                 assert( assessment.uiCopy ).to.be.a.string();
                 instance.parse( assessment );
                 expect( assessment.uiCopy ).to.be.an.object();
@@ -163,10 +162,13 @@ describe( 'core/models/AssessmentProxy', function(){
         } );
 
         describe( '#getParent', function(){
+            let collection;
+            beforeEach( function(){
+                collection = new Backbone.Collection();
+            } );
             it( 'should return the Parent when set', function(){
-                const parent = {};
-                const collection = subject.createMock();
-                collection.set( 'foo', parent );
+                const parent = new Backbone.Model( { id: 'foo' } );
+                collection.set( parent );
                 instance.set( {
                     registry: collection,
                     parent: 'foo'
@@ -174,7 +176,6 @@ describe( 'core/models/AssessmentProxy', function(){
                 expect( instance.getParent() ).to.equal( parent );
             } );
             it( 'should return `undefined` when the parent is not set', function(){
-                const collection = subject.createMock();
                 instance.set( {
                     registry: collection,
                     parent: undefined
@@ -184,11 +185,15 @@ describe( 'core/models/AssessmentProxy', function(){
         } );
 
         describe( '#parentIsActive', function(){
+            let collection;
+            beforeEach( function(){
+                collection = new Backbone.Collection();
+            } );
             it( 'should return `true` when the parent `isActive()`', function(){
-                const parent = subject.createMock();
+                const parent = new subject();
+                parent.id = 'foo';
                 parent.isActive = returnTrue;
-                const collection = subject.createMock();
-                collection.set( 'foo', parent );
+                collection.set( parent );
                 instance.set( {
                     registry: collection,
                     parent: 'foo'
@@ -198,10 +203,9 @@ describe( 'core/models/AssessmentProxy', function(){
 
             } );
             it( 'should return `false` when the parent `! isActive()`', function(){
-                const parent = subject.createMock();
+                const parent = new Backbone.Model( { id: 'foo' } );
                 parent.isActive = returnFalse;
-                const collection = subject.createMock();
-                collection.set( 'foo', parent );
+                collection.set( parent );
                 instance.set( {
                     registry: collection,
                     parent: 'foo'
@@ -209,7 +213,6 @@ describe( 'core/models/AssessmentProxy', function(){
                 expect( instance.parentIsActive() ).to.be.false();
             } );
             it( 'should return `true` when the parent is not found', function(){
-                const collection = subject.createMock();
                 instance.set( {
                     registry: collection,
                     parent: 'foo'
