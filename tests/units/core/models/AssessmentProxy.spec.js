@@ -5,51 +5,22 @@ const expect = require( 'must' );
 const assert = expect;
 const pxquire = require( 'proxyquire' );
 const fixtures = require( './fixtures' );
+const returnTrue = require( 'returnTrue' );
+const returnFalse = require( 'returnFalse' );
 
-function returnTrue(){
-    return true;
-}
+const subject = pxquire
+    .noCallThru()
+    .load( '../../../../src/scripts/core/models/AssessmentProxy', {
+        'backbone-nested-model': require( 'NestedModelMock' ),
+        'underscore': _,
+        '../../common/mixins/teardown': require( 'TeardownMock' )
+    } );
 
-function returnFalse(){
-    return false;
-}
-
-const subject = pxquire.noCallThru().load( '../../../../src/scripts/core/models/AssessmentProxy', {
-    'backbone-nested-model': {
-        extend: ( declaration ) =>{
-            declaration.attrs = declaration.defaults || {};
-            declaration.get = function( key ){
-                return this.attrs[ key ];
-            };
-            declaration.set = function( key,
-                                        value ){
-                let obj = _.isString( key )
-                    ? { [key]: value }
-                    : key;
-                _.each( obj, ( value,
-                               key )=>{
-                    this.attrs[ key ] = value;
-                } );
-            };
-            return declaration;
-        }
-    },
-    'underscore': _,
-    '../../common/mixins/teardown': {
-        model: {
-            mixin: _.noop
-        }
-    }
-} );
-
-function createModel(){
-    return _.cloneDeep( subject );
-}
 
 describe( 'core/models/AssessmentProxy', function(){
     let instance;
     beforeEach( function(){
-        instance = createModel();
+        instance = subject.createMock();
     } )
     describe( 'spec', ()=>{
         it( 'should run', ()=> expect( true ).to.be.true() );
@@ -194,7 +165,7 @@ describe( 'core/models/AssessmentProxy', function(){
         describe( '#getParent', function(){
             it( 'should return the Parent when set', function(){
                 const parent = {};
-                const collection = createModel();
+                const collection = subject.createMock();
                 collection.set( 'foo', parent );
                 instance.set( {
                     registry: collection,
@@ -203,7 +174,7 @@ describe( 'core/models/AssessmentProxy', function(){
                 expect( instance.getParent() ).to.equal( parent );
             } );
             it( 'should return `undefined` when the parent is not set', function(){
-                const collection = createModel();
+                const collection = subject.createMock();
                 instance.set( {
                     registry: collection,
                     parent: undefined
@@ -214,36 +185,36 @@ describe( 'core/models/AssessmentProxy', function(){
 
         describe( '#parentIsActive', function(){
             it( 'should return `true` when the parent `isActive()`', function(){
-                const parent = createModel();
+                const parent = subject.createMock();
                 parent.isActive = returnTrue;
-                const collection = createModel();
+                const collection = subject.createMock();
                 collection.set( 'foo', parent );
                 instance.set( {
                     registry: collection,
                     parent: 'foo'
                 } );
 
-                expect(instance.parentIsActive()).to.be.true();
+                expect( instance.parentIsActive() ).to.be.true();
 
             } );
             it( 'should return `false` when the parent `! isActive()`', function(){
-                const parent = createModel();
+                const parent = subject.createMock();
                 parent.isActive = returnFalse;
-                const collection = createModel();
+                const collection = subject.createMock();
                 collection.set( 'foo', parent );
                 instance.set( {
                     registry: collection,
                     parent: 'foo'
                 } );
-                expect(instance.parentIsActive()).to.be.false();
+                expect( instance.parentIsActive() ).to.be.false();
             } );
             it( 'should return `true` when the parent is not found', function(){
-                const collection = createModel();
+                const collection = subject.createMock();
                 instance.set( {
                     registry: collection,
                     parent: 'foo'
                 } );
-                expect(instance.parentIsActive()).to.be.true();
+                expect( instance.parentIsActive() ).to.be.true();
             } );
 
         } );
