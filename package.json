@@ -23,11 +23,13 @@
     "file-loader": "0.8.5",
     "handlebars-loader": "1.0.2",
     "imports-loader": "0.6.3",
+    "jsdom": "9.0.0",
     "less": "2.6.0",
     "less-loader": "2.2.2",
     "mocha": "2.4.5",
     "must": "0.13.1",
     "nightwatch": "0.8.18",
+    "phantomjs-prebuilt": "2.1.7",
     "proxyquire": "1.7.4",
     "require-directory": "2.1.1",
     "sinon": "1.17.4",
@@ -43,13 +45,16 @@
     "bowerInstall": "bower install",
     "clean:dist": "rm -rf dist; mkdir dist",
     "copy:web": "cp -R src/web/. dist/",
-    "shrinkwrap": "npm shrinkwrap --dev",
     "preview": "webpack-dev-server --devtool eval --progress --inline --verbose --port 9000",
     "compile": "webpack -dp --progress --colors --verbose",
     "build": "npm run clean:dist; npm run copy:web && npm run compile",
-    "test": "npm run test:units",
     "test:units": "NODE_ENV=test DEBUG=dpac:tests* mocha tests/units/**/*.spec.js -R spec --bail --timeout 60000",
-    "test:e2e": "nightwatch"
+    "test:integration": "NODE_ENV=test DEBUG=dpac:tests* mocha tests/integration/**/*.spec.js -R spec --bail --timeout 60000",
+    "preview:e2e": "NODE_ENV=test npm run preview",
+    "import:fixtures": "./import-fixtures.sh",
+    "pretest:e2e": "npm run import:fixtures",
+    "test:e2e": "nightwatch",
+    "test": "npm run test:units && npm run test:integration"
   },
   "babel": {
     "presets": [

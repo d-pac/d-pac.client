@@ -1,43 +1,57 @@
 'use strict';
 
-const P = require( 'bluebird' );
-
 module.exports = {
-    before: function(client){
+    before: function( client ){
+        client.signout();
+    },
+    beforeEach: function( client ){
         const page = client.page.welcome();
-
-        page.navigate();
-        client.waitForElementVisible( 'body', 1000 );
+        page
+            .navigate()
+            .waitForElementVisible( page.section.content.selector, client.globals.timeout );
     },
 
-    after: function(client){
+    after: function( client ){
         client.end();
     },
 
-    'landing': function( client ){
-        const expect = client.expect;
+    'UI is constructed': function( client ){
+        client.takeSnapshot( module );
 
         const page = client.page.welcome();
         page.expect.section( '@menu' ).to.be.visible;
-        const menu = page.section.menu;
-        menu.expect.element( '@brand' ).to.be.visible;
+        page.section.menu
+            .assert.visible( '@brand' )
+            .assert.visible( '@tutorialBtn' )
+            .assert.visible( '@loginBtn' )
+            .assert.visible( '@feedbackBtn' )
+            .assert.elementNotPresent( '@assessBtn' )
+            .assert.elementNotPresent( '@resultsBtn' )
+            .assert.elementNotPresent( '@accountBtn' )
+            .assert.elementNotPresent( '@signoutBtn' )
+        ;
 
-        page.expect.section( '@content' ).to.be.visible;
-        const content = page.section.content;
+        page.section.content
+            .assert.visible( '@titleText' )
+            .assert.containsText( '@titleText', 'WELKOM' )
+            .assert.visible( '@bodyText' )
+            .assert.containsText( '@bodyText', 'Beste beoordelaar' )
+            .assert.visible( '@loginBtn' )
+            .assert.visible( '@passwordForgottenBtn' )
+        ;
+    },
 
-        content.expect.element( '@titleText' ).to.be.visible;
-        content.expect.element( '@titleText' ).text.to.contain( 'WELKOM' );
+    'login button redirects to login page': function( client ){
+        client
+            .page.welcome()
+            .clickLogin()
+            .assert.urlEquals( client.page.signin().url );
+    },
 
-        content.expect.element( '@bodyText' ).to.be.visible;
-        content.expect.element( '@bodyText' ).text.to.contain( 'Beste beoordelaar' );
-
-        content.expect.element( '@loginBtn' ).to.be.visible;
-        content.expect.element( '@passwordForgottenBtn' ).to.be.visible;
-
-        page.clickLogin();
-
-        const signin = client.page.signin();
-        client.assert.urlEquals( signin.url );
-
+    'password forgotten button redirects to password forgotten page': function( client ){
+        client
+            .page.welcome()
+            .clickPasswordForgotten()
+            .assert.urlEquals( 'http://localhost:3029/auth/resetpassword' );
     }
 };

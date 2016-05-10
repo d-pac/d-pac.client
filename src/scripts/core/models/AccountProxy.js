@@ -1,4 +1,5 @@
 'use strict';
+const _ = require( 'lodash' );
 var NestedModel = require( 'backbone-nested-model' );
 var debug = require( 'debug' )( 'dpac:core.models', '[AccountProxy]' );
 module.exports = NestedModel.extend( {
@@ -26,6 +27,9 @@ module.exports = NestedModel.extend( {
         if( role ){
             return this.get( 'assessments.' + role );
         }
-        return this.get( 'assessment' );
+        return _.reduce( this.get( 'assessments' ), ( memo,
+                                                      forRole )=>{
+            return memo.concat( forRole );
+        }, [] );
     }
 } );

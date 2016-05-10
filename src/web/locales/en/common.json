@@ -57,7 +57,7 @@
     },
     "forgotpassword": {
       "label": "Password forgotten?",
-      "href": "<%=api.host%>keystone/resetpassword"
+      "href": "<%=api.host%>auth/resetpassword"
     }
   },
   "warning": {

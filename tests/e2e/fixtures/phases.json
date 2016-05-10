@@ -1,0 +1,66 @@
+[
+  {
+    "_id": {
+      "$oid": "573ad1a977bc7ec0a7f9da2a"
+    },
+    "slug": "selection",
+    "label": "Select best",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "573ad1a977bc7ec0a7f9da2b"
+    },
+    "slug": "select-other",
+    "label": "Select best (other criterion)",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "573ad1a977bc7ec0a7f9da2c"
+    },
+    "slug": "comparative",
+    "label": "Provide comparative Feedback",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "573ad1aa77bc7ec0a7f9da2d"
+    },
+    "slug": "pros-cons",
+    "label": "Pros & cons",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "573ad1aa77bc7ec0a7f9da2e"
+    },
+    "slug": "passfail",
+    "label": "Indicate Pass/Fail",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "573ad1aa77bc7ec0a7f9da2f"
+    },
+    "slug": "seq-selection",
+    "label": "Select best SEQ",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "573ad1aa77bc7ec0a7f9da30"
+    },
+    "slug": "seq-comparative",
+    "label": "Comparative feedback SEQ",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "573ad1b677bc7ec0a7f9da31"
+    },
+    "slug": "seq-passfail",
+    "label": "Pass/fail SEQ",
+    "__v": 0
+  }
+]

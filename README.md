@@ -36,5 +36,27 @@ This will pack everything up and copy all relevant files to a `dist` directory.
 
 Serve the contents of the `dist` directory with [express](http://expressjs.com/) or [nginx](http://nginx.org/) for instance.
 
+## Testing
+
+### Unit & integration testing
+
+```sh
+$ npm test
+```
+
+### e2e
+
+Make sure the backend is running on localhost:3029, then
+
+```sh
+$ npm run preview:e2e
+```
+
+Which will start the webpack dev server. Once ready run
+
+```sh
+$ npm run test:e2e
+```
+
 [D-PAC  Copyright (C) 2014-2016  d-pac](LICENSE)
 [http://www.d-pac.be](http://www.d-pac.be)

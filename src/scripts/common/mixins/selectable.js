@@ -3,9 +3,11 @@
 var _ = require( 'lodash' );
 
 module.exports.collection = {
-    mixin: function( collectionClass ){
-        collectionClass.prototype.__selectable_overridden__reset = collectionClass.prototype.reset;
-        _.extend( collectionClass.prototype, {
+    mixin: function( Constructor ){
+        if( Constructor.prototype.reset ){
+            Constructor.prototype.__selectable_overridden__reset = Constructor.prototype.reset;
+        }
+        _.extend( Constructor.prototype, {
             selectByID: function( id ){
                 return this.select( this.get( id ) );
             },
@@ -22,7 +24,7 @@ module.exports.collection = {
 
             select: function( newValue ){
                 var previous = this.selected;
-                if( this.onDeselect ){
+                if( previous && this.onDeselect ){
                     this.onDeselect.call( this, previous );
                 }
                 this.selected = newValue;
@@ -35,7 +37,9 @@ module.exports.collection = {
 
             reset: function(){
                 this.deselect();
-                collectionClass.prototype.__selectable_overridden__reset.apply( this, _.toArray( arguments ) );
+                if( Constructor.prototype.__selectable_overridden__reset ){
+                    Constructor.prototype.__selectable_overridden__reset.apply( this, _.toArray( arguments ) );
+                }
             }
         } );
     }

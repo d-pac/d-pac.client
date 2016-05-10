@@ -1,0 +1,54 @@
+[
+  {
+    "_id": {
+      "$oid": "573ad6a277bc7ec0a7f9da47"
+    },
+    "host": "none",
+    "_rid": 1,
+    "updatedBy": {
+      "$oid": "573ad1b677bc7ec0a7f9da32"
+    },
+    "updatedAt": {
+      "$date": "2016-05-19T14:58:15.223+0200"
+    },
+    "createdBy": {
+      "$oid": "573ad1b677bc7ec0a7f9da32"
+    },
+    "createdAt": {
+      "$date": "2016-05-17T10:30:26.154+0200"
+    },
+    "title": "Document 1",
+    "representation": false,
+    "owner": [],
+    "name": "Document 1",
+    "__v": 0,
+    "assessment": null,
+    "text": "<p>Document 1: body</p>"
+  },
+  {
+    "_id": {
+      "$oid": "573ad6c477bc7ec0a7f9da49"
+    },
+    "host": "none",
+    "_rid": 2,
+    "updatedBy": {
+      "$oid": "573ad1b677bc7ec0a7f9da32"
+    },
+    "updatedAt": {
+      "$date": "2016-05-19T14:58:30.932+0200"
+    },
+    "createdBy": {
+      "$oid": "573ad1b677bc7ec0a7f9da32"
+    },
+    "createdAt": {
+      "$date": "2016-05-17T10:31:00.843+0200"
+    },
+    "title": "Document 2",
+    "representation": false,
+    "owner": [],
+    "name": "Document 2",
+    "__v": 0,
+    "assessment": null,
+    "text": "<p>Document 2: body</p>"
+  }
+]

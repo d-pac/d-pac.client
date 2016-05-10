@@ -1,0 +1,286 @@
+[
+  {
+    "_id": {
+      "$oid": "573ad26977bc7ec0a7f9da43"
+    },
+    "updatedBy": {
+      "$oid": "573ad1b677bc7ec0a7f9da32"
+    },
+    "updatedAt": {
+      "$date": "2016-05-17T10:19:42.725+0200"
+    },
+    "createdBy": {
+      "$oid": "573ad1b677bc7ec0a7f9da32"
+    },
+    "createdAt": {
+      "$date": "2016-05-17T10:12:25.218+0200"
+    },
+    "algorithm": "comparative-selection",
+    "title": "Comparative Selection",
+    "name": "Comparative Selection",
+    "actions": {
+      "calculate": false
+    },
+    "cache": {
+      "assessorsNum": 1,
+      "comparisonsNum": 0,
+      "representationsNum": 2
+    },
+    "uiCopy": "{\r\n    \"phase_selection\": {\r\n        \"title\": \"Beoordeel\",\r\n        \"description\": \"Geef aan welke tekst beter geschreven is in functie van  de competentie 'argumentatief schrijven'\",\r\n        \"a_button\": {\r\n            \"label\" : \"Tekst A is beter\",\r\n            \"tooltip\": \"Klik om aan te duiden dat tekst A beter is dan B.\"\r\n        },\r\n        \"b_button\": {\r\n            \"label\": \"Tekst B is beter\",\r\n            \"tooltip\": \"Klik om aan te duiden dat tekst B beter is dan A.\"\r\n        }\r\n    },\r\n    \"phase_select-other\": {\r\n      \"title\": \"Beoordeel\",\r\n      \"description\": \"Welke tekst voelt intuitief beter aan?\",\r\n      \"a_button\": {\r\n        \"label\": \"Tekst A is beter\",\r\n        \"tooltip\": \"Klik om aan te duiden dat tekst A beter is dan B.\"\r\n      },\r\n      \"b_button\": {\r\n        \"label\": \"Tekst B is beter\",\r\n        \"tooltip\": \"Klik om aan te duiden dat tekst B beter is dan A.\"\r\n      },\r\n      \"sending\": \"Even geduld...\"\r\n  \t},\r\n    \"phase_comparative\": {\r\n        \"title\": \"Vergelijk\",\r\n        \"description\": \"Licht kort je keuze toe\"\r\n    },\r\n    \"phase_pros-cons\": {\r\n        \"title\": \"Vergelijk\",\r\n        \"description\": \"Beschrijf hier wat je positief en negatief vond aan de teksten:\",\r\n        \"a_title\": \"Tekst A\",\r\n        \"b_title\": \"Tekst B\",\r\n        \"positive\": \"Positief\",\r\n        \"negative\": \"Negatief\"\r\n    },\r\n    \"phase_passfail\":{\r\n        \"title\":\"Hor ot not?\",\r\n        \"description\" : \"Duid aan of deze goed genoeg zijn.\",\r\n        \"options\": {\r\n          \"passed\" : {\r\n              \"label\" : \"Goed\",\r\n              \"icon\" : \"ok\"\r\n          },\r\n          \"failed\" : { \r\n              \"label\":\"Niet goed\", \r\n              \"icon\":\"remove\"\r\n          }\r\n        }\r\n    },\r\n    \"phase_seq-selection\": {\r\n\t    \"title\": \"Hoe moeilijk vond je het om de keuze te maken?\"\r\n\t},\r\n  \t\"phase_seq-comparative\": {\r\n    \t\"title\": \"Hoe moeilijk vond je het om je keuze te beargumenteren?\"\r\n\t},\r\n    \"phase_seq-passfail\": {\r\n    \t\"title\": \"Hoe moeilijk vond je het om geslaagd/niet geslaagd te kiezen?\"\r\n\t},\r\n    \"representation_viewer\": {\r\n        \"pdf\":{\r\n            \"tooltip\": \"Gebruik de knoppen rechts bovenaan om de paper fullscreen te bekijken of te downloaden.\"\r\n        },\r\n        \"image\": {\r\n            \"tooltip\": \"Klik om deze tekst te selecteren\"\r\n        }\r\n    },\r\n    \"notes\" : {\r\n        \"label\" : \"Notities\",\r\n        \"tooltip\" : \"Noteer hier je opmerkingen bij deze tekst.\"\r\n    },\r\n    \"uploads\":{\r\n        \"description\": \"Laad hier je bestand op\"\r\n    }\r\n}\r\n",
+    "results": {
+      "assessees": {
+        "viewRanking": true,
+        "viewRepresentations": true
+      },
+      "enable": true
+    },
+    "enableSelectionIcon": true,
+    "enableNotes": true,
+    "enableTimeLogging": false,
+    "stage": 0,
+    "assessors": {
+      "minimum": 4
+    },
+    "comparisons": {
+      "perAssessor": 2,
+      "perRepresentation": 10,
+      "dimension": "assessor"
+    },
+    "schedule": {
+      "active": false
+    },
+    "state": "published",
+    "phases": [
+      {
+        "$oid": "573ad1a977bc7ec0a7f9da2a"
+      },
+      {
+        "$oid": "573ad1a977bc7ec0a7f9da2b"
+      },
+      {
+        "$oid": "573ad1aa77bc7ec0a7f9da2f"
+      },
+      {
+        "$oid": "573ad1aa77bc7ec0a7f9da2e"
+      },
+      {
+        "$oid": "573ad1b677bc7ec0a7f9da31"
+      },
+      {
+        "$oid": "573ad1a977bc7ec0a7f9da2c"
+      },
+      {
+        "$oid": "573ad1aa77bc7ec0a7f9da30"
+      },
+      {
+        "$oid": "573ad1aa77bc7ec0a7f9da2d"
+      }
+    ],
+    "__v": 0,
+    "assignments": {
+      "assessee": "<p>Comparative Selection: assessee assignment</p>",
+      "assessor": "<p>Comparative Selection: assessor assignment</p>"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "573ad42f77bc7ec0a7f9da44"
+    },
+    "updatedBy": {
+      "$oid": "573ad1b677bc7ec0a7f9da32"
+    },
+    "updatedAt": {
+      "$date": "2016-05-17T10:19:59.033+0200"
+    },
+    "createdBy": {
+      "$oid": "573ad1b677bc7ec0a7f9da32"
+    },
+    "createdAt": {
+      "$date": "2016-05-17T10:19:59.033+0200"
+    },
+    "algorithm": "comparative-selection",
+    "title": "Draft",
+    "name": "Draft",
+    "actions": {
+      "calculate": false
+    },
+    "cache": {
+      "assessorsNum": 0,
+      "comparisonsNum": 0,
+      "representationsNum": 0
+    },
+    "uiCopy": "{\r\n    \"phase_selection\": {\r\n        \"title\": \"Beoordeel\",\r\n        \"description\": \"Geef aan welke tekst beter geschreven is in functie van  de competentie 'argumentatief schrijven'\",\r\n        \"a_button\": {\r\n            \"label\" : \"Tekst A is beter\",\r\n            \"tooltip\": \"Klik om aan te duiden dat tekst A beter is dan B.\"\r\n        },\r\n        \"b_button\": {\r\n            \"label\": \"Tekst B is beter\",\r\n            \"tooltip\": \"Klik om aan te duiden dat tekst B beter is dan A.\"\r\n        }\r\n    },\r\n    \"phase_select-other\": {\r\n      \"title\": \"Beoordeel\",\r\n      \"description\": \"Welke tekst voelt intuitief beter aan?\",\r\n      \"a_button\": {\r\n        \"label\": \"Tekst A is beter\",\r\n        \"tooltip\": \"Klik om aan te duiden dat tekst A beter is dan B.\"\r\n      },\r\n      \"b_button\": {\r\n        \"label\": \"Tekst B is beter\",\r\n        \"tooltip\": \"Klik om aan te duiden dat tekst B beter is dan A.\"\r\n      },\r\n      \"sending\": \"Even geduld...\"\r\n  \t},\r\n    \"phase_comparative\": {\r\n        \"title\": \"Vergelijk\",\r\n        \"description\": \"Licht kort je keuze toe\"\r\n    },\r\n    \"phase_pros-cons\": {\r\n        \"title\": \"Vergelijk\",\r\n        \"description\": \"Beschrijf hier wat je positief en negatief vond aan de teksten:\",\r\n        \"a_title\": \"Tekst A\",\r\n        \"b_title\": \"Tekst B\",\r\n        \"positive\": \"Positief\",\r\n        \"negative\": \"Negatief\"\r\n    },\r\n    \"phase_passfail\":{\r\n        \"title\":\"Hor ot not?\",\r\n        \"description\" : \"Duid aan of deze goed genoeg zijn.\",\r\n        \"options\": {\r\n          \"passed\" : {\r\n              \"label\" : \"Goed\",\r\n              \"icon\" : \"ok\"\r\n          },\r\n          \"failed\" : { \r\n              \"label\":\"Niet goed\", \r\n              \"icon\":\"remove\"\r\n          }\r\n        }\r\n    },\r\n    \"phase_seq-selection\": {\r\n\t    \"title\": \"Hoe moeilijk vond je het om de keuze te maken?\"\r\n\t},\r\n  \t\"phase_seq-comparative\": {\r\n    \t\"title\": \"Hoe moeilijk vond je het om je keuze te beargumenteren?\"\r\n\t},\r\n    \"phase_seq-passfail\": {\r\n    \t\"title\": \"Hoe moeilijk vond je het om geslaagd/niet geslaagd te kiezen?\"\r\n\t},\r\n    \"representation_viewer\": {\r\n        \"pdf\":{\r\n            \"tooltip\": \"Gebruik de knoppen rechts bovenaan om de paper fullscreen te bekijken of te downloaden.\"\r\n        },\r\n        \"image\": {\r\n            \"tooltip\": \"Klik om deze tekst te selecteren\"\r\n        }\r\n    },\r\n    \"notes\" : {\r\n        \"label\" : \"Notities\",\r\n        \"tooltip\" : \"Noteer hier je opmerkingen bij deze tekst.\"\r\n    },\r\n    \"uploads\":{\r\n        \"description\": \"Laad hier je bestand op\"\r\n    }\r\n}\r\n",
+    "results": {
+      "assessees": {
+        "viewRanking": true,
+        "viewRepresentations": true
+      },
+      "enable": true
+    },
+    "enableSelectionIcon": true,
+    "enableNotes": true,
+    "enableTimeLogging": false,
+    "stage": 0,
+    "assessors": {
+      "minimum": 4
+    },
+    "comparisons": {
+      "perAssessor": 5,
+      "perRepresentation": 10,
+      "dimension": "assessor"
+    },
+    "schedule": {
+      "active": false
+    },
+    "state": "draft",
+    "phases": [
+      {
+        "$oid": "573ad1a977bc7ec0a7f9da2a"
+      }
+    ],
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "573ad4b577bc7ec0a7f9da45"
+    },
+    "updatedBy": {
+      "$oid": "573ad1b677bc7ec0a7f9da32"
+    },
+    "updatedAt": {
+      "$date": "2016-05-17T10:22:13.535+0200"
+    },
+    "createdBy": {
+      "$oid": "573ad1b677bc7ec0a7f9da32"
+    },
+    "createdAt": {
+      "$date": "2016-05-17T10:22:13.535+0200"
+    },
+    "algorithm": "comparative-selection",
+    "title": "Uploads",
+    "name": "Uploads",
+    "actions": {
+      "calculate": false
+    },
+    "cache": {
+      "assessorsNum": 0,
+      "comparisonsNum": 0,
+      "representationsNum": 0
+    },
+    "uiCopy": "{\r\n    \"phase_selection\": {\r\n        \"title\": \"Beoordeel\",\r\n        \"description\": \"Geef aan welke tekst beter geschreven is in functie van  de competentie 'argumentatief schrijven'\",\r\n        \"a_button\": {\r\n            \"label\" : \"Tekst A is beter\",\r\n            \"tooltip\": \"Klik om aan te duiden dat tekst A beter is dan B.\"\r\n        },\r\n        \"b_button\": {\r\n            \"label\": \"Tekst B is beter\",\r\n            \"tooltip\": \"Klik om aan te duiden dat tekst B beter is dan A.\"\r\n        }\r\n    },\r\n    \"phase_select-other\": {\r\n      \"title\": \"Beoordeel\",\r\n      \"description\": \"Welke tekst voelt intuitief beter aan?\",\r\n      \"a_button\": {\r\n        \"label\": \"Tekst A is beter\",\r\n        \"tooltip\": \"Klik om aan te duiden dat tekst A beter is dan B.\"\r\n      },\r\n      \"b_button\": {\r\n        \"label\": \"Tekst B is beter\",\r\n        \"tooltip\": \"Klik om aan te duiden dat tekst B beter is dan A.\"\r\n      },\r\n      \"sending\": \"Even geduld...\"\r\n  \t},\r\n    \"phase_comparative\": {\r\n        \"title\": \"Vergelijk\",\r\n        \"description\": \"Licht kort je keuze toe\"\r\n    },\r\n    \"phase_pros-cons\": {\r\n        \"title\": \"Vergelijk\",\r\n        \"description\": \"Beschrijf hier wat je positief en negatief vond aan de teksten:\",\r\n        \"a_title\": \"Tekst A\",\r\n        \"b_title\": \"Tekst B\",\r\n        \"positive\": \"Positief\",\r\n        \"negative\": \"Negatief\"\r\n    },\r\n    \"phase_passfail\":{\r\n        \"title\":\"Hor ot not?\",\r\n        \"description\" : \"Duid aan of deze goed genoeg zijn.\",\r\n        \"options\": {\r\n          \"passed\" : {\r\n              \"label\" : \"Goed\",\r\n              \"icon\" : \"ok\"\r\n          },\r\n          \"failed\" : { \r\n              \"label\":\"Niet goed\", \r\n              \"icon\":\"remove\"\r\n          }\r\n        }\r\n    },\r\n    \"phase_seq-selection\": {\r\n\t    \"title\": \"Hoe moeilijk vond je het om de keuze te maken?\"\r\n\t},\r\n  \t\"phase_seq-comparative\": {\r\n    \t\"title\": \"Hoe moeilijk vond je het om je keuze te beargumenteren?\"\r\n\t},\r\n    \"phase_seq-passfail\": {\r\n    \t\"title\": \"Hoe moeilijk vond je het om geslaagd/niet geslaagd te kiezen?\"\r\n\t},\r\n    \"representation_viewer\": {\r\n        \"pdf\":{\r\n            \"tooltip\": \"Gebruik de knoppen rechts bovenaan om de paper fullscreen te bekijken of te downloaden.\"\r\n        },\r\n        \"image\": {\r\n            \"tooltip\": \"Klik om deze tekst te selecteren\"\r\n        }\r\n    },\r\n    \"notes\" : {\r\n        \"label\" : \"Notities\",\r\n        \"tooltip\" : \"Noteer hier je opmerkingen bij deze tekst.\"\r\n    },\r\n    \"uploads\":{\r\n        \"description\": \"Laad hier je bestand op\"\r\n    }\r\n}\r\n",
+    "results": {
+      "assessees": {
+        "viewRanking": true,
+        "viewRepresentations": true
+      },
+      "enable": true
+    },
+    "enableSelectionIcon": true,
+    "enableNotes": true,
+    "enableTimeLogging": false,
+    "stage": 0,
+    "assessors": {
+      "minimum": 4
+    },
+    "comparisons": {
+      "perAssessor": 5,
+      "perRepresentation": 10,
+      "dimension": "assessor"
+    },
+    "schedule": {
+      "active": false
+    },
+    "state": "draft",
+    "phases": [
+      {
+        "$oid": "573ad1a977bc7ec0a7f9da2a"
+      }
+    ],
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "573ad4cd77bc7ec0a7f9da46"
+    },
+    "updatedBy": {
+      "$oid": "573ad1b677bc7ec0a7f9da32"
+    },
+    "updatedAt": {
+      "$date": "2016-05-17T10:39:15.098+0200"
+    },
+    "createdBy": {
+      "$oid": "573ad1b677bc7ec0a7f9da32"
+    },
+    "createdAt": {
+      "$date": "2016-05-17T10:22:37.079+0200"
+    },
+    "algorithm": "comparative-selection",
+    "title": "Completed",
+    "name": "Completed",
+    "actions": {
+      "calculate": false
+    },
+    "cache": {
+      "assessorsNum": 2,
+      "comparisonsNum": 10,
+      "representationsNum": 2
+    },
+    "uiCopy": "{\r\n    \"phase_selection\": {\r\n        \"title\": \"Beoordeel\",\r\n        \"description\": \"Geef aan welke tekst beter geschreven is in functie van  de competentie 'argumentatief schrijven'\",\r\n        \"a_button\": {\r\n            \"label\" : \"Tekst A is beter\",\r\n            \"tooltip\": \"Klik om aan te duiden dat tekst A beter is dan B.\"\r\n        },\r\n        \"b_button\": {\r\n            \"label\": \"Tekst B is beter\",\r\n            \"tooltip\": \"Klik om aan te duiden dat tekst B beter is dan A.\"\r\n        }\r\n    },\r\n    \"phase_select-other\": {\r\n      \"title\": \"Beoordeel\",\r\n      \"description\": \"Welke tekst voelt intuitief beter aan?\",\r\n      \"a_button\": {\r\n        \"label\": \"Tekst A is beter\",\r\n        \"tooltip\": \"Klik om aan te duiden dat tekst A beter is dan B.\"\r\n      },\r\n      \"b_button\": {\r\n        \"label\": \"Tekst B is beter\",\r\n        \"tooltip\": \"Klik om aan te duiden dat tekst B beter is dan A.\"\r\n      },\r\n      \"sending\": \"Even geduld...\"\r\n  \t},\r\n    \"phase_comparative\": {\r\n        \"title\": \"Vergelijk\",\r\n        \"description\": \"Licht kort je keuze toe\"\r\n    },\r\n    \"phase_pros-cons\": {\r\n        \"title\": \"Vergelijk\",\r\n        \"description\": \"Beschrijf hier wat je positief en negatief vond aan de teksten:\",\r\n        \"a_title\": \"Tekst A\",\r\n        \"b_title\": \"Tekst B\",\r\n        \"positive\": \"Positief\",\r\n        \"negative\": \"Negatief\"\r\n    },\r\n    \"phase_passfail\":{\r\n        \"title\":\"Hor ot not?\",\r\n        \"description\" : \"Duid aan of deze goed genoeg zijn.\",\r\n        \"options\": {\r\n          \"passed\" : {\r\n              \"label\" : \"Goed\",\r\n              \"icon\" : \"ok\"\r\n          },\r\n          \"failed\" : { \r\n              \"label\":\"Niet goed\", \r\n              \"icon\":\"remove\"\r\n          }\r\n        }\r\n    },\r\n    \"phase_seq-selection\": {\r\n\t    \"title\": \"Hoe moeilijk vond je het om de keuze te maken?\"\r\n\t},\r\n  \t\"phase_seq-comparative\": {\r\n    \t\"title\": \"Hoe moeilijk vond je het om je keuze te beargumenteren?\"\r\n\t},\r\n    \"phase_seq-passfail\": {\r\n    \t\"title\": \"Hoe moeilijk vond je het om geslaagd/niet geslaagd te kiezen?\"\r\n\t},\r\n    \"representation_viewer\": {\r\n        \"pdf\":{\r\n            \"tooltip\": \"Gebruik de knoppen rechts bovenaan om de paper fullscreen te bekijken of te downloaden.\"\r\n        },\r\n        \"image\": {\r\n            \"tooltip\": \"Klik om deze tekst te selecteren\"\r\n        }\r\n    },\r\n    \"notes\" : {\r\n        \"label\" : \"Notities\",\r\n        \"tooltip\" : \"Noteer hier je opmerkingen bij deze tekst.\"\r\n    },\r\n    \"uploads\":{\r\n        \"description\": \"Laad hier je bestand op\"\r\n    }\r\n}\r\n",
+    "results": {
+      "assessees": {
+        "viewRanking": true,
+        "viewRepresentations": true
+      },
+      "enable": true
+    },
+    "enableSelectionIcon": true,
+    "enableNotes": true,
+    "enableTimeLogging": false,
+    "stage": 0,
+    "assessors": {
+      "minimum": 4
+    },
+    "comparisons": {
+      "perAssessor": 5,
+      "perRepresentation": 10,
+      "dimension": "assessor"
+    },
+    "schedule": {
+      "active": false
+    },
+    "state": "completed",
+    "phases": [
+      {
+        "$oid": "573ad1a977bc7ec0a7f9da2a"
+      }
+    ],
+    "__v": 0,
+    "assignments": {
+      "assessee": "",
+      "assessor": ""
+    },
+    "stats": {
+      "lastRun": {
+        "$date": "2016-05-17T10:39:15.661+0200"
+      },
+      "totals": {
+        "reliability": -168.6167897180901,
+        "duration": 0
+      },
+      "averages": {
+        "comparisonsPerRepresentation": 10,
+        "durationPerRepresentation": 0,
+        "comparisonsPerAssessor": 5,
+        "durationPerAssessor": 0
+      },
+      "byRepresentation": {
+        "573ad6d277bc7ec0a7f9da4a": {
+          "comparisonsNum": 10
+        },
+        "573ad73c77bc7ec0a7f9da4b": {
+          "comparisonsNum": 10
+        }
+      }
+    }
+  }
+]

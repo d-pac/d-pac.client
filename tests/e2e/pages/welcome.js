@@ -5,16 +5,11 @@ module.exports = {
         return this.api.launchUrl;
     },
     sections: {
-        menu: {
-            selector: '.navbar-header',
-            elements: {
-                "brand": "#brand-href img"
-            }
-        },
+        menu: require( './menu' ),
         content: {
             selector: "#core-welcome-view",
             elements: {
-                "loginBtn": "#core-welcome-view .login-btn",
+                "loginBtn": ".login-btn",
                 "passwordForgottenBtn": ".password-forgotten-btn",
                 "titleText": ".well h4",
                 "bodyText": ".page-body"
@@ -25,11 +20,11 @@ module.exports = {
         {
             clickLogin: function(){
                 return this.section.content.click( '@loginBtn' )
-                    .waitForElementNotPresent( '@loginBtn', 1000 );
+                    .waitForElementNotPresent( '@loginBtn', 5000 );
             },
             clickPasswordForgotten: function(){
                 return this.section.content.click( '@passwordForgottenBtn' )
-                    .waitForElementNotPresent( '@passwordForgottenBtn', 1000 )
+                    .waitForElementNotPresent( '@passwordForgottenBtn', 5000 )
             }
         }
     ]
