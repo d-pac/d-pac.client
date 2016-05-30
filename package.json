@@ -49,12 +49,11 @@
     "compile": "webpack -dp --progress --colors --verbose",
     "build": "npm run clean:dist; npm run copy:web && npm run compile",
     "test:units": "NODE_ENV=test DEBUG=dpac:tests* mocha tests/units/**/*.spec.js -R spec --bail --timeout 60000",
-    "test:integration": "NODE_ENV=test DEBUG=dpac:tests* mocha tests/integration/**/*.spec.js -R spec --bail --timeout 60000",
     "preview:e2e": "NODE_ENV=test npm run preview",
     "import:fixtures": "./import-fixtures.sh",
     "pretest:e2e": "npm run import:fixtures",
     "test:e2e": "nightwatch",
-    "test": "npm run test:units && npm run test:integration"
+    "test": "npm run test:units"
   },
   "babel": {
     "presets": [
