@@ -7,7 +7,7 @@ module.exports = {
         client.signout();
     },
     beforeEach: function( client ){
-        const  page = client.page.signin();
+        const page = client.page.signin();
         page
             .navigate()
             .waitForElementVisible( page.section.content.selector, client.globals.timeout );

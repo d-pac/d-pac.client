@@ -2,11 +2,8 @@
 
 const _ = require( 'lodash' );
 const expect = require( 'must' );
-const sinon = require( 'sinon' );
-const assert = expect;
 const pxquire = require( 'proxyquire' );
 const dependencies = require( 'dependencies' );
-const Backbone = dependencies.backbone;
 
 const file = 'core/models/AssessmentsCollection';
 const subject = pxquire

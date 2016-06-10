@@ -83,7 +83,7 @@ describe( file, function(){
         describe( '#getNextPhaseId(id)', function(){
             beforeEach( function(){
                 instance.set( 'phases', [ 'a', 'b', 'c' ] );
-            } )
+            } );
             it( 'should retrieve the Phase id after `id`', function(){
                 expect( instance.getNextPhaseId( 'b' ) ).to.equal( 'c' );
             } );

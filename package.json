@@ -54,10 +54,10 @@
     "preview:e2e": "NODE_ENV=test npm run preview",
     "import:fixtures": "./import-fixtures.sh",
     "pretest:e2e": "npm run import:fixtures",
-    "test:e2e": "nightwatch",
+    "test:e2e": "NODE_ENV=test nightwatch",
     "test": "npm run test:units",
     "lint": "eslint src/scripts && eslint tests && echo 'Linting finished!'",
-    "lint:fix": "eslint src/scripts --fix && eslint tests && echo 'Linting finished!'"
+    "lint:fix": "eslint src/scripts --fix && eslint tests --fix && echo 'Linting finished!'"
   },
   "babel": {
     "presets": [

@@ -19,7 +19,6 @@ module.exports = {
         client.takeSnapshot( module );
 
         const page = client.page.welcome();
-        page.expect.section( '@menu' ).to.be.visible;
         page.section.menu
             .assert.visible( '@brand' )
             .assert.visible( '@tutorialBtn' )
