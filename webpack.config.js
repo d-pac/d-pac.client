@@ -1,19 +1,23 @@
 'use strict';
 
-var pkg = require( './package.json' );
+const pkg = require( './package.json' );
 process.env.APP_VERSION = pkg.version;
 
-var konfy = require( 'konfy' );
+const konfy = require( 'konfy' );
 konfy.load();
-var webpack = require( 'webpack' );
-var _ = require( 'lodash' );
-var path = require( 'path' );
+const webpack = require( 'webpack' );
+const _ = require( 'lodash' );
+const path = require( 'path' );
 
-var bower = require( './bower.json' );
-var vendorComponents = _.keys( pkg.dependencies );
+const bower = require( './bower.json' );
+let vendorComponents = _.keys( pkg.dependencies );
 vendorComponents = vendorComponents.concat( _.keys( bower.dependencies ) );
 
+const htmlWPPlugin = require('html-webpack-plugin');
+
 var dir_js = path.resolve(__dirname, './src/scripts');
+
+const CHUNK_FILENAME = '[name].[chunkhash:8].js';
 
 module.exports = {
     entry: {
@@ -22,10 +26,10 @@ module.exports = {
         //common: commonFiles
     },
     output: {
-        path: path.join( __dirname, "dist/assets" ),
-        publicPath: 'assets/',
-        filename: '[name].js',
-        chunkFilename: "[name].js"
+        path: path.join( __dirname, "dist" ),
+        publicPath: '',
+        filename: CHUNK_FILENAME,
+        chunkFilename: CHUNK_FILENAME
     },
     devServer: {
         contentBase: "src/web/"
@@ -92,7 +96,13 @@ module.exports = {
         new webpack.ProvidePlugin( {
             jQuery: "jquery"
         } ),
-        new webpack.optimize.CommonsChunkPlugin( 'vendor', 'vendor.js', Infinity ),
+        new webpack.optimize.CommonsChunkPlugin( 'vendor', CHUNK_FILENAME, Infinity ),
+        new htmlWPPlugin({
+            hash: false, //hashing is handled by filename
+            filename: 'index.html',
+            inject: 'body',
+            template: __dirname + '/src/web/index.html'
+        })
         //new webpack.optimize.CommonsChunkPlugin( {
         //    name: 'common',
         //    filename: 'common.js',
