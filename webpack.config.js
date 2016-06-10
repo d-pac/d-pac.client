@@ -1,23 +1,23 @@
 'use strict';
 
-const pkg = require( './package.json' );
+var pkg = require( './package.json' );
 process.env.APP_VERSION = pkg.version;
 
-const konfy = require( 'konfy' );
+var konfy = require( 'konfy' );
 konfy.load();
-const webpack = require( 'webpack' );
-const _ = require( 'lodash' );
-const path = require( 'path' );
+var webpack = require( 'webpack' );
+var _ = require( 'lodash' );
+var path = require( 'path' );
 
-const bower = require( './bower.json' );
-let vendorComponents = _.keys( pkg.dependencies );
+var bower = require( './bower.json' );
+var vendorComponents = _.keys( pkg.dependencies );
 vendorComponents = vendorComponents.concat( _.keys( bower.dependencies ) );
 
-const htmlWPPlugin = require('html-webpack-plugin');
+var htmlWPPlugin = require('html-webpack-plugin');
 
 var dir_js = path.resolve(__dirname, './src/scripts');
 
-const CHUNK_FILENAME = '[name].[chunkhash:8].js';
+var CHUNK_FILENAME = '[name].[chunkhash:8].js';
 
 module.exports = {
     entry: {
