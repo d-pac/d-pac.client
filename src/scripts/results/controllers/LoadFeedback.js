@@ -4,6 +4,7 @@ var _ = require( 'lodash' );
 var debug = require( 'debug' )( 'dpac:results.controllers', '[LoadFeedback]' );
 
 var LoadFeedback = module.exports = function LoadFeedback( context ){
+    // constructor
 };
 
 _.extend( LoadFeedback.prototype, {

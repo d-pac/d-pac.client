@@ -62,9 +62,9 @@ module.exports = Marionette.ItemView.extend( {
                 "text-align": "justify",
                 display: "block",
                 "border-right": "1px solid rgba(255,255,255,0.3)"
-            } )
+            } );
         } );
 
-        this.model.set( 'messages', alerts );   
+        this.model.set( 'messages', alerts );
     }
 } );

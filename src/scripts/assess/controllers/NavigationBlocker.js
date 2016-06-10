@@ -22,14 +22,13 @@ module.exports = Marionette.Controller.extend( {
             this.enabled = true;
             var view = this;
             Backbone.history.loadUrl = function(){
-                if( !window.confirm( i18n.t( 'assess:please_finish.message' ) ) ){
+                if( !window.confirm( i18n.t( 'assess:please_finish.message' ) ) ){ //eslint-disable-line no-alert
                     var previousFragment = Backbone.history.fragment;
                     window.location.hash = '#' + previousFragment;
                     return false;
-                } else {
-                    view.disable();
-                    return view.originalFn.apply( this, arguments );
                 }
+                view.disable();
+                return view.originalFn.apply( this, arguments );
             };
             window.onbeforeunload = this._returnMessage;
         }

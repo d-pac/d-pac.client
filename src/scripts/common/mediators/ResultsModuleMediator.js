@@ -27,6 +27,6 @@ module.exports = Base.extend( {
                 "assessments:collection:sync"
             ]
 
-        } )
+        } );
     },
 } );

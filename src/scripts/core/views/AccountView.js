@@ -44,7 +44,7 @@ module.exports = Marionette.ItemView.extend( {
         var password = this.$( "#password" ).val();
         if( password ){
             data.password = password;
-            data.password_confirm = this.$( '#password-confirmation' ).val()
+            data.password_confirm = this.$( '#password-confirmation' ).val();
         }
 
         this.model.patch( data );

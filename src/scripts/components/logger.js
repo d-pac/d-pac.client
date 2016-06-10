@@ -14,9 +14,8 @@ const logger = function(...args){
             output.prepend( `${ns} ${message} <br/>` );
         };
         return debug;
-    }else{
-        return _.noop;
     }
+    return _.noop;
 }.bind(singleton);
 
 logger.config = function(opts){

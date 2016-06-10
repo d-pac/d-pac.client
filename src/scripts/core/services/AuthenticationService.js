@@ -27,7 +27,7 @@ module.exports = NestedModel.extend( {
         attrs.user = _.get(raw, ['included', 0], false);
         attrs.authenticated = !!_.get(raw, 'data', false);
         if( attrs.user ){
-            attrs._id = attrs.user._id
+            attrs._id = attrs.user._id;
         }
         return attrs;
     },

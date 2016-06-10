@@ -1,3 +1,5 @@
+/* eslint no-invalid-this: "off" */
+
 'use strict';
 var _ = require( 'lodash' );
 var d3Tip = require( 'd3-tip' );
@@ -35,7 +37,6 @@ module.exports = Marionette.ItemView.extend( {
     renderGraph: _.debounce( function(){
         debug( 'renderGraph' );
         const data = this.model.toJSON();
-        var n = data.representations.length;
         if( this.ui.spinner && !_.isString( this.ui.spinner ) ){
             this.ui.spinner.addClass( 'hidden' );
         }
@@ -57,8 +58,8 @@ module.exports = Marionette.ItemView.extend( {
             this.model.selectRepresentation( d.id );
         } );
         const selectedId = this.model.getSelectedRepresentationId();
-        if(selectedId){
-            graph.select(selectedId)
+        if( selectedId ){
+            graph.select( selectedId );
         }
     }, 1000 ),
 

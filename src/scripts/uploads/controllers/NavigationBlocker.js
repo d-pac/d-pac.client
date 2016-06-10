@@ -12,7 +12,7 @@ module.exports = Marionette.Controller.extend( {
     contextEvents: {
         'uploads:file:selected': "enable",
         'uploads:file:deselected': function(){
-            this.disable(selected-1);
+            this.disable( selected - 1 );
         }
     },
 
@@ -26,14 +26,13 @@ module.exports = Marionette.Controller.extend( {
             selected++;
             var view = this;
             Backbone.history.loadUrl = function(){
-                if( !window.confirm( i18n.t( 'uploads:overview.changes-made' ) ) ){
+                if( !window.confirm( i18n.t( 'uploads:overview.changes-made' ) ) ){ //eslint-disable-line no-alert
                     var previousFragment = Backbone.history.fragment;
                     window.location.hash = '#' + previousFragment;
                     return false;
-                } else {
-                    view.disable(0);
-                    return view.originalFn.apply( this, arguments );
                 }
+                view.disable( 0 );
+                return view.originalFn.apply( this, arguments );
             };
             window.onbeforeunload = this._returnMessage;
         }
@@ -43,10 +42,10 @@ module.exports = Marionette.Controller.extend( {
         return i18n.t( 'uploads:overview.changes-made' );
     },
 
-    disable: function(counter){
+    disable: function( counter ){
         debug( '#disable' );
         selected = counter;
-        if( selected<=0 ){
+        if( selected <= 0 ){
             selected = 0;
             Backbone.history.loadUrl = this.originalFn;
             window.onbeforeunload = undefined;

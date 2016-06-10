@@ -4,6 +4,7 @@ var _ = require( 'underscore' );
 var debug = require( 'debug' )( 'dpac:core.controllers', '[ConfigureApplication]' );
 
 module.exports = function ConfigureApplication(){
+    //constructor
 };
 
 _.extend( module.exports.prototype, {
@@ -38,7 +39,7 @@ _.extend( module.exports.prototype, {
             "ui": {
                 "admin": process.env.DPAC_ADMIN_COLOR || ""
             }
-        }
+        };
         this.context.wireValue( 'config', config );
         this.context.vent.trigger( 'config:load:completed' );
     }

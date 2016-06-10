@@ -42,7 +42,7 @@ module.exports = Marionette.LayoutView.extend( {
     },
 
     showView: function( viewName ){
-        var fName =  viewName+ "Factory";
+        var fName = viewName+ "Factory";
         if( !this[ fName ] ){
             //throw new Error( viewName + ' not yet implemented!' );
             return; //not all routes need a view

@@ -5,6 +5,7 @@ var debug = require( 'debug' )( 'dpac:results.controllers', '[BootstrapModule]' 
 var instruct = require( 'backbone.whenthen' );
 
 module.exports = function BootstrapModule(){
+    // constructor
 };
 
 _.extend( module.exports.prototype, {

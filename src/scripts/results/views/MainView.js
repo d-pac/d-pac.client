@@ -4,7 +4,6 @@ const _ = require( 'lodash' );
 const debug = require( 'debug' )( 'dpac:results.views', '[LayoutView]' );
 const tpl = require( './templates/MainView.hbs' );
 const Marionette = require( 'backbone.marionette' );
-const $ = require( 'jquery' );
 
 module.exports = Marionette.LayoutView.extend( {
     authorization: undefined,

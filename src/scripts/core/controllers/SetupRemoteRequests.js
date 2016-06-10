@@ -15,6 +15,7 @@ var methodMap = {
 };
 
 var SetupRemoteRequests = module.exports = function SetupRemoteRequests(){
+    //constructor
 };
 _.extend( SetupRemoteRequests.prototype, {
     wiring: [ 'config', 'pendingRequests' ],
@@ -70,7 +71,7 @@ _.extend( SetupRemoteRequests.prototype, {
                         errors: xhr.responseJSON.errors,
                         requestUUID: requestUUID,
                         url: options.url,
-                    }
+                    };
                 } else {
                     console.log( 'CONNECTION LOST OR TIME OUT' );
                     //something went REALLY wrong, most probably the server has died
@@ -84,7 +85,7 @@ _.extend( SetupRemoteRequests.prototype, {
                             }
                         ],
                         url: options.url
-                    }
+                    };
                 }
                 console.log( "REMOTE REQUEST ERROR", errObj );
                 dispatch( "backbone:sync:error", errObj );
