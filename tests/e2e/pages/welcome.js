@@ -24,7 +24,7 @@ module.exports = {
             },
             clickPasswordForgotten: function(){
                 return this.section.content.click( '@passwordForgottenBtn' )
-                    .waitForElementNotPresent( '@passwordForgottenBtn', 5000 )
+                    .waitForElementNotPresent( '@passwordForgottenBtn', 5000 );
             }
         }
     ]

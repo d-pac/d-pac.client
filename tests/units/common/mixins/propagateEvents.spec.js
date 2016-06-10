@@ -1,7 +1,5 @@
 'use strict';
 
-'use strict';
-
 const _ = require( 'lodash' );
 const expect = require( 'must' );
 const assert = expect;
@@ -33,6 +31,7 @@ describe( file, function(){
                         dispatch: sinon.spy()
                     };
                     stub = function(){
+                        //noop
                     };
 
                     stub.prototype.listenTo = spies.listenTo;

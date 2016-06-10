@@ -1,7 +1,5 @@
 'use strict';
 
-const config = require( '../config' );
-
 module.exports = {
     before: function( client ){
         client
@@ -60,7 +58,7 @@ module.exports = {
             .assert.visible( '@selectBbtn' )
             .click('@selectABtn')
             .waitForElementNotPresent( '@selectABtn', client.globals.timeout );
-        ;
+
     },
 
     "comparison flow (2): phase ??": function(client){

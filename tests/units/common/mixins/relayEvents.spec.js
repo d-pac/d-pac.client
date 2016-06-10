@@ -1,7 +1,5 @@
 'use strict';
 
-'use strict';
-
 const _ = require( 'lodash' );
 const expect = require( 'must' );
 const assert = expect;
@@ -23,6 +21,7 @@ describe( file, function(){
 
     beforeEach( function(){
         ctor = function(){
+            //constructor
         };
     } );
 

@@ -1,6 +1,5 @@
 'use strict';
 
-const _ = require( 'lodash' );
 const expect = require( 'must' );
 const sinon = require( 'sinon' );
 const assert = expect;
@@ -86,8 +85,9 @@ describe( file, function(){
         describe( '#update()', function(){
             it( 'should send filedata', function(){
                 const FormDataStub = function(){
+                    //noop
                 };
-                const appendSpy = FormDataStub.prototype.append = sinon.spy();
+                FormDataStub.prototype.append = sinon.spy();
 
                 GLOBAL.FormData = FormDataStub;
                 sinon.stub( instance, 'save' );
@@ -122,9 +122,10 @@ describe( file, function(){
                     }
                 } );
 
-            } )
+            } );
             it( 'should return `false` if `idOrObj` is not found', function(){
                 const actual = instance.isOwnedBy( 'notfound' );
+                expect(actual).to.be.false();
             } );
             it( 'should return `true` if `idOrObj` string is found in `owner`', function(){
                 const actual = instance.isOwnedBy( 'foo' );
