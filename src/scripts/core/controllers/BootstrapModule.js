@@ -5,6 +5,7 @@ var debug = require( 'debug' )( 'dpac:core.controllers', '[BootstrapModule]' );
 var instruct = require( 'backbone.whenthen' );
 
 module.exports = function BootstrapModule(){
+    //constructor
 };
 _.extend( module.exports.prototype, {
     execute: function(){
@@ -35,7 +36,7 @@ _.extend( module.exports.prototype, {
                 debug( 'fetch pages' );
                 var collection = context.getObject( 'pagesCollection' );
                 collection.once( "sync", function(){
-                    context.dispatch( "pages:collection:sync" )
+                    context.dispatch( "pages:collection:sync" );
                 } );
                 collection.fetch();
             } )

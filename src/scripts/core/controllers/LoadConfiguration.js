@@ -4,6 +4,7 @@ var konfy = require( 'konfy' );
 var debug = require( 'debug' )( 'dpac:core.controllers', '[LoadConfiguration]' );
 
 module.exports = function LoadConfiguration(){
+    //constructor
 };
 
 _.extend( module.exports.prototype, {

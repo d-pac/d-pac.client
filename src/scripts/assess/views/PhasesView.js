@@ -140,7 +140,7 @@ module.exports = Marionette.LayoutView.extend( {
                 positive: this.$( '#b-positive' ).val(),
                 negative: this.$( '#b-negative' ).val()
             }
-        } )
+        } );
     },
 
     determinePassfailSubmitState: function(event){

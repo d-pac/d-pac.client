@@ -19,6 +19,8 @@
     "bluebird": "3.3.5",
     "bower": "1.7.7",
     "css-loader": "0.23.0",
+    "eslint": "2.11.1",
+    "eslint-config-prototypers": "0.2.0",
     "exports-loader": "0.6.3",
     "file-loader": "0.8.5",
     "handlebars-loader": "1.0.2",
@@ -53,7 +55,9 @@
     "import:fixtures": "./import-fixtures.sh",
     "pretest:e2e": "npm run import:fixtures",
     "test:e2e": "nightwatch",
-    "test": "npm run test:units"
+    "test": "npm run test:units",
+    "lint": "eslint src/scripts && eslint tests && echo 'Linting finished!'",
+    "lint:fix": "eslint src/scripts --fix && eslint tests && echo 'Linting finished!'"
   },
   "babel": {
     "presets": [

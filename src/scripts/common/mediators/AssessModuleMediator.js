@@ -26,7 +26,7 @@ module.exports = Base.extend( {
                 "authentication:signout:completed"
             ]
 
-        } )
+        } );
 
     },
 

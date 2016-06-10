@@ -5,6 +5,7 @@ var debug = require( 'debug' )( 'dpac:core.controllers', '[SetupAssessmentI18NSy
 var i18n = require( 'i18next' );
 
 module.exports = function SetupAssessmentI18NSyncing(){
+    //constructor
 };
 
 _.extend( module.exports.prototype, {

@@ -20,7 +20,7 @@ module.exports = Marionette.Controller.extend( {
                 ? "authenticated"
                 : "unauthenticated";
             this.dispatch( 'authentication:state:' + state );
-        }, this )
+        }, this );
     },
 
     //loadResources: function(){

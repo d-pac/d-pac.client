@@ -3,6 +3,7 @@ var debug = require( 'debug' )( 'dpac:core.controllers', '[BootstrapUI]' );
 var _ = require( 'underscore' );
 
 module.exports = function BootstrapUI(){
+    //constructor
 };
 _.extend( module.exports.prototype, {
     execute: function(){

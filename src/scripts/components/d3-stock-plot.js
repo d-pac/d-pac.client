@@ -29,7 +29,7 @@ var DEFAULTS = {
 };
 
 function Renderer(){
-};
+}
 
 Renderer.prototype.select = function select(id){
     const node = d3.select( '#value-' + id );
@@ -92,10 +92,10 @@ Renderer.prototype.render = function render( opts ){
     xScale.domain( [ 0, n ] );
     yScale.domain( [
         d3.min( opts.data, function( d ){
-            return d.y - d.se
+            return d.y - d.se;
         } ) - 1,
         d3.max( opts.data, function( d ){
-            return d.y + d.se
+            return d.y + d.se;
         } ) + 1
     ] );
 
@@ -168,7 +168,7 @@ Renderer.prototype.render = function render( opts ){
         } )
         .on( 'mouseover.stockplot', grow )
         .on( 'mouseout.stockplot', shrink );
-    ;
+    
 
     //lines
     values

@@ -5,6 +5,7 @@ var debug = require( 'debug' )( 'dpac:assess.controllers', '[BootstrapModule]' )
 var instruct = require( 'backbone.whenthen' );
 
 module.exports = function BootstrapModule(){
+    //constructor
 };
 
 _.extend( module.exports.prototype, {
@@ -43,7 +44,7 @@ _.extend( module.exports.prototype, {
             .then( function(){
                 instructor.destroy();
             } );
-        ;
+
 
         //set off bootstrapping
         context.vent.trigger( 'assess:bootstrap:requested' );

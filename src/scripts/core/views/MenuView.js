@@ -31,13 +31,13 @@ module.exports = Marionette.ItemView.extend( {
     onRender: function(){
         var bgColor = _.get(this.config, 'ui.admin', false);
         if(this.permissions.isAllowed('admin.view') && bgColor){
-            this.ui.navbar.css('background-color', bgColor)
+            this.ui.navbar.css('background-color', bgColor);
         }
     },
 
     collapseMenu: function(){
         var $navbarToggle = this.$( '.navbar-toggle' );
-        if( $navbarToggle.css( 'display' ) != 'none' ){
+        if( $navbarToggle.css( 'display' ) !== 'none' ){
             $navbarToggle.trigger( "click" );
         }
     },

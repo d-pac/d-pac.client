@@ -97,7 +97,7 @@ var notie = function(){
             timeout = setTimeout(later, wait);
             if (callNow) func.apply(context, args);
         };
-    }
+    };
 
 
     // Event listener for enter and escape keys
@@ -390,7 +390,7 @@ var notie = function(){
     confirm_no.style.width = '50%';
     confirm_no.style.cursor = 'pointer';
     confirm_no.style.backgroundColor = confirm_and_input_color_no_background;
-    confirm_no.onclick = function() { confirm_hide(); }
+    confirm_no.onclick = function() { confirm_hide(); };
     confirm_outer.appendChild(confirm_no);
 
     // Initialize confirm text
@@ -455,7 +455,7 @@ var notie = function(){
             setTimeout(function() {
                 yes_callback();
             }, (animation_delay * 1000 + 10));
-        }
+        };
 
         function confirm_show_inner() {
 
@@ -625,7 +625,7 @@ var notie = function(){
     input_no.style.width = '50%';
     input_no.style.cursor = 'pointer';
     input_no.style.backgroundColor = confirm_and_input_color_no_background;
-    input_no.onclick = function() { input_hide(); }
+    input_no.onclick = function() { input_hide(); };
     input_outer.appendChild(input_no);
 
     // Initialize input text
@@ -670,7 +670,7 @@ var notie = function(){
         input_field.setAttribute('type', type);
         input_field.setAttribute('placeholder', placeholder);
         input_field.value = '';
-        if (typeof prefilled_value_optional !== 'undefined' && prefilled_value_optional.length > 0) { input_field.value = prefilled_value_optional }
+        if (typeof prefilled_value_optional !== 'undefined' && prefilled_value_optional.length > 0) { input_field.value = prefilled_value_optional; }
 
         if (alert_is_showing) {
             // Hide notie.alert
@@ -695,7 +695,7 @@ var notie = function(){
             setTimeout(function() {
                 submit_callback(input_field.value);
             }, (animation_delay * 1000 + 10));
-        }
+        };
 
         function input_show_inner() {
 

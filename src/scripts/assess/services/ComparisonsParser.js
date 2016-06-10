@@ -15,17 +15,17 @@ _.extend( module.exports.prototype, Backbone.Events, {
         debug( '#parseCollection', raw );
         if( raw.included ){
             var grouped = _.groupBy( raw.included, 'type' );
-            grouped.representations && this.representationsCollection.reset( grouped.representations );
-            grouped.notes && this.notesCollection.reset( grouped.notes );
-            grouped.feedback && this.feedbackCollection.reset( grouped.feedback );
+            grouped.representations && this.representationsCollection.reset( grouped.representations ); //eslint-disable-line no-unused-expressions
+            grouped.notes && this.notesCollection.reset( grouped.notes );//eslint-disable-line no-unused-expressions
+            grouped.feedback && this.feedbackCollection.reset( grouped.feedback );//eslint-disable-line no-unused-expressions
         }
         return raw.data;
     },
 
     /**
      *
-     * @param mixed can be enveloped with `data` when called as a result of PATCH, or could be plain object when called from collection
-     * @returns {*}
+     * @param {{}} mixed - can be enveloped with `data` when called as a result of PATCH, or could be plain object when called from collection
+     * @returns {*} a model or array of models
      */
     parseModel: function( mixed ){
         debug( '#parseModel', mixed );

@@ -27,7 +27,7 @@ module.exports = Backbone.Model.extend( {
             if( comparison ){
                 this.set( 'comparison', comparison );
                 comparison.on( 'sync', this.update, this );
-                var assessment = this.set( 'assessment', this.assessmentsCollection.selected );
+                this.set( 'assessment', this.assessmentsCollection.selected );
                 this.update();
             } else {
                 this.clear();

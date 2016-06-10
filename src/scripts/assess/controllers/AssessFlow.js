@@ -97,7 +97,7 @@ module.exports = Marionette.Controller.extend( {
         this.dispatch( 'comparisons:continue:requested' );
     },
     comparisonContinuationConfirmed: function(){
-        this.requestComparisonCreation()
+        this.requestComparisonCreation();
     },
 
     requestComparisonCreation: function(){

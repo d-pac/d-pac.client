@@ -3,6 +3,7 @@ var _ = require( 'underscore' );
 
 var debug = require( 'debug' )( 'dpac:core.controllers', '[BootstrapMediators]' );
 module.exports = function BootstrapMediators(){
+    //constructor
 };
 
 _.extend( module.exports.prototype, {

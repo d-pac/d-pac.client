@@ -16,7 +16,7 @@ module.exports = Backbone.Collection.extend({
             if(this.isEmpty() ){
                 this.dispatch("requests:pending:empty");
             }
-        })
+        });
     },
 
     removeByUUID : function(uuid){

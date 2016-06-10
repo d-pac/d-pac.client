@@ -2,6 +2,7 @@
 
 if( !window.console ){
     const noop = function(){
+        // noop
     };
     window.console = {
         "log": noop,
@@ -12,7 +13,7 @@ if( !window.console ){
         "assert": noop,
         "dir": noop,
         "clear": noop
-    }
+    };
 }
 
 /* stand-alones */

@@ -7,6 +7,7 @@ var i18n = require( 'i18next' );
 var moment = require( 'moment' );
 
 module.exports = function SetupHBSHelpers(){
+    //constructor
 };
 _.extend( module.exports.prototype, {
     wiring: ['config'],

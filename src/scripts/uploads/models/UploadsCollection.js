@@ -1,5 +1,4 @@
 'use strict';
-const _ = require( 'lodash' );
 const Backbone = require( 'backbone' );
 
 const debug = require( 'debug' )( 'dpac:uploads.collections', '[UploadsCollection]' );

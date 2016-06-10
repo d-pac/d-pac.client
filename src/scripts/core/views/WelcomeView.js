@@ -1,5 +1,5 @@
 'use strict';
-var _ = require( 'lodash' );
+
 var debug = require( 'debug' )( 'dpac:core.views', '[WelcomeView]' );
 var tpl = require( './templates/Welcome.hbs' );
 var Marionette = require( 'backbone.marionette' );

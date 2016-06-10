@@ -15,7 +15,7 @@ module.exports.mixin = function( Constructor ){
                     } );
                 } );
                 Constructor.prototype.__propagateEvents_overridden__initialize.apply( this, _.toArray( arguments ) );
-            }
+            };
         }
     };
 };

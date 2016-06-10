@@ -3,6 +3,7 @@ var _ = require( 'underscore' );
 var debug = require( 'debug' )( 'dpac:core.controllers', '[SetupUserAccountSyncing]' );
 
 module.exports = function SetupUserAccountSyncing(){
+    //constructor
 };
 
 _.extend( module.exports.prototype, {

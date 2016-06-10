@@ -25,11 +25,11 @@ module.exports.collection = {
             select: function( newValue ){
                 var previous = this.selected;
                 if( previous && this.onDeselect ){
-                    this.onDeselect.call( this, previous );
+                    this.onDeselect( previous );
                 }
                 this.selected = newValue;
                 if( this.onSelect ){
-                    this.onSelect.call( this, this.selected, previous );
+                    this.onSelect( this.selected, previous );
                 }
                 this.trigger( 'change:selected', this.selected, previous );
                 return this.selected;

@@ -1,5 +1,5 @@
 'use strict';
-const _ = require( 'lodash' );
+
 const Backbone = require( 'backbone' );
 const debug = require( 'debug' )( 'dpac:uploads.models', '[UploadModel]' );
 const Representation = require( '../../common/models/RepresentationProxy' );
@@ -44,6 +44,6 @@ module.exports = Backbone.Model.extend( {
             assessment: this.get('assessment').toJSON(),
             representation: (representation) ? representation.toJSON() : undefined,
             uploadingEnabled: uploadingEnabled
-        }
+        };
     }
 } );

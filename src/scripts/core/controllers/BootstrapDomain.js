@@ -3,6 +3,7 @@ var _ = require( 'underscore' );
 
 var debug = require( 'debug' )( 'dpac:core.controllers', '[BootstrapDomain]' );
 module.exports = function BootstrapDomain(){
+    //constructor
 };
 
 _.extend( module.exports.prototype, {

@@ -2,7 +2,7 @@
 
 var _ = require( 'lodash' );
 var Marionette = require( 'backbone.marionette' );
-var debug = require( 'debug' )( 'dpac:common.views', '[MediaViewFactory]' );
+// var debug = require( 'debug' )( 'dpac:common.views', '[MediaViewFactory]' );
 var consts = {
     html: 'html',
     image: 'image',

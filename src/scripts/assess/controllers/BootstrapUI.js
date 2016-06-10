@@ -5,6 +5,7 @@ var _ = require( 'underscore' );
 var debug = require( 'debug' )( 'dpac:assess.controllers', '[BootstrapUI]' );
 
 var BootstrapUI = module.exports = function BootstrapUI( context ){
+    //constructor
 };
 
 _.extend( BootstrapUI.prototype, {

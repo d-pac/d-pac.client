@@ -2,9 +2,10 @@
 
 var _ = require( 'underscore' );
 
-var debug = require( 'debug' )( 'dpac:assess.controllers', '[LoadPhases]' );
+// var debug = require( 'debug' )( 'dpac:assess.controllers', '[LoadPhases]' );
 
 var LoadPhases = module.exports = function LoadPhases(){
+    //constructor
 };
 _.extend( LoadPhases.prototype, {
     wiring: [ 'phasesCollection' ],

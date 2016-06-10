@@ -1,7 +1,6 @@
 'use strict';
 
 const Backbone = require('backbone');
-const Marionette = require('backbone.marionette');
 
 var debug = require( 'debug' );
 

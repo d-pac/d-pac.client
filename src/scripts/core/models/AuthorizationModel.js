@@ -42,7 +42,7 @@ module.exports = Backbone.Model.extend( {
             var asAssessee = _.get( user, [ 'assessments', 'assessee' ], [] );
             return asAssessee.length > 0
                 ? permissions.flags.allowed.value
-                : permissions.flags.hidden.value
+                : permissions.flags.hidden.value;
         }
     },
 

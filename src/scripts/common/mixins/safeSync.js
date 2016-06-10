@@ -21,7 +21,7 @@ module.exports.collection = {
                 } else if( !this._syncingState || this._syncingState !== SYNCING ){
                     this._syncingState = SYNCING;
                     this.once( 'sync', function(){
-                        this._syncingState = SYNCED
+                        this._syncingState = SYNCED;
                     }.bind(this) );
                     collectionClass.prototype.__safeSyncOverridden__fetch.apply( this, _.toArray( arguments ) );
                 }
@@ -35,6 +35,6 @@ module.exports.collection = {
             isSynced: function(){
                 return this._syncingState === SYNCED;
             },
-        } )
+        } );
     }
 };
