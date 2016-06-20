@@ -5,7 +5,7 @@ module.exports = {
         client.end();
     },
 
-    '=> signin': function( client ){
+    'redirects to signin': function( client ){
         client
             .signout()
             .assert.urlEquals( client.page.signin().url );
