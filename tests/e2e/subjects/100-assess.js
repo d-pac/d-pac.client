@@ -56,8 +56,8 @@ module.exports = {
         page.section.assessmentPhases
             .assert.visible( '@selectAbtn' )
             .assert.visible( '@selectBbtn' )
-            .click('@selectABtn')
-            .waitForElementNotPresent( '@selectABtn', client.globals.timeout );
+            .click('@selectAbtn')
+            .waitForElementNotPresent( '@selectAbtn', client.globals.timeout );
 
     },
 
