@@ -34,12 +34,32 @@ module.exports = {
                 selectAbtn: "#select-A-button",
                 selectBbtn: "#select-B-button",
             }
+        },
+        comparisonUnfinished: {
+            selector: "#assess-unfinished-comparison",
+            elements: {
+                continueBtn: ".continue-button"
+            }
         }
     },
-    commands: [{
-        clickAssessment: function(){
-            return this.section.assessmentSelection.click( '@assessmentBtn' )
-                .waitForElementNotPresent( '@assessmentBtn', 5000 );
+    commands: [
+        {
+            clickAssessment: function(){
+                return this.section.assessmentSelection
+                    .click( '@assessmentBtn' )
+                    .waitForElementNotPresent( '@assessmentBtn', 5000 );
+            },
+            selectA: function(){
+                return this.section.assessmentPhases
+                    .click( '@selectAbtn' )
+                    .waitForElementNotPresent( '@selectAbtn', 5000 );
+
+            },
+            clickFinishComparison: function(){
+                return this.section.comparisonUnfinished
+                    .click( '@continueBtn' )
+                    .waitForElementNotPresent( '@continueBtn', 5000 );
+            }
         }
-    }]
+    ]
 };

@@ -52,8 +52,8 @@ module.exports = Backbone.Model.extend( {
     },
 
     hasMessages: function(){
-        var messages = this.get('messages');
-        return messages && messages.length;
+        const messages = this.get('messages');
+        return !!messages && !!messages.length;
     }
 
 } );

@@ -43,10 +43,14 @@
   "engines": {
     "node": ">=0.10.0"
   },
+  "config": {
+    "js_files": "src/scripts tests",
+    "dist_dir": "dist/"
+  },
   "scripts": {
     "bowerInstall": "bower install",
-    "clean:dist": "rm -rf dist; mkdir dist",
-    "copy:web": "cp -R src/web/. dist/",
+    "clean:dist": "rm -rf $npm_package_config_dist_dir; mkdir $npm_package_config_dist_dir",
+    "copy:web": "cp -R src/web/. $npm_package_config_dist_dir",
     "preview": "webpack-dev-server --devtool eval --progress --inline --verbose --port 9000",
     "compile": "webpack -dp --progress --colors --verbose",
     "build": "npm run clean:dist; npm run copy:web && npm run compile",
@@ -56,8 +60,8 @@
     "pretest:e2e": "npm run import:fixtures",
     "test:e2e": "NODE_ENV=test nightwatch",
     "test": "npm run test:units",
-    "lint": "eslint src/scripts && eslint tests && echo 'Linting finished!'",
-    "lint:fix": "eslint src/scripts --fix && eslint tests --fix && echo 'Linting finished!'"
+    "lint": "eslint $npm_package_config_js_files && echo 'Linting finished!'",
+    "lint:fix": "eslint $npm_package_config_js_files --fix && echo 'Linting finished!'"
   },
   "babel": {
     "presets": [
