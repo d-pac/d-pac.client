@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 DB_NAME=d-pac-test
 DIR_FX=tests/e2e/fixtures
 mongo $DB_NAME --eval "db.dropDatabase()"

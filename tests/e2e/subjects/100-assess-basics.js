@@ -9,7 +9,7 @@ module.exports = {
         const page = client.page.assess();
         page
             .navigate()
-            .waitForElementVisible( page.section.assessmentSelection.selector, client.globals.timeout )
+            .waitForElementVisible( page.section[ 'assessmentSelection' ].selector, client.globals.timeout )
         ;
     },
 
@@ -17,7 +17,7 @@ module.exports = {
         client.end();
     },
 
-    "select an assessment": function( client ){
+    "comparison flow (0): select an assessment": function( client ){
         client.takeSnapshot( module, 'before selection' );
         const page = client.page.assess();
 
@@ -28,7 +28,7 @@ module.exports = {
 
     },
 
-    "comparison flow (1): assessment details": function(client){
+    "comparison flow (1): assessment details": function( client ){
 
         const page = client.page.assess();
 
@@ -38,7 +38,7 @@ module.exports = {
         ;
     },
 
-    "comparison flow (1): representations": function(client){
+    "comparison flow (1): representations": function( client ){
         const page = client.page.assess();
 
         page.section.assessmentRepresentations
@@ -49,19 +49,15 @@ module.exports = {
         ;
     },
 
-    "comparison flow (1): phase 'select best'": function(client){
+    "comparison flow (1): phase 'select best'": function( client ){
         client.takeSnapshot( module, 'select best' );
         const page = client.page.assess();
 
         page.section.assessmentPhases
             .assert.visible( '@selectAbtn' )
             .assert.visible( '@selectBbtn' )
-            .click('@selectAbtn')
-            .waitForElementNotPresent( '@selectAbtn', client.globals.timeout );
-
-    },
-
-    "comparison flow (2): phase ??": function(client){
-        client.takeSnapshot( module, 'NO IDEA' );
+        ;
+        page.selectA();
     }
+
 };
