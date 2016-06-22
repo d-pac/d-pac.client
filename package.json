@@ -34,7 +34,6 @@
     "nightwatch": "0.8.18",
     "proxyquire": "1.7.4",
     "require-directory": "2.1.1",
-    "sauce-connect-launcher": "0.14.0",
     "sinon": "1.17.4",
     "style-loader": "0.13.0",
     "url-loader": "0.5.7",
@@ -61,7 +60,7 @@
     "pretest:e2e": "npm run import:fixtures",
     "test:e2e": "NODE_ENV=test nightwatch",
     "pretest:e2e:sauce": "npm run import:fixtures",
-    "test:e2e:sauce": "NODE_ENV=test node nightwatch-sauce --env saucelabs-local",
+    "test:e2e:sauce": "NODE_ENV=test nightwatch --env saucelabs-local",
     "test": "npm run test:units",
     "lint": "eslint $npm_package_config_js_files && echo 'Linting finished!'",
     "lint:fix": "eslint $npm_package_config_js_files --fix && echo 'Linting finished!'"

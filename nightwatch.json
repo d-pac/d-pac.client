@@ -60,11 +60,24 @@
         "start_process": false
       }
     },
-    "chrome": {
+    "chrome-win32": {
       "desiredCapabilities": {
         "browserName": "chrome",
         "javascriptEnabled": true,
         "acceptSslCerts": true
+      },
+      "cli_args": {
+        "webdriver.chrome.driver": "bin/chrome-webdriver-2.22/win32/chromedriver.exe"
+      }
+    },
+    "chrome-mac32": {
+      "desiredCapabilities": {
+        "browserName": "chrome",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true
+      },
+      "cli_args": {
+        "webdriver.chrome.driver": "bin/chrome-webdriver-2.22/mac32/chromedriver"
       }
     }
   }
