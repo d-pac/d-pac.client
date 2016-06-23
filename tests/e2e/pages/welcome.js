@@ -20,11 +20,11 @@ module.exports = {
         {
             clickLogin: function(){
                 return this.section.content.click( '@loginBtn' )
-                    .waitForElementNotPresent( '@loginBtn', 5000 );
+                    .waitForElementNotPresent( '@loginBtn', 20000 );
             },
             clickPasswordForgotten: function(){
                 return this.section.content.click( '@passwordForgottenBtn' )
-                    .waitForElementNotPresent( '@passwordForgottenBtn', 5000 );
+                    .waitForElementNotPresent( '@passwordForgottenBtn', 20000 );
             }
         }
     ]

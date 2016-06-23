@@ -47,18 +47,18 @@ module.exports = {
             clickAssessment: function(){
                 return this.section.assessmentSelection
                     .click( '@assessmentBtn' )
-                    .waitForElementNotPresent( '@assessmentBtn', 5000 );
+                    .waitForElementNotPresent( '@assessmentBtn', 20000 );
             },
             selectA: function(){
                 return this.section.assessmentPhases
                     .click( '@selectAbtn' )
-                    .waitForElementNotPresent( '@selectAbtn', 5000 );
+                    .waitForElementNotPresent( '@selectAbtn', 20000 );
 
             },
             clickFinishComparison: function(){
                 return this.section.comparisonUnfinished
                     .click( '@continueBtn' )
-                    .waitForElementNotPresent( '@continueBtn', 5000 );
+                    .waitForElementNotPresent( '@continueBtn', 20000 );
             }
         }
     ]

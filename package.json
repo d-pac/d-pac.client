@@ -58,7 +58,7 @@
     "preview:e2e": "NODE_ENV=test npm run preview",
     "import:fixtures": "./import-fixtures.sh",
     "pretest:e2e": "npm run import:fixtures",
-    "test:e2e": "NODE_ENV=test nightwatch",
+    "test:e2e": "NODE_ENV=test nightwatch && NODE_ENV=test nightwatch --env chrome-mac32",
     "pretest:e2e:sauce": "npm run import:fixtures",
     "test:e2e:sauce": "NODE_ENV=test nightwatch --env saucelabs-local",
     "test": "npm run test:units",
