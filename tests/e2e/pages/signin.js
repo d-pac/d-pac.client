@@ -27,7 +27,7 @@ module.exports = {
                     .setValue( '@emailInput', user.email )
                     .setValue( '@passwordInput', user.password )
                     .click( '@signinBtn' )
-                    .waitForElementNotPresent( '@signinBtn', 5000 )
+                    .waitForElementNotPresent( '@signinBtn', 20000 )
                     ;
 
             }

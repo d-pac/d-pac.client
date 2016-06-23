@@ -28,10 +28,11 @@
       "silent": true,
       "screenshots": {
         "enabled": true,
+        "on_failure": true,
         "path": "screenshots"
       },
       "globals": {
-        "timeout": 5000
+        "timeout": 20000
       },
       "desiredCapabilities": {
         "browserName": "firefox",
