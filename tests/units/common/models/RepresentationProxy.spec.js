@@ -6,6 +6,8 @@ const assert = expect;
 const pxquire = require( 'proxyquire' );
 const dependencies = require( 'dependencies' );
 
+GLOBAL.FormData = require('FormDataStub');
+
 const file = 'common/models/RepresentationProxy';
 const subject = pxquire
     .noCallThru()
@@ -84,12 +86,7 @@ describe( file, function(){
         } );
         describe( '#update()', function(){
             it( 'should send filedata', function(){
-                const FormDataStub = function(){
-                    //noop
-                };
-                FormDataStub.prototype.append = sinon.spy();
 
-                GLOBAL.FormData = FormDataStub;
                 sinon.stub( instance, 'save' );
                 instance.set( { document: { _id: "document-01" } } );
                 const file = {};
