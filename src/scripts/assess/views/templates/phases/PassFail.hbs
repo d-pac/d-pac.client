@@ -12,21 +12,25 @@
         <div class="row">
             <div class="col-sm-6 column">
                 {{#each passfail.options}}
+                    {{#if this.label}}
                     <div class="radio radio-primary">
                         <label>
                             <input type="radio" name="a-passfail-input" value="{{@key}}"> {{this.label}}
                         </label>
                     </div>
+                    {{/if}}
                 {{/each}}
             </div>
 
             <div class="col-sm-6 column">
                 {{#each passfail.options}}
+                    {{#if this.label}}
                     <div class="radio radio-primary">
                         <label>
                             <input type="radio" name="b-passfail-input" value="{{@key}}"> {{this.label}}
                         </label>
                     </div>
+                    {{/if}}
                 {{/each}}
             </div>
         </div>
