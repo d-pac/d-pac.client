@@ -37,7 +37,7 @@
     "sinon": "1.17.4",
     "style-loader": "0.13.0",
     "url-loader": "0.5.7",
-    "webpack": "1.12.13",
+    "webpack": "1.13.2",
     "webpack-dev-server": "1.14.1"
   },
   "engines": {
