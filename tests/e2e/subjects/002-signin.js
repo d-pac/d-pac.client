@@ -4,6 +4,7 @@ const config = require( '../config' );
 
 module.exports = {
     before: function( client ){
+        client.resizeWindow( 1024, 768 );
         client.signout();
     },
     beforeEach: function( client ){

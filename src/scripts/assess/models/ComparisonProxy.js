@@ -37,10 +37,10 @@ module.exports = Backbone.Model.extend( {
         debug( '#initialize', this.id || '<new>' );
     },
 
-    parse: function(raw){
-        debug("#parse", this, raw);
-        if(this.collection){
-            return this.collection.parser.parseModel(raw);
+    parse: function( raw ){
+        debug( "#parse", this, raw );
+        if( this.collection ){
+            return this.collection.parser.parseModel( raw );
         }
 
         //model already removed from collection
@@ -52,7 +52,7 @@ module.exports = Backbone.Model.extend( {
     },
 
     hasMessages: function(){
-        const messages = this.get('messages');
+        const messages = this.get( 'messages' );
         return !!messages && !!messages.length;
     }
 

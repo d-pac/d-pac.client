@@ -1,6 +1,9 @@
 'use strict';
 
 module.exports = {
+    before: function( client ){
+        client.resizeWindow( 1024, 768 );
+    },
     after: function( client ){
         client.end();
     },
