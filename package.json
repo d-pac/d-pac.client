@@ -49,9 +49,9 @@
   },
   "scripts": {
     "bowerInstall": "bower install",
-    "clean:dist": "rm -rf $npm_package_config_dist_dir; mkdir $npm_package_config_dist_dir",
-    "copy:web": "cp -R src/web/. $npm_package_config_dist_dir",
-    "preview": "webpack-dev-server --devtool eval --progress --inline --verbose --port 9000",
+    "clean:dist": "rm -rf ./$npm_package_config_dist_dir/*",
+    "copy:web": "cp -R ./src/web/. $npm_package_config_dist_dir",
+    "preview": "webpack-dev-server --devtool eval --progress --inline --verbose --port 9000 --host 0.0.0.0",
     "compile": "webpack -dp --progress --colors --verbose",
     "build": "npm run clean:dist; npm run copy:web && npm run compile",
     "test:units": "NODE_ENV=test DEBUG=dpac:tests* mocha tests/units/**/*.spec.js -R spec --bail --timeout 60000",

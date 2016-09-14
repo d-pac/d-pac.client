@@ -5,6 +5,7 @@ process.env.APP_VERSION = pkg.version;
 
 var konfy = require( 'konfy' );
 konfy.load();
+
 var webpack = require( 'webpack' );
 var _ = require( 'lodash' );
 var path = require( 'path' );
@@ -86,7 +87,6 @@ module.exports = {
             'process.env': Object.keys( process.env ).reduce( function( o,
                                                                         k ){
                 o[ k ] = JSON.stringify( process.env[ k ] );
-                console.log( "env." + k, o[ k ] );
                 return o;
             }, {} )
         } ),
