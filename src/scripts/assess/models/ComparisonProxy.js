@@ -48,7 +48,7 @@ module.exports = Backbone.Model.extend( {
     },
 
     update: function( attrs ){
-        this.save( attrs, { patch: true } );
+        this.save( attrs, { patch: true, wait: true } );
     },
 
     hasMessages: function(){
