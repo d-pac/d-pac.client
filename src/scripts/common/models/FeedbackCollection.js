@@ -18,9 +18,10 @@ module.exports = Backbone.Collection.extend( {
     },
 
 
-    getFeedbackByRepresentationId: function getFeedbackByRepresentationId( representationId ){
+    getFeedbackByRepresentationId: function getFeedbackByRepresentationId( representationId, phase ){
         return this.findWhere( {
-            representation: representationId
+            representation: representationId,
+            phase: phase
         } );
     },
 

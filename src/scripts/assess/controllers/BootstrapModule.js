@@ -16,7 +16,7 @@ _.extend( module.exports.prototype, {
         context.wireCommands( {
             'assess:domain:requested': [
                 require( './BootstrapDomain' ),
-                require( './SetupAssessmentI18NSyncing' ),
+                require( './../../common/controllers/SetupAssessmentI18NSyncing' ),
                 require( './LoadPhases' ),
                 require( './BootstrapUI' )
             ]

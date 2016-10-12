@@ -112,6 +112,14 @@
     "positive": "Liked",
     "negative": "Disliked"
   },
+  "phase_pros-cons-other": {
+    "title": "Compare",
+    "description": "Describe what you liked and/or disliked in both representations",
+    "a_title": "Representation A",
+    "b_title": "Representation B",
+    "positive": "Liked",
+    "negative": "Disliked"
+  },
   "phase_selection": {
     "title": "Select",
     "description": "Which representation do you prefer?",

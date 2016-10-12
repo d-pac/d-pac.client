@@ -94,10 +94,11 @@ module.exports = Backbone.Model.extend( {
     },
 
     getFeedbackByOrder: function( order ){
-        var representation = this.getRepresentationByOrder( order );
+        const representation = this.getRepresentationByOrder( order );
+        const currentPhaseSlug = this.get( 'phase' ).get( 'slug' );
         if( representation ){
-            return this.feedbackCollection.getFeedbackByRepresentationId( representation.id )
-                || this.createFeedback( {}, order );
+            return this.feedbackCollection.getFeedbackByRepresentationId( representation.id, currentPhaseSlug )
+                || this.createFeedback( {phase:currentPhaseSlug}, order );
         }
     },
 

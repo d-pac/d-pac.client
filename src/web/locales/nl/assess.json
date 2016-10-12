@@ -113,6 +113,14 @@
     "positive": "Positief",
     "negative": "Negatief"
   },
+  "phase_pros-cons-other": {
+    "title": "Vergelijk",
+    "description": "Beschrijf hier wat je positief en negatief vond aan de teksten:",
+    "a_title": "Tekst A",
+    "b_title": "Tekst B",
+    "positive": "Positief",
+    "negative": "Negatief"
+  },
   "phase_selection": {
     "title": "Beoordeel",
     "description": "Geef aan welke tekst beter geschreven is in functie van  de competentie 'argumentatief schrijven'",
