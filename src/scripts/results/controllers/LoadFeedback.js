@@ -1,13 +1,13 @@
 'use strict';
 
-var _ = require( 'lodash' );
+const {extend} = require( 'lodash' );
 var debug = require( 'debug' )( 'dpac:results.controllers', '[LoadFeedback]' );
 
 var LoadFeedback = module.exports = function LoadFeedback( context ){
     // constructor
 };
 
-_.extend( LoadFeedback.prototype, {
+extend( LoadFeedback.prototype, {
     execute: function(){
         debug( '#execute' );
 

@@ -1,13 +1,13 @@
 'use strict';
 
-var _ = require( 'underscore' );
+const {extend} = require( 'lodash' );
 
 var debug = require( 'debug' )( 'dpac:uploads.controllers', '[BootstrapUI]' );
 
 var BootstrapDomain = module.exports = function BootstrapDomain(){
     //constructor
 };
-_.extend( BootstrapDomain.prototype, {
+extend( BootstrapDomain.prototype, {
     execute: function(){
         debug( '#execute' );
 

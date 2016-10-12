@@ -1,7 +1,7 @@
 /* eslint no-invalid-this: "off" */
 
 'use strict';
-var _ = require( 'lodash' );
+const {debounce, isString} = require( 'lodash' );
 var d3Tip = require( 'd3-tip' );
 //var d3Legend = require( 'd3-legend' );
 var stockplot = require( 'd3-stock-plot' );
@@ -34,10 +34,10 @@ module.exports = Marionette.ItemView.extend( {
         $( window ).on( "resize", this.render );
     },
 
-    renderGraph: _.debounce( function(){
+    renderGraph: debounce( function(){
         debug( 'renderGraph' );
         const data = this.model.toJSON();
-        if( this.ui.spinner && !_.isString( this.ui.spinner ) ){
+        if( this.ui.spinner && !isString( this.ui.spinner ) ){
             this.ui.spinner.addClass( 'hidden' );
         }
         const graph = this.graph = stockplot();

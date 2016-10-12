@@ -1,5 +1,5 @@
 'use strict';
-var _ = require( 'lodash' );
+const {extend, padLeft, template} = require( 'lodash' );
 var Handlebars = require( 'handlebars/runtime' );
 
 var debug = require( 'debug' )( 'dpac:core.controllers', '[SetupHBSHelpers]' );
@@ -9,7 +9,7 @@ var moment = require( 'moment' );
 module.exports = function SetupHBSHelpers(){
     //constructor
 };
-_.extend( module.exports.prototype, {
+extend( module.exports.prototype, {
     wiring: ['config'],
     execute: function(){
         debug( '#execute' );
@@ -38,13 +38,13 @@ _.extend( module.exports.prototype, {
 
         Handlebars.registerHelper( 'duration', function( seconds ){
             var d = moment.duration( Number( seconds ), 'seconds' );
-            return _.padLeft( Math.floor( d.asHours() ), 2, "0" ) + ":"
-                + _.padLeft( d.minutes(), 2, "0" ) + ":"
-                + _.padLeft( d.seconds(), 2, "0" );
+            return padLeft( Math.floor( d.asHours() ), 2, "0" ) + ":"
+                + padLeft( d.minutes(), 2, "0" ) + ":"
+                + padLeft( d.seconds(), 2, "0" );
         } );
 
         Handlebars.registerHelper( 'absurl', ( url )=>{
-            const compiled = _.template(i18n.t( url ));
+            const compiled = template(i18n.t( url ));
             return compiled(this.config);
         } );
 

@@ -1,5 +1,5 @@
 'use strict';
-var _ = require( 'lodash' );
+const {defaults} = require( 'lodash' );
 var Marionette = require( 'backbone.marionette' );
 var debug = require( 'debug' )( 'dpac:common.views', '[JWPlayerView]' );
 module.exports = Marionette.ItemView.extend( {
@@ -16,7 +16,7 @@ module.exports = Marionette.ItemView.extend( {
         if( !this.permissions.isHidden( 'jwplayer.view' ) ){
             setTimeout( function(){
                 var playerInstance = window.jwplayer( "jwplayer-" + this.model.get( '_id' ) );
-                playerInstance.setup( _.defaults( {}, this.playerOpts, {
+                playerInstance.setup( defaults( {}, this.playerOpts, {
                     file: this.model.get( 'document.href' ),
                     title: 'Basic Video Embed',
                     autostart: false,

@@ -1,5 +1,5 @@
 'use strict';
-const _ = require( 'lodash' );
+const {get, kebabCase} = require( 'lodash' );
 const Backbone = require( 'backbone' );
 const debug = require( 'debug' )( 'dpac:results.controllers', '[RepresentationsRankingController]' );
 
@@ -45,7 +45,7 @@ module.exports = Backbone.Model.extend( {
                 var se = Math.min( rse, 3 );
                 model.set( {
                     rank: n - i,
-                    comparisonsNum: _.get( statsByRepresentation, [ model.id, 'comparisonsNum' ], 0 )
+                    comparisonsNum: get( statsByRepresentation, [ model.id, 'comparisonsNum' ], 0 )
                 } );
                 const owned = model.isOwnedBy( user );
                 if( owned ){
@@ -61,7 +61,7 @@ module.exports = Backbone.Model.extend( {
                     x: ++i,
                     y: ability,
                     id: model.id,
-                    classes: [ 'representation-' + _.kebabCase( model.get( 'rankType' ) ) ],
+                    classes: [ 'representation-' + kebabCase( model.get( 'rankType' ) ) ],
                     rankType: model.get( 'rankType' ),
                     emphasis: owned,
                     selectable: owned || isAllowedToViewOthers
@@ -99,7 +99,7 @@ module.exports = Backbone.Model.extend( {
     },
 
     getSelectedRepresentationId: function(){
-        return _.get( this.representations, ['selected', 'id']);
+        return get( this.representations, ['selected', 'id']);
     },
 
     getLength: function(){

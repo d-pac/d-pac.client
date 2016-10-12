@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require( 'underscore' );
+const {extend} = require( 'lodash' );
 
 var debug = require( 'debug' )( 'dpac:results.controllers', '[BootstrapDomain]' );
 
@@ -8,7 +8,7 @@ var BootstrapDomain = module.exports = function BootstrapDomain( context ){
     // constructor
 };
 
-_.extend( BootstrapDomain.prototype, {
+extend( BootstrapDomain.prototype, {
 
     execute: function(){
         debug( '#execute' );

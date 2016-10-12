@@ -1,11 +1,11 @@
 'use strict';
-var _ = require( 'lodash' );
+const {get} = require( 'lodash' );
 var debug = require( 'debug' )( 'dpac:core.routers', '[AppRouter]' );
 var Backbone = require( 'backbone' );
 
 module.exports = Backbone.Router.extend( {
     permissions: undefined,
-    
+
     routes: {
         "welcome": "welcome",
         "tutorial": "tutorial",
@@ -30,7 +30,7 @@ module.exports = Backbone.Router.extend( {
         this.on( 'route', function( route ){
             debug( 'handle route', route );
             var permissions = this.permissions.toJSON();
-            if( this.secured.indexOf( route ) >= 0 && !_.get( permissions, [ 'allowed', route, 'view' ], false ) ){
+            if( this.secured.indexOf( route ) >= 0 && !get( permissions, [ 'allowed', route, 'view' ], false ) ){
                 var dest = "#signin?from=" + route;
                 route = "signin";
                 debug( "redirect", dest );

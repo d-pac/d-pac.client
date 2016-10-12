@@ -1,5 +1,5 @@
 'use strict';
-var _ = require( 'underscore' );
+const {extend, defaults, result} = require( 'lodash' );
 var $ = require('jquery');
 var Backbone = require('backbone');
 
@@ -17,7 +17,7 @@ var methodMap = {
 var SetupRemoteRequests = module.exports = function SetupRemoteRequests(){
     //constructor
 };
-_.extend( SetupRemoteRequests.prototype, {
+extend( SetupRemoteRequests.prototype, {
     wiring: [ 'config', 'pendingRequests' ],
 
     execute: function(){
@@ -46,8 +46,8 @@ _.extend( SetupRemoteRequests.prototype, {
 
             //inject host from config into `url`
 
-            options = _.defaults( options, {
-                url: _.result( model, "url" )
+            options = defaults( options, {
+                url: result( model, "url" )
             } );
             options.url = config.api.root + options.url;
 

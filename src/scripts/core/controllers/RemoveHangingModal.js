@@ -1,5 +1,5 @@
 'use strict';
-var _ = require( 'underscore' );
+const {extend} = require( 'lodash' );
 
 var debug = require( 'debug' )( 'dpac:core', '[RemoveHangingModal]' );
 var $= require('jquery');
@@ -7,7 +7,7 @@ var $= require('jquery');
 module.exports = function RemoveHangingModal(){
     //constructor
 };
-_.extend( module.exports.prototype, {
+extend( module.exports.prototype, {
     execute : function(){
         debug( '#execute' );
         $('.modal').modal('hide');

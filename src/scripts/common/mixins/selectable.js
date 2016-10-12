@@ -1,13 +1,13 @@
 'use strict';
 
-var _ = require( 'lodash' );
+const {extend, toArray} = require( 'lodash' );
 
 module.exports.collection = {
     mixin: function( Constructor ){
         if( Constructor.prototype.reset ){
             Constructor.prototype.__selectable_overridden__reset = Constructor.prototype.reset;
         }
-        _.extend( Constructor.prototype, {
+        extend( Constructor.prototype, {
             selectByID: function( id ){
                 return this.select( this.get( id ) );
             },
@@ -38,7 +38,7 @@ module.exports.collection = {
             reset: function(){
                 this.deselect();
                 if( Constructor.prototype.__selectable_overridden__reset ){
-                    Constructor.prototype.__selectable_overridden__reset.apply( this, _.toArray( arguments ) );
+                    Constructor.prototype.__selectable_overridden__reset.apply( this, toArray( arguments ) );
                 }
             }
         } );

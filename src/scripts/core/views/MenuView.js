@@ -1,5 +1,5 @@
 'use strict';
-var _ = require( 'lodash' );
+const {get, defaults} = require( 'lodash' );
 var Marionette = require( 'backbone.marionette' );
 
 var debug = require( 'debug' )( 'dpac:core.views', '[MenuView]' );
@@ -29,7 +29,7 @@ module.exports = Marionette.ItemView.extend( {
     },
 
     onRender: function(){
-        var bgColor = _.get(this.config, 'ui.admin', false);
+        var bgColor = get(this.config, 'ui.admin', false);
         if(this.permissions.isAllowed('admin.view') && bgColor){
             this.ui.navbar.css('background-color', bgColor);
         }
@@ -44,8 +44,8 @@ module.exports = Marionette.ItemView.extend( {
 
     serializeData: function(){
         var data = this.model.toJSON();
-        _.defaults( data, {
-            appVersion: _.get( this.config, 'app.version', '' ),
+        defaults( data, {
+            appVersion: get( this.config, 'app.version', '' ),
             permissions: this.permissions.toJSON()
         } );
 

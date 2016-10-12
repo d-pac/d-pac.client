@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require( 'lodash' );
+const {each, toArray} = require( 'lodash' );
 
 module.exports.mixin = function( Constructor ){
     return {
@@ -8,13 +8,13 @@ module.exports.mixin = function( Constructor ){
             Constructor.prototype.__propagateEvents_overridden__initialize = Constructor.prototype.initialize;
             Constructor.prototype.initialize = function(){
                 var instance = this;
-                _.each( events, function( to,
+                each( events, function( to,
                                           from ){
                     instance.listenTo( instance, from, function(){
-                        instance.dispatch( to, _.toArray( arguments ) );
+                        instance.dispatch( to, toArray( arguments ) );
                     } );
                 } );
-                Constructor.prototype.__propagateEvents_overridden__initialize.apply( this, _.toArray( arguments ) );
+                Constructor.prototype.__propagateEvents_overridden__initialize.apply( this, toArray( arguments ) );
             };
         }
     };

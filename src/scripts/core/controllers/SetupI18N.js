@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require( 'lodash' );
+const {extend} = require( 'lodash' );
 var debug = require( 'debug' )( 'dpac:core.controllers', '[SetupI18N]' );
 var i18n = require( 'i18next' );
 
@@ -8,7 +8,7 @@ module.exports = function SetupI18N(){
     //constructor
 };
 
-_.extend( module.exports.prototype, {
+extend( module.exports.prototype, {
     wiring: [ 'config', 'appContext' ],
     execute: function(){
         debug( '#execute' );

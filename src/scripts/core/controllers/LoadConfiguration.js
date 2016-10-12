@@ -1,5 +1,5 @@
 'use strict';
-var _ = require( 'underscore' );
+const {extend} = require( 'lodash' );
 var konfy = require( 'konfy' );
 var debug = require( 'debug' )( 'dpac:core.controllers', '[LoadConfiguration]' );
 
@@ -7,7 +7,7 @@ module.exports = function LoadConfiguration(){
     //constructor
 };
 
-_.extend( module.exports.prototype, {
+extend( module.exports.prototype, {
     execute: function(){
         debug( '#execute' );
         debug( 'requesting config with data:', {

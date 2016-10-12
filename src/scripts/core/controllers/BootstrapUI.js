@@ -1,11 +1,11 @@
 'use strict';
 var debug = require( 'debug' )( 'dpac:core.controllers', '[BootstrapUI]' );
-var _ = require( 'underscore' );
+const {extend} = require( 'lodash' );
 
 module.exports = function BootstrapUI(){
     //constructor
 };
-_.extend( module.exports.prototype, {
+extend( module.exports.prototype, {
     execute: function(){
         debug( '#execute' );
         var context = this.context;
