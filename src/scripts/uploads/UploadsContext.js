@@ -1,10 +1,10 @@
 'use strict';
 
 const {extend} = require( 'lodash' );
-var Backbone = require( 'backbone' );
-var Geppetto = require( 'backbone.geppetto' );
-var debug = require( 'debug' )( 'dpac:uploads', '[UploadsContext]' );
-var eventLog = require( 'debug' )( 'dpac:uploads.events', '\u2709' );
+const {Events} = require( 'backbone' );
+const Geppetto = require( 'backbone.geppetto' );
+const debug = require( 'debug' )( 'dpac:uploads', '[UploadsContext]' );
+const eventLog = require( 'debug' )( 'dpac:uploads.events', '\u2709' );
 
 module.exports = Geppetto.Context.extend( {
     initialize: function(){
@@ -24,9 +24,9 @@ module.exports = Geppetto.Context.extend( {
 
     getMainView: function(){
         if(this.hasWiring('MainView')){
-            var factory = this.getObject( 'MainView' );
+            const factory = this.getObject( 'MainView' );
             return factory();
         }
     }
 } );
-extend( module.exports.prototype, Backbone.Events );
+extend( module.exports.prototype, Events );

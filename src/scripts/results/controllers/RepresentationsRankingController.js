@@ -1,9 +1,9 @@
 'use strict';
 const {get, kebabCase} = require( 'lodash' );
-const Backbone = require( 'backbone' );
+const {Model} = require( 'backbone' );
 const debug = require( 'debug' )( 'dpac:results.controllers', '[RepresentationsRankingController]' );
 
-module.exports = Backbone.Model.extend( {
+module.exports = Model.extend( {
     authorization: undefined,
     assessments: undefined,
     representations: undefined,
@@ -84,7 +84,7 @@ module.exports = Backbone.Model.extend( {
             this.parseData();
         }
 
-        return Backbone.Model.prototype.toJSON.apply( this, args );
+        return Model.prototype.toJSON.apply( this, args );
     },
 
     selectRepresentation: function( id, internal ){

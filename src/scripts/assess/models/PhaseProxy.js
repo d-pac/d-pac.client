@@ -1,8 +1,8 @@
 'use strict';
-var Backbone = require('backbone');
-var debug = require( 'debug' )( 'dpac:assess.models', '[PhaseProxy]' );
-var teardown = require('../../common/mixins/teardown');
-module.exports = Backbone.Model.extend( {
+const {Model} = require('backbone');
+const debug = require( 'debug' )( 'dpac:assess.models', '[PhaseProxy]' );
+const teardown = require('../../common/mixins/teardown');
+module.exports = Model.extend( {
     idAttribute : "_id",
     defaults    : {
         slug : undefined,
