@@ -1,21 +1,23 @@
 {{#if feedback.length}}
-    <h4>{{t "results:representation_feedback.title" name=representation.name}}</h4>
-    <table class="table table-bordered table-striped" style="width:100%;">
-        <thead>
+    {{#feedback}}
+        <h4>{{t "results:representation_feedback.title" description=phase.texts.description}}</h4>
+        <table class="table table-bordered table-striped" style="width:100%;">
+            <thead>
             <tr>
-                <td>{{ t "results:representation_feedback.assessor"}}</td>
-                <td>{{ t "results:representation_feedback.positive"}}</td>
-                <td>{{ t "results:representation_feedback.negative"}}</td>
+                <td>{{ t "results:representation_feedback.assessor" }}</td>
+                <td>{{ phase.texts.positive }}</td>
+                <td>{{ phase.texts.negative }}</td>
             </tr>
-        </thead>
-        <tbody>
-        {{#each feedback}}
-            <tr>
-                <td  style="min-width: 180px;">{{ t "results:representation_feedback.anonymized" num=anon}}</td>
-                <td width="50%"> {{{positive}}}</td>
-                <td width="50%">{{{negative}}}</td>
-            </tr>
-        {{/each}}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {{#each items}}
+                <tr>
+                    <td style="min-width: 180px;">{{ t "results:representation_feedback.anonymized" num=anon}}</td>
+                    <td width="50%"> {{{positive}}}</td>
+                    <td width="50%">{{{negative}}}</td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    {{/feedback}}
 {{/if}}

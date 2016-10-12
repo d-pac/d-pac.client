@@ -8,6 +8,7 @@ module.exports = Backbone.Model.extend( {
     defaults: {
         _rid: undefined,
         author: undefined,
+        phase: undefined,
         document: undefined,
         positive: undefined,
         negative: undefined
@@ -21,9 +22,9 @@ module.exports = Backbone.Model.extend( {
         //} );
     },
 
-    //parse: function( raw ){
-    //    return raw.data;
-    //},
+    parse: function( raw ){
+        return (raw.data)? raw.data : raw;
+    },
 
     update: function( attrs ){
         this.save( attrs, { patch: true } );

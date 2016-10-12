@@ -12,6 +12,7 @@ var templates = {
     "seq-selection": require( './templates/phases/Seq.hbs' ),
     "seq-comparative": require( './templates/phases/Seq.hbs' ),
     "pros-cons": require( './templates/phases/ProsCons.hbs' ),
+    "pros-cons-other": require('./templates/phases/ProsConsOther.hbs'),
     "busy": require( './templates/phases/Busy.hbs' )
 };
 

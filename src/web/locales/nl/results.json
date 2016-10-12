@@ -34,7 +34,7 @@
     "title": "Detailgegevens voor '__name__'"
   },
   "representation_feedback": {
-    "title": "Feedback voor '__name__'",
+    "title": "Feedback voor '__description__'",
     "anonymized": "beoordelaar-__num__",
     "assessor": "Beoordelaar",
     "positive": "Positief",
