@@ -1,6 +1,6 @@
 'use strict';
 
-const _ = require('lodash');
+const {reduce, groupBy} = require('lodash');
 const {ItemView} = require('backbone.marionette');
 const i18n = require( 'i18next' );
 
@@ -20,7 +20,7 @@ module.exports = ItemView.extend({
             feedback.anon = feedback.author.substr(feedback.author.length - 4);
             return feedback;
         });
-        const byPhase = _.reduce(_.groupBy(list, 'phase'), function (memo, singleGroup, groupName) {
+        const byPhase = reduce(groupBy(list, 'phase'), function (memo, singleGroup, groupName) {
             memo.push({
                 phase: {
                     slug: groupName,

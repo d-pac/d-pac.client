@@ -1,8 +1,8 @@
 'use strict';
-var Backbone = require( 'backbone' );
-var debug = require( 'debug' )( 'dpac:assess.models', '[FeedbackProxy]' );
-var teardown = require( '../../common/mixins/teardown' );
-module.exports = Backbone.Model.extend( {
+const {Model} = require( 'backbone' );
+const debug = require( 'debug' )( 'dpac:assess.models', '[FeedbackProxy]' );
+const teardown = require( '../../common/mixins/teardown' );
+module.exports = Model.extend( {
     idAttribute: "_id",
 
     defaults: {
@@ -16,7 +16,7 @@ module.exports = Backbone.Model.extend( {
 
     initialize: function(){
         debug( '#initialize', this );
-        //var self = this;
+        //const self = this;
         //this.on( 'change:body', function(){
         //    self.save( self.changedAttributes(), { patch: true } );
         //} );
