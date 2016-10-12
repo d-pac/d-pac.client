@@ -25,14 +25,14 @@ module.exports = Marionette.Controller.extend( {
         if( !selected ){
             selected++;
             var view = this;
-            Backbone.history.loadUrl = function(){
+            Backbone.history.loadUrl = function(...args){
                 if( !window.confirm( i18n.t( 'uploads:overview.changes-made' ) ) ){ //eslint-disable-line no-alert
                     var previousFragment = Backbone.history.fragment;
                     window.location.hash = '#' + previousFragment;
                     return false;
                 }
                 view.disable( 0 );
-                return view.originalFn.apply( this, arguments );
+                return view.originalFn.apply( this, args );
             };
             window.onbeforeunload = this._returnMessage;
         }

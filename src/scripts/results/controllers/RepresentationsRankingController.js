@@ -78,13 +78,13 @@ module.exports = Backbone.Model.extend( {
         } );
     },
 
-    toJSON: function(){
+    toJSON: function(...args){
         if( !this._parsed ){
             this._parsed = true;
             this.parseData();
         }
 
-        return Backbone.Model.prototype.toJSON.apply( this, arguments );
+        return Backbone.Model.prototype.toJSON.apply( this, args );
     },
 
     selectRepresentation: function( id, internal ){

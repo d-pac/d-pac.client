@@ -1,5 +1,5 @@
 'use strict';
-const {extend, defaults, toArray} = require( 'lodash' );
+const {extend, defaults} = require( 'lodash' );
 
 var SYNCING = 'syncing';
 var SYNCED = 'synced';
@@ -14,22 +14,22 @@ module.exports.collection = {
         collectionClass.prototype.__safeSyncOverridden__fetch = collectionClass.prototype.fetch;
         collectionClass.prototype.__safeSyncOverridden__reset = collectionClass.prototype.reset;
         extend( collectionClass.prototype, {
-            fetch: function(){
+            fetch: function(...args){
                 if( opts.once && this._syncingState === SYNCED ){
                     this.trigger( 'sync', this );
 
                 } else if( !this._syncingState || this._syncingState !== SYNCING ){
                     this._syncingState = SYNCING;
-                    this.once( 'sync', function(){
+                    this.once( 'sync', ()=>{
                         this._syncingState = SYNCED;
-                    }.bind(this) );
-                    collectionClass.prototype.__safeSyncOverridden__fetch.apply( this, toArray( arguments ) );
+                    } );
+                    collectionClass.prototype.__safeSyncOverridden__fetch.apply( this, args );
                 }
             },
 
-            reset: function(){
+            reset: function(...args){
                 this._syncingState = READY;
-                collectionClass.prototype.__safeSyncOverridden__reset.apply( this, toArray( arguments ) );
+                collectionClass.prototype.__safeSyncOverridden__reset.apply( this, args );
             },
 
             isSynced: function(){
