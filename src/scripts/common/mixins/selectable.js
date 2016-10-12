@@ -1,6 +1,6 @@
 'use strict';
 
-const {extend, toArray} = require( 'lodash' );
+const {extend} = require( 'lodash' );
 
 module.exports.collection = {
     mixin: function( Constructor ){
@@ -35,10 +35,10 @@ module.exports.collection = {
                 return this.selected;
             },
 
-            reset: function(){
+            reset: function(...args){
                 this.deselect();
                 if( Constructor.prototype.__selectable_overridden__reset ){
-                    Constructor.prototype.__selectable_overridden__reset.apply( this, toArray( arguments ) );
+                    Constructor.prototype.__selectable_overridden__reset.apply( this, args );
                 }
             }
         } );
