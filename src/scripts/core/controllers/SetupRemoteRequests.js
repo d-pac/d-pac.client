@@ -1,7 +1,7 @@
 'use strict';
 const {extend, defaults, result} = require('lodash');
 var $ = require('jquery');
-var Backbone = require('backbone');
+const Backbone = require('backbone'); //we need the full object
 
 var debug = require('debug')('dpac:core.controllers', '[SetupRemoteRequests]');
 var uuid = require('node-uuid');

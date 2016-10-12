@@ -1,11 +1,11 @@
 'use strict';
-var Backbone = require('backbone');
+const {Collection} = require('backbone');
 
-var debug = require( 'debug' )( 'dpac:core', '[PendingRequestsCollection]' );
+const debug = require( 'debug' )( 'dpac:core', '[PendingRequestsCollection]' );
 
-var ModelClass = require('../models/PendingRequestModel');
+const ModelClass = require('../models/PendingRequestModel');
 
-module.exports = Backbone.Collection.extend({
+module.exports = Collection.extend({
 
     model : ModelClass,
 
@@ -20,7 +20,7 @@ module.exports = Backbone.Collection.extend({
     },
 
     removeByUUID : function(uuid){
-        var model = this.findWhere({
+        const model = this.findWhere({
             uuid:uuid
         });
         return this.remove(model);

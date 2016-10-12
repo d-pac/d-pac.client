@@ -1,8 +1,8 @@
 'use strict';
-var Backbone = require('backbone');
+const {Model} = require('backbone');
 
-var debug = require( 'debug' )( 'dpac:core', '[PendingRequestModel]' );
-module.exports = Backbone.Model.extend({
+const debug = require( 'debug' )( 'dpac:core', '[PendingRequestModel]' );
+module.exports = Model.extend({
     defaults : {
         uuid : undefined,
         url : undefined

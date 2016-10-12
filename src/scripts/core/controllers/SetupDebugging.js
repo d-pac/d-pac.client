@@ -1,6 +1,6 @@
 'use strict';
 
-const Backbone = require('backbone');
+const Backbone = require('backbone'); //we need the full object
 
 var debug = require( 'debug' );
 

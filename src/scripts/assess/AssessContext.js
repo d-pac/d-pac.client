@@ -1,12 +1,12 @@
 'use strict';
 
 const {extend} = require( 'lodash' );
-var Backbone = require( 'backbone' );
-var Geppetto = require( 'backbone.geppetto' );
-var debug = require( 'debug' )( 'dpac:assess', '[AssessContext]' );
-var eventLog = require( 'debug' )( 'dpac:assess.events', '\u2709' );
+const {Events} = require( 'backbone' );
+const {Context} = require( 'backbone.geppetto' );
+const debug = require( 'debug' )( 'dpac:assess', '[AssessContext]' );
+const eventLog = require( 'debug' )( 'dpac:assess.events', '\u2709' );
 
-module.exports = Geppetto.Context.extend( {
+module.exports = Context.extend( {
     initialize: function(){
         debug( "#initialize" );
         this.wireValue( 'moduleContext', this );
@@ -29,4 +29,4 @@ module.exports = Geppetto.Context.extend( {
         }
     }
 } );
-extend( module.exports.prototype, Backbone.Events );
+extend( module.exports.prototype, Events );

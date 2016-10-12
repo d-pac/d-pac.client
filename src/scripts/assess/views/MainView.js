@@ -1,10 +1,10 @@
 'use strict';
 
-var debug = require( 'debug' )( 'dpac:assess.views', '[MainView]' );
-var tpl = require( './templates/MainView.hbs' );
-var Marionette = require( 'backbone.marionette' );
-var Backbone = require( 'backbone' );
-module.exports = Marionette.LayoutView.extend( {
+const debug = require('debug')('dpac:assess.views', '[MainView]');
+const tpl = require('./templates/MainView.hbs');
+const {LayoutView} = require('backbone.marionette');
+const {Model} = require('backbone');
+module.exports = LayoutView.extend({
     template: tpl,
     unfinishedComparisonsFactory: undefined,
     continueComparisonsFactory: undefined,
@@ -28,42 +28,42 @@ module.exports = Marionette.LayoutView.extend( {
         'comparisons:creation:failed': 'showComparisonMessage'
     },
 
-    initialize: function(){
-        debug( "#initialize" );
+    initialize: function () {
+        debug("#initialize");
     },
 
-    onRender: function(){
-        this.dispatch( 'assess:ui:rendered' );
+    onRender: function () {
+        this.dispatch('assess:ui:rendered');
     },
 
-    showUnfinishedComparison: function(){
-        this.contentRegion.show( this.unfinishedComparisonsFactory() );
+    showUnfinishedComparison: function () {
+        this.contentRegion.show(this.unfinishedComparisonsFactory());
     },
 
-    showContinueComparison: function(){
-        this.contentRegion.show( this.continueComparisonsFactory() );
+    showContinueComparison: function () {
+        this.contentRegion.show(this.continueComparisonsFactory());
     },
 
-    showComparisonMessage: function( event ){
-        this.contentRegion.show( this.comparisonMessagesFactory( {
-            model: new Backbone.Model( {
+    showComparisonMessage: function (event) {
+        this.contentRegion.show(this.comparisonMessagesFactory({
+            model: new Model({
                 assessment: event.assessment,
                 messages: event.messages
-            } )
-        } ) );
+            })
+        }));
     },
-    showAssessmentsSelection: function( eventData ){
-        debug( "#showAssessmentsSelection" );
-        this.contentRegion.show( this.assessmentSelectionFactory() );
-    },
-
-    showLayoutView: function(){
-        debug( "#showComparisonView" );
-        this.contentRegion.show( this.layoutFactory() );
+    showAssessmentsSelection: function (eventData) {
+        debug("#showAssessmentsSelection");
+        this.contentRegion.show(this.assessmentSelectionFactory());
     },
 
-    onDestroy: function(){
-        this.dispatch( 'assess:ui:destroyed' );
+    showLayoutView: function () {
+        debug("#showComparisonView");
+        this.contentRegion.show(this.layoutFactory());
+    },
+
+    onDestroy: function () {
+        this.dispatch('assess:ui:destroyed');
     }
 
-} );
+});

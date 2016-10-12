@@ -1,10 +1,10 @@
 'use strict';
-var Backbone = require( 'backbone' );
-var debug = require( 'debug' )( 'dpac:assess.collections', '[NotesCollection]' );
-var teardown = require( '../../common/mixins/teardown' );
-var ModelClass = require( '../models/NoteProxy' );
+const {Collection} = require( 'backbone' );
+const debug = require( 'debug' )( 'dpac:assess.collections', '[NotesCollection]' );
+const teardown = require( '../../common/mixins/teardown' );
+const ModelClass = require( '../models/NoteProxy' );
 
-module.exports = Backbone.Collection.extend( {
+module.exports = Collection.extend( {
     url: '/notes',
 
     model: ModelClass,

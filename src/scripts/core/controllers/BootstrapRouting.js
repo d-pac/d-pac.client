@@ -1,7 +1,7 @@
 'use strict';
-var Backbone = require('backbone');
-var debug = require( 'debug' )( 'dpac:core.controllers', '[BootstrapRouting]' );
-var AppRouter = require( '../routers/AppRouter' );
+const {history} = require('backbone');
+const debug = require( 'debug' )( 'dpac:core.controllers', '[BootstrapRouting]' );
+const AppRouter = require( '../routers/AppRouter' );
 
 module.exports = function BootstrapRouting( context ){
     debug( '#execute' );
@@ -12,5 +12,5 @@ module.exports = function BootstrapRouting( context ){
     } );
     context.getObject( 'routeController' );
 
-    Backbone.history.start();
+    history.start();
 };

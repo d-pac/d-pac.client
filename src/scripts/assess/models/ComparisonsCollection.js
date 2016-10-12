@@ -1,13 +1,13 @@
 'use strict';
 
-var Backbone = require( 'backbone' );
+const {Collection} = require( 'backbone' );
 
-var debug = require( 'debug' )( 'dpac:assess.collections', '[ComparisonsCollection]' );
-var ModelClass = require( '../models/ComparisonProxy' );
-var teardown = require( '../../common/mixins/teardown' );
-var selectable = require( '../../common/mixins/selectable' );
+const debug = require( 'debug' )( 'dpac:assess.collections', '[ComparisonsCollection]' );
+const ModelClass = require( '../models/ComparisonProxy' );
+const teardown = require( '../../common/mixins/teardown' );
+const selectable = require( '../../common/mixins/selectable' );
 
-module.exports = Backbone.Collection.extend( {
+module.exports = Collection.extend( {
 
     parser: undefined,
 

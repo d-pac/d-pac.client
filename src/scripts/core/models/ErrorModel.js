@@ -1,11 +1,11 @@
 'use strict';
 const {kebabCase, isArray, each} = require( 'lodash' );
-var Backbone = require('backbone');
+const {Model} = require('backbone');
 
-var i18n = require( "i18next" );
-var debug = require( 'debug' )( 'dpac:core', '[ErrorModel]' );
+const {t} = require( "i18next" );
+const debug = require( 'debug' )( 'dpac:core', '[ErrorModel]' );
 
-module.exports = Backbone.Model.extend( {
+module.exports = Model.extend( {
     defaults: {
         err: undefined,
         title: undefined,
@@ -23,16 +23,16 @@ module.exports = Backbone.Model.extend( {
     },
 
     _getLocalized: function( message ){
-        var messageKey = kebabCase(message);
-        return i18n.t( [ "errors:" + messageKey, message ] );
+        const messageKey = kebabCase(message);
+        return t( [ "errors:" + messageKey, message ] );
     },
 
     _parseError: function(){
-        var err = this.get( 'err' );
+        const err = this.get( 'err' );
         if( err ){
-            var message = [];
+            let message = [];
             if( err.explanation ){
-                var explanation = err.explanation;
+                let explanation = err.explanation;
                 if( !isArray( explanation ) ){
                     explanation = [ explanation ];
                 }
