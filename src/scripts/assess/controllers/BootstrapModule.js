@@ -1,18 +1,18 @@
 'use strict';
-var _ = require( 'underscore' );
+const {extend} = require( 'lodash' );
 
-var debug = require( 'debug' )( 'dpac:assess.controllers', '[BootstrapModule]' );
-var instruct = require( 'backbone.whenthen' );
+const debug = require( 'debug' )( 'dpac:assess.controllers', '[BootstrapModule]' );
+const instruct = require( 'backbone.whenthen' );
 
 module.exports = function BootstrapModule(){
     //constructor
 };
 
-_.extend( module.exports.prototype, {
+extend( module.exports.prototype, {
     execute: function(){
         debug( '#execute' );
-        var context = this.context;
-        var assessmentsFacade = context.getObject( 'assessmentsFacade' );
+        const context = this.context;
+        const assessmentsFacade = context.getObject( 'assessmentsFacade' );
         context.wireCommands( {
             'assess:domain:requested': [
                 require( './BootstrapDomain' ),
@@ -22,7 +22,7 @@ _.extend( module.exports.prototype, {
             ]
         } );
 
-        var instructor = instruct( this.context.vent );
+        const instructor = instruct( this.context.vent );
         instructor
             .when( 'assess:bootstrap:requested' )
             .then( function(){
@@ -30,8 +30,8 @@ _.extend( module.exports.prototype, {
             } )
             .when( 'assessments:collection:sync' )
             .then( function(){
-                var user = context.getObject( 'accountModel' );
-                var asAssessor = user.getAssessments( 'assessor' );
+                const user = context.getObject( 'accountModel' );
+                const asAssessor = user.getAssessments( 'assessor' );
                 context.wireValue( 'assessmentsCollection', assessmentsFacade.listById( asAssessor ) );
             }, 'assess:domain:requested' )
             .when( 'phases:collection:sync' )

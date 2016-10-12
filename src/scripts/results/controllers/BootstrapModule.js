@@ -1,18 +1,18 @@
 'use strict';
-var _ = require('underscore');
+const {extend} = require('lodash');
 
-var debug = require('debug')('dpac:results.controllers', '[BootstrapModule]');
-var instruct = require('backbone.whenthen');
+const debug = require('debug')('dpac:results.controllers', '[BootstrapModule]');
+const instruct = require('backbone.whenthen');
 
 module.exports = function BootstrapModule() {
     // constructor
 };
 
-_.extend(module.exports.prototype, {
+extend(module.exports.prototype, {
     execute: function () {
         debug('#execute');
-        var context = this.context;
-        var assessmentsFacade = context.getObject('assessmentsFacade');
+        const context = this.context;
+        const assessmentsFacade = context.getObject('assessmentsFacade');
 
         context.wireCommands({
             'results:bootstrap:requested': [
@@ -26,7 +26,7 @@ _.extend(module.exports.prototype, {
             "results:representation:selected": [require('./LoadFeedback')]
         });
 
-        var instructor = instruct(this.context.vent);
+        const instructor = instruct(this.context.vent);
         instructor
             .when('results:bootstrap:requested')
             .then(function () {

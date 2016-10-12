@@ -1,10 +1,10 @@
 'use strict';
-var Backbone = require( 'backbone' );
-var debug = require( 'debug' )( 'dpac:assess.collections', '[FeedbackCollection]' );
-var teardown = require( '../../common/mixins/teardown' );
-var ModelClass = require( '../models/FeedbackProxy' );
+const {Collection} = require( 'backbone' );
+const debug = require( 'debug' )( 'dpac:common.collections', '[FeedbackCollection]' );
+const teardown = require( '../../common/mixins/teardown' );
+const ModelClass = require( '../models/FeedbackProxy' );
 
-module.exports = Backbone.Collection.extend( {
+module.exports = Collection.extend( {
     url: '/feedback',
 
     model: ModelClass,

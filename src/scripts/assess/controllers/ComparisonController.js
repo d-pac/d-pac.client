@@ -1,9 +1,9 @@
 'use strict';
-var _ = require( 'underscore' );
-var Backbone = require( 'backbone' );
-var debug = require( 'debug' )( 'dpac:assess.models', '[CurrentSelectionModel]' );
+const {find, defaults} = require( 'lodash' );
+const {Model} = require( 'backbone' );
+const debug = require( 'debug' )( 'dpac:assess.models', '[CurrentSelectionModel]' );
 
-module.exports = Backbone.Model.extend( {
+module.exports = Model.extend( {
     comparisonsCollection: undefined,
     assessmentsCollection: undefined,
     representationsCollection: undefined,
@@ -36,18 +36,17 @@ module.exports = Backbone.Model.extend( {
 
     },
 
-    clear: function(){
+    clear: function(...args){
         debug( '#clear' );
-        var args = _.toArray( arguments );
-        return Backbone.Model.prototype.clear.apply( this, args );
+        return Model.prototype.clear.apply( this, args );
     },
 
     update: function(){
         debug( '#update' );
 
-        var assessmentPhases = this.get( 'assessment' ).get( 'phases' );
-        var currentPhaseId = this.get( 'comparison' ).get( 'phase' );
-        var index = 0;
+        const assessmentPhases = this.get( 'assessment' ).get( 'phases' );
+        let currentPhaseId = this.get( 'comparison' ).get( 'phase' );
+        let index = 0;
         if( currentPhaseId ){
             index = assessmentPhases.indexOf( currentPhaseId );
             if( index < 0 ){
@@ -56,20 +55,20 @@ module.exports = Backbone.Model.extend( {
         }
         currentPhaseId = assessmentPhases[ index ];
         this.set( 'phase', this.phasesCollection.get( currentPhaseId ) );
-        var selectedRepId = this.get( 'comparison' ).get( 'data' ).selection;
+        const selectedRepId = this.get( 'comparison' ).get( 'data' ).selection;
         this.set( 'representation', this.representationsCollection.get( selectedRepId ) );
     },
 
     getRepresentationByOrder: function( orderId ){
-        var repId = this.get( "comparison" ).get( "representations" )[ orderId ];
+        const repId = this.get( "comparison" ).get( "representations" )[ orderId ];
         return this.representationsCollection.get( repId );
     },
 
     getSelectedRepresentationOrder: function(){
-        var selectedRep = this.get( 'representation' );
+        const selectedRep = this.get( 'representation' );
         if( selectedRep ){
-            var found;
-            _.find( this.get( 'comparison' ).get( 'representations' ), function( representationId,
+            let found;
+            find( this.get( 'comparison' ).get( 'representations' ), function( representationId,
                                                                                  order ){
                 if( representationId === selectedRep.id ){
                     found = order;
@@ -82,12 +81,12 @@ module.exports = Backbone.Model.extend( {
     },
 
     getDocumentByOrder: function( orderId ){
-        var representation = this.getRepresentationByOrder( orderId );
+        const representation = this.getRepresentationByOrder( orderId );
         return representation.get( "document" );
     },
 
     getNoteByOrder: function( orderId ){
-        var document = this.getDocumentByOrder( orderId );
+        const document = this.getDocumentByOrder( orderId );
         if( document ){
             return this.notesCollection.getNoteByDocId( document._id );
         }
@@ -107,8 +106,8 @@ module.exports = Backbone.Model.extend( {
     },
 
     storeDataForCurrentPhase: function( value ){
-        var currentPhaseSlug = this.get( 'phase' ).get( 'slug' );
-        var update = {
+        const currentPhaseSlug = this.get( 'phase' ).get( 'slug' );
+        const update = {
             data: this.get( 'comparison' ).get( 'data' ) || {},
             phase: this.get( "assessment" ).getNextPhaseId( this.get( 'phase' ).id )
         };
@@ -143,7 +142,7 @@ module.exports = Backbone.Model.extend( {
 
     createFeedback: function( feedback,
                               order ){
-        _.defaults( feedback, {
+        defaults( feedback, {
             author: this.get( 'comparison' ).get( 'assessor' ),
             representation: this.getRepresentationByOrder( order ).id
         } );
@@ -152,7 +151,7 @@ module.exports = Backbone.Model.extend( {
 
     createNote: function( noteData,
                           order ){
-        _.defaults( noteData, {
+        defaults( noteData, {
             author: this.get( 'comparison' ).get( 'assessor' ),
             document: this.getDocumentByOrder( order )._id
         } );

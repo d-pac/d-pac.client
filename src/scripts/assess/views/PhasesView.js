@@ -1,10 +1,10 @@
 'use strict';
-var _ = require( 'underscore' );
-var Marionette = require( 'backbone.marionette' );
-var debug = require( 'debug' )( 'dpac:assess.views', '[PhasesView]' );
-var i18n = require( 'i18next' );
+const {times} = require( 'lodash' );
+const {LayoutView} = require( 'backbone.marionette' );
+const debug = require( 'debug' )( 'dpac:assess.views', '[PhasesView]' );
+const i18n = require( 'i18next' );
 
-var templates = {
+const templates = {
     selection: require( './templates/phases/SelectRepresentation.hbs' ),
     "select-other": require( './templates/phases/SelectOther.hbs' ),
     comparative: require( './templates/phases/ComparativeFeedback.hbs' ),
@@ -16,12 +16,12 @@ var templates = {
     "busy": require( './templates/phases/Busy.hbs' )
 };
 
-module.exports = Marionette.LayoutView.extend( {
+module.exports = LayoutView.extend( {
     className: "row",
 
     getTemplate: function(){
-        var phase = this.model.get( 'phase' );
-        var slug = (phase)
+        const phase = this.model.get( 'phase' );
+        const slug = (phase)
             ? phase.get( "slug" )
             : 'busy';
         return templates[ slug ];
@@ -63,20 +63,20 @@ module.exports = Marionette.LayoutView.extend( {
     },
 
     serializeData: function(){
-        var phase = this.model.get( 'phase' );
+        const phase = this.model.get( 'phase' );
         if( !phase ){
             return {};
         }
-        var slug = phase.get( "slug" );
-        var values = [];
-        _.times( 7, function( i ){
-            var value = i + 1;
+        const slug = phase.get( "slug" );
+        const values = [];
+        times( 7, function( i ){
+            const value = i + 1;
             values.push( {
                 value: value,
                 selected: (this.seqValue === value)
             } );
         }, this );
-        var data = {
+        const data = {
             representations: this.model.get( "comparison" ).get( "representations" ),
             title: i18n.t( "assess:phase_" + slug + ".title" ),
             description: i18n.t( "assess:phase_" + slug + ".description" ),
@@ -145,8 +145,8 @@ module.exports = Marionette.LayoutView.extend( {
     },
 
     determinePassfailSubmitState: function(event){
-        var aVal = this.$( "input:radio[name ='a-passfail-input']:checked" ).val();
-        var bVal = this.$( "input:radio[name ='b-passfail-input']:checked" ).val();
+        const aVal = this.$( "input:radio[name ='a-passfail-input']:checked" ).val();
+        const bVal = this.$( "input:radio[name ='b-passfail-input']:checked" ).val();
         if(aVal && bVal){
             this.ui.submitPassFailBtn.prop( 'disabled', false );
         }
