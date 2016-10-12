@@ -1,12 +1,12 @@
 'use strict';
-var _ = require( 'underscore' );
+const {extend} = require( 'lodash' );
 
 var debug = require( 'debug' )( 'dpac:core.controllers', '[BootstrapMediators]' );
 module.exports = function BootstrapMediators(){
     //constructor
 };
 
-_.extend( module.exports.prototype, {
+extend( module.exports.prototype, {
     execute: function(){
         debug( '#execute' );
         var context = this.context;

@@ -1,5 +1,5 @@
 'use strict';
-var _ = require( 'underscore' );
+const {extend} = require( 'lodash' );
 
 var debug = require( 'debug' )( 'dpac:core.controllers', '[BootstrapModule]' );
 var instruct = require( 'backbone.whenthen' );
@@ -7,7 +7,7 @@ var instruct = require( 'backbone.whenthen' );
 module.exports = function BootstrapModule(){
     //constructor
 };
-_.extend( module.exports.prototype, {
+extend( module.exports.prototype, {
     execute: function(){
         debug( '#execute' );
 

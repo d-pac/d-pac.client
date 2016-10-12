@@ -1,5 +1,5 @@
 'use strict';
-var _ = require( 'lodash' );
+const {map} = require( 'lodash' );
 var Marionette = require( 'backbone.marionette' );
 var debug = require( 'debug' )( 'dpac:assess.views', '[ComparisonMessages]' );
 var tpl = require( './templates/ComparisonMessages.hbs' );
@@ -19,7 +19,7 @@ module.exports = Marionette.ItemView.extend( {
             messages: this.model.get( 'messages' ),
             assessment: this.model.get( 'assessment' ).toJSON()
         };
-        data.messages = _.map( data.messages, function( message ){
+        data.messages = map( data.messages, function( message ){
             return i18n.t( "assess:comparison_messages.messages." + message );
         } );
         return data;

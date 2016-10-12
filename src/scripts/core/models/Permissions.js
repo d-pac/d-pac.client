@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require( 'lodash' );
+const {each} = require( 'lodash' );
 
 var flags = {
     allowed: {
@@ -17,7 +17,7 @@ var flags = {
     }
 };
 
-_.each( flags, function( config,
+each( flags, function( config,
                          flag ){
     flags[ config.value ] = config;
 } );

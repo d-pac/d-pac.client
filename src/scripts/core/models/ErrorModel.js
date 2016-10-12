@@ -1,5 +1,5 @@
 'use strict';
-var _ = require( 'lodash' );
+const {kebabCase, isArray, each} = require( 'lodash' );
 var Backbone = require('backbone');
 
 var i18n = require( "i18next" );
@@ -23,7 +23,7 @@ module.exports = Backbone.Model.extend( {
     },
 
     _getLocalized: function( message ){
-        var messageKey = _.kebabCase(message);
+        var messageKey = kebabCase(message);
         return i18n.t( [ "errors:" + messageKey, message ] );
     },
 
@@ -33,10 +33,10 @@ module.exports = Backbone.Model.extend( {
             var message = [];
             if( err.explanation ){
                 var explanation = err.explanation;
-                if( !_.isArray( explanation ) ){
+                if( !isArray( explanation ) ){
                     explanation = [ explanation ];
                 }
-                _.each( explanation, function( line ){
+                each( explanation, function( line ){
                     message.push( this._getLocalized( line ) );
                 }, this );
 

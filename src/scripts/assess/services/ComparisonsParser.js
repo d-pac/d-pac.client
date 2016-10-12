@@ -1,12 +1,12 @@
 'use strict';
 var debug = require( 'debug' )( 'dpac:assess.services', '[ComparisonsParser]' );
 var Backbone = require( 'backbone' );
-var _ = require( 'underscore' );
+const {extend, groupBy} = require( 'lodash' );
 
 module.exports = function ComparisonsParser(){
     debug( '#constructor' );
 };
-_.extend( module.exports.prototype, Backbone.Events, {
+extend( module.exports.prototype, Backbone.Events, {
     representationsCollection: undefined,
     notesCollection: undefined,
     feedbackCollection: undefined,
@@ -14,7 +14,7 @@ _.extend( module.exports.prototype, Backbone.Events, {
     parseCollection: function( raw ){
         debug( '#parseCollection', raw );
         if( raw.included ){
-            var grouped = _.groupBy( raw.included, 'type' );
+            var grouped = groupBy( raw.included, 'type' );
             grouped.representations && this.representationsCollection.reset( grouped.representations ); //eslint-disable-line no-unused-expressions
             grouped.notes && this.notesCollection.reset( grouped.notes );//eslint-disable-line no-unused-expressions
             grouped.feedback && this.feedbackCollection.reset( grouped.feedback );//eslint-disable-line no-unused-expressions

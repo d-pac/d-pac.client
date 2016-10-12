@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require( 'underscore' );
+const {extend} = require( 'lodash' );
 var Backbone = require( 'backbone' );
 var Geppetto = require( 'backbone.geppetto' );
 var debug = require( 'debug' )( 'dpac:assess', '[AssessContext]' );
@@ -29,4 +29,4 @@ module.exports = Geppetto.Context.extend( {
         }
     }
 } );
-_.extend( module.exports.prototype, Backbone.Events );
+extend( module.exports.prototype, Backbone.Events );

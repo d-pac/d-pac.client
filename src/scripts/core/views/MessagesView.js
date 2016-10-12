@@ -1,5 +1,5 @@
 'use strict';
-var _ = require( 'underscore' );
+const {isArray, each} = require( 'lodash' );
 var Backbone = require( 'backbone' );
 var Marionette = require( 'backbone.marionette' );
 var debug = require( 'debug' )( 'dpac:core.views', '[MessagesView]' );
@@ -38,11 +38,11 @@ module.exports = Marionette.ItemView.extend( {
     },
     showMessages: function( messages ){
         debug( "showMessages", messages );
-        if( !_.isArray( messages ) ){
+        if( !isArray( messages ) ){
             messages = [ messages ];
         }
         var alerts = [];
-        _.each( messages, function( message ){
+        each( messages, function( message ){
             var timeout = (message.permanent)
                 ? 60 * 30 //30 minutes
                 : 5;

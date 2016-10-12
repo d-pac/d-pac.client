@@ -1,6 +1,6 @@
 'use strict';
 var debug = require( 'debug' )( 'dpac:assess.controllers', '[AssessFlow]' );
-var _ = require( 'underscore' );
+const {clone} = require( 'lodash' );
 var Marionette = require( 'backbone.marionette' );
 var i18n = require( 'i18next' );
 module.exports = Marionette.Controller.extend( {
@@ -113,7 +113,7 @@ module.exports = Marionette.Controller.extend( {
         debug( '#comparisonCreationCompleted', comparison );
 
         if( comparison.hasMessages() ){
-            var messages = _.clone( comparison.get( 'messages' ) );
+            var messages = clone( comparison.get( 'messages' ) );
             this.comparisonsCollection.remove( comparison );
             this.dispatch( 'comparisons:creation:failed', {
                 messages: messages,

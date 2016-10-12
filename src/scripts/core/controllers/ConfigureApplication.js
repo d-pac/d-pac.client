@@ -1,5 +1,5 @@
 'use strict';
-var _ = require( 'underscore' );
+const {extend} = require( 'lodash' );
 
 var debug = require( 'debug' )( 'dpac:core.controllers', '[ConfigureApplication]' );
 
@@ -7,7 +7,7 @@ module.exports = function ConfigureApplication(){
     //constructor
 };
 
-_.extend( module.exports.prototype, {
+extend( module.exports.prototype, {
     execute: function(){
         debug( '#execute' );
         var appVersionLabel = (process.env.APP_VERSION)

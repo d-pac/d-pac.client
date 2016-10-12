@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require( 'lodash' );
+const {defaultsDeep} = require( 'lodash' );
 var Marionette = require( 'backbone.marionette' );
 // var debug = require( 'debug' )( 'dpac:common.views', '[MediaViewFactory]' );
 var consts = {
@@ -72,7 +72,7 @@ module.exports = Marionette.Controller.extend( {
         return new mediaView.viewClass( {
             template: mediaView.tpl,
             model: representation,
-            options: _.defaultsDeep( {}, settings[ mediaType ], mediaView.defaults ),
+            options: defaultsDeep( {}, settings[ mediaType ], mediaView.defaults ),
             permissions: this.permissions
         } );
     }

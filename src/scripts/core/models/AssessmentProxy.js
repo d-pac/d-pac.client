@@ -1,5 +1,5 @@
 'use strict';
-const _ = require( 'lodash' );
+const {get} = require( 'lodash' );
 const NestedModel = require( 'backbone-nested-model' );
 const debug = require( 'debug' )( 'dpac:core.models', '[AssessmentProxy]' );
 const teardown = require( '../../common/mixins/teardown' );
@@ -40,7 +40,7 @@ module.exports = NestedModel.extend( {
 
     parse: function( raw ){
         raw.uiCopy = JSON.parse( raw.uiCopy );
-        raw.hasResults = (!!raw.stats && !!raw.stats.lastRun && _.get( raw, [ 'results', 'enable' ], true ));
+        raw.hasResults = (!!raw.stats && !!raw.stats.lastRun && get( raw, [ 'results', 'enable' ], true ));
         return raw;
     },
 

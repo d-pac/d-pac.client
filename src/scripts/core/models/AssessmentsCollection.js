@@ -1,5 +1,5 @@
 'use strict';
-var _ = require( 'lodash' );
+const {toArray} = require( 'lodash' );
 var Backbone = require( 'backbone' );
 
 var debug = require( 'debug' )( 'dpac:core.collections', '[AssessmentsCollection]' );
@@ -37,9 +37,9 @@ var AssessmentsCollection = Backbone.Collection.extend( {
         }.bind( this ) );
     },
 
-    fetch: function(){
+    fetch: function(...args){
         debug( '#fetch' );
-        return Backbone.Collection.prototype.fetch.apply( this, _.toArray( arguments ) );
+        return Backbone.Collection.prototype.fetch.apply( this, args );
     },
 
     //==( by role )==/

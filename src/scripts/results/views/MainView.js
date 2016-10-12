@@ -1,6 +1,6 @@
 'use strict';
 
-const _ = require( 'lodash' );
+const {delay} = require( 'lodash' );
 const debug = require( 'debug' )( 'dpac:results.views', '[LayoutView]' );
 const tpl = require( './templates/MainView.hbs' );
 const Marionette = require( 'backbone.marionette' );
@@ -53,18 +53,18 @@ module.exports = Marionette.LayoutView.extend( {
     },
 
     renderOverview: function( assessment ){
-        _.delay( ()=>this.overview.show( this.createAssessmentOverview() ), 250 );
+        delay( ()=>this.overview.show( this.createAssessmentOverview() ), 250 );
     },
 
     renderRanking: function( assessment ){
         if( this.authorization.isAllowedToViewRanking( assessment ) ){
-            _.delay( ()=>this.ranking.show( this.createRanking() ), 250 );
+            delay( ()=>this.ranking.show( this.createRanking() ), 250 );
         }
     },
 
     renderDetails: function(){
         this.details.$el.addClass( 'invisible-not-empty' );
-        _.delay( ()=>{
+        delay( ()=>{
             this.details.$el.removeClass( 'invisible-not-empty' );
             this.details.show( this.createDetails() );
         }, 250 );
@@ -73,7 +73,7 @@ module.exports = Marionette.LayoutView.extend( {
     renderFeedback: function( e ){
         this.feedback.$el.addClass( 'invisible-not-empty' );
         // const anchor = this.feedback.$el.offset().top - 100;
-        _.delay( ()=>{
+        delay( ()=>{
             this.feedback.$el.removeClass( 'invisible-not-empty' );
             this.feedback.show( this.createFeedback() );
             // if( e.triggeredByUser ){

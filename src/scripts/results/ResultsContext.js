@@ -1,12 +1,12 @@
 'use strict';
 
-var _ = require( 'underscore' );
-var Backbone = require( 'backbone' );
-var Geppetto = require( 'backbone.geppetto' );
+const {extend} = require( 'lodash' );
+const {Events} = require( 'backbone' );
+const {Context} = require( 'backbone.geppetto' );
 var debug = require( 'debug' )( 'dpac:results', '[ResultsContext]' );
 var eventLog = require( 'debug' )( 'dpac:results.events', '\u2709' );
 
-module.exports = Geppetto.Context.extend( {
+module.exports = Context.extend( {
     initialize: function(){
         debug( "#initialize" );
         this.wireValue( 'moduleContext', this );
@@ -29,4 +29,4 @@ module.exports = Geppetto.Context.extend( {
         }
     }
 } );
-_.extend( module.exports.prototype, Backbone.Events );
+extend( module.exports.prototype, Events );

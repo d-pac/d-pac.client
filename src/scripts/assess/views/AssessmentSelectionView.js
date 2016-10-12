@@ -1,5 +1,5 @@
 'use strict';
-var _ = require( 'underscore' );
+const {debounce} = require( 'lodash' );
 var Marionette = require( 'backbone.marionette' );
 var debug = require( 'debug' )( 'dpac:assess.views', '[AssessmentSelectionView]' );
 var tpl = require( './templates/AssessmentSelection.hbs' );
@@ -30,7 +30,7 @@ module.exports = Marionette.ItemView.extend( {
         return data;
     },
 
-    assessmentSelected: _.debounce( function( event ){
+    assessmentSelected: debounce( function( event ){
         var button = this.$( event.target );
         this.ui.assessmentButton.prop('disabled', 'disabled');
         button.button('sending');

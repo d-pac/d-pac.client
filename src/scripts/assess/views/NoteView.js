@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require( 'lodash' );
+const {debounce} = require( 'lodash' );
 var Marionette = require( 'backbone.marionette' );
 var debug = require( 'debug' )( 'dpac:assess.views', '[NoteView]' );
 var tpl = require( './templates/Note.hbs' );
@@ -29,7 +29,7 @@ module.exports = Marionette.ItemView.extend( {
         };
     },
 
-    notesChanged: _.debounce( function(){
+    notesChanged: debounce( function(){
         var data = { body: this.$( this.ui.notes ).val() };
         if( this.model ){
             this.model.set( data );

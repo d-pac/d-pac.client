@@ -1,13 +1,13 @@
 'use strict';
 
-var _ = require( 'underscore' );
+const {extend} = require( 'lodash' );
 
 // var debug = require( 'debug' )( 'dpac:assess.controllers', '[LoadPhases]' );
 
 var LoadPhases = module.exports = function LoadPhases(){
     //constructor
 };
-_.extend( LoadPhases.prototype, {
+extend( LoadPhases.prototype, {
     wiring: [ 'phasesCollection' ],
 
     execute: function(){
