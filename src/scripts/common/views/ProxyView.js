@@ -14,7 +14,7 @@ module.exports = LayoutView.extend({
     },
 
     onRender : function(){
-        var view = this.contentFactory();
+        const view = this.contentFactory();
         if(view){
             this.content.show(view);
         }

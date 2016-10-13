@@ -3,8 +3,8 @@
 const {extend} = require( 'lodash' );
 const {Events} = require( 'backbone' );
 const {Context} = require( 'backbone.geppetto' );
-var debug = require( 'debug' )( 'dpac:results', '[ResultsContext]' );
-var eventLog = require( 'debug' )( 'dpac:results.events', '\u2709' );
+const debug = require( 'debug' )( 'dpac:results', '[ResultsContext]' );
+const eventLog = require( 'debug' )( 'dpac:results.events', '\u2709' );
 
 module.exports = Context.extend( {
     initialize: function(){
@@ -24,7 +24,7 @@ module.exports = Context.extend( {
 
     getMainView: function(){
         if(this.hasWiring('MainView')){
-            var factory = this.getObject( 'MainView' );
+            const factory = this.getObject( 'MainView' );
             return factory();
         }
     }

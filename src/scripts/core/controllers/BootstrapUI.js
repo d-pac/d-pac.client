@@ -1,5 +1,5 @@
 'use strict';
-var debug = require( 'debug' )( 'dpac:core.controllers', '[BootstrapUI]' );
+const debug = require( 'debug' )( 'dpac:core.controllers', '[BootstrapUI]' );
 const {extend} = require( 'lodash' );
 
 module.exports = function BootstrapUI(){
@@ -8,7 +8,7 @@ module.exports = function BootstrapUI(){
 extend( module.exports.prototype, {
     execute: function(){
         debug( '#execute' );
-        var context = this.context;
+        const context = this.context;
         context.wireView( 'MessagesView', require( '../views/MessagesView' ) );
         context.wireView( 'MenuView', require( '../views/MenuView' ), {
             model: 'authenticationService',
@@ -51,7 +51,7 @@ extend( module.exports.prototype, {
             permissions: 'authorizationModel'
         } );
 
-        var appView = context.getObject( 'AppView' )();
+        const appView = context.getObject( 'AppView' )();
         appView.render();
     }
 } );

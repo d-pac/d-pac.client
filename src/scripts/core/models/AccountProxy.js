@@ -1,7 +1,7 @@
 'use strict';
 const {reduce} = require( 'lodash' );
-var NestedModel = require( 'backbone-nested-model' );
-var debug = require( 'debug' )( 'dpac:core.models', '[AccountProxy]' );
+const NestedModel = require( 'backbone-nested-model' );
+const debug = require( 'debug' )( 'dpac:core.models', '[AccountProxy]' );
 module.exports = NestedModel.extend( {
     idAttribute: "_id",
     url: '/user',

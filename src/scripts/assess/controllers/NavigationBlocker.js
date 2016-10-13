@@ -20,15 +20,14 @@ module.exports = Controller.extend({
         debug('#enable');
         if (!this.enabled) {
             this.enabled = true;
-            var view = this;
-            history.loadUrl = function () {
+            history.loadUrl =  ()=>{
                 if (!window.confirm(t('assess:please_finish.message'))) { //eslint-disable-line no-alert
-                    var previousFragment = history.fragment;
+                    const previousFragment = history.fragment;
                     window.location.hash = '#' + previousFragment;
                     return false;
                 }
-                view.disable();
-                return view.originalFn.apply(this, arguments);
+                this.disable();
+                return this.originalFn.apply(this, arguments);
             };
             window.onbeforeunload = this._returnMessage;
         }

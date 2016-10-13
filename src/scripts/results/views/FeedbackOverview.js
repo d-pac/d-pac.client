@@ -4,8 +4,8 @@ const {reduce, groupBy} = require('lodash');
 const {ItemView} = require('backbone.marionette');
 const i18n = require( 'i18next' );
 
-var debug = require('debug')('dpac:results.views', '[FeedbackOverview]');
-var tpl = require('./templates/FeedbackTable.hbs');
+const debug = require('debug')('dpac:results.views', '[FeedbackOverview]');
+const tpl = require('./templates/FeedbackTable.hbs');
 
 module.exports = ItemView.extend({
     className: "column col-sm-12",

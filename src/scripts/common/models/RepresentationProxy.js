@@ -1,8 +1,8 @@
 'use strict';
 const {isString} = require( 'lodash' );
-var NestedModel = require( 'backbone-nested-model' );
-var debug = require( 'debug' )( 'dpac:common.models', '[RepresentationProxy]' );
-var teardown = require( '../../common/mixins/teardown' );
+const NestedModel = require( 'backbone-nested-model' );
+const debug = require( 'debug' )( 'dpac:common.models', '[RepresentationProxy]' );
+const teardown = require( '../../common/mixins/teardown' );
 
 module.exports = NestedModel.extend( {
     idAttribute: "_id",
@@ -41,7 +41,7 @@ module.exports = NestedModel.extend( {
     },
 
     toJSON: function(){
-        var data = NestedModel.prototype.toJSON.call( this );
+        const data = NestedModel.prototype.toJSON.call( this );
         data.hasDescription = this.hasDescription();
         return data;
     },

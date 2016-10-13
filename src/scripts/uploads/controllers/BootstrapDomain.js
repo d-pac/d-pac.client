@@ -1,9 +1,9 @@
 'use strict';
 
 const {extend} = require( 'lodash' );
-var debug = require( 'debug' )( 'dpac:uploads.controllers', '[BootstrapDomain]' );
+const debug = require( 'debug' )( 'dpac:uploads.controllers', '[BootstrapDomain]' );
 
-var BootstrapDomain = module.exports = function BootstrapDomain(){
+const BootstrapDomain = module.exports = function BootstrapDomain(){
     //constructor
 };
 extend( BootstrapDomain.prototype, {
@@ -12,7 +12,7 @@ extend( BootstrapDomain.prototype, {
     execute: function(){
         debug( '#execute' );
 
-        var context = this.context;
+        const context = this.context;
         context.wireSingleton( 'representationsCollection', require( '../../common/models/RepresentationsCollection' ) );
         context.wireClass( 'uploadsCollection', require( '../models/UploadsCollection' ), {
             representationsCollection: 'representationsCollection',

@@ -1,12 +1,12 @@
 'use strict';
 const {extend, defaults, result} = require('lodash');
-var $ = require('jquery');
+const $ = require('jquery');
 const Backbone = require('backbone'); //we need the full object
 
-var debug = require('debug')('dpac:core.controllers', '[SetupRemoteRequests]');
-var uuid = require('node-uuid');
-var requestLog = require('debug')('dpac:requests');
-var methodMap = {
+const debug = require('debug')('dpac:core.controllers', '[SetupRemoteRequests]');
+const uuid = require('node-uuid');
+const requestLog = require('debug')('dpac:requests');
+const methodMap = {
     'create': 'POST',
     'update': 'PUT',
     'patch': 'PATCH',
@@ -14,7 +14,7 @@ var methodMap = {
     'read': 'GET'
 };
 
-var SetupRemoteRequests = module.exports = function SetupRemoteRequests() {
+const SetupRemoteRequests = module.exports = function SetupRemoteRequests() {
     //constructor
 };
 extend(SetupRemoteRequests.prototype, {
@@ -22,19 +22,19 @@ extend(SetupRemoteRequests.prototype, {
 
     execute: function () {
         debug('#execute');
-        var config = this.config;
-        var dispatch = this.dispatch;
-        var pendingRequests = this.pendingRequests;
+        const config = this.config;
+        const dispatch = this.dispatch;
+        const pendingRequests = this.pendingRequests;
 
         $.ajaxSetup({
             timeout: 10000
         });
 
-        var backboneSync = Backbone.sync;
+        const backboneSync = Backbone.sync;
         Backbone.sync = function (method,
                                   model,
                                   options) {
-            var rid = uuid.v4();
+            const rid = uuid.v4();
             if (!options.crossDomain) {
                 options.crossDomain = true;
             }
@@ -60,13 +60,13 @@ extend(SetupRemoteRequests.prototype, {
                 });
             };
 
-            var errorCallback = options.error;
+            const errorCallback = options.error;
             options.error = function (...args) {
                 const xhr = args[0];
-                var requestUUID = xhr.getResponseHeader('Request-UUID');
+                const requestUUID = xhr.getResponseHeader('Request-UUID');
                 requestLog("\u2718", methodMap[method], options.url, "(" + requestUUID + ")");
                 pendingRequests.removeByUUID(requestUUID);
-                var errObj;
+                let errObj;
                 if (xhr.responseJSON) {
                     errObj = {
                         errors: xhr.responseJSON.errors,
@@ -93,12 +93,12 @@ extend(SetupRemoteRequests.prototype, {
                 errorCallback(...args);
             };
 
-            var successCallback = options.success;
+            const successCallback = options.success;
             options.success = function (data,
                                         status,
                                         xhr,
                                         ...rest) {
-                var requestUUID = xhr.getResponseHeader('Request-UUID');
+                const requestUUID = xhr.getResponseHeader('Request-UUID');
                 requestLog("\u2714", methodMap[method], options.url, "(" + requestUUID + ")");
                 pendingRequests.removeByUUID(requestUUID);
                 successCallback(data, status, xhr, ...rest);

@@ -1,7 +1,7 @@
 'use strict';
 const {extend} = require( 'lodash' );
 
-var debug = require( 'debug' )( 'dpac:core.controllers', '[BootstrapDomain]' );
+const debug = require( 'debug' )( 'dpac:core.controllers', '[BootstrapDomain]' );
 module.exports = function BootstrapDomain(){
     //constructor
 };
@@ -10,7 +10,7 @@ extend( module.exports.prototype, {
     wiring: [ 'config' ],
     execute: function(){
         debug( '#execute' );
-        var context = this.context;
+        const context = this.context;
 
         context.wireSingleton( 'assessmentsFacade', require( '../models/AssessmentsCollection' ) );
 

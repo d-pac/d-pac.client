@@ -1,8 +1,8 @@
 'use strict';
-var NestedModel = require( 'backbone-nested-model' );
+const NestedModel = require( 'backbone-nested-model' );
 const { get } = require( 'lodash' );
 
-var debug = require( 'debug' )( 'dpac:core.services', '[AuthenticationService]' );
+const debug = require( 'debug' )( 'dpac:core.services', '[AuthenticationService]' );
 
 module.exports = NestedModel.extend( {
 
@@ -23,7 +23,7 @@ module.exports = NestedModel.extend( {
     },
 
     parse: function( raw ){
-        var attrs = {};
+        const attrs = {};
         attrs.user = get( raw, [ 'included', 0 ], false );
         attrs.authenticated = !!get( raw, 'data', false );
         if( attrs.user ){

@@ -2,9 +2,9 @@
 
 const {extend} = require( 'lodash' );
 
-var debug = require( 'debug' )( 'dpac:results.controllers', '[BootstrapUI]' );
+const debug = require( 'debug' )( 'dpac:results.controllers', '[BootstrapUI]' );
 
-var BootstrapUI = module.exports = function BootstrapUI( context ){
+const BootstrapUI = module.exports = function BootstrapUI( context ){
     // constructor
 };
 
@@ -13,7 +13,7 @@ extend( BootstrapUI.prototype, {
     execute: function(){
         debug( '#execute' );
 
-        var context = this.context;
+        const context = this.context;
         context.wireView( 'MainView', require( '../views/MainView' ), {
             createAssessmentSelection: 'AssessmentSelectionView',
             createAssessmentMenu: 'AssessmentMenuView',

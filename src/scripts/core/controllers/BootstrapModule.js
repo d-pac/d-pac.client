@@ -1,8 +1,8 @@
 'use strict';
 const {extend} = require( 'lodash' );
 
-var debug = require( 'debug' )( 'dpac:core.controllers', '[BootstrapModule]' );
-var instruct = require( 'backbone.whenthen' );
+const debug = require( 'debug' )( 'dpac:core.controllers', '[BootstrapModule]' );
+const instruct = require( 'backbone.whenthen' );
 
 module.exports = function BootstrapModule(){
     //constructor
@@ -11,7 +11,7 @@ extend( module.exports.prototype, {
     execute: function(){
         debug( '#execute' );
 
-        var context = this.context;
+        const context = this.context;
         context.wireCommands( {
             'config:load:requested': [ require( './ConfigureApplication' ) ],
             'app:domain:requested': [
@@ -34,7 +34,7 @@ extend( module.exports.prototype, {
             .when( 'app:bootstrap:requested' ).then( 'config:load:requested' )
             .when( 'config:load:completed' ).then( 'app:domain:requested', 'authentication:status:requested', function(){
                 debug( 'fetch pages' );
-                var collection = context.getObject( 'pagesCollection' );
+                const collection = context.getObject( 'pagesCollection' );
                 collection.once( "sync", function(){
                     context.dispatch( "pages:collection:sync" );
                 } );
@@ -42,7 +42,7 @@ extend( module.exports.prototype, {
             } )
             .when( 'authentication:signout:completed' ).then( function(){
             //TODO: this HAS to be moved !!!
-                var collection = context.getObject( 'assessmentsFacade' );
+                const collection = context.getObject( 'assessmentsFacade' );
                 collection.reset();
             } )
             .when( 'SetupI18N:execution:completed', 'authentication:status:completed' ).then( 'app:ui:requested' )

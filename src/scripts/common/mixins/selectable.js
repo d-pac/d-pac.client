@@ -23,7 +23,7 @@ module.exports.collection = {
             },
 
             select: function( newValue ){
-                var previous = this.selected;
+                const previous = this.selected;
                 if( previous && this.onDeselect ){
                     this.onDeselect( previous );
                 }
