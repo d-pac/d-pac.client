@@ -1,6 +1,6 @@
 'use strict';
 
-const Marionette = require( 'backbone.marionette' );
+const {ItemView} = require( 'backbone.marionette' );
 const debug = require( 'debug' )( 'dpac:uploads.views', '[UploadsOverviewItem]' );
 const tpl = require( './templates/UploadsOverviewItem.hbs' );
 
@@ -10,7 +10,7 @@ function stripPath( str ){
     }
 }
 
-module.exports = Marionette.ItemView.extend( {
+module.exports = ItemView.extend( {
     tagName: "tr",
     template: tpl,
 

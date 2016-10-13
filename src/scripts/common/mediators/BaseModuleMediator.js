@@ -1,11 +1,11 @@
 'use strict';
-var Marionette = require( 'backbone.marionette' );
-var debug = require( 'debug' )( 'dpac:core.controllers', '[BaseModuleMediator]' );
+const {Controller} = require( 'backbone.marionette' );
+const debug = require( 'debug' )( 'dpac:core.controllers', '[BaseModuleMediator]' );
 
-var ProxyView = require( '../views/ProxyView' );
-var relayEvents = require( '../mixins/relayEvents' );
+const ProxyView = require( '../views/ProxyView' );
+const relayEvents = require( '../mixins/relayEvents' );
 
-module.exports = Marionette.Controller.extend( {
+module.exports = Controller.extend( {
     context: undefined,
     model: undefined,
     moduleContext: undefined,
@@ -23,7 +23,7 @@ module.exports = Marionette.Controller.extend( {
         //}else{
         //    this.proxyView = this.createProxyView(this.moduleContext);
         //}
-        var contentFactory = (this.moduleContext)
+        const contentFactory = (this.moduleContext)
             ? this.moduleContext.getMainView.bind( this.moduleContext )
             : this.opts.contentFactory.bind( this );
         this.proxyView = new ProxyView( {

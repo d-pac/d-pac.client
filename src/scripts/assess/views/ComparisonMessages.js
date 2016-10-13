@@ -1,11 +1,11 @@
 'use strict';
 const {map} = require( 'lodash' );
-var Marionette = require( 'backbone.marionette' );
-var debug = require( 'debug' )( 'dpac:assess.views', '[ComparisonMessages]' );
-var tpl = require( './templates/ComparisonMessages.hbs' );
-var i18n = require( 'i18next' );
+const {ItemView} = require( 'backbone.marionette' );
+const debug = require( 'debug' )( 'dpac:assess.views', '[ComparisonMessages]' );
+const tpl = require( './templates/ComparisonMessages.hbs' );
+const {t} = require( 'i18next' );
 
-module.exports = Marionette.ItemView.extend( {
+module.exports = ItemView.extend( {
 
     template: tpl,
     className: "col-md-12 column",
@@ -15,12 +15,12 @@ module.exports = Marionette.ItemView.extend( {
     },
 
     serializeData: function(){
-        var data = {
+        const data = {
             messages: this.model.get( 'messages' ),
             assessment: this.model.get( 'assessment' ).toJSON()
         };
         data.messages = map( data.messages, function( message ){
-            return i18n.t( "assess:comparison_messages.messages." + message );
+            return t( "assess:comparison_messages.messages." + message );
         } );
         return data;
     }

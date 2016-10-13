@@ -1,10 +1,10 @@
 'use strict';
 
-var debug = require( 'debug' )( 'dpac:assess.views', '[LayoutView]' );
-var tpl = require( './templates/LayoutView.hbs' );
-var Marionette = require( 'backbone.marionette' );
+const debug = require( 'debug' )( 'dpac:assess.views', '[LayoutView]' );
+const tpl = require( './templates/LayoutView.hbs' );
+const {LayoutView} = require( 'backbone.marionette' );
 
-module.exports = Marionette.LayoutView.extend( {
+module.exports = LayoutView.extend( {
     template: tpl,
 
     className: "col-md-12 column",

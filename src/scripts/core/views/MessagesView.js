@@ -1,7 +1,7 @@
 'use strict';
 const {isArray, each} = require( 'lodash' );
 const {Model} = require( 'backbone' );
-const Marionette = require( 'backbone.marionette' );
+const {ItemView} = require( 'backbone.marionette' );
 const debug = require( 'debug' )( 'dpac:core.views', '[MessagesView]' );
 const tpl = require( './templates/Messages.hbs' );
 const notie = require( 'notie' );
@@ -14,7 +14,7 @@ const types = {
     info: "#80deea"
 };
 
-module.exports = Marionette.ItemView.extend( {
+module.exports = ItemView.extend( {
     template: tpl,
     className: "col-md-8 col-md-offset-2 column",
 

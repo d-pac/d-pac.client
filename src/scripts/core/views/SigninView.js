@@ -1,10 +1,10 @@
 'use strict';
 
-var debug = require( 'debug' )( 'dpac:core.views', '[SigninView]' );
-var tpl = require( './templates/Signin.hbs' );
-var Marionette = require( 'backbone.marionette' );
+const debug = require( 'debug' )( 'dpac:core.views', '[SigninView]' );
+const tpl = require( './templates/Signin.hbs' );
+const {LayoutView} = require( 'backbone.marionette' );
 
-module.exports = Marionette.LayoutView.extend( {
+module.exports = LayoutView.extend( {
     template: tpl,
 
     ui: {
@@ -26,7 +26,7 @@ module.exports = Marionette.LayoutView.extend( {
     },
 
     serializeData: function(){
-        var data = this.model.toJSON();
+        const data = this.model.toJSON();
         data.permissions = this.permissions.toJSON();
 
         return data;

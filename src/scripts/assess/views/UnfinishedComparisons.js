@@ -1,9 +1,9 @@
 'use strict';
-var Marionette = require( 'backbone.marionette' );
+var {ItemView} = require( 'backbone.marionette' );
 var debug = require( 'debug' )( 'dpac:assess.views', '[UnfinishedComparisons]' );
-var tpl = require( './templates/UnfinishedComparisons.hbs' );
+const tpl = require( './templates/UnfinishedComparisons.hbs' );
 
-module.exports = Marionette.ItemView.extend( {
+module.exports = ItemView.extend( {
     template: tpl,
     className: "col-md-12 column",
 
@@ -20,7 +20,7 @@ module.exports = Marionette.ItemView.extend( {
     },
 
     serializeData: function(){
-        var activeComparisons = this.collection.getActives();
+        const activeComparisons = this.collection.getActives();
         return {
             activesNum: activeComparisons.length
         };

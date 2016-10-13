@@ -1,7 +1,7 @@
 'use strict';
 
 const {defaultsDeep} = require( 'lodash' );
-var Marionette = require( 'backbone.marionette' );
+var {ItemView, Controller} = require( 'backbone.marionette' );
 // var debug = require( 'debug' )( 'dpac:common.views', '[MediaViewFactory]' );
 var consts = {
     html: 'html',
@@ -26,15 +26,15 @@ var mediaByMime = {
 
 var mediaViews = {};
 mediaViews[ consts.html ] = {
-    viewClass: Marionette.ItemView.extend( {} ),
+    viewClass: ItemView.extend( {} ),
     tpl: require( '../views/templates/media/html.hbs' )
 };
 mediaViews[ consts.image ] = {
-    viewClass: Marionette.ItemView.extend( {} ),
+    viewClass: ItemView.extend( {} ),
     tpl: require( '../views/templates/media/image.hbs' )
 };
 mediaViews[ consts.pdf ] = {
-    viewClass: Marionette.ItemView.extend( {} ),
+    viewClass: ItemView.extend( {} ),
     tpl: require( '../views/templates/media/pdf.hbs' )
 };
 mediaViews[ consts.audio ] = {
@@ -56,7 +56,7 @@ mediaViews[ consts.video ] = {
     }
 };
 
-module.exports = Marionette.Controller.extend( {
+module.exports = Controller.extend( {
     permissions: undefined,
     getMediaView: function( representation,
                             settings ){

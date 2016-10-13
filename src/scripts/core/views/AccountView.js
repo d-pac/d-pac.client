@@ -1,11 +1,11 @@
 'use strict';
-var Marionette = require( 'backbone.marionette' );
-var i18n = require( 'i18next' );
+const {ItemView} = require( 'backbone.marionette' );
+const i18n = require( 'i18next' );
 
-var debug = require( 'debug' )( 'dpac:core.views', '[AccountView]' );
-var tpl = require( './templates/Account.hbs' );
+const debug = require( 'debug' )( 'dpac:core.views', '[AccountView]' );
+const tpl = require( './templates/Account.hbs' );
 
-module.exports = Marionette.ItemView.extend( {
+module.exports = ItemView.extend( {
     template: tpl,
     modelEvents: {
         "sync": "handleSuccess",
@@ -34,14 +34,14 @@ module.exports = Marionette.ItemView.extend( {
     save: function(){
         this.ui.saveButton.prop( 'disabled', 'disabled' );
         this.ui.saveButton.button( 'saving' );
-        var data = {
+        const data = {
             name: {
                 first: this.$( "#firstname" ).val(),
                 last: this.$( "#surname" ).val()
             },
             email: this.$( "#email" ).val()
         };
-        var password = this.$( "#password" ).val();
+        const password = this.$( "#password" ).val();
         if( password ){
             data.password = password;
             data.password_confirm = this.$( '#password-confirmation' ).val();
