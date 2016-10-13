@@ -11,9 +11,9 @@ module.exports = Base.extend( {
         debug( "#initialize" );
         Base.prototype.initialize.call( this, {
             contentFactory: function(){
-                require.ensure( [ '../../assess/AssessContext' ], function( require ){
+                require.ensure( [ '../../assess/AssessContext' ], ( require )=>{
                     this.prepareModule( require( '../../assess/AssessContext' ) );
-                }.bind( this ), 'assess' );
+                }, 'assess' );
             },
             viewProxyName: 'assessmentViewProxy',
             onUiReadyEvent: 'assess:bootstrap:completed',
