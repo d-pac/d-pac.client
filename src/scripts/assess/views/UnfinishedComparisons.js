@@ -1,6 +1,6 @@
 'use strict';
-var {ItemView} = require( 'backbone.marionette' );
-var debug = require( 'debug' )( 'dpac:assess.views', '[UnfinishedComparisons]' );
+const {ItemView} = require( 'backbone.marionette' );
+const debug = require( 'debug' )( 'dpac:assess.views', '[UnfinishedComparisons]' );
 const tpl = require( './templates/UnfinishedComparisons.hbs' );
 
 module.exports = ItemView.extend( {

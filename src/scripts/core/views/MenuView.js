@@ -43,7 +43,7 @@ module.exports = ItemView.extend( {
     },
 
     serializeData: function(){
-        var data = this.model.toJSON();
+        const data = this.model.toJSON();
         defaults( data, {
             appVersion: get( this.config, 'app.version', '' ),
             permissions: this.permissions.toJSON()

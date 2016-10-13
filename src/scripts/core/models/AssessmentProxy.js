@@ -45,8 +45,8 @@ module.exports = NestedModel.extend( {
     },
 
     getNextPhaseId: function( phaseId ){
-        var phases = this.get( 'phases' );
-        var index = phases.indexOf( phaseId ) + 1;
+        const phases = this.get( 'phases' );
+        const index = phases.indexOf( phaseId ) + 1;
         return phases[ index ];
     },
 
@@ -55,7 +55,7 @@ module.exports = NestedModel.extend( {
     },
 
     incCompleted: function(){
-        var progress = this.get( 'progress' );
+        const progress = this.get( 'progress' );
         progress.completedNum++;
         this.set( 'progress', progress );
     },
@@ -78,7 +78,7 @@ module.exports = NestedModel.extend( {
     },
 
     parentIsActive: function(){
-        var parentModel = this.getParent();
+        const parentModel = this.getParent();
         if( !parentModel ){
             // most probably this assessment was added to the user, but not it's parent model,
             // i.e. bad config of the assessment.

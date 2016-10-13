@@ -1,6 +1,6 @@
 'use strict';
-var debug = require( 'debug' )( 'dpac:core.controllers', '[UploadsModuleMediator]' );
-var Base = require( './BaseModuleMediator' );
+const debug = require( 'debug' )( 'dpac:core.controllers', '[UploadsModuleMediator]' );
+const Base = require( './BaseModuleMediator' );
 module.exports = Base.extend( {
 
     contextEvents: {

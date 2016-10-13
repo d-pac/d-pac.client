@@ -40,9 +40,9 @@ module.exports = Model.extend( {
                 return model.get( 'ability.value' );
             } )
             .map( ( model )=>{
-                var ability = Number( model.get( 'ability.value' ) );
-                var rse = Number( model.get( 'ability.se' ) );
-                var se = Math.min( rse, 3 );
+                const ability = Number( model.get( 'ability.value' ) );
+                const rse = Number( model.get( 'ability.se' ) );
+                const se = Math.min( rse, 3 );
                 model.set( {
                     rank: n - i,
                     comparisonsNum: get( statsByRepresentation, [ model.id, 'comparisonsNum' ], 0 )

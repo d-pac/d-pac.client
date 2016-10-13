@@ -9,7 +9,7 @@ module.exports.collection = {
             teardown: function () {
                 if (!this._teardown_completed) {
                     this._teardown_completed = true;
-                    var callback;
+                    let callback;
                     this.sync = noop;
                     if (this.onTeardown) {
                         callback = this.onTeardown();
@@ -37,7 +37,7 @@ module.exports.model = {
             teardown: function () {
                 if (!this._teardown_completed) {
                     this._teardown_completed = true;
-                    var callback;
+                    let callback;
                     this.sync = this.save = this.fetch = this.destroy = noop;
                     if (this.onTeardown) {
                         callback = this.onTeardown();

@@ -26,7 +26,7 @@ module.exports = Controller.extend( {
             selected++;
             history.loadUrl = (...args)=>{
                 if( !window.confirm( t( 'uploads:overview.changes-made' ) ) ){ //eslint-disable-line no-alert
-                    var previousFragment = history.fragment;
+                    const previousFragment = history.fragment;
                     window.location.hash = '#' + previousFragment;
                     return false;
                 }

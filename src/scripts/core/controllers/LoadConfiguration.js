@@ -1,7 +1,7 @@
 'use strict';
 const {extend} = require( 'lodash' );
-var konfy = require( 'konfy' );
-var debug = require( 'debug' )( 'dpac:core.controllers', '[LoadConfiguration]' );
+const konfy = require( 'konfy' );
+const debug = require( 'debug' )( 'dpac:core.controllers', '[LoadConfiguration]' );
 
 module.exports = function LoadConfiguration(){
     //constructor

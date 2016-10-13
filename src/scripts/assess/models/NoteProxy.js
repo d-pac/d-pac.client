@@ -1,7 +1,7 @@
 'use strict';
-var NestedModel = require( 'backbone-nested-model' );
-var debug = require( 'debug' )( 'dpac:assess.models', '[NoteProxy]' );
-var teardown = require( '../../common/mixins/teardown' );
+const NestedModel = require( 'backbone-nested-model' );
+const debug = require( 'debug' )( 'dpac:assess.models', '[NoteProxy]' );
+const teardown = require( '../../common/mixins/teardown' );
 module.exports = NestedModel.extend( {
     idAttribute: "_id",
 

@@ -1,9 +1,9 @@
 'use strict';
 const {extend, defaults} = require( 'lodash' );
 
-var SYNCING = 'syncing';
-var SYNCED = 'synced';
-var READY = 'ready';
+const SYNCING = 'syncing';
+const SYNCED = 'synced';
+const READY = 'ready';
 
 module.exports.collection = {
     mixin: function( collectionClass,

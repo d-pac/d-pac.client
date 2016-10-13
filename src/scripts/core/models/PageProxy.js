@@ -1,6 +1,6 @@
 'use strict';
-var debug = require( 'debug' )( 'dpac:core.models', '[PageProxy]' );
-var NestedModel = require('backbone-nested-model');
+const debug = require( 'debug' )( 'dpac:core.models', '[PageProxy]' );
+const NestedModel = require('backbone-nested-model');
 
 module.exports = NestedModel.extend( {
     idAttribute : "slug",

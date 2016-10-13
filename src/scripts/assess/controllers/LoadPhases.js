@@ -4,7 +4,7 @@ const {extend} = require( 'lodash' );
 
 // var debug = require( 'debug' )( 'dpac:assess.controllers', '[LoadPhases]' );
 
-var LoadPhases = module.exports = function LoadPhases(){
+const LoadPhases = module.exports = function LoadPhases(){
     //constructor
 };
 extend( LoadPhases.prototype, {

@@ -24,7 +24,7 @@ module.exports = Context.extend( {
 
     getMainView: function(){
         if(this.hasWiring('MainView')){
-            var factory = this.getObject( 'MainView' );
+            const factory = this.getObject( 'MainView' );
             return factory();
         }
     }

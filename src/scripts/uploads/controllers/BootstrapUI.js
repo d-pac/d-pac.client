@@ -2,16 +2,16 @@
 
 const {extend} = require( 'lodash' );
 
-var debug = require( 'debug' )( 'dpac:uploads.controllers', '[BootstrapUI]' );
+const debug = require( 'debug' )( 'dpac:uploads.controllers', '[BootstrapUI]' );
 
-var BootstrapDomain = module.exports = function BootstrapDomain(){
+const BootstrapDomain = module.exports = function BootstrapDomain(){
     //constructor
 };
 extend( BootstrapDomain.prototype, {
     execute: function(){
         debug( '#execute' );
 
-        var context = this.context;
+        const context = this.context;
         context.wireView( 'MainView', require( '../views/MainView' ), {
             'overviewFactory': 'uploadsOverview'
         });

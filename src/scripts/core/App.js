@@ -23,7 +23,7 @@ const AppContext = Context.extend( {
 app.on( 'start', function(){
     debug( 'App#start' );
 
-    var app = this;
+    const app = this;
     app.context = new AppContext();
     app.context.dispatch( 'app:startup:requested' );
 } );

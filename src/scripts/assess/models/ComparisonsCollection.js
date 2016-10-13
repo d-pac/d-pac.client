@@ -37,7 +37,7 @@ module.exports = Collection.extend( {
     },
 
     getActives: function(){
-        var actives = this.filter( function( item ){
+        const actives = this.filter( function( item ){
             return !item.get( 'completed' );
         } );
         return actives || [];

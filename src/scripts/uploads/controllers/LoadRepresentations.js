@@ -2,9 +2,9 @@
 
 const {extend} = require( 'lodash' );
 
-var debug = require( 'debug' )( 'dpac:uploads.controllers', '[LoadRepresentations]' );
+const debug = require( 'debug' )( 'dpac:uploads.controllers', '[LoadRepresentations]' );
 
-var LoadRepresentations = module.exports = function LoadRepresentations( context ){
+const LoadRepresentations = module.exports = function LoadRepresentations( context ){
     //constructor
 };
 
