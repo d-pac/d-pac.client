@@ -11,9 +11,9 @@ extend( LoadPhases.prototype, {
     wiring: [ 'phasesCollection' ],
 
     execute: function(){
-        this.phasesCollection.once( "sync", function(){
+        this.phasesCollection.once( "sync", ()=>{
             this.dispatch( "phases:collection:sync" );
-        }.bind( this ) );
+        } );
         this.phasesCollection.fetch();
     }
 } );

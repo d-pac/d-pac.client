@@ -1,6 +1,6 @@
 'use strict';
-const {each, defaults, kebabCase, isNumber} = require( 'lodash' );
-const {Controller} = require( 'backbone.marionette' );
+const { each, defaults, kebabCase, isNumber } = require( 'lodash' );
+const { Controller } = require( 'backbone.marionette' );
 const debug = require( 'debug' )( 'dpac:core', '[ExceptionMediator]' );
 const i18n = require( 'i18next' );
 
@@ -11,12 +11,12 @@ module.exports = Controller.extend( {
     initialize: function(){
         debug( '#initialize' );
 
-        window.onerror = function( message,
-                                   file,
-                                   line,
-                                   col,
-                                   err ){
-            console.log( "ERROR occurred:", arguments );
+        window.onerror = ( message,
+                           file,
+                           line,
+                           col,
+                           err )=>{
+            console.log( "ERROR occurred:", message, file, line, col, err );
             const ref = (err && err.message)
                 ? err.message
                 : message || "unknown-error";
@@ -31,7 +31,7 @@ module.exports = Controller.extend( {
                 ],
                 url: window.location.href,
             } );
-        }.bind( this );
+        };
     },
 
     errorEventHandler: function( errObj ){

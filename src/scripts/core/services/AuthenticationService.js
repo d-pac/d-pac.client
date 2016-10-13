@@ -1,6 +1,6 @@
 'use strict';
 var NestedModel = require( 'backbone-nested-model' );
-const {get} = require( 'lodash' );
+const { get } = require( 'lodash' );
 
 var debug = require( 'debug' )( 'dpac:core.services', '[AuthenticationService]' );
 
@@ -24,8 +24,8 @@ module.exports = NestedModel.extend( {
 
     parse: function( raw ){
         var attrs = {};
-        attrs.user = get(raw, ['included', 0], false);
-        attrs.authenticated = !!get(raw, 'data', false);
+        attrs.user = get( raw, [ 'included', 0 ], false );
+        attrs.authenticated = !!get( raw, 'data', false );
         if( attrs.user ){
             attrs._id = attrs.user._id;
         }
@@ -39,57 +39,57 @@ module.exports = NestedModel.extend( {
     getStatus: function(){
         debug( '#getStatus' );
         this.fetch( {
-            success: function(){
+            success: ()=>{
                 this.dispatch( 'authentication:status:completed', {
                     authenticated: this.isAuthenticated()
                 } );
-            }.bind( this ),
-            error: function(){
+            },
+            error: ()=>{
                 this.reset();
                 this.dispatch( 'authentication:status:completed', {
                     authenticated: this.isAuthenticated()
                 } );
-            }.bind( this )
+            }
         } );
     },
 
     signin: function( creds ){
         debug( '#signin', creds );
         this.save( creds, {
-            success: function(){
+            success: ()=>{
                 this.dispatch( 'authentication:signin:completed', {
                     authenticated: this.isAuthenticated()
                 } );
-            }.bind( this ),
-            error: function( model,
-                             response,
-                             options ){
+            },
+            error: ( model,
+                     response,
+                     options )=>{
                 this.reset();
                 this.dispatch( 'authentication:signin:completed', {
                     authenticated: this.isAuthenticated()
                 } );
-            }.bind( this )
+            }
         } );
     },
 
     signout: function(){
         debug( '#signout' );
         this.destroy( {
-            success: function( response ){
+            success: ( response )=>{
                 this.reset();
                 this.dispatch( 'authentication:signout:completed' );
-            }.bind( this ),
-            error: function( response ){
+            },
+            error: ( response )=>{
                 this.reset();
                 this.dispatch( 'authentication:signout:completed' );
-            }.bind( this )
+            }
         } );
         this.reset();
     },
 
     reset: function(){
-        this.clear({silent: true});
-        this.set(this.defaults);
+        this.clear( { silent: true } );
+        this.set( this.defaults );
     }
 
 } );

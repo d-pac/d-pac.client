@@ -30,10 +30,10 @@ const AssessmentsCollection = Collection.extend( {
     parse: function( raw ){
         const docs = raw.data || [];
 
-        return docs.map( function( doc ){
+        return docs.map( ( doc )=>{
             doc.registry = this;
             return doc;
-        }.bind( this ) );
+        } );
     },
 
     fetch: function(...args){

@@ -12,9 +12,9 @@ module.exports = Base.extend( {
         debug( "#initialize" );
         Base.prototype.initialize.call( this, {
             contentFactory: function(){
-                require.ensure(['../../results/ResultsContext'], function(require){
+                require.ensure(['../../results/ResultsContext'], (require)=>{
                     this.prepareModule(require('../../results/ResultsContext'));
-                }.bind(this), 'results');
+                }, 'results');
             },
             viewProxyName: 'resultsViewProxy',
             onUiReadyEvent: 'results:bootstrap:completed',

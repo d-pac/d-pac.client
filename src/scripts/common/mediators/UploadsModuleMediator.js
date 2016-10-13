@@ -11,9 +11,9 @@ module.exports = Base.extend( {
         debug( "#initialize" );
         Base.prototype.initialize.call( this, {
             contentFactory: function(){
-                require.ensure( [ '../../uploads/UploadsContext' ], function( require ){
+                require.ensure( [ '../../uploads/UploadsContext' ], ( require )=>{
                     this.prepareModule( require( '../../uploads/UploadsContext' ) );
-                }.bind( this ), 'uploads' );
+                }, 'uploads' );
             },
             viewProxyName: 'uploadsViewProxy',
             onUiReadyEvent: 'uploads:bootstrap:completed',

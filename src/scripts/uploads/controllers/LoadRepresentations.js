@@ -13,9 +13,9 @@ extend( LoadRepresentations.prototype, {
     execute: function(){
         debug( '#execute' );
 
-        this.representationsCollection.once( "sync", function(){
+        this.representationsCollection.once( "sync", ()=>{
             this.dispatch( "representations:collection:sync" );
-        }.bind( this ) );
+        });
         this.representationsCollection.fetchForUser();
     }
 } );

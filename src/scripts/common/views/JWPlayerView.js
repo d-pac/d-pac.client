@@ -14,7 +14,7 @@ module.exports = ItemView.extend( {
     onRender: function(){
         debug( '#onRender' );
         if( !this.permissions.isHidden( 'jwplayer.view' ) ){
-            setTimeout( function(){
+            setTimeout( ()=>{
                 const playerInstance = window.jwplayer( "jwplayer-" + this.model.get( '_id' ) );
                 playerInstance.setup( defaults( {}, this.playerOpts, {
                     file: this.model.get( 'document.href' ),
@@ -23,7 +23,7 @@ module.exports = ItemView.extend( {
                     controls: true,
                     primary: 'html5'
                 } ) );
-            }.bind( this ), 500 );
+            }, 500 );
         }
     }
 } );
