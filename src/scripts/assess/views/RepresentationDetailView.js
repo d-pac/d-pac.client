@@ -1,9 +1,9 @@
 'use strict';
-var Marionette = require( 'backbone.marionette' );
-var debug = require( 'debug' )( 'dpac:assess.views', '[RepresentationDetailView]' );
-var tpl = require( './templates/RepresentationDetail.hbs' );
+const {LayoutView} = require( 'backbone.marionette' );
+const debug = require( 'debug' )( 'dpac:assess.views', '[RepresentationDetailView]' );
+const tpl = require( './templates/RepresentationDetail.hbs' );
 
-module.exports = Marionette.LayoutView.extend( {
+module.exports = LayoutView.extend( {
 
     mediaViewFactory: undefined,
 
@@ -19,7 +19,7 @@ module.exports = Marionette.LayoutView.extend( {
 
     onRender: function(){
         debug( '#onRender' );
-        var view = this.mediaViewFactory.getMediaView( this.model );
+        const view = this.mediaViewFactory.getMediaView( this.model );
         this.mediaplayer.show( view );
     }
 } );

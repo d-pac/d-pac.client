@@ -1,13 +1,13 @@
 'use strict';
 
 const debug = require( 'debug' )( 'dpac:uploads.controllers', '[NavigationBlocker]' );
-const Marionette = require( 'backbone.marionette' );
+const {Controller} = require( 'backbone.marionette' );
 const {history} = require( 'backbone' );
-const i18n = require( 'i18next' );
+const {t} = require( 'i18next' );
 
 let selected = 0;
 
-module.exports = Marionette.Controller.extend( {
+module.exports = Controller.extend( {
     enabled: false,
     contextEvents: {
         'uploads:file:selected': "enable",
@@ -25,7 +25,7 @@ module.exports = Marionette.Controller.extend( {
         if( !selected ){
             selected++;
             history.loadUrl = (...args)=>{
-                if( !window.confirm( i18n.t( 'uploads:overview.changes-made' ) ) ){ //eslint-disable-line no-alert
+                if( !window.confirm( t( 'uploads:overview.changes-made' ) ) ){ //eslint-disable-line no-alert
                     var previousFragment = history.fragment;
                     window.location.hash = '#' + previousFragment;
                     return false;
@@ -38,7 +38,7 @@ module.exports = Marionette.Controller.extend( {
     },
 
     _returnMessage: function(){
-        return i18n.t( 'uploads:overview.changes-made' );
+        return t( 'uploads:overview.changes-made' );
     },
 
     disable: function( counter ){

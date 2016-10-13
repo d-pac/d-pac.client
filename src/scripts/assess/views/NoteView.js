@@ -1,11 +1,11 @@
 'use strict';
 
 const {debounce} = require( 'lodash' );
-var Marionette = require( 'backbone.marionette' );
-var debug = require( 'debug' )( 'dpac:assess.views', '[NoteView]' );
-var tpl = require( './templates/Note.hbs' );
+const {ItemView} = require( 'backbone.marionette' );
+const debug = require( 'debug' )( 'dpac:assess.views', '[NoteView]' );
+const tpl = require( './templates/Note.hbs' );
 
-module.exports = Marionette.ItemView.extend( {
+module.exports = ItemView.extend( {
     className: "well",
     template: tpl,
     ui: {
@@ -20,7 +20,7 @@ module.exports = Marionette.ItemView.extend( {
     },
 
     serializeData: function(){
-        var body = (this.model)
+        const body = (this.model)
             ? this.model.get( 'body' )
             : '';
         return {
@@ -30,7 +30,7 @@ module.exports = Marionette.ItemView.extend( {
     },
 
     notesChanged: debounce( function(){
-        var data = { body: this.$( this.ui.notes ).val() };
+        const data = { body: this.$( this.ui.notes ).val() };
         if( this.model ){
             this.model.set( data );
         } else {

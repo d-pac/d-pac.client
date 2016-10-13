@@ -1,10 +1,10 @@
 'use strict';
-var Marionette = require( 'backbone.marionette' );
+const {ItemView} = require( 'backbone.marionette' );
 
-var debug = require( 'debug' )( 'dpac:results.views', '[AssessmentSelection]' );
-var tpl = require( './templates/AssessmentSelection.hbs' );
+const debug = require( 'debug' )( 'dpac:results.views', '[AssessmentSelection]' );
+const tpl = require( './templates/AssessmentSelection.hbs' );
 
-module.exports = Marionette.ItemView.extend( {
+module.exports = ItemView.extend( {
     template: tpl,
     initialize: function(){
         debug( '#initialize' );
@@ -24,7 +24,7 @@ module.exports = Marionette.ItemView.extend( {
     },
 
     serializeData: function(){
-        var data = {
+        const data = {
             list: this.collection.toJSON()
         };
         debug( '#serializeData', data, this.collection );
@@ -32,7 +32,7 @@ module.exports = Marionette.ItemView.extend( {
     },
 
     assessmentSelected: function(){
-        var model = this.collection.selectByID( this.$( "select option:selected" ).data( 'model-id' ) );
+        const model = this.collection.selectByID( this.$( "select option:selected" ).data( 'model-id' ) );
         this.dispatch( "results:assessment:selected", {
             assessment: model
         } );

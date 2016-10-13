@@ -1,10 +1,10 @@
 'use strict';
-var Marionette = require( 'backbone.marionette' );
-var debug = require( 'debug' )( 'dpac:assess.views', '[RepresentationsView]' );
-var tpl = require( './templates/RepresentationsView.hbs' );
-var NoteView = require( './NoteView' );
+const {LayoutView} = require( 'backbone.marionette' );
+const debug = require( 'debug' )( 'dpac:assess.views', '[RepresentationsView]' );
+const tpl = require( './templates/RepresentationsView.hbs' );
+const NoteView = require( './NoteView' );
 
-module.exports = Marionette.LayoutView.extend( {
+module.exports = LayoutView.extend( {
     createRepresentationDetail : undefined,
 
     template: tpl,
@@ -30,8 +30,8 @@ module.exports = Marionette.LayoutView.extend( {
     },
 
     //serializeData: function(raw){
-    //    var data = {};
-    //    var order = this.model.getSelectedRepresentationOrder();
+    //    const data = {};
+    //    const order = this.model.getSelectedRepresentationOrder();
     //    console.log('selectedRepresentationOrder', order);
     //    if(order){
     //        data["selected"+ order.toUpperCase()] = true;
@@ -63,7 +63,7 @@ module.exports = Marionette.LayoutView.extend( {
     },
 
     showSelected: function(){
-        var order = this.model.getSelectedRepresentationOrder();
+        const order = this.model.getSelectedRepresentationOrder();
         if( order && this.model.get('assessment').get('enableSelectionIcon')){
             this.$( this.ui[ "selected" + order.toUpperCase() ] ).removeClass( 'hidden' );
         }

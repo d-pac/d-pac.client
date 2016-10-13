@@ -1,10 +1,10 @@
 'use strict';
-var Marionette = require( 'backbone.marionette' );
+const {LayoutView} = require( 'backbone.marionette' );
 
-var debug = require( 'debug' )( 'dpac:results.views', '[RepresentationDetails]' );
-var tpl = require( './templates/RepresentationDetails.hbs' );
+const debug = require( 'debug' )( 'dpac:results.views', '[RepresentationDetails]' );
+const tpl = require( './templates/RepresentationDetails.hbs' );
 
-module.exports = Marionette.LayoutView.extend( {
+module.exports = LayoutView.extend( {
     mediaViewFactory: undefined,
     regions: {
         'mediaplayer': '.representation-detail'
@@ -20,7 +20,7 @@ module.exports = Marionette.LayoutView.extend( {
     onRender: function(){
         debug( '#onRender' );
 
-        var view = this.mediaViewFactory.getMediaView( this.model, {
+        const view = this.mediaViewFactory.getMediaView( this.model, {
             video: {
                 height: 300,
                 aspectratio: null

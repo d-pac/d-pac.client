@@ -1,10 +1,10 @@
 'use strict';
 const {debounce} = require( 'lodash' );
-var Marionette = require( 'backbone.marionette' );
-var debug = require( 'debug' )( 'dpac:assess.views', '[AssessmentSelectionView]' );
-var tpl = require( './templates/AssessmentSelection.hbs' );
+const {ItemView} = require( 'backbone.marionette' );
+const debug = require( 'debug' )( 'dpac:assess.views', '[AssessmentSelectionView]' );
+const tpl = require( './templates/AssessmentSelection.hbs' );
 
-module.exports = Marionette.ItemView.extend( {
+module.exports = ItemView.extend( {
     template: tpl,
     className: "col-md-12 column",
     ui: {
@@ -19,7 +19,7 @@ module.exports = Marionette.ItemView.extend( {
     },
 
     serializeData: function(){
-        var data = {
+        const data = {
             items: this.collection.getAssessables().toJSON(),
             assessmentWasCompleted: false
         };
@@ -31,11 +31,11 @@ module.exports = Marionette.ItemView.extend( {
     },
 
     assessmentSelected: debounce( function( event ){
-        var button = this.$( event.target );
+        const button = this.$( event.target );
         this.ui.assessmentButton.prop('disabled', 'disabled');
         button.button('sending');
 
-        var model = this.collection.selectByID( button.data( 'model-id' ) );
+        const model = this.collection.selectByID( button.data( 'model-id' ) );
         this.dispatch( "assessments:selection:completed", {
             assessment: model
         } );

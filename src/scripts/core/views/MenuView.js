@@ -1,11 +1,11 @@
 'use strict';
 const {get, defaults} = require( 'lodash' );
-var Marionette = require( 'backbone.marionette' );
+const {ItemView} = require( 'backbone.marionette' );
 
-var debug = require( 'debug' )( 'dpac:core.views', '[MenuView]' );
-var tpl = require( './templates/Menu.hbs' );
+const debug = require( 'debug' )( 'dpac:core.views', '[MenuView]' );
+const tpl = require( './templates/Menu.hbs' );
 
-module.exports = Marionette.ItemView.extend( {
+module.exports = ItemView.extend( {
     config: undefined,
     pendingRequests: undefined,
     permissions: undefined,
@@ -29,14 +29,14 @@ module.exports = Marionette.ItemView.extend( {
     },
 
     onRender: function(){
-        var bgColor = get(this.config, 'ui.admin', false);
+        const bgColor = get(this.config, 'ui.admin', false);
         if(this.permissions.isAllowed('admin.view') && bgColor){
             this.ui.navbar.css('background-color', bgColor);
         }
     },
 
     collapseMenu: function(){
-        var $navbarToggle = this.$( '.navbar-toggle' );
+        const $navbarToggle = this.$( '.navbar-toggle' );
         if( $navbarToggle.css( 'display' ) !== 'none' ){
             $navbarToggle.trigger( "click" );
         }

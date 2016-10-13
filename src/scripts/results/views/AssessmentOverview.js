@@ -1,10 +1,10 @@
 'use strict';
-var Marionette = require( 'backbone.marionette' );
+const {ItemView} = require( 'backbone.marionette' );
 
-var debug = require( 'debug' )( 'dpac:results.views', '[AssessmentOverview]' );
-var tpl = require( './templates/AssessmentOverview.hbs' );
+const debug = require( 'debug' )( 'dpac:results.views', '[AssessmentOverview]' );
+const tpl = require( './templates/AssessmentOverview.hbs' );
 
-module.exports = Marionette.ItemView.extend( {
+module.exports = ItemView.extend( {
     className: "column col-sm-12",
     template: tpl,
     initialize: function(){
