@@ -5,7 +5,7 @@
   "private": true,
   "dependencies": {
     "backbone.whenthen": "1.0.2",
-    "bows": "1.5.0",
+    "bows": "1.6.0",
     "handlebars": "3.0.2",
     "konfy": "0.2.1",
     "lodash": "3.10.1",
