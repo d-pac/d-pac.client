@@ -1,11 +1,11 @@
 'use strict';
-var Backbone = require( 'backbone' );
-var debug = require( 'debug' )( 'dpac:common.collections', '[RepresentationsCollection]' );
-var teardown = require( '../../common/mixins/teardown' );
-var selectable = require( '../../common/mixins/selectable' );
-var ModelClass = require( '../models/RepresentationProxy' );
+const {Collection} = require( 'backbone' );
+const debug = require( 'debug' )( 'dpac:common.collections', '[RepresentationsCollection]' );
+const teardown = require( '../../common/mixins/teardown' );
+const selectable = require( '../../common/mixins/selectable' );
+const ModelClass = require( '../models/RepresentationProxy' );
 
-module.exports = Backbone.Collection.extend( {
+module.exports = Collection.extend( {
     url: '/representations',
     model: ModelClass,
 

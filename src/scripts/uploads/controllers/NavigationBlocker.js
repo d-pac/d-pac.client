@@ -1,13 +1,13 @@
 'use strict';
 
-var debug = require( 'debug' )( 'dpac:uploads.controllers', '[NavigationBlocker]' );
-var Marionette = require( 'backbone.marionette' );
-var Backbone = require( 'backbone' );
-var i18n = require( 'i18next' );
+const debug = require( 'debug' )( 'dpac:uploads.controllers', '[NavigationBlocker]' );
+const {Controller} = require( 'backbone.marionette' );
+const {history} = require( 'backbone' );
+const {t} = require( 'i18next' );
 
 let selected = 0;
 
-module.exports = Marionette.Controller.extend( {
+module.exports = Controller.extend( {
     enabled: false,
     contextEvents: {
         'uploads:file:selected': "enable",
@@ -17,29 +17,28 @@ module.exports = Marionette.Controller.extend( {
     },
 
     initialize: function(){
-        this.originalFn = Backbone.history.loadUrl;
+        this.__original_loadUrl = history.loadUrl;
     },
 
     enable: function(){
         debug( '#enable' );
         if( !selected ){
             selected++;
-            var view = this;
-            Backbone.history.loadUrl = function(){
-                if( !window.confirm( i18n.t( 'uploads:overview.changes-made' ) ) ){ //eslint-disable-line no-alert
-                    var previousFragment = Backbone.history.fragment;
+            history.loadUrl = (...args)=>{
+                if( !window.confirm( t( 'uploads:overview.changes-made' ) ) ){ //eslint-disable-line no-alert
+                    const previousFragment = history.fragment;
                     window.location.hash = '#' + previousFragment;
                     return false;
                 }
-                view.disable( 0 );
-                return view.originalFn.apply( this, arguments );
+                this.disable( 0 );
+                return this.__original_loadUrl( ...args );
             };
             window.onbeforeunload = this._returnMessage;
         }
     },
 
     _returnMessage: function(){
-        return i18n.t( 'uploads:overview.changes-made' );
+        return t( 'uploads:overview.changes-made' );
     },
 
     disable: function( counter ){
@@ -47,7 +46,7 @@ module.exports = Marionette.Controller.extend( {
         selected = counter;
         if( selected <= 0 ){
             selected = 0;
-            Backbone.history.loadUrl = this.originalFn;
+            history.loadUrl = this.__original_loadUrl;
             window.onbeforeunload = undefined;
         }
     }

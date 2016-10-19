@@ -26,8 +26,8 @@ require( 'lity' );
 
 require( './core/controllers/SetupDebugging' )();
 
-var debug = require( 'debug' )( 'dpac:app' );
+const debug = require( 'debug' )( 'dpac:app' );
 debug( '*** starting up ***' );
 
-var app = require( './core/App.js' );
+const app = require( './core/App.js' );
 app.start();

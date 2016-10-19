@@ -1,11 +1,12 @@
 'use strict';
-var Backbone = require( 'backbone' );
 
-var debug = require( 'debug' )( 'dpac:assess.collections', '[PhasesCollection]' );
-var teardown = require( '../../common/mixins/teardown' );
-var ModelClass = require( '../models/PhaseProxy' );
+const {Collection} = require( 'backbone' );
 
-module.exports = Backbone.Collection.extend( {
+const debug = require( 'debug' )( 'dpac:assess.collections', '[PhasesCollection]' );
+const teardown = require( '../../common/mixins/teardown' );
+const ModelClass = require( '../models/PhaseProxy' );
+
+module.exports = Collection.extend( {
     url: '/phases',
     model: ModelClass,
 

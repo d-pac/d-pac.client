@@ -1,9 +1,9 @@
 'use strict';
-var tpl = require('./templates/404.hbs');
-var Marionette = require('backbone.marionette');
-var debug = require( 'debug' )( 'dpac:core.views', '[404View]' );
+const tpl = require('./templates/404.hbs');
+const {ItemView} = require('backbone.marionette');
+const debug = require( 'debug' )( 'dpac:core.views', '[404View]' );
 
-module.exports = Marionette.ItemView.extend({
+module.exports = ItemView.extend({
     template : tpl,
 
     initialize: function(){

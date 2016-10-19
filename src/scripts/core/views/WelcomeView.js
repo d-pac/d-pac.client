@@ -1,10 +1,10 @@
 'use strict';
 
-var debug = require( 'debug' )( 'dpac:core.views', '[WelcomeView]' );
-var tpl = require( './templates/Welcome.hbs' );
-var Marionette = require( 'backbone.marionette' );
+const debug = require( 'debug' )( 'dpac:core.views', '[WelcomeView]' );
+const tpl = require( './templates/Welcome.hbs' );
+const {ItemView} = require( 'backbone.marionette' );
 
-module.exports = Marionette.ItemView.extend( {
+module.exports = ItemView.extend( {
     template: tpl,
 
     initialize: function(){
@@ -20,7 +20,7 @@ module.exports = Marionette.ItemView.extend( {
 
     serializeData: function(){
         if( this.model ){
-            var data = this.model.toJSON();
+            const data = this.model.toJSON();
             data.authenticated = this.auth.get( 'authenticated' );
             data.user = this.auth.get( 'user' );
             data.permissions = this.permissions.toJSON();

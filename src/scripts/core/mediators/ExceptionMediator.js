@@ -1,23 +1,23 @@
 'use strict';
-const {each, defaults, kebabCase, isNumber} = require( 'lodash' );
-var Marionette = require( 'backbone.marionette' );
-var debug = require( 'debug' )( 'dpac:core', '[ExceptionMediator]' );
-var i18n = require( 'i18next' );
+const { each, defaults, kebabCase, isNumber } = require( 'lodash' );
+const { Controller } = require( 'backbone.marionette' );
+const debug = require( 'debug' )( 'dpac:core', '[ExceptionMediator]' );
+const i18n = require( 'i18next' );
 
-module.exports = Marionette.Controller.extend( {
+module.exports = Controller.extend( {
     contextEvents: {
         'backbone:sync:error': "errorEventHandler"
     },
     initialize: function(){
         debug( '#initialize' );
 
-        window.onerror = function( message,
-                                   file,
-                                   line,
-                                   col,
-                                   err ){
-            console.log( "ERROR occurred:", arguments );
-            var ref = (err && err.message)
+        window.onerror = ( message,
+                           file,
+                           line,
+                           col,
+                           err )=>{
+            console.log( "ERROR occurred:", message, file, line, col, err );
+            const ref = (err && err.message)
                 ? err.message
                 : message || "unknown-error";
             this.errorEventHandler( {
@@ -31,18 +31,18 @@ module.exports = Marionette.Controller.extend( {
                 ],
                 url: window.location.href,
             } );
-        }.bind( this );
+        };
     },
 
     errorEventHandler: function( errObj ){
-        var messages = [];
+        const messages = [];
         each( errObj.errors, function( err ){
-            var merged = defaults( {
+            const merged = defaults( {
                 ref: err.code || err.ref,
             }, errObj ); //allows access to request-uuid, url, code etc.
             console.log( merged );
-            var message = err.message || "unknown error";
-            var explanation = err.explanation || message;
+            const message = err.message || "unknown error";
+            const explanation = err.explanation || message;
             messages.push( {
                 type: "error",
                 title: i18n.t( [ "errors:" + kebabCase( message ), "errors:unknown-error" ], merged ),

@@ -1,16 +1,15 @@
 'use strict';
-const {toArray} = require( 'lodash' );
-var Backbone = require( 'backbone' );
+const {Collection} = require( 'backbone' );
 
-var debug = require( 'debug' )( 'dpac:core.collections', '[AssessmentsCollection]' );
-var teardown = require( '../../common/mixins/teardown' );
-var selectable = require( '../../common/mixins/selectable' );
-var safeSync = require( '../../common/mixins/safeSync' );
-var propagateEvents = require( '../../common/mixins/propagateEvents' );
+const debug = require( 'debug' )( 'dpac:core.collections', '[AssessmentsCollection]' );
+const teardown = require( '../../common/mixins/teardown' );
+const selectable = require( '../../common/mixins/selectable' );
+const safeSync = require( '../../common/mixins/safeSync' );
+const propagateEvents = require( '../../common/mixins/propagateEvents' );
 
-var ModelClass = require( '../models/AssessmentProxy' );
+const ModelClass = require( '../models/AssessmentProxy' );
 
-var AssessmentsCollection = Backbone.Collection.extend( {
+const AssessmentsCollection = Collection.extend( {
     url: '/user/assessments',
     model: ModelClass,
 
@@ -29,23 +28,23 @@ var AssessmentsCollection = Backbone.Collection.extend( {
     },
 
     parse: function( raw ){
-        var docs = raw.data || [];
+        const docs = raw.data || [];
 
-        return docs.map( function( doc ){
+        return docs.map( ( doc )=>{
             doc.registry = this;
             return doc;
-        }.bind( this ) );
+        } );
     },
 
     fetch: function(...args){
         debug( '#fetch' );
-        return Backbone.Collection.prototype.fetch.apply( this, args );
+        return Collection.prototype.fetch.apply( this, args );
     },
 
     //==( by role )==/
 
     listById: function( ids ){
-        var models = this.filter( function( model ){
+        const models = this.filter( function( model ){
             return ids.indexOf( model.id ) >= 0;
         } );
         return new AssessmentsCollection( models );
@@ -54,7 +53,7 @@ var AssessmentsCollection = Backbone.Collection.extend( {
     //==( actives )==//
 
     getAssessables: function(){
-        var models = this.filter( function( assessment ){
+        const models = this.filter( function( assessment ){
             return assessment.assessingAllowed();
         } );
         return new AssessmentsCollection( models );

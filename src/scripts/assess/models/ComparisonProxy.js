@@ -1,11 +1,11 @@
 'use strict';
-var Backbone = require( 'backbone' );
+const {Model} = require('backbone');
 
-var debug = require( 'debug' )( 'dpac:assess.models', '[ComparisonProxy]' );
+const debug = require('debug')('dpac:assess.models', '[ComparisonProxy]');
 
-var teardown = require( '../../common/mixins/teardown' );
+const teardown = require('../../common/mixins/teardown');
 
-module.exports = Backbone.Model.extend( {
+module.exports = Model.extend({
 
     urlRoot: '/comparisons',
     idAttribute: "_id",
@@ -33,28 +33,28 @@ module.exports = Backbone.Model.extend( {
         messages: undefined
     },
 
-    initialize: function(){
-        debug( '#initialize', this.id || '<new>' );
+    initialize: function () {
+        debug('#initialize', this.id || '<new>');
     },
 
-    parse: function( raw ){
-        debug( "#parse", this, raw );
-        if( this.collection ){
-            return this.collection.parser.parseModel( raw );
+    parse: function (raw) {
+        debug("#parse", this, raw);
+        if (this.collection) {
+            return this.collection.parser.parseModel(raw);
         }
 
         //model already removed from collection
         return raw.data;
     },
 
-    update: function( attrs ){
-        this.save( attrs, { patch: true, wait: true } );
+    update: function (attrs) {
+        this.save(attrs, {patch: true, wait: true});
     },
 
-    hasMessages: function(){
-        const messages = this.get( 'messages' );
+    hasMessages: function () {
+        const messages = this.get('messages');
         return !!messages && !!messages.length;
     }
 
-} );
-teardown.model.mixin( module.exports );
+});
+teardown.model.mixin(module.exports);

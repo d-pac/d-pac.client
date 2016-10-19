@@ -1,10 +1,10 @@
 'use strict';
 
-const Backbone = require( 'backbone' );
+const {Model} = require( 'backbone' );
 const debug = require( 'debug' )( 'dpac:uploads.models', '[UploadModel]' );
 const Representation = require( '../../common/models/RepresentationProxy' );
 
-module.exports = Backbone.Model.extend( {
+module.exports = Model.extend( {
     representationsCollection: undefined,
     idAttribute: "_id",
 

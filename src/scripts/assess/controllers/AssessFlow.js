@@ -1,9 +1,9 @@
 'use strict';
-var debug = require( 'debug' )( 'dpac:assess.controllers', '[AssessFlow]' );
+const debug = require( 'debug' )( 'dpac:assess.controllers', '[AssessFlow]' );
 const {clone} = require( 'lodash' );
-var Marionette = require( 'backbone.marionette' );
-var i18n = require( 'i18next' );
-module.exports = Marionette.Controller.extend( {
+const {Controller} = require( 'backbone.marionette' );
+const {t} = require( 'i18next' );
+module.exports = Controller.extend( {
 
     assessmentsCollection: undefined,
     comparisonsCollection: undefined,
@@ -32,7 +32,7 @@ module.exports = Marionette.Controller.extend( {
     },
 
     retrieveComparisons: function(){
-        var collection = this.comparisonsCollection;
+        const collection = this.comparisonsCollection;
         collection.once( "sync", function(){
             this.checkIncompleteComparisonsExist();
         }, this );
@@ -57,14 +57,14 @@ module.exports = Marionette.Controller.extend( {
     },
 
     checkSelectedAssessmentIsCompleted: function(){
-        var assessment = this.assessmentsCollection.selected;
+        const assessment = this.assessmentsCollection.selected;
         if( assessment.isCompleted() ){
             this.assessmentsCollection.deselect( assessment );
             this.requestAssessmentSelection();
             this.dispatch( 'assess:show:messages', {
-                type: i18n.t( "assess:assessment_completed.type" ) || "success",
-                title: i18n.t( "assess:assessment_completed.title" ) || '',
-                message: i18n.t( "assess:assessment_completed.description", { title: assessment.get( 'title' ) } )
+                type: t( "assess:assessment_completed.type" ) || "success",
+                title: t( "assess:assessment_completed.title" ) || '',
+                message: t( "assess:assessment_completed.description", { title: assessment.get( 'title' ) } )
             } );
         } else {
             this.requestComparisonContinuation();
@@ -80,7 +80,7 @@ module.exports = Marionette.Controller.extend( {
 
     requestAssessmentSelection: function(){
         this.dispatch( 'assessments:selection:requested' );
-        // var actives = this.assessmentsCollection.getActives();
+        // const actives = this.assessmentsCollection.getActives();
         // if( actives.length === 1 ){
         //     this.assessmentsCollection.select( actives[ 0 ] );
         //     this.assessmentSelectionCompleted();
@@ -101,7 +101,7 @@ module.exports = Marionette.Controller.extend( {
     },
 
     requestComparisonCreation: function(){
-        var assessment = this.assessmentsCollection.selected;
+        const assessment = this.assessmentsCollection.selected;
         debug( '#requestComparisonCreation', assessment );
 
         this.comparisonsCollection.once( "add", this.comparisonCreationCompleted, this );
@@ -113,7 +113,7 @@ module.exports = Marionette.Controller.extend( {
         debug( '#comparisonCreationCompleted', comparison );
 
         if( comparison.hasMessages() ){
-            var messages = clone( comparison.get( 'messages' ) );
+            const messages = clone( comparison.get( 'messages' ) );
             this.comparisonsCollection.remove( comparison );
             this.dispatch( 'comparisons:creation:failed', {
                 messages: messages,
@@ -127,7 +127,7 @@ module.exports = Marionette.Controller.extend( {
     startComparing: function startComparing(){
         debug( "#startComparing" );
 
-        var comparison = this.comparisonsCollection.at( 0 );
+        const comparison = this.comparisonsCollection.at( 0 );
         comparison.once( "change:completed", this.finalizeComparison, this );
         this.assessmentsCollection.selectByID( comparison.get( "assessment" ) ); //assessment MUST be selected first!
         this.comparisonsCollection.select( comparison );
@@ -136,17 +136,17 @@ module.exports = Marionette.Controller.extend( {
     },
 
     finalizeComparison: function(){
-        var comparison = this.comparisonsCollection.selected;
+        const comparison = this.comparisonsCollection.selected;
         this.comparisonsCollection.deselect( comparison );
         this.comparisonsCollection.remove( comparison );
-        var assessment = this.assessmentsCollection.selected;
+        const assessment = this.assessmentsCollection.selected;
         assessment.incCompleted();
         if( assessment.isCompleted() ){
             this.assessmentsCollection.deselect( assessment );
             this.dispatch( 'assess:show:messages', {
-                type: i18n.t( "assess:assessment_completed.type" ) || "success",
-                title: i18n.t( "assess:assessment_completed.title" ) || '',
-                message: i18n.t( "assess:assessment_completed.description", { title: assessment.get( 'title' ) } )
+                type: t( "assess:assessment_completed.type" ) || "success",
+                title: t( "assess:assessment_completed.title" ) || '',
+                message: t( "assess:assessment_completed.description", { title: assessment.get( 'title' ) } )
             } );
         }
         this.dispatch( 'comparisons:editing:completed' );

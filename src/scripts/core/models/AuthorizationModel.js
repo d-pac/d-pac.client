@@ -1,27 +1,27 @@
 'use strict';
 const {get, merge, reduce, set} = require( 'lodash' );
-var Backbone = require( 'backbone' );
+const {Model} = require( 'backbone' );
 
-var debug = require( 'debug' )( 'dpac:core', '[PermissionsModel]' );
-var permissions = require( './Permissions' );
+const debug = require( 'debug' )( 'dpac:core', '[PermissionsModel]' );
+const permissions = require( './Permissions' );
 
-module.exports = Backbone.Model.extend( {
+module.exports = Model.extend( {
     authentication: undefined,
     assessments: undefined,
 
     guards: {
         "assess.view": function(){
-            var user = this.getUser();
-            var asAssessor = get( user, [ 'assessments', 'assessor' ], [] );
+            const user = this.getUser();
+            const asAssessor = get( user, [ 'assessments', 'assessor' ], [] );
             return (asAssessor.length > 0)
                 ? permissions.flags.allowed.value
                 : permissions.flags.hidden.value;
         },
         "results.view": function(){
-            var user = this.getUser();
-            var asAssessee = get( user, [ 'assessments', 'assessee' ], [] );
-            var asAssessor = get( user, [ 'assessments', 'assessor' ], [] );
-            var asPAM = get( user, [ 'assessments', 'pam' ], [] );
+            const user = this.getUser();
+            const asAssessee = get( user, [ 'assessments', 'assessee' ], [] );
+            const asAssessor = get( user, [ 'assessments', 'assessor' ], [] );
+            const asPAM = get( user, [ 'assessments', 'pam' ], [] );
             return (asAssessee.length > 0 || asAssessor.length > 0 || asPAM.length > 0)
                 ? permissions.flags.allowed.value
                 : permissions.flags.hidden.value;
@@ -32,14 +32,14 @@ module.exports = Backbone.Model.extend( {
                 : permissions.flags.hidden.value;
         },
         "admin.view": function(){
-            var user = this.getUser();
+            const user = this.getUser();
             return (get( user, [ 'isAdmin' ], false ))
                 ? permissions.flags.allowed.value
                 : permissions.flags.hidden.value;
         },
         "uploads.view": function(){
-            var user = this.getUser();
-            var asAssessee = get( user, [ 'assessments', 'assessee' ], [] );
+            const user = this.getUser();
+            const asAssessee = get( user, [ 'assessments', 'assessee' ], [] );
             return asAssessee.length > 0
                 ? permissions.flags.allowed.value
                 : permissions.flags.hidden.value;
@@ -51,11 +51,11 @@ module.exports = Backbone.Model.extend( {
     },
 
     toJSON: function(){
-        var model = this;
-        var flattened = merge( {}, permissions.defaults, function( unused,
+        const model = this;
+        const flattened = merge( {}, permissions.defaults, function( unused,
                                                                      value,
                                                                      name ){
-            var guard = model.guards[ name ];
+            const guard = model.guards[ name ];
             if( guard ){
                 value = Math.min( guard.call( model ), value );
             }
@@ -65,7 +65,7 @@ module.exports = Backbone.Model.extend( {
         return reduce( flattened, function( memo,
                                               value,
                                               key ){
-            var label = get( permissions, [ "flags", value, "label" ], permissions.flags.hidden.label );
+            const label = get( permissions, [ "flags", value, "label" ], permissions.flags.hidden.label );
             if( !memo[ label ] ){
                 memo[ label ] = {};
             }
@@ -76,17 +76,17 @@ module.exports = Backbone.Model.extend( {
     },
 
     isAllowed: function( path ){
-        var obj = this.toJSON();
+        const obj = this.toJSON();
         return get( obj.flags, path ) === permissions.flags.allowed.label;
     },
 
     isHidden: function( path ){
-        var obj = this.toJSON();
+        const obj = this.toJSON();
         return get( obj.flags, path ) === permissions.flags.hidden.label;
     },
 
     isDisabled: function( path ){
-        var obj = this.toJSON();
+        const obj = this.toJSON();
         return get( obj.flags, path ) === permissions.flags.disabled.label;
     },
 

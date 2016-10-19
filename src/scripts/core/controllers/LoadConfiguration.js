@@ -1,7 +1,7 @@
 'use strict';
 const {extend} = require( 'lodash' );
-var konfy = require( 'konfy' );
-var debug = require( 'debug' )( 'dpac:core.controllers', '[LoadConfiguration]' );
+const konfy = require( 'konfy' );
+const debug = require( 'debug' )( 'dpac:core.controllers', '[LoadConfiguration]' );
 
 module.exports = function LoadConfiguration(){
     //constructor
@@ -22,12 +22,12 @@ extend( module.exports.prototype, {
                 APP_VERSION: process.env.APP_VERSION,
                 APP_LANG: process.env.APP_LANG || 'nl'
             }
-        }, function( err,
-                     config ){
+        }, ( err,
+                     config )=>{
             debug( 'received config:', config );
             this.context.wireValue( 'config', config );
             this.context.vent.trigger( 'config:load:completed' );
-        }.bind( this ) );
+        } );
     }
 } );
 

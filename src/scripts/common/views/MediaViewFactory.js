@@ -1,9 +1,9 @@
 'use strict';
 
 const {defaultsDeep} = require( 'lodash' );
-var Marionette = require( 'backbone.marionette' );
-// var debug = require( 'debug' )( 'dpac:common.views', '[MediaViewFactory]' );
-var consts = {
+const {ItemView, Controller} = require( 'backbone.marionette' );
+// const debug = require( 'debug' )( 'dpac:common.views', '[MediaViewFactory]' );
+const consts = {
     html: 'html',
     image: 'image',
     pdf: 'pdf',
@@ -11,7 +11,7 @@ var consts = {
     video: 'video'
 };
 
-var mediaByMime = {
+const mediaByMime = {
     "text/html": consts.html,
     "image/png": consts.image,
     "image/jpeg": consts.image,
@@ -24,17 +24,17 @@ var mediaByMime = {
     "video/mpeg": consts.video,
 };
 
-var mediaViews = {};
+const mediaViews = {};
 mediaViews[ consts.html ] = {
-    viewClass: Marionette.ItemView.extend( {} ),
+    viewClass: ItemView.extend( {} ),
     tpl: require( '../views/templates/media/html.hbs' )
 };
 mediaViews[ consts.image ] = {
-    viewClass: Marionette.ItemView.extend( {} ),
+    viewClass: ItemView.extend( {} ),
     tpl: require( '../views/templates/media/image.hbs' )
 };
 mediaViews[ consts.pdf ] = {
-    viewClass: Marionette.ItemView.extend( {} ),
+    viewClass: ItemView.extend( {} ),
     tpl: require( '../views/templates/media/pdf.hbs' )
 };
 mediaViews[ consts.audio ] = {
@@ -56,16 +56,16 @@ mediaViews[ consts.video ] = {
     }
 };
 
-module.exports = Marionette.Controller.extend( {
+module.exports = Controller.extend( {
     permissions: undefined,
     getMediaView: function( representation,
                             settings ){
         if(!settings){
             settings={};
         }
-        var mimeType = representation.get( 'document.mimeType' ) || 'text/html';
-        var mediaType = mediaByMime[ mimeType ];
-        var mediaView = mediaViews[ mediaType ];
+        const mimeType = representation.get( 'document.mimeType' ) || 'text/html';
+        const mediaType = mediaByMime[ mimeType ];
+        const mediaView = mediaViews[ mediaType ];
         if( !mediaView ){
             throw new Error( 'incorrect-media-type' );
         }

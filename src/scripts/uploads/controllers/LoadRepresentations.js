@@ -2,9 +2,9 @@
 
 const {extend} = require( 'lodash' );
 
-var debug = require( 'debug' )( 'dpac:uploads.controllers', '[LoadRepresentations]' );
+const debug = require( 'debug' )( 'dpac:uploads.controllers', '[LoadRepresentations]' );
 
-var LoadRepresentations = module.exports = function LoadRepresentations( context ){
+const LoadRepresentations = module.exports = function LoadRepresentations( context ){
     //constructor
 };
 
@@ -13,9 +13,9 @@ extend( LoadRepresentations.prototype, {
     execute: function(){
         debug( '#execute' );
 
-        this.representationsCollection.once( "sync", function(){
+        this.representationsCollection.once( "sync", ()=>{
             this.dispatch( "representations:collection:sync" );
-        }.bind( this ) );
+        });
         this.representationsCollection.fetchForUser();
     }
 } );

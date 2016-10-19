@@ -1,8 +1,8 @@
 'use strict';
 const {extend} = require( 'lodash' );
 
-var debug = require( 'debug' )( 'dpac:core', '[RemoveHangingModal]' );
-var $= require('jquery');
+const debug = require( 'debug' )( 'dpac:core', '[RemoveHangingModal]' );
+const $= require('jquery');
 
 module.exports = function RemoveHangingModal(){
     //constructor

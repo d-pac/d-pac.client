@@ -1,7 +1,7 @@
 'use strict';
 const {extend} = require( 'lodash' );
 
-var debug = require( 'debug' )( 'dpac:core.controllers', '[BootstrapMediators]' );
+const debug = require( 'debug' )( 'dpac:core.controllers', '[BootstrapMediators]' );
 module.exports = function BootstrapMediators(){
     //constructor
 };
@@ -9,7 +9,7 @@ module.exports = function BootstrapMediators(){
 extend( module.exports.prototype, {
     execute: function(){
         debug( '#execute' );
-        var context = this.context;
+        const context = this.context;
 
         context.wireSingleton( 'exceptionMediator', require( '../mediators/ExceptionMediator' ) );
         context.getObject( 'exceptionMediator' );

@@ -1,7 +1,7 @@
 'use strict';
-var debug = require( 'debug' )( 'dpac:core.controllers', '[ResultsModuleMediator]' );
+const debug = require( 'debug' )( 'dpac:core.controllers', '[ResultsModuleMediator]' );
 
-var Base = require( './BaseModuleMediator' );
+const Base = require( './BaseModuleMediator' );
 
 module.exports = Base.extend( {
     contextEvents: {
@@ -12,9 +12,9 @@ module.exports = Base.extend( {
         debug( "#initialize" );
         Base.prototype.initialize.call( this, {
             contentFactory: function(){
-                require.ensure(['../../results/ResultsContext'], function(require){
+                require.ensure(['../../results/ResultsContext'], (require)=>{
                     this.prepareModule(require('../../results/ResultsContext'));
-                }.bind(this), 'results');
+                }, 'results');
             },
             viewProxyName: 'resultsViewProxy',
             onUiReadyEvent: 'results:bootstrap:completed',

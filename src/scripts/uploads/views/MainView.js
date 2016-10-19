@@ -1,9 +1,9 @@
 'use strict';
 
-var debug = require( 'debug' )( 'dpac:uploads.views', '[MainView]' );
-var tpl = require( './templates/MainView.hbs' );
-var Marionette = require( 'backbone.marionette' );
-module.exports = Marionette.LayoutView.extend( {
+const debug = require( 'debug' )( 'dpac:uploads.views', '[MainView]' );
+const tpl = require( './templates/MainView.hbs' );
+const {LayoutView} = require( 'backbone.marionette' );
+module.exports = LayoutView.extend( {
     template: tpl,
     //avoid the idiotic div-wrapper
     tagName: "div",
