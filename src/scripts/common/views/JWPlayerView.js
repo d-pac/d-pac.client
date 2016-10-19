@@ -1,8 +1,8 @@
 'use strict';
 const {defaults} = require( 'lodash' );
-var Marionette = require( 'backbone.marionette' );
-var debug = require( 'debug' )( 'dpac:common.views', '[JWPlayerView]' );
-module.exports = Marionette.ItemView.extend( {
+const {ItemView} = require( 'backbone.marionette' );
+const debug = require( 'debug' )( 'dpac:common.views', '[JWPlayerView]' );
+module.exports = ItemView.extend( {
     permissions: undefined,
 
     initialize: function( config ){
@@ -14,8 +14,8 @@ module.exports = Marionette.ItemView.extend( {
     onRender: function(){
         debug( '#onRender' );
         if( !this.permissions.isHidden( 'jwplayer.view' ) ){
-            setTimeout( function(){
-                var playerInstance = window.jwplayer( "jwplayer-" + this.model.get( '_id' ) );
+            setTimeout( ()=>{
+                const playerInstance = window.jwplayer( "jwplayer-" + this.model.get( '_id' ) );
                 playerInstance.setup( defaults( {}, this.playerOpts, {
                     file: this.model.get( 'document.href' ),
                     title: 'Basic Video Embed',
@@ -23,7 +23,7 @@ module.exports = Marionette.ItemView.extend( {
                     controls: true,
                     primary: 'html5'
                 } ) );
-            }.bind( this ), 500 );
+            }, 500 );
         }
     }
 } );

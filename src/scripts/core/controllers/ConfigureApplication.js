@@ -1,7 +1,7 @@
 'use strict';
 const {extend} = require( 'lodash' );
 
-var debug = require( 'debug' )( 'dpac:core.controllers', '[ConfigureApplication]' );
+const debug = require( 'debug' )( 'dpac:core.controllers', '[ConfigureApplication]' );
 
 module.exports = function ConfigureApplication(){
     //constructor
@@ -10,14 +10,14 @@ module.exports = function ConfigureApplication(){
 extend( module.exports.prototype, {
     execute: function(){
         debug( '#execute' );
-        var appVersionLabel = (process.env.APP_VERSION)
+        let appVersionLabel = (process.env.APP_VERSION)
             ? 'v' + process.env.APP_VERSION
             : '[BROKEN]';
         if( process.env.APP_VERSION_LABEL && process.env.APP_VERSION_LABEL !== appVersionLabel ){
             appVersionLabel += '-' + process.env.APP_VERSION_LABEL;
         }
 
-        var config = {
+        const config = {
             "api": {
                 "host": process.env.API_HOST,
                 "root": process.env.API_HOST + "api"

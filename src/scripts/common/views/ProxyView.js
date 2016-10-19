@@ -1,8 +1,8 @@
 'use strict';
-var tpl = require('./templates/ProxyView.hbs');
-var Marionette = require('backbone.marionette');
+const tpl = require('./templates/ProxyView.hbs');
+const {LayoutView} = require('backbone.marionette');
 
-module.exports = Marionette.LayoutView.extend({
+module.exports = LayoutView.extend({
     template: tpl,
     regions: {
         content: ".content-proxy"
@@ -14,7 +14,7 @@ module.exports = Marionette.LayoutView.extend({
     },
 
     onRender : function(){
-        var view = this.contentFactory();
+        const view = this.contentFactory();
         if(view){
             this.content.show(view);
         }

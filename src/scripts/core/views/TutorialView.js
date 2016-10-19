@@ -1,10 +1,10 @@
 'use strict';
 
-var debug = require( 'debug' )( 'dpac:core.views', '[TutorialView]' );
-var tpl = require( './templates/Tutorial.hbs' );
-var Marionette = require('backbone.marionette');
+const debug = require( 'debug' )( 'dpac:core.views', '[TutorialView]' );
+const tpl = require( './templates/Tutorial.hbs' );
+const {ItemView} = require('backbone.marionette');
 
-module.exports = Marionette.ItemView.extend( {
+module.exports = ItemView.extend( {
     template   : tpl,
 
     initialize: function(){

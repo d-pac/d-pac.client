@@ -1,9 +1,9 @@
 'use strict';
 const {get, kebabCase} = require( 'lodash' );
-const Backbone = require( 'backbone' );
+const {Model} = require( 'backbone' );
 const debug = require( 'debug' )( 'dpac:results.controllers', '[RepresentationsRankingController]' );
 
-module.exports = Backbone.Model.extend( {
+module.exports = Model.extend( {
     authorization: undefined,
     assessments: undefined,
     representations: undefined,
@@ -40,9 +40,9 @@ module.exports = Backbone.Model.extend( {
                 return model.get( 'ability.value' );
             } )
             .map( ( model )=>{
-                var ability = Number( model.get( 'ability.value' ) );
-                var rse = Number( model.get( 'ability.se' ) );
-                var se = Math.min( rse, 3 );
+                const ability = Number( model.get( 'ability.value' ) );
+                const rse = Number( model.get( 'ability.se' ) );
+                const se = Math.min( rse, 3 );
                 model.set( {
                     rank: n - i,
                     comparisonsNum: get( statsByRepresentation, [ model.id, 'comparisonsNum' ], 0 )
@@ -78,13 +78,13 @@ module.exports = Backbone.Model.extend( {
         } );
     },
 
-    toJSON: function(){
+    toJSON: function(...args){
         if( !this._parsed ){
             this._parsed = true;
             this.parseData();
         }
 
-        return Backbone.Model.prototype.toJSON.apply( this, arguments );
+        return Model.prototype.toJSON.apply( this, args );
     },
 
     selectRepresentation: function( id, internal ){

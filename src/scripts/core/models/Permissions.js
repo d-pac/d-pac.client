@@ -2,7 +2,7 @@
 
 const {each} = require( 'lodash' );
 
-var flags = {
+const flags = {
     allowed: {
         value: 2,
         label: "allowed"
@@ -24,7 +24,7 @@ each( flags, function( config,
 
 function parseFlag( flag,
                     defaultValue ){
-    var f = (flag)
+    const f = (flag)
         ? flag.toLowerCase()
         : null;
     switch( f ){

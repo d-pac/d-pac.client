@@ -1,9 +1,9 @@
 'use strict';
-const Backbone = require( 'backbone' );
+const {Collection} = require( 'backbone' );
 
 const debug = require( 'debug' )( 'dpac:uploads.collections', '[UploadsCollection]' );
 const UploadModel = require( './UploadModel' );
-module.exports = Backbone.Collection.extend( {
+module.exports = Collection.extend( {
 
     assessmentsCollection: undefined,
     representationsCollection: undefined,

@@ -3,9 +3,9 @@
 const {delay} = require( 'lodash' );
 const debug = require( 'debug' )( 'dpac:results.views', '[LayoutView]' );
 const tpl = require( './templates/MainView.hbs' );
-const Marionette = require( 'backbone.marionette' );
+const {LayoutView} = require( 'backbone.marionette' );
 
-module.exports = Marionette.LayoutView.extend( {
+module.exports = LayoutView.extend( {
     authorization: undefined,
     template: tpl,
 

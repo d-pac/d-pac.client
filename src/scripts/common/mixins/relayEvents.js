@@ -1,6 +1,6 @@
 'use strict';
 
-const {extend, each, isString, toArray} = require('lodash');
+const {extend, each, isString} = require('lodash');
 
 module.exports.mixin = function (Constructor) {
     extend(Constructor.prototype, {
@@ -21,8 +21,8 @@ module.exports.mixin = function (Constructor) {
                               source,
                               to,
                               target) {
-            from.vent.on(source, function () {
-                to.dispatch.apply(to, [target].concat(toArray(arguments)));
+            from.vent.on(source, function (...args) {
+                to.dispatch.apply(to, [target].concat(args));
             });
         },
     });

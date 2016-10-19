@@ -2,22 +2,22 @@
 
 'use strict';
 const {debounce, isString} = require( 'lodash' );
-var d3Tip = require( 'd3-tip' );
-//var d3Legend = require( 'd3-legend' );
-var stockplot = require( 'd3-stock-plot' );
-var Marionette = require( 'backbone.marionette' );
-var $ = require( 'jquery' );
+const d3Tip = require( 'd3-tip' );
+//const d3Legend = require( 'd3-legend' );
+const stockplot = require( 'd3-stock-plot' );
+const {ItemView} = require( 'backbone.marionette' );
+const $ = require( 'jquery' );
 
-var debug = require( 'debug' )( 'dpac:results.views', '[RepresentationsRanking]' );
-var tpl = require( './templates/RepresentationsRanking.hbs' );
-var tipTpl = require( './templates/RepresentationTip.hbs' );
+const debug = require( 'debug' )( 'dpac:results.views', '[RepresentationsRanking]' );
+const tpl = require( './templates/RepresentationsRanking.hbs' );
+const tipTpl = require( './templates/RepresentationTip.hbs' );
 
-var tip = d3Tip()
+const tip = d3Tip()
     .attr( 'class', 'd3-tip' )
     .offset( [ -10, 0 ] )
     .html( tipTpl );
 
-module.exports = Marionette.ItemView.extend( {
+module.exports = ItemView.extend( {
     template: tpl,
     className: "column col-sm-12",
 

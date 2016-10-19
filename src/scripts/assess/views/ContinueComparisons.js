@@ -1,9 +1,9 @@
 'use strict';
-var Marionette = require( 'backbone.marionette' );
-var debug = require( 'debug' )( 'dpac:assess.views', '[ContinueComparisons]' );
-var tpl = require( './templates/ContinueComparisons.hbs' );
+const {ItemView} = require( 'backbone.marionette' );
+const debug = require( 'debug' )( 'dpac:assess.views', '[ContinueComparisons]' );
+const tpl = require( './templates/ContinueComparisons.hbs' );
 
-module.exports = Marionette.ItemView.extend( {
+module.exports = ItemView.extend( {
     template: tpl,
     className: "col-md-12 column",
 

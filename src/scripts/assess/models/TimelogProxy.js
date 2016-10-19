@@ -1,9 +1,9 @@
 'use strict';
-var Backbone = require( 'backbone' );
-var moment = require( 'moment' );
-var debug = require( 'debug' )( 'dpac:assess', '[TimelogProxy]' );
-var teardown = require( '../../common/mixins/teardown' );
-module.exports = Backbone.Model.extend( {
+const {Model} = require( 'backbone' );
+const moment = require( 'moment' );
+const debug = require( 'debug' )( 'dpac:assess', '[TimelogProxy]' );
+const teardown = require( '../../common/mixins/teardown' );
+module.exports = Model.extend( {
     idAttribute: "_id",
 
     intervalId: undefined,
@@ -18,7 +18,7 @@ module.exports = Backbone.Model.extend( {
 
     initialize: function(){
         debug( '#initialize', this.id || '<new>' );
-        var now = moment().format();
+        const now = moment().format();
         this.set( 'begin', now );
         this.set( 'end', now );
 
@@ -32,7 +32,7 @@ module.exports = Backbone.Model.extend( {
 
     update: function(){
         debug( "#update", this.id || '<new>' );
-        var now = moment().format();
+        const now = moment().format();
         this.save( {
             end: now
         }, { patch: true } );

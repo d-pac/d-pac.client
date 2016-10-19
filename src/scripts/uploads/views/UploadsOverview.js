@@ -1,10 +1,10 @@
 'use strict';
-const Marionette = require( 'backbone.marionette' );
+const {CompositeView} = require( 'backbone.marionette' );
 const debug = require( 'debug' )( 'dpac:uploads.views', '[UploadsOverview]' );
 const tpl = require( './templates/UploadsOverview.hbs' );
 const ItemView = require( './UploadsOverviewItem' );
 
-module.exports = Marionette.CompositeView.extend( {
+module.exports = CompositeView.extend( {
     template: tpl,
     childView: ItemView,
     childViewContainer: 'tbody',

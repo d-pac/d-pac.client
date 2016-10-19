@@ -1,20 +1,20 @@
 'use strict';
 const {isArray, each} = require( 'lodash' );
-var Backbone = require( 'backbone' );
-var Marionette = require( 'backbone.marionette' );
-var debug = require( 'debug' )( 'dpac:core.views', '[MessagesView]' );
-var tpl = require( './templates/Messages.hbs' );
-var notie = require( 'notie' );
-var $ = require( 'jquery' );
+const {Model} = require( 'backbone' );
+const {ItemView} = require( 'backbone.marionette' );
+const debug = require( 'debug' )( 'dpac:core.views', '[MessagesView]' );
+const tpl = require( './templates/Messages.hbs' );
+const notie = require( 'notie' );
+const $ = require( 'jquery' );
 
-var types = {
+const types = {
     error: "#E53935",
     danger: "#E53935",
     success: "#8BC34A",
     info: "#80deea"
 };
 
-module.exports = Marionette.ItemView.extend( {
+module.exports = ItemView.extend( {
     template: tpl,
     className: "col-md-8 col-md-offset-2 column",
 
@@ -28,7 +28,7 @@ module.exports = Marionette.ItemView.extend( {
     },
     initialize: function( options ){
         debug( "#initialize" );
-        this.model = new Backbone.Model( {
+        this.model = new Model( {
             messages: []
         } );
     },
@@ -41,9 +41,9 @@ module.exports = Marionette.ItemView.extend( {
         if( !isArray( messages ) ){
             messages = [ messages ];
         }
-        var alerts = [];
+        const alerts = [];
         each( messages, function( message ){
-            var timeout = (message.permanent)
+            const timeout = (message.permanent)
                 ? 60 * 30 //30 minutes
                 : 5;
             notie.alert( 0, message.message, timeout );

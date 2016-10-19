@@ -1,9 +1,9 @@
 'use strict';
-var debug = require( 'debug' )( 'dpac:core', '[AuthMediator]' );
-var i18n = require( 'i18next' );
+const debug = require( 'debug' )( 'dpac:core', '[AuthMediator]' );
+const i18n = require( 'i18next' );
 
-var Marionette = require( 'backbone.marionette' );
-module.exports = Marionette.Controller.extend( {
+const {Controller} = require( 'backbone.marionette' );
+module.exports = Controller.extend( {
     contextEvents: {
         'authentication:signout:completed': "signoutHandler",
         'router:route:completed': "routeHandler"
@@ -16,7 +16,7 @@ module.exports = Marionette.Controller.extend( {
 
     setupEventsRelay: function(){
         this.authenticationService.on( 'change:authenticated', function( model ){
-            var state = (model.get( 'authenticated' ))
+            const state = (model.get( 'authenticated' ))
                 ? "authenticated"
                 : "unauthenticated";
             this.dispatch( 'authentication:state:' + state );
@@ -24,7 +24,7 @@ module.exports = Marionette.Controller.extend( {
     },
 
     //loadResources: function(){
-    //    var collection = this.assessmentsCollection;
+    //    const collection = this.assessmentsCollection;
     //    collection.once( "sync", function(){
     //        this.dispatch( "assessments:collection:sync" );
     //    }, this );

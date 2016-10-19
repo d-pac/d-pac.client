@@ -1,11 +1,11 @@
 'use strict';
-var Backbone = require( 'backbone' );
-var debug = require( 'debug' )( 'dpac:assess', '[TimelogsCollection]' );
-var teardown = require( '../../common/mixins/teardown' );
+const {Collection} = require( 'backbone' );
+const debug = require( 'debug' )( 'dpac:assess', '[TimelogsCollection]' );
+const teardown = require( '../../common/mixins/teardown' );
 
-var ModelClass = require( '../models/TimelogProxy' );
+const ModelClass = require( '../models/TimelogProxy' );
 
-module.exports = Backbone.Collection.extend( {
+module.exports = Collection.extend( {
 
     url: "/timelogs",
     model: ModelClass,
@@ -37,7 +37,7 @@ module.exports = Backbone.Collection.extend( {
     },
 
     _stop : function(){
-        var model = this.getSelected();
+        const model = this.getSelected();
         if( model ){
             model.stop();
             this.remove( model );

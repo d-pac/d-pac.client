@@ -1,9 +1,9 @@
 'use strict';
-var debug = require( 'debug' )( 'dpac:core.views', '[AppView]' );
-var tpl = require( './templates/App.hbs' );
-var Marionette = require('backbone.marionette');
-var menuRegion = Marionette.Region.extend({ el: '#app-menu' });
-module.exports = Marionette.LayoutView.extend( {
+const debug = require( 'debug' )( 'dpac:core.views', '[AppView]' );
+const tpl = require( './templates/App.hbs' );
+const {Region, LayoutView} = require('backbone.marionette');
+const menuRegion = Region.extend({ el: '#app-menu' });
+module.exports = LayoutView.extend( {
     template: tpl,
     el: "#app",
 
@@ -42,12 +42,12 @@ module.exports = Marionette.LayoutView.extend( {
     },
 
     showView: function( viewName ){
-        var fName = viewName+ "Factory";
+        const fName = viewName+ "Factory";
         if( !this[ fName ] ){
             //throw new Error( viewName + ' not yet implemented!' );
             return; //not all routes need a view
         }
-        var view = this[ fName ]();
+        const view = this[ fName ]();
         this.contentRegion.show( view );
     },
 

@@ -1,8 +1,8 @@
 'use strict';
 const {extend} = require( 'lodash' );
 
-var debug = require( 'debug' )( 'dpac:uploads.controllers', '[BootstrapModule]' );
-var instruct = require( 'backbone.whenthen' );
+const debug = require( 'debug' )( 'dpac:uploads.controllers', '[BootstrapModule]' );
+const instruct = require( 'backbone.whenthen' );
 
 module.exports = function BootstrapModule(){
     //constructor
@@ -11,8 +11,8 @@ module.exports = function BootstrapModule(){
 extend( module.exports.prototype, {
     execute: function(){
         debug( '#execute' );
-        var context = this.context;
-        var assessmentsFacade = context.getObject( 'assessmentsFacade' );
+        const context = this.context;
+        const assessmentsFacade = context.getObject( 'assessmentsFacade' );
 
         context.wireCommands( {
             'uploads:domain:requested': [
@@ -22,7 +22,7 @@ extend( module.exports.prototype, {
             ]
         } );
 
-        var instructor = instruct( this.context.vent );
+        const instructor = instruct( this.context.vent );
         instructor
             .when( 'uploads:bootstrap:requested' )
             .then( function(){
@@ -30,8 +30,8 @@ extend( module.exports.prototype, {
             } )
             .when( 'assessments:collection:sync' )
             .then( function(){
-                var user = context.getObject( 'accountModel' );
-                var asAssessee = user.getAssessments( 'assessee' );
+                const user = context.getObject( 'accountModel' );
+                const asAssessee = user.getAssessments( 'assessee' );
                 context.wireValue( 'assessmentsCollection', assessmentsFacade.listById( asAssessee ) );
             }, 'uploads:domain:requested' )
             .when( 'representations:collection:sync' )

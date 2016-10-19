@@ -2,9 +2,9 @@
 
 const {extend} = require( 'lodash' );
 
-var debug = require( 'debug' )( 'dpac:results.controllers', '[BootstrapDomain]' );
+const debug = require( 'debug' )( 'dpac:results.controllers', '[BootstrapDomain]' );
 
-var BootstrapDomain = module.exports = function BootstrapDomain( context ){
+const BootstrapDomain = module.exports = function BootstrapDomain( context ){
     // constructor
 };
 
@@ -13,7 +13,7 @@ extend( BootstrapDomain.prototype, {
     execute: function(){
         debug( '#execute' );
 
-        var context = this.context;
+        const context = this.context;
         context.wireSingleton( 'representationsCollection', require( '../../common/models/RepresentationsCollection' ) );
         context.wireSingleton( 'feedbackCollection', require( '../../common/models/FeedbackCollection' ) );
         context.wireSingleton( 'representationsRankingsController', require( './RepresentationsRankingController' ), {
