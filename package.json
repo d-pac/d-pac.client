@@ -26,7 +26,7 @@
     "handlebars-loader": "1.0.2",
     "html-webpack-plugin": "2.20.0",
     "imports-loader": "0.6.3",
-    "jsdom": "9.0.0",
+    "jsdom": "9.4.0",
     "less": "2.6.0",
     "less-loader": "2.2.2",
     "mocha": "2.4.5",
