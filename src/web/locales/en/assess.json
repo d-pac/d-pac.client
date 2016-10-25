@@ -14,8 +14,7 @@
   },
   "assessment_progressbar": {
     "tooltip": "Shows you information on your progress",
-    "label": "You have completed <strong>__completed__</strong> out of <strong>__count__</strong> comparisons in this assessment.",
-    "label_plural": "You have completed <strong>__completed__</strong> out of <strong>__count__</strong> comparisons in this assessment."
+    "label": "Current: <strong>__progress.current__</strong><br/>Maximum comparisons: <strong>__progress.total__</strong>"
   },
   "assessment_selection": {
     "title": "Assessments",
