@@ -1,7 +1,7 @@
 'use strict';
 const {find, defaults} = require( 'lodash' );
 const {Model} = require( 'backbone' );
-const debug = require( 'debug' )( 'dpac:assess.models', '[CurrentSelectionModel]' );
+const debug = require( 'debug' )( 'dpac:assess.models', '[ComparisonFacade]' );
 
 module.exports = Model.extend( {
     comparisonsCollection: undefined,
