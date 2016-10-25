@@ -1,5 +1,5 @@
 'use strict';
-const {isString} = require( 'lodash' );
+const { isString, get } = require( 'lodash' );
 const NestedModel = require( 'backbone-nested-model' );
 const debug = require( 'debug' )( 'dpac:common.models', '[RepresentationProxy]' );
 const teardown = require( '../../common/mixins/teardown' );
@@ -10,9 +10,12 @@ module.exports = NestedModel.extend( {
 
     defaults: {
         name: undefined,
+        anonymized: undefined,
         assessment: undefined,
+        comparisons: [],
         document: {
             _id: undefined,
+            _rid: undefined,
             ext: undefined,
             mimeType: undefined,
             href: undefined,
@@ -61,11 +64,12 @@ module.exports = NestedModel.extend( {
     },
 
     parse: function( raw ){
-        if( raw.data ){
-            return raw.data;
-        }
-
-        return raw;
+        const output = ( raw.data )
+            ? raw.data
+            : raw;
+        const _rid = get( output, [ "document", "_rid" ], false );
+        output.anonymized = "r" + (_rid || output._id);
+        return output;
     },
 
     isOwnedBy: function( idOrObj ){

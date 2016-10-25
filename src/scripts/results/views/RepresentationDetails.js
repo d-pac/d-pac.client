@@ -7,7 +7,7 @@ const tpl = require( './templates/RepresentationDetails.hbs' );
 module.exports = LayoutView.extend( {
     mediaViewFactory: undefined,
     regions: {
-        'mediaplayer': '.representation-detail'
+        'mediaplayer': '.media-viewer'
     },
 
     template: tpl,
