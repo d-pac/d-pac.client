@@ -34,7 +34,7 @@ extend( BootstrapDomain.prototype, {
             assessmentsCollection: "assessmentsCollection",
             comparisonsCollection: "comparisonsCollection",
         } );
-        context.wireSingleton( 'currentSelection', require( '../controllers/ComparisonController' ), {
+        context.wireSingleton( 'currentSelection', require( '../models/ComparisonFacade' ), {
             assessmentsCollection: "assessmentsCollection",
             comparisonsCollection: "comparisonsCollection",
             phasesCollection: "phasesCollection",
