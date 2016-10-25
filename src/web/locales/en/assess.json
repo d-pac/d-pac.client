@@ -14,7 +14,7 @@
   },
   "assessment_progressbar": {
     "tooltip": "Shows you information on your progress",
-    "label": "Current: <strong>__progress.current__</strong><br/>Maximum comparisons: <strong>__progress.total__</strong>"
+    "label": "Current: <span class=\"progress-text progress-current pull-right\">__progress.current__</span><br/>Maximum comparisons: <span class=\"progress-text progress-total pull-right\">__progress.total__</span>"
   },
   "assessment_selection": {
     "title": "Assessments",
