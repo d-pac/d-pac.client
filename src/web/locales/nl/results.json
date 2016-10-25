@@ -26,12 +26,13 @@
   },
   "representations_ranking": {
     "title": "Rangorde van de representaties voor '__name__'",
+    "name": "Naam",
     "rank": "Rangorde",
     "ability": "Waarde",
     "comparisonsNum": "Aantal beoordelingen van deze representatie"
   },
   "representation_details": {
-    "title": "Detailgegevens voor '__name__'"
+    "title": "Detailgegevens voor '__anonymized__'"
   },
   "representation_feedback": {
     "title": "Feedback voor '__description__'",
