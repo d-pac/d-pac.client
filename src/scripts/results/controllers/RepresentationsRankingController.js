@@ -55,6 +55,7 @@ module.exports = Model.extend( {
                     comparisonsNum: model.get( 'comparisonsNum' ),
                     name: model.get( 'name' ),
                     rank: model.get( 'rank' ),
+                    anonymized: model.get('anonymized'),
                     ability: ability,
                     rse: rse,
                     se: se,

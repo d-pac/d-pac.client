@@ -25,12 +25,13 @@
   },
   "representations_ranking": {
     "title": "Ranking of the representations for '__name__'",
+    "name": "Name",
     "rank": "Ranking",
     "ability": "Ability",
     "comparisonsNum": "Number of comparisons featuring this representation"
   },
   "representation_details": {
-    "title": "Details for '__name__'"
+    "title": "Details for '__anonymized__'"
   },
   "representation_feedback": {
     "title": "Feedback for '__name__'",
