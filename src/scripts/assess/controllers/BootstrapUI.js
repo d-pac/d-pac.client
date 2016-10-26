@@ -16,25 +16,21 @@ extend( BootstrapUI.prototype, {
         const context = this.context;
         context.wireView( 'MainView', require( '../views/MainView' ), {
             'assessmentSelectionFactory': 'AssessmentSelectionView',
-            'layoutFactory': 'LayoutView',
-            'unfinishedComparisonsFactory': 'UnfinishedComparisonsView',
+            'layoutFactory': 'ComparisonLayout',
             'continueComparisonsFactory': 'ContinueComparisonsView',
             'comparisonMessagesFactory': 'ComparisonMessagesView'
-        } );
-        context.wireView( 'UnfinishedComparisonsView', require( '../views/UnfinishedComparisons' ), {
-            collection:"comparisonsCollection"
         } );
         context.wireView( 'ComparisonMessagesView', require( '../views/ComparisonMessages' ));
         context.wireView( 'ContinueComparisonsView', require( '../views/ContinueComparisons' ),{
             collection: 'assessmentsCollection'
         });
-        context.wireView( 'AssessmentSelectionView', require( '../views/AssessmentSelectionView' ), {
+        context.wireView( 'AssessmentSelectionView', require( '../views/AssessmentSelection' ), {
             collection: "assessmentsCollection"
         } );
         context.wireView( 'PhasesView', require( '../views/PhasesView' ), {
             model: "currentSelection"
         } );
-        context.wireView( 'LayoutView', require( '../views/LayoutView' ), {
+        context.wireView( 'ComparisonLayout', require( '../views/ComparisonLayout' ), {
             phasesFactory: "PhasesView",
             representationsFactory: "RepresentationsView",
             assessmentDetailsFactory: "AssessmentDetails"

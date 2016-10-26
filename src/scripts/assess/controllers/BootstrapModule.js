@@ -1,5 +1,5 @@
 'use strict';
-const {extend} = require( 'lodash' );
+const { extend } = require( 'lodash' );
 
 const debug = require( 'debug' )( 'dpac:assess.controllers', '[BootstrapModule]' );
 const instruct = require( 'backbone.whenthen' );
@@ -17,7 +17,6 @@ extend( module.exports.prototype, {
             'assess:domain:requested': [
                 require( './BootstrapDomain' ),
                 require( './../../common/controllers/SetupAssessmentI18NSyncing' ),
-                require( './LoadPhases' ),
                 require( './BootstrapUI' )
             ]
         } );
@@ -25,26 +24,29 @@ extend( module.exports.prototype, {
         const instructor = instruct( this.context.vent );
         instructor
             .when( 'assess:bootstrap:requested' )
-            .then( function(){
-                assessmentsFacade.fetch();
-            } )
+            .then( ()=> assessmentsFacade.fetch() )
             .when( 'assessments:collection:sync' )
             .then( function(){
-                const user = context.getObject( 'accountModel' );
-                const asAssessor = user.getAssessments( 'assessor' );
-                context.wireValue( 'assessmentsCollection', assessmentsFacade.listById( asAssessor ) );
-            }, 'assess:domain:requested' )
+                    const user = context.getObject( 'accountModel' );
+                    const asAssessor = user.getAssessments( 'assessor' );
+                    const subCollection = assessmentsFacade.listById( asAssessor );
+                    context.addPubSub(subCollection);
+                    context.wireValue( 'assessmentsCollection', subCollection );
+                },
+                'assess:domain:requested',
+                ()=>context.getObject( 'comparisonsCollection' ).fetch(),
+                ()=>context.getObject( 'phasesCollection' ).fetch()
+            )
             .when( 'phases:collection:sync' )
             .then( function(){
                 context.getObject( 'timelogsController' );
                 context.getObject( 'navigationBlocker' );
-                context.getObject( 'assessFlow' );
             }, 'assess:bootstrap:completed' )
-            .when( 'assess:bootstrap:completed' )
+            .when( 'comparisons:collection:sync', 'assess:ui:rendered' )
             .then( function(){
+                context.getObject( 'comparisonFlow' );
                 instructor.destroy();
             } );
-
 
         //set off bootstrapping
         context.vent.trigger( 'assess:bootstrap:requested' );
