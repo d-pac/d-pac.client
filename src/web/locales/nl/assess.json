@@ -17,7 +17,7 @@
     "label": "Huidig: <span class=\"progress-text progress-current pull-right\">__progress.current__</span><br/>Maximum aantal vergelijkingen: <span class=\"progress-text progress-total pull-right\">__progress.total__</span>"
   },
   "assessment_selection": {
-    "title": "Opdrachten",
+    "title": "Nieuwe opdrachten",
     "description": "Kies een uit te voeren opdracht:",
     "empty": "U hebt geen uit te voeren opdrachten.",
     "completed": "U hebt al uw vergelijkingen uitgevoerd.",
@@ -71,9 +71,9 @@
     }
   },
   "comparison_unfinished": {
-    "title": "Vergelijkingen",
-    "description": "Je hebt een onafgewerkte vergelijking. Deze dient eerst vervolledigd te worden.",
-    "description_plural": "Je hebt __count__ onafgewerkte vergelijkingen. Deze dienen eerst vervolledigd te worden.",
+    "title": "Onafgewerkte vergelijkingen",
+    "empty": "U hebt geen onafgewerkte vergelijkingen.",
+    "description": "Je hebt onafgewerkte vergelijkingen voor de volgende opdrachten:",
     "continue_button": {
       "label": "Vervolg vergelijking"
     }

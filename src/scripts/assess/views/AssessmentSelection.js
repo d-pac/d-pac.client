@@ -23,6 +23,7 @@ module.exports = ItemView.extend( {
             items: this.collection.getAssessables().toJSON(),
             assessmentWasCompleted: false
         };
+        //TODO: this is just horrible
         if(this.options.completedAssessment){
             data.title = this.options.completedAssessment.get('title');
             data.assessmentWasCompleted = true;
@@ -36,8 +37,5 @@ module.exports = ItemView.extend( {
         button.button('sending');
 
         const model = this.collection.selectByID( button.data( 'model-id' ) );
-        this.dispatch( "assessments:selection:completed", {
-            assessment: model
-        } );
     }, 1000, true )
 } );

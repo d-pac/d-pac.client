@@ -30,10 +30,7 @@ extend( BootstrapDomain.prototype, {
 
         context.wireSingleton( 'timelogsCollection', require( '../models/TimelogsCollection' ) );
         context.wireSingleton( 'navigationBlocker', require( './NavigationBlocker' ) );
-        context.wireSingleton( 'assessFlow', require( '../controllers/AssessFlow' ), {
-            assessmentsCollection: "assessmentsCollection",
-            comparisonsCollection: "comparisonsCollection",
-        } );
+        context.wireSingleton( 'comparisonFlow', require( '../controllers/ComparisonFlow' ) );
         context.wireSingleton( 'currentSelection', require( '../models/ComparisonFacade' ), {
             assessmentsCollection: "assessmentsCollection",
             comparisonsCollection: "comparisonsCollection",

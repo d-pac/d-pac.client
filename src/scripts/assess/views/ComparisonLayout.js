@@ -1,7 +1,7 @@
 'use strict';
 
-const debug = require( 'debug' )( 'dpac:assess.views', '[LayoutView]' );
-const tpl = require( './templates/LayoutView.hbs' );
+const debug = require( 'debug' )( 'dpac:assess.views', '[ComparisonLayout]' );
+const tpl = require( './templates/ComparisonLayout.hbs' );
 const {LayoutView} = require( 'backbone.marionette' );
 
 module.exports = LayoutView.extend( {
