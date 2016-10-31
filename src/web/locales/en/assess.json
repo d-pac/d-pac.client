@@ -33,6 +33,9 @@
     },
     "save_button": {
       "label": "Save"
+    },
+    "stop_button":{
+      "label": "Stop"
     }
   },
   "comparison_continue": {
@@ -53,7 +56,8 @@
       "stage-completed": "This stage of the assessment is completed. We will contact you when the next stage begins.",
       "assessor-stage-completed": "This stage of the assessment is completed. We will contact you when the next stage begins.",
       "assessor-assessment-completed": "You have completed all your comparisons.",
-      "assessment-completed": "This assessment is completed."
+      "assessment-completed": "This assessment is completed.",
+      "no-suitable-pair": "Assessment incorrectly configured, please contact <a href='mailto:info@d-pac.be' target='_blank' class='alert-link'>info@d-pac.be</a>.</p><p>Reference: no-suitable-pair</p>"
     },
     "stop_button": {
       "label": "Ok"

@@ -11,6 +11,6 @@
   "document-not-found": "<p>Document not found, please contact <a href='mailto:info@d-pac.be' target='_blank' class='alert-link'>info@d-pac.be</a>.</p><p>Reference: /api/representations/__id__</p>",
   "account-modification-disabled": "<p>Account modification is disabled.</p>",
   "assessment-incorrectly-configured": "Assessment incorrectly configured, please contact <a href='mailto:info@d-pac.be' target='_blank' class='alert-link'>info@d-pac.be</a>.</p><p>Reference: __ref__, __url__</p>",
-  "incorrect-media-type": "Document incorrectly configuref, please contact <a href='mailto:info@d-pac.be' target='_blank' class='alert-link'>info@d-pac.be</a>.</p><p>Referentie: __ref__, __url__</p>",
+  "incorrect-media-type": "Document incorrectly configured, please contact <a href='mailto:info@d-pac.be' target='_blank' class='alert-link'>info@d-pac.be</a>.</p><p>Referentie: __ref__, __url__</p>",
   "incorrect-file-type": "Incorrect file type"
 }
