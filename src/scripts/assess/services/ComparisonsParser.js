@@ -18,6 +18,9 @@ extend( module.exports.prototype, Events, {
             grouped.representations && this.representationsCollection.reset( grouped.representations ); //eslint-disable-line no-unused-expressions
             grouped.notes && this.notesCollection.reset( grouped.notes );//eslint-disable-line no-unused-expressions
             grouped.feedback && this.feedbackCollection.reset( grouped.feedback );//eslint-disable-line no-unused-expressions
+            if(grouped.messages){
+                return this.parseModel(grouped.messages[0]);
+            }
         }
         return raw.data;
     },
@@ -28,7 +31,7 @@ extend( module.exports.prototype, Events, {
      * @returns {*} a model or array of models
      */
     parseModel: function( mixed ){
-        debug( '#parseModel', mixed );
+        debug( '#parseModel', JSON.stringify(mixed) );
         switch( mixed.type ){
             case "messages":
                 return {

@@ -61,6 +61,5 @@ module.exports = Collection.extend( {
 selectable.collection.mixin( module.exports );
 teardown.collection.mixin( module.exports );
 propagateEvents.mixin( module.exports ).propagate( {
-    "sync": "comparisons:collection:sync",
-    "change:selected": "comparisons:selection:changed"
+    "sync": "comparisons:collection:sync"
 } );
