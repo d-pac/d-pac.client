@@ -1,13 +1,18 @@
 'use strict';
 
-const debug = require( 'debug' )( 'dpac:assess.views', '[LayoutView]' );
-const tpl = require( './templates/LayoutView.hbs' );
+const debug = require( 'debug' )( 'dpac:assess.views', '[ComparisonLayout]' );
+const tpl = require( './templates/ComparisonLayout.hbs' );
 const {LayoutView} = require( 'backbone.marionette' );
+const SavingView = require('./SavingView');
 
 module.exports = LayoutView.extend( {
     template: tpl,
 
     className: "col-md-12 column",
+
+    contextEvents: {
+        "comparisons:editing:completed":"flashEmpty"
+    },
 
     regions: {
         details: "#assessment-details",
@@ -21,6 +26,11 @@ module.exports = LayoutView.extend( {
     initialize: function(){
         debug( "#initialize" );
 
+    },
+
+    flashEmpty: function(){
+        this.phases.show(new SavingView());
+        this.representations.reset();
     },
 
     onRender: function(){

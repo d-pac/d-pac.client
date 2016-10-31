@@ -1,7 +1,7 @@
 'use strict';
-const {find, defaults} = require( 'lodash' );
-const {Model} = require( 'backbone' );
-const debug = require( 'debug' )( 'dpac:assess.models', '[CurrentSelectionModel]' );
+const { find, defaults } = require( 'lodash' );
+const { Model } = require( 'backbone' );
+const debug = require( 'debug' )( 'dpac:assess.models', '[ComparisonFacade]' );
 
 module.exports = Model.extend( {
     comparisonsCollection: undefined,
@@ -19,24 +19,24 @@ module.exports = Model.extend( {
     },
 
     initialize: function(){
-        this.comparisonsCollection.on( 'change:selected', function( comparison,
-                                                                    oldComparison ){
+        this.comparisonsCollection.on( 'change:selected', ( comparison,
+                                                            oldComparison )=>{
             if( oldComparison ){
                 oldComparison.off( null, null, this );
             }
             if( comparison ){
                 this.set( 'comparison', comparison );
-                comparison.on( 'sync', this.update, this );
                 this.set( 'assessment', this.assessmentsCollection.selected );
+                comparison.on( 'sync', this.update, this );
                 this.update();
             } else {
                 this.clear();
             }
-        }, this );
+        } );
 
     },
 
-    clear: function(...args){
+    clear: function( ...args ){
         debug( '#clear' );
         return Model.prototype.clear.apply( this, args );
     },
@@ -69,7 +69,7 @@ module.exports = Model.extend( {
         if( selectedRep ){
             let found;
             find( this.get( 'comparison' ).get( 'representations' ), function( representationId,
-                                                                                 order ){
+                                                                               order ){
                 if( representationId === selectedRep.id ){
                     found = order;
                     return true;
@@ -97,7 +97,7 @@ module.exports = Model.extend( {
         const currentPhaseSlug = this.get( 'phase' ).get( 'slug' );
         if( representation ){
             return this.feedbackCollection.getFeedbackByRepresentationId( representation.id, currentPhaseSlug )
-                || this.createFeedback( {phase:currentPhaseSlug}, order );
+                || this.createFeedback( { phase: currentPhaseSlug }, order );
         }
     },
 

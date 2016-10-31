@@ -1,11 +1,13 @@
 'use strict';
 
 const {Collection} = require( 'backbone' );
+const {assign} = require('lodash');
 
 const debug = require( 'debug' )( 'dpac:assess.collections', '[ComparisonsCollection]' );
 const ModelClass = require( '../models/ComparisonProxy' );
 const teardown = require( '../../common/mixins/teardown' );
 const selectable = require( '../../common/mixins/selectable' );
+const propagateEvents = require('../../common/mixins/propagateEvents');
 
 module.exports = Collection.extend( {
 
@@ -36,6 +38,10 @@ module.exports = Collection.extend( {
         return this.findWhere( { completed: false } );
     },
 
+    getActivesFor: function(filter){
+        return this.where(assign({ completed: false },filter));
+    },
+
     getActives: function(){
         const actives = this.filter( function( item ){
             return !item.get( 'completed' );
@@ -54,3 +60,6 @@ module.exports = Collection.extend( {
 } );
 selectable.collection.mixin( module.exports );
 teardown.collection.mixin( module.exports );
+propagateEvents.mixin( module.exports ).propagate( {
+    "sync": "comparisons:collection:sync"
+} );

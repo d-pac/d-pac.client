@@ -15,7 +15,9 @@ module.exports = ItemView.extend( {
         debug( '#onRender' );
         if( !this.permissions.isHidden( 'jwplayer.view' ) ){
             setTimeout( ()=>{
-                const playerInstance = window.jwplayer( "jwplayer-" + this.model.get( '_id' ) );
+                const instId = "jwplayer-" + this.model.get( '_id' ) ;
+                console.log('REQUEST JWPLAYER INSTANCE:', instId)
+                const playerInstance = window.jwplayer( instId );
                 playerInstance.setup( defaults( {}, this.playerOpts, {
                     file: this.model.get( 'document.href' ),
                     title: 'Basic Video Embed',

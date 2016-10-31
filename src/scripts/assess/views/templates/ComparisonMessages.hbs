@@ -9,10 +9,10 @@
                 <p>{{t "assess:comparison_messages.description" title=assessment.title}}</p>
                 <ul>
                     {{#each messages}}
-                        <li>{{this}}</li>
+                        <li>{{{this}}}</li>
                     {{/each}}
                 </ul>
-                <a href="#welcome" class="btn btn-success pull-right"
+                <a href="#assess" class="btn btn-success pull-right"
                    role="button">{{t "assess:comparison_messages.stop_button.label"}}</a>
             </div>
         </div>

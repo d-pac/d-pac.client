@@ -68,10 +68,11 @@ const AssessmentsCollection = Collection.extend( {
 } );
 module.exports = AssessmentsCollection;
 
-propagateEvents.mixin( module.exports ).propagate( {
-    "sync": "assessments:collection:sync"
-} );
 selectable.collection.mixin( module.exports );
+propagateEvents.mixin( module.exports ).propagate( {
+    "sync": "assessments:collection:sync",
+    "change:selected": "assessments:selection:changed"
+} );
 safeSync.collection.mixin( module.exports );
 teardown.collection.mixin( module.exports );
 

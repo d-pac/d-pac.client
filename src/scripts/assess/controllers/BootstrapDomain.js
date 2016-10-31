@@ -29,12 +29,13 @@ extend( BootstrapDomain.prototype, {
         } );
 
         context.wireSingleton( 'timelogsCollection', require( '../models/TimelogsCollection' ) );
-        context.wireSingleton( 'navigationBlocker', require( './NavigationBlocker' ) );
-        context.wireSingleton( 'assessFlow', require( '../controllers/AssessFlow' ), {
-            assessmentsCollection: "assessmentsCollection",
-            comparisonsCollection: "comparisonsCollection",
+        // context.wireSingleton( 'navigationBlocker', require( './NavigationBlocker' ) );
+        context.wireSingleton( 'comparisonFlow', require( '../controllers/ComparisonFlow' ), {
+            comparisonsCollection: 'comparisonsCollection',
+            assessmentsCollection: 'assessmentsCollection',
+            app: 'app'
         } );
-        context.wireSingleton( 'currentSelection', require( '../controllers/ComparisonController' ), {
+        context.wireSingleton( 'currentSelection', require( '../models/ComparisonFacade' ), {
             assessmentsCollection: "assessmentsCollection",
             comparisonsCollection: "comparisonsCollection",
             phasesCollection: "phasesCollection",
