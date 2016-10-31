@@ -37,5 +37,6 @@ module.exports = ItemView.extend( {
         button.button('sending');
 
         const model = this.collection.selectByID( button.data( 'model-id' ) );
+        this.dispatch('assessments:selection:completed', model);
     }, 1000, true )
 } );

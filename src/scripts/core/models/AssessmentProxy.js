@@ -1,5 +1,5 @@
 'use strict';
-const { get, set } = require( 'lodash' );
+const { get, set, isObject, isString } = require( 'lodash' );
 const NestedModel = require( 'backbone-nested-model' );
 const debug = require( 'debug' )( 'dpac:core.models', '[AssessmentProxy]' );
 const teardown = require( '../../common/mixins/teardown' );
@@ -37,6 +37,13 @@ module.exports = NestedModel.extend( {
 
     initialize: function(){
         debug( '#initialize', this.id || '<new>' );
+        this.on('change:progress.completedNum', this.updateCurrentProgressValue, this);
+        this.updateCurrentProgressValue();
+    },
+
+    updateCurrentProgressValue(){
+        debug('#updateCurrentProgressValue');
+        this.set('progress.current', this.get('progress.completedNum')+1)
     },
 
     parse: function( raw ){
@@ -58,9 +65,7 @@ module.exports = NestedModel.extend( {
     },
 
     incCompleted: function(){
-        const progress = this.get( 'progress' );
-        progress.completedNum++;
-        this.set( 'progress', progress );
+        this.set( 'progress.completedNum', this.get( 'progress.completedNum' )+1 );
     },
 
     isCompleted: function(){

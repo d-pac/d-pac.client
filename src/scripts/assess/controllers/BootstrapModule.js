@@ -34,16 +34,13 @@ extend( module.exports.prototype, {
                     context.wireValue( 'assessmentsCollection', subCollection );
                 },
                 'assess:domain:requested',
-                ()=>context.getObject( 'comparisonsCollection' ).fetch(),
                 ()=>context.getObject( 'phasesCollection' ).fetch()
             )
             .when( 'phases:collection:sync' )
             .then( function(){
                 context.getObject( 'timelogsController' );
-                context.getObject( 'navigationBlocker' );
-            }, 'assess:bootstrap:completed' )
-            .when( 'comparisons:collection:sync', 'assess:ui:rendered' )
-            .then( function(){
+                // context.getObject( 'navigationBlocker' );
+            }, 'assess:bootstrap:completed' , function(){
                 context.getObject( 'comparisonFlow' );
                 instructor.destroy();
             } );

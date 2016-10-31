@@ -1,9 +1,9 @@
 'use strict';
 
 const debug = require( 'debug' )( 'dpac:uploads.controllers', '[NavigationBlocker]' );
-const {Controller} = require( 'backbone.marionette' );
-const {history} = require( 'backbone' );
-const {t} = require( 'i18next' );
+const { Controller } = require( 'backbone.marionette' );
+const { history } = require( 'backbone' );
+const { t } = require( 'i18next' );
 
 let selected = 0;
 
@@ -16,22 +16,22 @@ module.exports = Controller.extend( {
         }
     },
 
-    initialize: function(){
-        this.__original_loadUrl = history.loadUrl;
+    initialize(){
+        history.__dpac_uploads__overridden_loadUrl = history.loadUrl.bind( history );
     },
 
     enable: function(){
         debug( '#enable' );
         if( !selected ){
             selected++;
-            history.loadUrl = (...args)=>{
+            history.loadUrl = ( ...args )=>{
                 if( !window.confirm( t( 'uploads:overview.changes-made' ) ) ){ //eslint-disable-line no-alert
                     const previousFragment = history.fragment;
                     window.location.hash = '#' + previousFragment;
                     return false;
                 }
                 this.disable( 0 );
-                return this.__original_loadUrl( ...args );
+                return history.__dpac_uploads__overridden_loadUrl( ...args );
             };
             window.onbeforeunload = this._returnMessage;
         }
@@ -46,7 +46,8 @@ module.exports = Controller.extend( {
         selected = counter;
         if( selected <= 0 ){
             selected = 0;
-            history.loadUrl = this.__original_loadUrl;
+            history.loadUrl = history.__dpac_uploads__overridden_loadUrl;
+            delete history.__dpac_uploads__overridden_loadUrl;
             window.onbeforeunload = undefined;
         }
     }

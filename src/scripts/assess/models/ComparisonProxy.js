@@ -40,7 +40,9 @@ module.exports = Model.extend({
     parse: function (raw) {
         debug("#parse", this, raw);
         if (this.collection) {
-            return this.collection.parser.parseModel(raw);
+            const data = this.collection.parser.parseModel(raw);
+            console.log(data);
+            return data;
         }
 
         //model already removed from collection
