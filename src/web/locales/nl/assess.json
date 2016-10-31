@@ -17,7 +17,7 @@
     "label": "Huidig: <span class=\"progress-text progress-current pull-right\">__progress.current__</span><br/>Maximum aantal vergelijkingen: <span class=\"progress-text progress-total pull-right\">__progress.total__</span>"
   },
   "assessment_selection": {
-    "title": "Nieuwe opdrachten",
+    "title": "Opdrachten",
     "description": "Kies een uit te voeren opdracht:",
     "empty": "U hebt geen uit te voeren opdrachten.",
     "completed": "U hebt al uw vergelijkingen uitgevoerd.",
