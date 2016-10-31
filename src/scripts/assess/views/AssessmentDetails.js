@@ -8,13 +8,11 @@ module.exports = ItemView.extend( {
     className: "well",
 
     ui: {
-        pauseBtn: "#comparison_pause_button",
-        continueBtn: "#pause_comparison button"
+        stopBtn: "#comparison_stop_button"
     },
 
     events: {
-        'click @ui.pauseBtn': 'requestPause',
-        'click @ui.continueBtn': 'requestContinue'
+        'click @ui.stopBtn': 'requestStop'
     },
 
     initialize: function(){
@@ -25,13 +23,8 @@ module.exports = ItemView.extend( {
         return this.model.get("assessment").toJSON();
     },
 
-    requestPause: function(){
-        debug('#requestPause');
-        this.dispatch('assess:pause:requested');
-    },
-
-    requestContinue: function(){
-        debug('#requestContinue');
-        this.dispatch('assess:resume:requested');
+    requestStop: function(){
+        debug('#requestStop');
+        this.dispatch('comparison:stop:requested');
     }
 } );

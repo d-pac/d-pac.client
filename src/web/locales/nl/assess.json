@@ -34,6 +34,9 @@
     "save_button": {
       "label": "Bewaren"
     },
+    "stop_button":{
+      "label": "Stoppen"
+    },
     "sending": "Even geduld..."
   },
   "comparison_continue": {
