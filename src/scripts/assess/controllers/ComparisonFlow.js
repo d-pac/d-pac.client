@@ -11,7 +11,8 @@ module.exports = Controller.extend( {
 
     contextEvents: {
         "assessments:selection:completed": "checkUnfinishedComparisons",
-        "assess:ui:rendered": "fetchComparisons"
+        "assess:ui:rendered": "fetchComparisons",
+        "comparison:stop:requested": "requestAssessmentSelection"
     },
 
     initialize(){
