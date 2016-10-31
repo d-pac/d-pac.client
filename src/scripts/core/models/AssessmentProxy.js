@@ -1,5 +1,5 @@
 'use strict';
-const {get} = require( 'lodash' );
+const { get, set, isObject, isString } = require( 'lodash' );
 const NestedModel = require( 'backbone-nested-model' );
 const debug = require( 'debug' )( 'dpac:core.models', '[AssessmentProxy]' );
 const teardown = require( '../../common/mixins/teardown' );
@@ -22,7 +22,8 @@ module.exports = NestedModel.extend( {
         enableSelectionIcon: true,
         progress: {
             total: undefined,
-            completedNum: undefined //number of comparisons the user has already made for this assessment
+            completedNum: undefined, //number of comparisons the user has already made for this assessment
+            current: undefined
         },
         results: {
             enable: true,
@@ -36,11 +37,20 @@ module.exports = NestedModel.extend( {
 
     initialize: function(){
         debug( '#initialize', this.id || '<new>' );
+        this.on('change:progress.completedNum', this.updateCurrentProgressValue, this);
+        this.updateCurrentProgressValue();
+    },
+
+    updateCurrentProgressValue(){
+        debug('#updateCurrentProgressValue');
+        this.set('progress.current', this.get('progress.completedNum')+1)
     },
 
     parse: function( raw ){
         raw.uiCopy = JSON.parse( raw.uiCopy );
         raw.hasResults = (!!raw.stats && !!raw.stats.lastRun && get( raw, [ 'results', 'enable' ], true ));
+        set( raw, [ "progress", "current" ], get( raw, [ "progress", "completedNum" ], 0 )+1 );
+
         return raw;
     },
 
@@ -55,9 +65,7 @@ module.exports = NestedModel.extend( {
     },
 
     incCompleted: function(){
-        const progress = this.get( 'progress' );
-        progress.completedNum++;
-        this.set( 'progress', progress );
+        this.set( 'progress.completedNum', this.get( 'progress.completedNum' )+1 );
     },
 
     isCompleted: function(){

@@ -14,8 +14,7 @@
   },
   "assessment_progressbar": {
     "tooltip": "Shows you information on your progress",
-    "label": "You have completed <strong>__completed__</strong> out of <strong>__count__</strong> comparisons in this assessment.",
-    "label_plural": "You have completed <strong>__completed__</strong> out of <strong>__count__</strong> comparisons in this assessment."
+    "label": "Current: <span class=\"progress-text progress-current pull-right\">__progress.current__</span><br/>Maximum comparisons: <span class=\"progress-text progress-total pull-right\">__progress.total__</span>"
   },
   "assessment_selection": {
     "title": "Assessments",
@@ -34,6 +33,9 @@
     },
     "save_button": {
       "label": "Save"
+    },
+    "stop_button":{
+      "label": "Stop"
     }
   },
   "comparison_continue": {
@@ -54,7 +56,8 @@
       "stage-completed": "This stage of the assessment is completed. We will contact you when the next stage begins.",
       "assessor-stage-completed": "This stage of the assessment is completed. We will contact you when the next stage begins.",
       "assessor-assessment-completed": "You have completed all your comparisons.",
-      "assessment-completed": "This assessment is completed."
+      "assessment-completed": "This assessment is completed.",
+      "no-suitable-pair": "Assessment incorrectly configured, please contact <a href='mailto:info@d-pac.be' target='_blank' class='alert-link'>info@d-pac.be</a>.</p><p>Reference: no-suitable-pair</p>"
     },
     "stop_button": {
       "label": "Ok"

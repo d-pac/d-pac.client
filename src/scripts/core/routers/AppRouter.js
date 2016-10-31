@@ -12,6 +12,7 @@ module.exports = Router.extend( {
         "signin": "signin",
         "signout": "signout",
         "assess": "assess",
+        "comparison": "comparison",
         "account": "account",
         "results": "results",
         "uploads": "uploads",
@@ -20,15 +21,24 @@ module.exports = Router.extend( {
     },
 
     contextEvents: {
-        "router:route:requested": "navigateToRoute"
+        "router:route:requested": "navigateToRoute",
+        "router:url:requested": "navigateToUrl"
     },
 
     secured: [ "assess", "account", "results", "uploads" ],
+    redirect: {
+        comparison: "assess"
+    },
 
     initialize: function(){
         debug( '#initialize' );
         this.on( 'route', function( route ){
             debug( 'handle route', route );
+            if(Object.keys(this.redirect).indexOf(route)>-1){
+                return this.navigateToRoute({
+                    route: this.redirect[route]
+                });
+            }
             const permissions = this.permissions.toJSON();
             if( this.secured.indexOf( route ) >= 0 && !get( permissions, [ 'allowed', route, 'view' ], false ) ){
                 const dest = "#signin?from=" + route;
@@ -40,6 +50,11 @@ module.exports = Router.extend( {
                 route: route
             } );
         }, this );
+    },
+
+    navigateToUrl(data){
+        debug('#navigateToUrl', data.url);
+        this.navigate(data.url);
     },
 
     navigateToRoute: function( data ){

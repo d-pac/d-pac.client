@@ -11,7 +11,7 @@
                         <button type="button" class="btn btn-primary btn-block assessment-button"
                                 data-model-id="{{_id}}"
                                 data-sending-text="{{t "assess:assessment_selection.submit_button.sending"}}">
-                            {{title}}
+                            {{title}} ({{progress.completedNum}}/{{progress.total}})
                         </button>
                     {{/each}}
                 {{else}}

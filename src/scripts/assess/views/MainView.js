@@ -6,7 +6,6 @@ const {LayoutView} = require('backbone.marionette');
 const {Model} = require('backbone');
 module.exports = LayoutView.extend({
     template: tpl,
-    unfinishedComparisonsFactory: undefined,
     continueComparisonsFactory: undefined,
     assessmentSelectionFactory: undefined,
     layoutFactory: undefined,
@@ -21,7 +20,6 @@ module.exports = LayoutView.extend({
     className: "row",
 
     contextEvents: {
-        "comparisons:unfinished:requested": "showUnfinishedComparison",
         "comparisons:continue:requested": "showContinueComparison",
         'comparisons:editing:requested': 'showLayoutView',
         'assessments:selection:requested': 'showAssessmentsSelection',
@@ -34,10 +32,6 @@ module.exports = LayoutView.extend({
 
     onRender: function () {
         this.dispatch('assess:ui:rendered');
-    },
-
-    showUnfinishedComparison: function () {
-        this.contentRegion.show(this.unfinishedComparisonsFactory());
     },
 
     showContinueComparison: function () {

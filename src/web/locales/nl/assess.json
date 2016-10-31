@@ -14,8 +14,7 @@
   },
   "assessment_progressbar": {
     "tooltip": "Toont je informatie over je vooruitgang.",
-    "label": "Je hebt <strong>__completed__</strong> van <strong>__count__</strong> vergelijkingen in deze opdracht uitgevoerd.",
-    "label_plural": "Je hebt <strong>__completed__</strong> van <strong>__count__</strong> vergelijkingen in deze opdracht uitgevoerd."
+    "label": "Huidig: <span class=\"progress-text progress-current pull-right\">__progress.current__</span><br/>Maximum aantal vergelijkingen: <span class=\"progress-text progress-total pull-right\">__progress.total__</span>"
   },
   "assessment_selection": {
     "title": "Opdrachten",
@@ -34,6 +33,9 @@
     },
     "save_button": {
       "label": "Bewaren"
+    },
+    "stop_button":{
+      "label": "Stoppen"
     },
     "sending": "Even geduld..."
   },
@@ -55,7 +57,8 @@
       "stage-completed": "Deze fase van de opdracht is afgelopen, u zal gecontacteerd worden wanneer de volgende fase begint.",
       "assessor-stage-completed": "Deze fase van de opdracht is afgelopen, u zal gecontacteerd worden wanneer de volgende fase begint.",
       "assessor-assessment-completed": "U hebt al uw vergelijkingen uitgevoerd.",
-      "assessment-completed": "Deze opdracht is afgelopen."
+      "assessment-completed": "Deze opdracht is afgelopen.",
+      "no-suitable-pair": "De opdracht is incorrect geconfigureerd, gelieve contact op te nemen met <a href='mailto:info@d-pac.be' target='_blank' class='alert-link'>info@d-pac.be</a>.</p><p>Referentie: 'no-suitable-pair'</p>"
     },
     "stop_button": {
       "label": "Ok"
@@ -72,9 +75,9 @@
     }
   },
   "comparison_unfinished": {
-    "title": "Vergelijkingen",
-    "description": "Je hebt een onafgewerkte vergelijking. Deze dient eerst vervolledigd te worden.",
-    "description_plural": "Je hebt __count__ onafgewerkte vergelijkingen. Deze dienen eerst vervolledigd te worden.",
+    "title": "Onafgewerkte vergelijkingen",
+    "empty": "U hebt geen onafgewerkte vergelijkingen.",
+    "description": "Je hebt onafgewerkte vergelijkingen voor de volgende opdrachten:",
     "continue_button": {
       "label": "Vervolg vergelijking"
     }
