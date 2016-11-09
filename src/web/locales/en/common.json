@@ -52,6 +52,11 @@
       "description": "Feedback",
       "href": "mailto:d-pac@uantwerpen.be"
     },
+    "uploads": {
+      "label": "Uploads",
+      "description": "Uploads",
+      "href": "#uploads"
+    },
     "toggle": {
       "label": "Navigation"
     },
