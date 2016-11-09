@@ -10,7 +10,7 @@
     "contact_pam": "Contacteer beheerder"
   },
   "assessment_overview": {
-    "title": "Overzichtgegevens voor '__name__'",
+    "title": "Overzichtgegevens voor '__title__'",
     "totals": {
       "reliability": "Betrouwbaarheid",
       "assessorsNum": "Aantal beoordelaars",
@@ -25,7 +25,7 @@
     }
   },
   "representations_ranking": {
-    "title": "Rangorde van de representaties voor '__name__'",
+    "title": "Rangorde van de representaties voor '__title__'",
     "name": "Naam",
     "rank": "Rangorde",
     "ability": "Waarde",

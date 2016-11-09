@@ -9,7 +9,7 @@
     "contact_pam": "Contact administator"
   },
   "assessment_overview": {
-    "title": "Overview for '__name__'",
+    "title": "Overview for '__title__'",
     "totals": {
       "reliability": "Reliability",
       "assessorsNum": "Number of assessors",
@@ -24,7 +24,7 @@
     }
   },
   "representations_ranking": {
-    "title": "Ranking of the representations for '__name__'",
+    "title": "Ranking of the representations for '__title__'",
     "name": "Name",
     "rank": "Ranking",
     "ability": "Ability",
