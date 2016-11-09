@@ -6,7 +6,7 @@
                 <select id="assessment-selection" class="form-control">
                     <option value="" selected disabled>{{t "results:assessment_selection.select_tooltip"}}</option>
                     {{#each list}}
-                        <option data-model-id="{{_id}}" {{#unless this.hasResults}}disabled{{/unless}}>{{this.name}}{{#unless this.hasResults}}{{t "results:assessment_selection.no_results"}}{{/unless}}</option>
+                        <option data-model-id="{{_id}}" {{#unless this.hasResults}}disabled{{/unless}}>{{this.title}}{{#unless this.hasResults}}{{t "results:assessment_selection.no_results"}}{{/unless}}</option>
                     {{/each}}
                 </select>
             </div>
