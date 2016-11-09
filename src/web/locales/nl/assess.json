@@ -180,5 +180,8 @@
     "save_button": {
       "label": "Opslaan"
     }
+  },
+  "uploads": {
+    "description": "Laad hier je bestand op"
   }
 }

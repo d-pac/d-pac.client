@@ -179,5 +179,8 @@
     "save_button": {
       "label": "Save"
     }
+  },
+  "uploads": {
+    "description": "Upload your file"
   }
 }

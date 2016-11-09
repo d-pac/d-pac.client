@@ -33,8 +33,12 @@ module.exports = Model.extend( {
 
     uploadingEnabled: function(){
         const assessment = this.get('assessment');
+        if(!assessment.get('enableUploads')){
+            return false;
+        }
         const state = assessment.get('state');
-        return ( state === 'draft') || (state === 'published' && ! this.get( 'representation' ));
+        return ( state === 'draft')
+            || (state === 'published' && ! this.get( 'representation' ));
     },
 
     toJSON(){
