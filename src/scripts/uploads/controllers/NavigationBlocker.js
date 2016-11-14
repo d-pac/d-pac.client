@@ -12,29 +12,29 @@ module.exports = Controller.extend( {
     contextEvents: {
         'uploads:file:selected': "enable",
         'uploads:file:deselected': function(){
-            this.disable( selected - 1 );
+            if(selected){
+                this.disable( selected - 1 );
+            }
         }
     },
 
-    initialize(){
-        history.__dpac_uploads__overridden_loadUrl = history.loadUrl.bind( history );
-    },
-
     enable: function(){
-        debug( '#enable' );
+        debug( '#enable', selected );
         if( !selected ){
-            selected++;
-            history.loadUrl = ( ...args )=>{
+            const view = this;
+            history.__dpac_uploads__overridden_loadUrl = history.loadUrl.bind( history );
+            history.loadUrl = function( ...args ){
                 if( !window.confirm( t( 'uploads:overview.changes-made' ) ) ){ //eslint-disable-line no-alert
                     const previousFragment = history.fragment;
                     window.location.hash = '#' + previousFragment;
                     return false;
                 }
-                this.disable( 0 );
+                view.disable( 0 );
                 return history.__dpac_uploads__overridden_loadUrl( ...args );
-            };
+            }.bind(history);
             window.onbeforeunload = this._returnMessage;
         }
+        selected++;
     },
 
     _returnMessage: function(){
@@ -42,12 +42,12 @@ module.exports = Controller.extend( {
     },
 
     disable: function( counter ){
-        debug( '#disable' );
+        debug( '#disable', counter );
         selected = counter;
-        if( selected <= 0 ){
+        if( selected <= 0 && !!history.__dpac_uploads__overridden_loadUrl ){
             selected = 0;
             history.loadUrl = history.__dpac_uploads__overridden_loadUrl;
-            delete history.__dpac_uploads__overridden_loadUrl;
+            history.__dpac_uploads__overridden_loadUrl = undefined;
             window.onbeforeunload = undefined;
         }
     }
