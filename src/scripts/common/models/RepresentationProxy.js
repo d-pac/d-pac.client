@@ -67,8 +67,7 @@ module.exports = NestedModel.extend( {
         const output = ( raw.data )
             ? raw.data
             : raw;
-        const _rid = get( output, [ "document", "_rid" ], false );
-        output.anonymized = "r" + (_rid || output._id);
+        output.anonymized = get( output, [ "document", "title" ], output._id );
         return output;
     },
 

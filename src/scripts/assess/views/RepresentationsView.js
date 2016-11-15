@@ -39,6 +39,13 @@ module.exports = LayoutView.extend( {
     //    return data;
     //},
 
+    serializeData: function(raw){
+        return {
+            a: this.model.getRepresentationByOrder( "a" ).toJSON(),
+            b: this.model.getRepresentationByOrder( "b" ).toJSON()
+        }
+    },
+
     onRender: function(){
         debug( '#onRender', this.model );
         this.representationA.show( this.createRepresentationDetail( {
