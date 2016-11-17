@@ -35,7 +35,7 @@
     "title": "Details for '__anonymized__'"
   },
   "representation_feedback": {
-    "title": "Feedback for '__name__'",
+    "title": "Feedback for '__description__'",
     "anonymized": "assessor-__num__",
     "assessor": "Assessor",
     "positive": "Positive",
