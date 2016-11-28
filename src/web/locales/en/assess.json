@@ -34,9 +34,11 @@
     "save_button": {
       "label": "Save"
     },
-    "stop_button":{
+    "stop_button": {
       "label": "Stop"
-    }
+    },
+    "sending": "Patience please...",
+    "saving": "Depending on the amount of data it may take up to 20 seconds before the next pair is selected.</br>Our sincere apologies for the inconvenience."
   },
   "comparison_continue": {
     "title": "Comparisons",
