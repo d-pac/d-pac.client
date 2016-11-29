@@ -23,7 +23,7 @@
     "eslint-config-prototypers": "0.2.0",
     "exports-loader": "0.6.3",
     "file-loader": "0.8.5",
-    "handlebars-loader": "1.0.2",
+    "handlebars-loader": "1.4.0",
     "html-webpack-plugin": "2.20.0",
     "imports-loader": "0.6.3",
     "jsdom": "9.0.0",
