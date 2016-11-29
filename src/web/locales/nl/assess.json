@@ -58,7 +58,7 @@
       "assessor-stage-completed": "Deze fase van de opdracht is afgelopen, u zal gecontacteerd worden wanneer de volgende fase begint.",
       "assessor-assessment-completed": "U hebt al uw vergelijkingen uitgevoerd.",
       "assessment-completed": "Deze opdracht is afgelopen.",
-      "no-suitable-pair": "De opdracht is incorrect geconfigureerd, gelieve contact op te nemen met <a href='mailto:info@d-pac.be' target='_blank' class='alert-link'>info@d-pac.be</a>.</p><p>Referentie: 'no-suitable-pair'</p>"
+      "no-suitable-pair": "U hebt al de benodigde vergelijkingen uitgevoerd.</p>"
     },
     "stop_button": {
       "label": "Ok"
