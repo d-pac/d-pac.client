@@ -6,7 +6,7 @@
         <div class="form-group label-floating">
             <div class="input-group">
                 <input type="text" class="form-control file-label text-right" style="padding-right: 10px"
-                       placeholder="{{#if representation.document.title}}{{representation.document.title}}{{else}}{{assessment.uiCopy.uploads.description}}{{/if}}"
+                       placeholder="{{#if representation.document.title}}{{t "uploads:overview.rename-warning" name=representation.document.title}}{{else}}{{assessment.uiCopy.uploads.description}}{{/if}}"
                        disabled="disabled"
                        value="">
                 <span class="input-group-btn">
