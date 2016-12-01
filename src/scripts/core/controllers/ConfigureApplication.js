@@ -10,12 +10,7 @@ module.exports = function ConfigureApplication(){
 extend( module.exports.prototype, {
     execute: function(){
         debug( '#execute' );
-        let appVersionLabel = (process.env.APP_VERSION)
-            ? 'v' + process.env.APP_VERSION
-            : '[BROKEN]';
-        if( process.env.APP_VERSION_LABEL && process.env.APP_VERSION_LABEL !== appVersionLabel ){
-            appVersionLabel += '-' + process.env.APP_VERSION_LABEL;
-        }
+        let appVersionLabel = process.env.APP_VERSION_LABEL || process.env.APP_VERSION;
 
         const config = {
             "api": {
