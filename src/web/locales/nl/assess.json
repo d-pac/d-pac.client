@@ -9,7 +9,7 @@
   },
   "assessment_completed": {
     "title": "Opdracht beëindigd",
-    "description": "Bedankt om alle vergelijkingen te hebben uitgevoerd voor de opdracht '__title__'!",
+    "description": "Bedankt voor het uitvoeren van alle vergelijkingen voor de opdracht '__title__'!",
     "type": "success"
   },
   "assessment_progressbar": {
