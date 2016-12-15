@@ -16,6 +16,7 @@ const mediaByMime = {
     "image/png": consts.image,
     "image/jpeg": consts.image,
     "image/svg+xml": consts.image,
+    "image/gif": consts.image,
     "application/pdf": consts.pdf,
     "audio/mp4": consts.audio,
     "audio/mp3": consts.audio,
