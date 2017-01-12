@@ -37,7 +37,9 @@ module.exports = Model.extend( {
         const ownedRepresentations = [];
         const collection = this.representations
             .sortBy( function( model ){
-                return model.get( 'ability.value' );
+                let a = model.get( 'ability.value' );
+                if(!a) a=0;
+                return a;
             } )
             .map( ( model )=>{
                 const ability = Number( model.get( 'ability.value' ) );
