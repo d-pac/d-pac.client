@@ -10,12 +10,12 @@ const $ = require( 'jquery' );
 
 const debug = require( 'debug' )( 'dpac:results.views', '[RepresentationsRanking]' );
 const tpl = require( './templates/RepresentationsRanking.hbs' );
-const tipTpl = require( './templates/RepresentationTip.hbs' );
+// const tipTpl = require( './templates/RepresentationTip.hbs' );
 
-const tip = d3Tip()
-    .attr( 'class', 'd3-tip' )
-    .offset( [ -10, 0 ] )
-    .html( tipTpl );
+// const tip = d3Tip()
+//     .attr( 'class', 'd3-tip' )
+//     .offset( [ -10, 0 ] )
+//     .html( tipTpl );
 
 module.exports = ItemView.extend( {
     template: tpl,
@@ -50,9 +50,9 @@ module.exports = ItemView.extend( {
                 ratio: 2
             }
         } ).values;
-        values.call( tip );
-        values.on( 'mouseover.ranking', tip.show );
-        values.on( 'mouseout.ranking', tip.hide );
+        // values.call( tip );
+        // values.on( 'mouseover.ranking', tip.show );
+        // values.on( 'mouseout.ranking', tip.hide );
 
         graph.dispatch.on( 'select.ranking', ( d )=>{
             this.model.selectRepresentation( d.id );

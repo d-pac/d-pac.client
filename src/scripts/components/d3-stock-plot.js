@@ -31,7 +31,7 @@ var DEFAULTS = {
 function Renderer(){
 }
 
-Renderer.prototype.select = function select(id){
+Renderer.prototype.select = function select( id ){
     const node = d3.select( '#value-' + id );
     const datum = node.datum();
     datum._selected = true;
@@ -42,7 +42,7 @@ Renderer.prototype.select = function select(id){
 
 Renderer.prototype.render = function render( opts ){
     console.log( 'GRAPH RENDER' );
-    this.dispatch = d3.dispatch("select");
+    this.dispatch = d3.dispatch( "select" );
     opts = _.defaultsDeep( opts, DEFAULTS );
     if( !opts.el ){
         throw new Error( '"el" required.' );
@@ -54,7 +54,7 @@ Renderer.prototype.render = function render( opts ){
     opts.debug && console.log( 'd3-stock-plot', opts );
 
     var el = d3.select( opts.el );
-    var graphWidth = opts.graph.width || parseInt( el.style( 'width' ) ) -20;
+    var graphWidth = opts.graph.width || parseInt( el.style( 'width' ) ) - 20;
     var graphHeight = opts.graph.height || opts.graph.ratio * graphWidth;
 
     var contentWidth = graphWidth - opts.margin.left - opts.margin.right;
@@ -69,6 +69,11 @@ Renderer.prototype.render = function render( opts ){
     }
 
     var yScale = d3.scale.linear().range( [ contentHeight, 0 ] );
+
+    function returnY( d ){
+        return yScale( d.y );
+    }
+
     var color = d3.scale.category10();
 
     function returnColor( d ){
@@ -133,25 +138,25 @@ Renderer.prototype.render = function render( opts ){
     var defaultClasses = [ 'stock-value' ];
 
     var values = content.selectAll( "values" )
-        .data( opts.data ).enter()
-        .append( "g" )
-        .attr( 'class', function( d ){
-            var classes = defaultClasses;
-            if( d.classes ){
-                classes = classes.concat( d.classes );
-            }
-            return classes.join( ' ' );
-        } )
-        .attr( 'id', function( d ){
-            return "value-" + d.id;
-        } )
-    ;
+            .data( opts.data ).enter()
+            .append( "g" )
+            .attr( 'class', function( d ){
+                var classes = defaultClasses;
+                if( d.classes ){
+                    classes = classes.concat( d.classes );
+                }
+                return classes.join( ' ' );
+            } )
+            .attr( 'id', function( d ){
+                return "value-" + d.id;
+            } )
+        ;
 
     values
-        .filter( ( d )=>d.selectable )
-        .on( 'click.stockplot', ( d )=>{
+        .filter( ( d ) => d.selectable )
+        .on( 'click.stockplot', ( d ) =>{
             var selection;
-            if(this._selected !=d){
+            if( this._selected != d ){
                 if( this._selected ){
                     selection = d3.select( '#value-' + this._selected.id + " .point" );
                     this._selected._selected = false;
@@ -163,12 +168,11 @@ Renderer.prototype.render = function render( opts ){
                 this._selected = d;
                 selection = d3.select( '#value-' + d.id + " .point" );
                 selection.classed( 'selected', true );
-                this.dispatch.select(d, {triggeredByUser: true});
+                this.dispatch.select( d, { triggeredByUser: true } );
             }
         } )
         .on( 'mouseover.stockplot', grow )
         .on( 'mouseout.stockplot', shrink );
-    
 
     //lines
     values
@@ -176,8 +180,8 @@ Renderer.prototype.render = function render( opts ){
         .attr( 'class', 'range' )
         .attr( "x1", returnX )
         .attr( "x2", returnX )
-        .attr( "y1", ( d )=>yScale( d.y - d.se ) )
-        .attr( "y2", ( d )=>yScale( d.y + d.se ) )
+        .attr( "y1", ( d ) => yScale( d.y - d.se ) )
+        .attr( "y2", ( d ) => yScale( d.y + d.se ) )
         .style( "stroke-width", 1 )
         .style( "stroke", returnColor )
         .style( "fill", "none" )
@@ -185,12 +189,12 @@ Renderer.prototype.render = function render( opts ){
 
     //emphasis
     values
-        .filter( ( d )=>d.emphasis )
+        .filter( ( d ) => d.emphasis )
         .append( "circle" )
         .attr( "class", "emphasis" )
         .attr( "r", radius * 2 )
         .attr( "cx", returnX )
-        .attr( "cy", ( d )=>yScale( d.y ) )
+        .attr( "cy", ( d ) => yScale( d.y ) )
         .style( "fill", "#000000" );
 
     //circles
@@ -199,7 +203,7 @@ Renderer.prototype.render = function render( opts ){
         .attr( "class", "point" )
         .attr( "r", radius )
         .attr( "cx", returnX )
-        .attr( "cy", ( d )=>yScale( d.y ) )
+        .attr( "cy", ( d ) => yScale( d.y ) )
         .style( "fill", returnColor )
     ;
 
@@ -223,6 +227,24 @@ Renderer.prototype.render = function render( opts ){
                     + ')' )
             ;
         } );
+
+    //text boxes
+    // var textBoxes = content.selectAll( "text" )
+    //     .data( opts.data ).enter()
+    //     .append( "text" );
+    // console.log(textBoxes, values);
+    // textBoxes.attr( "x", function( d ){
+    //     return xScale( d.x ) - 20;
+    // } )
+    //     .attr( "y", function( d ){
+    //         return yScale( d.y ) - 20;
+    //     } )
+    //     .text( function( d ){
+    //         return d.anonymized;
+    //     } )
+    //     .attr( "font-family", "sans-serif" )
+    //     .attr( "font-size", "12px" )
+    //     .attr( "fill", "red" );
 
     return {
         svg: content,

@@ -20,7 +20,8 @@ extend( module.exports.prototype, {
                 require( './SetupRemoteRequests' ),
                 require( './SetupHBSHelpers' ),
                 require( './SetupI18N' ),
-                require( './SetupUserAccountSyncing' )
+                require( './SetupUserAccountSyncing' ),
+                require('./SetupJQuery')
             ],
             'app:ui:requested': [
                 require( './BootstrapUI' ),
