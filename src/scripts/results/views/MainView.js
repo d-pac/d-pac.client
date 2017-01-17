@@ -1,9 +1,10 @@
 'use strict';
 
-const {delay} = require( 'lodash' );
+const { delay } = require( 'lodash' );
 const debug = require( 'debug' )( 'dpac:results.views', '[LayoutView]' );
 const tpl = require( './templates/MainView.hbs' );
-const {LayoutView} = require( 'backbone.marionette' );
+const { LayoutView } = require( 'backbone.marionette' );
+const $ = require( 'jquery' );
 
 module.exports = LayoutView.extend( {
     authorization: undefined,
@@ -11,6 +12,14 @@ module.exports = LayoutView.extend( {
 
     tagName: "div",
     className: "row",
+
+    ui:{
+        scrolldown: "#scrolldown"
+    },
+
+    events:{
+        "click @ui.scrolldown": "scrollToBottom"
+    },
 
     regions: {
         selection: "#results-assessment-selection",
@@ -46,6 +55,16 @@ module.exports = LayoutView.extend( {
     onRender: function(){
         this.selection.show( this.createAssessmentSelection() );
         this.dispatch( 'results:ui:rendered' );
+        const bodyElem = document.body;
+        const $doc = $(document);
+        setInterval( () =>{
+            //bodyElem.scrollHeight - (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0) > window.innerHeight
+            if(bodyElem.scrollHeight - $doc.scrollTop() > window.innerHeight){
+                this.ui.scrolldown.fadeIn();
+            }else{
+                this.ui.scrolldown.fadeOut();
+            }
+        }, 500 )
     },
 
     onDestroy: function(){
@@ -53,18 +72,18 @@ module.exports = LayoutView.extend( {
     },
 
     renderOverview: function( assessment ){
-        delay( ()=>this.overview.show( this.createAssessmentOverview() ), 250 );
+        delay( () => this.overview.show( this.createAssessmentOverview() ), 250 );
     },
 
     renderRanking: function( assessment ){
         if( this.authorization.isAllowedToViewRanking( assessment ) ){
-            delay( ()=>this.ranking.show( this.createRanking() ), 250 );
+            delay( () => this.ranking.show( this.createRanking() ), 250 );
         }
     },
 
     renderDetails: function(){
         this.details.$el.addClass( 'invisible-not-empty' );
-        delay( ()=>{
+        delay( () =>{
             this.details.$el.removeClass( 'invisible-not-empty' );
             this.details.show( this.createDetails() );
         }, 250 );
@@ -72,14 +91,14 @@ module.exports = LayoutView.extend( {
 
     renderFeedback: function( e ){
         this.feedback.$el.addClass( 'invisible-not-empty' );
-        // const anchor = this.feedback.$el.offset().top - 100;
-        delay( ()=>{
+        delay( () =>{
             this.feedback.$el.removeClass( 'invisible-not-empty' );
             this.feedback.show( this.createFeedback() );
-            // if( e.triggeredByUser ){
-            //     $( "html, body" ).animate( { scrollTop: anchor + "px" }, "slow" );
-            // }
         }, 500 );
+    },
+
+    scrollToBottom: function(  ){
+        $("html, body").animate({ scrollTop: $(document).height() }, 1000);
     }
 
 } );
