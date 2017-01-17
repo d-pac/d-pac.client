@@ -2,6 +2,7 @@
 @import "~bootstrap-material-design/less/material.less";
 @import "~seiyria-bootstrap-slider/less/bootstrap-slider.less";
 @import "~lity/src/lity.less";
+@import "font-awesome/font-awesome.less";
 
 @primary: @light-blue;
 @info: @blue-50;
@@ -358,10 +359,10 @@ blockquote {
     border-radius: 4px;
 }
 
-.radio input[type=radio]{
-    opacity:1;
+.radio input[type=radio] {
+    opacity: 1;
     height: auto;
-    width:auto;
+    width: auto;
 
 }
 
@@ -369,6 +370,7 @@ blockquote {
     position: relative;
     overflow: hidden;
 }
+
 .btn-file input[type=file] {
     position: absolute;
     top: 0;
@@ -385,24 +387,31 @@ blockquote {
     display: block;
 }
 
-
-.btn{
-    border-radius: 0px!important;
+.btn {
+    border-radius: 0px !important;
 }
 
-.btn-default{
-    color: @primary!important;
+.btn-default {
+    color: @primary !important;
 }
 
-.assessment-progressbar{
+.assessment-progressbar {
     font-size: larger;
 
-    .progress-text{
+    .progress-text {
         color: @primary;
         font-weight: bold;
     }
 }
 
-.representation-title{
+.representation-title {
     font-size: small;
+}
+
+#scrolldown {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    z-index: 9999;
+    display: none;
 }
