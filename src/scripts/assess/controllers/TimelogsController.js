@@ -11,7 +11,7 @@ module.exports = Controller.extend( {
     contextEvents: {
         'comparisons:editing:requested': 'verifyTimelogState',
         'comparisons:editing:completed': 'stopLogging',
-        'assess:pause:requested': 'stopLogging',
+        'comparison:stop:requested': 'stopLogging',
         'assess:resume:requested': 'verifyTimelogState'
     },
 
