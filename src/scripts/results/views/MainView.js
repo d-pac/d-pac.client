@@ -57,7 +57,7 @@ module.exports = LayoutView.extend( {
         this.dispatch( 'results:ui:rendered' );
         const bodyElem = document.body;
         const $doc = $(document);
-        setInterval( () =>{
+        this.scrolldownInterval = setInterval( () =>{
             //bodyElem.scrollHeight - (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0) > window.innerHeight
             if(bodyElem.scrollHeight - $doc.scrollTop() > window.innerHeight){
                 this.ui.scrolldown.fadeIn();
@@ -69,6 +69,7 @@ module.exports = LayoutView.extend( {
 
     onDestroy: function(){
         this.dispatch( 'results:ui:destroyed' );
+        clearInterval(this.scrolldownInterval);
     },
 
     renderOverview: function( assessment ){
