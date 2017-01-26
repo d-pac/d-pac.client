@@ -89,7 +89,9 @@ extend(SetupRemoteRequests.prototype, {
                     };
                 }
                 console.log("REMOTE REQUEST ERROR", errObj);
-                dispatch("backbone:sync:error", errObj);
+                if(!options.disableErrorPropagation){
+                    dispatch("backbone:sync:error", errObj);
+                }
                 errorCallback(...args);
             };
 

@@ -18,7 +18,7 @@ extend( module.exports.prototype, {
                 "root": process.env.API_HOST + "api"
             },
             "timelogs": {
-                "interval": 5000,
+                "interval": 10000,
                 "shortcut": "ctrl+alt+s"
             },
             "errorlogs": {
