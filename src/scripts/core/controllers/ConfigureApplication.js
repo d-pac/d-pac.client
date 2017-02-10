@@ -14,8 +14,8 @@ extend( module.exports.prototype, {
 
         const config = {
             "api": {
-                "host": process.env.API_HOST,
-                "root": process.env.API_HOST + "api"
+                "host": process.env.API_URL,
+                "root": process.env.API_URL + "/api"
             },
             "timelogs": {
                 "interval": 10000,

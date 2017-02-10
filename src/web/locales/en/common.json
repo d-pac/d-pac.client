@@ -62,7 +62,7 @@
     },
     "forgotpassword": {
       "label": "Password forgotten?",
-      "href": "<%=api.host%>auth/resetpassword"
+      "href": "<%=api.host%>/auth/resetpassword"
     }
   },
   "warning": {
