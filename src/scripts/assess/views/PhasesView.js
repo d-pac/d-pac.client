@@ -76,18 +76,30 @@ module.exports = LayoutView.extend( {
                 selected: (this.seqValue === value)
             } );
         }, this );
+        const representations  = {
+            a: this.model.getRepresentationByOrder('a').toJSON(),
+            b: this.model.getRepresentationByOrder('b').toJSON()
+        };
+        const feedback = {
+            a: {
+                enabled: representations.a.rankType === "to rank",
+                value: this.model.getFeedbackByOrder( 'a' ).toJSON()
+            },
+            b: {
+                enabled: representations.b.rankType === "to rank",
+                value: this.model.getFeedbackByOrder( 'b' ).toJSON()
+            },
+
+        };
         const data = {
-            representations: this.model.get( "comparison" ).get( "representations" ),
+            representations: representations,
             title: i18n.t( "assess:phase_" + slug + ".title" ),
             description: i18n.t( "assess:phase_" + slug + ".description" ),
             seq: {
                 values: values,
                 selected: this.seqValue
             },
-            feedback: {
-                a: this.model.getFeedbackByOrder( 'a' ).toJSON(),
-                b: this.model.getFeedbackByOrder( 'b' ).toJSON()
-            },
+            feedback: feedback,
             passfail: {
                 options: i18n.t( "assess:phase_passfail.options", { returnObjectTrees: true } )
             }

@@ -115,7 +115,8 @@
     "a_title": "Tekst A",
     "b_title": "Tekst B",
     "positive": "Positief",
-    "negative": "Negatief"
+    "negative": "Negatief",
+    "disabled": "U hoeft geen feedback te geven hiervoor"
   },
   "phase_pros-cons-other": {
     "title": "Vergelijk",
@@ -123,7 +124,8 @@
     "a_title": "Tekst A",
     "b_title": "Tekst B",
     "positive": "Positief",
-    "negative": "Negatief"
+    "negative": "Negatief",
+    "disabled": "U hoeft geen feedback te geven hiervoor"
   },
   "phase_selection": {
     "title": "Beoordeel",

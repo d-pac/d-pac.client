@@ -115,7 +115,8 @@
     "a_title": "Representation A",
     "b_title": "Representation B",
     "positive": "Liked",
-    "negative": "Disliked"
+    "negative": "Disliked",
+    "disabled": "You don't need to provide feedback for this"
   },
   "phase_pros-cons-other": {
     "title": "Compare",
@@ -123,7 +124,8 @@
     "a_title": "Representation A",
     "b_title": "Representation B",
     "positive": "Liked",
-    "negative": "Disliked"
+    "negative": "Disliked",
+    "disabled": "You don't need to provide feedback for this"
   },
   "phase_selection": {
     "title": "Select",

@@ -11,18 +11,26 @@
                         <h5>{{t "assess:phase_pros-cons-other.a_title"}}</h5>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-12 column">
+                {{#if feedback.a.enabled}}
+                    <div class="row">
+                        <div class="col-sm-12 column">
                         <textarea id="a-positive" class="form-control" rows="5"
                                   placeholder="{{t "assess:phase_pros-cons-other.positive"}}">{{feedback.a.positive}}</textarea>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 column">
+                    <div class="row">
+                        <div class="col-sm-12 column">
                         <textarea id="a-negative" class="form-control" rows="5"
                                   placeholder="{{t "assess:phase_pros-cons-other.negative"}}">{{feedback.a.negative}}</textarea>
+                        </div>
                     </div>
-                </div>
+                {{else}}
+                    <div class="row">
+                        <div class="col-sm-12 column">
+                            {{t "assess:phase_pros-cons.disabled"}}
+                        </div>
+                    </div>
+                {{/if}}
             </div>
             <div class="col-sm-12 col-md-6 column">
                 <div class="row">
@@ -30,18 +38,26 @@
                         <h5>{{t "assess:phase_pros-cons-other.b_title"}}</h5>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-12 column">
+                {{#if feedback.b.enabled}}
+                    <div class="row">
+                        <div class="col-sm-12 column">
                         <textarea id="b-positive" class="form-control" rows="5"
                                   placeholder="{{t "assess:phase_pros-cons-other.positive"}}">{{feedback.b.positive}}</textarea>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 column">
+                    <div class="row">
+                        <div class="col-sm-12 column">
                         <textarea id="b-negative" class="form-control" rows="5"
                                   placeholder="{{t "assess:phase_pros-cons-other.negative"}}">{{feedback.b.negative}}</textarea>
+                        </div>
                     </div>
-                </div>
+                {{else}}
+                    <div class="row">
+                        <div class="col-sm-12 column">
+                            {{t "assess:phase_pros-cons.disabled"}}
+                        </div>
+                    </div>
+                {{/if}}
             </div>
         </div>
         <div class="row">
