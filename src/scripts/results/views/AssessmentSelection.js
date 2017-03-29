@@ -25,7 +25,7 @@ module.exports = ItemView.extend( {
 
     serializeData: function(){
         const data = {
-            list: this.collection.toJSON()
+            list: this.collection.filterResultsAllowed().toJSON()
         };
         debug( '#serializeData', data, this.collection );
         return data;

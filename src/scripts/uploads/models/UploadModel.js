@@ -1,10 +1,10 @@
 'use strict';
 
-const {Model} = require( 'backbone' );
-const debug = require( 'debug' )( 'dpac:uploads.models', '[UploadModel]' );
-const Representation = require( '../../common/models/RepresentationProxy' );
+const {Model} = require('backbone');
+const debug = require('debug')('dpac:uploads.models', '[UploadModel]');
+const Representation = require('../../common/models/RepresentationProxy');
 
-module.exports = Model.extend( {
+module.exports = Model.extend({
     representationsCollection: undefined,
     idAttribute: "_id",
 
@@ -14,35 +14,32 @@ module.exports = Model.extend( {
     },
 
     initialize(){
-        debug( '#initialize', this.representationsCollection );
+        debug('#initialize', this.representationsCollection);
     },
 
-    save( attrs ){
-        let representation = this.get( 'representation' );
-        if( !representation ){
+    save(attrs){
+        let representation = this.get('representation');
+        if (!representation) {
             representation = new Representation();
             this.set('representation', representation);
             this.representationsCollection.add(representation);
             //add to collection
         }
-        representation.once( 'change', (model)=>{
+        representation.once('change', (model) => {
             this.trigger('change:representation');
-        } );
-        representation.update( attrs );
+        });
+        representation.update(attrs);
     },
 
-    uploadingEnabled: function(){
+    uploadingEnabled: function () {
         const assessment = this.get('assessment');
-        if(!assessment.get('enableUploads')){
-            return false;
-        }
-        const state = assessment.get('state');
-        return ( state === 'draft')
-            || (state === 'published' && ! this.get( 'representation' ));
+        const representation = this.get('representation');
+        const isCompared = (representation) ? representation.get('comparedNum') > 0 : false;
+        return assessment.uploadingAllowed(isCompared);
     },
 
     toJSON(){
-        const representation = this.get( 'representation' );
+        const representation = this.get('representation');
         const uploadingEnabled = this.uploadingEnabled();
         return {
             assessment: this.get('assessment').toJSON(),
@@ -50,4 +47,4 @@ module.exports = Model.extend( {
             uploadingEnabled: uploadingEnabled
         };
     }
-} );
+});

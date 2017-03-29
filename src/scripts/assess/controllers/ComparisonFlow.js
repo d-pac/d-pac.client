@@ -87,7 +87,7 @@ module.exports = Controller.extend( {
         this.comparisonsCollection.remove( comparison );
         const assessment = this.assessmentsCollection.selected;
         assessment.incCompleted();
-        if( assessment.isCompleted() ){
+        if( assessment.isCompletedForUser() ){
             this.assessmentsCollection.deselect( assessment );
             this.dispatch( 'assess:show:messages', {
                 type: t( "assess:assessment_completed.type" ) || "success",
