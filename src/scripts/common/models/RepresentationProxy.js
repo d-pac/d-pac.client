@@ -21,7 +21,8 @@ module.exports = NestedModel.extend( {
             href: undefined,
             text: undefined,
             title: undefined,
-            owner: []
+            owner: [],
+            originalName: undefined,
         },
         selected: false
     },
