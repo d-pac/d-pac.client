@@ -20,7 +20,7 @@ module.exports = ItemView.extend( {
 
     serializeData: function(){
         const data = {
-            items: this.collection.getAssessables().toJSON(),
+            items: this.collection.filterAssessingAllowed().toJSON(),
             assessmentWasCompleted: false
         };
         //TODO: this is just horrible
