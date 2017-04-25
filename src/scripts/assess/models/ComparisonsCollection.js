@@ -16,9 +16,6 @@ module.exports = Collection.extend( {
     url: '/user/comparisons',
     model: ModelClass,
     contextEvents: {
-        'assess:ui:destroyed': function(){
-            this.reset();
-        },
         'assess:teardown:requested': "teardown",
         'authentication:signout:completed': function(){
             this.reset();

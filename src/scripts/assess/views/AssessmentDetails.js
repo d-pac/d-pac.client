@@ -20,7 +20,7 @@ module.exports = ItemView.extend( {
     },
 
     serializeData: function(){
-        return this.model.get("assessment").toJSON();
+        return this.model.getAssessment().toJSON();
     },
 
     requestStop: function(){
