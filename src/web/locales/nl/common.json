@@ -68,5 +68,8 @@
   "warning": {
     "label": "Opgepast!",
     "minsize": "Browser grootte te klein: gelieve deze aan te passen!"
+  },
+  "pdf_fallback":{
+    "link": "Uw browser ondersteunt geen PDF visualisatie in html. U kunt <a href=\"[url]\" target=\"_blank\">het bestand hier downloaden</a>"
   }
 }

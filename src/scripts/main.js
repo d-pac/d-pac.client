@@ -1,7 +1,7 @@
 'use strict';
 
-if( !window.console ){
-    const noop = function(){
+if (!window.console) {
+    const noop = function () {
         // noop
     };
     window.console = {
@@ -17,17 +17,17 @@ if( !window.console ){
 }
 
 /* stand-alones */
-require( 'babel-polyfill' );
-require( 'modernizr' );
-require( 'bootstrap' );
-require( '../styles/main.less' );
-require( 'lity' );
+require('babel-polyfill');
+require('modernizr');
+require('bootstrap');
+require('../styles/main.less');
+require('lity');
 /* --- */
 
-require( './core/controllers/SetupDebugging' )();
+require('./core/controllers/SetupDebugging')();
 
-const debug = require( 'debug' )( 'dpac:app' );
-debug( '*** starting up ***' );
+const debug = require('debug')('dpac:app');
+debug('*** starting up ***');
 
-const app = require( './core/App.js' );
+const app = require('./core/App.js');
 app.start();
