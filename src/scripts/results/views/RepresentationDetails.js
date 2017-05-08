@@ -20,6 +20,8 @@ module.exports = LayoutView.extend( {
     onRender: function(){
         debug( '#onRender' );
 
+        ga('send', 'event', 'results', 'view representation', this.model.get('anonymized'));
+
         const view = this.mediaViewFactory.getMediaView( this.model, {
             video: {
                 height: 300,

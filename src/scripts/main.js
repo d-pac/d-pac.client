@@ -26,6 +26,9 @@ require( 'lity' );
 
 require( './core/controllers/SetupDebugging' )();
 
+const {GA_DIM_INSTANCE} = require('./common/constants');
+ga('set', GA_DIM_INSTANCE, process.env.API_URL);
+
 const debug = require( 'debug' )( 'dpac:app' );
 debug( '*** starting up ***' );
 
