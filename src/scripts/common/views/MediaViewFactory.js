@@ -35,7 +35,7 @@ mediaViews[ consts.image ] = {
     tpl: require( '../views/templates/media/image.hbs' )
 };
 mediaViews[ consts.pdf ] = {
-    viewClass: require('./PDFViewer'),
+    viewClass: require('./PDFObject'),
     tpl: require( '../views/templates/media/pdf.hbs' )
 };
 mediaViews[ consts.audio ] = {

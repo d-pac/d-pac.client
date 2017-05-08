@@ -68,5 +68,8 @@
   "warning": {
     "label": "Beware!",
     "minsize": "Resolution is too small, please adjust your screen settings!"
+  },
+  "pdf_fallback":{
+    "link": "Your browser doesn't support embedding PDF files. You can <a href=\"[url]\" target=\"_blank\">download the file here</a>"
   }
 }
