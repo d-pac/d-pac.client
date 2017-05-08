@@ -34,6 +34,9 @@ module.exports = Router.extend( {
         debug( '#initialize' );
         this.on( 'route', function( route ){
             debug( 'handle route', route );
+            ga('set', 'page', '/tool/'+route);
+            ga('send', 'pageview');
+
             if(Object.keys(this.redirect).indexOf(route)>-1){
                 return this.navigateToRoute({
                     route: this.redirect[route]
