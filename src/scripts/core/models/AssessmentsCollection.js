@@ -73,7 +73,7 @@ const AssessmentsCollection = Collection.extend({
 });
 module.exports = AssessmentsCollection;
 
-selectable.collection.mixin(module.exports);
+selectable.mixin(module.exports);
 propagateEvents.mixin(module.exports).propagate({
     "sync": "assessments:collection:sync",
     "change:selected": "assessments:selection:changed"

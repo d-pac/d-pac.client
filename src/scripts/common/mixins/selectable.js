@@ -2,10 +2,21 @@
 
 const {extend} = require( 'lodash' );
 
-module.exports.collection = {
+module.exports = {
     mixin: function( Constructor ){
-        if( Constructor.prototype.reset ){
+        if( Constructor.prototype.reset && ! Constructor.prototype.__selectable_overridden__reset){
             Constructor.prototype.__selectable_overridden__reset = Constructor.prototype.reset;
+            Constructor.prototype.reset = function(...args){
+                this.deselect();
+                Constructor.prototype.__selectable_overridden__reset.apply( this, args );
+            }
+        }
+        if(Constructor.prototype.clear && ! Constructor.prototype.__selectable_overridden__clear){
+            Constructor.prototype.__selectable_overridden__clear = Constructor.prototype.clear;
+            Constructor.prototype.clear = function(...args){
+                this.deselect();
+                Constructor.prototype.__selectable_overridden__clear.apply( this, args );
+            }
         }
         extend( Constructor.prototype, {
             selectByID: function( id ){
@@ -33,13 +44,6 @@ module.exports.collection = {
                 }
                 this.trigger( 'change:selected', this.selected, previous );
                 return this.selected;
-            },
-
-            reset: function(...args){
-                this.deselect();
-                if( Constructor.prototype.__selectable_overridden__reset ){
-                    Constructor.prototype.__selectable_overridden__reset.apply( this, args );
-                }
             }
         } );
     }

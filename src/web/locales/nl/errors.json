@@ -14,5 +14,6 @@
   "account-modification-disabled": "<p>Het wijzigen van de account is uitgeschakeld.</p>",
   "assessment-incorrectly-configured": "De opdracht is incorrect geconfigureerd, gelieve contact op te nemen met <a href='mailto:info@d-pac.be' target='_blank' class='alert-link'>info@d-pac.be</a>.</p><p>Referentie: __ref__, __url__</p>",
   "incorrect-media-type": "Dit document is verkeerd geconfigureerd en kan niet getoond worden, gelieve contact op te nemen met <a href='mailto:info@d-pac.be' target='_blank' class='alert-link'>info@d-pac.be</a>.</p><p>Referentie: __ref__, __url__</p>",
-  "incorrect-file-type": "Incorrect bestandstype."
+  "incorrect-file-type": "Incorrect bestandstype.",
+  "only-one-upload-per-assessee": "<p>Er is een fout opgetreden, gelieve te refreshen en indien nodig opnieuw te proberen</p>"
 }
