@@ -15,7 +15,10 @@ module.exports = ItemView.extend( {
     template: tpl,
 
     modelEvents: {
-        "change:representation": "render"
+        "change:selected": function(){
+            debug('change:representation handler');
+            this.render();
+        }
     },
 
     ui: {
@@ -28,12 +31,16 @@ module.exports = ItemView.extend( {
 
     events: {
         "click @ui.saveBtn": function(){
+            this.ui.removeBtn.hide();
+            this.ui.browseBtn.hide();
+            this.ui.saveBtn.prop( 'disabled', 'disabled' );
+            this.ui.saveBtn.button( 'sending' );
             const file = this.ui.fileInput[ 0 ].files[ 0 ];
             const assessment = this.ui.fileInput.data( 'assessment' );
             this.model.save( {
                 file: file,
                 assessment: assessment
-            } );
+            }, {wait:true} );
         },
         "click @ui.removeBtn": function(){
             this.ui.fileInput.val( '' );
@@ -49,6 +56,7 @@ module.exports = ItemView.extend( {
     },
 
     onRender: function(){
+        debug('#onRender');
         this.determineState();
     },
 
@@ -59,6 +67,7 @@ module.exports = ItemView.extend( {
             this.ui.fileLabel.val( selectedFile );
             if( selectedFile ){
                 this.ui.removeBtn.show();
+                this.ui.saveBtn.prop( 'disabled', false );
                 this.ui.saveBtn.show();
                 this.trigger( 'file:selected', selectedFile );
             } else {

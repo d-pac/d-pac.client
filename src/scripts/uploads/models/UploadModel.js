@@ -3,43 +3,47 @@
 const {Model} = require('backbone');
 const debug = require('debug')('dpac:uploads.models', '[UploadModel]');
 const Representation = require('../../common/models/RepresentationProxy');
+const selectable = require( '../../common/mixins/selectable' );
 
 module.exports = Model.extend({
     representationsCollection: undefined,
     idAttribute: "_id",
 
     defaults: {
-        assessment: undefined,
-        representation: undefined
+        assessment: undefined
     },
 
-    initialize(){
-        debug('#initialize', this.representationsCollection);
+    initialize(attrs){
+        debug('#initialize');
+        if(attrs.representation){
+            this.select(attrs.representation);
+        }
     },
 
-    save(attrs){
-        let representation = this.get('representation');
+    save(attrs, opts){
+        debug('#save');
+        let representation = this.selected;
         if (!representation) {
             representation = new Representation();
-            this.set('representation', representation);
             this.representationsCollection.add(representation);
             //add to collection
         }
         representation.once('change', (model) => {
-            this.trigger('change:representation');
+            console.log('SEND OUT CHANGE:REPRESENTATION');
+            this.select(representation);
         });
         representation.update(attrs);
     },
 
     uploadingEnabled: function () {
         const assessment = this.get('assessment');
-        const representation = this.get('representation');
+        const representation = this.selected;
         const isCompared = (representation) ? representation.get('comparedNum') > 0 : false;
         return assessment.uploadingAllowed(isCompared);
     },
 
     toJSON(){
-        const representation = this.get('representation');
+        const representation = this.selected;
         const uploadingEnabled = this.uploadingEnabled();
         return {
             assessment: this.get('assessment').toJSON(),
@@ -48,3 +52,4 @@ module.exports = Model.extend({
         };
     }
 });
+selectable.mixin( module.exports );

@@ -58,7 +58,7 @@ module.exports = Collection.extend( {
     }
 
 } );
-selectable.collection.mixin( module.exports );
+selectable.mixin( module.exports );
 teardown.collection.mixin( module.exports );
 propagateEvents.mixin( module.exports ).propagate( {
     "sync": "comparisons:collection:sync"
