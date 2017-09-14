@@ -30,11 +30,14 @@ extend( module.exports.prototype, {
 
         Handlebars.registerHelper( 't', translate );
         Handlebars.registerHelper( 'toFixed', function( value ){
+            if(value === undefined || value === null){
+                return "..."
+            }
             const precision = (arguments.length === 3)
                 ? arguments[ 1 ]
                 : 2;
             const v = Number( value );
-            return (isNaN(v))? "..." : v.toFixed( precision );
+            return (isNaN(v))? "/" : v.toFixed( precision );
         } );
 
         Handlebars.registerHelper( 'duration', function( seconds ){
