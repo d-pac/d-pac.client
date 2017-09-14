@@ -70,6 +70,10 @@ module.exports = NestedModel.extend({
     },
 
     parse: function (raw) {
+        console.log('ASsesssmentProxy#parse', raw);
+        if(raw.data){ //direct call, not parsed in collection
+            raw = raw.data;
+        }
         raw.uiCopy = JSON.parse(raw.uiCopy);
 
         set(raw, ["progress", "current"], get(raw, ["progress", "completedNum"], 0) + 1);
@@ -80,7 +84,7 @@ module.exports = NestedModel.extend({
 
         //if the date doesn't fall between the begin and end dates we want to show that results will be available
         //but you shouldn't be able view them yet.
-        raw.hasResults = (!!raw.stats && !!raw.stats.lastRun && raw.permissions.results);
+        raw.hasResults = (raw.hasCalculations && raw.permissions.results);
 
         return raw;
     },
@@ -139,6 +143,10 @@ module.exports = NestedModel.extend({
             return true;
         }
         return parentModel.isActive();
+    },
+
+    refresh(){
+        this.fetch();
     },
 
     onTeardown: function () {
