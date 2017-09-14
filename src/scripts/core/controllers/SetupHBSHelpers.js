@@ -33,7 +33,8 @@ extend( module.exports.prototype, {
             const precision = (arguments.length === 3)
                 ? arguments[ 1 ]
                 : 2;
-            return Number( value ).toFixed( precision );
+            const v = Number( value );
+            return (isNaN(v))? "..." : v.toFixed( precision );
         } );
 
         Handlebars.registerHelper( 'duration', function( seconds ){

@@ -30,7 +30,7 @@ extend( BootstrapUI.prototype, {
             collection: 'assessmentsCollection'
         } );
         context.wireView( 'AssessmentOverview', require( '../views/AssessmentOverview' ), {
-            collection: 'assessmentsCollection'
+            model: 'statsController'
         } );
         context.wireView( 'RepresentationsRankingView', require( '../views/RepresentationsRanking' ), {
             model: 'representationsRankingsController'

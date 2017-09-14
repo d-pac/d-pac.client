@@ -21,6 +21,7 @@ extend( BootstrapDomain.prototype, {
             assessments: 'assessmentsCollection',
             authorization: 'authorizationModel'
         } );
+        context.wireSingleton('statsController', require('./StatsController'));
 
         this.context = undefined;
         this.eventName = undefined;
