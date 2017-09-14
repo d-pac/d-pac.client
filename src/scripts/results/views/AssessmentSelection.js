@@ -21,16 +21,10 @@ module.exports = ItemView.extend( {
         'change @ui.assessmentSelection': "assessmentSelected"
     },
 
-    onRender: function(){
-        debug( '#render', this.collection.length );
-    },
-
     serializeData: function(){
-        const data = {
-            list: this.collection.filterResultsAllowed().toJSON()
-        };
-        debug( '#serializeData', data, this.collection );
-        return data;
+        const models = this.collection.toJSON();
+        console.log(models);
+        return { list:models};
     },
 
     assessmentSelected: function(){

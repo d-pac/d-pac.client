@@ -14,6 +14,10 @@ extend( BootstrapDomain.prototype, {
         debug( '#execute' );
 
         const context = this.context;
+        context.wireSingleton('resultsController', require('./ResultsController'), {
+            assessmentsCollection: 'assessmentsCollection',
+            accountModel: 'accountModel'
+        });
         context.wireSingleton( 'representationsCollection', require( '../../common/models/RepresentationsCollection' ) );
         context.wireSingleton( 'feedbackCollection', require( '../../common/models/FeedbackCollection' ) );
         context.wireSingleton( 'representationsRankingsController', require( './RepresentationsRankingController' ), {

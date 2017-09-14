@@ -24,7 +24,7 @@ extend( BootstrapUI.prototype, {
             authorization: 'authorizationModel'
         } );
         context.wireView( 'AssessmentSelectionView', require( '../views/AssessmentSelection' ), {
-            collection: 'assessmentsCollection'
+            collection: 'resultsController'
         } );
         context.wireView( 'AssessmentMenuView', require( '../views/AssessmentMenu' ), {
             collection: 'assessmentsCollection'

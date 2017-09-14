@@ -59,11 +59,6 @@ const AssessmentsCollection = Collection.extend({
         return new AssessmentsCollection(models);
     },
 
-    filterResultsAllowed: function () {
-        const models = this.filter((assessment) => assessment.resultsAllowed());
-        return new AssessmentsCollection(models);
-    },
-
     //==( extras )==/
 
     onTeardown: function () {
