@@ -84,7 +84,7 @@ module.exports = NestedModel.extend({
 
         //if the date doesn't fall between the begin and end dates we want to show that results will be available
         //but you shouldn't be able view them yet.
-        raw.hasResults = (raw.hasCalculations && raw.permissions.results);
+        raw.hasResults = (raw.permissions.results);
 
         return raw;
     },
