@@ -82,10 +82,6 @@ module.exports = NestedModel.extend({
         set(raw, ["permissions", "comparisons"], featureIsEnabled(get(raw, ["feature", "comparisons"], {}), raw.permissions.results));
         set(raw, ["permissions", "uploads"], featureIsEnabled(get(raw, ["feature", "uploads"], {}), raw.permissions.comparisons || raw.permissions.results));
 
-        //if the date doesn't fall between the begin and end dates we want to show that results will be available
-        //but you shouldn't be able view them yet.
-        raw.hasResults = (raw.permissions.results);
-
         return raw;
     },
 
@@ -120,15 +116,6 @@ module.exports = NestedModel.extend({
         // we only want to exclude the ones that are really disabled, not those where the date doesn't fall between begin and end
         console.log("uploads allowed", this.get('permissions.uploads'), !override);
         return this.get('permissions.uploads') || (!override && this.assessingAllowed());
-    },
-
-    resultsAllowed: function () {
-        // we only want to exclude the ones that are really disabled, not where the date doesn't fall between begin and end
-        // unless if the end date has been reached already
-        const end = this.get('feature.results.end');
-        let allow = (end) ? moment().isBefore(moment(end)) : true;
-
-        return this.get('feature.results.enabled') && allow;
     },
 
     getParent: function () {

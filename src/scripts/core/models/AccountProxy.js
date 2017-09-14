@@ -25,7 +25,8 @@ module.exports = NestedModel.extend( {
 
     getAssessments: function( role ){
         if( role ){
-            return this.get( 'assessments.' + role );
+            role = role.toLowerCase();
+            return this.get( 'assessments.' + role ) || [];
         }
         return reduce( this.get( 'assessments' ), ( memo,
                                                       forRole )=>{
