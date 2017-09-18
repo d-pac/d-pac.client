@@ -22,7 +22,7 @@ extend( BootstrapDomain.prototype, {
         context.wireSingleton( 'feedbackCollection', require( '../../common/models/FeedbackCollection' ) );
         context.wireSingleton( 'representationsRankingsController', require( './RepresentationsRankingController' ), {
             representations: 'representationsCollection',
-            assessments: 'assessmentsCollection',
+            assessmentStats: 'statsController',
             authorization: 'authorizationModel'
         } );
         context.wireSingleton('statsController', require('./StatsController'));

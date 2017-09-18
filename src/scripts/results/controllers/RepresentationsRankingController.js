@@ -5,7 +5,7 @@ const debug = require( 'debug' )( 'dpac:results.controllers', '[RepresentationsR
 
 module.exports = Model.extend( {
     authorization: undefined,
-    assessments: undefined,
+    assessmentStats: undefined,
     representations: undefined,
 
     _parsed: false,
@@ -28,10 +28,10 @@ module.exports = Model.extend( {
     },
 
     parseData: function(){
-        const assessment = this.assessments.selected;
+        const assessment = this.assessmentStats.getAssessment();
         const isAllowedToViewOthers = this.authorization.isAllowedToViewOthers( assessment );
         const user = this.authorization.getUser();
-        const statsByRepresentation = assessment.get( 'stats' ).byRepresentation;
+        const statsByRepresentation = this.assessmentStats.getStats().byRepresentation;
         const n = this.representations.length;
         let i = 0;
         const ownedRepresentations = [];
