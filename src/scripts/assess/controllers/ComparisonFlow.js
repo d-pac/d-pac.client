@@ -27,7 +27,7 @@ module.exports = Controller.extend({
     start: function () {
         debug('#start');
         this.currentSelection.on('change:state', () => this.determineState(), this);
-        this.currentSelection.fetch();
+        this.determineState();
     },
 
     clear: function () {

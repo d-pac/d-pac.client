@@ -2,6 +2,7 @@
 const {find, defaults} = require('lodash');
 const {Model} = require('backbone');
 const debug = require('debug')('dpac:assess.models', '[ComparisonFacade]');
+const {t} = require('i18next');
 
 module.exports = Model.extend({
     comparisonsCollection: undefined,
@@ -12,28 +13,54 @@ module.exports = Model.extend({
     phasesCollection: undefined,
 
     initialize (){
-        this.assessmentsCollection.on('change:selected', this._updateState, this);
-        this.comparisonsCollection.on('change:selected', this._updateState, this);
-        this.comparisonsCollection.on('change:phase', this._updateState, this);
-
-        this.comparisonsCollection.on('change:completed', (comparison)=>{
-            this.comparisonsCollection.deselect(comparison);
-            this.comparisonsCollection.remove(comparison);
-            this.getAssessment().incCompleted();
+        debug('#initialize');
+        this.assessmentsCollection.on('change:selected', ()=>{
+            debug('on assessmentsCollection.change:selected');
+            this._updateState();
         }, this);
+        this.comparisonsCollection.UID = Date.now();
+        console.log('set listener on comparisonsCollection', this.comparisonsCollection);
+        this.comparisonsCollection.on('change:selected', ()=>{
+            const comparison = this.getComparison();
+            if(comparison){
+                console.log('SETTING PHASE CHANGE LISTENER', comparison);
+                comparison.once('change:phase', ()=>{
+                    console.log('PHASE CHANGED', comparison);
+                })
+            }
+            debug('on comparisonsCollection.change:selected', comparison);
+            this._updateState();
+        }, this);
+        // this.comparisonsCollection.on('change:phase', ()=>{
+        //     debug('on comparisonsCollection.change:phase');
+        //     this._updateState();
+        // }, this);
+        //
+        // this.comparisonsCollection.on('change', (...args)=>{
+        //     debug('on comparisonsCollection.change', args);
+        // });
+        //
+        // this.comparisonsCollection.on('change:completed', (comparison)=>{
+        //     debug('on comparisonsCollection.change:completed');
+        //     this.comparisonsCollection.deselect(comparison);
+        //     this.comparisonsCollection.remove(comparison);
+        //     this.getAssessment().incCompleted();
+        // }, this);
 
         this.assessmentsCollection.on('change:completed', (assessment)=>{
+            debug('on assessments.change:completed');
             this.assessmentsCollection.deselect(assessment);
         }, this);
+        this.comparisonsCollection.fetch({reset: true, success: () => {
+            debug('on comparisonsCollection.fetch', this.getComparison());
+            this._updateState();
+        }});
     },
 
     clear() {
+        debug('#clear');
         this.assessmentsCollection.off(null, null, this);
         this.comparisonsCollection.off(null, null, this);
-    },
-
-    fetch (){
-        this.comparisonsCollection.fetch({reset: true, success: () => this._updateState()});
     },
 
     _updateState() {
@@ -133,16 +160,40 @@ module.exports = Model.extend({
     },
 
     storeDataForCurrentPhase: function (value) {
+        const comparison = this.getComparison();
+        debug('#storeDataForCurrentPhase',this.comparisonsCollection, comparison);
         const currentPhaseSlug = this.getPhase().get('slug');
         const update = {
-            data: this.getComparison().get('data') || {},
+            data: comparison.get('data') || {},
             phase: this.getAssessment().getNextPhaseId(this.getPhase().id)
         };
         update.data[currentPhaseSlug] = value;
+        console.log('Phases', this.getPhase().id, '->', update.phase);
         if (!update.phase) {
             update.completed = true;
         }
-        this.getComparison().update(update);
+        comparison.update(update, {success:()=>{
+            if(comparison.get('completed')){
+                console.log('callback: COMPLETED');
+                this.comparisonsCollection.deselect(comparison);
+                this.comparisonsCollection.remove(comparison);
+                const assessment = this.getAssessment();
+                assessment.incCompleted();
+                if( assessment.isCompletedForUser() ){
+                    this.assessmentsCollection.deselect( assessment );
+                    this.dispatch( 'assess:show:messages', {
+                        type: t( "assess:assessment_completed.type" ) || "success",
+                        title: t( "assess:assessment_completed.title" ) || '',
+                        message: t( "assess:assessment_completed.description", { title: assessment.get( 'title' ) } )
+                    } );
+                }
+                this._updateState();
+
+            }else{
+                console.log('callback: NOT COMPLETED');
+            }
+            this._updateState();
+        }});
     },
 
     storeFeedback: function (feedback) {
