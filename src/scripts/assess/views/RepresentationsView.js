@@ -71,7 +71,8 @@ module.exports = LayoutView.extend( {
 
     showSelected: function(){
         const order = this.model.getSelectedRepresentationOrder();
-        if( order && this.model.get('assessment').get('enableSelectionIcon')){
+        console.log('Selected order:', order);
+        if( order && this.model.getAssessment().get('enableSelectionIcon')){
             this.$( this.ui[ "selected" + order.toUpperCase() ] ).removeClass( 'hidden' );
         }
     }

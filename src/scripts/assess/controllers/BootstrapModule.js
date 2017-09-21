@@ -41,7 +41,7 @@ extend( module.exports.prototype, {
                 context.getObject( 'timelogsController' );
                 // context.getObject( 'navigationBlocker' );
             }, 'assess:bootstrap:completed' , function(){
-                context.getObject( 'comparisonFlow' );
+                context.getObject( 'comparisonFlow' ).start();
                 instructor.destroy();
             } );
 

@@ -1,160 +1,238 @@
 'use strict';
-const { find, defaults } = require( 'lodash' );
-const { Model } = require( 'backbone' );
-const debug = require( 'debug' )( 'dpac:assess.models', '[ComparisonFacade]' );
+const {find, defaults} = require('lodash');
+const {Model} = require('backbone');
+const debug = require('debug')('dpac:assess.models', '[ComparisonFacade]');
+const {t} = require('i18next');
 
-module.exports = Model.extend( {
+module.exports = Model.extend({
     comparisonsCollection: undefined,
     assessmentsCollection: undefined,
     representationsCollection: undefined,
     notesCollection: undefined,
     feedbackCollection: undefined,
     phasesCollection: undefined,
-    defaults: {
-        assessment: undefined,
-        comparison: undefined,
-        representation: undefined,
-        phase: undefined,
-        completed: false
-    },
 
-    initialize: function(){
-        this.comparisonsCollection.on( 'change:selected', ( comparison,
-                                                            oldComparison )=>{
-            if( oldComparison ){
-                oldComparison.off( null, null, this );
+    initialize (){
+        debug('#initialize');
+        this.assessmentsCollection.on('change:selected', ()=>{
+            debug('on assessmentsCollection.change:selected');
+            this._updateState();
+        }, this);
+        this.comparisonsCollection.UID = Date.now();
+        console.log('set listener on comparisonsCollection', this.comparisonsCollection);
+        this.comparisonsCollection.on('change:selected', ()=>{
+            const comparison = this.getComparison();
+            if(comparison){
+                console.log('SETTING PHASE CHANGE LISTENER', comparison);
+                comparison.once('change:phase', ()=>{
+                    console.log('PHASE CHANGED', comparison);
+                })
             }
-            if( comparison ){
-                this.set( 'comparison', comparison );
-                this.set( 'assessment', this.assessmentsCollection.selected );
-                comparison.on( 'sync', this.update, this );
-                this.update();
-            } else {
-                this.clear();
-            }
-        } );
+            debug('on comparisonsCollection.change:selected', comparison);
+            this._updateState();
+        }, this);
+        // this.comparisonsCollection.on('change:phase', ()=>{
+        //     debug('on comparisonsCollection.change:phase');
+        //     this._updateState();
+        // }, this);
+        //
+        // this.comparisonsCollection.on('change', (...args)=>{
+        //     debug('on comparisonsCollection.change', args);
+        // });
+        //
+        // this.comparisonsCollection.on('change:completed', (comparison)=>{
+        //     debug('on comparisonsCollection.change:completed');
+        //     this.comparisonsCollection.deselect(comparison);
+        //     this.comparisonsCollection.remove(comparison);
+        //     this.getAssessment().incCompleted();
+        // }, this);
 
+        this.assessmentsCollection.on('change:completed', (assessment)=>{
+            debug('on assessments.change:completed');
+            this.assessmentsCollection.deselect(assessment);
+        }, this);
+        this.comparisonsCollection.fetch({reset: true, success: () => {
+            debug('on comparisonsCollection.fetch', this.getComparison());
+            this._updateState();
+        }});
     },
 
-    clear: function( ...args ){
-        debug( '#clear' );
-        return Model.prototype.clear.apply( this, args );
+    clear() {
+        debug('#clear');
+        this.assessmentsCollection.off(null, null, this);
+        this.comparisonsCollection.off(null, null, this);
     },
 
-    update: function(){
-        debug( '#update' );
+    _updateState() {
+        debug('#_updateState');
 
-        const assessmentPhases = this.get( 'assessment' ).get( 'phases' );
-        let currentPhaseId = this.get( 'comparison' ).get( 'phase' );
-        let index = 0;
-        if( currentPhaseId ){
-            index = assessmentPhases.indexOf( currentPhaseId );
-            if( index < 0 ){
-                index = 0;
+        const assessment = this.getAssessment();
+        if(assessment){
+            const assessmentPhases = assessment.get('phases');
+            const comparison = this.getComparison();
+            if(comparison){
+                let currentPhaseId = comparison.get('phase');
+                let currentPhase = this.phasesCollection.get(currentPhaseId);
+                if (!currentPhase) {
+                    currentPhase = this.phasesCollection.get(assessmentPhases[0]);
+                }
+                this.phasesCollection.select(currentPhase);
+                const selectedRepId = comparison.get('data').selection;
+                this.representationsCollection.selectByID(selectedRepId);
             }
         }
-        currentPhaseId = assessmentPhases[ index ];
-        this.set( 'phase', this.phasesCollection.get( currentPhaseId ) );
-        const selectedRepId = this.get( 'comparison' ).get( 'data' ).selection;
-        this.set( 'representation', this.representationsCollection.get( selectedRepId ) );
+        this.trigger('change:state');
     },
 
-    getRepresentationByOrder: function( orderId ){
-        const repId = this.get( "comparison" ).get( "representations" )[ orderId ];
-        return this.representationsCollection.get( repId );
+    toJSON (){
+        const assessment = this.getAssessment();
+        const comparison = this.getComparison();
+        const representation = this.getRepresentation();
+        const phase = this.getPhase();
+        return {
+            assessment: assessment ? assessment.toJSON() : null,
+            comparison: comparison ? comparison.toJSON() : null,
+            representation: representation ? representation.toJSON() : null,
+            phase: phase ? phase.toJSON() : null,
+        }
     },
 
-    getSelectedRepresentationOrder: function(){
-        const selectedRep = this.get( 'representation' );
-        if( selectedRep ){
+    getAssessment (){
+        return this.assessmentsCollection.selected;
+    },
+
+    getComparison (){
+        return this.comparisonsCollection.selected;
+    },
+
+    getRepresentation(){
+        return this.representationsCollection.selected;
+    },
+
+    getPhase(){
+        return this.phasesCollection.selected;
+    },
+
+    getRepresentationByOrder: function (orderId) {
+        const repId = this.getComparison().get("representations")[orderId];
+        return this.representationsCollection.get(repId);
+    },
+
+    getSelectedRepresentationOrder: function () {
+        const selectedRep = this.getRepresentation();
+        if (selectedRep) {
             let found;
-            find( this.get( 'comparison' ).get( 'representations' ), function( representationId,
-                                                                               order ){
-                if( representationId === selectedRep.id ){
+            find(this.getComparison().get('representations'), function (representationId,
+                                                                        order) {
+                if (representationId === selectedRep.id) {
                     found = order;
                     return true;
                 }
-            } );
+            });
             return found;
         }
         return false;
     },
 
-    getDocumentByOrder: function( orderId ){
-        const representation = this.getRepresentationByOrder( orderId );
-        return representation.get( "document" );
+    getDocumentByOrder: function (orderId) {
+        const representation = this.getRepresentationByOrder(orderId);
+        return representation.get("document");
     },
 
-    getNoteByOrder: function( orderId ){
-        const document = this.getDocumentByOrder( orderId );
-        if( document ){
-            return this.notesCollection.getNoteByDocId( document._id );
+    getNoteByOrder: function (orderId) {
+        const document = this.getDocumentByOrder(orderId);
+        if (document) {
+            return this.notesCollection.getNoteByDocId(document._id);
         }
     },
 
-    getFeedbackByOrder: function( order ){
-        const representation = this.getRepresentationByOrder( order );
-        const currentPhaseSlug = this.get( 'phase' ).get( 'slug' );
-        if( representation ){
-            return this.feedbackCollection.getFeedbackByRepresentationId( representation.id, currentPhaseSlug )
-                || this.createFeedback( { phase: currentPhaseSlug }, order );
+    getFeedbackByOrder: function (order) {
+        const representation = this.getRepresentationByOrder(order);
+        const currentPhaseSlug = this.getPhase().get('slug');
+        if (representation) {
+            return this.feedbackCollection.getFeedbackByRepresentationId(representation.id, currentPhaseSlug)
+                || this.createFeedback({phase: currentPhaseSlug}, order);
         }
     },
 
-    notesEnabled: function(){
-        return this.get( 'assessment' ).get( 'enableNotes' );
+    notesEnabled: function () {
+        return this.getAssessment().get('enableNotes');
     },
 
-    storeDataForCurrentPhase: function( value ){
-        const currentPhaseSlug = this.get( 'phase' ).get( 'slug' );
+    storeDataForCurrentPhase: function (value) {
+        const comparison = this.getComparison();
+        debug('#storeDataForCurrentPhase',this.comparisonsCollection, comparison);
+        const currentPhaseSlug = this.getPhase().get('slug');
         const update = {
-            data: this.get( 'comparison' ).get( 'data' ) || {},
-            phase: this.get( "assessment" ).getNextPhaseId( this.get( 'phase' ).id )
+            data: comparison.get('data') || {},
+            phase: this.getAssessment().getNextPhaseId(this.getPhase().id)
         };
-        update.data[ currentPhaseSlug ] = value;
-        if( !update.phase ){
+        update.data[currentPhaseSlug] = value;
+        console.log('Phases', this.getPhase().id, '->', update.phase);
+        if (!update.phase) {
             update.completed = true;
         }
-        this.get( 'comparison' ).update( update );
+        comparison.update(update, {success:()=>{
+            if(comparison.get('completed')){
+                console.log('callback: COMPLETED');
+                this.comparisonsCollection.deselect(comparison);
+                this.comparisonsCollection.remove(comparison);
+                const assessment = this.getAssessment();
+                assessment.incCompleted();
+                if( assessment.isCompletedForUser() ){
+                    this.assessmentsCollection.deselect( assessment );
+                    this.dispatch( 'assess:show:messages', {
+                        type: t( "assess:assessment_completed.type" ) || "success",
+                        title: t( "assess:assessment_completed.title" ) || '',
+                        message: t( "assess:assessment_completed.description", { title: assessment.get( 'title' ) } )
+                    } );
+                }
+                this._updateState();
+
+            }else{
+                console.log('callback: NOT COMPLETED');
+            }
+            this._updateState();
+        }});
     },
 
-    storeFeedback: function( feedback ){
-        if( feedback.a.positive || feedback.a.negative ){
-            this.getFeedbackByOrder( 'a' ).update( {
+    storeFeedback: function (feedback) {
+        if (feedback.a.positive || feedback.a.negative) {
+            this.getFeedbackByOrder('a').update({
                 positive: feedback.a.positive,
                 negative: feedback.a.negative
-            } );
+            });
         }
 
-        if( feedback.b.positive || feedback.b.negative ){
-            this.getFeedbackByOrder( 'b' ).update( {
+        if (feedback.b.positive || feedback.b.negative) {
+            this.getFeedbackByOrder('b').update({
                 positive: feedback.b.positive,
                 negative: feedback.b.negative
-            } );
+            });
         }
-        this.storeDataForCurrentPhase( {
+        this.storeDataForCurrentPhase({
             aPositive: feedback.a.positive,
             aNegative: feedback.a.negative,
             bPositive: feedback.b.positive,
             bNegative: feedback.b.negative
-        } );
+        });
     },
 
-    createFeedback: function( feedback,
-                              order ){
-        defaults( feedback, {
-            author: this.get( 'comparison' ).get( 'assessor' ),
-            representation: this.getRepresentationByOrder( order ).id
-        } );
-        return this.feedbackCollection.add( feedback );
+    createFeedback: function (feedback,
+                              order) {
+        defaults(feedback, {
+            author: this.getComparison().get('assessor'),
+            representation: this.getRepresentationByOrder(order).id
+        });
+        return this.feedbackCollection.add(feedback);
     },
 
-    createNote: function( noteData,
-                          order ){
-        defaults( noteData, {
-            author: this.get( 'comparison' ).get( 'assessor' ),
-            document: this.getDocumentByOrder( order )._id
-        } );
-        return this.notesCollection.create( noteData );
+    createNote: function (noteData,
+                          order) {
+        defaults(noteData, {
+            author: this.getComparison().get('assessor'),
+            document: this.getDocumentByOrder(order)._id
+        });
+        return this.notesCollection.create(noteData);
     }
-} );
+});
