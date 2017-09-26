@@ -13,7 +13,7 @@
     "title": "Overview for '__title__'",
     "totals": {
       "reliability": "Reliability",
-      "assessorsNum": "Number of assessors",
+      "assessorsNum": "Number of invited assessors",
       "comparisonsNum": "Number of comparisons",
       "representationsNum": "Number of representations",
       "duration": "Total duration of all comparisons"
