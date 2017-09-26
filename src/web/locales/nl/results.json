@@ -13,7 +13,7 @@
     "title": "Overzichtgegevens voor '__title__'",
     "totals": {
       "reliability": "Betrouwbaarheid",
-      "assessorsNum": "Aantal beoordelaars",
+      "assessorsNum": "Aantal uitgenodigde beoordelaars",
       "comparisonsNum": "Aantal beoordelingen",
       "representationsNum": "Aantal representaties",
       "duration": "Totale tijd gespendeerd door alle beoordelaars"
