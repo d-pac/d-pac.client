@@ -30,6 +30,11 @@ extend( BootstrapDomain.prototype, {
 
         context.wireSingleton( 'timelogsCollection', require( '../models/TimelogsCollection' ) );
         // context.wireSingleton( 'navigationBlocker', require( './NavigationBlocker' ) );
+        context.wireSingleton( 'comparisonFlow', require( '../controllers/ComparisonFlow' ), {
+            comparisonsCollection: 'comparisonsCollection',
+            assessmentsCollection: 'assessmentsCollection',
+            app: 'app'
+        } );
         context.wireSingleton( 'currentSelection', require( '../models/ComparisonFacade' ), {
             assessmentsCollection: "assessmentsCollection",
             comparisonsCollection: "comparisonsCollection",
@@ -41,10 +46,6 @@ extend( BootstrapDomain.prototype, {
             context: "moduleContext"
         } );
         context.getObject( 'currentSelection' );
-        context.wireSingleton( 'comparisonFlow', require( '../controllers/ComparisonFlow' ), {
-            currentSelection: 'currentSelection',
-            app: 'app'
-        } );
         context.wireSingleton( 'timelogsController', require( './TimelogsController' ), {
             currentSelection: 'currentSelection',
             timelogsCollection: 'timelogsCollection',

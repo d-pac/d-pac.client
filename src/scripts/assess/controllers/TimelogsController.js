@@ -26,9 +26,9 @@ module.exports = Controller.extend( {
         debug('#verifyTimelogState');
 
         const current = this.currentSelection;
-        const assessment = current.getAssessment();
+        const assessment = current.get('assessment');
         if(assessment && assessment.get('enableTimeLogging')){
-            this.timelogsCollection.start(current.getComparison().id, current.getPhase().id);
+            this.timelogsCollection.start(current.get('comparison' ).id, current.get('phase' ).id);
             this.listenToOnce(current, 'change:phase',function(){
                 debug('change:phase');
                 this.verifyTimelogState();

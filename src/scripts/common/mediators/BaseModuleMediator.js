@@ -49,7 +49,6 @@ module.exports = Controller.extend( {
     },
 
     destroyModule: function(){
-        debug('#destroyModule');
         if(this.moduleContext){
             this.moduleContext.destroy();
             this.moduleContext = undefined;
