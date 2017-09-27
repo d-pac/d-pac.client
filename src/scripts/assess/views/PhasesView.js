@@ -20,12 +20,10 @@ module.exports = LayoutView.extend( {
     className: "row",
 
     getTemplate: function(){
-        const phase = this.model.getPhase();
+        const phase = this.model.get( 'phase' );
         const slug = (phase)
             ? phase.get( "slug" )
             : 'busy';
-
-        debug('#getTemplate', phase);
         return templates[ slug ];
     },
 
@@ -65,7 +63,7 @@ module.exports = LayoutView.extend( {
     },
 
     serializeData: function(){
-        const phase = this.model.getPhase();
+        const phase = this.model.get( 'phase' );
         if( !phase ){
             return {};
         }

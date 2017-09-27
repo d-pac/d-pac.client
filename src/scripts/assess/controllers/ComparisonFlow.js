@@ -1,114 +1,110 @@
 'use strict';
-const debug = require('debug')('dpac:assess.controllers', '[ComparisonFlow]');
-const {Controller} = require('backbone.marionette');
-const {clone} = require('lodash');
-const {t} = require('i18next');
-let counter = 0;
+const debug = require( 'debug' )( 'dpac:assess.controllers', '[ComparisonFlow]' );
+const { Controller } = require( 'backbone.marionette' );
+const { clone } = require( 'lodash' );
+const { t } = require( 'i18next' );
 
-module.exports = Controller.extend({
+module.exports = Controller.extend( {
 
-    currentSelection: undefined,
+    comparisonsCollection: undefined,
+    assessmentsCollection: undefined,
 
     contextEvents: {
-        "comparison:stop:requested": "comparisonInterrupted",
-        "assess:ui:rendered": "start",
-        "assess:ui:destroyed": "clear",
+        "assessments:selection:completed": function(){
+            debug('assessments:selection:completed handler');
+            this.determineState();
+        },
+        "comparison:stop:requested": "comparisonInterrupted"
     },
 
-    initialize(){
-        debug('#initialize');
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! //
-        // DO NOT REMOVE THIS FUNCTION                            //
-        // FOR SOME GODAWFUL REASON TWO INSTANCES WILL BE CREATED //
-        // IF YOU OMIT THIS FUNCTION                              //
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! //
-    },
-
-    start: function () {
-        debug('#start');
-        this.currentSelection.on('change:state', () => this.determineState(), this);
-        this.determineState();
-    },
-
-    clear: function () {
-        debug('#clear');
-        this.currentSelection.off(null, null, this);
+    initialize: function(){
+        this.comparisonsCollection.once( 'sync', ()=>{
+            debug('comparisonscollection sync handler');
+            this.determineState();
+        });
+        this.comparisonsCollection.fetch({reset:true});
     },
 
     determineState(){
-        debug('#determineState');
-        const selectedAssessment = this.currentSelection.getAssessment();
-        if (selectedAssessment) {
-            const selectedComparison = this.currentSelection.getComparison();
-            if (selectedComparison) {
+        debug( '#determineState' );
+        const selectedAssessment = this.assessmentsCollection.selected;
+        if( selectedAssessment ){
+            const selectedComparison = this.comparisonsCollection.selected;
+            if(selectedComparison){
                 this.requestComparisonEdit();
-            } else {
-                const unfinishedComparisons = this.currentSelection.comparisonsCollection.getActivesFor({assessment: selectedAssessment.id});
-                if (unfinishedComparisons.length > 0) {
-                    this.currentSelection.comparisonsCollection.select(unfinishedComparisons[0]);
+            }else{
+                const unfinishedComparisons = this.comparisonsCollection.getActivesFor( { assessment: selectedAssessment.id } );
+                if(unfinishedComparisons.length > 0){
+                    this.comparisonsCollection.select(unfinishedComparisons[0]);
                     this.requestComparisonEdit();
-                } else {
+                }else{
                     this.requestNewComparison();
                 }
             }
-        } else {
+        }else{
             this.requestAssessmentSelection();
         }
     },
 
     requestComparisonEdit(){
-        debug('#requestComparisonEdit');
-        this.dispatch('comparisons:editing:requested');
+        const selectedComparison = this.comparisonsCollection.selected;
+        selectedComparison.once( "change:completed", this.comparisonFinished, this );
+        this.dispatch( 'comparisons:editing:requested' );
     },
 
     requestAssessmentSelection(){
-        debug('#requestAssessmentSelection');
-        this.dispatch('assess:url:requested', {url: "/assess"});
-        this.dispatch('assessments:selection:requested');
+        debug( '#requestAssessmentSelection' );
+        this.dispatch( 'assess:url:requested', { url: "/assess" } );
+        this.dispatch( 'assessments:selection:requested' );
     },
 
     requestNewComparison(){
-        const assessment = this.currentSelection.getAssessment();
-        debug('#requestNewComparison', assessment);
+        const assessment = this.assessmentsCollection.selected;
+        debug( '#requestNewComparison', assessment );
 
-        this.currentSelection.comparisonsCollection.create({
-            assessment: assessment.id
-        }, {
-            wait: true,
-            success: (comparison) => {
-                debug('comparisonscollection add handler');
-                if (comparison.hasMessages()) {
-                    const messages = clone(comparison.get('messages'));
-                    this.currentSelection.comparisonsCollection.remove(comparison);
-                    this.dispatch('comparisons:creation:failed', {
-                        messages: messages,
-                        assessment: this.currentSelection.getAssessment()
-                    });
-                }
-                this.determineState();
+        this.comparisonsCollection.once( "add", (comparison)=>{
+            debug('comparisonscollection add handler');
+            if( comparison.hasMessages() ){
+                const messages = clone( comparison.get( 'messages' ) );
+                this.comparisonsCollection.remove( comparison );
+                this.dispatch( 'comparisons:creation:failed', {
+                    messages: messages,
+                    assessment: this.assessmentsCollection.selected
+                } );
             }
-        });
+            this.determineState();
+        }, this );
+        this.comparisonsCollection.create( {
+            assessment: assessment.id
+        }, { wait: true } );
     },
 
-    // comparisonFinished(){
-    //     debug('#comparisonFinished');
-    //     this.dispatch('comparisons:editing:completed');
-    //     if (assessment.isCompletedForUser()) {
-    //         this.dispatch('assess:show:messages', {
-    //             type: t("assess:assessment_completed.type") || "success",
-    //             title: t("assess:assessment_completed.title") || '',
-    //             message: t("assess:assessment_completed.description", {title: assessment.get('title')})
-    //         });
-    //     }
-    //     this.determineState();
-    // },
+    comparisonFinished(){
+        debug('#comparisonFinished');
+        this.dispatch( 'comparisons:editing:completed' );
+        const comparison = this.comparisonsCollection.selected;
+        this.comparisonsCollection.deselect( comparison );
+        this.comparisonsCollection.remove( comparison );
+        const assessment = this.assessmentsCollection.selected;
+        assessment.incCompleted();
+        if( assessment.isCompletedForUser() ){
+            this.assessmentsCollection.deselect( assessment );
+            this.dispatch( 'assess:show:messages', {
+                type: t( "assess:assessment_completed.type" ) || "success",
+                title: t( "assess:assessment_completed.title" ) || '',
+                message: t( "assess:assessment_completed.description", { title: assessment.get( 'title' ) } )
+            } );
+        }
+        this.determineState();
+    },
 
     comparisonInterrupted(){
-        debug('#comparisonInterrupted');
-        this.currentSelection.comparisonsCollection.deselect(this.currentSelection.getComparison());
-        this.currentSelection.assessmentsCollection.deselect(this.currentSelection.getAssessment());
-    },
-
+        debug('comparisonInterrupted');
+        const comparison = this.comparisonsCollection.selected;
+        this.comparisonsCollection.deselect( comparison );
+        comparison.off(null, null, this);
+        this.requestAssessmentSelection();
+    }
     //
     //
     //
@@ -168,4 +164,4 @@ module.exports = Controller.extend({
     //     }
     // },
 
-});
+} );

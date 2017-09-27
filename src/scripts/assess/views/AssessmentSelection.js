@@ -32,7 +32,6 @@ module.exports = ItemView.extend( {
     },
 
     assessmentSelected: debounce( function( event ){
-        debug('#assessmentSelected');
         const button = this.$( event.target );
         this.ui.assessmentButton.prop('disabled', 'disabled');
         button.button('sending');

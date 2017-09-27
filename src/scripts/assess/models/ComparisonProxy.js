@@ -1,6 +1,5 @@
 'use strict';
 const {Model} = require('backbone');
-const {defaults}=require('lodash');
 
 const debug = require('debug')('dpac:assess.models', '[ComparisonProxy]');
 
@@ -50,8 +49,8 @@ module.exports = Model.extend({
         return raw.data;
     },
 
-    update: function (attrs, opts) {
-        this.save(attrs, defaults({patch: true, wait: false}, opts));
+    update: function (attrs) {
+        this.save(attrs, {patch: true, wait: true});
     },
 
     hasMessages: function () {
