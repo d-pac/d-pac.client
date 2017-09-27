@@ -14,14 +14,15 @@
     "totals": {
       "reliability": "Reliability",
       "assessorsNum": "Number of invited assessors",
+      "participatoryAssessorsNum": "Number of participating assessors",
       "comparisonsNum": "Number of comparisons",
       "representationsNum": "Number of representations",
       "duration": "Total duration of all comparisons"
     },
     "averages": {
       "comparisonsPerRepresentation": "Average number of comparisons per representation",
-      "comparisonsPerAssessor": "Average number of comparisons per assessor",
-      "durationPerAssessor": "Average duration per assessor"
+      "comparisonsPerAssessor": "Average number of comparisons per participating assessor",
+      "durationPerAssessor": "Average duration per participating assessor"
     }
   },
   "representations_ranking": {

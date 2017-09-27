@@ -14,14 +14,15 @@
     "totals": {
       "reliability": "Betrouwbaarheid",
       "assessorsNum": "Aantal uitgenodigde beoordelaars",
-      "comparisonsNum": "Aantal beoordelingen",
+      "participatoryAssessorsNum": "Aantal deelgenomen beoordelaars",
+      "comparisonsNum": "Aantal beoordelingen door deelnemende beoordelaars",
       "representationsNum": "Aantal representaties",
-      "duration": "Totale tijd gespendeerd door alle beoordelaars"
+      "duration": "Totale tijd gespendeerd door alle deelnemende beoordelaars"
     },
     "averages": {
       "comparisonsPerRepresentation": "Gemiddeld aantal beoordelingen per representatie",
-      "comparisonsPerAssessor": "Gemiddeld aantal beoordelingen per beoordelaar",
-      "durationPerAssessor": "Gemiddelde tijd per beoordelaar"
+      "comparisonsPerAssessor": "Gemiddeld aantal beoordelingen per deelenemende beoordelaar",
+      "durationPerAssessor": "Gemiddelde tijd per deelnemende beoordelaar"
     }
   },
   "representations_ranking": {
