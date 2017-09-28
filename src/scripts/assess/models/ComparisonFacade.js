@@ -18,6 +18,13 @@ module.exports = Model.extend( {
         completed: false
     },
 
+    contextEvents: {
+        "comparison:stop:requested": function(){
+            this.assessmentsCollection.deselect();
+            this.clear();
+        }
+    },
+
     initialize: function(){
         this.comparisonsCollection.on( 'change:selected', ( comparison,
                                                             oldComparison )=>{
