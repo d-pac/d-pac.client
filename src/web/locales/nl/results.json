@@ -13,15 +13,17 @@
     "title": "Overzichtgegevens voor '__title__'",
     "totals": {
       "reliability": "Betrouwbaarheid",
-      "assessorsNum": "Aantal uitgenodigde beoordelaars",
+      "assessorsNum": "Totaal aantal uitgenodigde beoordelaars",
       "participatoryAssessorsNum": "Aantal deelgenomen beoordelaars",
-      "comparisonsNum": "Aantal beoordelingen door deelnemende beoordelaars",
-      "representationsNum": "Aantal representaties",
+      "comparisonsNum": "Totaal aantal beoordelingen",
+      "completedComparisonsNum": "Aantal afgeronde beoordelingen",
+      "representationsNum": "Totaal aantal representaties",
+      "toRankRepresentationsNum": "Aantal te rangschikken representaties",
       "duration": "Totale tijd gespendeerd door alle deelnemende beoordelaars"
     },
     "averages": {
       "comparisonsPerRepresentation": "Gemiddeld aantal beoordelingen per representatie",
-      "comparisonsPerAssessor": "Gemiddeld aantal beoordelingen per deelenemende beoordelaar",
+      "comparisonsPerAssessor": "Gemiddeld aantal beoordelingen per deelnemende beoordelaar",
       "durationPerAssessor": "Gemiddelde tijd per deelnemende beoordelaar"
     }
   },

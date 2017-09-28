@@ -10,7 +10,8 @@ module.exports = NestedModel.extend({
         isUpToDate: false,
         stats: {
             averages: {},
-            totals: {}
+            totals: {},
+            byRepresentation: {}
         }
     },
 

@@ -13,10 +13,12 @@
     "title": "Overview for '__title__'",
     "totals": {
       "reliability": "Reliability",
-      "assessorsNum": "Number of invited assessors",
+      "assessorsNum": "Total number of invited assessors",
       "participatoryAssessorsNum": "Number of participating assessors",
-      "comparisonsNum": "Number of comparisons",
-      "representationsNum": "Number of representations",
+      "comparisonsNum": "Total number of comparisons",
+      "completedComparisonsNum": "Number of completed comparisons",
+      "representationsNum": "Total number of representations",
+      "toRankRepresentationsNum": "Number of 'to rank' representations",
       "duration": "Total duration of all comparisons"
     },
     "averages": {

@@ -7,10 +7,6 @@
         <td class="text-right code"><code>{{toFixed results.stats.totals.reliability 2}}</code></td>
     </tr>
     <tr>
-        <td>{{t "results:assessment_overview.totals.comparisonsNum"}}</td>
-        <td class="text-right"><code>{{assessment.cache.comparisonsNum}}</code></td>
-    </tr>
-    <tr>
         <td>{{t "results:assessment_overview.totals.assessorsNum"}}</td>
         <td class="text-right"><code>{{assessment.cache.assessorsNum}}</code></td>
     </tr>
@@ -19,12 +15,24 @@
         <td class="text-right"><code>{{results.stats.totals.participatoryAssessorsNum}}</code></td>
     </tr>
     <tr>
+        <td>{{t "results:assessment_overview.totals.comparisonsNum"}}</td>
+        <td class="text-right"><code>{{assessment.cache.comparisonsNum}}</code></td>
+    </tr>
+    <tr>
+        <td>{{t "results:assessment_overview.totals.completedComparisonsNum"}}</td>
+        <td class="text-right"><code>{{results.stats.totals.completedComparisonsNum}}</code></td>
+    </tr>
+    <tr>
         <td>{{t "results:assessment_overview.averages.comparisonsPerAssessor"}}</td>
         <td class="text-right"><code>{{toFixed results.stats.averages.comparisonsPerAssessor 1}}</code></td>
     </tr>
     <tr>
         <td>{{t "results:assessment_overview.totals.representationsNum"}}</td>
         <td class="text-right"><code>{{assessment.cache.representationsNum}}</code></td>
+    </tr>
+    <tr>
+        <td>{{t "results:assessment_overview.totals.toRankRepresentationsNum"}}</td>
+        <td class="text-right"><code>{{results.stats.totals.toRankRepresentationsNum}}</code></td>
     </tr>
     <tr>
         <td>{{t "results:assessment_overview.averages.comparisonsPerRepresentation"}}</td>
