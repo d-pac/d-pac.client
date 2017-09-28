@@ -10,6 +10,7 @@ module.exports = Controller.extend( {
     assessmentsCollection: undefined,
 
     contextEvents: {
+        "assess:ui:rendered": "determineState",
         "assessments:selection:completed": function(){
             debug('assessments:selection:completed handler');
             this.determineState();
