@@ -22,8 +22,8 @@
       "duration": "Totale tijd gespendeerd door alle deelnemende beoordelaars"
     },
     "averages": {
-      "comparisonsPerRepresentation": "Gemiddeld aantal beoordelingen per representatie",
-      "comparisonsPerAssessor": "Gemiddeld aantal beoordelingen per deelnemende beoordelaar",
+      "comparisonsPerRepresentation": "Gemiddeld aantal afgeronde beoordelingen per representatie",
+      "comparisonsPerAssessor": "Gemiddeld aantal afgeronde beoordelingen per deelnemende beoordelaar",
       "durationPerAssessor": "Gemiddelde tijd per deelnemende beoordelaar"
     }
   },

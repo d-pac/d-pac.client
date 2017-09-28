@@ -22,8 +22,8 @@
       "duration": "Total duration of all comparisons"
     },
     "averages": {
-      "comparisonsPerRepresentation": "Average number of comparisons per representation",
-      "comparisonsPerAssessor": "Average number of comparisons per participating assessor",
+      "comparisonsPerRepresentation": "Average number of completed comparisons per representation",
+      "comparisonsPerAssessor": "Average number of completed comparisons per participating assessor",
       "durationPerAssessor": "Average duration per participating assessor"
     }
   },
