@@ -1,0 +1,27 @@
+<h4>{{t "results:representations_list.title"}}</h4>
+<table class="table table-bordered table-striped" style="width:100%;">
+    <thead>
+    <tr>
+        <td>{{ t "results:representations_list.rank" }}</td>
+        <td>{{ t "results:representations_list.rid" }}</td>
+        <td>{{ t "results:representations_list.comparisonsNum" }}</td>
+        <td>{{ t "results:representations_list.ability" }}</td>
+        <td>{{ t "results:representations_list.se" }}</td>
+        <td>{{ t "results:representations_list.infit" }}</td>
+        <td>{{ t "results:representations_list.filename" }}</td>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each representations}}
+        <tr>
+            <td>{{{rank}}}</td>
+            <td><a href="{{{document.href}}}" target="_blank">{{{anonymized}}}</a> </td>
+            <td class="text-right"><strong>{{{completedComparisons}}}/{{{../maxComparisons}}}</strong></td>
+            <td class="text-right"><strong>{{{toFixed ability}}}</strong></td>
+            <td class="text-right"><strong>{{{toFixed se}}}</strong></td>
+            <td class="text-right"><strong>{{{toFixed infit}}}</strong></td>
+            <td>{{{document.file.originalName}}}</td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>

@@ -1,3 +1,4 @@
+
 <h4>{{t "results:assessment_overview.title" title=assessment.title}}</h4>
 
 <table class="table table-bordered table-striped">
@@ -24,7 +25,7 @@
     </tr>
     <tr>
         <td>{{t "results:assessment_overview.averages.comparisonsPerAssessor"}}</td>
-        <td class="text-right"><code>{{toFixed results.stats.averages.comparisonsPerAssessor 1}}</code></td>
+        <td class="text-right"><code>{{toFixed results.stats.averages.comparisonsPerAssessor 1}}/{{assessment.limits.comparisonsNum.perAssessor}}</code></td>
     </tr>
     <tr>
         <td>{{t "results:assessment_overview.totals.representationsNum"}}</td>
@@ -36,7 +37,7 @@
     </tr>
     <tr>
         <td>{{t "results:assessment_overview.averages.comparisonsPerRepresentation"}}</td>
-        <td class="text-right"><code>{{toFixed results.stats.averages.comparisonsPerRepresentation 1}}</code></td>
+        <td class="text-right"><code>{{toFixed results.stats.averages.comparisonsPerRepresentation 1}}/{{assessment.limits.comparisonsNum.perRepresentation}}</code></td>
     </tr>
     <tr>
         <td>{{t "results:assessment_overview.totals.duration"}}</td>

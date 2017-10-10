@@ -1,0 +1,23 @@
+<h4>{{t "results:assessors_list.title"}}</h4>
+<table class="table table-bordered table-striped" style="width:100%;">
+    <thead>
+    <tr>
+        <td>{{ t "results:assessors_list.name" }}</td>
+        <td>{{ t "results:assessors_list.anonymized" }}</td>
+        <td>{{ t "results:assessors_list.comparisonsNum" }}</td>
+        <td>{{ t "results:assessors_list.infit" }}</td>
+        <td>{{ t "results:assessors_list.email" }}</td>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each assessors}}
+        <tr>
+            <td>{{name.first}} {{name.last}}</td>
+            <td>{{{anonymized}}}</td>
+            <td class="text-right {{#if hasCompleted}}text-success{{/if}}" ><strong>{{{completedComparisons}}}/{{{../maxComparisons}}}</strong></td>
+            <td class="text-right"><strong>{{{toFixed infit}}}</strong></td>
+            <td><a href="mailto:{{{email}}}">{{{email}}}</a></td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>

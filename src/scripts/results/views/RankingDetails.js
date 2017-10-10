@@ -2,7 +2,7 @@
 const {LayoutView} = require( 'backbone.marionette' );
 
 const debug = require( 'debug' )( 'dpac:results.views', '[RepresentationDetails]' );
-const tpl = require( './templates/RepresentationDetails.hbs' );
+const tpl = require( './templates/RankingDetails.hbs' );
 
 module.exports = LayoutView.extend( {
     mediaViewFactory: undefined,

@@ -23,15 +23,11 @@ module.exports = ItemView.extend( {
 
     serializeData: function(){
         const models = this.collection.toJSON();
-        console.log(models);
         return { list:models};
     },
 
     assessmentSelected: function(){
         const model = this.collection.selectByID( this.$( "select option:selected" ).data( 'model-id' ) );
         ga('set', GA_DIM_ASSESSMENT, model.get('name'));
-        this.dispatch( "results:assessment:selected", {
-            assessment: model
-        } );
     }
 } );

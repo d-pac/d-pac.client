@@ -5,7 +5,7 @@ const {ItemView} = require('backbone.marionette');
 const i18n = require( 'i18next' );
 
 const debug = require('debug')('dpac:results.views', '[FeedbackOverview]');
-const tpl = require('./templates/FeedbackTable.hbs');
+const tpl = require('./templates/RankingFeedback.hbs');
 
 module.exports = ItemView.extend({
     className: "column col-sm-12",

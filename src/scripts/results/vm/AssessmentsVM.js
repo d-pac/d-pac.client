@@ -1,31 +1,34 @@
 'use strict';
 const {Controller} = require('backbone.marionette');
-const debug = require('debug')('dpac:results.controllers', '[ResultsController]');
+const debug = require('debug')('dpac:results.vm', '[AssessmentsVM]');
 
 module.exports = Controller.extend({
 
     assessmentsCollection: undefined,
     accountModel: undefined,
 
-    get selected(){
-        return (this.assessmentsCollection) ? this.assessmentsCollection.selected : null;
+    getSelected() {
+        return  (this.assessmentsCollection) ? this.assessmentsCollection.selected : null;
     },
 
     initialize() {
+
+        this.assessmentsCollection.on('change:selected', () => {
+            const model = this.assessmentsCollection.selected;
+            this.dispatch("results:assessment:selected", {assessment: model});
+        });
         const pamAssessments = this.accountModel.getAssessments('PAM');
         const assessments = this.assessmentsCollection.listById(this.accountModel.getAssessments('PAM'))
-        assessments.forEach((model)=>{
+        assessments.forEach((model) => {
             model.set('permissions.results', true);
             return model;
         });
         //we want all the assessments the assessor/assessee is or will (!) be allowed to see
         const restricted = this.assessmentsCollection.listById([
-                ...this.accountModel.getAssessments('assessor'),
-                ...this.accountModel.getAssessments('assessee')
-            ])
-                .filter((assessment) => {
-                    return assessment.get('feature.results.enabled');
-                });
+            ...this.accountModel.getAssessments('assessor'),
+            ...this.accountModel.getAssessments('assessee')
+        ])
+            .filter((assessment) => assessment.get('feature.results.enabled'));
         assessments.add(restricted);
 
         this.filtered = assessments;
@@ -35,15 +38,16 @@ module.exports = Controller.extend({
         return this.filtered.toJSON();
     },
 
-    select(model){
+    select(model) {
         return this.assessmentsCollection.select(model);
     },
 
-    deselect(model){
+    deselect(model) {
         return this.assessmentsCollection.deselect(model);
     },
 
-    selectByID(id){
+    selectByID(id) {
+        console.log(this.assessmentsCollection);
         return this.assessmentsCollection.selectByID(id);
     }
 });

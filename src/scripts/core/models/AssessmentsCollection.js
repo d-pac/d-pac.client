@@ -70,8 +70,7 @@ module.exports = AssessmentsCollection;
 
 selectable.mixin(module.exports);
 propagateEvents.mixin(module.exports).propagate({
-    "sync": "assessments:collection:sync",
-    "change:selected": "assessments:selection:changed"
+    "sync": "assessments:collection:sync"
 });
 safeSync.collection.mixin(module.exports);
 teardown.collection.mixin(module.exports);

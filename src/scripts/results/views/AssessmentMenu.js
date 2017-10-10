@@ -11,6 +11,6 @@ module.exports = ItemView.extend( {
     },
 
     serializeData: function(){
-        return this.collection.selected.toJSON();
+        return this.collection.getSelected().toJSON();
     }
 } );
