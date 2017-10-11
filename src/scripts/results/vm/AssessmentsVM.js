@@ -47,7 +47,6 @@ module.exports = Controller.extend({
     },
 
     selectByID(id) {
-        console.log(this.assessmentsCollection);
         return this.assessmentsCollection.selectByID(id);
     }
 });

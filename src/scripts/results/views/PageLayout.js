@@ -19,23 +19,35 @@ module.exports = LayoutView.extend({
         'change @ui.selector': 'pageSelected'
     },
 
+    modelEvents: {
+        'change': "render"
+    },
+
+    initialize() {
+        debug('#initialize', this.cid);
+    },
+
     onRender() {
         debug('#onRender');
         this.showPage();
     },
 
-    showPage(page="ranking"){
+    showPage(page = "overview") {
+        debug('#showPage', page);
         let view;
-        switch(page){
+        switch (page) {
             case "representations":
-                view =this.createRepresentationsList;
+                view = this.createRepresentationsList;
                 break;
             case "assessors":
                 view = this.createAssessorsList;
                 break;
             case "ranking":
-            default:
                 view = this.createRanking;
+                break;
+            case "overview":
+            default:
+                view = this.createOverview;
         }
         this.content.show(view());
     },

@@ -24,7 +24,9 @@ extend(BootstrapUI.prototype, {
         context.wireView('PageLayout', require('../views/PageLayout'), {
             createRanking: 'RankingMain',
             createRepresentationsList: 'RepresentationsList',
-            createAssessorsList: 'AssessorsList'
+            createAssessorsList: 'AssessorsList',
+            createOverview:  'AssessmentOverview',
+            model: 'resultsVM'
         });
 
         context.wireView('RankingMain', require('../views/RankingMain'), {

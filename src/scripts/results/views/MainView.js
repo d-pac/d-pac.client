@@ -16,7 +16,6 @@ module.exports = LayoutView.extend( {
     regions: {
         selection: "#results-assessment-selection",
         menu: "#results-assessment-menu",
-        overview: "#results-assessment-overview",
         page: "#results-page"
     },
 
@@ -30,12 +29,9 @@ module.exports = LayoutView.extend( {
 
     contextEvents: {
         'results:assessment:selected': function( event ){
-            const assessment = event.assessment;
             this.menu.show( this.createAssessmentMenu() );
-            this.overview.empty();
-            this.renderOverview( assessment );
             this.page.empty();
-            this.renderPage( assessment );
+            this.renderPage();
         },
     },
 
@@ -61,10 +57,6 @@ module.exports = LayoutView.extend( {
     onDestroy: function(){
         this.dispatch( 'results:ui:destroyed' );
         clearInterval(this.scrolldownInterval);
-    },
-
-    renderOverview: function( assessment ){
-        delay( () => this.overview.show( this.createAssessmentOverview() ), 250 );
     },
 
     renderPage: function(){

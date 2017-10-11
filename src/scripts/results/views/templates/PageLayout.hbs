@@ -5,9 +5,10 @@
         </div>
         <div class="col-sm-10 column">
             <select id="page-selection" class="form-control">
-                <option value="ranking" selected="selected">{{t "results:page_nav.ranking"}}</option>
-                <option value="assessors">{{t "results:page_nav.assessors"}}</option>
-                <option value="representations">{{t "results:page_nav.representations"}}</option>
+                <option value="overview" selected="selected">{{t "results:page_nav.overview"}}</option>
+                {{#if nav.showRanking}}<option value="ranking" >{{t "results:page_nav.ranking"}}</option>{{/if}}
+                {{#if nav.showAssessors}}<option value="assessors">{{t "results:page_nav.assessors"}}</option>{{/if}}
+                {{#if nav.showRepresentations}}<option value="representations">{{t "results:page_nav.representations"}}</option>{{/if}}
             </select>
         </div>
     </div>

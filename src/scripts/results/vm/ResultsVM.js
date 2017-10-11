@@ -56,6 +56,7 @@ module.exports = Model.extend({
 
     fetchResultsForAssessment(assessment) {
         this.cache = null;
+        this.clear();
         P.props({
             stats: this._fetchStatsForAssessment(assessment),
             representations: this._fetchRepresentationsForAssessment(assessment),
@@ -67,6 +68,14 @@ module.exports = Model.extend({
 
     parseData(assessment) {
         debug('#parseData', assessment);
+        this.set({
+            assessment: assessment.toJSON(),
+                nav: {
+                showRanking: this.authorization.isAllowedToViewRanking(assessment),
+                showAssessors: this.authorization.isAllowedToViewAssessorsList(assessment),
+                showRepresentations: this.authorization.isAllowedToViewRepresentationsList(assessment),
+            }
+        });
         _each(this.stats.get('stats.byRepresentation'), (v, k) => {
             this.representations.get(k).set({
                 completedComparisons: v.comparisonsNum,
@@ -119,10 +128,9 @@ module.exports = Model.extend({
         }
         this.set({
             ranking: ranking,
-            assessment: assessment.toJSON(),
             representations: this.representations.toJSON(),
             assessors: this.users.toJSON(),
-            results: this.stats.toJSON()
+            results: this.stats.toJSON(),
         });
     },
 

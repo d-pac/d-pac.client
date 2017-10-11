@@ -29,9 +29,10 @@
   },
   "page_nav": {
     "title": "Toon:",
+    "overview": "Overzicht",
     "ranking": "Rangschikking",
-    "assessors": "Overzicht assessoren",
-    "representations": "Overzicht representaties"
+    "assessors": "Beoordelaars",
+    "representations": "Representaties"
   },
   "representations_ranking": {
     "title": "Rangorde van de representaties voor '__title__'",

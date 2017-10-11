@@ -14,8 +14,8 @@
         <tr>
             <td>{{name.first}} {{name.last}}</td>
             <td>{{{anonymized}}}</td>
-            <td class="text-right {{#if hasCompleted}}text-success{{/if}}" ><strong>{{{completedComparisons}}}/{{{../maxComparisons}}}</strong></td>
-            <td class="text-right"><strong>{{{toFixed infit}}}</strong></td>
+            <td class="text-right {{#if hasCompleted}}text-success{{/if}}" ><code>{{{completedComparisons}}}/{{{../maxComparisons}}}</code></td>
+            <td class="text-right"><code>{{{toFixed infit}}}</code></td>
             <td><a href="mailto:{{{email}}}">{{{email}}}</a></td>
         </tr>
     {{/each}}

@@ -120,7 +120,6 @@ module.exports = Model.extend( {
 
     isAllowedToViewRanking: function(assessment){
         const role = this.getHighestRole(assessment.id || assessment._id);
-        console.log('role', role);
         if(role === 'assessee'){
             return !!assessment.get('results.assessees.viewRanking');
         }
@@ -133,6 +132,17 @@ module.exports = Model.extend( {
             return !!assessment.get('results.assessees.viewRepresentations');
         }
         return !!role;
+    },
+
+    isAllowedToViewAssessorsList: function (assessment) {
+        const role = this.getHighestRole(assessment.id || assessment._id);
+        return role === "pam"
+    },
+
+    isAllowedToViewRepresentationsList: function (assessment) {
+        const role = this.getHighestRole(assessment.id || assessment._id);
+        console.log("role for", assessment, role);
+        return role === "pam"
     },
 
     getUser: function(){

@@ -6,7 +6,6 @@ const emptyTpl = require('./templates/Loading.hbs');
 const contentTpl = require( './templates/AssessmentOverview.hbs' );
 
 module.exports = ItemView.extend( {
-    className: "row",
     getTemplate: function(){
         if (this.model.has('assessment')){
             return contentTpl;
@@ -15,10 +14,7 @@ module.exports = ItemView.extend( {
     },
 
     modelEvents: {
-        "change": "render"
+        "change:assessment": 'render'
     },
 
-    initialize: function(){
-        debug( '#initialize', this.model );
-    }
 } );
