@@ -56,7 +56,7 @@
     "rid": "ID",
     "comparisonsNum": "Compared",
     "ability": "Ability",
-    "se": "Deviation",
+    "se": "Standard Error",
     "infit": "Infit",
     "filename": "File"
   },

@@ -15,12 +15,12 @@
     {{#each representations}}
         <tr>
             <td>{{{rank}}}</td>
-            <td><a href="{{{document.href}}}" target="_blank">{{{anonymized}}}</a> </td>
+            <td>{{{anonymized}}}</td>
             <td class="text-right"><code>{{{completedComparisons}}}/{{{../maxComparisons}}}</code></td>
             <td class="text-right"><code>{{{toFixed ability}}}</code></td>
             <td class="text-right"><code>{{{toFixed se}}}</code></td>
             <td class="text-right"><code>{{{toFixed infit}}}</code></td>
-            <td>{{{document.file.originalName}}}</td>
+            <td><a href="{{{document.href}}}" target="_blank">{{{document.originalName}}}</a></td>
         </tr>
     {{/each}}
     </tbody>

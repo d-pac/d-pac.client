@@ -57,7 +57,7 @@
     "rid": "ID",
     "comparisonsNum": "Vergeleken",
     "ability": "Waarde",
-    "se": "Afwijking",
+    "se": "Standaardfout",
     "infit": "Infit",
     "filename": "Bestand"
   },
