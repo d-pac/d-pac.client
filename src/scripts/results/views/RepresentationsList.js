@@ -19,7 +19,7 @@ module.exports = ItemView.extend({
     serializeData: function () {
         const representations = this.model.get('ranking');
         return {
-            representations: representations.reverse(),
+            representations: representations.sort((a,b)=>a.rank-b.rank),
             maxComparisons: this.model.get('assessment').limits.comparisonsNum.perRepresentation
         }
     }
