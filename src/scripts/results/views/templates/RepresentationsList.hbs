@@ -15,7 +15,7 @@
     {{#each representations}}
         <tr>
             <td>{{{rank}}}</td>
-            <td>{{{anonymized}}}</td>
+            <td><a href="{{../admin}}/representations/{{_id}}" target="_blank">{{{anonymized}}}</a></td>
             <td class="text-right"><code>{{{completedComparisons}}}/{{{../maxComparisons}}}</code></td>
             <td class="text-right"><code>{{{toFixed ability}}}</code></td>
             <td class="text-right"><code>{{{toFixed se}}}</code></td>

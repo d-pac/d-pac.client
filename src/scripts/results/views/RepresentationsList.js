@@ -20,7 +20,8 @@ module.exports = ItemView.extend({
         const representations = this.model.get('ranking');
         return {
             representations: representations.sort((a,b)=>a.rank-b.rank),
-            maxComparisons: this.model.get('assessment').limits.comparisonsNum.perRepresentation
+            maxComparisons: this.model.get('assessment').limits.comparisonsNum.perRepresentation,
+            admin: this.model.get('admin')
         }
     }
 });

@@ -10,6 +10,7 @@ module.exports = Model.extend({
     authorization: undefined,
     representations: undefined,
     users: undefined,
+    config: undefined,
 
     _parsed: false,
 
@@ -22,7 +23,7 @@ module.exports = Model.extend({
     },
 
     initialize: function () {
-        debug('#initialize');
+        debug('#initialize' );
     },
 
     _fetchStatsForAssessment(assessment) {
@@ -69,8 +70,9 @@ module.exports = Model.extend({
     parseData(assessment) {
         debug('#parseData', assessment);
         this.set({
+            admin: this.config.api.admin,
             assessment: assessment.toJSON(),
-                nav: {
+            nav: {
                 showRanking: this.authorization.isAllowedToViewRanking(assessment),
                 showAssessors: this.authorization.isAllowedToViewAssessorsList(assessment),
                 showRepresentations: this.authorization.isAllowedToViewRepresentationsList(assessment),

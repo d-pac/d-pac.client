@@ -23,7 +23,8 @@ extend( BootstrapDomain.prototype, {
         context.wireSingleton( 'resultsVM', require( '../vm/ResultsVM' ), {
             representations: 'representationsCollection',
             authorization: 'authorizationModel',
-            users: 'usersCollection'
+            users: 'usersCollection',
+            config: 'config'
         } );
         context.wireSingleton('usersCollection', require('../../common/models/UsersCollection'));
 
