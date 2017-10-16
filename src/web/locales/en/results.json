@@ -29,6 +29,7 @@
   },
   "page_nav": {
     "title": "Show:",
+    "overview": "Overview",
     "ranking": "Ranking",
     "assessors": "Assessor overview",
     "representations": "Representation overview"
