@@ -14,18 +14,19 @@ extend( BootstrapDomain.prototype, {
         debug( '#execute' );
 
         const context = this.context;
-        context.wireSingleton('resultsController', require('./ResultsController'), {
+        context.wireSingleton('assessmentsVM', require('../vm/AssessmentsVM'), {
             assessmentsCollection: 'assessmentsCollection',
             accountModel: 'accountModel'
         });
         context.wireSingleton( 'representationsCollection', require( '../../common/models/RepresentationsCollection' ) );
         context.wireSingleton( 'feedbackCollection', require( '../../common/models/FeedbackCollection' ) );
-        context.wireSingleton( 'representationsRankingsController', require( './RepresentationsRankingController' ), {
+        context.wireSingleton( 'resultsVM', require( '../vm/ResultsVM' ), {
             representations: 'representationsCollection',
-            assessmentStats: 'statsController',
-            authorization: 'authorizationModel'
+            authorization: 'authorizationModel',
+            users: 'usersCollection',
+            config: 'config'
         } );
-        context.wireSingleton('statsController', require('./StatsController'));
+        context.wireSingleton('usersCollection', require('../../common/models/UsersCollection'));
 
         this.context = undefined;
         this.eventName = undefined;

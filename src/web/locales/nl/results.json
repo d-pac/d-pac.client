@@ -16,16 +16,23 @@
       "assessorsNum": "Totaal aantal uitgenodigde beoordelaars",
       "participatoryAssessorsNum": "Aantal deelgenomen beoordelaars",
       "comparisonsNum": "Totaal aantal beoordelingen",
-      "completedComparisonsNum": "Aantal afgeronde beoordelingen",
+      "completedComparisonsNum": "Aantal afgewerkte beoordelingen",
       "representationsNum": "Totaal aantal representaties",
       "toRankRepresentationsNum": "Aantal te rangschikken representaties",
       "duration": "Totale tijd gespendeerd door alle deelnemende beoordelaars"
     },
     "averages": {
-      "comparisonsPerRepresentation": "Gemiddeld aantal afgeronde beoordelingen per representatie",
-      "comparisonsPerAssessor": "Gemiddeld aantal afgeronde beoordelingen per deelnemende beoordelaar",
+      "comparisonsPerRepresentation": "Gemiddeld aantal afgewerkte beoordelingen per representatie",
+      "comparisonsPerAssessor": "Gemiddeld aantal afgewerkte beoordelingen per deelnemende beoordelaar",
       "durationPerAssessor": "Gemiddelde tijd per deelnemende beoordelaar"
     }
+  },
+  "page_nav": {
+    "title": "Toon:",
+    "overview": "Overzicht",
+    "ranking": "Rangschikking",
+    "assessors": "Beoordelaars",
+    "representations": "Representaties"
   },
   "representations_ranking": {
     "title": "Rangorde van de representaties voor '__title__'",
@@ -43,5 +50,24 @@
     "assessor": "Beoordelaar",
     "positive": "Positief",
     "negative": "Negatief"
+  },
+  "representations_list": {
+    "title": "Representaties",
+    "rank": "#",
+    "rid": "ID",
+    "comparisonsNum": "Vergeleken",
+    "ability": "Waarde",
+    "se": "Standaardfout",
+    "infit": "Infit",
+    "filename": "Bestand"
+  },
+  "assessors_list": {
+    "title": "Beoordelaars",
+    "name": "Naam",
+    "anonymized": "Pseudo",
+    "comparisonsNum": "Afgewerkte beoordelingen",
+    "infit": "Infit",
+    "email": "E-mail"
   }
+
 }

@@ -27,6 +27,12 @@
       "durationPerAssessor": "Average duration per participating assessor"
     }
   },
+  "page_nav": {
+    "title": "Show:",
+    "ranking": "Ranking",
+    "assessors": "Assessor overview",
+    "representations": "Representation overview"
+  },
   "representations_ranking": {
     "title": "Ranking of the representations for '__title__'",
     "name": "Name",
@@ -43,5 +49,23 @@
     "assessor": "Assessor",
     "positive": "Positive",
     "negative": "Negative"
+  },
+  "representations_list": {
+    "title": "Representations",
+    "rank": "#",
+    "rid": "ID",
+    "comparisonsNum": "Compared",
+    "ability": "Ability",
+    "se": "Standard Error",
+    "infit": "Infit",
+    "filename": "File"
+  },
+  "assessors_list": {
+    "title": "Assessors",
+    "name": "Name",
+    "anonymized": "Pseudo",
+    "comparisonsNum": "Completed comparisons",
+    "infit": "Infit",
+    "email": "E-mail"
   }
 }

@@ -9,7 +9,7 @@ const {ItemView} = require( 'backbone.marionette' );
 const $ = require( 'jquery' );
 
 const debug = require( 'debug' )( 'dpac:results.views', '[RepresentationsRanking]' );
-const tpl = require( './templates/RepresentationsRanking.hbs' );
+const tpl = require( './templates/RankingGraph.hbs' );
 // const tipTpl = require( './templates/RepresentationTip.hbs' );
 
 // const tip = d3Tip()
@@ -19,8 +19,6 @@ const tpl = require( './templates/RepresentationsRanking.hbs' );
 
 module.exports = ItemView.extend( {
     template: tpl,
-    className: "column col-sm-12",
-
     ui: {
         spinner: '.spinner'
     },
@@ -43,7 +41,7 @@ module.exports = ItemView.extend( {
         const graph = this.graph = stockplot();
         const values = graph.render( {
             el: this.el,
-            data: data.representations,
+            data: data.ranking,
             debug: false,
             point: {
                 radius: 4,
@@ -65,7 +63,7 @@ module.exports = ItemView.extend( {
 
     onRender: function(){
         debug( '#onRender' );
-        if( this.model.getLength() ){
+        if( this.model.getRepresentationsLength() ){
             this.renderGraph();
         }
     },

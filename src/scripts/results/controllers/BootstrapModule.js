@@ -22,7 +22,7 @@ extend(module.exports.prototype, {
                 require('./../../common/controllers/SetupAssessmentI18NSyncing'),
                 require('./BootstrapUI')
             ],
-            'results:assessment:selected': [require('./LoadStats'), require('./LoadRepresentations')],
+            'results:assessment:selected': [require('./LoadResults')],
             "results:representation:selected": [require('./LoadFeedback')]
         });
 

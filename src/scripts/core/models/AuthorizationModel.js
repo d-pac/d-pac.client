@@ -90,8 +90,7 @@ module.exports = Model.extend( {
         return get( obj.flags, path ) === permissions.flags.disabled.label;
     },
 
-    getHighestRole: function(assessment){
-        const id = assessment.id;
+    getHighestRole: function(id){
         const user = this.getUser();
         if(get( user, [ 'assessments', 'pam' ], [] ).indexOf(id)>=0){
             return 'pam';
@@ -105,8 +104,7 @@ module.exports = Model.extend( {
         return undefined;
     },
 
-    getLowestRole: function(assessment){
-        const id = assessment.id;
+    getLowestRole: function(id){
         const user = this.getUser();
         if(get( user, [ 'assessments', 'assessee' ], [] ).indexOf(id)>=0){
             return 'assessee';
@@ -121,7 +119,7 @@ module.exports = Model.extend( {
     },
 
     isAllowedToViewRanking: function(assessment){
-        const role = this.getHighestRole(assessment);
+        const role = this.getHighestRole(assessment.id || assessment._id);
         if(role === 'assessee'){
             return !!assessment.get('results.assessees.viewRanking');
         }
@@ -129,11 +127,22 @@ module.exports = Model.extend( {
     },
 
     isAllowedToViewOthers: function(assessment){
-        const role = this.getLowestRole(assessment); // temporary fix
+        const role = this.getLowestRole(assessment.id || assessment._id); // temporary fix
         if(role === 'assessee'){
             return !!assessment.get('results.assessees.viewRepresentations');
         }
         return !!role;
+    },
+
+    isAllowedToViewAssessorsList: function (assessment) {
+        const role = this.getHighestRole(assessment.id || assessment._id);
+        return role === "pam"
+    },
+
+    isAllowedToViewRepresentationsList: function (assessment) {
+        const role = this.getHighestRole(assessment.id || assessment._id);
+        console.log("role for", assessment, role);
+        return role === "pam"
     },
 
     getUser: function(){
