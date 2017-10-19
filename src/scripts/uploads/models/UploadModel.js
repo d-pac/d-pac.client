@@ -38,7 +38,7 @@ module.exports = Model.extend({
     uploadingEnabled: function () {
         const assessment = this.get('assessment');
         const representation = this.selected;
-        const isCompared = (representation) ? representation.get('comparedNum') > 0 : false;
+        const isCompared = representation.get('isInComparison');
         return assessment.uploadingAllowed(isCompared);
     },
 
