@@ -12,7 +12,6 @@ module.exports = NestedModel.extend( {
         name: undefined,
         anonymized: undefined,
         assessment: undefined,
-        comparisons: [],
         document: {
             _id: undefined,
             _rid: undefined,
@@ -24,6 +23,7 @@ module.exports = NestedModel.extend( {
             owner: [],
             originalName: undefined,
         },
+        isInComparison: false,
         selected: false
     },
 
