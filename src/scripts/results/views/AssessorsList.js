@@ -17,9 +17,9 @@ module.exports = ItemView.extend({
     },
 
     serializeData: function () {
+        debug('#serializeData');
         const assessors = this.model.get('assessors');
         const assessment = this.model.get('assessment');
-        console.log(assessors);
         return {
             assessors: assessors,
             maxComparisons: assessment.limits.comparisonsNum.perAssessor

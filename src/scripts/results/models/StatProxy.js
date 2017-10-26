@@ -11,7 +11,8 @@ module.exports = NestedModel.extend({
         stats: {
             averages: {},
             totals: {},
-            byRepresentation: {}
+            byRepresentation: {},
+            byAssessor: {}
         }
     },
 

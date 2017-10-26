@@ -40,6 +40,7 @@ module.exports = Model.extend({
         debug('#_fetchRepresentationForAssessment');
         return new P((resolve, reject) => {
             this.representations.fetchForAssessment(assessment, {
+                reset: true,
                 success: resolve,
                 error: reject
             });
@@ -49,6 +50,7 @@ module.exports = Model.extend({
     _fetchAssessorsForAssessment(assessment) {
         return new P((resolve, reject) => {
             this.users.fetchAssessors(assessment, {
+                reset: true,
                 success: resolve,
                 error: reject
             });
