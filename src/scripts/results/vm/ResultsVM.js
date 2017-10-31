@@ -89,11 +89,19 @@ module.exports = Model.extend({
 
         const maxComparisons = assessment.get('limits.comparisonsNum.perAssessor');
         _each(this.stats.get('stats.byAssessor'), (v, k) => {
-            this.users.get(k).set({
+            console.log("parsing results for assessor", k, v);
+            let user = this.users.get(k);
+            const values = {
                 completedComparisons: v.comparisonsNum,
                 infit: v.infit,
                 hasCompleted: v.comparisonsNum >= maxComparisons
-            });
+            };
+            if(!user){
+                //has made comparisons, but was removed from assessment
+                this.users.addRemoved(values);
+            }else{
+                user.set(values);
+            }
         });
 
         const isAllowedToViewOthers = this.authorization.isAllowedToViewOthers(assessment);
