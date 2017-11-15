@@ -43,7 +43,7 @@ module.exports = LayoutView.extend( {
         return {
             a: this.model.getRepresentationByOrder( "a" ).toJSON(),
             b: this.model.getRepresentationByOrder( "b" ).toJSON()
-        }
+        };
     },
 
     onRender: function(){
