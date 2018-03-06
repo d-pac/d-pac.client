@@ -27,7 +27,6 @@ extend(BootstrapUI.prototype, {
             createAssessorsList: 'AssessorsList',
             createOverview:  'AssessmentOverview',
             model: 'resultsVM',
-            config: 'config'
         });
 
         context.wireView('RankingMain', require('../views/RankingMain'), {
@@ -55,8 +54,10 @@ extend(BootstrapUI.prototype, {
             mediaViewFactory: 'mediaViewFactory'
         });
         context.wireView('RankingFeedback', require('../views/RankingFeedback'), {
+            model: 'resultsVM',
             representations: 'representationsCollection',
-            collection: 'feedbackCollection'
+            collection: 'feedbackCollection',
+            config: 'config'
         });
 
         context.wireView('RepresentationsList', require('../views/RepresentationsList'), {

@@ -11,8 +11,21 @@ module.exports = ItemView.extend({
     className: "column col-sm-12",
     template: tpl,
 
+    ui: {
+        printButton: '#print-feedback-button'
+    },
+
+    events: {
+        'click @ui.printButton': 'printFeedback'
+    },
+
     initialize: function () {
         debug('#initialize');
+    },
+
+    printFeedback(){
+        const url = `${this.config.api.host}/assessments/${this.model.get('assessment')._id}/feedback`;
+        window.open(url, '_blank');
     },
 
     serializeData: function () {

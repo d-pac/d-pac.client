@@ -34,11 +34,6 @@ module.exports = LayoutView.extend({
         this.showPage();
     },
 
-    printFeedback(){
-        const url = `${this.config.api.host}/assessments/${this.model.get('assessment')._id}/feedback`;
-        window.open(url, '_blank');
-    },
-
     showPage(page = "overview") {
         debug('#showPage', page);
         let view;
