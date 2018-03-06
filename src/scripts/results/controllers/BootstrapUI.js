@@ -18,15 +18,16 @@ extend(BootstrapUI.prototype, {
             createAssessmentSelection: 'AssessmentSelectionView',
             createAssessmentMenu: 'AssessmentMenuView',
             createAssessmentOverview: 'AssessmentOverview',
-            createPage: 'PageLayout'
+            createPage: 'PageNavigation'
         });
 
-        context.wireView('PageLayout', require('../views/PageLayout'), {
+        context.wireView('PageNavigation', require('../views/PageNavigation'), {
             createRanking: 'RankingMain',
             createRepresentationsList: 'RepresentationsList',
             createAssessorsList: 'AssessorsList',
             createOverview:  'AssessmentOverview',
-            model: 'resultsVM'
+            model: 'resultsVM',
+            config: 'config'
         });
 
         context.wireView('RankingMain', require('../views/RankingMain'), {
