@@ -32,7 +32,8 @@
     "overview": "Overzicht",
     "ranking": "Rangschikking",
     "assessors": "Beoordelaars",
-    "representations": "Representaties"
+    "representations": "Representaties",
+    "print": "Print feedback"
   },
   "representations_ranking": {
     "title": "Rangorde van de representaties voor '__title__'",

@@ -1,7 +1,7 @@
 'use strict';
 
-const debug = require('debug')('dpac:results.views', '[PageLayout]');
-const tpl = require('./templates/PageLayout.hbs');
+const debug = require('debug')('dpac:results.views', '[PageNavigation]');
+const tpl = require('./templates/PageNavigation.hbs');
 const {LayoutView} = require('backbone.marionette');
 
 module.exports = LayoutView.extend({
@@ -12,11 +12,13 @@ module.exports = LayoutView.extend({
     },
 
     ui: {
-        selector: "#page-selection"
+        selector: "#page-selection",
+        printButton: '#print-feedback-button'
     },
 
     events: {
-        'change @ui.selector': 'pageSelected'
+        'change @ui.selector': 'pageSelected',
+        'click @ui.printButton': 'printFeedback'
     },
 
     modelEvents: {
@@ -30,6 +32,11 @@ module.exports = LayoutView.extend({
     onRender() {
         debug('#onRender');
         this.showPage();
+    },
+
+    printFeedback(){
+        const url = `${this.config.api.host}/assessments/${this.model.get('assessment')._id}/feedback`;
+        window.open(url, '_blank');
     },
 
     showPage(page = "overview") {

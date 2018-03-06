@@ -8,6 +8,7 @@ const {GA_DIM_ASSESSMENT} = require('../../common/constants');
 
 module.exports = ItemView.extend( {
     template: tpl,
+    className: "toolbar assessment-selection-toolbar",
     initialize: function(){
         debug( '#initialize' );
         this.listenTo( this.collection, 'add', this.render.bind( this ) );
