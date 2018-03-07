@@ -14,7 +14,7 @@
   },
   "assessment_progressbar": {
     "tooltip": "Toont je informatie over je vooruitgang.",
-    "label": "Huidig: <span class=\"progress-text progress-current pull-right\">__progress.current__</span><br/>Maximum aantal vergelijkingen: <span class=\"progress-text progress-total pull-right\">__progress.total__</span>"
+    "label": "Huidig: <span class=\"progress-text progress-current pull-right\">__progress.current__</span>"
   },
   "assessment_selection": {
     "title": "Opdrachten",
