@@ -42,13 +42,13 @@ module.exports = Router.extend( {
                     route: this.redirect[route]
                 });
             }
-            const permissions = this.permissions.toJSON();
-            if( this.secured.indexOf( route ) >= 0 && !get( permissions, [ 'allowed', route, 'view' ], false ) ){
-                const dest = "#signin?from=" + route;
-                route = "signin";
-                debug( "redirect", dest );
-                this.navigate( dest );
-            }
+            // const permissions = this.permissions.toJSON();
+            // if( this.secured.indexOf( route ) >= 0 && !get( permissions, [ 'allowed', route, 'view' ], false ) ){
+            //     const dest = "#signin?from=" + route;
+            //     route = "signin";
+            //     debug( "redirect", dest );
+            //     this.navigate( dest );
+            // }
             this.dispatch( "router:route:completed", {
                 route: route
             } );
