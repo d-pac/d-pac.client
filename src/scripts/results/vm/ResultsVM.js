@@ -70,9 +70,7 @@ module.exports = Model.extend({
     },
 
     parseData(assessment) {
-        debug('holy motherfucking shit');
-        console.log("assessment", assessment)
-        debug('#parseData', 'wtf', this);
+        debug('#parseData');
         this.set({
             admin: this.config.api.admin,
             assessment: assessment.toJSON(),

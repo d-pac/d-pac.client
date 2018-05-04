@@ -33,6 +33,10 @@ module.exports = LayoutView.extend({
         if(this.model.has('assessment')){
             this.renderRanking();
         }
+        if(this.model.getSelectedRepresentationId()){
+            this.renderDetails();
+            this.renderFeedback();
+        }
     },
 
     empty(){
