@@ -13,8 +13,9 @@ RUN apk upgrade libssl1.0 --update-cache \
 ADD package.json /tmp/package.json
 RUN cd /tmp && npm install
 
+ADD .bowerrc /tmp/.bowerrc
 ADD bower.json /tmp/bower.json
-RUN cd /tmp && ./node_modules/.bin/bower install --allow-root
+RUN cd /tmp && ./node_modules/.bin/bower install --allow-root --quiet
 
 RUN mkdir -p /home/dpac && mv /tmp/node_modules /home/dpac/ && mv /tmp/bower_components /home/dpac
 RUN mv /tmp/package.json /home/dpac/package.json && mv /tmp/bower.json /home/dpac/bower.json
