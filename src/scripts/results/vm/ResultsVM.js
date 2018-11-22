@@ -16,6 +16,7 @@ module.exports = Model.extend({
 
     defaults: {
         assessment: undefined,
+        assessmentModel: undefined,
         ranking: undefined,
         representations: undefined,
         assessors: undefined,
@@ -74,6 +75,7 @@ module.exports = Model.extend({
         this.set({
             admin: this.config.api.admin,
             assessment: assessment.toJSON(),
+            assessmentModel: assessment,
             nav: {
                 showRanking: this.authorization.isAllowedToViewRanking(assessment),
                 showAssessors: this.authorization.isAllowedToViewAssessorsList(assessment),

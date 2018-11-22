@@ -48,7 +48,7 @@ module.exports = LayoutView.extend({
 
     renderRanking: function(  ){
         debug('#renderRanking', this.model.get('assessment'));
-        const assessment = this.model.get('assessment');
+        const assessment = this.model.get('assessmentModel');
         //todo: move to navigation
         if( assessment && this.authorization.isAllowedToViewRanking( assessment ) ){
             this.ranking.show( this.createRanking() );
