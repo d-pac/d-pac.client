@@ -7,7 +7,7 @@
         <td>{{ t "results:representations_list.comparisonsNum" }}</td>
         <td>{{ t "results:representations_list.ability" }}</td>
         <td>{{ t "results:representations_list.se" }}</td>
-        <td>{{ t "results:representations_list.infit" }}</td>
+        {{!-- <td>{{ t "results:representations_list.infit" }}</td> --}}
         <td>{{ t "results:representations_list.filename" }}</td>
     </tr>
     </thead>
@@ -19,7 +19,7 @@
             <td class="text-right"><code>{{{completedComparisons}}}/{{{../maxComparisons}}}</code></td>
             <td class="text-right"><code>{{{toFixed ability}}}</code></td>
             <td class="text-right"><code>{{{toFixed se}}}</code></td>
-            <td class="text-right"><code>{{{toFixed infit}}}</code></td>
+            {{!-- <td class="text-right"><code>{{{toFixed infit}}}</code></td> --}}
             <td><a href="{{{document.href}}}" target="_blank">{{{document.originalName}}}</a></td>
         </tr>
     {{/each}}
